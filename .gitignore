@@ -6,4 +6,8 @@ node_modules
 yarn-error.log
 yarn-debug.log
 
+# Build files
 dist
+
+# api-extractor temp files
+temp

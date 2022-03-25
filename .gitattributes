@@ -1,0 +1,2 @@
+# Used to support JSON comments when using api-extractor
+*.json  linguist-language=JSON-with-Comments
