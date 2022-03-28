@@ -14,15 +14,10 @@ const allBuilds = {
       file: pkg.module,
       format: 'esm',
       sourcemap: true
-    },
+    }
   ],
-  external: [
-    ...Object.keys(pkg.dependencies || {})
-  ],
-  plugins: [
-    typescriptPlugin(),
-    terser()
-  ]
+  external: [...Object.keys(pkg.dependencies || {})],
+  plugins: [typescriptPlugin(), terser()]
 };
 
 export default allBuilds;
