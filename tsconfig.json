@@ -25,7 +25,6 @@
     "test/**/*.ts"
   ],
   "exclude": [
-    "*.js",
     "dist/**/*"
   ]
 }

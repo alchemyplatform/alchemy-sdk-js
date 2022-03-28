@@ -22,7 +22,7 @@
     },
     "default": "./dist/index.esm.js"
   },
-  "types": "./dist/types/index.d.ts",
+  "types": "./dist/src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alchemyplatform/exploring-pioneer.git"
@@ -51,6 +51,7 @@
     "ethers": "^5.6.1"
   },
   "devDependencies": {
+    "@microsoft/api-documenter": "^7.16.0",
     "@microsoft/api-extractor": "^7.19.5",
     "@size-limit/preset-big-lib": "^7.0.8",
     "@types/jest": "^27.4.1",
@@ -68,8 +69,8 @@
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.31.2",
     "size-limit": "^7.0.8",
-    "tslib": "^2.3.1",
     "ts-jest": "^27.1.4",
+    "tslib": "^2.3.1",
     "typescript": "^4.5.5"
   },
   "size-limit": [

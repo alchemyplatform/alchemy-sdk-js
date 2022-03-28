@@ -865,6 +865,19 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@microsoft/api-documenter@^7.16.0":
+  version "7.16.0"
+  resolved "https://registry.yarnpkg.com/@microsoft/api-documenter/-/api-documenter-7.16.0.tgz#0d3ea6cf1e73e9250859872e75819605eb94d12a"
+  integrity sha512-dAZRTqjoSrnSUlXhhbAqWBm+x9CfaHj8E7VyxLdNDGQPHc5nDC9jSUxm4hJ6Rk3KmlbCDYKyRo6odBu2Usa6wg==
+  dependencies:
+    "@microsoft/api-extractor-model" "7.15.4"
+    "@microsoft/tsdoc" "0.13.2"
+    "@rushstack/node-core-library" "3.45.1"
+    "@rushstack/ts-command-line" "4.10.7"
+    colors "~1.2.1"
+    js-yaml "~3.13.1"
+    resolve "~1.17.0"
+
 "@microsoft/api-extractor-model@7.15.4":
   version "7.15.4"
   resolved "https://registry.yarnpkg.com/@microsoft/api-extractor-model/-/api-extractor-model-7.15.4.tgz#59fc1e00530b7a604c719221a59dc265c76e9bc5"
@@ -3563,6 +3576,14 @@ js-yaml@^4.1.0:
   integrity sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==
   dependencies:
     argparse "^2.0.1"
+
+js-yaml@~3.13.1:
+  version "3.13.1"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.13.1.tgz#aff151b30bfdfa8e49e05da22e7415e9dfa37847"
+  integrity sha512-YfbcO7jXDdyj0DGxYVSlSeQNHbD7XPWvrVWeVUujrQEoZzWJIRrCPoyk6kL6IAjAG2IolMK4T0hNUe0HOUs5Jw==
+  dependencies:
+    argparse "^1.0.7"
+    esprima "^4.0.0"
 
 jsdom@^16.6.0:
   version "16.7.0"
