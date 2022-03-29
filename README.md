@@ -11,7 +11,7 @@ library. From there, we'll add additional features and higher level abstractions
 The SDK is currently packaged in the repository as a tarball file. To install, copy the `exploring-pioneer-1.0.0.tgz`
 file in this repo into your project's root directory and run:
 
-```aidl
+```
 npm install exploring-pioneer-1.0.0.tgz
 ```
 
