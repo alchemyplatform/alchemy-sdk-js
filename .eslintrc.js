@@ -1,17 +1,19 @@
 module.exports = {
-  plugins: [
-    'import',
-    'unused-imports',
-    '@typescript-eslint'
-  ],
+  plugins: ['import', 'unused-imports', '@typescript-eslint'],
   parser: '@typescript-eslint/parser',
+  overrides: [
+    {
+      files: ['*.ts']
+    }
+  ],
   parserOptions: {
-    'ecmaVersion': 2017,
-    'sourceType': 'module',
-    'project': './tsconfig.json'
+    ecmaVersion: 2017,
+    sourceType: 'module',
+    project: './tsconfig.json'
   },
+  ignorePatterns: ['.eslintrc.js', 'rollup.config.js'],
   rules: {
-    'curly': ['error', 'all'],
+    curly: ['error', 'all'],
     'no-extra-label': 'error',
     'no-unused-labels': 'error',
     'new-parens': 'error',
@@ -24,7 +26,7 @@ module.exports = {
     'no-unused-expressions': [
       'error',
       {
-        'allowShortCircuit': true
+        allowShortCircuit: true
       }
     ],
     'no-var': 'error',
@@ -32,13 +34,13 @@ module.exports = {
     'prefer-arrow-callback': [
       'error',
       {
-        'allowNamedFunctions': true
+        allowNamedFunctions: true
       }
     ],
     'prefer-const': [
       'error',
       {
-        'destructuring': 'all'
+        destructuring: 'all'
       }
     ],
     'no-array-constructor': 'error',
