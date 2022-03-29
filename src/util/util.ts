@@ -15,13 +15,6 @@ export function formatBlock(block: string | number): string {
   return block.toString();
 }
 
-export function delay(durationMs: number): Promise<void> {
-  return new Promise(resolve => {
-    const timer = setTimeout(resolve, durationMs);
-    timer.unref();
-  });
-}
-
 export function logger(methodName: string, message: string) {
   console.log(`[${methodName}]: ${message}`);
 }

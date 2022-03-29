@@ -25,15 +25,14 @@ export class ExponentialBackoff {
    * increased for each attempt. The promise is rejected if the maximum number
    * of attempts is exceeded.
    */
+  // TODO: beautify this into an async iterator.
   backoff(): Promise<void> {
     if (this.numAttempts > this.maxAttempts) {
       return Promise.reject(
         new Error(`Exceeded maximum number of attempts: ${this.maxAttempts}`)
       );
     }
-    const backoffDelayWithJitterMs = ExponentialBackoff.withJitterMs(
-      this.currentDelayMs
-    );
+    const backoffDelayWithJitterMs = this.withJitterMs(this.currentDelayMs);
 
     // Calculate the next delay.
     this.currentDelayMs *= this.backoffMultiplier;
@@ -55,12 +54,12 @@ export class ExponentialBackoff {
   }
 
   /**
-   * Applies +/- 50% jitter to the backoff delay.
+   * Applies +/- 50% jitter to the backoff delay, up to the max delay cap.
    *
    * @param delayMs
    * @private
    */
-  private static withJitterMs(delayMs: number): number {
-    return delayMs + (Math.random() - 0.5) * delayMs;
+  private withJitterMs(delayMs: number): number {
+    return Math.min(delayMs + (Math.random() - 0.5) * delayMs, this.maxDelayMs);
   }
 }

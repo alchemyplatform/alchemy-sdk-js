@@ -15,10 +15,10 @@ export function sendAxiosRequest<Req, Res>(
   params: Req
 ): Promise<AxiosResponse<Res>> {
   const methodUrl = baseUrl + '/' + methodName;
-  const config = {
+  const config: AxiosRequestConfig = {
     method: 'get',
     url: methodUrl,
     params
-  } as AxiosRequestConfig;
+  };
   return axios(config);
 }
