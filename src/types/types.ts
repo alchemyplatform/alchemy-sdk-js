@@ -190,7 +190,12 @@ export interface Nft extends BaseNft {
   error?: string;
 }
 
-// TODO: refactor to not include contract
+/**
+ * Represents an NFT object without any associated metadata.
+ *
+ * @public
+ */
+// TODO: refactor to not include contract in order to handle getNftsForCollection
 export interface BaseNft {
   contract: NftContract;
   id: NftId;
@@ -200,9 +205,13 @@ export interface GetNftsParams {
   owner: string;
   pageKey?: string;
   contractAddresses?: string[];
-  withMetadata?: boolean;
+  withMetadata?: true;
 }
 
+/**
+ * Parameter object for fetching NFTs without metadata.
+ * @public
+ */
 export interface GetNftsParamsWithoutMetadata {
   owner: string;
   pageKey?: string;
@@ -275,11 +284,6 @@ export type TransactionReceiptsParams =
 
 export interface TransactionReceiptsResponse {
   receipts: TransactionReceipt[] | null;
-}
-
-export interface Nft {
-  contract: NftContract;
-  id: NftId;
 }
 
 export interface ERC1155Metadata {

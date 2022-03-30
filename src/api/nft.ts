@@ -1,4 +1,5 @@
 import {
+  BaseNft,
   GetNftMetadataResponse,
   GetNftsForCollectionParams,
   GetNftsForCollectionResponse,
@@ -9,10 +10,11 @@ import {
   GetNftsResponse,
   GetNftsResponseWithoutMetadata,
   GetOwnersForTokenResponse,
+  Nft,
   NftTokenType
 } from '../types/types';
 import { Alchemy } from './alchemy';
-import { requestHttp } from '../internal/dispatch';
+import { paginateEndpoint, requestHttpWithBackoff } from '../internal/dispatch';
 
 /**
  *
@@ -28,7 +30,7 @@ export function getNftMetadata(
   tokenId: string,
   tokenType?: NftTokenType
 ): Promise<GetNftMetadataResponse> {
-  return requestHttp(alchemy, 'getNFTMetadata', {
+  return requestHttpWithBackoff(alchemy, 'getNFTMetadata', {
     contractAddress,
     tokenId,
     tokenType
@@ -36,7 +38,36 @@ export function getNftMetadata(
 }
 
 /**
- * Get all NFTs for a given contract address.
+ * Fetches all NFTs for a given owner and yields them in an async iterable.
+ *
+ * This method pages through all page keys until all NFTs have been fetched.
+ */
+export function getNftsPaginated(
+  alchemy: Alchemy,
+  params: GetNftsParamsWithoutMetadata
+): AsyncIterable<BaseNft>;
+export function getNftsPaginated(
+  alchemy: Alchemy,
+  params: GetNftsParams
+): AsyncIterable<Nft>;
+export async function* getNftsPaginated(
+  alchemy: Alchemy,
+  params: GetNftsParams | GetNftsParamsWithoutMetadata
+): AsyncIterable<Nft | BaseNft> {
+  for await (const response of paginateEndpoint(
+    alchemy,
+    'getNFTs',
+    'pageKey',
+    params
+  )) {
+    for (const nft of response.ownedNfts) {
+      yield nft;
+    }
+  }
+}
+
+/**
+ * Get all NFTs for an owner.
  *
  * @param alchemy
  * @param params
@@ -54,7 +85,7 @@ export function getNfts(
   alchemy: Alchemy,
   params: GetNftsParams | GetNftsParamsWithoutMetadata
 ): Promise<GetNftsResponse | GetNftsResponseWithoutMetadata> {
-  return requestHttp(alchemy, 'getNFTs', params);
+  return requestHttpWithBackoff(alchemy, 'getNFTs', params);
 }
 
 /**
@@ -78,7 +109,7 @@ export function getNftsForCollection(
 ): Promise<
   GetNftsForCollectionResponse | GetNftsForCollectionWithoutMetadataResponse
 > {
-  return requestHttp(alchemy, 'getNFTsForCollection', params);
+  return requestHttpWithBackoff(alchemy, 'getNFTsForCollection', params);
 }
 
 /**
@@ -94,7 +125,7 @@ export function getOwnersForToken(
   contractAddress: string,
   tokenId: string
 ): Promise<GetOwnersForTokenResponse> {
-  return requestHttp(alchemy, 'getOwnersForToken', {
+  return requestHttpWithBackoff(alchemy, 'getOwnersForToken', {
     contractAddress,
     tokenId
   });
