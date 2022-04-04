@@ -61,8 +61,7 @@ export async function requestHttpWithBackoff<Req, Res>(
 function isRetryableHttpError(err: AxiosError): boolean {
   const retryableCodes = [429];
   return (
-    err.response !== undefined &&
-    retryableCodes.indexOf(err.response.status) >= 0
+    err.response !== undefined && retryableCodes.includes(err.response.status)
   );
 }
 
@@ -72,10 +71,14 @@ function isRetryableHttpError(err: AxiosError): boolean {
  *
  * @internal
  */
-export async function* paginateEndpoint<Req, Res extends Record<string, any>>(
+export async function* paginateEndpoint<
+  PageKey extends string,
+  Req extends Record<PageKey, string>,
+  Res extends Record<string, unknown> & Record<PageKey, string>
+>(
   alchemy: Alchemy,
   methodName: string,
-  pageKey: string,
+  pageKey: PageKey,
   params: Req
 ): AsyncIterable<Res> {
   let hasNext = true;
@@ -88,25 +91,10 @@ export async function* paginateEndpoint<Req, Res extends Record<string, any>>(
     );
     yield response;
     if (response[pageKey] !== undefined) {
-      // @ts-ignore: TODO: figure out how to type guard properly (see below).
-      requestParams[pageKey] = response[pageKey];
+      /* eslint-disable @typescript-eslint/no-explicit-any */
+      requestParams[pageKey] = response[pageKey] as any;
     } else {
       hasNext = false;
     }
   }
 }
-
-/**
- * Attempt at type guarding that for some `foo: KeysMatching<X,V>`, `foo` is a
- * key in `X` that maps to `V`.
- *
- * I was hoping to use this in `paginateEndpoint` to enforce that:
- * pageKey: KeysMatching<Req, string> & KeysMatching<Res,string>
- *
- * That way we know that:
- * 1) pageKey exists on Req and Res
- * 2) Req[pageKey] and Res[pageKey] have type `string`
- */
-// type KeysMatching<X, V> = {
-//   [K in keyof X]: X[K] extends V ? K : never;
-// }[keyof X];
