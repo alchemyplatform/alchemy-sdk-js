@@ -12,11 +12,13 @@ export const DEFAULT_BACKOFF_MAX_ATTEMPTS = 5;
  * @internal
  */
 export class ExponentialBackoff {
-  private numAttempts = 0;
-  private currentDelayMs = 0;
   private readonly initialDelayMs = DEFAULT_BACKOFF_INITIAL_DELAY_MS;
   private readonly backoffMultiplier = DEFAULT_BACKOFF_MULTIPLIER;
   private readonly maxDelayMs = DEFAULT_BACKOFF_MAX_DELAY_MS;
+
+  private numAttempts = 0;
+  private currentDelayMs = 0;
+  private isInBackoff = false;
 
   constructor(private readonly maxAttempts = DEFAULT_BACKOFF_MAX_ATTEMPTS) {}
 
@@ -27,12 +29,24 @@ export class ExponentialBackoff {
    */
   // TODO: beautify this into an async iterator.
   backoff(): Promise<void> {
-    if (this.numAttempts > this.maxAttempts) {
+    if (this.numAttempts >= this.maxAttempts) {
       return Promise.reject(
         new Error(`Exceeded maximum number of attempts: ${this.maxAttempts}`)
       );
     }
+    if (this.isInBackoff) {
+      return Promise.reject(
+        new Error('A backoff operation is already in progress')
+      );
+    }
+
     const backoffDelayWithJitterMs = this.withJitterMs(this.currentDelayMs);
+    if (backoffDelayWithJitterMs > 0) {
+      logger(
+        'ExponentialBackoff.backoff',
+        `Backing off for ${backoffDelayWithJitterMs}ms`
+      );
+    }
 
     // Calculate the next delay.
     this.currentDelayMs *= this.backoffMultiplier;
@@ -40,14 +54,10 @@ export class ExponentialBackoff {
     this.currentDelayMs = Math.min(this.currentDelayMs, this.maxDelayMs);
     this.numAttempts += 1;
 
-    if (backoffDelayWithJitterMs > 0) {
-      logger(
-        'ExponentialBackoff.backoff',
-        `Backing off for ${backoffDelayWithJitterMs}ms`
-      );
-    }
     return new Promise(resolve => {
+      this.isInBackoff = true;
       setTimeout(() => {
+        this.isInBackoff = false;
         resolve();
       }, backoffDelayWithJitterMs);
     });

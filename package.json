@@ -8,10 +8,13 @@
     "prebuild": "yarn clean && tsc --emitDeclarationOnly --declaration -p tsconfig.json",
     "build": "rollup -c",
     "clean": "rm -rf dist",
+    "format": "prettier --write '**/*.{html,js,json,md,ts}'",
+    "format-file": "prettier --write",
     "lint": "eslint -c .eslintrc.js '**/*.ts' --ignore-path '.gitignore'",
-    "prettier": "prettier --write 'src/*.ts'",
+    "lint-file": "eslint --fix",
     "test": "jest",
-    "api": "api-extractor run"
+    "api": "api-extractor run",
+    "prepare": "husky install"
   },
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -30,15 +33,10 @@
   "files": [
     "dist"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "**/*.ts": [
-      "yarn lint",
-      "yarn prettier",
+      "yarn lint-file --fix",
+      "yarn format-file",
       "git add"
     ]
   },
@@ -61,7 +59,7 @@
     "eslint": "^8.11.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-unused-imports": "^2.0.0",
-    "husky": "^7.0.4",
+    "husky": "^7.0.0",
     "jest": "^27.5.1",
     "lint-staged": "^12.3.7",
     "prettier": "2.6.0",
