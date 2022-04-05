@@ -73,8 +73,8 @@ function isRetryableHttpError(err: AxiosError): boolean {
  */
 export async function* paginateEndpoint<
   PageKey extends string,
-  Req extends Record<PageKey, string>,
-  Res extends Record<string, unknown> & Record<PageKey, string>
+  Req extends Partial<Record<PageKey, string>>,
+  Res extends Partial<Record<string, any> & Record<PageKey, string>>
 >(
   alchemy: Alchemy,
   methodName: string,
