@@ -29,6 +29,16 @@ const settings = {
 const alchemy = initializeAlchemy(settings);
 ```
 
+The SDK's modular approach exports all functions at the top-level to reduce bundle size. However,
+this can make it harder to discover the full API surface. If you want your IDE to find all functions, you can import
+the entire SDK:
+```ts
+import * as alchemySdk from 'exploring-pioneer';
+
+const alchemy = alchemySdk.initializeAlchemy();
+alchemySdk.getNfts(alchemy, {owner: '0x123'});
+```
+
 ## SDK Structure
 
 The `Alchemy` object returned by `initializeAlchemy()` is an object that holds configuration settings. An optional
