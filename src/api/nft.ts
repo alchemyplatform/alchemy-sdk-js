@@ -8,6 +8,9 @@ import { RawBaseNft, RawNft } from '../internal/raw-interfaces';
  */
 export class BaseNft {
   /**
+   * This constructor should never be called directly. All Nft instances should
+   * be created from a backend response via the `fromResponse` method.
+   *
    * @hideconstructor
    */
   constructor(
@@ -58,6 +61,9 @@ export class Nft extends BaseNft {
   readonly media: TokenUri[] = [];
 
   /**
+   * This constructor should never be called directly. All Nft instances should
+   * be created from a backend response via the `fromResponse` method.
+   *
    * @hideconstructor
    */
   constructor(

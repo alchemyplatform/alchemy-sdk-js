@@ -108,7 +108,7 @@ export interface RawOwnedNft extends RawNft, RawOwnedBaseNft {}
  */
 export interface RawGetBaseNftsForCollectionResponse {
   nfts: RawCollectionBaseNft[];
-  nextToken: string;
+  nextToken?: string;
 }
 
 /**
@@ -118,7 +118,7 @@ export interface RawGetBaseNftsForCollectionResponse {
  */
 export interface RawGetNftsForCollectionResponse {
   nfts: RawCollectionNft[];
-  nextToken: string;
+  nextToken?: string;
 }
 
 /**

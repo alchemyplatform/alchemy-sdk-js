@@ -1,9 +1,9 @@
 import {
-  BaseNftsForCollection,
+  CollectionBaseNftsResponse,
+  CollectionNftsResponse,
   GetNftsParams,
   GetOwnersForTokenResponse,
   NftMetadata,
-  NftsForCollection,
   NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
@@ -188,7 +188,7 @@ export async function getNfts(
   alchemy: Alchemy,
   params: GetNftsParams
 ): Promise<OwnedNftsResponse> {
-  const paramsCopy = { ...params, withMetadata: false };
+  const paramsCopy = { ...params, withMetadata: true };
   const response = await requestHttpWithBackoff<
     GetNftsParams,
     RawGetNftsResponse
@@ -211,8 +211,8 @@ export async function getNfts(
  *
  * @param alchemy The Alchemy SDK instance.
  * @param contractAddress The collection contract address to get all NFTs for.
- * @param pageKey Optional page key from an existing {@link BaseNftsForCollection}
- * or {@link NftsForCollection} response.
+ * @param pageKey Optional page key from an existing {@link CollectionBaseNftsResponse}
+ * or {@link CollectionNftsResponse} response.
  * @beta
  */
 // TODO: Add pagination for this endpoint.
@@ -220,7 +220,7 @@ export async function getBaseNftsForCollection(
   alchemy: Alchemy,
   contractAddress: string,
   pageKey?: string
-): Promise<BaseNftsForCollection> {
+): Promise<CollectionBaseNftsResponse> {
   const response = await requestHttpWithBackoff<
     GetNftsForCollectionParams,
     RawGetBaseNftsForCollectionResponse
@@ -246,8 +246,8 @@ export async function getBaseNftsForCollection(
  *
  * @param alchemy The Alchemy SDK instance.
  * @param contractAddress The collection contract address to get all NFTs for.
- * @param pageKey Optional page key from an existing {@link BaseNftsForCollection}
- * or {@link NftsForCollection} response.
+ * @param pageKey Optional page key from an existing {@link CollectionBaseNftsResponse}
+ * or {@link CollectionNftsResponse} response.
  * @beta
  */
 // TODO: add pagination for this endpoint.
@@ -255,7 +255,7 @@ export async function getNftsForCollection(
   alchemy: Alchemy,
   contractAddress: string,
   pageKey?: string
-): Promise<NftsForCollection> {
+): Promise<CollectionNftsResponse> {
   const response = await requestHttpWithBackoff<
     GetNftsForCollectionParams,
     RawGetNftsForCollectionResponse
@@ -355,7 +355,7 @@ function nftFromGetNftCollectionResponse(
  */
 // TODO: more comprehensive type check
 function isNftWithMetadata(response: RawBaseNft | RawNft): response is RawNft {
-  return response.hasOwnProperty('title');
+  return (response as RawNft).title !== undefined;
 }
 
 /**
@@ -368,6 +368,8 @@ function normalizeTokenIdToNumber(tokenId: string | number): number {
   if (typeof tokenId === 'string') {
     if (isHex(tokenId)) {
       return fromHex(tokenId);
+    } else if (!isNaN(parseInt(tokenId))) {
+      return parseInt(tokenId);
     } else {
       throw new Error(
         `${tokenId} is not a valid token ID number or hex string`
