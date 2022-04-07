@@ -6,11 +6,15 @@ export * from './types/types';
 export { initializeAlchemy } from './api/alchemy';
 
 export {
-  getNfts,
   getNftMetadata,
+  getBaseNfts,
+  getNfts,
+  getBaseNftsPaginated,
+  getNftsPaginated,
+  getBaseNftsForCollection,
   getNftsForCollection,
   getOwnersForToken
-} from './api/nft';
+} from './api/nft-api';
 
 export {
   getTransactionReceipts,
@@ -19,3 +23,5 @@ export {
   getTokenBalances,
   getTokenAllowance
 } from './api/enhanced';
+
+export { Nft, BaseNft } from './api/nft';

@@ -1,4 +1,5 @@
 import { TransactionReceipt } from '@ethersproject/abstract-provider';
+import { BaseNft, Nft } from '../api/nft';
 
 // TODO: Add documentation and annotations for all types here.
 
@@ -120,10 +121,11 @@ export enum AssetTransfersOrder {
   DESCENDING = 'desc'
 }
 
-export type NftTokenType = {
-  ERC721: 'erc721';
-  ERC1155: 'erc1155';
-};
+export enum NftTokenType {
+  ERC721 = 'erc721',
+  ERC1155 = 'erc1155',
+  UNKNOWN = 'unknown'
+}
 
 export interface AssetTransfersResponse {
   transfers: AssetTransfersResult[];
@@ -151,119 +153,63 @@ export interface NftMetadata extends Record<string, any> {
   attributes?: Array<Record<string, any>>;
 }
 
+/**
+ *
+ *
+ * @public
+ */
 export interface TokenUri {
+  /** URI for the location of the NFT's original metadata blob.*/
   raw: string;
+  /** Public gateway URI for the raw URI. */
   gateway: string;
 }
 
-export interface NftMedia {
-  uri?: TokenUri;
-}
-
-export interface NftContract {
-  address: string;
-}
-
-export interface NftId {
-  tokenId: string;
-  tokenMetadata?: NftTokenMetadata;
-}
-
-export interface NftTokenMetadata {
-  tokenType: NftTokenType;
-}
-
-export type GetNftMetadataResponse = NftMetadata;
-
 /**
- * Represents an NFT object along with its metadata.
+ * Parameters object for the {@link getNfts}, {@link getBaseNfts},
+ * {@link getBaseNftsPaginated}, and {@link getNftsPaginated} functions.
  *
  * @public
  */
-export interface Nft extends BaseNft {
-  title: string;
-  description: string;
-  tokenUri?: TokenUri;
-  media?: NftMedia[];
-  metadata?: NftMetadata;
-  timeLastUpdated: string;
-  error?: string;
-}
-
-/**
- * Represents an NFT object without any associated metadata.
- *
- * @public
- */
-// TODO: refactor to not include contract in order to handle getNftsForCollection
-export interface BaseNft {
-  contract: NftContract;
-  id: NftId;
-}
-
 export interface GetNftsParams {
+  /** The owner address of the NFTs. */
   owner: string;
+
+  /**
+   * Optional page key from an existing {@link OwnedBaseNftsResponse} or
+   * {@link OwnedNftsResponse}to use for pagination.
+   */
   pageKey?: string;
+
+  /**
+   * Optional list of contract addresses to filter the results by. Limit is 20.
+   */
   contractAddresses?: string[];
-  withMetadata?: true;
 }
 
 /**
- * Parameter object for fetching NFTs without metadata.
  * @public
  */
-export interface GetNftsParamsWithoutMetadata {
-  owner: string;
-  pageKey?: string;
-  contractAddresses?: string[];
-  withMetadata: false;
-}
-
-export interface GetNftsResponse {
-  ownedNfts: Nft[];
+export interface OwnedNftsResponse {
+  ownedNfts: OwnedNft[];
   pageKey?: string;
   totalCount: number;
 }
 
-export interface GetNftsResponseWithoutMetadata {
-  ownedNfts: BaseNft[];
+export interface OwnedBaseNftsResponse {
+  ownedNfts: OwnedBaseNft[];
   pageKey?: string;
   totalCount: number;
 }
 
-export interface GetNftsResponse {
-  ownedNfts: Nft[];
-  pageKey?: string;
-  totalCount: number;
+export interface OwnedNft {
+  nft: Nft;
+  balance: number;
 }
 
-export interface GetNftsForCollectionParams {
-  contractAddress: string;
-  // TODO: is this optional or not?
-  startToken?: string;
-  withMetadata: true;
-}
-
-// TODO: is withmetadata default true?
-export interface GetNftsForCollectionWithoutMetadataParams {
-  contractAddress: string;
-  startToken?: string;
-  withMetadata: false;
-}
-
-// TODO: does this include the contract field of BaseNft?
-export interface GetNftsForCollectionWithoutMetadataResponse {
-  nfts: BaseNft[];
-  // TODO: What is the type?
-  nextToken: string;
-  // TODO: why is there no pagekey or totalCount? How much work to implement?
-}
-
-export interface GetNftsForCollectionResponse {
-  nfts: Nft[];
-  // TODO: What is the type?
-  nextToken: string;
-  // TODO: why is there no pagekey or totalCount? How much work to implement?
+export interface OwnedBaseNft {
+  nft: BaseNft;
+  balance: number;
 }
 
 export interface GetOwnersForTokenResponse {
@@ -295,4 +241,20 @@ export interface RawContract {
   value: string | null;
   address: string | null;
   decimal: string | null;
+}
+
+/**
+ * @public
+ */
+export interface BaseNftsForCollection {
+  nfts: BaseNft[];
+  pageKey?: string;
+}
+
+/**
+ * @public
+ */
+export interface NftsForCollection {
+  nfts: Nft[];
+  pageKey?: string;
 }
