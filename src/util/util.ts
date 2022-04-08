@@ -6,6 +6,10 @@ export function fromHex(hexString: string): number {
   return Number.parseInt(hexString, 16);
 }
 
+export function isHex(possibleHexString: string): boolean {
+  return /^0x[0-9a-fA-F]+$/.test(possibleHexString);
+}
+
 export function formatBlock(block: string | number): string {
   if (typeof block === 'string') {
     return block;

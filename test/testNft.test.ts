@@ -1,9 +1,9 @@
-import { GetNftsResponse, getOwnersForToken, initializeAlchemy } from '../src';
-import { Alchemy } from '../src/api/alchemy';
+import { getNftsPaginated, getOwnersForToken, initializeAlchemy } from '../src';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { createNft } from './testUtil';
-import { getNftsPaginated } from '../src/api/nft';
+import { Alchemy } from '../src/api/alchemy';
+import { createOwnedNft } from './testUtil';
+import { RawGetNftsResponse } from '../src/internal/raw-interfaces';
 
 describe('NFT module', () => {
   let alchemy: Alchemy;
@@ -35,14 +35,14 @@ describe('NFT module', () => {
   });
 
   describe('getNftsPaginated', () => {
-    const nftResponses: GetNftsResponse[] = [
+    const nftResponses: RawGetNftsResponse[] = [
       {
-        ownedNfts: [createNft('a'), createNft('b')],
+        ownedNfts: [createOwnedNft('a'), createOwnedNft('b')],
         pageKey: 'key1',
         totalCount: 3
       },
       {
-        ownedNfts: [createNft('c')],
+        ownedNfts: [createOwnedNft('c')],
         totalCount: 3
       }
     ];
@@ -57,10 +57,10 @@ describe('NFT module', () => {
 
     it('traverses all page keys', async () => {
       const nftTitles: string[] = [];
-      for await (const nft of getNftsPaginated(alchemy, {
+      for await (const ownedNft of getNftsPaginated(alchemy, {
         owner: '0xABC'
       })) {
-        nftTitles.push(nft.title);
+        nftTitles.push(ownedNft.nft.title);
       }
 
       // Verify page key was properly used and NFTs are returned in order.
@@ -72,11 +72,11 @@ describe('NFT module', () => {
 
     it('can paginate starting from a given page key', async () => {
       const nftTitles: string[] = [];
-      for await (const nft of getNftsPaginated(alchemy, {
+      for await (const ownedNft of getNftsPaginated(alchemy, {
         owner: '0xABC',
         pageKey: 'key0'
       })) {
-        nftTitles.push(nft.title);
+        nftTitles.push(ownedNft.nft.title);
       }
 
       // Verify page key was properly used and NFTs are returned in order.
@@ -96,10 +96,10 @@ describe('NFT module', () => {
 
       const nftTitles: string[] = [];
       try {
-        for await (const nft of getNftsPaginated(alchemy, {
+        for await (const ownedNft of getNftsPaginated(alchemy, {
           owner: '0xABC'
         })) {
-          nftTitles.push(nft.title);
+          nftTitles.push(ownedNft.nft.title);
         }
         fail('getNftsPaginated should have surfaced error');
       } catch (e) {

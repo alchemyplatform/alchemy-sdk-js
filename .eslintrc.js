@@ -48,6 +48,7 @@ module.exports = {
     'import/no-duplicates': 'error',
     'unused-imports/no-unused-imports-ts': 'error',
     'default-case': 'error',
+    '@typescript-eslint/member-ordering': 'error',
     '@typescript-eslint/no-floating-promises': 'error'
   }
 };

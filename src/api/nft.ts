@@ -1,132 +1,128 @@
-import {
-  BaseNft,
-  GetNftMetadataResponse,
-  GetNftsForCollectionParams,
-  GetNftsForCollectionResponse,
-  GetNftsForCollectionWithoutMetadataParams,
-  GetNftsForCollectionWithoutMetadataResponse,
-  GetNftsParams,
-  GetNftsParamsWithoutMetadata,
-  GetNftsResponse,
-  GetNftsResponseWithoutMetadata,
-  GetOwnersForTokenResponse,
-  Nft,
-  NftTokenType
-} from '../types/types';
-import { Alchemy } from './alchemy';
-import { paginateEndpoint, requestHttpWithBackoff } from '../internal/dispatch';
+import { NftMetadata, NftTokenType, TokenUri } from '../types/types';
+import { RawBaseNft, RawNft } from '../internal/raw-interfaces';
 
 /**
+ * Alchemy representation of a base NFT that doesn't contain metadata.
  *
- * @param alchemy
- * @param contractAddress
- * @param tokenId
- * @param tokenType
  * @public
  */
-export function getNftMetadata(
-  alchemy: Alchemy,
-  contractAddress: string,
-  tokenId: string,
-  tokenType?: NftTokenType
-): Promise<GetNftMetadataResponse> {
-  return requestHttpWithBackoff(alchemy, 'getNFTMetadata', {
-    contractAddress,
-    tokenId,
-    tokenType
-  });
-}
+export class BaseNft {
+  /**
+   * @hideconstructor
+   */
+  constructor(
+    /** The NFT contract address. */
+    readonly address: string,
+    /** The NFT token ID as a hex string */
+    readonly tokenId: string,
+    /** The type of ERC token, if known. */
+    readonly tokenType: NftTokenType
+  ) {}
 
-/**
- * Fetches all NFTs for a given owner and yields them in an async iterable.
- *
- * This method pages through all page keys until all NFTs have been fetched.
- */
-export function getNftsPaginated(
-  alchemy: Alchemy,
-  params: GetNftsParamsWithoutMetadata
-): AsyncIterable<BaseNft>;
-export function getNftsPaginated(
-  alchemy: Alchemy,
-  params: GetNftsParams
-): AsyncIterable<Nft>;
-export async function* getNftsPaginated(
-  alchemy: Alchemy,
-  params: GetNftsParams | GetNftsParamsWithoutMetadata
-): AsyncIterable<Nft | BaseNft> {
-  for await (const response of paginateEndpoint(
-    alchemy,
-    'getNFTs',
-    'pageKey',
-    params
-  )) {
-    for (const nft of response.ownedNfts) {
-      yield nft;
-    }
+  /**
+   * @internal
+   */
+  static fromResponse(ownedNft: RawBaseNft, contractAddress: string): BaseNft {
+    return new BaseNft(
+      contractAddress,
+      ownedNft.id.tokenId,
+      ownedNft.id.tokenMetadata?.tokenType ?? NftTokenType.UNKNOWN
+    );
   }
 }
 
 /**
- * Get all NFTs for an owner.
+ * Alchemy representation of an NFT.
  *
- * @param alchemy
- * @param params
  * @public
  */
-export function getNfts(
-  alchemy: Alchemy,
-  params: GetNftsParamsWithoutMetadata
-): Promise<GetNftsResponseWithoutMetadata>;
-export function getNfts(
-  alchemy: Alchemy,
-  params: GetNftsParams
-): Promise<GetNftsResponse>;
-export function getNfts(
-  alchemy: Alchemy,
-  params: GetNftsParams | GetNftsParamsWithoutMetadata
-): Promise<GetNftsResponse | GetNftsResponseWithoutMetadata> {
-  return requestHttpWithBackoff(alchemy, 'getNFTs', params);
-}
+export class Nft extends BaseNft {
+  /** The NFT title. */
+  readonly title: string;
 
-/**
- * Get all NFTs for a given contract address.
- *
- * @param alchemy
- * @param params
- * @beta
- */
-export function getNftsForCollection(
-  alchemy: Alchemy,
-  params: GetNftsForCollectionParams
-): Promise<GetNftsForCollectionResponse>;
-export function getNftsForCollection(
-  alchemy: Alchemy,
-  params: GetNftsForCollectionWithoutMetadataParams
-): Promise<GetNftsForCollectionWithoutMetadataResponse>;
-export function getNftsForCollection(
-  alchemy: Alchemy,
-  params: GetNftsForCollectionParams | GetNftsForCollectionWithoutMetadataParams
-): Promise<
-  GetNftsForCollectionResponse | GetNftsForCollectionWithoutMetadataResponse
-> {
-  return requestHttpWithBackoff(alchemy, 'getNFTsForCollection', params);
-}
+  /** The NFT description. */
+  readonly description: string;
 
-/**
- * Gets all the owners for a given NFT contract address and token ID.
- *
- * @param alchemy
- * @param contractAddress
- * @param tokenId
- * @beta
- */
-export function getOwnersForToken(
-  alchemy: Alchemy,
-  contractAddress: string,
-  tokenId: string
-): Promise<GetOwnersForTokenResponse> {
-  return requestHttpWithBackoff(alchemy, 'getOwnersForToken', {
-    contractAddress,
-    tokenId
-  });
+  /**
+   * When the NFT was last updated in the blockchain. Represented in ISO-8601
+   * format.
+   */
+  readonly timeLastUpdated: string;
+
+  /**
+   * Holds an error message if there was an issue fetching metadata.
+   */
+  readonly error: string | undefined;
+  readonly rawMetadata: NftMetadata | undefined;
+  readonly tokenUri: TokenUri | undefined;
+  readonly media: TokenUri[] = [];
+
+  /**
+   * @hideconstructor
+   */
+  constructor(
+    address: string,
+    tokenId: string,
+    tokenType: NftTokenType,
+    title: string,
+    description: string,
+    timeLastUpdated: string,
+    tokenUri?: TokenUri,
+    media?: TokenUri[],
+    metadata?: NftMetadata,
+    error?: string
+  ) {
+    super(address, tokenId, tokenType);
+    this.title = title;
+    this.description = description;
+    this.timeLastUpdated = timeLastUpdated;
+    this.error = error;
+    this.rawMetadata = metadata;
+    this.tokenUri = Nft.parseTokenUri(tokenUri);
+    this.media = Nft.parseTokenUriArray(media);
+  }
+
+  /**
+   * @internal
+   */
+  static fromResponse(ownedNft: RawNft, contractAddress: string): Nft {
+    return new Nft(
+      contractAddress,
+      ownedNft.id.tokenId,
+      ownedNft.id.tokenMetadata?.tokenType ?? NftTokenType.UNKNOWN,
+      ownedNft.title,
+      ownedNft.description,
+      ownedNft.timeLastUpdated,
+      ownedNft.tokenUri,
+      ownedNft.media,
+      ownedNft.metadata,
+      ownedNft.error
+    );
+  }
+
+  /**
+   * Returns undefined if the uri has empty string fields.
+   *
+   * @private
+   */
+  private static parseTokenUri(
+    uri: TokenUri | undefined
+  ): TokenUri | undefined {
+    if (uri && uri.raw.length === 0 && uri.gateway.length == 0) {
+      return undefined;
+    }
+    return uri;
+  }
+
+  /**
+   * Removes empty URIs from the array.
+   *
+   * @private
+   */
+  private static parseTokenUriArray(arr: TokenUri[] | undefined): TokenUri[] {
+    if (arr === undefined) {
+      return [];
+    }
+    return arr.filter(uri => this.parseTokenUri(uri) !== undefined);
+  }
 }
