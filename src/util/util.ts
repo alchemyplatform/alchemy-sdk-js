@@ -7,7 +7,7 @@ export function fromHex(hexString: string): number {
 }
 
 export function isHex(possibleHexString: string): boolean {
-  return /^0x[0-9a-fA-F]*$/.test(possibleHexString);
+  return /^0x[0-9a-fA-F]+$/.test(possibleHexString);
 }
 
 export function formatBlock(block: string | number): string {

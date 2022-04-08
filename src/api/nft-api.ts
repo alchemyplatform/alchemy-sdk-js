@@ -73,7 +73,7 @@ export function getNftMetadata(
       tokenId: fromHex(contractAddressOrBaseNft.tokenId),
       tokenType:
         contractAddressOrBaseNft.tokenType !== NftTokenType.UNKNOWN
-          ? tokenType
+          ? contractAddressOrBaseNft.tokenType
           : undefined
     });
   }

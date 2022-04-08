@@ -7,7 +7,7 @@ import { NftMetadata, NftTokenType, TokenUri } from '../types/types';
  */
 
 /**
- * Represents an NFT object along without its metadata received from Alchemy.
+ * Represents an NFT object without metadata received from Alchemy.
  *
  * @internal
  */

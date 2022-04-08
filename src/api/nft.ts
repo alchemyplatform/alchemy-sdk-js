@@ -53,9 +53,9 @@ export class Nft extends BaseNft {
    * Holds an error message if there was an issue fetching metadata.
    */
   readonly error: string | undefined;
-  private readonly _rawMetadata: NftMetadata | undefined;
-  private readonly _tokenUri: TokenUri | undefined;
-  private readonly _media: TokenUri[] = [];
+  readonly rawMetadata: NftMetadata | undefined;
+  readonly tokenUri: TokenUri | undefined;
+  readonly media: TokenUri[] = [];
 
   /**
    * @hideconstructor
@@ -77,26 +77,9 @@ export class Nft extends BaseNft {
     this.description = description;
     this.timeLastUpdated = timeLastUpdated;
     this.error = error;
-    this._rawMetadata = metadata;
-    this._tokenUri = Nft.parseTokenUri(tokenUri);
-    this._media = Nft.parseTokenUriArray(media);
-  }
-
-  /** URI for the metadata of the NFT. */
-  get tokenUri(): TokenUri | undefined {
-    return this._tokenUri;
-  }
-
-  /** URI for the media assets of the NFT. */
-  get media(): TokenUri[] {
-    return this._media;
-  }
-
-  /**
-   * The raw metadata associated with the NFT on the blockchain.
-   */
-  get rawMetadata(): NftMetadata | undefined {
-    return this._rawMetadata;
+    this.rawMetadata = metadata;
+    this.tokenUri = Nft.parseTokenUri(tokenUri);
+    this.media = Nft.parseTokenUriArray(media);
   }
 
   /**
