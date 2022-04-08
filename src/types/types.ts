@@ -60,7 +60,7 @@ export type TokenBalance = TokenBalanceSuccess | TokenBalanceFailure;
  * @public
  */
 export interface TokenBalanceSuccess {
-  address: string;
+  contractAddress: string;
   tokenBalance: string;
   error: null;
 }
@@ -69,7 +69,7 @@ export interface TokenBalanceSuccess {
  * @public
  */
 export interface TokenBalanceFailure {
-  address: string;
+  contractAddress: string;
   tokenBalance: null;
   error: string;
 }

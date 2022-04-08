@@ -2,6 +2,7 @@ import {
   getBaseNfts,
   getBaseNftsPaginated,
   getNftMetadata,
+  getNfts,
   getNftsForCollection,
   getOwnersForToken,
   initializeAlchemy,
@@ -58,6 +59,11 @@ describe('E2E integration tests', () => {
   it('getOwnersForToken from NFT', async () => {
     const nfts = await getBaseNfts(alchemy, { owner: ownerAddress });
     const owners = await getOwnersForToken(alchemy, nfts.ownedNfts[0].nft);
+    console.log('owner', owners);
+  });
+
+  it('getOwnersForToken from NFT', async () => {
+    const owners = await getNfts(alchemy, { owner: 'happy.eth' });
     console.log('owner', owners);
   });
 

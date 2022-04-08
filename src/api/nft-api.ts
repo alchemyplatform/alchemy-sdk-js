@@ -151,8 +151,8 @@ async function* _getNftsPaginated(
  * This method returns the base NFTs that omit the associated metadata. To get
  * all NFTs with their associated metadata, use {@link getNfts}.
  *
- * @param alchemy
- * @param params
+ * @param alchemy The Alchemy SDK instance.
+ * @param params The parameters to use for the request.
  * @public
  */
 export async function getBaseNfts(
@@ -180,8 +180,8 @@ export async function getBaseNfts(
  * This method returns the full NFT for the owner. To get all NFTs without their
  * associated metadata, use {@link getBaseNfts}.
  *
- * @param alchemy
- * @param params
+ * @param alchemy The Alchemy SDK instance.
+ * @param params The parameters to use for the request.
  * @public
  */
 export async function getNfts(
@@ -209,9 +209,10 @@ export async function getNfts(
  * This method returns the base NFTs that omit the associated metadata. To get
  * all NFTs with their associated metadata, use {@link getNftsForCollection}.
  *
- * @param alchemy
- * @param contractAddress
- * @param pageKey
+ * @param alchemy The Alchemy SDK instance.
+ * @param contractAddress The collection contract address to get all NFTs for.
+ * @param pageKey Optional page key from an existing {@link BaseNftsForCollection}
+ * or {@link NftsForCollection} response.
  * @beta
  */
 // TODO: Add pagination for this endpoint.
@@ -243,9 +244,11 @@ export async function getBaseNftsForCollection(
  * This method returns the full NFTs in the contract. To get all NFTs without
  * their associated metadata, use {@link getBaseNftsForCollection}.
  *
- * @param alchemy
- * @param contractAddress
- * @param pageKey
+ * @param alchemy The Alchemy SDK instance.
+ * @param contractAddress The collection contract address to get all NFTs for.
+ * @param pageKey Optional page key from an existing {@link BaseNftsForCollection}
+ * or {@link NftsForCollection} response.
+ * @beta
  */
 // TODO: add pagination for this endpoint.
 export async function getNftsForCollection(
@@ -323,7 +326,7 @@ export function getOwnersForToken(
 function nftFromGetNftResponse(
   ownedNft: RawOwnedBaseNft | RawOwnedNft
 ): Nft | BaseNft {
-  if (isResponseWithMetadata(ownedNft)) {
+  if (isNftWithMetadata(ownedNft)) {
     return Nft.fromResponse(ownedNft, ownedNft.contract.address);
   } else {
     return BaseNft.fromResponse(ownedNft, ownedNft.contract.address);
@@ -340,7 +343,7 @@ function nftFromGetNftCollectionResponse(
   ownedNft: RawCollectionBaseNft | RawCollectionNft,
   contractAddress: string
 ): Nft | BaseNft {
-  if (isResponseWithMetadata(ownedNft)) {
+  if (isNftWithMetadata(ownedNft)) {
     return Nft.fromResponse(ownedNft, contractAddress);
   } else {
     return BaseNft.fromResponse(ownedNft, contractAddress);
@@ -351,12 +354,16 @@ function nftFromGetNftCollectionResponse(
  * @internal
  */
 // TODO: more comprehensive type check
-function isResponseWithMetadata(
-  response: RawBaseNft | RawNft
-): response is RawNft {
+function isNftWithMetadata(response: RawBaseNft | RawNft): response is RawNft {
   return response.hasOwnProperty('title');
 }
 
+/**
+ * Helper method that returns the token ID input as an integer.
+ *
+ * @param tokenId The token ID as an integer or hex string.
+ * @internal
+ */
 function normalizeTokenIdToNumber(tokenId: string | number): number {
   if (typeof tokenId === 'string') {
     if (isHex(tokenId)) {
