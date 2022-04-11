@@ -1,5 +1,7 @@
 import { NftMetadata, NftTokenType, TokenUri } from '../types/types';
 import { RawBaseNft, RawNft } from '../internal/raw-interfaces';
+import { normalizeTokenIdToNumber } from './nft-api';
+import { toHex } from './util';
 
 /**
  * Alchemy representation of a base NFT that doesn't contain metadata.
@@ -94,7 +96,9 @@ export class Nft extends BaseNft {
   static fromResponse(ownedNft: RawNft, contractAddress: string): Nft {
     return new Nft(
       contractAddress,
-      ownedNft.id.tokenId,
+      // We have to normalize the token id here since the backend sometimes
+      // returns the token ID as a hex string and sometimes as an integer.
+      toHex(normalizeTokenIdToNumber(ownedNft.id.tokenId)),
       ownedNft.id.tokenMetadata?.tokenType ?? NftTokenType.UNKNOWN,
       ownedNft.title,
       ownedNft.description,

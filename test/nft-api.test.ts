@@ -11,12 +11,13 @@ import {
   getNftsPaginated,
   getOwnersForToken,
   initializeAlchemy,
-  NftMetadata,
+  Nft,
   NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
   OwnedNft,
-  OwnedNftsResponse
+  OwnedNftsResponse,
+  toHex
 } from '../src';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
@@ -37,7 +38,6 @@ import {
   RawGetNftsForCollectionResponse,
   RawGetNftsResponse
 } from '../src/internal/raw-interfaces';
-import { toHex } from '../src/util/util';
 
 describe('NFT module', () => {
   let alchemy: Alchemy;
@@ -59,31 +59,24 @@ describe('NFT module', () => {
   describe('getNftMetadata()', () => {
     const contractAddress = '0xABC';
     const tokenId = 42;
-    const mockNftMetadata = {
-      name: 'NFT',
-      description: 'wen lambo',
-      image: 'url',
-      attributes: [
-        {
-          key: 'color',
-          value: 'red'
-        }
-      ],
-      additionalProperty: 'custom property not in schema'
-    };
+    // Special case token ID as an integer string, since that's what the NFT
+    // API endpoint returns.
+    const rawNftResponse = createRawNft(contractAddress, tokenId.toString());
+    const expectedNft = Nft.fromResponse(rawNftResponse, contractAddress);
 
     beforeEach(() => {
-      mock.onGet().replyOnce(200, mockNftMetadata);
+      mock.onGet().reply(200, rawNftResponse);
     });
 
     function verifyNftMetadata(
-      actualMetadata: NftMetadata,
-      expectedMetadata: NftMetadata,
+      actualNft: Nft,
+      expectedNft: Nft,
       contractAddress: string,
       tokenId: number,
       tokenType?: NftTokenType
     ) {
-      expect(actualMetadata).toEqual(expectedMetadata);
+      expect(actualNft).toEqual(expectedNft);
+      expect(actualNft.tokenId).toEqual(toHex(tokenId));
       expect(mock.history.get.length).toEqual(1);
       expect(mock.history.get[0].params).toHaveProperty(
         'contractAddress',
@@ -100,7 +93,7 @@ describe('NFT module', () => {
       const nft = createBaseNft(contractAddress, tokenId, NftTokenType.ERC721);
       verifyNftMetadata(
         await getNftMetadata(alchemy, nft),
-        mockNftMetadata,
+        expectedNft,
         contractAddress,
         tokenId,
         NftTokenType.ERC721
@@ -115,7 +108,7 @@ describe('NFT module', () => {
           tokenId,
           NftTokenType.ERC1155
         ),
-        mockNftMetadata,
+        expectedNft,
         contractAddress,
         tokenId,
         NftTokenType.ERC1155
@@ -130,7 +123,7 @@ describe('NFT module', () => {
           toHex(tokenId),
           NftTokenType.ERC1155
         ),
-        mockNftMetadata,
+        expectedNft,
         contractAddress,
         tokenId,
         NftTokenType.ERC1155
@@ -145,7 +138,7 @@ describe('NFT module', () => {
           toHex(tokenId),
           NftTokenType.UNKNOWN
         ),
-        mockNftMetadata,
+        expectedNft,
         contractAddress,
         tokenId
       );

@@ -1,4 +1,4 @@
-import { BaseNft, Nft, NftTokenType } from '../src';
+import { BaseNft, Nft, NftTokenType, toHex } from '../src';
 import { createRawBaseNft, createRawNft } from './test-util';
 
 describe('BaseNft class', () => {
@@ -26,6 +26,22 @@ describe('Nft class', () => {
     expect(nft.tokenType).toEqual(NftTokenType.UNKNOWN);
     expect(nft.tokenId).toEqual(tokenId);
     expect(nft.address).toEqual(contractAddress);
+  });
+
+  it('fromResponse() normalizes tokenId fields', () => {
+    const tokenIdIntegerAsString = '42';
+    const tokenIdHex = toHex(42);
+    let nft = Nft.fromResponse(
+      createRawNft('title', tokenIdHex),
+      contractAddress
+    );
+    expect(nft.tokenId).toEqual(tokenIdHex);
+
+    nft = Nft.fromResponse(
+      createRawNft('title', tokenIdIntegerAsString),
+      contractAddress
+    );
+    expect(nft.tokenId).toEqual(tokenIdHex);
   });
 
   it('constructor parses token uri and media fields', () => {

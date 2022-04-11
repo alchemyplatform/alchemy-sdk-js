@@ -5,8 +5,14 @@ import {
   RawOwnedBaseNft,
   RawOwnedNft
 } from '../src/internal/raw-interfaces';
-import { BaseNft, Nft, NftTokenType, OwnedBaseNft, OwnedNft } from '../src';
-import { toHex } from '../src/util/util';
+import {
+  BaseNft,
+  Nft,
+  NftTokenType,
+  OwnedBaseNft,
+  OwnedNft,
+  toHex
+} from '../src';
 
 export function createRawOwnedBaseNft(
   address: string,

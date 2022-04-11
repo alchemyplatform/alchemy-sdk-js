@@ -32,6 +32,8 @@ export interface RawNft extends RawBaseNft {
 
 /**
  * Represents the contract address of an NFT object received from Alchemy.
+ * This field is separated out since not all NFT API endpoints return a
+ * contract field.
  *
  * @internal
  */
