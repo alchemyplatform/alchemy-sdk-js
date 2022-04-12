@@ -1,9 +1,6 @@
 import {
   CollectionBaseNftsResponse,
   CollectionNftsResponse,
-  getBaseNfts,
-  getBaseNftsForCollection,
-  getBaseNftsPaginated,
   getNftMetadata,
   getNfts,
   getNftsForCollection,
@@ -159,7 +156,7 @@ describe('NFT module', () => {
     });
   });
 
-  describe('getBaseNfts()/getNfts()', () => {
+  describe('getNfts()', () => {
     const ownerAddress = '0xABC';
     const pageKey = 'page-key0';
     const contractAddresses = ['0xCA1', '0xCA2'];
@@ -186,15 +183,19 @@ describe('NFT module', () => {
       totalCount: 3
     };
 
-    const paramCases: Array<[(...args: any) => Promise<any>, boolean]> = [
-      [getBaseNfts, false],
-      [getNfts, true]
+    const withMetadata = [
+      [true, true],
+      [false, false],
+      [undefined, true]
     ];
-    it.each(paramCases)(
+    it.each(withMetadata)(
       'called with the correct parameters',
-      async (fn, withMetadata) => {
+      async (withMetadata, expected) => {
         mock.onGet().reply(200, nftResponse);
-        await fn(alchemy, getNftsParams);
+        await getNfts(alchemy, {
+          ...getNftsParams,
+          withMetadata
+        });
         expect(mock.history.get.length).toEqual(1);
         expect(mock.history.get[0].params).toHaveProperty(
           'owner',
@@ -207,7 +208,7 @@ describe('NFT module', () => {
         expect(mock.history.get[0].params).toHaveProperty('pageKey', pageKey);
         expect(mock.history.get[0].params).toHaveProperty(
           'withMetadata',
-          withMetadata
+          expected
         );
       }
     );
@@ -230,33 +231,36 @@ describe('NFT module', () => {
     };
     const responseCases: Array<
       [
-        (...args: any) => Promise<any>,
+        boolean,
         RawGetBaseNftsResponse | RawGetNftsResponse,
         OwnedBaseNftsResponse | OwnedNftsResponse
       ]
     > = [
-      [getBaseNfts, baseNftResponse, baseExpected],
-      [getNfts, nftResponse, nftExpected]
+      [false, baseNftResponse, baseExpected],
+      [true, nftResponse, nftExpected]
     ];
     it.each(responseCases)(
       'normalizes fields in response',
-      async (fn, rawResponse, expected) => {
+      async (withMetadata, rawResponse, expected) => {
         mock.onGet().reply(200, rawResponse);
-        const response = await fn(alchemy, getNftsParams);
+        const response = await getNfts(alchemy, {
+          ...getNftsParams,
+          withMetadata
+        });
         expect(response).toEqual(expected);
       }
     );
 
-    it.each(responseCases)('surfaces errors', async fn => {
+    it.each(responseCases)('surfaces errors', async withMetadata => {
       mock.reset();
       mock.onGet().reply(500, { message: 'Internal Server Error' });
-      await expect(fn(alchemy, getNftsParams)).rejects.toThrow(
-        'Internal Server Error'
-      );
+      await expect(
+        getNfts(alchemy, { ...getNftsParams, withMetadata })
+      ).rejects.toThrow('Internal Server Error');
     });
   });
 
-  describe('getBaseNftsPaginated()/getNftsPaginated()', () => {
+  describe('getNftsPaginated()', () => {
     const ownerAddress = '0xABC';
     const contractAddresses = ['0xCA1', '0xCA2'];
     const baseResponses: RawGetBaseNftsResponse[] = [
@@ -304,22 +308,24 @@ describe('NFT module', () => {
 
     const paramCases: Array<
       [
-        (...args: any) => AsyncIterable<any>,
         RawGetBaseNftsResponse[] | RawGetNftsResponse[],
+        boolean | undefined,
         boolean
       ]
     > = [
-      [getBaseNftsPaginated, baseResponses, false],
-      [getNftsPaginated, nftResponses, true]
+      [baseResponses, false, false],
+      [nftResponses, true, true],
+      [nftResponses, undefined, true]
     ];
     it.each(paramCases)(
       'traverses all page keys and uses correct parameters',
-      async (fn, mockResponses, withMetadata) => {
+      async (mockResponses, withMetadata, expectedWithMetadata) => {
         setupMock(mockResponses);
         const ownedNfts = [];
-        for await (const ownedNft of fn(alchemy, {
+        for await (const ownedNft of getNftsPaginated(alchemy, {
           owner: ownerAddress,
-          contractAddresses
+          contractAddresses,
+          withMetadata
         })) {
           ownedNfts.push(ownedNft);
         }
@@ -336,7 +342,7 @@ describe('NFT module', () => {
         );
         expect(mock.history.get[0].params).toHaveProperty(
           'withMetadata',
-          withMetadata
+          expectedWithMetadata
         );
         expect(mock.history.get[1].params).toHaveProperty(
           'pageKey',
@@ -352,19 +358,20 @@ describe('NFT module', () => {
         );
         expect(mock.history.get[1].params).toHaveProperty(
           'withMetadata',
-          withMetadata
+          expectedWithMetadata
         );
       }
     );
 
     it.each(paramCases)(
       'can paginate starting from a given page key',
-      async (fn, mockResponses) => {
+      async (mockResponses, withMetadata) => {
         setupMock(mockResponses);
         const ownedNfts = [];
-        for await (const ownedNft of fn(alchemy, {
+        for await (const ownedNft of getNftsPaginated(alchemy, {
           owner: ownerAddress,
-          pageKey: 'page-key0'
+          pageKey: 'page-key0',
+          withMetadata
         })) {
           ownedNfts.push(ownedNft);
         }
@@ -393,22 +400,23 @@ describe('NFT module', () => {
     ];
     const responseCases: Array<
       [
-        (...args: any) => AsyncIterable<any>,
+        boolean,
         RawGetBaseNftsResponse[] | RawGetNftsResponse[],
         OwnedBaseNft[] | OwnedNft[]
       ]
     > = [
-      [getBaseNftsPaginated, baseResponses, baseExpected],
-      [getNftsPaginated, nftResponses, nftExpected]
+      [false, baseResponses, baseExpected],
+      [true, nftResponses, nftExpected]
     ];
     it.each(responseCases)(
       'normalizes responses',
-      async (fn, mockResponses, expected) => {
+      async (withMetadata, mockResponses, expected) => {
         setupMock(mockResponses);
         const nfts = [];
-        for await (const ownedNft of fn(alchemy, {
+        for await (const ownedNft of getNftsPaginated(alchemy, {
           owner: ownerAddress,
-          contractAddresses
+          contractAddresses,
+          withMetadata
         })) {
           nfts.push(ownedNft);
         }
@@ -419,7 +427,7 @@ describe('NFT module', () => {
 
     it.each(responseCases)(
       'yields NFTs until an error is thrown',
-      async (fn, mockResponses) => {
+      async (withMetadata, mockResponses) => {
         mock
           .onGet()
           .replyOnce(200, mockResponses[0])
@@ -428,8 +436,9 @@ describe('NFT module', () => {
 
         const tokenIds: string[] = [];
         try {
-          for await (const ownedNft of fn(alchemy, {
-            owner: ownerAddress
+          for await (const ownedNft of getNftsPaginated(alchemy, {
+            owner: ownerAddress,
+            withMetadata
           })) {
             tokenIds.push(ownedNft.nft.tokenId);
           }
@@ -442,7 +451,7 @@ describe('NFT module', () => {
     );
   });
 
-  describe('getBaseNftsForCollection()/getNftsForCollection()', () => {
+  describe('getNftsForCollection()', () => {
     const contractAddress = '0xCA1';
     const pageKey = 'page-key0';
     const baseResponse: RawGetBaseNftsForCollectionResponse = {
@@ -455,8 +464,8 @@ describe('NFT module', () => {
 
     const nftResponse: RawGetNftsForCollectionResponse = {
       nfts: [
-        createRawNft('0xCA1', '0x1', NftTokenType.ERC1155),
-        createRawNft('0xCA1', '0x2', NftTokenType.ERC1155)
+        createRawNft('a', '0x1', NftTokenType.ERC1155),
+        createRawNft('b', '0x2', NftTokenType.ERC1155)
       ],
       nextToken: 'page-key1'
     };
@@ -467,19 +476,24 @@ describe('NFT module', () => {
 
     const paramCases: Array<
       [
-        (...args: any) => Promise<any>,
         RawGetBaseNftsForCollectionResponse | RawGetNftsForCollectionResponse,
+        boolean | undefined,
         boolean
       ]
     > = [
-      [getBaseNftsForCollection, baseResponse, false],
-      [getNftsForCollection, nftResponse, true]
+      [baseResponse, false, false],
+      [nftResponse, true, true],
+      [nftResponse, undefined, true]
     ];
     it.each(paramCases)(
       'called with the correct parameters',
-      async (fn, mockResponse, withMetadata) => {
+      async (mockResponse, withMetadata, expectedWithMetadata) => {
         mock.onGet().reply(200, mockResponse);
-        await fn(alchemy, contractAddress, pageKey);
+        await getNftsForCollection(alchemy, {
+          contractAddress,
+          pageKey,
+          withMetadata
+        });
         expect(mock.history.get.length).toEqual(1);
         expect(mock.history.get[0].params).toHaveProperty(
           'contractAddress',
@@ -491,7 +505,7 @@ describe('NFT module', () => {
         );
         expect(mock.history.get[0].params).toHaveProperty(
           'withMetadata',
-          withMetadata
+          expectedWithMetadata
         );
       }
     );
@@ -509,29 +523,36 @@ describe('NFT module', () => {
     };
     const responseCases: Array<
       [
-        (...args: any) => Promise<any>,
+        boolean,
         RawGetBaseNftsForCollectionResponse | RawGetNftsForCollectionResponse,
         CollectionBaseNftsResponse | CollectionNftsResponse
       ]
     > = [
-      [getBaseNftsForCollection, baseResponse, baseExpected],
-      [getNftsForCollection, nftResponse, nftExpected]
+      [false, baseResponse, baseExpected],
+      [true, nftResponse, nftExpected]
     ];
     it.each(responseCases)(
       'normalizes responses',
-      async (fn, mockResponse, expected) => {
+      async (withMetadata, mockResponse, expected) => {
         mock.onGet().reply(200, mockResponse);
-        const response = await fn(alchemy, contractAddress, pageKey);
+        const response = await getNftsForCollection(alchemy, {
+          contractAddress,
+          pageKey,
+          withMetadata
+        });
         expect(response).toEqual(expected);
       }
     );
 
-    it.each(responseCases)('surfaces errors', async fn => {
+    it.each(responseCases)('surfaces errors', async withMetadata => {
       mock.reset();
       mock.onGet().reply(500, { message: 'Internal Server Error' });
-      await expect(fn(alchemy, contractAddress)).rejects.toThrow(
-        'Internal Server Error'
-      );
+      await expect(
+        getNftsForCollection(alchemy, {
+          contractAddress,
+          withMetadata
+        })
+      ).rejects.toThrow('Internal Server Error');
     });
   });
 

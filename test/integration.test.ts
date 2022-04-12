@@ -1,9 +1,8 @@
 import {
-  getBaseNfts,
-  getBaseNftsPaginated,
   getNftMetadata,
   getNfts,
   getNftsForCollection,
+  getNftsPaginated,
   getOwnersForToken,
   initializeAlchemy,
   NftTokenType
@@ -57,7 +56,10 @@ describe('E2E integration tests', () => {
   });
 
   it('getOwnersForToken from NFT', async () => {
-    const nfts = await getBaseNfts(alchemy, { owner: ownerAddress });
+    const nfts = await getNfts(alchemy, {
+      owner: ownerAddress,
+      withMetadata: false
+    });
     const owners = await getOwnersForToken(alchemy, nfts.ownedNfts[0].nft);
     console.log('owner', owners);
   });
@@ -68,21 +70,19 @@ describe('E2E integration tests', () => {
   });
 
   it('getNftsForCollection with pageKey', async () => {
-    let nftsForCollection = await getNftsForCollection(
-      alchemy,
+    let nftsForCollection = await getNftsForCollection(alchemy, {
       contractAddress
-    );
+    });
 
     console.log(
       'nftsForCollection: ',
       nftsForCollection.pageKey,
       nftsForCollection.nfts.length
     );
-    nftsForCollection = await getNftsForCollection(
-      alchemy,
+    nftsForCollection = await getNftsForCollection(alchemy, {
       contractAddress,
-      nftsForCollection.pageKey
-    );
+      pageKey: nftsForCollection.pageKey
+    });
     console.log(
       'nftsForCollection: ',
       nftsForCollection.pageKey,
@@ -95,8 +95,19 @@ describe('E2E integration tests', () => {
     console.log('lets paginate');
     const allNfts = [];
     let totalCount = 0;
-    for await (const nft of getBaseNftsPaginated(alchemy, {
+    for await (const nft of getNftsPaginated(alchemy, {
       owner: ownerAddress
+    })) {
+      if (totalCount === 10) {
+        break;
+      }
+      allNfts.push(nft);
+      totalCount += 1;
+    }
+
+    for await (const nft of getNftsPaginated(alchemy, {
+      owner: ownerAddress,
+      withMetadata: false
     })) {
       if (totalCount === 10) {
         break;
