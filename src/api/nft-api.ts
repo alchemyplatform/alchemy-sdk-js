@@ -126,10 +126,16 @@ export async function* getNftsPaginated(
   params: GetNftsParams | GetBaseNftsParams
 ): AsyncIterable<OwnedBaseNft | OwnedNft> {
   const withMetadata = params.withMetadata ?? true;
-  for await (const response of paginateEndpoint(alchemy, 'getNFTs', 'pageKey', {
-    ...params,
-    withMetadata
-  })) {
+  for await (const response of paginateEndpoint(
+    alchemy,
+    'getNFTs',
+    'pageKey',
+    'pageKey',
+    {
+      ...params,
+      withMetadata
+    }
+  )) {
     for (const ownedNft of response.ownedNfts as
       | RawOwnedNft[]
       | RawOwnedBaseNft[]) {
@@ -199,7 +205,6 @@ export async function getNfts(
  * @param params The parameters to use for the request.
  * @beta
  */
-// TODO: Add pagination for this endpoint.
 export async function getNftsForCollection(
   alchemy: Alchemy,
   params: GetBaseNftsForCollectionParams
@@ -216,7 +221,6 @@ export async function getNftsForCollection(
  *   {@link CollectionNftsResponse} response.
  * @beta
  */
-// TODO: add pagination for this endpoint.
 export async function getNftsForCollection(
   alchemy: Alchemy,
   params: GetNftsForCollectionParams
@@ -284,6 +288,63 @@ export function getOwnersForToken(
       contractAddress: contractAddressOrNft.address,
       tokenId: normalizeTokenIdToHex(contractAddressOrNft.tokenId)
     });
+  }
+}
+
+/**
+ * Fetches all base NFTs for a given contract address and yields them in an
+ * async iterable.
+ *
+ * This method returns the base NFTs that omit the associated metadata and pages
+ * through all page keys until all NFTs have been fetched. To get all NFTs with
+ * their associated metadata, use {@link GetNftsForCollectionParams}.
+ *
+ * @param alchemy The Alchemy SDK instance.
+ * @param params The parameters to use for the request.
+ * @beta
+ */
+export function getNftsForCollectionPaginated(
+  alchemy: Alchemy,
+  params: GetBaseNftsForCollectionParams
+): AsyncIterable<BaseNft>;
+
+/**
+ * Fetches all NFTs for a given contract address and yields them in an async iterable.
+ *
+ * This method returns the full NFTs in the contract and pages through all page
+ * keys until all NFTs have been fetched. To get all NFTs without their
+ * associated metadata, use {@link GetBaseNftsForCollectionParams}.
+ *
+ * @param alchemy The Alchemy SDK instance.
+ * @param params The parameters to use for the request.
+ * @beta
+ */
+export function getNftsForCollectionPaginated(
+  alchemy: Alchemy,
+  params: GetNftsForCollectionParams
+): AsyncIterable<Nft>;
+export async function* getNftsForCollectionPaginated(
+  alchemy: Alchemy,
+  params: GetBaseNftsForCollectionParams | GetNftsForCollectionParams
+): AsyncIterable<BaseNft | Nft> {
+  const withMetadata =
+    params.withMetadata !== undefined ? params.withMetadata : true;
+  for await (const response of paginateEndpoint(
+    alchemy,
+    'getNFTsForCollection',
+    'startToken',
+    'nextToken',
+    {
+      contractAddress: params.contractAddress,
+      startToken: params.pageKey,
+      withMetadata
+    }
+  )) {
+    for (const nft of response.nfts as
+      | RawCollectionBaseNft[]
+      | RawCollectionNft[]) {
+      yield nftFromGetNftCollectionResponse(nft, params.contractAddress);
+    }
   }
 }
 

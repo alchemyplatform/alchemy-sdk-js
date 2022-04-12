@@ -1,4 +1,5 @@
 import {
+  BaseNft,
   CollectionBaseNftsResponse,
   CollectionNftsResponse,
   fromHex,
@@ -35,6 +36,7 @@ import {
   RawGetNftsForCollectionResponse,
   RawGetNftsResponse
 } from '../src/internal/raw-interfaces';
+import { getNftsForCollectionPaginated } from '../src/api/nft-api';
 
 describe('NFT module', () => {
   let alchemy: Alchemy;
@@ -555,6 +557,181 @@ describe('NFT module', () => {
         })
       ).rejects.toThrow('Internal Server Error');
     });
+  });
+
+  describe('getNftsForCollectionPaginated()', () => {
+    const contractAddress = '0xCA1';
+    const pageKey = 'page-key0';
+    const baseResponses: RawGetBaseNftsForCollectionResponse[] = [
+      {
+        nfts: [
+          createRawCollectionBaseNft('0x1'),
+          createRawCollectionBaseNft('0x2')
+        ],
+        nextToken: 'page-key1'
+      },
+      {
+        nfts: [createRawCollectionBaseNft('0x3')]
+      }
+    ];
+    const nftResponses: RawGetNftsForCollectionResponse[] = [
+      {
+        nfts: [
+          createRawNft('a', '0x1', NftTokenType.ERC721),
+          createRawNft('b', '0x2', NftTokenType.ERC721)
+        ],
+        nextToken: 'page-key1'
+      },
+      {
+        nfts: [createRawNft('c', '0x3', NftTokenType.ERC721)]
+      }
+    ];
+
+    function setupMock(
+      mockResponses:
+        | RawGetBaseNftsForCollectionResponse[]
+        | RawGetNftsForCollectionResponse[]
+    ): void {
+      mock
+        .onGet()
+        .replyOnce(200, mockResponses[0])
+        .onGet()
+        .replyOnce(200, mockResponses[1]);
+    }
+
+    const paramCases: Array<
+      [
+        (
+          | RawGetBaseNftsForCollectionResponse[]
+          | RawGetNftsForCollectionResponse[]
+        ),
+        boolean | undefined,
+        boolean
+      ]
+    > = [
+      [baseResponses, false, false],
+      [nftResponses, true, true],
+      [nftResponses, undefined, true]
+    ];
+    it.each(paramCases)(
+      'traverses all page keys and uses correct parameters',
+      async (mockResponses, withMetadata, expectedWithMetadata) => {
+        setupMock(mockResponses);
+        const nfts = [];
+        for await (const nft of getNftsForCollectionPaginated(alchemy, {
+          contractAddress,
+          withMetadata
+        })) {
+          nfts.push(nft);
+        }
+        expect(mock.history.get.length).toEqual(2);
+        expect(mock.history.get[0].params.startToken).toBeUndefined();
+        expect(mock.history.get[0].params).toHaveProperty(
+          'contractAddress',
+          contractAddress
+        );
+        expect(mock.history.get[0].params).toHaveProperty(
+          'withMetadata',
+          expectedWithMetadata
+        );
+        expect(mock.history.get[1].params).toHaveProperty(
+          'startToken',
+          'page-key1'
+        );
+        expect(mock.history.get[1].params).toHaveProperty(
+          'withMetadata',
+          expectedWithMetadata
+        );
+      }
+    );
+
+    it.each(paramCases)(
+      'can paginate starting from a given page key',
+      async (mockResponses, withMetadata) => {
+        setupMock(mockResponses);
+        const nfts = [];
+        for await (const nft of getNftsForCollectionPaginated(alchemy, {
+          contractAddress,
+          pageKey,
+          withMetadata
+        })) {
+          nfts.push(nft);
+        }
+        expect(nfts.length).toEqual(3);
+        expect(mock.history.get.length).toEqual(2);
+        expect(mock.history.get[0].params).toHaveProperty(
+          'startToken',
+          'page-key0'
+        );
+        expect(mock.history.get[1].params).toHaveProperty(
+          'startToken',
+          'page-key1'
+        );
+      }
+    );
+
+    const baseExpected = [
+      createBaseNft(contractAddress, '0x01'),
+      createBaseNft(contractAddress, '0x02'),
+      createBaseNft(contractAddress, '0x03')
+    ];
+    const nftExpected = [
+      createNft('a', contractAddress, '0x01', NftTokenType.ERC721),
+      createNft('b', contractAddress, '0x02', NftTokenType.ERC721),
+      createNft('c', contractAddress, '0x03', NftTokenType.ERC721)
+    ];
+    const responseCases: Array<
+      [
+        boolean,
+        (
+          | RawGetBaseNftsForCollectionResponse[]
+          | RawGetNftsForCollectionResponse[]
+        ),
+        BaseNft[] | Nft[]
+      ]
+    > = [
+      [false, baseResponses, baseExpected],
+      [true, nftResponses, nftExpected]
+    ];
+    it.each(responseCases)(
+      'normalizes responses',
+      async (withMetadata, mockResponses, expected) => {
+        setupMock(mockResponses);
+        const nfts = [];
+        for await (const ownedNft of getNftsForCollectionPaginated(alchemy, {
+          contractAddress,
+          withMetadata
+        })) {
+          nfts.push(ownedNft);
+        }
+
+        expect(nfts).toEqual(expected);
+      }
+    );
+
+    it.each(responseCases)(
+      'yields NFTs until an error is thrown',
+      async (withMetadata, mockResponses) => {
+        mock
+          .onGet()
+          .replyOnce(200, mockResponses[0])
+          .onGet()
+          .replyOnce(500, { message: 'Internal Server Error' });
+        const tokenIds: string[] = [];
+        try {
+          for await (const nft of getNftsForCollectionPaginated(alchemy, {
+            contractAddress,
+            withMetadata
+          })) {
+            tokenIds.push(nft.tokenId);
+          }
+          fail('getNftsForCollectionPaginated should have surfaced error');
+        } catch (e) {
+          expect(tokenIds).toEqual(['0x01', '0x02']);
+          expect((e as Error).message).toContain('Internal Server Error');
+        }
+      }
+    );
   });
 
   describe('getOwnersForToken()', () => {

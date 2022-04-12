@@ -282,7 +282,8 @@ export interface RawContract {
 }
 
 /**
- * Parameters object for the {@link getNftsForCollection} function.
+ * Parameters object for the {@link getNftsForCollection} and
+ * {@link getNftsForCollectionPaginated} functions.
  *
  * This interface is used to fetch NFTs with their associated metadata. To get
  * Nfts without their associated metadata, use
@@ -307,7 +308,8 @@ export interface GetNftsForCollectionParams {
 }
 
 /**
- * Parameters object for the {@link getNftsForCollection} function.
+ * Parameters object for the {@link getNftsForCollection} and
+ * {@link getNftsForCollectionPaginated} functions.
  *
  * This interface is used to fetch NFTs without their associated metadata. To
  * get Nfts with their associated metadata, use
