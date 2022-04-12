@@ -63,7 +63,7 @@ export async function getNftMetadata(
   tokenType?: NftTokenType
 ): Promise<Nft> {
   let response;
-  let contractAddress = '';
+  let contractAddress: string;
   if (typeof contractAddressOrBaseNft === 'string') {
     validateContractAddress(contractAddressOrBaseNft);
     contractAddress = contractAddressOrBaseNft;
@@ -95,7 +95,7 @@ export async function getNftMetadata(
 }
 
 /**
- * - Fetches all NFTs for a given owner and yields them in an async iterable.
+ * Fetches all NFTs for a given owner and yields them in an async iterable.
  *
  * This method returns the base NFTs that omit the associated metadata and pages
  * through all page keys until all NFTs have been fetched.
