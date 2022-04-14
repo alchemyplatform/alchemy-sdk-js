@@ -8,6 +8,7 @@ import {
   NftTokenType
 } from '../src';
 import { Alchemy } from '../src/api/alchemy';
+import { getNftsForCollectionPaginated } from '../src/api/nft-api';
 
 /**
  * Temporary test
@@ -116,5 +117,23 @@ describe('E2E integration tests', () => {
       totalCount += 1;
     }
     console.log('done', allNfts.length, allNfts);
+  });
+
+  it('getNftsForCollectionPaginated', async () => {
+    jest.setTimeout(15000);
+    console.log('lets paginate');
+    const allNfts = [];
+    let totalCount = 0;
+    for await (const nft of getNftsForCollectionPaginated(alchemy, {
+      contractAddress,
+      withMetadata: false
+    })) {
+      if (totalCount === 150) {
+        break;
+      }
+      allNfts.push(nft);
+      totalCount += 1;
+    }
+    console.log('done', allNfts.length, allNfts[100], totalCount);
   });
 });

@@ -27,7 +27,9 @@ export class BaseNft {
   static fromResponse(ownedNft: RawBaseNft, contractAddress: string): BaseNft {
     return new BaseNft(
       contractAddress,
-      ownedNft.id.tokenId,
+      // We have to normalize the token id here since the backend sometimes
+      // returns the token ID as a hex string and sometimes as an integer.
+      normalizeTokenIdToHex(ownedNft.id.tokenId),
       ownedNft.id.tokenMetadata?.tokenType ?? NftTokenType.UNKNOWN
     );
   }
