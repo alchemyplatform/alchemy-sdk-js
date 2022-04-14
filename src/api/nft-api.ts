@@ -94,7 +94,8 @@ export async function getNftMetadata(
   return Nft.fromResponse(response, contractAddress);
 }
 
-/** * Fetches all NFTs for a given owner and yields them in an async iterable.
+/**
+ * - Fetches all NFTs for a given owner and yields them in an async iterable.
  *
  * This method returns the base NFTs that omit the associated metadata and pages
  * through all page keys until all NFTs have been fetched.
@@ -124,8 +125,7 @@ export async function* getNftsPaginated(
   alchemy: Alchemy,
   params: GetNftsParams | GetBaseNftsParams
 ): AsyncIterable<OwnedBaseNft | OwnedNft> {
-  const withMetadata =
-    params.withMetadata !== undefined ? params.withMetadata : true;
+  const withMetadata = params.withMetadata ?? true;
   for await (const response of paginateEndpoint(alchemy, 'getNFTs', 'pageKey', {
     ...params,
     withMetadata
@@ -171,8 +171,7 @@ export async function getNfts(
   alchemy: Alchemy,
   params: GetNftsParams | GetBaseNftsParams
 ): Promise<OwnedNftsResponse | OwnedBaseNftsResponse> {
-  const withMetadata =
-    params.withMetadata !== undefined ? params.withMetadata : true;
+  const withMetadata = params.withMetadata ?? true;
   const response = await requestHttpWithBackoff<
     GetNftsParams | GetBaseNftsParams,
     RawGetBaseNftsResponse | RawGetNftsResponse
@@ -213,8 +212,8 @@ export async function getNftsForCollection(
  * their associated metadata, use {@link GetBaseNftsForCollectionParams}.
  *
  * @param alchemy The Alchemy SDK instance.
- * @param params The parameters to use for the request.
- * or {@link CollectionNftsResponse} response.
+ * @param params The parameters to use for the request. or
+ *   {@link CollectionNftsResponse} response.
  * @beta
  */
 // TODO: add pagination for this endpoint.
@@ -226,8 +225,7 @@ export async function getNftsForCollection(
   alchemy: Alchemy,
   params: GetBaseNftsForCollectionParams | GetNftsForCollectionParams
 ): Promise<CollectionNftsResponse | CollectionBaseNftsResponse> {
-  const withMetadata =
-    params.withMetadata !== undefined ? params.withMetadata : true;
+  const withMetadata = params.withMetadata ?? true;
   const response = await requestHttpWithBackoff<
     GetNftsForCollectionAlchemyParams,
     RawGetBaseNftsForCollectionResponse | RawGetNftsForCollectionResponse

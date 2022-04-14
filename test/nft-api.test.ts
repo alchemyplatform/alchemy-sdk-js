@@ -1,6 +1,7 @@
 import {
   CollectionBaseNftsResponse,
   CollectionNftsResponse,
+  fromHex,
   getNftMetadata,
   getNfts,
   getNftsForCollection,
@@ -434,17 +435,17 @@ describe('NFT module', () => {
           .onGet()
           .replyOnce(500, { message: 'Internal Server Error' });
 
-        const tokenIds: string[] = [];
+        const tokenIds: number[] = [];
         try {
           for await (const ownedNft of getNftsPaginated(alchemy, {
             owner: ownerAddress,
             withMetadata
           })) {
-            tokenIds.push(ownedNft.nft.tokenId);
+            tokenIds.push(fromHex(ownedNft.nft.tokenId));
           }
           fail('getNftsPaginated should have surfaced error');
         } catch (e) {
-          expect(tokenIds).toEqual(['0x1', '0x2']);
+          expect(tokenIds).toEqual([1, 2]);
           expect((e as Error).message).toContain('Internal Server Error');
         }
       }
