@@ -18,7 +18,3 @@ export function formatBlock(block: string | number): string {
   }
   return block.toString();
 }
-
-export function logger(methodName: string, message: string) {
-  console.log(`[${methodName}]: ${message}`);
-}

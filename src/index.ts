@@ -1,6 +1,4 @@
-/**
- * This is the main entry point for the library and exports user-facing API.
- */
+/** This is the main entry point for the library and exports user-facing API. */
 export * from './types/types';
 
 export { initializeAlchemy } from './api/alchemy';
@@ -25,3 +23,5 @@ export {
 } from './api/enhanced';
 
 export { Nft, BaseNft } from './api/nft';
+
+export { setLogLevel, LogLevelString as LogLevel } from './util/logger';

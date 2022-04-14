@@ -1,8 +1,8 @@
 import { Alchemy } from '../api/alchemy';
 import { sendAxiosRequest } from '../util/sendRest';
-import { logger } from '../util/util';
 import { ExponentialBackoff } from './backoff';
 import axios, { AxiosError } from 'axios';
+import { logDebug, logInfo } from '../util/logger';
 
 /**
  * A wrapper function to make http requests and retry if the request fails.
@@ -22,7 +22,7 @@ export async function requestHttpWithBackoff<Req, Res>(
   for (let attempt = 0; attempt < alchemy.maxAttempts + 1; attempt++) {
     try {
       if (lastError !== undefined) {
-        logger('requestHttp', `Retrying after error: ${lastError.message}`);
+        logInfo('requestHttp', `Retrying after error: ${lastError.message}`);
       }
 
       await backoff.backoff();
@@ -33,10 +33,10 @@ export async function requestHttpWithBackoff<Req, Res>(
       );
 
       if (response.status === 200) {
-        logger(method, `Successful request: ${method}`);
+        logDebug(method, `Successful request: ${method}`);
         return response.data;
       } else {
-        logger(
+        logInfo(
           method,
           `Request failed: ${method}, ${response.status}, ${response.data}`
         );
