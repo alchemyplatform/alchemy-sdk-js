@@ -10,6 +10,7 @@ import axios, { AxiosError } from 'axios';
  * @param alchemy
  * @param method
  * @param params
+ * @internal
  */
 // TODO: Wrap Axios error in AlchemyError.
 export async function requestHttpWithBackoff<Req, Res>(
@@ -25,7 +26,13 @@ export async function requestHttpWithBackoff<Req, Res>(
         logger('requestHttp', `Retrying after error: ${lastError.message}`);
       }
 
-      await backoff.backoff();
+      try {
+        await backoff.backoff();
+      } catch (err) {
+        // Backoff errors when the maximum number of attempts is reached. Break
+        // out of the loop to preserve the last error.
+        break;
+      }
       const response = await sendAxiosRequest<Req, Res>(
         alchemy._getBaseUrl(),
         method,

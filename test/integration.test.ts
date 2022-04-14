@@ -31,7 +31,7 @@ describe('E2E integration tests', () => {
     const contractAddress = '0x0510745d2ca36729bed35c818527c4485912d99e';
     const tokenIdHex =
       '0x0000000000000000000000000000000000000000000000000000000000000193';
-    const tokenId = '403';
+    const tokenId = 403;
     const response = await getNftMetadata(
       alchemy,
       contractAddress,

@@ -1,9 +1,8 @@
 import {
-  BaseNftsForCollection,
+  CollectionBaseNftsResponse,
+  CollectionNftsResponse,
   GetNftsParams,
   GetOwnersForTokenResponse,
-  NftMetadata,
-  NftsForCollection,
   NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
@@ -12,7 +11,6 @@ import {
 } from '../types/types';
 import { Alchemy } from './alchemy';
 import { paginateEndpoint, requestHttpWithBackoff } from '../internal/dispatch';
-import { fromHex, isHex } from '../util/util';
 import { BaseNft, Nft } from './nft';
 import {
   RawBaseNft,
@@ -26,9 +24,10 @@ import {
   RawOwnedBaseNft,
   RawOwnedNft
 } from '../internal/raw-interfaces';
+import { BigNumber } from 'ethers';
 
 /**
- * Get the NFT metadata associated with the provided NFT.
+ * Get the NFT metadata associated with the provided Base NFT.
  *
  * @param alchemy The Alchemy SDK instance.
  * @param baseNft The base NFT object to be used for the request.
@@ -37,7 +36,7 @@ import {
 export function getNftMetadata(
   alchemy: Alchemy,
   baseNft: BaseNft
-): Promise<NftMetadata>;
+): Promise<Nft>;
 
 /**
  * Get the NFT metadata associated with the provided parameters.
@@ -53,30 +52,43 @@ export function getNftMetadata(
   contractAddress: string,
   tokenId: number | string,
   tokenType?: NftTokenType
-): Promise<NftMetadata>;
-export function getNftMetadata(
+): Promise<Nft>;
+export async function getNftMetadata(
   alchemy: Alchemy,
   contractAddressOrBaseNft: string | BaseNft,
   tokenId?: string | number,
   tokenType?: NftTokenType
-): Promise<NftMetadata> {
+): Promise<Nft> {
+  let response;
+  let contractAddress = '';
   if (typeof contractAddressOrBaseNft === 'string') {
     validateContractAddress(contractAddressOrBaseNft);
-    return requestHttpWithBackoff(alchemy, 'getNFTMetadata', {
-      contractAddress: contractAddressOrBaseNft,
-      tokenId: normalizeTokenIdToNumber(tokenId!),
-      tokenType: tokenType !== NftTokenType.UNKNOWN ? tokenType : undefined
-    });
+    contractAddress = contractAddressOrBaseNft;
+    response = await requestHttpWithBackoff<GetNftMetadataParams, RawNft>(
+      alchemy,
+      'getNFTMetadata',
+      {
+        contractAddress: contractAddressOrBaseNft,
+        tokenId: normalizeTokenIdToHex(tokenId!),
+        tokenType: tokenType !== NftTokenType.UNKNOWN ? tokenType : undefined
+      }
+    );
   } else {
-    return requestHttpWithBackoff(alchemy, 'getNFTMetadata', {
-      contractAddress: contractAddressOrBaseNft.address,
-      tokenId: fromHex(contractAddressOrBaseNft.tokenId),
-      tokenType:
-        contractAddressOrBaseNft.tokenType !== NftTokenType.UNKNOWN
-          ? contractAddressOrBaseNft.tokenType
-          : undefined
-    });
+    contractAddress = contractAddressOrBaseNft.address;
+    response = await requestHttpWithBackoff<GetNftMetadataParams, RawNft>(
+      alchemy,
+      'getNFTMetadata',
+      {
+        contractAddress: contractAddressOrBaseNft.address,
+        tokenId: normalizeTokenIdToHex(contractAddressOrBaseNft.tokenId),
+        tokenType:
+          contractAddressOrBaseNft.tokenType !== NftTokenType.UNKNOWN
+            ? contractAddressOrBaseNft.tokenType
+            : undefined
+      }
+    );
   }
+  return Nft.fromResponse(response, contractAddress);
 }
 
 /**
@@ -88,8 +100,7 @@ export function getNftMetadata(
  * This method pages through all page keys until all NFTs have been fetched.
  *
  * @param alchemy The Alchemy SDK instance.
- * @param params The parameters to use for the request.
- *  Limit to 20 addresses.
+ * @param params The parameters to use for the request. Limit to 20 addresses.
  */
 export function getBaseNftsPaginated(
   alchemy: Alchemy,
@@ -108,8 +119,7 @@ export function getBaseNftsPaginated(
  * This method pages through all page keys until all NFTs have been fetched.
  *
  * @param alchemy The Alchemy SDK instance.
- * @param params The parameters to use for the request.
- *  Limit to 20 addresses.
+ * @param params The parameters to use for the request. Limit to 20 addresses.
  */
 export function getNftsPaginated(
   alchemy: Alchemy,
@@ -188,7 +198,7 @@ export async function getNfts(
   alchemy: Alchemy,
   params: GetNftsParams
 ): Promise<OwnedNftsResponse> {
-  const paramsCopy = { ...params, withMetadata: false };
+  const paramsCopy = { ...params, withMetadata: true };
   const response = await requestHttpWithBackoff<
     GetNftsParams,
     RawGetNftsResponse
@@ -211,8 +221,8 @@ export async function getNfts(
  *
  * @param alchemy The Alchemy SDK instance.
  * @param contractAddress The collection contract address to get all NFTs for.
- * @param pageKey Optional page key from an existing {@link BaseNftsForCollection}
- * or {@link NftsForCollection} response.
+ * @param pageKey Optional page key from an existing
+ *   {@link CollectionBaseNftsResponse} or {@link CollectionNftsResponse} response.
  * @beta
  */
 // TODO: Add pagination for this endpoint.
@@ -220,7 +230,7 @@ export async function getBaseNftsForCollection(
   alchemy: Alchemy,
   contractAddress: string,
   pageKey?: string
-): Promise<BaseNftsForCollection> {
+): Promise<CollectionBaseNftsResponse> {
   const response = await requestHttpWithBackoff<
     GetNftsForCollectionParams,
     RawGetBaseNftsForCollectionResponse
@@ -246,8 +256,8 @@ export async function getBaseNftsForCollection(
  *
  * @param alchemy The Alchemy SDK instance.
  * @param contractAddress The collection contract address to get all NFTs for.
- * @param pageKey Optional page key from an existing {@link BaseNftsForCollection}
- * or {@link NftsForCollection} response.
+ * @param pageKey Optional page key from an existing
+ *   {@link CollectionBaseNftsResponse} or {@link CollectionNftsResponse} response.
  * @beta
  */
 // TODO: add pagination for this endpoint.
@@ -255,7 +265,7 @@ export async function getNftsForCollection(
   alchemy: Alchemy,
   contractAddress: string,
   pageKey?: string
-): Promise<NftsForCollection> {
+): Promise<CollectionNftsResponse> {
   const response = await requestHttpWithBackoff<
     GetNftsForCollectionParams,
     RawGetNftsForCollectionResponse
@@ -307,12 +317,12 @@ export function getOwnersForToken(
     validateContractAddress(contractAddressOrNft);
     return requestHttpWithBackoff(alchemy, 'getOwnersForToken', {
       contractAddress: contractAddressOrNft,
-      tokenId: normalizeTokenIdToNumber(tokenId!)
+      tokenId: normalizeTokenIdToHex(tokenId!)
     });
   } else {
     return requestHttpWithBackoff(alchemy, 'getOwnersForToken', {
       contractAddress: contractAddressOrNft.address,
-      tokenId: fromHex(contractAddressOrNft.tokenId)
+      tokenId: normalizeTokenIdToHex(contractAddressOrNft.tokenId)
     });
   }
 }
@@ -350,32 +360,20 @@ function nftFromGetNftCollectionResponse(
   }
 }
 
-/**
- * @internal
- */
+/** @internal */
 // TODO: more comprehensive type check
 function isNftWithMetadata(response: RawBaseNft | RawNft): response is RawNft {
-  return response.hasOwnProperty('title');
+  return (response as RawNft).title !== undefined;
 }
 
 /**
- * Helper method that returns the token ID input as an integer.
+ * Helper method that returns the token ID input as hex string.
  *
  * @param tokenId The token ID as an integer or hex string.
  * @internal
  */
-function normalizeTokenIdToNumber(tokenId: string | number): number {
-  if (typeof tokenId === 'string') {
-    if (isHex(tokenId)) {
-      return fromHex(tokenId);
-    } else {
-      throw new Error(
-        `${tokenId} is not a valid token ID number or hex string`
-      );
-    }
-  } else {
-    return tokenId;
-  }
+export function normalizeTokenIdToHex(tokenId: string | number): string {
+  return BigNumber.from(tokenId).toHexString();
 }
 
 // TODO: Port over validation from NFT API code, since backend error validation
@@ -388,4 +386,10 @@ interface GetNftsForCollectionParams {
   contractAddress: string;
   startToken?: string;
   withMetadata: boolean;
+}
+
+interface GetNftMetadataParams {
+  contractAddress: string;
+  tokenId: string;
+  tokenType?: NftTokenType;
 }

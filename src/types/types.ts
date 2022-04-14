@@ -246,7 +246,7 @@ export interface RawContract {
 /**
  * @public
  */
-export interface BaseNftsForCollection {
+export interface CollectionBaseNftsResponse {
   nfts: BaseNft[];
   pageKey?: string;
 }
@@ -254,7 +254,7 @@ export interface BaseNftsForCollection {
 /**
  * @public
  */
-export interface NftsForCollection {
+export interface CollectionNftsResponse {
   nfts: Nft[];
   pageKey?: string;
 }

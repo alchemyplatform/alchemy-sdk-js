@@ -8,9 +8,10 @@ import {
   TransactionReceiptsParams,
   TransactionReceiptsResponse
 } from '../types/types';
-import { formatBlock, toHex } from '../util/util';
+import { formatBlock } from '../util/util';
 import { Alchemy } from './alchemy';
 import { DEFAULT_CONTRACT_ADDRESSES } from '../util/const';
+import { toHex } from './util';
 
 /**
  * @public
