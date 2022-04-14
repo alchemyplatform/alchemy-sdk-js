@@ -24,7 +24,7 @@ import {
   RawOwnedBaseNft,
   RawOwnedNft
 } from '../internal/raw-interfaces';
-import { fromHex, isHex } from './util';
+import { BigNumber } from 'ethers';
 
 /**
  * Get the NFT metadata associated with the provided Base NFT.
@@ -69,7 +69,7 @@ export async function getNftMetadata(
       'getNFTMetadata',
       {
         contractAddress: contractAddressOrBaseNft,
-        tokenId: normalizeTokenIdToNumber(tokenId!),
+        tokenId: normalizeTokenIdToHex(tokenId!),
         tokenType: tokenType !== NftTokenType.UNKNOWN ? tokenType : undefined
       }
     );
@@ -80,7 +80,7 @@ export async function getNftMetadata(
       'getNFTMetadata',
       {
         contractAddress: contractAddressOrBaseNft.address,
-        tokenId: fromHex(contractAddressOrBaseNft.tokenId),
+        tokenId: normalizeTokenIdToHex(contractAddressOrBaseNft.tokenId),
         tokenType:
           contractAddressOrBaseNft.tokenType !== NftTokenType.UNKNOWN
             ? contractAddressOrBaseNft.tokenType
@@ -100,8 +100,7 @@ export async function getNftMetadata(
  * This method pages through all page keys until all NFTs have been fetched.
  *
  * @param alchemy The Alchemy SDK instance.
- * @param params The parameters to use for the request.
- *  Limit to 20 addresses.
+ * @param params The parameters to use for the request. Limit to 20 addresses.
  */
 export function getBaseNftsPaginated(
   alchemy: Alchemy,
@@ -120,8 +119,7 @@ export function getBaseNftsPaginated(
  * This method pages through all page keys until all NFTs have been fetched.
  *
  * @param alchemy The Alchemy SDK instance.
- * @param params The parameters to use for the request.
- *  Limit to 20 addresses.
+ * @param params The parameters to use for the request. Limit to 20 addresses.
  */
 export function getNftsPaginated(
   alchemy: Alchemy,
@@ -223,8 +221,8 @@ export async function getNfts(
  *
  * @param alchemy The Alchemy SDK instance.
  * @param contractAddress The collection contract address to get all NFTs for.
- * @param pageKey Optional page key from an existing {@link CollectionBaseNftsResponse}
- * or {@link CollectionNftsResponse} response.
+ * @param pageKey Optional page key from an existing
+ *   {@link CollectionBaseNftsResponse} or {@link CollectionNftsResponse} response.
  * @beta
  */
 // TODO: Add pagination for this endpoint.
@@ -258,8 +256,8 @@ export async function getBaseNftsForCollection(
  *
  * @param alchemy The Alchemy SDK instance.
  * @param contractAddress The collection contract address to get all NFTs for.
- * @param pageKey Optional page key from an existing {@link CollectionBaseNftsResponse}
- * or {@link CollectionNftsResponse} response.
+ * @param pageKey Optional page key from an existing
+ *   {@link CollectionBaseNftsResponse} or {@link CollectionNftsResponse} response.
  * @beta
  */
 // TODO: add pagination for this endpoint.
@@ -319,12 +317,12 @@ export function getOwnersForToken(
     validateContractAddress(contractAddressOrNft);
     return requestHttpWithBackoff(alchemy, 'getOwnersForToken', {
       contractAddress: contractAddressOrNft,
-      tokenId: normalizeTokenIdToNumber(tokenId!)
+      tokenId: normalizeTokenIdToHex(tokenId!)
     });
   } else {
     return requestHttpWithBackoff(alchemy, 'getOwnersForToken', {
       contractAddress: contractAddressOrNft.address,
-      tokenId: fromHex(contractAddressOrNft.tokenId)
+      tokenId: normalizeTokenIdToHex(contractAddressOrNft.tokenId)
     });
   }
 }
@@ -362,34 +360,20 @@ function nftFromGetNftCollectionResponse(
   }
 }
 
-/**
- * @internal
- */
+/** @internal */
 // TODO: more comprehensive type check
 function isNftWithMetadata(response: RawBaseNft | RawNft): response is RawNft {
   return (response as RawNft).title !== undefined;
 }
 
 /**
- * Helper method that returns the token ID input as an integer.
+ * Helper method that returns the token ID input as hex string.
  *
  * @param tokenId The token ID as an integer or hex string.
  * @internal
  */
-export function normalizeTokenIdToNumber(tokenId: string | number): number {
-  if (typeof tokenId === 'string') {
-    if (isHex(tokenId)) {
-      return fromHex(tokenId);
-    } else if (!isNaN(parseInt(tokenId))) {
-      return parseInt(tokenId);
-    } else {
-      throw new Error(
-        `${tokenId} is not a valid token ID number or hex string`
-      );
-    }
-  } else {
-    return tokenId;
-  }
+export function normalizeTokenIdToHex(tokenId: string | number): string {
+  return BigNumber.from(tokenId).toHexString();
 }
 
 // TODO: Port over validation from NFT API code, since backend error validation
@@ -406,6 +390,6 @@ interface GetNftsForCollectionParams {
 
 interface GetNftMetadataParams {
   contractAddress: string;
-  tokenId: number;
+  tokenId: string;
   tokenType?: NftTokenType;
 }

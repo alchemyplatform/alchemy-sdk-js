@@ -1,5 +1,5 @@
 import { BaseNft, Nft, NftTokenType, toHex } from '../src';
-import { createRawBaseNft, createRawNft } from './test-util';
+import { createNft, createRawBaseNft, createRawNft } from './test-util';
 
 describe('BaseNft class', () => {
   const contractAddress = '0xCA1';
@@ -17,14 +17,14 @@ describe('BaseNft class', () => {
 
 describe('Nft class', () => {
   const contractAddress = '0xCA1';
-  const tokenId = '0x1';
+  const tokenId = 1;
   it('fromResponse() defaults to UNKNOWN token type', () => {
     const nft = Nft.fromResponse(
-      createRawNft('title', tokenId),
+      createRawNft('title', toHex(tokenId)),
       contractAddress
     );
     expect(nft.tokenType).toEqual(NftTokenType.UNKNOWN);
-    expect(nft.tokenId).toEqual(tokenId);
+    expect(nft.tokenId).toEqual(toHex(tokenId));
     expect(nft.address).toEqual(contractAddress);
   });
 
@@ -55,13 +55,11 @@ describe('Nft class', () => {
       { raw: '', gateway: 'gateway' },
       { raw: 'raw', gateway: '' }
     ];
-    const nft = new Nft(
-      'address',
-      tokenId,
-      NftTokenType.UNKNOWN,
+    const nft = createNft(
       'title',
-      'description',
-      '2022-02-16T17:12:00.280Z',
+      contractAddress,
+      toHex(tokenId),
+      NftTokenType.UNKNOWN,
       rawTokenUri,
       rawMedia
     );
@@ -73,13 +71,11 @@ describe('Nft class', () => {
   });
 
   it('media field is set to empty array even if undefined ', () => {
-    const nft = new Nft(
-      'address',
-      tokenId,
-      NftTokenType.UNKNOWN,
+    const nft = createNft(
       'title',
-      'description',
-      '2022-02-16T17:12:00.280Z',
+      contractAddress,
+      toHex(tokenId),
+      NftTokenType.ERC721,
       undefined,
       undefined
     );

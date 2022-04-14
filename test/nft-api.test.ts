@@ -1,5 +1,4 @@
 import {
-  BaseNft,
   CollectionBaseNftsResponse,
   CollectionNftsResponse,
   getBaseNfts,
@@ -82,7 +81,10 @@ describe('NFT module', () => {
         'contractAddress',
         contractAddress
       );
-      expect(mock.history.get[0].params).toHaveProperty('tokenId', tokenId);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'tokenId',
+        toHex(tokenId)
+      );
       expect(mock.history.get[0].params).toHaveProperty(
         'tokenType',
         tokenType ?? undefined
@@ -90,7 +92,11 @@ describe('NFT module', () => {
     }
 
     it('can be called with a BaseNft', async () => {
-      const nft = createBaseNft(contractAddress, tokenId, NftTokenType.ERC721);
+      const nft = createBaseNft(
+        contractAddress,
+        toHex(tokenId),
+        NftTokenType.ERC721
+      );
       verifyNftMetadata(
         await getNftMetadata(alchemy, nft),
         expectedNft,
@@ -491,7 +497,7 @@ describe('NFT module', () => {
     );
 
     const baseExpected: CollectionBaseNftsResponse = {
-      nfts: [createBaseNft('0xCA1', 1), createBaseNft('0xCA1', 2)],
+      nfts: [createBaseNft('0xCA1', '0x1'), createBaseNft('0xCA1', '0x2')],
       pageKey: 'page-key1'
     };
     const nftExpected: CollectionNftsResponse = {
@@ -531,14 +537,9 @@ describe('NFT module', () => {
 
   describe('getOwnersForToken()', () => {
     const contractAddress = '0xCA1';
-    const tokenIdHex =
-      '0x00000000000000000000000000000000000000000000000000000000000001b7';
+    const tokenIdHex = '0x1b7';
     const tokenIdNumber = 439;
-    const owners = [
-      '0x0000000000000000000000000000000000000001',
-      '0x0000000000000000000000000000000000000002',
-      '0x0000000000000000000000000000000000000003'
-    ];
+    const owners = ['0x1', '0x2', '0x3'];
 
     beforeEach(() => {
       mock.onGet().reply(200, {
@@ -555,20 +556,20 @@ describe('NFT module', () => {
       );
       expect(mock.history.get[0].params).toHaveProperty(
         'tokenId',
-        tokenIdNumber
+        toHex(tokenIdNumber)
       );
 
       await getOwnersForToken(alchemy, contractAddress, tokenIdNumber);
       expect(mock.history.get[0].params).toHaveProperty(
         'tokenId',
-        tokenIdNumber
+        toHex(tokenIdNumber)
       );
     });
 
     it('can be called with BaseNft', async () => {
       const response = await getOwnersForToken(
         alchemy,
-        new BaseNft(contractAddress, tokenIdHex, NftTokenType.UNKNOWN)
+        createBaseNft(contractAddress, tokenIdHex)
       );
       expect(mock.history.get.length).toEqual(1);
       expect(mock.history.get[0].params).toHaveProperty(
@@ -577,7 +578,7 @@ describe('NFT module', () => {
       );
       expect(mock.history.get[0].params).toHaveProperty(
         'tokenId',
-        tokenIdNumber
+        toHex(tokenIdNumber)
       );
 
       expect(response).toEqual({ owners });

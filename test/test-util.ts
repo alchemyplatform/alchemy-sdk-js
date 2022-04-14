@@ -11,7 +11,7 @@ import {
   NftTokenType,
   OwnedBaseNft,
   OwnedNft,
-  toHex
+  TokenUri
 } from '../src';
 
 export function createRawOwnedBaseNft(
@@ -42,7 +42,7 @@ export function createOwnedBaseNft(
   tokenType = NftTokenType.UNKNOWN
 ): OwnedBaseNft {
   return {
-    nft: new BaseNft(address, tokenId, tokenType),
+    nft: createBaseNft(address, tokenId, tokenType),
     balance
   };
 }
@@ -61,25 +61,32 @@ export function createRawBaseNft(
 
 export function createBaseNft(
   address: string,
-  tokenId: number,
+  tokenId: string,
   tokenType = NftTokenType.UNKNOWN
 ): BaseNft {
-  return new BaseNft(address, toHex(tokenId), tokenType);
+  return BaseNft.fromResponse(createRawBaseNft(tokenId, tokenType), address);
 }
 
 export function createNft(
   title: string,
   address: string,
   tokenId: string,
-  tokenType = NftTokenType.UNKNOWN
+  tokenType = NftTokenType.UNKNOWN,
+  tokenUri?: TokenUri,
+  media?: TokenUri[] | undefined
 ): Nft {
-  return Nft.fromResponse(createRawNft(title, tokenId, tokenType), address);
+  return Nft.fromResponse(
+    createRawNft(title, tokenId, tokenType, tokenUri, media),
+    address
+  );
 }
 
 export function createRawNft(
   title: string,
   tokenId: string,
-  tokenType = NftTokenType.UNKNOWN
+  tokenType = NftTokenType.UNKNOWN,
+  tokenUri?: TokenUri,
+  media?: TokenUri[] | undefined
 ): RawNft {
   return {
     title,
@@ -90,7 +97,9 @@ export function createRawNft(
       tokenMetadata: {
         tokenType
       }
-    }
+    },
+    tokenUri,
+    media
   };
 }
 

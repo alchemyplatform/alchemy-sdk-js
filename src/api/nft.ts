@@ -1,7 +1,6 @@
 import { NftMetadata, NftTokenType, TokenUri } from '../types/types';
 import { RawBaseNft, RawNft } from '../internal/raw-interfaces';
-import { normalizeTokenIdToNumber } from './nft-api';
-import { toHex } from './util';
+import { normalizeTokenIdToHex } from './nft-api';
 
 /**
  * Alchemy representation of a base NFT that doesn't contain metadata.
@@ -15,7 +14,7 @@ export class BaseNft {
    *
    * @hideconstructor
    */
-  constructor(
+  protected constructor(
     /** The NFT contract address. */
     readonly address: string,
     /** The NFT token ID as a hex string */
@@ -24,9 +23,7 @@ export class BaseNft {
     readonly tokenType: NftTokenType
   ) {}
 
-  /**
-   * @internal
-   */
+  /** @internal */
   static fromResponse(ownedNft: RawBaseNft, contractAddress: string): BaseNft {
     return new BaseNft(
       contractAddress,
@@ -48,15 +45,10 @@ export class Nft extends BaseNft {
   /** The NFT description. */
   readonly description: string;
 
-  /**
-   * When the NFT was last updated in the blockchain. Represented in ISO-8601
-   * format.
-   */
+  /** When the NFT was last updated in the blockchain. Represented in ISO-8601 format. */
   readonly timeLastUpdated: string;
 
-  /**
-   * Holds an error message if there was an issue fetching metadata.
-   */
+  /** Holds an error message if there was an issue fetching metadata. */
   readonly error: string | undefined;
   readonly rawMetadata: NftMetadata | undefined;
   readonly tokenUri: TokenUri | undefined;
@@ -68,7 +60,7 @@ export class Nft extends BaseNft {
    *
    * @hideconstructor
    */
-  constructor(
+  private constructor(
     address: string,
     tokenId: string,
     tokenType: NftTokenType,
@@ -90,15 +82,13 @@ export class Nft extends BaseNft {
     this.media = Nft.parseTokenUriArray(media);
   }
 
-  /**
-   * @internal
-   */
+  /** @internal */
   static fromResponse(ownedNft: RawNft, contractAddress: string): Nft {
     return new Nft(
       contractAddress,
       // We have to normalize the token id here since the backend sometimes
       // returns the token ID as a hex string and sometimes as an integer.
-      toHex(normalizeTokenIdToNumber(ownedNft.id.tokenId)),
+      normalizeTokenIdToHex(ownedNft.id.tokenId),
       ownedNft.id.tokenMetadata?.tokenType ?? NftTokenType.UNKNOWN,
       ownedNft.title,
       ownedNft.description,
