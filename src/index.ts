@@ -7,11 +7,8 @@ export { initializeAlchemy } from './api/alchemy';
 
 export {
   getNftMetadata,
-  getBaseNfts,
   getNfts,
-  getBaseNftsPaginated,
   getNftsPaginated,
-  getBaseNftsForCollection,
   getNftsForCollection,
   getOwnersForToken
 } from './api/nft-api';
