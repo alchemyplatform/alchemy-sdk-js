@@ -1,14 +1,14 @@
 import {
-  getBaseNfts,
-  getBaseNftsPaginated,
   getNftMetadata,
   getNfts,
   getNftsForCollection,
+  getNftsPaginated,
   getOwnersForToken,
   initializeAlchemy,
   NftTokenType
 } from '../src';
 import { Alchemy } from '../src/api/alchemy';
+import { getNftsForCollectionPaginated } from '../src/api/nft-api';
 
 /**
  * Temporary test
@@ -31,7 +31,7 @@ describe('E2E integration tests', () => {
     const contractAddress = '0x0510745d2ca36729bed35c818527c4485912d99e';
     const tokenIdHex =
       '0x0000000000000000000000000000000000000000000000000000000000000193';
-    const tokenId = '403';
+    const tokenId = 403;
     const response = await getNftMetadata(
       alchemy,
       contractAddress,
@@ -57,7 +57,10 @@ describe('E2E integration tests', () => {
   });
 
   it('getOwnersForToken from NFT', async () => {
-    const nfts = await getBaseNfts(alchemy, { owner: ownerAddress });
+    const nfts = await getNfts(alchemy, {
+      owner: ownerAddress,
+      withMetadata: false
+    });
     const owners = await getOwnersForToken(alchemy, nfts.ownedNfts[0].nft);
     console.log('owner', owners);
   });
@@ -68,21 +71,19 @@ describe('E2E integration tests', () => {
   });
 
   it('getNftsForCollection with pageKey', async () => {
-    let nftsForCollection = await getNftsForCollection(
-      alchemy,
+    let nftsForCollection = await getNftsForCollection(alchemy, {
       contractAddress
-    );
+    });
 
     console.log(
       'nftsForCollection: ',
       nftsForCollection.pageKey,
       nftsForCollection.nfts.length
     );
-    nftsForCollection = await getNftsForCollection(
-      alchemy,
+    nftsForCollection = await getNftsForCollection(alchemy, {
       contractAddress,
-      nftsForCollection.pageKey
-    );
+      pageKey: nftsForCollection.pageKey
+    });
     console.log(
       'nftsForCollection: ',
       nftsForCollection.pageKey,
@@ -95,7 +96,7 @@ describe('E2E integration tests', () => {
     console.log('lets paginate');
     const allNfts = [];
     let totalCount = 0;
-    for await (const nft of getBaseNftsPaginated(alchemy, {
+    for await (const nft of getNftsPaginated(alchemy, {
       owner: ownerAddress
     })) {
       if (totalCount === 10) {
@@ -104,6 +105,35 @@ describe('E2E integration tests', () => {
       allNfts.push(nft);
       totalCount += 1;
     }
+
+    for await (const nft of getNftsPaginated(alchemy, {
+      owner: ownerAddress,
+      withMetadata: false
+    })) {
+      if (totalCount === 10) {
+        break;
+      }
+      allNfts.push(nft);
+      totalCount += 1;
+    }
     console.log('done', allNfts.length, allNfts);
+  });
+
+  it('getNftsForCollectionPaginated', async () => {
+    jest.setTimeout(15000);
+    console.log('lets paginate');
+    const allNfts = [];
+    let totalCount = 0;
+    for await (const nft of getNftsForCollectionPaginated(alchemy, {
+      contractAddress,
+      withMetadata: false
+    })) {
+      if (totalCount === 150) {
+        break;
+      }
+      allNfts.push(nft);
+      totalCount += 1;
+    }
+    console.log('done', allNfts.length, allNfts[100], totalCount);
   });
 });

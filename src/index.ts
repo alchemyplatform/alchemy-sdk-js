@@ -5,12 +5,10 @@ export { initializeAlchemy } from './api/alchemy';
 
 export {
   getNftMetadata,
-  getBaseNfts,
   getNfts,
-  getBaseNftsPaginated,
   getNftsPaginated,
-  getBaseNftsForCollection,
   getNftsForCollection,
+  getNftsForCollectionPaginated,
   getOwnersForToken
 } from './api/nft-api';
 
@@ -23,5 +21,7 @@ export {
 } from './api/enhanced';
 
 export { Nft, BaseNft } from './api/nft';
+
+export { fromHex, toHex, isHex } from './api/util';
 
 export { setLogLevel, LogLevelString as LogLevel } from './util/logger';

@@ -10,6 +10,7 @@ import { logDebug, logInfo } from '../util/logger';
  * @param alchemy
  * @param method
  * @param params
+ * @internal
  */
 // TODO: Wrap Axios error in AlchemyError.
 export async function requestHttpWithBackoff<Req, Res>(
@@ -25,7 +26,13 @@ export async function requestHttpWithBackoff<Req, Res>(
         logInfo('requestHttp', `Retrying after error: ${lastError.message}`);
       }
 
-      await backoff.backoff();
+      try {
+        await backoff.backoff();
+      } catch (err) {
+        // Backoff errors when the maximum number of attempts is reached. Break
+        // out of the loop to preserve the last error.
+        break;
+      }
       const response = await sendAxiosRequest<Req, Res>(
         alchemy._getBaseUrl(),
         method,
@@ -72,13 +79,15 @@ function isRetryableHttpError(err: AxiosError): boolean {
  * @internal
  */
 export async function* paginateEndpoint<
-  PageKey extends string,
-  Req extends Partial<Record<PageKey, string>>,
-  Res extends Partial<Record<string, any> & Record<PageKey, string>>
+  ReqPageKey extends string,
+  ResPageKey extends string,
+  Req extends Partial<Record<string, any> & Record<ReqPageKey, string>>,
+  Res extends Partial<Record<string, any> & Record<ResPageKey, string>>
 >(
   alchemy: Alchemy,
   methodName: string,
-  pageKey: PageKey,
+  reqPageKey: ReqPageKey,
+  resPageKey: ResPageKey,
   params: Req
 ): AsyncIterable<Res> {
   let hasNext = true;
@@ -90,9 +99,8 @@ export async function* paginateEndpoint<
       requestParams
     );
     yield response;
-    if (response[pageKey] !== undefined) {
-      /* eslint-disable @typescript-eslint/no-explicit-any */
-      requestParams[pageKey] = response[pageKey] as any;
+    if (response[resPageKey] !== undefined) {
+      requestParams[reqPageKey] = response[resPageKey] as any;
     } else {
       hasNext = false;
     }

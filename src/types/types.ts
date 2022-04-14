@@ -166,8 +166,11 @@ export interface TokenUri {
 }
 
 /**
- * Parameters object for the {@link getNfts}, {@link getBaseNfts},
- * {@link getBaseNftsPaginated}, and {@link getNftsPaginated} functions.
+ * Parameters object for the {@link getNfts} and {@link getNftsPaginated}
+ * functions.
+ *
+ * This interface is used to fetch NFTs with their associated metadata. To
+ * get Nfts without their associated metadata, use {@link GetBaseNftsParams}.
  *
  * @public
  */
@@ -185,6 +188,41 @@ export interface GetNftsParams {
    * Optional list of contract addresses to filter the results by. Limit is 20.
    */
   contractAddresses?: string[];
+
+  /**
+   * Optional boolean flag to include NFT metadata. Defaults to `true`.
+   */
+  withMetadata?: boolean;
+}
+
+/**
+ * Parameters object for the {@link getNfts} and {@link getNftsPaginated}
+ * functions.
+ *
+ * This interface is used to fetch NFTs without their associated metadata. To
+ * get Nfts with their associated metadata, use {@link GetNftsParams}.
+ *
+ * @public
+ */
+export interface GetBaseNftsParams {
+  /** The owner address of the NFTs. */
+  owner: string;
+
+  /**
+   * Optional page key from an existing {@link OwnedBaseNftsResponse} or
+   * {@link OwnedNftsResponse}to use for pagination.
+   */
+  pageKey?: string;
+
+  /**
+   * Optional list of contract addresses to filter the results by. Limit is 20.
+   */
+  contractAddresses?: string[];
+
+  /**
+   * Optional boolean flag to include NFT metadata. Defaults to `true`.
+   */
+  withMetadata: false;
 }
 
 /**
@@ -244,9 +282,61 @@ export interface RawContract {
 }
 
 /**
+ * Parameters object for the {@link getNftsForCollection} and
+ * {@link getNftsForCollectionPaginated} functions.
+ *
+ * This interface is used to fetch NFTs with their associated metadata. To get
+ * Nfts without their associated metadata, use
+ * {@link GetBaseNftsForCollectionParams}.
+ *
  * @public
  */
-export interface BaseNftsForCollection {
+export interface GetNftsForCollectionParams {
+  /** The contract address of the collection. */
+  contractAddress: string;
+
+  /**
+   * Optional page key from an existing {@link CollectionBaseNftsResponse} or
+   * {@link CollectionNftsResponse}to use for pagination.
+   */
+  pageKey?: string;
+
+  /**
+   * Optional boolean flag to include NFT metadata. Defaults to `true`.
+   */
+  withMetadata?: boolean;
+}
+
+/**
+ * Parameters object for the {@link getNftsForCollection} and
+ * {@link getNftsForCollectionPaginated} functions.
+ *
+ * This interface is used to fetch NFTs without their associated metadata. To
+ * get Nfts with their associated metadata, use
+ * {@link GetNftsForCollectionParams}.
+ *
+ * @public
+ */
+export interface GetBaseNftsForCollectionParams {
+  /** The contract address of the collection. */
+  contractAddress: string;
+
+  /**
+   * Optional page key from an existing {@link CollectionBaseNftsResponse} or
+   * {@link CollectionNftsResponse}to use for pagination.
+   */
+  pageKey?: string;
+
+  /**
+   * Optional boolean flag to include NFT metadata. Defaults to `true`.
+   */
+  withMetadata: false;
+}
+
+/**
+ * @public
+ */
+export interface CollectionBaseNftsResponse {
   nfts: BaseNft[];
   pageKey?: string;
 }
@@ -254,7 +344,7 @@ export interface BaseNftsForCollection {
 /**
  * @public
  */
-export interface NftsForCollection {
+export interface CollectionNftsResponse {
   nfts: Nft[];
   pageKey?: string;
 }
