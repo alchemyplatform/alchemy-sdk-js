@@ -1,14 +1,14 @@
 import {
+  Alchemy,
   getNftMetadata,
   getNfts,
   getNftsForCollection,
+  getNftsForCollectionPaginated,
   getNftsPaginated,
   getOwnersForToken,
   initializeAlchemy,
   NftTokenType
 } from '../src';
-import { Alchemy } from '../src/api/alchemy';
-import { getNftsForCollectionPaginated } from '../src/api/nft-api';
 
 /** Temporary test */
 // TODO: REMOVE these tests once we have more comprehensive unit testing.
@@ -26,6 +26,7 @@ describe('E2E integration tests', () => {
   });
 
   it('getNftMetadata', async () => {
+    console.log(await alchemy.getProvider().getBlockNumber());
     const contractAddress = '0x0510745d2ca36729bed35c818527c4485912d99e';
     const tokenIdHex =
       '0x0000000000000000000000000000000000000000000000000000000000000193';
@@ -57,15 +58,15 @@ describe('E2E integration tests', () => {
   it('getOwnersForToken from NFT', async () => {
     const nfts = await getNfts(alchemy, {
       owner: ownerAddress,
-      withMetadata: false
+      omitMetadata: true
     });
     const owners = await getOwnersForToken(alchemy, nfts.ownedNfts[0].nft);
     console.log('owner', owners);
   });
 
-  it('getOwnersForToken from NFT', async () => {
-    const owners = await getNfts(alchemy, { owner: 'happy.eth' });
-    console.log('owner', owners);
+  it('getNFTs()', async () => {
+    const nfts = await getNfts(alchemy, { owner: 'happy.eth' });
+    console.log('owner', nfts);
   });
 
   it('getNftsForCollection with pageKey', async () => {
@@ -106,7 +107,7 @@ describe('E2E integration tests', () => {
 
     for await (const nft of getNftsPaginated(alchemy, {
       owner: ownerAddress,
-      withMetadata: false
+      omitMetadata: false
     })) {
       if (totalCount === 10) {
         break;
@@ -124,7 +125,7 @@ describe('E2E integration tests', () => {
     let totalCount = 0;
     for await (const nft of getNftsForCollectionPaginated(alchemy, {
       contractAddress,
-      withMetadata: false
+      omitMetadata: false
     })) {
       if (totalCount === 150) {
         break;

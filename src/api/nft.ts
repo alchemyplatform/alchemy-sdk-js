@@ -1,6 +1,6 @@
 import { NftMetadata, NftTokenType, TokenUri } from '../types/types';
 import { RawBaseNft, RawNft } from '../internal/raw-interfaces';
-import { normalizeTokenIdToHex } from './nft-api';
+import { BigNumber } from 'ethers';
 
 /**
  * Alchemy representation of a base NFT that doesn't contain metadata.
@@ -127,4 +127,14 @@ export class Nft extends BaseNft {
     }
     return arr.filter(uri => this.parseTokenUri(uri) !== undefined);
   }
+}
+
+/**
+ * Helper method that returns the token ID input as hex string.
+ *
+ * @param tokenId The token ID as an integer or hex string.
+ * @internal
+ */
+export function normalizeTokenIdToHex(tokenId: string | number): string {
+  return BigNumber.from(tokenId).toHexString();
 }
