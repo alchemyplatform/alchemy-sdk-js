@@ -18,10 +18,10 @@ npm install exploring-pioneer-1.0.0.tgz
 After installing the app, you can then import and use the SDK:
 
 ```ts
-import { Network, initializeAlchemy } from 'exploring-pioneer';
+import { AlchemyConfig, Network, initializeAlchemy } from 'exploring-pioneer';
 
 // Optional Config object, but defaults to demo api-key and eth-mainnet.
-const settings = {
+const settings: AlchemyConfig = {
   apiKey: 'your-api-key',
   network: Network.ETH_RINKEBY
 };
