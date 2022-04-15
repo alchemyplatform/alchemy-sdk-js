@@ -57,7 +57,7 @@ Here's an example of how this could be used:
 // NFT API
 import { getNfts } from 'exploring-pioneer';
 
-getNfts(alchemy, { owners: '0xABC' }).then(nfts => {
+getNfts(alchemy, { owner: '0xABC' }).then(nfts => {
   console.log(nfts);
 });
 
