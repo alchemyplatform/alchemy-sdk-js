@@ -1,4 +1,4 @@
-import { ExponentialBackoff } from '../src/internal/backoff';
+import { ExponentialBackoff } from '../../src/internal/backoff';
 
 describe('Exponential Backoff', () => {
   const observedDelays: number[] = [];

@@ -1,5 +1,5 @@
-import { BaseNft, Nft, NftTokenType, toHex } from '../src';
-import { createNft, createRawBaseNft, createRawNft } from './test-util';
+import { BaseNft, Nft, NftTokenType, toHex } from '../../src';
+import { createNft, createRawBaseNft, createRawNft } from '../test-util';
 
 describe('BaseNft class', () => {
   const contractAddress = '0xCA1';

@@ -13,9 +13,7 @@ import { Alchemy } from './alchemy';
 import { DEFAULT_CONTRACT_ADDRESSES } from '../util/const';
 import { toHex } from './util';
 
-/**
- * @public
- */
+/** @public */
 export function getTokenAllowance(
   alchemy: Alchemy,
   params: TokenAllowanceParams
@@ -23,9 +21,7 @@ export function getTokenAllowance(
   return alchemy.send('alchemy_getTokenAllowance', [params]);
 }
 
-/**
- * @public
- */
+/** @public */
 export function getTokenBalances(
   alchemy: Alchemy,
   address: string,
@@ -37,9 +33,7 @@ export function getTokenBalances(
   ]);
 }
 
-/**
- * @public
- */
+/** @public */
 export function getTokenMetadata(
   alchemy: Alchemy,
   address: string
@@ -47,9 +41,7 @@ export function getTokenMetadata(
   return alchemy.send('alchemy_getTokenMetadata', [address]);
 }
 
-/**
- * @public
- */
+/** @public */
 export function getAssetTransfers(
   alchemy: Alchemy,
   params: AssetTransfersParams
@@ -65,9 +57,7 @@ export function getAssetTransfers(
   ]);
 }
 
-/**
- * @public
- */
+/** @public */
 export function getTransactionReceipts(
   alchemy: Alchemy,
   params: TransactionReceiptsParams

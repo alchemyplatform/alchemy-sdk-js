@@ -15,9 +15,7 @@ export interface AlchemyConfig {
   /** The name of the network. */
   network?: Network;
 
-  /**
-   * The maximum number of retries to attempt if a request fails. Defaults to 5.
-   */
+  /** The maximum number of retries to attempt if a request fails. Defaults to 5. */
   maxRetries?: number;
 }
 
@@ -56,27 +54,21 @@ export interface TokenBalancesResponse {
 
 export type TokenBalance = TokenBalanceSuccess | TokenBalanceFailure;
 
-/**
- * @public
- */
+/** @public */
 export interface TokenBalanceSuccess {
   contractAddress: string;
   tokenBalance: string;
   error: null;
 }
 
-/**
- * @public
- */
+/** @public */
 export interface TokenBalanceFailure {
   contractAddress: string;
   tokenBalance: null;
   error: string;
 }
 
-/**
- * @public
- */
+/** @public */
 export interface TokenMetadataResponse {
   decimals: number | null;
   logo: string | null;
@@ -84,9 +76,7 @@ export interface TokenMetadataResponse {
   symbol: string | null;
 }
 
-/**
- * @public
- */
+/** @public */
 export interface AssetTransfersParams {
   fromBlock?: string;
   toBlock?: string;
@@ -100,9 +90,7 @@ export interface AssetTransfersParams {
   pageKey?: string;
 }
 
-/**
- * @public
- */
+/** @public */
 export enum AssetTransfersCategory {
   EXTERNAL = 'external',
   INTERNAL = 'internal',
@@ -113,9 +101,7 @@ export enum AssetTransfersCategory {
   SPECIALNFT = 'specialnft'
 }
 
-/**
- * @public
- */
+/** @public */
 export enum AssetTransfersOrder {
   ASCENDING = 'asc',
   DESCENDING = 'desc'
@@ -153,24 +139,19 @@ export interface NftMetadata extends Record<string, any> {
   attributes?: Array<Record<string, any>>;
 }
 
-/**
- *
- *
- * @public
- */
+/** @public */
 export interface TokenUri {
-  /** URI for the location of the NFT's original metadata blob.*/
+  /** URI for the location of the NFT's original metadata blob. */
   raw: string;
   /** Public gateway URI for the raw URI. */
   gateway: string;
 }
 
 /**
- * Parameters object for the {@link getNfts} and {@link getNftsPaginated}
- * functions.
+ * Parameters object for the {@link getNfts} and {@link getNftsPaginated} functions.
  *
- * This interface is used to fetch NFTs with their associated metadata. To
- * get Nfts without their associated metadata, use {@link GetBaseNftsParams}.
+ * This interface is used to fetch NFTs with their associated metadata. To get
+ * Nfts without their associated metadata, use {@link GetBaseNftsParams}.
  *
  * @public
  */
@@ -184,20 +165,15 @@ export interface GetNftsParams {
    */
   pageKey?: string;
 
-  /**
-   * Optional list of contract addresses to filter the results by. Limit is 20.
-   */
+  /** Optional list of contract addresses to filter the results by. Limit is 20. */
   contractAddresses?: string[];
 
-  /**
-   * Optional boolean flag to include NFT metadata. Defaults to `true`.
-   */
+  /** Optional boolean flag to include NFT metadata. Defaults to `true`. */
   withMetadata?: boolean;
 }
 
 /**
- * Parameters object for the {@link getNfts} and {@link getNftsPaginated}
- * functions.
+ * Parameters object for the {@link getNfts} and {@link getNftsPaginated} functions.
  *
  * This interface is used to fetch NFTs without their associated metadata. To
  * get Nfts with their associated metadata, use {@link GetNftsParams}.
@@ -214,20 +190,14 @@ export interface GetBaseNftsParams {
    */
   pageKey?: string;
 
-  /**
-   * Optional list of contract addresses to filter the results by. Limit is 20.
-   */
+  /** Optional list of contract addresses to filter the results by. Limit is 20. */
   contractAddresses?: string[];
 
-  /**
-   * Optional boolean flag to include NFT metadata. Defaults to `true`.
-   */
+  /** Optional boolean flag to include NFT metadata. Defaults to `true`. */
   withMetadata: false;
 }
 
-/**
- * @public
- */
+/** @public */
 export interface OwnedNftsResponse {
   ownedNfts: OwnedNft[];
   pageKey?: string;
@@ -286,8 +256,7 @@ export interface RawContract {
  * {@link getNftsForCollectionPaginated} functions.
  *
  * This interface is used to fetch NFTs with their associated metadata. To get
- * Nfts without their associated metadata, use
- * {@link GetBaseNftsForCollectionParams}.
+ * Nfts without their associated metadata, use {@link GetBaseNftsForCollectionParams}.
  *
  * @public
  */
@@ -301,9 +270,7 @@ export interface GetNftsForCollectionParams {
    */
   pageKey?: string;
 
-  /**
-   * Optional boolean flag to include NFT metadata. Defaults to `true`.
-   */
+  /** Optional boolean flag to include NFT metadata. Defaults to `true`. */
   withMetadata?: boolean;
 }
 
@@ -312,8 +279,7 @@ export interface GetNftsForCollectionParams {
  * {@link getNftsForCollectionPaginated} functions.
  *
  * This interface is used to fetch NFTs without their associated metadata. To
- * get Nfts with their associated metadata, use
- * {@link GetNftsForCollectionParams}.
+ * get Nfts with their associated metadata, use {@link GetNftsForCollectionParams}.
  *
  * @public
  */
@@ -327,23 +293,17 @@ export interface GetBaseNftsForCollectionParams {
    */
   pageKey?: string;
 
-  /**
-   * Optional boolean flag to include NFT metadata. Defaults to `true`.
-   */
+  /** Optional boolean flag to include NFT metadata. Defaults to `true`. */
   withMetadata: false;
 }
 
-/**
- * @public
- */
+/** @public */
 export interface CollectionBaseNftsResponse {
   nfts: BaseNft[];
   pageKey?: string;
 }
 
-/**
- * @public
- */
+/** @public */
 export interface CollectionNftsResponse {
   nfts: Nft[];
   pageKey?: string;

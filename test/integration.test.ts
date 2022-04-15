@@ -10,9 +10,7 @@ import {
 import { Alchemy } from '../src/api/alchemy';
 import { getNftsForCollectionPaginated } from '../src/api/nft-api';
 
-/**
- * Temporary test
- */
+/** Temporary test */
 // TODO: REMOVE these tests once we have more comprehensive unit testing.
 describe('E2E integration tests', () => {
   let alchemy: Alchemy;
