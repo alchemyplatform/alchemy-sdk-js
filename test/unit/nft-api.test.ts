@@ -1,4 +1,5 @@
 import {
+  Alchemy,
   BaseNft,
   CollectionBaseNftsResponse,
   CollectionNftsResponse,
@@ -20,7 +21,6 @@ import {
 } from '../../src';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { Alchemy } from '../../src/api/alchemy';
 import {
   createBaseNft,
   createNft,

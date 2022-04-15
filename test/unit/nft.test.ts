@@ -11,7 +11,7 @@ describe('BaseNft class', () => {
     );
     expect(nft.tokenType).toEqual(NftTokenType.UNKNOWN);
     expect(nft.tokenId).toEqual(tokenId);
-    expect(nft.address).toEqual(contractAddress);
+    expect(nft.contract.address).toEqual(contractAddress);
   });
 
   it('fromResponse() normalizes tokenId fields', () => {
@@ -41,7 +41,7 @@ describe('Nft class', () => {
     );
     expect(nft.tokenType).toEqual(NftTokenType.UNKNOWN);
     expect(nft.tokenId).toEqual(toHex(tokenId));
-    expect(nft.address).toEqual(contractAddress);
+    expect(nft.contract.address).toEqual(contractAddress);
   });
 
   it('fromResponse() normalizes tokenId fields', () => {

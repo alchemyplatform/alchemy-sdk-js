@@ -76,12 +76,12 @@ export async function getNftMetadata(
       }
     );
   } else {
-    contractAddress = contractAddressOrBaseNft.address;
+    contractAddress = contractAddressOrBaseNft.contract.address;
     response = await requestHttpWithBackoff<GetNftMetadataParams, RawNft>(
       alchemy,
       'getNFTMetadata',
       {
-        contractAddress: contractAddressOrBaseNft.address,
+        contractAddress: contractAddressOrBaseNft.contract.address,
         tokenId: normalizeTokenIdToHex(contractAddressOrBaseNft.tokenId),
         tokenType:
           contractAddressOrBaseNft.tokenType !== NftTokenType.UNKNOWN
@@ -284,7 +284,7 @@ export function getOwnersForToken(
     });
   } else {
     return requestHttpWithBackoff(alchemy, 'getOwnersForToken', {
-      contractAddress: contractAddressOrNft.address,
+      contractAddress: contractAddressOrNft.contract.address,
       tokenId: normalizeTokenIdToHex(contractAddressOrNft.tokenId)
     });
   }
