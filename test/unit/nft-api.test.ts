@@ -16,10 +16,10 @@ import {
   OwnedNft,
   OwnedNftsResponse,
   toHex
-} from '../src';
+} from '../../src';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { Alchemy } from '../src/api/alchemy';
+import { Alchemy } from '../../src/api/alchemy';
 import {
   createBaseNft,
   createNft,
@@ -35,8 +35,8 @@ import {
   RawGetBaseNftsResponse,
   RawGetNftsForCollectionResponse,
   RawGetNftsResponse
-} from '../src/internal/raw-interfaces';
-import { getNftsForCollectionPaginated } from '../src/api/nft-api';
+} from '../../src/internal/raw-interfaces';
+import { getNftsForCollectionPaginated } from '../../src/api/nft-api';
 
 describe('NFT module', () => {
   let alchemy: Alchemy;

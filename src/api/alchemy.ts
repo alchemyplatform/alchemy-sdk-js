@@ -11,7 +11,6 @@ import {
  *
  * @param config Configuration object used to
  * @public
- *
  */
 export function initializeAlchemy(config?: AlchemyConfig): Alchemy {
   return new Alchemy(config);
@@ -57,9 +56,7 @@ export class Alchemy {
     return this._baseEthersProvider;
   }
 
-  /**
-   * @internal
-   */
+  /** @internal */
   _getBaseUrl(): string {
     return `https://${this.network}.alchemyapi.io/v2/${this.apiKey}`;
   }

@@ -1,5 +1,6 @@
 /**
- * Given a REST endpoint, method, and params, sends the request with axios and returns the response.
+ * Given a REST endpoint, method, and params, sends the request with axios and
+ * returns the response.
  */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 

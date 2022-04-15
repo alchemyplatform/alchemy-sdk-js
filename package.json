@@ -13,7 +13,7 @@
     "format-file": "prettier --write",
     "lint": "eslint -c .eslintrc.js '**/*.ts' --ignore-path '.gitignore'",
     "lint-file": "eslint --fix",
-    "test": "jest",
+    "test": "jest test/unit",
     "api": "api-extractor run",
     "prepare": "husky install"
   },
