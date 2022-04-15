@@ -8,8 +8,3 @@ export function formatBlock(block: string | number): string {
   }
   return block.toString();
 }
-
-// TODO: Add loglevel options to avoid always logging everything
-export function logger(methodName: string, message: string) {
-  console.log(`[${methodName}]: ${message}`);
-}

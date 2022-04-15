@@ -5,6 +5,7 @@
   "author": "",
   "license": "MIT",
   "scripts": {
+    "pre-commit": "lint-staged",
     "prebuild": "yarn clean && tsc --emitDeclarationOnly --declaration -p tsconfig.json",
     "build": "rollup -c",
     "clean": "rm -rf dist",
@@ -36,8 +37,7 @@
   "lint-staged": {
     "**/*.ts": [
       "yarn lint-file --fix",
-      "yarn format-file",
-      "git add"
+      "yarn format-file"
     ]
   },
   "bugs": {
@@ -63,6 +63,7 @@
     "jest": "^27.5.1",
     "lint-staged": "^12.3.7",
     "prettier": "2.6.0",
+    "prettier-plugin-jsdoc": "^0.3.38",
     "rollup": "^2.70.1",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.31.2",

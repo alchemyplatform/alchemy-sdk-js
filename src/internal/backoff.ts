@@ -1,4 +1,4 @@
-import { logger } from '../util/util';
+import { logDebug } from '../util/logger';
 
 export const DEFAULT_BACKOFF_INITIAL_DELAY_MS = 1000;
 export const DEFAULT_BACKOFF_MULTIPLIER = 1.5;
@@ -42,7 +42,7 @@ export class ExponentialBackoff {
 
     const backoffDelayWithJitterMs = this.withJitterMs(this.currentDelayMs);
     if (backoffDelayWithJitterMs > 0) {
-      logger(
+      logDebug(
         'ExponentialBackoff.backoff',
         `Backing off for ${backoffDelayWithJitterMs}ms`
       );
@@ -66,8 +66,8 @@ export class ExponentialBackoff {
   /**
    * Applies +/- 50% jitter to the backoff delay, up to the max delay cap.
    *
-   * @param delayMs
    * @private
+   * @param delayMs
    */
   private withJitterMs(delayMs: number): number {
     return Math.min(delayMs + (Math.random() - 0.5) * delayMs, this.maxDelayMs);
