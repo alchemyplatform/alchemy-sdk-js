@@ -52,19 +52,19 @@ export function setLogLevel(logLevel: LogLevelString): void {
   loggerClient.logLevel = logLevelStringToEnum[logLevel];
 }
 
-export function logDebug(message: string, ...args: Array<unknown>): void {
+export function logDebug(message: string, ...args: unknown[]): void {
   loggerClient.debug(message, args);
 }
 
-export function logInfo(message: string, ...args: Array<unknown>): void {
+export function logInfo(message: string, ...args: unknown[]): void {
   loggerClient.info(message, args);
 }
 
-export function logWarn(message: string, ...args: Array<unknown>): void {
+export function logWarn(message: string, ...args: unknown[]): void {
   loggerClient.warn(message, args);
 }
 
-export function logError(message: string, ...args: Array<unknown>): void {
+export function logError(message: string, ...args: unknown[]): void {
   loggerClient.error(message, args);
 }
 
@@ -85,27 +85,27 @@ export class Logger {
     this._logLevel = val;
   }
 
-  debug(...args: Array<unknown>): void {
-    this._log(LogLevel.DEBUG, args);
+  debug(...args: unknown[]): void {
+    this._log(LogLevel.DEBUG, ...args);
   }
 
-  info(...args: Array<unknown>): void {
-    this._log(LogLevel.INFO, args);
+  info(...args: unknown[]): void {
+    this._log(LogLevel.INFO, ...args);
   }
 
-  warn(...args: Array<unknown>): void {
-    this._log(LogLevel.WARN, args);
+  warn(...args: unknown[]): void {
+    this._log(LogLevel.WARN, ...args);
   }
 
-  error(...args: Array<unknown>): void {
-    this._log(LogLevel.ERROR, args);
+  error(...args: unknown[]): void {
+    this._log(LogLevel.ERROR, ...args);
   }
 
   /**
    * Forwards log messages to their corresponding console counterparts if the
    * log level allows it.
    */
-  private _log(logLevel: LogLevel, ...args: Array<unknown>): void {
+  private _log(logLevel: LogLevel, ...args: unknown[]): void {
     if (logLevel < this._logLevel) {
       return;
     }
@@ -115,7 +115,7 @@ export class Logger {
     if (method) {
       console[method as 'log' | 'info' | 'warn' | 'error'](
         `[${now}] Alchemy:`,
-        args.map(stringify)
+        ...args.map(stringify)
       );
     } else {
       throw new Error(
@@ -125,11 +125,16 @@ export class Logger {
   }
 }
 
-function stringify(obj: unknown): string {
+function stringify(obj: unknown): string | unknown {
   if (typeof obj === 'string') {
     return obj;
   } else {
-    return JSON.stringify(obj);
+    try {
+      return JSON.stringify(obj);
+    } catch (e) {
+      // Failed to convert to JSON, log the object directly.
+      return obj;
+    }
   }
 }
 
