@@ -4,7 +4,7 @@ import {
   RawNft,
   RawOwnedBaseNft,
   RawOwnedNft
-} from '../../src/internal/raw-interfaces';
+} from '../src/internal/raw-interfaces';
 import {
   BaseNft,
   Nft,
@@ -12,7 +12,7 @@ import {
   OwnedBaseNft,
   OwnedNft,
   TokenUri
-} from '../../src';
+} from '../src';
 
 export function createRawOwnedBaseNft(
   address: string,

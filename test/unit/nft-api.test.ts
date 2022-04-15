@@ -29,7 +29,7 @@ import {
   createRawNft,
   createRawOwnedBaseNft,
   createRawOwnedNft
-} from './test-util';
+} from '../test-util';
 import {
   RawGetBaseNftsForCollectionResponse,
   RawGetBaseNftsResponse,
