@@ -60,7 +60,7 @@ describe('E2E integration tests', () => {
       owner: ownerAddress,
       omitMetadata: true
     });
-    const owners = await getOwnersForToken(alchemy, nfts.ownedNfts[0].nft);
+    const owners = await getOwnersForToken(alchemy, nfts.ownedNfts[0]);
     console.log('owner', owners);
   });
 

@@ -56,9 +56,14 @@ export class Alchemy {
     return this._baseEthersProvider;
   }
 
-  /** @internal */
+  /**
+   * Returns the base URL for making Alchemy API requests. The `alchemy.com`
+   * endpoints only work with non eth json-rpc requests.
+   *
+   * @internal
+   */
   _getBaseUrl(): string {
-    return `https://${this.network}.alchemyapi.io/v2/${this.apiKey}`;
+    return `https://${this.network}.g.alchemy.com/v2/${this.apiKey}`;
   }
 
   /**
