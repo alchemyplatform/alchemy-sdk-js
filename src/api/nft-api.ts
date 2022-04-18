@@ -139,7 +139,7 @@ export async function* getNftsPaginated(
       | RawOwnedNft[]
       | RawOwnedBaseNft[]) {
       yield {
-        nft: nftFromGetNftResponse(ownedNft),
+        ...nftFromGetNftResponse(ownedNft),
         balance: parseInt(ownedNft.balance)
       };
     }
@@ -186,7 +186,7 @@ export async function getNfts(
   });
   return {
     ownedNfts: response.ownedNfts.map(res => ({
-      nft: nftFromGetNftResponse(res),
+      ...nftFromGetNftResponse(res),
       balance: parseInt(res.balance)
     })),
     pageKey: response.pageKey,

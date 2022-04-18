@@ -443,7 +443,7 @@ describe('NFT module', () => {
             owner: ownerAddress,
             omitMetadata
           })) {
-            tokenIds.push(fromHex(ownedNft.nft.tokenId));
+            tokenIds.push(fromHex(ownedNft.tokenId));
           }
           fail('getNftsPaginated should have surfaced error');
         } catch (e) {

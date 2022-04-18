@@ -210,13 +210,11 @@ export interface OwnedBaseNftsResponse {
   totalCount: number;
 }
 
-export interface OwnedNft {
-  nft: Nft;
+export interface OwnedNft extends Nft {
   balance: number;
 }
 
-export interface OwnedBaseNft {
-  nft: BaseNft;
+export interface OwnedBaseNft extends BaseNft {
   balance: number;
 }
 
