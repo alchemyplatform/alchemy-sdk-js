@@ -152,7 +152,7 @@ describe('NFT module', () => {
 
     it('surfaces errors', async () => {
       mock.reset();
-      mock.onGet().reply(500, { message: 'Internal Server Error' });
+      mock.onGet().reply(500, 'Internal Server Error');
       await expect(
         getNftMetadata(alchemy, contractAddress, tokenId)
       ).rejects.toThrow('Internal Server Error');
@@ -256,7 +256,7 @@ describe('NFT module', () => {
 
     it.each(responseCases)('surfaces errors', async omitMetadata => {
       mock.reset();
-      mock.onGet().reply(500, { message: 'Internal Server Error' });
+      mock.onGet().reply(500, 'Internal Server Error');
       await expect(
         getNfts(alchemy, { ...getNftsParams, omitMetadata })
       ).rejects.toThrow('Internal Server Error');
@@ -435,7 +435,7 @@ describe('NFT module', () => {
           .onGet()
           .replyOnce(200, mockResponses[0])
           .onGet()
-          .replyOnce(500, { message: 'Internal Server Error' });
+          .replyOnce(500, 'Internal Server Error');
 
         const tokenIds: number[] = [];
         try {
@@ -549,7 +549,7 @@ describe('NFT module', () => {
 
     it.each(responseCases)('surfaces errors', async omitMetadata => {
       mock.reset();
-      mock.onGet().reply(500, { message: 'Internal Server Error' });
+      mock.onGet().reply(500, 'Internal Server Error');
       await expect(
         getNftsForCollection(alchemy, {
           contractAddress,
@@ -716,7 +716,7 @@ describe('NFT module', () => {
           .onGet()
           .replyOnce(200, mockResponses[0])
           .onGet()
-          .replyOnce(500, { message: 'Internal Server Error' });
+          .replyOnce(500, 'Internal Server Error');
         const tokenIds: string[] = [];
         try {
           for await (const nft of getNftsForCollectionPaginated(alchemy, {
@@ -785,7 +785,7 @@ describe('NFT module', () => {
 
     it('retries with maxAttempts', async () => {
       mock.reset();
-      mock.onGet().reply(429, { message: 'Too many requests' });
+      mock.onGet().reply(429, 'Too many requests');
 
       await expect(
         getOwnersForToken(alchemy, contractAddress, tokenIdHex)
