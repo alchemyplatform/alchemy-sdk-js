@@ -1,6 +1,7 @@
 import {
   Alchemy,
   BaseNft,
+  checkOwnership,
   CollectionBaseNftsResponse,
   CollectionNftsResponse,
   fromHex,
@@ -790,6 +791,59 @@ describe('NFT module', () => {
       await expect(
         getOwnersForToken(alchemy, contractAddress, tokenIdHex)
       ).rejects.toThrow('Too many requests');
+    });
+  });
+
+  describe('checkOwnership', () => {
+    const owner = '0xABC';
+    const addresses = ['0xCA1', '0xCA2'];
+    const emptyResponse: RawGetNftsResponse = {
+      ownedNfts: [],
+      totalCount: 0
+    };
+    const nftResponse: RawGetNftsResponse = {
+      ownedNfts: [
+        createRawOwnedNft('a', '0xCA1', '0x1', '1'),
+        createRawOwnedNft('b', '0xCA2', '0x2', '2', NftTokenType.ERC1155)
+      ],
+      totalCount: 2
+    };
+
+    it('calls with the correct parameters', async () => {
+      mock.onGet().reply(200, emptyResponse);
+      await checkOwnership(alchemy, owner, addresses);
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty('owner', owner);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddresses',
+        addresses
+      );
+      expect(mock.history.get[0].params).toHaveProperty('withMetadata', false);
+    });
+
+    it('throws if no contract address is passed in', async () => {
+      await expect(checkOwnership(alchemy, owner, [])).rejects.toThrow(
+        'Must provide at least one contract address'
+      );
+    });
+
+    const cases = [
+      [emptyResponse, false],
+      [nftResponse, true]
+    ];
+    it.each(cases)(
+      'returns the correct response',
+      async (response, expected) => {
+        mock.onGet().reply(200, response);
+        const result = await checkOwnership(alchemy, owner, addresses);
+        expect(result).toEqual(expected);
+      }
+    );
+    it('surfaces errors', async () => {
+      mock.onGet().reply(500, 'Internal Server Error');
+      await expect(checkOwnership(alchemy, owner, addresses)).rejects.toThrow(
+        'Internal Server Error'
+      );
     });
   });
 });

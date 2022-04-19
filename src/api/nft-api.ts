@@ -347,6 +347,31 @@ export async function* getNftsForCollectionPaginated(
 }
 
 /**
+ * Checks that the provided owner address owns one of more of the provided NFTs.
+ *
+ * @param alchemy The Alchemy SDK instance.
+ * @param owner The owner address to check.
+ * @param contractAddresses An array of NFT contract addresses to check ownership for.
+ * @public
+ */
+export async function checkOwnership(
+  alchemy: Alchemy,
+  owner: string,
+  contractAddresses: string[]
+): Promise<boolean> {
+  if (contractAddresses.length === 0) {
+    throw new Error('Must provide at least one contract address');
+  }
+  contractAddresses.forEach(validateContractAddress);
+  const response = await getNfts(alchemy, {
+    owner,
+    contractAddresses,
+    omitMetadata: true
+  });
+  return response.ownedNfts.length > 0;
+}
+
+/**
  * Helper method to convert a NFT response received from Alchemy backend to an
  * SDK NFT type.
  *

@@ -9,7 +9,8 @@ export {
   getNftsPaginated,
   getNftsForCollection,
   getNftsForCollectionPaginated,
-  getOwnersForToken
+  getOwnersForToken,
+  checkOwnership
 } from './api/nft-api';
 
 export {

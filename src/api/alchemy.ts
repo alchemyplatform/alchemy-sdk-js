@@ -25,7 +25,7 @@ export function initializeAlchemy(config?: AlchemyConfig): Alchemy {
  */
 export class Alchemy {
   readonly apiKey: string;
-  readonly network: Network;
+  network: Network;
   readonly maxRetries: number;
 
   private _baseEthersProvider: AlchemyProvider | undefined;
@@ -38,6 +38,16 @@ export class Alchemy {
     this.apiKey = config?.apiKey || DEFAULT_ALCHEMY_API_KEY;
     this.network = config?.network || DEFAULT_NETWORK;
     this.maxRetries = config?.maxRetries || DEFAULT_MAX_RETRIES;
+  }
+
+  /**
+   * Changes the network that the SDK requests data from.
+   *
+   * @param network The network to change to.
+   * @public
+   */
+  setNetwork(network: Network) {
+    this.network = network;
   }
 
   /**
