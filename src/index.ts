@@ -1,7 +1,7 @@
 /** This is the main entry point for the library and exports user-facing API. */
 export * from './types/types';
 
-export { initializeAlchemy } from './api/alchemy';
+export { initializeAlchemy, Alchemy } from './api/alchemy';
 
 export {
   getNftMetadata,

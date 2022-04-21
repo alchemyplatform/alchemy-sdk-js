@@ -168,8 +168,8 @@ export interface GetNftsParams {
   /** Optional list of contract addresses to filter the results by. Limit is 20. */
   contractAddresses?: string[];
 
-  /** Optional boolean flag to include NFT metadata. Defaults to `true`. */
-  withMetadata?: boolean;
+  /** Optional boolean flag to omit NFT metadata. Defaults to `false`. */
+  omitMetadata?: boolean;
 }
 
 /**
@@ -193,8 +193,8 @@ export interface GetBaseNftsParams {
   /** Optional list of contract addresses to filter the results by. Limit is 20. */
   contractAddresses?: string[];
 
-  /** Optional boolean flag to include NFT metadata. Defaults to `true`. */
-  withMetadata: false;
+  /** Optional boolean flag to include NFT metadata. Defaults to `false`. */
+  omitMetadata: true;
 }
 
 /** @public */
@@ -270,8 +270,8 @@ export interface GetNftsForCollectionParams {
    */
   pageKey?: string;
 
-  /** Optional boolean flag to include NFT metadata. Defaults to `true`. */
-  withMetadata?: boolean;
+  /** Optional boolean flag to omit NFT metadata. Defaults to `false`. */
+  omitMetadata?: boolean;
 }
 
 /**
@@ -293,8 +293,8 @@ export interface GetBaseNftsForCollectionParams {
    */
   pageKey?: string;
 
-  /** Optional boolean flag to include NFT metadata. Defaults to `true`. */
-  withMetadata: false;
+  /** Optional boolean flag to omit NFT metadata. Defaults to `false`. */
+  omitMetadata: false;
 }
 
 /** @public */

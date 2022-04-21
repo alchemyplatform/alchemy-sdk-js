@@ -14,7 +14,7 @@ import {
 } from '../types/types';
 import { Alchemy } from './alchemy';
 import { paginateEndpoint, requestHttpWithBackoff } from '../internal/dispatch';
-import { BaseNft, Nft } from './nft';
+import { BaseNft, Nft, normalizeTokenIdToHex } from './nft';
 import {
   RawBaseNft,
   RawCollectionBaseNft,
@@ -27,7 +27,6 @@ import {
   RawOwnedBaseNft,
   RawOwnedNft
 } from '../internal/raw-interfaces';
-import { BigNumber } from 'ethers';
 
 /**
  * Get the NFT metadata associated with the provided Base NFT.
@@ -125,7 +124,7 @@ export async function* getNftsPaginated(
   alchemy: Alchemy,
   params: GetNftsParams | GetBaseNftsParams
 ): AsyncIterable<OwnedBaseNft | OwnedNft> {
-  const withMetadata = params.withMetadata ?? true;
+  const withMetadata = omitMetadataToWithMetadata(params.omitMetadata);
   for await (const response of paginateEndpoint(
     alchemy,
     'getNFTs',
@@ -177,9 +176,9 @@ export async function getNfts(
   alchemy: Alchemy,
   params: GetNftsParams | GetBaseNftsParams
 ): Promise<OwnedNftsResponse | OwnedBaseNftsResponse> {
-  const withMetadata = params.withMetadata ?? true;
+  const withMetadata = omitMetadataToWithMetadata(params.omitMetadata);
   const response = await requestHttpWithBackoff<
-    GetNftsParams | GetBaseNftsParams,
+    GetNftsAlchemyParams,
     RawGetBaseNftsResponse | RawGetNftsResponse
   >(alchemy, 'getNFTs', {
     ...params,
@@ -229,7 +228,7 @@ export async function getNftsForCollection(
   alchemy: Alchemy,
   params: GetBaseNftsForCollectionParams | GetNftsForCollectionParams
 ): Promise<CollectionNftsResponse | CollectionBaseNftsResponse> {
-  const withMetadata = params.withMetadata ?? true;
+  const withMetadata = omitMetadataToWithMetadata(params.omitMetadata);
   const response = await requestHttpWithBackoff<
     GetNftsForCollectionAlchemyParams,
     RawGetBaseNftsForCollectionResponse | RawGetNftsForCollectionResponse
@@ -327,8 +326,7 @@ export async function* getNftsForCollectionPaginated(
   alchemy: Alchemy,
   params: GetBaseNftsForCollectionParams | GetNftsForCollectionParams
 ): AsyncIterable<BaseNft | Nft> {
-  const withMetadata =
-    params.withMetadata !== undefined ? params.withMetadata : true;
+  const withMetadata = omitMetadataToWithMetadata(params.omitMetadata);
   for await (const response of paginateEndpoint(
     alchemy,
     'getNFTsForCollection',
@@ -387,20 +385,21 @@ function isNftWithMetadata(response: RawBaseNft | RawNft): response is RawNft {
   return (response as RawNft).title !== undefined;
 }
 
-/**
- * Helper method that returns the token ID input as hex string.
- *
- * @param tokenId The token ID as an integer or hex string.
- * @internal
- */
-export function normalizeTokenIdToHex(tokenId: string | number): string {
-  return BigNumber.from(tokenId).toHexString();
-}
-
 // TODO: Port over validation from NFT API code, since backend error validation
 // doesn't always get surfaced properly.
 function validateContractAddress(contractAddress: string) {
   console.log('validating contract address', contractAddress);
+}
+
+/**
+ * Flips the `omitMetadata` SDK parameter type to the `withMetadata` parameter
+ * required by the Alchemy API. If `omitMetadata` is undefined, the SDK defaults
+ * to including metadata.
+ */
+function omitMetadataToWithMetadata(
+  omitMetadata: boolean | undefined
+): boolean {
+  return omitMetadata === undefined ? true : !omitMetadata;
 }
 
 /**
@@ -413,6 +412,20 @@ function validateContractAddress(contractAddress: string) {
 interface GetNftsForCollectionAlchemyParams {
   contractAddress: string;
   startToken?: string;
+  withMetadata: boolean;
+}
+
+/**
+ * Interface for the `getNfts` endpoint. The main difference is that the
+ * endpoint has a `withMetadata` parameter, but the SDK exposes the parameter as
+ * `omitMetadata`.
+ *
+ * @internal
+ */
+interface GetNftsAlchemyParams {
+  owner: string;
+  pageKey?: string;
+  contractAddresses?: string[];
   withMetadata: boolean;
 }
 

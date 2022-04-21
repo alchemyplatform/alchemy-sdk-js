@@ -19,8 +19,8 @@ export async function requestHttpWithBackoff<Req, Res>(
   params: Req
 ): Promise<Res> {
   let lastError: Error | undefined = undefined;
-  const backoff = new ExponentialBackoff(alchemy.maxAttempts);
-  for (let attempt = 0; attempt < alchemy.maxAttempts + 1; attempt++) {
+  const backoff = new ExponentialBackoff(alchemy.maxRetries);
+  for (let attempt = 0; attempt < alchemy.maxRetries + 1; attempt++) {
     try {
       if (lastError !== undefined) {
         logInfo('requestHttp', `Retrying after error: ${lastError.message}`);
