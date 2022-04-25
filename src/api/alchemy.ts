@@ -1,4 +1,4 @@
-import { AlchemyProvider } from '@ethersproject/providers/lib/alchemy-provider';
+import { providers } from 'ethers';
 import { AlchemyConfig, Network } from '../types/types';
 import {
   DEFAULT_ALCHEMY_API_KEY,
@@ -25,10 +25,10 @@ export function initializeAlchemy(config?: AlchemyConfig): Alchemy {
  */
 export class Alchemy {
   readonly apiKey: string;
-  readonly network: Network;
+  network: Network;
   readonly maxRetries: number;
 
-  private _baseEthersProvider: AlchemyProvider | undefined;
+  private _baseEthersProvider: providers.AlchemyProvider | undefined;
 
   /**
    * @hideconstructor
@@ -41,17 +41,26 @@ export class Alchemy {
   }
 
   /**
+   * Changes the network that the SDK requests data from.
+   *
+   * @param network The network to change to.
+   * @public
+   */
+  setNetwork(network: Network) {
+    this.network = network;
+  }
+
+  /**
    * Lazy loads the ethers provider and creates an AlchemyProvider instance.
    *
    * @public
    */
-  getProvider(): AlchemyProvider {
+  getProvider(): providers.AlchemyProvider {
     if (!this._baseEthersProvider) {
-      const provider = require('@ethersproject/providers/lib/alchemy-provider');
-      this._baseEthersProvider = new provider.AlchemyProvider(
+      this._baseEthersProvider = new providers.AlchemyProvider(
         EthersNetwork[this.network],
         this.apiKey
-      ) as AlchemyProvider;
+      ) as providers.AlchemyProvider;
     }
     return this._baseEthersProvider;
   }
