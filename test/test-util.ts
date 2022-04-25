@@ -42,7 +42,7 @@ export function createOwnedBaseNft(
   tokenType = NftTokenType.UNKNOWN
 ): OwnedBaseNft {
   return {
-    nft: createBaseNft(address, tokenId, tokenType),
+    ...createBaseNft(address, tokenId, tokenType),
     balance
   };
 }
@@ -133,7 +133,7 @@ export function createOwnedNft(
   tokenType = NftTokenType.UNKNOWN
 ): OwnedNft {
   return {
-    nft: createNft(title, address, tokenId, tokenType),
+    ...createNft(title, address, tokenId, tokenType),
     balance
   };
 }

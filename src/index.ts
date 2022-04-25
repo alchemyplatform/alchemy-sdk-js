@@ -9,7 +9,8 @@ export {
   getNftsPaginated,
   getNftsForCollection,
   getNftsForCollectionPaginated,
-  getOwnersForToken
+  getOwnersForToken,
+  checkOwnership
 } from './api/nft-api';
 
 export {
@@ -20,7 +21,7 @@ export {
   getTokenAllowance
 } from './api/enhanced';
 
-export { Nft, BaseNft } from './api/nft';
+export { NftContract, Nft, BaseNft } from './api/nft';
 
 export { fromHex, toHex, isHex } from './api/util';
 

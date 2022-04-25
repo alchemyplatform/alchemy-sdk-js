@@ -76,12 +76,12 @@ export async function getNftMetadata(
       }
     );
   } else {
-    contractAddress = contractAddressOrBaseNft.address;
+    contractAddress = contractAddressOrBaseNft.contract.address;
     response = await requestHttpWithBackoff<GetNftMetadataParams, RawNft>(
       alchemy,
       'getNFTMetadata',
       {
-        contractAddress: contractAddressOrBaseNft.address,
+        contractAddress: contractAddressOrBaseNft.contract.address,
         tokenId: normalizeTokenIdToHex(contractAddressOrBaseNft.tokenId),
         tokenType:
           contractAddressOrBaseNft.tokenType !== NftTokenType.UNKNOWN
@@ -139,7 +139,7 @@ export async function* getNftsPaginated(
       | RawOwnedNft[]
       | RawOwnedBaseNft[]) {
       yield {
-        nft: nftFromGetNftResponse(ownedNft),
+        ...nftFromGetNftResponse(ownedNft),
         balance: parseInt(ownedNft.balance)
       };
     }
@@ -186,7 +186,7 @@ export async function getNfts(
   });
   return {
     ownedNfts: response.ownedNfts.map(res => ({
-      nft: nftFromGetNftResponse(res),
+      ...nftFromGetNftResponse(res),
       balance: parseInt(res.balance)
     })),
     pageKey: response.pageKey,
@@ -284,7 +284,7 @@ export function getOwnersForToken(
     });
   } else {
     return requestHttpWithBackoff(alchemy, 'getOwnersForToken', {
-      contractAddress: contractAddressOrNft.address,
+      contractAddress: contractAddressOrNft.contract.address,
       tokenId: normalizeTokenIdToHex(contractAddressOrNft.tokenId)
     });
   }
@@ -344,6 +344,31 @@ export async function* getNftsForCollectionPaginated(
       yield nftFromGetNftCollectionResponse(nft, params.contractAddress);
     }
   }
+}
+
+/**
+ * Checks that the provided owner address owns one of more of the provided NFTs.
+ *
+ * @param alchemy The Alchemy SDK instance.
+ * @param owner The owner address to check.
+ * @param contractAddresses An array of NFT contract addresses to check ownership for.
+ * @public
+ */
+export async function checkOwnership(
+  alchemy: Alchemy,
+  owner: string,
+  contractAddresses: string[]
+): Promise<boolean> {
+  if (contractAddresses.length === 0) {
+    throw new Error('Must provide at least one contract address');
+  }
+  contractAddresses.forEach(validateContractAddress);
+  const response = await getNfts(alchemy, {
+    owner,
+    contractAddresses,
+    omitMetadata: true
+  });
+  return response.ownedNfts.length > 0;
 }
 
 /**

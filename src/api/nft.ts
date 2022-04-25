@@ -2,12 +2,20 @@ import { NftMetadata, NftTokenType, TokenUri } from '../types/types';
 import { RawBaseNft, RawNft } from '../internal/raw-interfaces';
 import { BigNumber } from 'ethers';
 
+/** Represents an NFT contract. */
+export interface NftContract {
+  /** The NFT contract address. */
+  address: string;
+}
+
 /**
  * Alchemy representation of a base NFT that doesn't contain metadata.
  *
  * @public
  */
 export class BaseNft {
+  readonly contract: NftContract;
+
   /**
    * This constructor should never be called directly. All Nft instances should
    * be created from a backend response via the `fromResponse` method.
@@ -15,13 +23,14 @@ export class BaseNft {
    * @hideconstructor
    */
   protected constructor(
-    /** The NFT contract address. */
-    readonly address: string,
+    address: string,
     /** The NFT token ID as a hex string */
     readonly tokenId: string,
     /** The type of ERC token, if known. */
     readonly tokenType: NftTokenType
-  ) {}
+  ) {
+    this.contract = { address };
+  }
 
   /** @internal */
   static fromResponse(ownedNft: RawBaseNft, contractAddress: string): BaseNft {

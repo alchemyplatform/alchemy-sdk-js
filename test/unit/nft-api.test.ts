@@ -1,5 +1,7 @@
 import {
+  Alchemy,
   BaseNft,
+  checkOwnership,
   CollectionBaseNftsResponse,
   CollectionNftsResponse,
   fromHex,
@@ -20,7 +22,6 @@ import {
 } from '../../src';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { Alchemy } from '../../src/api/alchemy';
 import {
   createBaseNft,
   createNft,
@@ -152,7 +153,7 @@ describe('NFT module', () => {
 
     it('surfaces errors', async () => {
       mock.reset();
-      mock.onGet().reply(500, { message: 'Internal Server Error' });
+      mock.onGet().reply(500, 'Internal Server Error');
       await expect(
         getNftMetadata(alchemy, contractAddress, tokenId)
       ).rejects.toThrow('Internal Server Error');
@@ -256,7 +257,7 @@ describe('NFT module', () => {
 
     it.each(responseCases)('surfaces errors', async omitMetadata => {
       mock.reset();
-      mock.onGet().reply(500, { message: 'Internal Server Error' });
+      mock.onGet().reply(500, 'Internal Server Error');
       await expect(
         getNfts(alchemy, { ...getNftsParams, omitMetadata })
       ).rejects.toThrow('Internal Server Error');
@@ -435,7 +436,7 @@ describe('NFT module', () => {
           .onGet()
           .replyOnce(200, mockResponses[0])
           .onGet()
-          .replyOnce(500, { message: 'Internal Server Error' });
+          .replyOnce(500, 'Internal Server Error');
 
         const tokenIds: number[] = [];
         try {
@@ -443,7 +444,7 @@ describe('NFT module', () => {
             owner: ownerAddress,
             omitMetadata
           })) {
-            tokenIds.push(fromHex(ownedNft.nft.tokenId));
+            tokenIds.push(fromHex(ownedNft.tokenId));
           }
           fail('getNftsPaginated should have surfaced error');
         } catch (e) {
@@ -549,7 +550,7 @@ describe('NFT module', () => {
 
     it.each(responseCases)('surfaces errors', async omitMetadata => {
       mock.reset();
-      mock.onGet().reply(500, { message: 'Internal Server Error' });
+      mock.onGet().reply(500, 'Internal Server Error');
       await expect(
         getNftsForCollection(alchemy, {
           contractAddress,
@@ -716,7 +717,7 @@ describe('NFT module', () => {
           .onGet()
           .replyOnce(200, mockResponses[0])
           .onGet()
-          .replyOnce(500, { message: 'Internal Server Error' });
+          .replyOnce(500, 'Internal Server Error');
         const tokenIds: string[] = [];
         try {
           for await (const nft of getNftsForCollectionPaginated(alchemy, {
@@ -785,11 +786,64 @@ describe('NFT module', () => {
 
     it('retries with maxAttempts', async () => {
       mock.reset();
-      mock.onGet().reply(429, { message: 'Too many requests' });
+      mock.onGet().reply(429, 'Too many requests');
 
       await expect(
         getOwnersForToken(alchemy, contractAddress, tokenIdHex)
       ).rejects.toThrow('Too many requests');
+    });
+  });
+
+  describe('checkOwnership', () => {
+    const owner = '0xABC';
+    const addresses = ['0xCA1', '0xCA2'];
+    const emptyResponse: RawGetNftsResponse = {
+      ownedNfts: [],
+      totalCount: 0
+    };
+    const nftResponse: RawGetNftsResponse = {
+      ownedNfts: [
+        createRawOwnedNft('a', '0xCA1', '0x1', '1'),
+        createRawOwnedNft('b', '0xCA2', '0x2', '2', NftTokenType.ERC1155)
+      ],
+      totalCount: 2
+    };
+
+    it('calls with the correct parameters', async () => {
+      mock.onGet().reply(200, emptyResponse);
+      await checkOwnership(alchemy, owner, addresses);
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty('owner', owner);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddresses',
+        addresses
+      );
+      expect(mock.history.get[0].params).toHaveProperty('withMetadata', false);
+    });
+
+    it('throws if no contract address is passed in', async () => {
+      await expect(checkOwnership(alchemy, owner, [])).rejects.toThrow(
+        'Must provide at least one contract address'
+      );
+    });
+
+    const cases = [
+      [emptyResponse, false],
+      [nftResponse, true]
+    ];
+    it.each(cases)(
+      'returns the correct response',
+      async (response, expected) => {
+        mock.onGet().reply(200, response);
+        const result = await checkOwnership(alchemy, owner, addresses);
+        expect(result).toEqual(expected);
+      }
+    );
+    it('surfaces errors', async () => {
+      mock.onGet().reply(500, 'Internal Server Error');
+      await expect(checkOwnership(alchemy, owner, addresses)).rejects.toThrow(
+        'Internal Server Error'
+      );
     });
   });
 });
