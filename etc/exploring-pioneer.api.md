@@ -4,8 +4,20 @@
 
 ```ts
 
-import { AlchemyProvider } from '@ethersproject/providers/lib/alchemy-provider';
+import { providers } from 'ethers';
 import { TransactionReceipt } from '@ethersproject/abstract-provider';
+
+// @public
+export class Alchemy {
+    // (undocumented)
+    readonly apiKey: string;
+    getProvider(): providers.AlchemyProvider;
+    // (undocumented)
+    readonly maxRetries: number;
+    // (undocumented)
+    network: Network;
+    setNetwork(network: Network): void;
+}
 
 // @public
 export interface AlchemyConfig {
@@ -98,12 +110,30 @@ export interface AssetTransfersResult {
     value: number | null;
 }
 
-// @public (undocumented)
-export interface BaseNft {
+// @public
+export class BaseNft {
+    protected constructor(address: string,
+    tokenId: string,
+    tokenType: NftTokenType);
     // (undocumented)
-    contract: NftContract;
-    // (undocumented)
-    id: NftId;
+    readonly contract: NftContract;
+    readonly tokenId: string;
+    readonly tokenType: NftTokenType;
+}
+
+// @beta
+export function checkOwnership(alchemy: Alchemy, owner: string, contractAddresses: string[]): Promise<boolean>;
+
+// @public
+export interface CollectionBaseNftsResponse {
+    nfts: BaseNft[];
+    pageKey?: string;
+}
+
+// @public
+export interface CollectionNftsResponse {
+    nfts: Nft[];
+    pageKey?: string;
 }
 
 // @public (undocumented)
@@ -114,126 +144,81 @@ export interface ERC1155Metadata {
     value: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "Alchemy" needs to be exported by the entry point index.d.ts
-//
+// @public
+export function fromHex(hexString: string): number;
+
 // @public (undocumented)
 export function getAssetTransfers(alchemy: Alchemy, params: AssetTransfersParams): Promise<AssetTransfersResponse>;
 
-// @public (undocumented)
-export function getNftMetadata(alchemy: Alchemy, contractAddress: string, tokenId: string, tokenType?: NftTokenType): Promise<GetNftMetadataResponse>;
-
-// @public (undocumented)
-export type GetNftMetadataResponse = NftMetadata;
+// @public
+export interface GetBaseNftsForCollectionParams {
+    contractAddress: string;
+    omitMetadata: false;
+    pageKey?: string;
+}
 
 // @public
-export function getNfts(alchemy: Alchemy, params: GetNftsParamsWithoutMetadata): Promise<GetNftsResponseWithoutMetadata>;
+export interface GetBaseNftsParams {
+    contractAddresses?: string[];
+    omitMetadata: true;
+    owner: string;
+    pageKey?: string;
+}
 
-// @public (undocumented)
-export function getNfts(alchemy: Alchemy, params: GetNftsParams): Promise<GetNftsResponse>;
+// @public
+export function getNftMetadata(alchemy: Alchemy, baseNft: BaseNft): Promise<Nft>;
+
+// @public
+export function getNftMetadata(alchemy: Alchemy, contractAddress: string, tokenId: number | string, tokenType?: NftTokenType): Promise<Nft>;
+
+// @public
+export function getNfts(alchemy: Alchemy, params: GetBaseNftsParams): Promise<OwnedBaseNftsResponse>;
+
+// @public
+export function getNfts(alchemy: Alchemy, params: GetNftsParams): Promise<OwnedNftsResponse>;
 
 // @beta
-export function getNftsForCollection(alchemy: Alchemy, params: GetNftsForCollectionParams): Promise<GetNftsForCollectionResponse>;
+export function getNftsForCollection(alchemy: Alchemy, params: GetBaseNftsForCollectionParams): Promise<CollectionBaseNftsResponse>;
 
-// @public (undocumented)
-export function getNftsForCollection(alchemy: Alchemy, params: GetNftsForCollectionWithoutMetadataParams): Promise<GetNftsForCollectionWithoutMetadataResponse>;
+// @beta
+export function getNftsForCollection(alchemy: Alchemy, params: GetNftsForCollectionParams): Promise<CollectionNftsResponse>;
 
-// @public (undocumented)
+// @beta
+export function getNftsForCollectionPaginated(alchemy: Alchemy, params: GetBaseNftsForCollectionParams): AsyncIterable<BaseNft>;
+
+// @beta
+export function getNftsForCollectionPaginated(alchemy: Alchemy, params: GetNftsForCollectionParams): AsyncIterable<Nft>;
+
+// @public
 export interface GetNftsForCollectionParams {
-    // (undocumented)
     contractAddress: string;
-    // (undocumented)
-    startToken?: string;
-    // (undocumented)
-    withMetadata: true;
+    omitMetadata?: boolean;
+    pageKey?: string;
 }
 
-// @public (undocumented)
-export interface GetNftsForCollectionResponse {
-    // (undocumented)
-    nextToken: string;
-    // (undocumented)
-    nfts: Nft[];
-}
+// @public
+export function getNftsPaginated(alchemy: Alchemy, params: GetBaseNftsParams): AsyncIterable<OwnedBaseNft>;
 
-// @public (undocumented)
-export interface GetNftsForCollectionWithoutMetadataParams {
-    // (undocumented)
-    contractAddress: string;
-    // (undocumented)
-    startToken?: string;
-    // (undocumented)
-    withMetadata: false;
-}
+// @public
+export function getNftsPaginated(alchemy: Alchemy, params: GetNftsParams): AsyncIterable<OwnedNft>;
 
-// @public (undocumented)
-export interface GetNftsForCollectionWithoutMetadataResponse {
-    // (undocumented)
-    nextToken: string;
-    // (undocumented)
-    nfts: BaseNft[];
-}
-
-// @public (undocumented)
+// @public
 export interface GetNftsParams {
-    // (undocumented)
     contractAddresses?: string[];
-    // (undocumented)
+    omitMetadata?: boolean;
     owner: string;
-    // (undocumented)
     pageKey?: string;
-    // (undocumented)
-    withMetadata?: boolean;
-}
-
-// @public (undocumented)
-export interface GetNftsParamsWithoutMetadata {
-    // (undocumented)
-    contractAddresses?: string[];
-    // (undocumented)
-    owner: string;
-    // (undocumented)
-    pageKey?: string;
-    // (undocumented)
-    withMetadata: false;
-}
-
-// @public (undocumented)
-export interface GetNftsResponse {
-    // (undocumented)
-    ownedNfts: Nft[];
-    // (undocumented)
-    pageKey?: string;
-    // (undocumented)
-    totalCount: number;
-}
-
-// @public (undocumented)
-export interface GetNftsResponse {
-    // (undocumented)
-    ownedNfts: Nft[];
-    // (undocumented)
-    pageKey?: string;
-    // (undocumented)
-    totalCount: number;
-}
-
-// @public (undocumented)
-export interface GetNftsResponseWithoutMetadata {
-    // (undocumented)
-    ownedNfts: BaseNft[];
-    // (undocumented)
-    pageKey?: string;
-    // (undocumented)
-    totalCount: number;
 }
 
 // @beta
-export function getOwnersForToken(alchemy: Alchemy, contractAddress: string, tokenId: string): Promise<GetOwnersForTokenResponse>;
+export function getOwnersForToken(alchemy: Alchemy, contractAddress: string, tokenId: number | string): Promise<GetOwnersForTokenResponse>;
 
-// @public (undocumented)
+// @beta
+export function getOwnersForToken(alchemy: Alchemy, nft: BaseNft): Promise<GetOwnersForTokenResponse>;
+
+// @public
 export interface GetOwnersForTokenResponse {
-    // (undocumented)
-    owners: string[];
+    readonly owners: string[];
 }
 
 // @public (undocumented)
@@ -250,6 +235,12 @@ export function getTransactionReceipts(alchemy: Alchemy, params: TransactionRece
 
 // @public
 export function initializeAlchemy(config?: AlchemyConfig): Alchemy;
+
+// @public
+export function isHex(possibleHexString: string): boolean;
+
+// @public
+export type LogLevel = 'debug' | 'info' | 'warn' | 'error' | 'silent';
 
 // @public
 export enum Network {
@@ -278,74 +269,64 @@ export enum Network {
 }
 
 // @public
-export interface Nft extends BaseNft {
-    // (undocumented)
-    description: string;
-    // (undocumented)
-    error?: string;
-    // (undocumented)
-    media?: NftMedia[];
-    // (undocumented)
-    metadata?: NftMetadata;
-    // (undocumented)
-    timeLastUpdated: string;
-    // (undocumented)
-    title: string;
-    // (undocumented)
-    tokenUri?: TokenUri;
+export class Nft extends BaseNft {
+    readonly description: string;
+    readonly media: TokenUri[];
+    readonly metadataError: string | undefined;
+    readonly rawMetadata: NftMetadata | undefined;
+    readonly timeLastUpdated: string;
+    readonly title: string;
+    readonly tokenUri: TokenUri | undefined;
 }
 
-// @public (undocumented)
-export interface Nft {
-    // (undocumented)
-    contract: NftContract;
-    // (undocumented)
-    id: NftId;
-}
-
-// @public (undocumented)
+// @public
 export interface NftContract {
-    // (undocumented)
     address: string;
 }
 
-// @public (undocumented)
-export interface NftId {
-    // (undocumented)
-    tokenId: string;
-    // (undocumented)
-    tokenMetadata?: NftTokenMetadata;
-}
-
-// @public (undocumented)
-export interface NftMedia {
-    // (undocumented)
-    uri?: TokenUri;
-}
-
-// @public (undocumented)
+// @public
 export interface NftMetadata extends Record<string, any> {
-    // (undocumented)
     attributes?: Array<Record<string, any>>;
-    // (undocumented)
+    background_color?: string;
     description?: string;
-    // (undocumented)
+    external_url?: string;
     image?: string;
-    // (undocumented)
     name?: string;
 }
 
 // @public (undocumented)
-export interface NftTokenMetadata {
+export enum NftTokenType {
     // (undocumented)
-    tokenType: NftTokenType;
+    ERC1155 = "erc1155",
+    // (undocumented)
+    ERC721 = "erc721",
+    // (undocumented)
+    UNKNOWN = "unknown"
 }
 
-// @public (undocumented)
-export type NftTokenType = {
-    ERC721: 'erc721';
-    ERC1155: 'erc1155';
-};
+// @public
+export interface OwnedBaseNft extends BaseNft {
+    readonly balance: number;
+}
+
+// @public
+export interface OwnedBaseNftsResponse {
+    readonly ownedNfts: OwnedBaseNft[];
+    readonly pageKey?: string;
+    readonly totalCount: number;
+}
+
+// @public
+export interface OwnedNft extends Nft {
+    readonly balance: number;
+}
+
+// @public
+export interface OwnedNftsResponse {
+    readonly ownedNfts: OwnedNft[];
+    readonly pageKey?: string;
+    readonly totalCount: number;
+}
 
 // @public (undocumented)
 export interface RawContract {
@@ -356,6 +337,12 @@ export interface RawContract {
     // (undocumented)
     value: string | null;
 }
+
+// @public
+export function setLogLevel(logLevel: LogLevel): void;
+
+// @public
+export function toHex(num: number): string;
 
 // @public (undocumented)
 export interface TokenAllowanceParams {
@@ -376,7 +363,7 @@ export type TokenBalance = TokenBalanceSuccess | TokenBalanceFailure;
 // @public (undocumented)
 export interface TokenBalanceFailure {
     // (undocumented)
-    address: string;
+    contractAddress: string;
     // (undocumented)
     error: string;
     // (undocumented)
@@ -394,7 +381,7 @@ export interface TokenBalancesResponse {
 // @public (undocumented)
 export interface TokenBalanceSuccess {
     // (undocumented)
-    address: string;
+    contractAddress: string;
     // (undocumented)
     error: null;
     // (undocumented)
@@ -415,9 +402,7 @@ export interface TokenMetadataResponse {
 
 // @public (undocumented)
 export interface TokenUri {
-    // (undocumented)
     gateway: string;
-    // (undocumented)
     raw: string;
 }
 
