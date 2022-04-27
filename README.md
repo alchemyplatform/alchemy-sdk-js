@@ -23,7 +23,8 @@ import { AlchemyConfig, Network, initializeAlchemy } from 'exploring-pioneer';
 // Optional Config object, but defaults to demo api-key and eth-mainnet.
 const settings: AlchemyConfig = {
   apiKey: 'your-api-key',
-  network: Network.ETH_RINKEBY
+  network: Network.ETH_RINKEBY,
+  maxRetries: 10
 };
 
 const alchemy = initializeAlchemy(settings);
@@ -47,7 +48,7 @@ config object can be passed in when initializing to set a custom API key, change
 of retries. The object can be passed into other top-level functions like `getNfts()` or `getAssetTransfers()`. The
 current supported functions are the NFT API endpoints and Alchemy Enhanced APIs.
 
-The `Alchemy.getProvider()` function lazy loads the
+The `Alchemy.getProvider()` function uses the
 Ethers.js [AlchemyProvider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) and returns it. This
 allows you to perform the core json-rpc calls with the Alchemy as your provider.
 
@@ -78,12 +79,70 @@ ethersAlchemyProvider
   .then(console.log);
 ```
 
+## NFT Module
+
+The SDK currently supports the following NFT endpoints:
+
+- `getNfts()`: Get NFTs for an owner address.
+- `getNftsPaginated()`: Get NFTs for an owner address, paginated.
+- `getNftMetadata()`: Gets the NFT metadata for a contract address and tokenId.
+- `getNftsForCollection()`: Gets all NFTs for a contract address.
+- `getNftForCollectionPaginated()`: Gets all NFTs for a contract address, paginated.
+- `getOwnersForToken()`: Get all the owners for a given NFT contract address and token ID.
+- `checkOwnership()`: Checks that the provided owner address owns one or more of the provided NFT contract addresses.
+
+### Comparing `BaseNft` and `Nft`
+
+The SDK currently uses `BaseNft` and `Nft` classes to represent NFTs returned by the Alchemy. The `BaseNft` object does
+not hold any metadata information and only contains the NFT contract and token ID. The `Nft` object additionally
+contains the NFT metadata, token URI information, and media.
+
+By default, the SDK will return the `Nft` object. You can optionally choose to fetch the `BaseNft` object instead by
+setting the `omitMetadata` parameter to `true`. The documentation describes the different parameter and response
+interfaces in more detail.
+
+### Pagination
+
+The Alchemy endpoints return 100 NFTs per page. To get the next page, you can pass in the `pageKey` returned by the
+previous call. To simplify paginating through all NFTs, the SDK provides `getNftsPaginated()`
+and `getNftsForCollectionPaginated()` functions that paginate through all NFTs and yields them via an `AsyncIterable`.
+
+Here's an example of how to paginate through all NFTs:
+
+```ts
+const ownedNfts = [];
+for await (const nft of getNftsPaginated(alchemy, {
+  owner: '0xABC'
+})) {
+  ownedNfts.push(nft);
+}
+```
+
+### API Differences
+
+The NFT API in the SDK standardizes response types to reduce developer friction, but note this results in some
+differences with the Alchemy REST endpoints:
+
+- SDK standardizes to `omitMetadata` parameter (vs. `withMetadata`).
+- Standardization to `pageKey` parameter for pagination (vs. `nextToken`/`startToken`)
+- Empty `TokenUri` fields are omitted.
+- Token ID is always normalized to a hex string on `BaseNft` and `Nft.
+- Some fields omitted in the REST response are included in the SDK response in order to return an `Nft` object.
+- Some fields in the SDK's `Nft` object are named differently than the REST response.
+
+## Documentation
+
+The SDK is documented via `tsdoc` comments in the source code. The generated types and documentation are included when
+using an IDE. To browse the documentation separately, you can view the generated API interfaces
+in `etc/exploring-pioneer.api.md`. There are also generated Markdown files for each endpoint in the `docs-md` directory,
+or as a webpage by opening `docs/index.html` in your browser.
+
 ## Stuff I need to support still
 
 There's a long list, but here are the main ones:
 
-- Websocket API / Subscription API
+- Websocket support
 - Retry count support for json-rpc calls (currently only HTTP calls are retried)
 - More config options for the base ethers.js AlchemyProvider.
-- I will finish documentation at a later stage, but for now, you can find a list of the top-level functions in markdown
-  in the `exploring-pioneer/docs/exploring-pioneer.md` file.
+- Most of these changes require extending the base ethers.js SDK with custom implementations.
+- Separating SDK into separate packages.

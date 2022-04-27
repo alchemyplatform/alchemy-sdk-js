@@ -14,6 +14,11 @@ export enum LogLevel {
   SILENT
 }
 
+/**
+ * The level of verbosity for the logger.
+ *
+ * @public
+ */
 export type LogLevelString = 'debug' | 'info' | 'warn' | 'error' | 'silent';
 
 const logLevelStringToEnum: { [key in LogLevelString]: LogLevel } = {
@@ -38,7 +43,7 @@ const DEFAULT_LOG_LEVEL = LogLevel.INFO;
 /**
  * Configures the verbosity of logging. The default log level is `info`.
  *
- * @param logLevel The verbosity of logging. Can be any of the following values:
+ * @param logLevel - The verbosity of logging. Can be any of the following values:
  *
  *   - `debug`: The most verbose logging level.
  *   - `info`: The default logging level.

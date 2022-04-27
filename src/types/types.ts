@@ -39,19 +39,23 @@ export enum Network {
   MATIC_MUMBAI = 'polygon-mumbai'
 }
 
+/** @public */
 export interface TokenAllowanceParams {
   contract: string;
   owner: string;
   spender: string;
 }
 
+/** @public */
 export type TokenAllowanceResponse = string;
 
+/** @public */
 export interface TokenBalancesResponse {
   address: string;
   tokenBalances: TokenBalance[];
 }
 
+/** @public */
 export type TokenBalance = TokenBalanceSuccess | TokenBalanceFailure;
 
 /** @public */
@@ -107,17 +111,20 @@ export enum AssetTransfersOrder {
   DESCENDING = 'desc'
 }
 
+/** @public */
 export enum NftTokenType {
   ERC721 = 'erc721',
   ERC1155 = 'erc1155',
   UNKNOWN = 'unknown'
 }
 
+/** @public */
 export interface AssetTransfersResponse {
   transfers: AssetTransfersResult[];
   pageKey?: string;
 }
 
+/** @public */
 export interface AssetTransfersResult {
   category: AssetTransfersCategory;
   blockNum: string;
@@ -132,10 +139,32 @@ export interface AssetTransfersResult {
   rawContract: RawContract;
 }
 
+/**
+ * Represents NFT metadata that holds fields. Note that since there is no
+ * standard metadata format, the fields are not guaranteed to be present.
+ *
+ * @public
+ */
 export interface NftMetadata extends Record<string, any> {
+  /** Name of the NFT asset. */
   name?: string;
+
+  /** A human-readable description of the NFT asset. */
   description?: string;
+
+  /** URL to the NFT asset image. */
   image?: string;
+
+  /**
+   * The image URL that appears along the top of the NFT asset page. This tends
+   * to be the highest resolution image.
+   */
+  external_url?: string;
+
+  /** Background color of the NFT item. Usually defined as a 6 character hex string. */
+  background_color?: string;
+
+  /** The traits, attributes, and characteristics for the NFT asset. */
   attributes?: Array<Record<string, any>>;
 }
 
@@ -143,12 +172,12 @@ export interface NftMetadata extends Record<string, any> {
 export interface TokenUri {
   /** URI for the location of the NFT's original metadata blob. */
   raw: string;
-  /** Public gateway URI for the raw URI. */
+  /** Public gateway URI for the raw URI. Generally offers better performance. */
   gateway: string;
 }
 
 /**
- * Parameters object for the {@link getNfts} and {@link getNftsPaginated} functions.
+ * Parameters object for the {@link (getNfts:2)} and {@link (getNftsPaginated:2)} functions.
  *
  * This interface is used to fetch NFTs with their associated metadata. To get
  * Nfts without their associated metadata, use {@link GetBaseNftsParams}.
@@ -173,7 +202,7 @@ export interface GetNftsParams {
 }
 
 /**
- * Parameters object for the {@link getNfts} and {@link getNftsPaginated} functions.
+ * Parameters object for the {@link (getNfts:1)} and {@link (getNftsPaginated:1)} functions.
  *
  * This interface is used to fetch NFTs without their associated metadata. To
  * get Nfts with their associated metadata, use {@link GetNftsParams}.
@@ -197,52 +226,107 @@ export interface GetBaseNftsParams {
   omitMetadata: true;
 }
 
-/** @public */
+/**
+ * The response object for the {@link (getNfts:2)} and
+ * {@link (getNftsPaginated:2)} functions. The object contains the NFTs with
+ * metadata owned by the provided address, along with pagination information and
+ * the total count.
+ *
+ * @public
+ */
 export interface OwnedNftsResponse {
-  ownedNfts: OwnedNft[];
-  pageKey?: string;
-  totalCount: number;
+  /** The NFTs owned by the provided address. */
+  readonly ownedNfts: OwnedNft[];
+
+  /**
+   * Pagination token that can be passed into another request to fetch the next
+   * NFTs. If there is no page key, then there are no more NFTs to fetch.
+   */
+  readonly pageKey?: string;
+
+  /** The total count of NFTs owned by the provided address. */
+  readonly totalCount: number;
 }
 
+/**
+ * The response object for the {@link (getNfts:1)} and
+ * {@link (getNftsPaginated:1)} functions. The object contains the NFTs without
+ * metadata owned by the provided address, along with pagination information and
+ * the total count.
+ *
+ * @public
+ */
 export interface OwnedBaseNftsResponse {
-  ownedNfts: OwnedBaseNft[];
-  pageKey?: string;
-  totalCount: number;
+  /** The NFTs owned by the provided address. */
+  readonly ownedNfts: OwnedBaseNft[];
+
+  /**
+   * Pagination token that can be passed into another request to fetch the next
+   * NFTs. If there is no page key, then there are no more NFTs to fetch.
+   */
+  readonly pageKey?: string;
+
+  /** The total count of NFTs owned by the provided address. */
+  readonly totalCount: number;
 }
 
+/**
+ * Represents an NFT with metadata owned by an address.
+ *
+ * @public
+ */
 export interface OwnedNft extends Nft {
-  balance: number;
+  /** The token balance of the NFT. */
+  readonly balance: number;
 }
 
+/**
+ * Represents an NFT without metadata owned by an address.
+ *
+ * @public
+ */
 export interface OwnedBaseNft extends BaseNft {
-  balance: number;
+  /** The token balance of the NFT. */
+  readonly balance: number;
 }
 
+/**
+ * The response object for the {@link getOwnersForToken}.
+ *
+ * @public
+ */
 export interface GetOwnersForTokenResponse {
-  owners: string[];
+  /** An array of owner addresses for the provided token. */
+  readonly owners: string[];
 }
 
+/** @public */
 export interface TransactionReceiptsBlockNumber {
   blockNumber: string;
 }
 
+/** @public */
 export interface TransactionReceiptsBlockHash {
   blockHash: string;
 }
 
+/** @public */
 export type TransactionReceiptsParams =
   | TransactionReceiptsBlockNumber
   | TransactionReceiptsBlockHash;
 
+/** @public */
 export interface TransactionReceiptsResponse {
   receipts: TransactionReceipt[] | null;
 }
 
+/** @public */
 export interface ERC1155Metadata {
   tokenId: string;
   value: string;
 }
 
+/** @public */
 export interface RawContract {
   value: string | null;
   address: string | null;
@@ -250,8 +334,8 @@ export interface RawContract {
 }
 
 /**
- * Parameters object for the {@link getNftsForCollection} and
- * {@link getNftsForCollectionPaginated} functions.
+ * Parameters object for the {@link (getNftsForCollection:2)} and
+ * {@link (getNftsForCollectionPaginated:2)} functions.
  *
  * This interface is used to fetch NFTs with their associated metadata. To get
  * Nfts without their associated metadata, use {@link GetBaseNftsForCollectionParams}.
@@ -273,8 +357,8 @@ export interface GetNftsForCollectionParams {
 }
 
 /**
- * Parameters object for the {@link getNftsForCollection} and
- * {@link getNftsForCollectionPaginated} functions.
+ * Parameters object for the {@link (getNftsForCollection:1)} and
+ * {@link (getNftsForCollectionPaginated:1)} functions.
  *
  * This interface is used to fetch NFTs without their associated metadata. To
  * get Nfts with their associated metadata, use {@link GetNftsForCollectionParams}.
@@ -295,14 +379,36 @@ export interface GetBaseNftsForCollectionParams {
   omitMetadata: false;
 }
 
-/** @public */
+/**
+ * The response object for the {@link (getNftsForCollection:1)} function. The
+ * object contains the NFTs without metadata inside the collection.
+ *
+ * @public
+ */
 export interface CollectionBaseNftsResponse {
+  /** An array of NFTs without metadata. */
   nfts: BaseNft[];
+
+  /**
+   * Pagination token that can be passed into another request to fetch the next
+   * NFTs. If there is no page key, then there are no more NFTs to fetch.
+   */
   pageKey?: string;
 }
 
-/** @public */
+/**
+ * The response object for the {@link (getNftsForCollection:2)} function. The
+ * object contains the NFTs with metadata inside the collection.
+ *
+ * @public
+ */
 export interface CollectionNftsResponse {
+  /** An array of NFTs with metadata. */
   nfts: Nft[];
+
+  /**
+   * Pagination token that can be passed into another request to fetch the next
+   * NFTs. If there is no page key, then there are no more NFTs to fetch.
+   */
   pageKey?: string;
 }

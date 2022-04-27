@@ -7,9 +7,9 @@ import {
 } from '../util/const';
 
 /**
- * Entry point into the Alchemy SDK
+ * Entry point into the Alchemy SDK.
  *
- * @param config Configuration object used to
+ * @param config - Configuration object for the Alchemy SDK
  * @public
  */
 export function initializeAlchemy(config?: AlchemyConfig): Alchemy {
@@ -22,12 +22,15 @@ export function initializeAlchemy(config?: AlchemyConfig): Alchemy {
  *
  * Do not call this constructor directly. Instead, use {@link initializeAlchemy}
  * to get an instance of the SDK.
+ *
+ * @public
  */
 export class Alchemy {
   readonly apiKey: string;
   network: Network;
   readonly maxRetries: number;
 
+  /** @internal */
   private _baseEthersProvider: providers.AlchemyProvider | undefined;
 
   /**
@@ -43,7 +46,7 @@ export class Alchemy {
   /**
    * Changes the network that the SDK requests data from.
    *
-   * @param network The network to change to.
+   * @param network - The network to change to.
    * @public
    */
   setNetwork(network: Network) {
@@ -73,19 +76,6 @@ export class Alchemy {
    */
   _getBaseUrl(): string {
     return `https://${this.network}.g.alchemy.com/v2/${this.apiKey}`;
-  }
-
-  /**
-   * Sends a request to using the Ethers' AlchemyProvider instance.
-   *
-   * This has the same behavior as `getProvider().send()`. I'll probably remove
-   * it in the future.
-   *
-   * @param method
-   * @param params
-   */
-  send(method: string, params: Array<any>): any {
-    return this.getProvider().send(method, params);
   }
 }
 
