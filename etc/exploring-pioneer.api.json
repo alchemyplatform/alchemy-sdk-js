@@ -170,6 +170,184 @@
       "name": "",
       "members": [
         {
+          "kind": "Class",
+          "canonicalReference": "exploring-pioneer!Alchemy:class",
+          "docComment": "/**\n * The Alchemy SDK client. This class holds config information and must be passed into SDK methods.\n *\n * Do not call this constructor directly. Instead, use {@link initializeAlchemy} to get an instance of the SDK.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class Alchemy "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "Alchemy",
+          "members": [
+            {
+              "kind": "Property",
+              "canonicalReference": "exploring-pioneer!Alchemy#apiKey:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly apiKey: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "apiKey",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "exploring-pioneer!Alchemy#getProvider:member(1)",
+              "docComment": "/**\n * Lazy loads the ethers provider and creates an AlchemyProvider instance.\n *\n * @public\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "getProvider(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "providers."
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AlchemyProvider",
+                  "canonicalReference": "@ethersproject/providers!AlchemyProvider:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [],
+              "name": "getProvider"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "exploring-pioneer!Alchemy#maxRetries:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly maxRetries: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "maxRetries",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "exploring-pioneer!Alchemy#network:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "network: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Network",
+                  "canonicalReference": "exploring-pioneer!Network:enum"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "network",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "exploring-pioneer!Alchemy#setNetwork:member(1)",
+              "docComment": "/**\n * Changes the network that the SDK requests data from.\n *\n * @param network - The network to change to.\n *\n * @public\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "setNetwork(network: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Network",
+                  "canonicalReference": "exploring-pioneer!Network:enum"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "void"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "network",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                }
+              ],
+              "name": "setNetwork"
+            }
+          ],
+          "implementsTokenRanges": []
+        },
+        {
           "kind": "Interface",
           "canonicalReference": "exploring-pioneer!AlchemyConfig:interface",
           "docComment": "/**\n * Options object used to configure the Alchemy SDK.\n *\n * @public\n */\n",
@@ -768,7 +946,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "exploring-pioneer!AssetTransfersResponse:interface",
-          "docComment": "",
+          "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -841,7 +1019,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "exploring-pioneer!AssetTransfersResult:interface",
-          "docComment": "",
+          "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1148,26 +1326,87 @@
           "extendsTokenRanges": []
         },
         {
-          "kind": "Interface",
-          "canonicalReference": "exploring-pioneer!BaseNft:interface",
-          "docComment": "",
+          "kind": "Class",
+          "canonicalReference": "exploring-pioneer!BaseNft:class",
+          "docComment": "/**\n * Alchemy representation of a base NFT that doesn't contain metadata.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export interface BaseNft "
+              "text": "export declare class BaseNft "
             }
           ],
           "releaseTag": "Public",
           "name": "BaseNft",
           "members": [
             {
-              "kind": "PropertySignature",
+              "kind": "Constructor",
+              "canonicalReference": "exploring-pioneer!BaseNft:constructor(1)",
+              "docComment": "/**\n * This constructor should never be called directly. All Nft instances should be created from a backend response via the `fromResponse` method.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "protected constructor(address: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", \n    tokenId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", \n    tokenType: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "NftTokenType",
+                  "canonicalReference": "exploring-pioneer!NftTokenType:enum"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "address",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "tokenId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "tokenType",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "Property",
               "canonicalReference": "exploring-pioneer!BaseNft#contract:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "contract: "
+                  "text": "readonly contract: "
                 },
                 {
                   "kind": "Reference",
@@ -1185,21 +1424,21 @@
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
-              }
+              },
+              "isStatic": false
             },
             {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!BaseNft#id:member",
-              "docComment": "",
+              "kind": "Property",
+              "canonicalReference": "exploring-pioneer!BaseNft#tokenId:member",
+              "docComment": "/**\n * The NFT token ID as a hex string\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "id: "
+                  "text": "readonly tokenId: "
                 },
                 {
-                  "kind": "Reference",
-                  "text": "NftId",
-                  "canonicalReference": "exploring-pioneer!NftId:interface"
+                  "kind": "Content",
+                  "text": "string"
                 },
                 {
                   "kind": "Content",
@@ -1208,7 +1447,261 @@
               ],
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "id",
+              "name": "tokenId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "exploring-pioneer!BaseNft#tokenType:member",
+              "docComment": "/**\n * The type of ERC token, if known.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly tokenType: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "NftTokenType",
+                  "canonicalReference": "exploring-pioneer!NftTokenType:enum"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "tokenType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            }
+          ],
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "exploring-pioneer!checkOwnership:function(1)",
+          "docComment": "/**\n * Checks that the provided owner address owns one of more of the provided NFTs.\n *\n * @param alchemy - The Alchemy SDK instance.\n *\n * @param owner - The owner address to check.\n *\n * @param contractAddresses - An array of NFT contract addresses to check ownership for.\n *\n * @beta\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function checkOwnership(alchemy: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Alchemy",
+              "canonicalReference": "exploring-pioneer!Alchemy:class"
+            },
+            {
+              "kind": "Content",
+              "text": ", owner: "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ", contractAddresses: "
+            },
+            {
+              "kind": "Content",
+              "text": "string[]"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "Promise",
+              "canonicalReference": "!Promise:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<boolean>"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 7,
+            "endIndex": 9
+          },
+          "releaseTag": "Beta",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "alchemy",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "parameterName": "owner",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            },
+            {
+              "parameterName": "contractAddresses",
+              "parameterTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              }
+            }
+          ],
+          "name": "checkOwnership"
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "exploring-pioneer!CollectionBaseNftsResponse:interface",
+          "docComment": "/**\n * The response object for the {@link (getNftsForCollection:1)} function. The object contains the NFTs without metadata inside the collection.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface CollectionBaseNftsResponse "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "CollectionBaseNftsResponse",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!CollectionBaseNftsResponse#nfts:member",
+              "docComment": "/**\n * An array of NFTs without metadata.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "nfts: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "BaseNft",
+                  "canonicalReference": "exploring-pioneer!BaseNft:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "nfts",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!CollectionBaseNftsResponse#pageKey:member",
+              "docComment": "/**\n * Pagination token that can be passed into another request to fetch the next NFTs. If there is no page key, then there are no more NFTs to fetch.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "pageKey?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "pageKey",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "exploring-pioneer!CollectionNftsResponse:interface",
+          "docComment": "/**\n * The response object for the {@link (getNftsForCollection:2)} function. The object contains the NFTs with metadata inside the collection.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface CollectionNftsResponse "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "CollectionNftsResponse",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!CollectionNftsResponse#nfts:member",
+              "docComment": "/**\n * An array of NFTs with metadata.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "nfts: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Nft",
+                  "canonicalReference": "exploring-pioneer!Nft:class"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "nfts",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!CollectionNftsResponse#pageKey:member",
+              "docComment": "/**\n * Pagination token that can be passed into another request to fetch the next NFTs. If there is no page key, then there are no more NFTs to fetch.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "pageKey?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "pageKey",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -1220,7 +1713,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "exploring-pioneer!ERC1155Metadata:interface",
-          "docComment": "",
+          "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1284,6 +1777,49 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "exploring-pioneer!fromHex:function(1)",
+          "docComment": "/**\n * Converts a hex string to a decimal number.\n *\n * @param hexString - The hex string to convert.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function fromHex(hexString: "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "number"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 4
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "hexString",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "name": "fromHex"
         },
         {
           "kind": "Function",
@@ -1360,9 +1896,297 @@
           "name": "getAssetTransfers"
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "exploring-pioneer!GetBaseNftsForCollectionParams:interface",
+          "docComment": "/**\n * Parameters object for the {@link (getNftsForCollection:1)} and {@link (getNftsForCollectionPaginated:1)} functions.\n *\n * This interface is used to fetch NFTs without their associated metadata. To get Nfts with their associated metadata, use {@link GetNftsForCollectionParams}.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface GetBaseNftsForCollectionParams "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "GetBaseNftsForCollectionParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!GetBaseNftsForCollectionParams#contractAddress:member",
+              "docComment": "/**\n * The contract address of the collection.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contractAddress: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "contractAddress",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!GetBaseNftsForCollectionParams#omitMetadata:member",
+              "docComment": "/**\n * Optional boolean flag to omit NFT metadata. Defaults to `false`.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "omitMetadata: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "false"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "omitMetadata",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!GetBaseNftsForCollectionParams#pageKey:member",
+              "docComment": "/**\n * Optional page key from an existing {@link CollectionBaseNftsResponse} or {@link CollectionNftsResponse}to use for pagination.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "pageKey?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "pageKey",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "exploring-pioneer!GetBaseNftsParams:interface",
+          "docComment": "/**\n * Parameters object for the {@link (getNfts:1)} and {@link (getNftsPaginated:1)} functions.\n *\n * This interface is used to fetch NFTs without their associated metadata. To get Nfts with their associated metadata, use {@link GetNftsParams}.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface GetBaseNftsParams "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "GetBaseNftsParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!GetBaseNftsParams#contractAddresses:member",
+              "docComment": "/**\n * Optional list of contract addresses to filter the results by. Limit is 20.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contractAddresses?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contractAddresses",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!GetBaseNftsParams#omitMetadata:member",
+              "docComment": "/**\n * Optional boolean flag to include NFT metadata. Defaults to `false`.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "omitMetadata: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "true"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "omitMetadata",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!GetBaseNftsParams#owner:member",
+              "docComment": "/**\n * The owner address of the NFTs.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "owner: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "owner",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!GetBaseNftsParams#pageKey:member",
+              "docComment": "/**\n * Optional page key from an existing {@link OwnedBaseNftsResponse} or {@link OwnedNftsResponse}to use for pagination.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "pageKey?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "pageKey",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "Function",
           "canonicalReference": "exploring-pioneer!getNftMetadata:function(1)",
-          "docComment": "/**\n * @param alchemy - \n *\n * @param contractAddress - \n *\n * @param tokenId - \n *\n * @param tokenType - \n *\n * @public\n */\n",
+          "docComment": "/**\n * Get the NFT metadata associated with the provided Base NFT.\n *\n * @param alchemy - The Alchemy SDK instance.\n *\n * @param baseNft - The base NFT object to be used for the request.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function getNftMetadata(alchemy: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Alchemy",
+              "canonicalReference": "exploring-pioneer!Alchemy:class"
+            },
+            {
+              "kind": "Content",
+              "text": ", baseNft: "
+            },
+            {
+              "kind": "Reference",
+              "text": "BaseNft",
+              "canonicalReference": "exploring-pioneer!BaseNft:class"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "Promise",
+              "canonicalReference": "!Promise:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "Nft",
+              "canonicalReference": "exploring-pioneer!Nft:class"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 5,
+            "endIndex": 9
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "alchemy",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "parameterName": "baseNft",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            }
+          ],
+          "name": "getNftMetadata"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "exploring-pioneer!getNftMetadata:function(2)",
+          "docComment": "/**\n * Get the NFT metadata associated with the provided parameters.\n *\n * @param alchemy - The Alchemy SDK instance.\n *\n * @param contractAddress - The contract address of the NFT.\n *\n * @param tokenId - Token id of the NFT as a hex string or integer.\n *\n * @param tokenType - Optionally specify the type of token to speed up the query.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1387,7 +2211,7 @@
             },
             {
               "kind": "Content",
-              "text": "string"
+              "text": "number | string"
             },
             {
               "kind": "Content",
@@ -1396,7 +2220,7 @@
             {
               "kind": "Reference",
               "text": "NftTokenType",
-              "canonicalReference": "exploring-pioneer!NftTokenType:type"
+              "canonicalReference": "exploring-pioneer!NftTokenType:enum"
             },
             {
               "kind": "Content",
@@ -1413,8 +2237,8 @@
             },
             {
               "kind": "Reference",
-              "text": "GetNftMetadataResponse",
-              "canonicalReference": "exploring-pioneer!GetNftMetadataResponse:type"
+              "text": "Nft",
+              "canonicalReference": "exploring-pioneer!Nft:class"
             },
             {
               "kind": "Content",
@@ -1430,7 +2254,7 @@
             "endIndex": 13
           },
           "releaseTag": "Public",
-          "overloadIndex": 1,
+          "overloadIndex": 2,
           "parameters": [
             {
               "parameterName": "alchemy",
@@ -1464,35 +2288,9 @@
           "name": "getNftMetadata"
         },
         {
-          "kind": "TypeAlias",
-          "canonicalReference": "exploring-pioneer!GetNftMetadataResponse:type",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare type GetNftMetadataResponse = "
-            },
-            {
-              "kind": "Reference",
-              "text": "NftMetadata",
-              "canonicalReference": "exploring-pioneer!NftMetadata:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "GetNftMetadataResponse",
-          "typeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          }
-        },
-        {
           "kind": "Function",
           "canonicalReference": "exploring-pioneer!getNfts:function(1)",
-          "docComment": "/**\n * Get all NFTs for a given contract address.\n *\n * @param alchemy - \n *\n * @param params - \n *\n * @public\n */\n",
+          "docComment": "/**\n * Get all base NFTs for an owner.\n *\n * This method returns the base NFTs that omit the associated metadata. To get all NFTs with their associated metadata, use {@link GetNftsParams}.\n *\n * @param alchemy - The Alchemy SDK instance.\n *\n * @param params - The parameters to use for the request.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1509,8 +2307,8 @@
             },
             {
               "kind": "Reference",
-              "text": "GetNftsParamsWithoutMetadata",
-              "canonicalReference": "exploring-pioneer!GetNftsParamsWithoutMetadata:interface"
+              "text": "GetBaseNftsParams",
+              "canonicalReference": "exploring-pioneer!GetBaseNftsParams:interface"
             },
             {
               "kind": "Content",
@@ -1527,8 +2325,8 @@
             },
             {
               "kind": "Reference",
-              "text": "GetNftsResponseWithoutMetadata",
-              "canonicalReference": "exploring-pioneer!GetNftsResponseWithoutMetadata:interface"
+              "text": "OwnedBaseNftsResponse",
+              "canonicalReference": "exploring-pioneer!OwnedBaseNftsResponse:interface"
             },
             {
               "kind": "Content",
@@ -1566,7 +2364,7 @@
         {
           "kind": "Function",
           "canonicalReference": "exploring-pioneer!getNfts:function(2)",
-          "docComment": "",
+          "docComment": "/**\n * Get all NFTs for an owner.\n *\n * This method returns the full NFTs in the contract. To get all NFTs without their associated metadata, use {@link GetBaseNftsParams}.\n *\n * @param alchemy - The Alchemy SDK instance.\n *\n * @param params - The parameters to use for the request.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1601,8 +2399,8 @@
             },
             {
               "kind": "Reference",
-              "text": "GetNftsResponse",
-              "canonicalReference": "exploring-pioneer!GetNftsResponse:interface"
+              "text": "OwnedNftsResponse",
+              "canonicalReference": "exploring-pioneer!OwnedNftsResponse:interface"
             },
             {
               "kind": "Content",
@@ -1640,7 +2438,7 @@
         {
           "kind": "Function",
           "canonicalReference": "exploring-pioneer!getNftsForCollection:function(1)",
-          "docComment": "/**\n * Get all NFTs for a given contract address.\n *\n * @param alchemy - \n *\n * @param params - \n *\n * @beta\n */\n",
+          "docComment": "/**\n * Get all base NFTs for a given contract address.\n *\n * This method returns the base NFTs that omit the associated metadata. To get all NFTs with their associated metadata, use {@link GetNftsForCollectionParams}.\n *\n * @param alchemy - The Alchemy SDK instance.\n *\n * @param params - The parameters to use for the request.\n *\n * @beta\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1657,8 +2455,8 @@
             },
             {
               "kind": "Reference",
-              "text": "GetNftsForCollectionParams",
-              "canonicalReference": "exploring-pioneer!GetNftsForCollectionParams:interface"
+              "text": "GetBaseNftsForCollectionParams",
+              "canonicalReference": "exploring-pioneer!GetBaseNftsForCollectionParams:interface"
             },
             {
               "kind": "Content",
@@ -1675,8 +2473,8 @@
             },
             {
               "kind": "Reference",
-              "text": "GetNftsForCollectionResponse",
-              "canonicalReference": "exploring-pioneer!GetNftsForCollectionResponse:interface"
+              "text": "CollectionBaseNftsResponse",
+              "canonicalReference": "exploring-pioneer!CollectionBaseNftsResponse:interface"
             },
             {
               "kind": "Content",
@@ -1714,7 +2512,7 @@
         {
           "kind": "Function",
           "canonicalReference": "exploring-pioneer!getNftsForCollection:function(2)",
-          "docComment": "",
+          "docComment": "/**\n * Get all NFTs for a given contract address.\n *\n * This method returns the full NFTs in the contract. To get all NFTs without their associated metadata, use {@link GetBaseNftsForCollectionParams}.\n *\n * @param alchemy - The Alchemy SDK instance.\n *\n * @param params - The parameters to use for the request. or {@link CollectionNftsResponse} response.\n *\n * @beta\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1731,8 +2529,8 @@
             },
             {
               "kind": "Reference",
-              "text": "GetNftsForCollectionWithoutMetadataParams",
-              "canonicalReference": "exploring-pioneer!GetNftsForCollectionWithoutMetadataParams:interface"
+              "text": "GetNftsForCollectionParams",
+              "canonicalReference": "exploring-pioneer!GetNftsForCollectionParams:interface"
             },
             {
               "kind": "Content",
@@ -1749,8 +2547,398 @@
             },
             {
               "kind": "Reference",
-              "text": "GetNftsForCollectionWithoutMetadataResponse",
-              "canonicalReference": "exploring-pioneer!GetNftsForCollectionWithoutMetadataResponse:interface"
+              "text": "CollectionNftsResponse",
+              "canonicalReference": "exploring-pioneer!CollectionNftsResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 5,
+            "endIndex": 9
+          },
+          "releaseTag": "Beta",
+          "overloadIndex": 2,
+          "parameters": [
+            {
+              "parameterName": "alchemy",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "parameterName": "params",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            }
+          ],
+          "name": "getNftsForCollection"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "exploring-pioneer!getNftsForCollectionPaginated:function(1)",
+          "docComment": "/**\n * Fetches all base NFTs for a given contract address and yields them in an async iterable.\n *\n * This method returns the base NFTs that omit the associated metadata and pages through all page keys until all NFTs have been fetched. To get all NFTs with their associated metadata, use {@link GetNftsForCollectionParams}.\n *\n * @param alchemy - The Alchemy SDK instance.\n *\n * @param params - The parameters to use for the request.\n *\n * @beta\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function getNftsForCollectionPaginated(alchemy: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Alchemy",
+              "canonicalReference": "exploring-pioneer!Alchemy:class"
+            },
+            {
+              "kind": "Content",
+              "text": ", params: "
+            },
+            {
+              "kind": "Reference",
+              "text": "GetBaseNftsForCollectionParams",
+              "canonicalReference": "exploring-pioneer!GetBaseNftsForCollectionParams:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "AsyncIterable",
+              "canonicalReference": "!AsyncIterable:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "BaseNft",
+              "canonicalReference": "exploring-pioneer!BaseNft:class"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 5,
+            "endIndex": 9
+          },
+          "releaseTag": "Beta",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "alchemy",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "parameterName": "params",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            }
+          ],
+          "name": "getNftsForCollectionPaginated"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "exploring-pioneer!getNftsForCollectionPaginated:function(2)",
+          "docComment": "/**\n * Fetches all NFTs for a given contract address and yields them in an async iterable.\n *\n * This method returns the full NFTs in the contract and pages through all page keys until all NFTs have been fetched. To get all NFTs without their associated metadata, use {@link GetBaseNftsForCollectionParams}.\n *\n * @param alchemy - The Alchemy SDK instance.\n *\n * @param params - The parameters to use for the request.\n *\n * @beta\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function getNftsForCollectionPaginated(alchemy: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Alchemy",
+              "canonicalReference": "exploring-pioneer!Alchemy:class"
+            },
+            {
+              "kind": "Content",
+              "text": ", params: "
+            },
+            {
+              "kind": "Reference",
+              "text": "GetNftsForCollectionParams",
+              "canonicalReference": "exploring-pioneer!GetNftsForCollectionParams:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "AsyncIterable",
+              "canonicalReference": "!AsyncIterable:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "Nft",
+              "canonicalReference": "exploring-pioneer!Nft:class"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 5,
+            "endIndex": 9
+          },
+          "releaseTag": "Beta",
+          "overloadIndex": 2,
+          "parameters": [
+            {
+              "parameterName": "alchemy",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "parameterName": "params",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            }
+          ],
+          "name": "getNftsForCollectionPaginated"
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "exploring-pioneer!GetNftsForCollectionParams:interface",
+          "docComment": "/**\n * Parameters object for the {@link (getNftsForCollection:2)} and {@link (getNftsForCollectionPaginated:2)} functions.\n *\n * This interface is used to fetch NFTs with their associated metadata. To get Nfts without their associated metadata, use {@link GetBaseNftsForCollectionParams}.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface GetNftsForCollectionParams "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "GetNftsForCollectionParams",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!GetNftsForCollectionParams#contractAddress:member",
+              "docComment": "/**\n * The contract address of the collection.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contractAddress: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "contractAddress",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!GetNftsForCollectionParams#omitMetadata:member",
+              "docComment": "/**\n * Optional boolean flag to omit NFT metadata. Defaults to `false`.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "omitMetadata?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "omitMetadata",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!GetNftsForCollectionParams#pageKey:member",
+              "docComment": "/**\n * Optional page key from an existing {@link CollectionBaseNftsResponse} or {@link CollectionNftsResponse}to use for pagination.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "pageKey?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "pageKey",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "exploring-pioneer!getNftsPaginated:function(1)",
+          "docComment": "/**\n * Fetches all NFTs for a given owner and yields them in an async iterable.\n *\n * This method returns the base NFTs that omit the associated metadata and pages through all page keys until all NFTs have been fetched.\n *\n * @param alchemy - The Alchemy SDK instance.\n *\n * @param params - The parameters to use for the request.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function getNftsPaginated(alchemy: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Alchemy",
+              "canonicalReference": "exploring-pioneer!Alchemy:class"
+            },
+            {
+              "kind": "Content",
+              "text": ", params: "
+            },
+            {
+              "kind": "Reference",
+              "text": "GetBaseNftsParams",
+              "canonicalReference": "exploring-pioneer!GetBaseNftsParams:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "AsyncIterable",
+              "canonicalReference": "!AsyncIterable:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "OwnedBaseNft",
+              "canonicalReference": "exploring-pioneer!OwnedBaseNft:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 5,
+            "endIndex": 9
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "alchemy",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "parameterName": "params",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            }
+          ],
+          "name": "getNftsPaginated"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "exploring-pioneer!getNftsPaginated:function(2)",
+          "docComment": "/**\n * Fetches all NFTs for a given owner and yields them in an async iterable.\n *\n * This method returns the full NFT for the owner and pages through all page keys until all NFTs have been fetched.\n *\n * @param alchemy - The Alchemy SDK instance.\n *\n * @param params - The parameters to use for the request.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function getNftsPaginated(alchemy: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Alchemy",
+              "canonicalReference": "exploring-pioneer!Alchemy:class"
+            },
+            {
+              "kind": "Content",
+              "text": ", params: "
+            },
+            {
+              "kind": "Reference",
+              "text": "GetNftsParams",
+              "canonicalReference": "exploring-pioneer!GetNftsParams:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "AsyncIterable",
+              "canonicalReference": "!AsyncIterable:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "OwnedNft",
+              "canonicalReference": "exploring-pioneer!OwnedNft:interface"
             },
             {
               "kind": "Content",
@@ -1783,346 +2971,12 @@
               }
             }
           ],
-          "name": "getNftsForCollection"
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "exploring-pioneer!GetNftsForCollectionParams:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface GetNftsForCollectionParams "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "GetNftsForCollectionParams",
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsForCollectionParams#contractAddress:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "contractAddress: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "contractAddress",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsForCollectionParams#startToken:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "startToken?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": true,
-              "releaseTag": "Public",
-              "name": "startToken",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsForCollectionParams#withMetadata:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "withMetadata: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "true"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "withMetadata",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            }
-          ],
-          "extendsTokenRanges": []
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "exploring-pioneer!GetNftsForCollectionResponse:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface GetNftsForCollectionResponse "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "GetNftsForCollectionResponse",
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsForCollectionResponse#nextToken:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "nextToken: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "nextToken",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsForCollectionResponse#nfts:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "nfts: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Nft",
-                  "canonicalReference": "exploring-pioneer!Nft:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "nfts",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              }
-            }
-          ],
-          "extendsTokenRanges": []
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "exploring-pioneer!GetNftsForCollectionWithoutMetadataParams:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface GetNftsForCollectionWithoutMetadataParams "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "GetNftsForCollectionWithoutMetadataParams",
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsForCollectionWithoutMetadataParams#contractAddress:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "contractAddress: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "contractAddress",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsForCollectionWithoutMetadataParams#startToken:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "startToken?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": true,
-              "releaseTag": "Public",
-              "name": "startToken",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsForCollectionWithoutMetadataParams#withMetadata:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "withMetadata: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "false"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "withMetadata",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            }
-          ],
-          "extendsTokenRanges": []
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "exploring-pioneer!GetNftsForCollectionWithoutMetadataResponse:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface GetNftsForCollectionWithoutMetadataResponse "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "GetNftsForCollectionWithoutMetadataResponse",
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsForCollectionWithoutMetadataResponse#nextToken:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "nextToken: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "nextToken",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsForCollectionWithoutMetadataResponse#nfts:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "nfts: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "BaseNft",
-                  "canonicalReference": "exploring-pioneer!BaseNft:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "nfts",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              }
-            }
-          ],
-          "extendsTokenRanges": []
+          "name": "getNftsPaginated"
         },
         {
           "kind": "Interface",
           "canonicalReference": "exploring-pioneer!GetNftsParams:interface",
-          "docComment": "",
+          "docComment": "/**\n * Parameters object for the {@link (getNfts:2)} and {@link (getNftsPaginated:2)} functions.\n *\n * This interface is used to fetch NFTs with their associated metadata. To get Nfts without their associated metadata, use {@link GetBaseNftsParams}.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2135,7 +2989,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "exploring-pioneer!GetNftsParams#contractAddresses:member",
-              "docComment": "",
+              "docComment": "/**\n * Optional list of contract addresses to filter the results by. Limit is 20.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2160,8 +3014,34 @@
             },
             {
               "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!GetNftsParams#omitMetadata:member",
+              "docComment": "/**\n * Optional boolean flag to omit NFT metadata. Defaults to `false`.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "omitMetadata?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "omitMetadata",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
               "canonicalReference": "exploring-pioneer!GetNftsParams#owner:member",
-              "docComment": "",
+              "docComment": "/**\n * The owner address of the NFTs.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2187,7 +3067,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "exploring-pioneer!GetNftsParams#pageKey:member",
-              "docComment": "",
+              "docComment": "/**\n * Optional page key from an existing {@link OwnedBaseNftsResponse} or {@link OwnedNftsResponse}to use for pagination.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2205,350 +3085,6 @@
               "isOptional": true,
               "releaseTag": "Public",
               "name": "pageKey",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsParams#withMetadata:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "withMetadata?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "boolean"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": true,
-              "releaseTag": "Public",
-              "name": "withMetadata",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            }
-          ],
-          "extendsTokenRanges": []
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "exploring-pioneer!GetNftsParamsWithoutMetadata:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface GetNftsParamsWithoutMetadata "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "GetNftsParamsWithoutMetadata",
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsParamsWithoutMetadata#contractAddresses:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "contractAddresses?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string[]"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": true,
-              "releaseTag": "Public",
-              "name": "contractAddresses",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsParamsWithoutMetadata#owner:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "owner: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "owner",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsParamsWithoutMetadata#pageKey:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "pageKey?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": true,
-              "releaseTag": "Public",
-              "name": "pageKey",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsParamsWithoutMetadata#withMetadata:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "withMetadata: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "false"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "withMetadata",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            }
-          ],
-          "extendsTokenRanges": []
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "exploring-pioneer!GetNftsResponse:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface GetNftsResponse "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "GetNftsResponse",
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsResponse#ownedNfts:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "ownedNfts: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Nft",
-                  "canonicalReference": "exploring-pioneer!Nft:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "ownedNfts",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsResponse#pageKey:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "pageKey?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": true,
-              "releaseTag": "Public",
-              "name": "pageKey",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsResponse#totalCount:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "totalCount: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "number"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "totalCount",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            }
-          ],
-          "extendsTokenRanges": []
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "exploring-pioneer!GetNftsResponseWithoutMetadata:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface GetNftsResponseWithoutMetadata "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "GetNftsResponseWithoutMetadata",
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsResponseWithoutMetadata#ownedNfts:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "ownedNfts: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "BaseNft",
-                  "canonicalReference": "exploring-pioneer!BaseNft:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "ownedNfts",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsResponseWithoutMetadata#pageKey:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "pageKey?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": true,
-              "releaseTag": "Public",
-              "name": "pageKey",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!GetNftsResponseWithoutMetadata#totalCount:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "totalCount: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "number"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "totalCount",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -2560,7 +3096,7 @@
         {
           "kind": "Function",
           "canonicalReference": "exploring-pioneer!getOwnersForToken:function(1)",
-          "docComment": "/**\n * Gets all the owners for a given NFT contract address and token ID.\n *\n * @param alchemy - \n *\n * @param contractAddress - \n *\n * @param tokenId - \n *\n * @beta\n */\n",
+          "docComment": "/**\n * Gets all the owners for a given NFT contract address and token ID.\n *\n * @param alchemy - The Alchemy SDK instance.\n *\n * @param contractAddress - The NFT contract address.\n *\n * @param tokenId - Token id of the NFT as a hex string or integer.\n *\n * @beta\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2585,7 +3121,7 @@
             },
             {
               "kind": "Content",
-              "text": "string"
+              "text": "number | string"
             },
             {
               "kind": "Content",
@@ -2646,9 +3182,83 @@
           "name": "getOwnersForToken"
         },
         {
+          "kind": "Function",
+          "canonicalReference": "exploring-pioneer!getOwnersForToken:function(2)",
+          "docComment": "/**\n * Gets all the owners for a given NFT.\n *\n * @param alchemy - The Alchemy SDK instance.\n *\n * @param nft - The NFT object to get the owners for.\n *\n * @beta\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function getOwnersForToken(alchemy: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Alchemy",
+              "canonicalReference": "exploring-pioneer!Alchemy:class"
+            },
+            {
+              "kind": "Content",
+              "text": ", nft: "
+            },
+            {
+              "kind": "Reference",
+              "text": "BaseNft",
+              "canonicalReference": "exploring-pioneer!BaseNft:class"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "Promise",
+              "canonicalReference": "!Promise:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "GetOwnersForTokenResponse",
+              "canonicalReference": "exploring-pioneer!GetOwnersForTokenResponse:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 5,
+            "endIndex": 9
+          },
+          "releaseTag": "Beta",
+          "overloadIndex": 2,
+          "parameters": [
+            {
+              "parameterName": "alchemy",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "parameterName": "nft",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            }
+          ],
+          "name": "getOwnersForToken"
+        },
+        {
           "kind": "Interface",
           "canonicalReference": "exploring-pioneer!GetOwnersForTokenResponse:interface",
-          "docComment": "",
+          "docComment": "/**\n * The response object for the {@link getOwnersForToken}.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2661,11 +3271,11 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "exploring-pioneer!GetOwnersForTokenResponse#owners:member",
-              "docComment": "",
+              "docComment": "/**\n * An array of owner addresses for the provided token.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "owners: "
+                  "text": "readonly owners: "
                 },
                 {
                   "kind": "Content",
@@ -2999,7 +3609,7 @@
         {
           "kind": "Function",
           "canonicalReference": "exploring-pioneer!initializeAlchemy:function(1)",
-          "docComment": "/**\n * Entry point into the Alchemy SDK\n *\n * @param config - Configuration object used to\n *\n * @public\n */\n",
+          "docComment": "/**\n * Entry point into the Alchemy SDK.\n *\n * @param config - Configuration object for the Alchemy SDK\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3040,6 +3650,74 @@
             }
           ],
           "name": "initializeAlchemy"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "exploring-pioneer!isHex:function(1)",
+          "docComment": "/**\n * Checks if a value is a hex string.\n *\n * @param possibleHexString - The value to check.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function isHex(possibleHexString: "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "boolean"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 4
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "possibleHexString",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "name": "isHex"
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "exploring-pioneer!LogLevel:type",
+          "docComment": "/**\n * The level of verbosity for the logger.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type LogLevelString = "
+            },
+            {
+              "kind": "Content",
+              "text": "'debug' | 'info' | 'warn' | 'error' | 'silent'"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "LogLevel",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
         },
         {
           "kind": "Enum",
@@ -3288,18 +3966,18 @@
           ]
         },
         {
-          "kind": "Interface",
-          "canonicalReference": "exploring-pioneer!Nft:interface",
-          "docComment": "/**\n * Represents an NFT object along with its metadata.\n *\n * @public\n */\n",
+          "kind": "Class",
+          "canonicalReference": "exploring-pioneer!Nft:class",
+          "docComment": "/**\n * Alchemy representation of an NFT.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export interface Nft extends "
+              "text": "export declare class Nft extends "
             },
             {
               "kind": "Reference",
               "text": "BaseNft",
-              "canonicalReference": "exploring-pioneer!BaseNft:interface"
+              "canonicalReference": "exploring-pioneer!BaseNft:class"
             },
             {
               "kind": "Content",
@@ -3310,40 +3988,13 @@
           "name": "Nft",
           "members": [
             {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!Nft#contract:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "contract: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "NftContract",
-                  "canonicalReference": "exploring-pioneer!NftContract:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "contract",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
+              "kind": "Property",
               "canonicalReference": "exploring-pioneer!Nft#description:member",
-              "docComment": "",
+              "docComment": "/**\n * The NFT description.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "description: "
+                  "text": "readonly description: "
                 },
                 {
                   "kind": "Content",
@@ -3360,74 +4011,22 @@
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
-              }
+              },
+              "isStatic": false
             },
             {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!Nft#error:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "error?: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": true,
-              "releaseTag": "Public",
-              "name": "error",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!Nft#id:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "id: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "NftId",
-                  "canonicalReference": "exploring-pioneer!NftId:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "id",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
+              "kind": "Property",
               "canonicalReference": "exploring-pioneer!Nft#media:member",
-              "docComment": "",
+              "docComment": "/**\n * URIs for accessing the NFT's media assets.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "media?: "
+                  "text": "readonly media: "
                 },
                 {
                   "kind": "Reference",
-                  "text": "NftMedia",
-                  "canonicalReference": "exploring-pioneer!NftMedia:interface"
+                  "text": "TokenUri",
+                  "canonicalReference": "exploring-pioneer!TokenUri:interface"
                 },
                 {
                   "kind": "Content",
@@ -3438,22 +4037,50 @@
                   "text": ";"
                 }
               ],
-              "isOptional": true,
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "media",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 3
-              }
+              },
+              "isStatic": false
             },
             {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!Nft#metadata:member",
-              "docComment": "",
+              "kind": "Property",
+              "canonicalReference": "exploring-pioneer!Nft#metadataError:member",
+              "docComment": "/**\n * Holds an error message if there was an issue fetching metadata.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "metadata?: "
+                  "text": "readonly metadataError: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string | undefined"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "metadataError",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "exploring-pioneer!Nft#rawMetadata:member",
+              "docComment": "/**\n * The raw metadata fetched from the metadata URL specified by the NFT. The field is undefined if Alchemy was unable to fetch metadata.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly rawMetadata: "
                 },
                 {
                   "kind": "Reference",
@@ -3462,25 +4089,30 @@
                 },
                 {
                   "kind": "Content",
+                  "text": " | undefined"
+                },
+                {
+                  "kind": "Content",
                   "text": ";"
                 }
               ],
-              "isOptional": true,
+              "isOptional": false,
               "releaseTag": "Public",
-              "name": "metadata",
+              "name": "rawMetadata",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
-              }
+                "endIndex": 3
+              },
+              "isStatic": false
             },
             {
-              "kind": "PropertySignature",
+              "kind": "Property",
               "canonicalReference": "exploring-pioneer!Nft#timeLastUpdated:member",
-              "docComment": "",
+              "docComment": "/**\n * When the NFT was last updated in the blockchain. Represented in ISO-8601 format.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "timeLastUpdated: "
+                  "text": "readonly timeLastUpdated: "
                 },
                 {
                   "kind": "Content",
@@ -3497,16 +4129,17 @@
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
-              }
+              },
+              "isStatic": false
             },
             {
-              "kind": "PropertySignature",
+              "kind": "Property",
               "canonicalReference": "exploring-pioneer!Nft#title:member",
-              "docComment": "",
+              "docComment": "/**\n * The NFT title.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "title: "
+                  "text": "readonly title: "
                 },
                 {
                   "kind": "Content",
@@ -3523,16 +4156,17 @@
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
-              }
+              },
+              "isStatic": false
             },
             {
-              "kind": "PropertySignature",
+              "kind": "Property",
               "canonicalReference": "exploring-pioneer!Nft#tokenUri:member",
-              "docComment": "",
+              "docComment": "/**\n * URIs for accessing the NFT's metadata blob.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "tokenUri?: "
+                  "text": "readonly tokenUri: "
                 },
                 {
                   "kind": "Reference",
@@ -3541,29 +4175,33 @@
                 },
                 {
                   "kind": "Content",
+                  "text": " | undefined"
+                },
+                {
+                  "kind": "Content",
                   "text": ";"
                 }
               ],
-              "isOptional": true,
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "tokenUri",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
-              }
+                "endIndex": 3
+              },
+              "isStatic": false
             }
           ],
-          "extendsTokenRanges": [
-            {
-              "startIndex": 1,
-              "endIndex": 3
-            }
-          ]
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 3
+          },
+          "implementsTokenRanges": []
         },
         {
           "kind": "Interface",
           "canonicalReference": "exploring-pioneer!NftContract:interface",
-          "docComment": "",
+          "docComment": "/**\n * Represents an NFT contract.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3576,7 +4214,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "exploring-pioneer!NftContract#address:member",
-              "docComment": "",
+              "docComment": "/**\n * The NFT contract address.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3604,120 +4242,8 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "exploring-pioneer!NftId:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface NftId "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "NftId",
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!NftId#tokenId:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "tokenId: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "tokenId",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!NftId#tokenMetadata:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "tokenMetadata?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "NftTokenMetadata",
-                  "canonicalReference": "exploring-pioneer!NftTokenMetadata:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": true,
-              "releaseTag": "Public",
-              "name": "tokenMetadata",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            }
-          ],
-          "extendsTokenRanges": []
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "exploring-pioneer!NftMedia:interface",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface NftMedia "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "NftMedia",
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!NftMedia#uri:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "uri?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "TokenUri",
-                  "canonicalReference": "exploring-pioneer!TokenUri:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": true,
-              "releaseTag": "Public",
-              "name": "uri",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            }
-          ],
-          "extendsTokenRanges": []
-        },
-        {
-          "kind": "Interface",
           "canonicalReference": "exploring-pioneer!NftMetadata:interface",
-          "docComment": "",
+          "docComment": "/**\n * Represents NFT metadata that holds fields. Note that since there is no standard metadata format, the fields are not guaranteed to be present.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3739,7 +4265,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "exploring-pioneer!NftMetadata#attributes:member",
-              "docComment": "",
+              "docComment": "/**\n * The traits, attributes, and characteristics for the NFT asset.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3778,8 +4304,34 @@
             },
             {
               "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!NftMetadata#background_color:member",
+              "docComment": "/**\n * Background color of the NFT item. Usually defined as a 6 character hex string.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "background_color?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "background_color",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
               "canonicalReference": "exploring-pioneer!NftMetadata#description:member",
-              "docComment": "",
+              "docComment": "/**\n * A human-readable description of the NFT asset.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3804,8 +4356,34 @@
             },
             {
               "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!NftMetadata#external_url:member",
+              "docComment": "/**\n * The image URL that appears along the top of the NFT asset page. This tends to be the highest resolution image.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "external_url?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "external_url",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
               "canonicalReference": "exploring-pioneer!NftMetadata#image:member",
-              "docComment": "",
+              "docComment": "/**\n * URL to the NFT asset image.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3831,7 +4409,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "exploring-pioneer!NftMetadata#name:member",
-              "docComment": "",
+              "docComment": "/**\n * Name of the NFT asset.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -3863,31 +4441,117 @@
           ]
         },
         {
-          "kind": "Interface",
-          "canonicalReference": "exploring-pioneer!NftTokenMetadata:interface",
-          "docComment": "",
+          "kind": "Enum",
+          "canonicalReference": "exploring-pioneer!NftTokenType:enum",
+          "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export interface NftTokenMetadata "
+              "text": "export declare enum NftTokenType "
             }
           ],
           "releaseTag": "Public",
-          "name": "NftTokenMetadata",
+          "name": "NftTokenType",
           "members": [
             {
-              "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!NftTokenMetadata#tokenType:member",
+              "kind": "EnumMember",
+              "canonicalReference": "exploring-pioneer!NftTokenType.ERC1155:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "tokenType: "
+                  "text": "ERC1155 = "
                 },
                 {
-                  "kind": "Reference",
-                  "text": "NftTokenType",
-                  "canonicalReference": "exploring-pioneer!NftTokenType:type"
+                  "kind": "Content",
+                  "text": "\"erc1155\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "ERC1155",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "exploring-pioneer!NftTokenType.ERC721:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ERC721 = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"erc721\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "ERC721",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "exploring-pioneer!NftTokenType.UNKNOWN:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "UNKNOWN = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"unknown\""
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "UNKNOWN",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "exploring-pioneer!OwnedBaseNft:interface",
+          "docComment": "/**\n * Represents an NFT without metadata owned by an address.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OwnedBaseNft extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "BaseNft",
+              "canonicalReference": "exploring-pioneer!BaseNft:class"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OwnedBaseNft",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!OwnedBaseNft#balance:member",
+              "docComment": "/**\n * The token balance of the NFT.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly balance: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
                 },
                 {
                   "kind": "Content",
@@ -3896,7 +4560,111 @@
               ],
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "tokenType",
+              "name": "balance",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 3
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "exploring-pioneer!OwnedBaseNftsResponse:interface",
+          "docComment": "/**\n * The response object for the {@link (getNfts:1)} and {@link (getNftsPaginated:1)} functions. The object contains the NFTs without metadata owned by the provided address, along with pagination information and the total count.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OwnedBaseNftsResponse "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OwnedBaseNftsResponse",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!OwnedBaseNftsResponse#ownedNfts:member",
+              "docComment": "/**\n * The NFTs owned by the provided address.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly ownedNfts: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OwnedBaseNft",
+                  "canonicalReference": "exploring-pioneer!OwnedBaseNft:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "ownedNfts",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!OwnedBaseNftsResponse#pageKey:member",
+              "docComment": "/**\n * Pagination token that can be passed into another request to fetch the next NFTs. If there is no page key, then there are no more NFTs to fetch.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly pageKey?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "pageKey",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!OwnedBaseNftsResponse#totalCount:member",
+              "docComment": "/**\n * The total count of NFTs owned by the provided address.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly totalCount: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "totalCount",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -3906,34 +4674,164 @@
           "extendsTokenRanges": []
         },
         {
-          "kind": "TypeAlias",
-          "canonicalReference": "exploring-pioneer!NftTokenType:type",
-          "docComment": "",
+          "kind": "Interface",
+          "canonicalReference": "exploring-pioneer!OwnedNft:interface",
+          "docComment": "/**\n * Represents an NFT with metadata owned by an address.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare type NftTokenType = "
+              "text": "export interface OwnedNft extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "Nft",
+              "canonicalReference": "exploring-pioneer!Nft:class"
             },
             {
               "kind": "Content",
-              "text": "{\n    ERC721: 'erc721';\n    ERC1155: 'erc1155';\n}"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
+              "text": " "
             }
           ],
           "releaseTag": "Public",
-          "name": "NftTokenType",
-          "typeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          }
+          "name": "OwnedNft",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!OwnedNft#balance:member",
+              "docComment": "/**\n * The token balance of the NFT.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly balance: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "balance",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 3
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "exploring-pioneer!OwnedNftsResponse:interface",
+          "docComment": "/**\n * The response object for the {@link (getNfts:2)} and {@link (getNftsPaginated:2)} functions. The object contains the NFTs with metadata owned by the provided address, along with pagination information and the total count.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OwnedNftsResponse "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OwnedNftsResponse",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!OwnedNftsResponse#ownedNfts:member",
+              "docComment": "/**\n * The NFTs owned by the provided address.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly ownedNfts: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "OwnedNft",
+                  "canonicalReference": "exploring-pioneer!OwnedNft:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "[]"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "ownedNfts",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!OwnedNftsResponse#pageKey:member",
+              "docComment": "/**\n * Pagination token that can be passed into another request to fetch the next NFTs. If there is no page key, then there are no more NFTs to fetch.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly pageKey?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "pageKey",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "exploring-pioneer!OwnedNftsResponse#totalCount:member",
+              "docComment": "/**\n * The total count of NFTs owned by the provided address.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "readonly totalCount: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "totalCount",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
         },
         {
           "kind": "Interface",
           "canonicalReference": "exploring-pioneer!RawContract:interface",
-          "docComment": "",
+          "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4025,9 +4923,96 @@
           "extendsTokenRanges": []
         },
         {
+          "kind": "Function",
+          "canonicalReference": "exploring-pioneer!setLogLevel:function(1)",
+          "docComment": "/**\n * Configures the verbosity of logging. The default log level is `info`.\n *\n * @param logLevel - The verbosity of logging. Can be any of the following values:\n *\n * - `debug`: The most verbose logging level. - `info`: The default logging level. - `warn`: A logging level for non-critical issues. - `error`: A logging level for critical issues. - `silent`: Turn off all logging.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function setLogLevel(logLevel: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LogLevelString",
+              "canonicalReference": "exploring-pioneer!LogLevelString:type"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "void"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 4
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "logLevel",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "name": "setLogLevel"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "exploring-pioneer!toHex:function(1)",
+          "docComment": "/**\n * Converts a number to a hex string.\n *\n * @param num - The number to convert to hex.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function toHex(num: "
+            },
+            {
+              "kind": "Content",
+              "text": "number"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 4
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "num",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "name": "toHex"
+        },
+        {
           "kind": "Interface",
           "canonicalReference": "exploring-pioneer!TokenAllowanceParams:interface",
-          "docComment": "",
+          "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4121,7 +5106,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "exploring-pioneer!TokenAllowanceResponse:type",
-          "docComment": "",
+          "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4146,7 +5131,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "exploring-pioneer!TokenBalance:type",
-          "docComment": "",
+          "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4193,12 +5178,12 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!TokenBalanceFailure#address:member",
+              "canonicalReference": "exploring-pioneer!TokenBalanceFailure#contractAddress:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "address: "
+                  "text": "contractAddress: "
                 },
                 {
                   "kind": "Content",
@@ -4211,7 +5196,7 @@
               ],
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "address",
+              "name": "contractAddress",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -4275,7 +5260,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "exploring-pioneer!TokenBalancesResponse:interface",
-          "docComment": "",
+          "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4360,12 +5345,12 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "exploring-pioneer!TokenBalanceSuccess#address:member",
+              "canonicalReference": "exploring-pioneer!TokenBalanceSuccess#contractAddress:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "address: "
+                  "text": "contractAddress: "
                 },
                 {
                   "kind": "Content",
@@ -4378,7 +5363,7 @@
               ],
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "address",
+              "name": "contractAddress",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -4562,7 +5547,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "exploring-pioneer!TokenUri:interface",
-          "docComment": "",
+          "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4575,7 +5560,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "exploring-pioneer!TokenUri#gateway:member",
-              "docComment": "",
+              "docComment": "/**\n * Public gateway URI for the raw URI. Generally offers better performance.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4601,7 +5586,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "exploring-pioneer!TokenUri#raw:member",
-              "docComment": "",
+              "docComment": "/**\n * URI for the location of the NFT's original metadata blob.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -4630,7 +5615,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "exploring-pioneer!TransactionReceiptsBlockHash:interface",
-          "docComment": "",
+          "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4672,7 +5657,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "exploring-pioneer!TransactionReceiptsBlockNumber:interface",
-          "docComment": "",
+          "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4714,7 +5699,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "exploring-pioneer!TransactionReceiptsParams:type",
-          "docComment": "",
+          "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4749,7 +5734,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "exploring-pioneer!TransactionReceiptsResponse:interface",
-          "docComment": "",
+          "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",

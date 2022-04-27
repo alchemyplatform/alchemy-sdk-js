@@ -2,7 +2,11 @@ import { NftMetadata, NftTokenType, TokenUri } from '../types/types';
 import { RawBaseNft, RawNft } from '../internal/raw-interfaces';
 import { BigNumber } from 'ethers';
 
-/** Represents an NFT contract. */
+/**
+ * Represents an NFT contract.
+ *
+ * @public
+ */
 export interface NftContract {
   /** The NFT contract address. */
   address: string;
@@ -19,8 +23,6 @@ export class BaseNft {
   /**
    * This constructor should never be called directly. All Nft instances should
    * be created from a backend response via the `fromResponse` method.
-   *
-   * @hideconstructor
    */
   protected constructor(
     address: string,
@@ -60,16 +62,25 @@ export class Nft extends BaseNft {
   readonly timeLastUpdated: string;
 
   /** Holds an error message if there was an issue fetching metadata. */
-  readonly error: string | undefined;
+  readonly metadataError: string | undefined;
+
+  /**
+   * The raw metadata fetched from the metadata URL specified by the NFT. The
+   * field is undefined if Alchemy was unable to fetch metadata.
+   */
   readonly rawMetadata: NftMetadata | undefined;
+
+  /** URIs for accessing the NFT's metadata blob. */
   readonly tokenUri: TokenUri | undefined;
+
+  /** URIs for accessing the NFT's media assets. */
   readonly media: TokenUri[] = [];
 
   /**
    * This constructor should never be called directly. All Nft instances should
    * be created from a backend response via the `fromResponse` method.
    *
-   * @hideconstructor
+   * @internal
    */
   private constructor(
     address: string,
@@ -87,7 +98,7 @@ export class Nft extends BaseNft {
     this.title = title;
     this.description = description;
     this.timeLastUpdated = timeLastUpdated;
-    this.error = error;
+    this.metadataError = error;
     this.rawMetadata = metadata;
     this.tokenUri = Nft.parseTokenUri(tokenUri);
     this.media = Nft.parseTokenUriArray(media);
@@ -114,7 +125,7 @@ export class Nft extends BaseNft {
   /**
    * Returns undefined if the uri has empty string fields.
    *
-   * @private
+   * @internal
    */
   private static parseTokenUri(
     uri: TokenUri | undefined
@@ -128,7 +139,7 @@ export class Nft extends BaseNft {
   /**
    * Removes empty URIs from the array.
    *
-   * @private
+   * @internal
    */
   private static parseTokenUriArray(arr: TokenUri[] | undefined): TokenUri[] {
     if (arr === undefined) {

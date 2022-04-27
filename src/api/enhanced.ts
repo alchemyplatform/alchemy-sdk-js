@@ -18,7 +18,7 @@ export function getTokenAllowance(
   alchemy: Alchemy,
   params: TokenAllowanceParams
 ): Promise<TokenAllowanceResponse> {
-  return alchemy.send('alchemy_getTokenAllowance', [params]);
+  return alchemy.getProvider().send('alchemy_getTokenAllowance', [params]);
 }
 
 /** @public */
@@ -27,10 +27,12 @@ export function getTokenBalances(
   address: string,
   contractAddresses?: string[]
 ): Promise<TokenBalancesResponse> {
-  return alchemy.send('alchemy_getTokenBalances', [
-    address,
-    contractAddresses || DEFAULT_CONTRACT_ADDRESSES
-  ]);
+  return alchemy
+    .getProvider()
+    .send('alchemy_getTokenBalances', [
+      address,
+      contractAddresses || DEFAULT_CONTRACT_ADDRESSES
+    ]);
 }
 
 /** @public */
@@ -38,7 +40,7 @@ export function getTokenMetadata(
   alchemy: Alchemy,
   address: string
 ): Promise<TokenMetadataResponse> {
-  return alchemy.send('alchemy_getTokenMetadata', [address]);
+  return alchemy.getProvider().send('alchemy_getTokenMetadata', [address]);
 }
 
 /** @public */
@@ -46,7 +48,7 @@ export function getAssetTransfers(
   alchemy: Alchemy,
   params: AssetTransfersParams
 ): Promise<AssetTransfersResponse> {
-  return alchemy.send('alchemy_getAssetTransfers', [
+  return alchemy.getProvider().send('alchemy_getAssetTransfers', [
     {
       ...params,
       fromBlock:
@@ -62,5 +64,5 @@ export function getTransactionReceipts(
   alchemy: Alchemy,
   params: TransactionReceiptsParams
 ): Promise<TransactionReceiptsResponse> {
-  return alchemy.send('alchemy_getTransactionReceipts', [params]);
+  return alchemy.getProvider().send('alchemy_getTransactionReceipts', [params]);
 }

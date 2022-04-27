@@ -31,8 +31,8 @@ import {
 /**
  * Get the NFT metadata associated with the provided Base NFT.
  *
- * @param alchemy The Alchemy SDK instance.
- * @param baseNft The base NFT object to be used for the request.
+ * @param alchemy - The Alchemy SDK instance.
+ * @param baseNft - The base NFT object to be used for the request.
  * @public
  */
 export function getNftMetadata(
@@ -43,10 +43,10 @@ export function getNftMetadata(
 /**
  * Get the NFT metadata associated with the provided parameters.
  *
- * @param alchemy The Alchemy SDK instance.
- * @param contractAddress The contract address of the NFT.
- * @param tokenId Token id of the NFT as a hex string or integer.
- * @param tokenType Optionally specify the type of token to speed up the query.
+ * @param alchemy - The Alchemy SDK instance.
+ * @param contractAddress - The contract address of the NFT.
+ * @param tokenId - Token id of the NFT as a hex string or integer.
+ * @param tokenType - Optionally specify the type of token to speed up the query.
  * @public
  */
 export function getNftMetadata(
@@ -64,7 +64,6 @@ export async function getNftMetadata(
   let response;
   let contractAddress: string;
   if (typeof contractAddressOrBaseNft === 'string') {
-    validateContractAddress(contractAddressOrBaseNft);
     contractAddress = contractAddressOrBaseNft;
     response = await requestHttpWithBackoff<GetNftMetadataParams, RawNft>(
       alchemy,
@@ -99,8 +98,9 @@ export async function getNftMetadata(
  * This method returns the base NFTs that omit the associated metadata and pages
  * through all page keys until all NFTs have been fetched.
  *
- * @param alchemy The Alchemy SDK instance.
- * @param params The parameters to use for the request.
+ * @param alchemy - The Alchemy SDK instance.
+ * @param params - The parameters to use for the request.
+ * @public
  */
 export function getNftsPaginated(
   alchemy: Alchemy,
@@ -113,8 +113,9 @@ export function getNftsPaginated(
  * This method returns the full NFT for the owner and pages through all page
  * keys until all NFTs have been fetched.
  *
- * @param alchemy The Alchemy SDK instance.
- * @param params The parameters to use for the request.
+ * @param alchemy - The Alchemy SDK instance.
+ * @param params - The parameters to use for the request.
+ * @public
  */
 export function getNftsPaginated(
   alchemy: Alchemy,
@@ -147,13 +148,13 @@ export async function* getNftsPaginated(
 }
 
 /**
- * Get all NFTs for an owner.
+ * Get all base NFTs for an owner.
  *
  * This method returns the base NFTs that omit the associated metadata. To get
- * all NFTs with their associated metadata, use {@link getNfts}.
+ * all NFTs with their associated metadata, use {@link GetNftsParams}.
  *
- * @param alchemy The Alchemy SDK instance.
- * @param params The parameters to use for the request.
+ * @param alchemy - The Alchemy SDK instance.
+ * @param params - The parameters to use for the request.
  * @public
  */
 export async function getNfts(
@@ -164,8 +165,11 @@ export async function getNfts(
 /**
  * Get all NFTs for an owner.
  *
- * @param alchemy The Alchemy SDK instance.
- * @param params The parameters to use for the request.
+ * This method returns the full NFTs in the contract. To get all NFTs without
+ * their associated metadata, use {@link GetBaseNftsParams}.
+ *
+ * @param alchemy - The Alchemy SDK instance.
+ * @param params - The parameters to use for the request.
  * @public
  */
 export async function getNfts(
@@ -200,8 +204,8 @@ export async function getNfts(
  * This method returns the base NFTs that omit the associated metadata. To get
  * all NFTs with their associated metadata, use {@link GetNftsForCollectionParams}.
  *
- * @param alchemy The Alchemy SDK instance.
- * @param params The parameters to use for the request.
+ * @param alchemy - The Alchemy SDK instance.
+ * @param params - The parameters to use for the request.
  * @beta
  */
 export async function getNftsForCollection(
@@ -215,8 +219,8 @@ export async function getNftsForCollection(
  * This method returns the full NFTs in the contract. To get all NFTs without
  * their associated metadata, use {@link GetBaseNftsForCollectionParams}.
  *
- * @param alchemy The Alchemy SDK instance.
- * @param params The parameters to use for the request. or
+ * @param alchemy - The Alchemy SDK instance.
+ * @param params - The parameters to use for the request. or
  *   {@link CollectionNftsResponse} response.
  * @beta
  */
@@ -249,9 +253,9 @@ export async function getNftsForCollection(
 /**
  * Gets all the owners for a given NFT contract address and token ID.
  *
- * @param alchemy The Alchemy SDK instance.
- * @param contractAddress The NFT contract address.
- * @param tokenId Token id of the NFT as a hex string or integer.
+ * @param alchemy - The Alchemy SDK instance.
+ * @param contractAddress - The NFT contract address.
+ * @param tokenId - Token id of the NFT as a hex string or integer.
  * @beta
  */
 export function getOwnersForToken(
@@ -263,8 +267,8 @@ export function getOwnersForToken(
 /**
  * Gets all the owners for a given NFT.
  *
- * @param alchemy The Alchemy SDK instance.
- * @param nft The NFT object to get the owners for.
+ * @param alchemy - The Alchemy SDK instance.
+ * @param nft - The NFT object to get the owners for.
  * @beta
  */
 export function getOwnersForToken(
@@ -277,7 +281,6 @@ export function getOwnersForToken(
   tokenId?: number | string
 ): Promise<GetOwnersForTokenResponse> {
   if (typeof contractAddressOrNft === 'string') {
-    validateContractAddress(contractAddressOrNft);
     return requestHttpWithBackoff(alchemy, 'getOwnersForToken', {
       contractAddress: contractAddressOrNft,
       tokenId: normalizeTokenIdToHex(tokenId!)
@@ -298,8 +301,8 @@ export function getOwnersForToken(
  * through all page keys until all NFTs have been fetched. To get all NFTs with
  * their associated metadata, use {@link GetNftsForCollectionParams}.
  *
- * @param alchemy The Alchemy SDK instance.
- * @param params The parameters to use for the request.
+ * @param alchemy - The Alchemy SDK instance.
+ * @param params - The parameters to use for the request.
  * @beta
  */
 export function getNftsForCollectionPaginated(
@@ -314,8 +317,8 @@ export function getNftsForCollectionPaginated(
  * keys until all NFTs have been fetched. To get all NFTs without their
  * associated metadata, use {@link GetBaseNftsForCollectionParams}.
  *
- * @param alchemy The Alchemy SDK instance.
- * @param params The parameters to use for the request.
+ * @param alchemy - The Alchemy SDK instance.
+ * @param params - The parameters to use for the request.
  * @beta
  */
 export function getNftsForCollectionPaginated(
@@ -349,10 +352,10 @@ export async function* getNftsForCollectionPaginated(
 /**
  * Checks that the provided owner address owns one of more of the provided NFTs.
  *
- * @param alchemy The Alchemy SDK instance.
- * @param owner The owner address to check.
- * @param contractAddresses An array of NFT contract addresses to check ownership for.
- * @public
+ * @param alchemy - The Alchemy SDK instance.
+ * @param owner - The owner address to check.
+ * @param contractAddresses - An array of NFT contract addresses to check ownership for.
+ * @beta
  */
 export async function checkOwnership(
   alchemy: Alchemy,
@@ -362,7 +365,6 @@ export async function checkOwnership(
   if (contractAddresses.length === 0) {
     throw new Error('Must provide at least one contract address');
   }
-  contractAddresses.forEach(validateContractAddress);
   const response = await getNfts(alchemy, {
     owner,
     contractAddresses,
@@ -410,16 +412,12 @@ function isNftWithMetadata(response: RawBaseNft | RawNft): response is RawNft {
   return (response as RawNft).title !== undefined;
 }
 
-// TODO: Port over validation from NFT API code, since backend error validation
-// doesn't always get surfaced properly.
-function validateContractAddress(contractAddress: string) {
-  console.log('validating contract address', contractAddress);
-}
-
 /**
  * Flips the `omitMetadata` SDK parameter type to the `withMetadata` parameter
  * required by the Alchemy API. If `omitMetadata` is undefined, the SDK defaults
  * to including metadata.
+ *
+ * @internal
  */
 function omitMetadataToWithMetadata(
   omitMetadata: boolean | undefined
