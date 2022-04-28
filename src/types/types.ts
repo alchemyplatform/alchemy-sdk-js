@@ -197,6 +197,12 @@ export interface GetNftsParams {
   /** Optional list of contract addresses to filter the results by. Limit is 20. */
   contractAddresses?: string[];
 
+  /**
+   * Optional list of filters applied to the query. NFTs that match one or more
+   * of these filters are excluded from the response.
+   */
+  excludeFilters?: NftExcludeFilters[];
+
   /** Optional boolean flag to omit NFT metadata. Defaults to `false`. */
   omitMetadata?: boolean;
 }
@@ -222,8 +228,25 @@ export interface GetBaseNftsParams {
   /** Optional list of contract addresses to filter the results by. Limit is 20. */
   contractAddresses?: string[];
 
+  /**
+   * Optional list of filters applied to the query. NFTs that match one or more
+   * of these filters are excluded from the response.
+   */
+  excludeFilters?: NftExcludeFilters[];
+
   /** Optional boolean flag to include NFT metadata. Defaults to `false`. */
   omitMetadata: true;
+}
+
+/**
+ * Enum of NFT filters that can be applied to a {@link getNfts} request. NFTs
+ * that match one or more of these filters are excluded from the response.
+ *
+ * @beta
+ */
+export enum NftExcludeFilters {
+  /** Exclude NFTs that have been classified as spam. */
+  SPAM
 }
 
 /**

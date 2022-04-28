@@ -26,7 +26,7 @@ export class BaseNft {
    */
   protected constructor(
     address: string,
-    /** The NFT token ID as a hex string */
+    /** The NFT token ID as a hex string. */
     readonly tokenId: string,
     /** The type of ERC token, if known. */
     readonly tokenType: NftTokenType

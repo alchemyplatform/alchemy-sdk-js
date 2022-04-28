@@ -10,9 +10,11 @@ import {
   getNftsForCollection,
   getNftsForCollectionPaginated,
   getNftsPaginated,
+  GetNftsParams,
   getOwnersForToken,
   initializeAlchemy,
   Nft,
+  NftExcludeFilters,
   NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
@@ -164,10 +166,12 @@ describe('NFT module', () => {
     const ownerAddress = '0xABC';
     const pageKey = 'page-key0';
     const contractAddresses = ['0xCA1', '0xCA2'];
-    const getNftsParams = {
+    const excludeFilters = [NftExcludeFilters.SPAM];
+    const getNftsParams: GetNftsParams = {
       owner: ownerAddress,
       pageKey,
-      contractAddresses
+      contractAddresses,
+      excludeFilters
     };
     const baseNftResponse: RawGetBaseNftsResponse = {
       ownedNfts: [
@@ -208,6 +212,10 @@ describe('NFT module', () => {
         expect(mock.history.get[0].params).toHaveProperty(
           'contractAddresses',
           contractAddresses
+        );
+        expect(mock.history.get[0].params).toHaveProperty(
+          'filters',
+          excludeFilters
         );
         expect(mock.history.get[0].params).toHaveProperty('pageKey', pageKey);
         expect(mock.history.get[0].params).toHaveProperty(
