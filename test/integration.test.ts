@@ -7,6 +7,7 @@ import {
   getNftsPaginated,
   getOwnersForToken,
   initializeAlchemy,
+  NftExcludeFilters,
   NftTokenType
 } from '../src';
 
@@ -58,8 +59,10 @@ describe('E2E integration tests', () => {
   it('getOwnersForToken from NFT', async () => {
     const nfts = await getNfts(alchemy, {
       owner: ownerAddress,
+      excludeFilters: [NftExcludeFilters.SPAM],
       omitMetadata: true
     });
+    console.log('nfts', nfts);
     const owners = await getOwnersForToken(alchemy, nfts.ownedNfts[0]);
     console.log('owner', owners);
   });
