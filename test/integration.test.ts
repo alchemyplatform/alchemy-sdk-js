@@ -1,5 +1,6 @@
 import {
   Alchemy,
+  findContractDeployer,
   getNftMetadata,
   getNfts,
   getNftsForCollection,
@@ -24,6 +25,27 @@ describe('E2E integration tests', () => {
     // Skip all timeouts for testing.
     jest.useFakeTimers();
     jest.spyOn(global, 'setTimeout').mockImplementation((f: any) => f());
+  });
+
+  // TODO: add unit test coverage. Integration tests are just sanity tests for now.
+  it('findContractDeployer()', async () => {
+    // BAYC
+    let contractAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D';
+    let contractDeployer = await findContractDeployer(alchemy, contractAddress);
+    expect(contractDeployer.deployerAddress).toEqual(
+      '0xaba7161a7fb69c88e16ed9f455ce62b791ee4d03'
+    );
+    expect(contractDeployer.blockNumber).toEqual(12287507);
+    console.log(contractDeployer);
+
+    // ENS
+    contractAddress = '0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85';
+    contractDeployer = await findContractDeployer(alchemy, contractAddress);
+    expect(contractDeployer.deployerAddress).toEqual(
+      '0x4fe4e666be5752f1fdd210f4ab5de2cc26e3e0e8'
+    );
+    expect(contractDeployer.blockNumber).toEqual(9380410);
+    console.log(contractDeployer);
   });
 
   it('getNftMetadata', async () => {

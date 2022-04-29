@@ -854,4 +854,13 @@ describe('NFT module', () => {
       );
     });
   });
+
+  // TODO: add unit test coverage for the endpoint after overriding the ethers.js
+  // AlchemyProvider class, which would make mocking returns much easier.
+  describe('findContractDeployer()', () => {
+    it('binary search works', async () => {});
+    it('validates that the address is a contract', async () => {});
+    it('handles upper case input', async () => {});
+    it('handles errors', async () => {});
+  });
 });

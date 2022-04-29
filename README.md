@@ -90,6 +90,7 @@ The SDK currently supports the following NFT endpoints:
 - `getNftForCollectionPaginated()`: Gets all NFTs for a contract address, paginated.
 - `getOwnersForToken()`: Get all the owners for a given NFT contract address and token ID.
 - `checkOwnership()`: Checks that the provided owner address owns one or more of the provided NFT contract addresses.
+- `findContractDeployer()`: Finds the contract deployer and block number for a given NFT contract address.
 
 ### Comparing `BaseNft` and `Nft`
 

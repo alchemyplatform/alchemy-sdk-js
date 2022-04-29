@@ -435,3 +435,16 @@ export interface CollectionNftsResponse {
    */
   pageKey?: string;
 }
+
+/**
+ * The response object for the {@link findContractDeployer} function.
+ *
+ * @public
+ */
+export interface DeployResult {
+  /** The address of the contract deployer, if it is available. */
+  readonly deployerAddress?: string;
+
+  /** The block number the contract was deployed in. */
+  readonly blockNumber: number;
+}
