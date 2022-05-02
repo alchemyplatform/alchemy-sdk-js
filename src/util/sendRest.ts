@@ -17,6 +17,10 @@ export function sendAxiosRequest<Req, Res>(
 ): Promise<AxiosResponse<Res>> {
   const methodUrl = baseUrl + '/' + methodName;
   const config: AxiosRequestConfig = {
+    // TODO: Add versioning to the SDK.
+    headers: {
+      'Alchemy-Ethers-Sdk-Version': '1.0.0'
+    },
     method: 'get',
     url: methodUrl,
     params
