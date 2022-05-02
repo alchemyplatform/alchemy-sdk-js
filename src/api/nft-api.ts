@@ -1,6 +1,7 @@
 import {
   CollectionBaseNftsResponse,
   CollectionNftsResponse,
+  DeployResult,
   GetBaseNftsForCollectionParams,
   GetBaseNftsParams,
   GetNftsForCollectionParams,
@@ -27,6 +28,10 @@ import {
   RawOwnedBaseNft,
   RawOwnedNft
 } from '../internal/raw-interfaces';
+import { toHex } from './util';
+import { getTransactionReceipts } from './enhanced';
+
+const ETH_NULL_VALUE = '0x';
 
 /**
  * Get the NFT metadata associated with the provided Base NFT.
@@ -371,6 +376,77 @@ export async function checkOwnership(
     omitMetadata: true
   });
   return response.ownedNfts.length > 0;
+}
+
+/**
+ * Finds the address that deployed the provided contract and block number it was
+ * deployed in.
+ *
+ * NOTE: This method performs a binary search across all blocks since genesis
+ * and can take a long time to complete. This method is a convenience method
+ * that will eventually be replaced by a single call to an Alchemy endpoint with
+ * this information cached.
+ *
+ * @param alchemy - The Alchemy SDK instance.
+ * @param contractAddress - The contract address to find the deployer for.
+ * @beta
+ */
+export async function findContractDeployer(
+  alchemy: Alchemy,
+  contractAddress: string
+): Promise<DeployResult> {
+  const provider = alchemy.getProvider();
+  const currentBlockNum = await provider.getBlockNumber();
+  if (
+    (await provider.getCode(contractAddress, currentBlockNum)) ===
+    ETH_NULL_VALUE
+  ) {
+    throw new Error(`Contract '${contractAddress}' does not exist`);
+  }
+
+  // Binary search for the block number that the contract was deployed in.
+  const firstBlock = await binarySearchFirstBlock(
+    0,
+    currentBlockNum + 1,
+    contractAddress,
+    alchemy
+  );
+
+  // Find the first transaction in the block that matches the provided address.
+  const txReceipts = await getTransactionReceipts(alchemy, {
+    blockNumber: toHex(firstBlock)
+  });
+  const matchingReceipt = txReceipts.receipts?.find(
+    receipt => receipt.contractAddress === contractAddress.toLowerCase()
+  );
+  return {
+    deployerAddress: matchingReceipt?.from,
+    blockNumber: firstBlock
+  };
+}
+
+/**
+ * Perform a binary search between an integer range of block numbers to find the
+ * block number where the contract was deployed.
+ *
+ * @internal
+ */
+async function binarySearchFirstBlock(
+  start: number,
+  end: number,
+  address: string,
+  alchemy: Alchemy
+): Promise<number> {
+  if (start >= end) {
+    return end;
+  }
+
+  const mid = Math.floor((start + end) / 2);
+  const code = await alchemy.getProvider().getCode(address, mid);
+  if (code === ETH_NULL_VALUE) {
+    return binarySearchFirstBlock(mid + 1, end, address, alchemy);
+  }
+  return binarySearchFirstBlock(start, mid, address, alchemy);
 }
 
 /**
