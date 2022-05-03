@@ -1,6 +1,6 @@
-[exploring-pioneer](README.md) / Exports
+[alchemy-evm-js](README.md) / Exports
 
-# exploring-pioneer
+# alchemy-evm-js
 
 ## Table of contents
 
@@ -9,6 +9,7 @@
 - [AssetTransfersCategory](enums/AssetTransfersCategory.md)
 - [AssetTransfersOrder](enums/AssetTransfersOrder.md)
 - [Network](enums/Network.md)
+- [NftExcludeFilters](enums/NftExcludeFilters.md)
 - [NftTokenType](enums/NftTokenType.md)
 
 ### Classes
@@ -25,12 +26,13 @@
 - [AssetTransfersResult](interfaces/AssetTransfersResult.md)
 - [CollectionBaseNftsResponse](interfaces/CollectionBaseNftsResponse.md)
 - [CollectionNftsResponse](interfaces/CollectionNftsResponse.md)
+- [DeployResult](interfaces/DeployResult.md)
 - [ERC1155Metadata](interfaces/ERC1155Metadata.md)
-- [GetBaseNftsForCollectionParams](interfaces/GetBaseNftsForCollectionParams.md)
-- [GetBaseNftsParams](interfaces/GetBaseNftsParams.md)
-- [GetNftsForCollectionParams](interfaces/GetNftsForCollectionParams.md)
-- [GetNftsParams](interfaces/GetNftsParams.md)
-- [GetOwnersForTokenResponse](interfaces/GetOwnersForTokenResponse.md)
+- [GetBaseNftsForCollectionOptions](interfaces/GetBaseNftsForCollectionOptions.md)
+- [GetBaseNftsForOwnerOptions](interfaces/GetBaseNftsForOwnerOptions.md)
+- [GetNftsForCollectionOptions](interfaces/GetNftsForCollectionOptions.md)
+- [GetNftsForOwnerOptions](interfaces/GetNftsForOwnerOptions.md)
+- [GetOwnersForNftResponse](interfaces/GetOwnersForNftResponse.md)
 - [NftContract](interfaces/NftContract.md)
 - [NftMetadata](interfaces/NftMetadata.md)
 - [OwnedBaseNft](interfaces/OwnedBaseNft.md)
@@ -38,7 +40,6 @@
 - [OwnedNft](interfaces/OwnedNft.md)
 - [OwnedNftsResponse](interfaces/OwnedNftsResponse.md)
 - [RawContract](interfaces/RawContract.md)
-- [TokenAllowanceParams](interfaces/TokenAllowanceParams.md)
 - [TokenBalanceFailure](interfaces/TokenBalanceFailure.md)
 - [TokenBalanceSuccess](interfaces/TokenBalanceSuccess.md)
 - [TokenBalancesResponse](interfaces/TokenBalancesResponse.md)
@@ -51,22 +52,21 @@
 ### Type aliases
 
 - [LogLevel](modules.md#loglevel)
-- [TokenAllowanceResponse](modules.md#tokenallowanceresponse)
 - [TokenBalance](modules.md#tokenbalance)
 - [TransactionReceiptsParams](modules.md#transactionreceiptsparams)
 
 ### Functions
 
-- [checkOwnership](modules.md#checkownership)
+- [checkNftOwnership](modules.md#checknftownership)
+- [findContractDeployer](modules.md#findcontractdeployer)
 - [fromHex](modules.md#fromhex)
 - [getAssetTransfers](modules.md#getassettransfers)
 - [getNftMetadata](modules.md#getnftmetadata)
-- [getNfts](modules.md#getnfts)
 - [getNftsForCollection](modules.md#getnftsforcollection)
-- [getNftsForCollectionPaginated](modules.md#getnftsforcollectionpaginated)
-- [getNftsPaginated](modules.md#getnftspaginated)
-- [getOwnersForToken](modules.md#getownersfortoken)
-- [getTokenAllowance](modules.md#gettokenallowance)
+- [getNftsForCollectionIterator](modules.md#getnftsforcollectioniterator)
+- [getNftsForOwner](modules.md#getnftsforowner)
+- [getNftsForOwnerIterator](modules.md#getnftsforowneriterator)
+- [getOwnersForNft](modules.md#getownersfornft)
 - [getTokenBalances](modules.md#gettokenbalances)
 - [getTokenMetadata](modules.md#gettokenmetadata)
 - [getTransactionReceipts](modules.md#gettransactionreceipts)
@@ -85,17 +85,7 @@ The level of verbosity for the logger.
 
 #### Defined in
 
-[util/logger.ts:22](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/util/logger.ts#L22)
-
-___
-
-### TokenAllowanceResponse
-
-Ƭ **TokenAllowanceResponse**: `string`
-
-#### Defined in
-
-[types/types.ts:50](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L50)
+[util/logger.ts:22](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/util/logger.ts#L22)
 
 ___
 
@@ -105,7 +95,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:59](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L59)
+[types/types.ts:49](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L49)
 
 ___
 
@@ -115,13 +105,13 @@ ___
 
 #### Defined in
 
-[types/types.ts:314](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L314)
+[types/types.ts:323](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L323)
 
 ## Functions
 
-### checkOwnership
+### checkNftOwnership
 
-▸ **checkOwnership**(`alchemy`, `owner`, `contractAddresses`): `Promise`<`boolean`\>
+▸ **checkNftOwnership**(`alchemy`, `owner`, `contractAddresses`): `Promise`<`boolean`\>
 
 Checks that the provided owner address owns one of more of the provided NFTs.
 
@@ -141,7 +131,38 @@ Checks that the provided owner address owns one of more of the provided NFTs.
 
 #### Defined in
 
-[api/nft-api.ts:360](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/nft-api.ts#L360)
+[api/nft-api.ts:391](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L391)
+
+___
+
+### findContractDeployer
+
+▸ **findContractDeployer**(`alchemy`, `contractAddress`): `Promise`<[`DeployResult`](interfaces/DeployResult.md)\>
+
+Finds the address that deployed the provided contract and block number it was
+deployed in.
+
+NOTE: This method performs a binary search across all blocks since genesis
+and can take a long time to complete. This method is a convenience method
+that will eventually be replaced by a single call to an Alchemy endpoint with
+this information cached.
+
+**`beta`**
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
+| `contractAddress` | `string` | The contract address to find the deployer for. |
+
+#### Returns
+
+`Promise`<[`DeployResult`](interfaces/DeployResult.md)\>
+
+#### Defined in
+
+[api/nft-api.ts:419](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L419)
 
 ___
 
@@ -163,7 +184,7 @@ Converts a hex string to a decimal number.
 
 #### Defined in
 
-[api/util.ts:9](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/util.ts#L9)
+[api/util.ts:9](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/util.ts#L9)
 
 ___
 
@@ -184,7 +205,7 @@ ___
 
 #### Defined in
 
-[api/enhanced.ts:47](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/enhanced.ts#L47)
+[api/enhanced.ts:37](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/enhanced.ts#L37)
 
 ___
 
@@ -207,7 +228,7 @@ Get the NFT metadata associated with the provided Base NFT.
 
 #### Defined in
 
-[api/nft-api.ts:38](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/nft-api.ts#L38)
+[api/nft-api.ts:43](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L43)
 
 ▸ **getNftMetadata**(`alchemy`, `contractAddress`, `tokenId`, `tokenType?`): `Promise`<[`Nft`](classes/Nft.md)\>
 
@@ -228,66 +249,18 @@ Get the NFT metadata associated with the provided parameters.
 
 #### Defined in
 
-[api/nft-api.ts:52](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/nft-api.ts#L52)
-
-___
-
-### getNfts
-
-▸ **getNfts**(`alchemy`, `params`): `Promise`<[`OwnedBaseNftsResponse`](interfaces/OwnedBaseNftsResponse.md)\>
-
-Get all base NFTs for an owner.
-
-This method returns the base NFTs that omit the associated metadata. To get
-all NFTs with their associated metadata, use [GetNftsParams](interfaces/GetNftsParams.md).
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
-| `params` | [`GetBaseNftsParams`](interfaces/GetBaseNftsParams.md) | The parameters to use for the request. |
-
-#### Returns
-
-`Promise`<[`OwnedBaseNftsResponse`](interfaces/OwnedBaseNftsResponse.md)\>
-
-#### Defined in
-
-[api/nft-api.ts:160](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/nft-api.ts#L160)
-
-▸ **getNfts**(`alchemy`, `params`): `Promise`<[`OwnedNftsResponse`](interfaces/OwnedNftsResponse.md)\>
-
-Get all NFTs for an owner.
-
-This method returns the full NFTs in the contract. To get all NFTs without
-their associated metadata, use [GetBaseNftsParams](interfaces/GetBaseNftsParams.md).
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
-| `params` | [`GetNftsParams`](interfaces/GetNftsParams.md) | The parameters to use for the request. |
-
-#### Returns
-
-`Promise`<[`OwnedNftsResponse`](interfaces/OwnedNftsResponse.md)\>
-
-#### Defined in
-
-[api/nft-api.ts:175](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/nft-api.ts#L175)
+[api/nft-api.ts:57](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L57)
 
 ___
 
 ### getNftsForCollection
 
-▸ **getNftsForCollection**(`alchemy`, `params`): `Promise`<[`CollectionBaseNftsResponse`](interfaces/CollectionBaseNftsResponse.md)\>
+▸ **getNftsForCollection**(`alchemy`, `contractAddress`, `options?`): `Promise`<[`CollectionBaseNftsResponse`](interfaces/CollectionBaseNftsResponse.md)\>
 
 Get all base NFTs for a given contract address.
 
 This method returns the base NFTs that omit the associated metadata. To get
-all NFTs with their associated metadata, use [GetNftsForCollectionParams](interfaces/GetNftsForCollectionParams.md).
+all NFTs with their associated metadata, use [GetNftsForCollectionOptions](interfaces/GetNftsForCollectionOptions.md).
 
 **`beta`**
 
@@ -296,7 +269,8 @@ all NFTs with their associated metadata, use [GetNftsForCollectionParams](interf
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
-| `params` | [`GetBaseNftsForCollectionParams`](interfaces/GetBaseNftsForCollectionParams.md) | The parameters to use for the request. |
+| `contractAddress` | `string` | The contract address of the collection. |
+| `options?` | [`GetBaseNftsForCollectionOptions`](interfaces/GetBaseNftsForCollectionOptions.md) | The optional parameters to use for the request. |
 
 #### Returns
 
@@ -304,14 +278,14 @@ all NFTs with their associated metadata, use [GetNftsForCollectionParams](interf
 
 #### Defined in
 
-[api/nft-api.ts:211](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/nft-api.ts#L211)
+[api/nft-api.ts:233](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L233)
 
-▸ **getNftsForCollection**(`alchemy`, `params`): `Promise`<[`CollectionNftsResponse`](interfaces/CollectionNftsResponse.md)\>
+▸ **getNftsForCollection**(`alchemy`, `contractAddress`, `options?`): `Promise`<[`CollectionNftsResponse`](interfaces/CollectionNftsResponse.md)\>
 
 Get all NFTs for a given contract address.
 
 This method returns the full NFTs in the contract. To get all NFTs without
-their associated metadata, use [GetBaseNftsForCollectionParams](interfaces/GetBaseNftsForCollectionParams.md).
+their associated metadata, use [GetBaseNftsForCollectionOptions](interfaces/GetBaseNftsForCollectionOptions.md).
 
 **`beta`**
 
@@ -320,7 +294,8 @@ their associated metadata, use [GetBaseNftsForCollectionParams](interfaces/GetBa
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
-| `params` | [`GetNftsForCollectionParams`](interfaces/GetNftsForCollectionParams.md) | The parameters to use for the request. or   [CollectionNftsResponse](interfaces/CollectionNftsResponse.md) response. |
+| `contractAddress` | `string` | The contract address of the collection. |
+| `options?` | [`GetNftsForCollectionOptions`](interfaces/GetNftsForCollectionOptions.md) | The parameters to use for the request. or   [CollectionNftsResponse](interfaces/CollectionNftsResponse.md) response. |
 
 #### Returns
 
@@ -328,20 +303,20 @@ their associated metadata, use [GetBaseNftsForCollectionParams](interfaces/GetBa
 
 #### Defined in
 
-[api/nft-api.ts:227](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/nft-api.ts#L227)
+[api/nft-api.ts:251](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L251)
 
 ___
 
-### getNftsForCollectionPaginated
+### getNftsForCollectionIterator
 
-▸ **getNftsForCollectionPaginated**(`alchemy`, `params`): `AsyncIterable`<[`BaseNft`](classes/BaseNft.md)\>
+▸ **getNftsForCollectionIterator**(`alchemy`, `contractAddress`, `options`): `AsyncIterable`<[`BaseNft`](classes/BaseNft.md)\>
 
 Fetches all base NFTs for a given contract address and yields them in an
 async iterable.
 
 This method returns the base NFTs that omit the associated metadata and pages
 through all page keys until all NFTs have been fetched. To get all NFTs with
-their associated metadata, use [GetNftsForCollectionParams](interfaces/GetNftsForCollectionParams.md).
+their associated metadata, use [GetNftsForCollectionOptions](interfaces/GetNftsForCollectionOptions.md).
 
 **`beta`**
 
@@ -350,7 +325,8 @@ their associated metadata, use [GetNftsForCollectionParams](interfaces/GetNftsFo
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
-| `params` | [`GetBaseNftsForCollectionParams`](interfaces/GetBaseNftsForCollectionParams.md) | The parameters to use for the request. |
+| `contractAddress` | `string` | The contract address of the collection. |
+| `options` | [`GetBaseNftsForCollectionOptions`](interfaces/GetBaseNftsForCollectionOptions.md) | The optional parameters to use for the request. |
 
 #### Returns
 
@@ -358,15 +334,15 @@ their associated metadata, use [GetNftsForCollectionParams](interfaces/GetNftsFo
 
 #### Defined in
 
-[api/nft-api.ts:308](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/nft-api.ts#L308)
+[api/nft-api.ts:335](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L335)
 
-▸ **getNftsForCollectionPaginated**(`alchemy`, `params`): `AsyncIterable`<[`Nft`](classes/Nft.md)\>
+▸ **getNftsForCollectionIterator**(`alchemy`, `contractAddress`, `options`): `AsyncIterable`<[`Nft`](classes/Nft.md)\>
 
 Fetches all NFTs for a given contract address and yields them in an async iterable.
 
 This method returns the full NFTs in the contract and pages through all page
 keys until all NFTs have been fetched. To get all NFTs without their
-associated metadata, use [GetBaseNftsForCollectionParams](interfaces/GetBaseNftsForCollectionParams.md).
+associated metadata, use [GetBaseNftsForCollectionOptions](interfaces/GetBaseNftsForCollectionOptions.md).
 
 **`beta`**
 
@@ -375,7 +351,8 @@ associated metadata, use [GetBaseNftsForCollectionParams](interfaces/GetBaseNfts
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
-| `params` | [`GetNftsForCollectionParams`](interfaces/GetNftsForCollectionParams.md) | The parameters to use for the request. |
+| `contractAddress` | `string` | The contract address of the collection. |
+| `options` | [`GetNftsForCollectionOptions`](interfaces/GetNftsForCollectionOptions.md) | The optional parameters to use for the request. |
 
 #### Returns
 
@@ -383,13 +360,63 @@ associated metadata, use [GetBaseNftsForCollectionParams](interfaces/GetBaseNfts
 
 #### Defined in
 
-[api/nft-api.ts:324](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/nft-api.ts#L324)
+[api/nft-api.ts:353](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L353)
 
 ___
 
-### getNftsPaginated
+### getNftsForOwner
 
-▸ **getNftsPaginated**(`alchemy`, `params`): `AsyncIterable`<[`OwnedBaseNft`](interfaces/OwnedBaseNft.md)\>
+▸ **getNftsForOwner**(`alchemy`, `owner`, `options?`): `Promise`<[`OwnedBaseNftsResponse`](interfaces/OwnedBaseNftsResponse.md)\>
+
+Get all base NFTs for an owner.
+
+This method returns the base NFTs that omit the associated metadata. To get
+all NFTs with their associated metadata, use [GetNftsForOwnerOptions](interfaces/GetNftsForOwnerOptions.md).
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
+| `owner` | `string` | The address of the owner. |
+| `options?` | [`GetBaseNftsForOwnerOptions`](interfaces/GetBaseNftsForOwnerOptions.md) | The optional parameters to use for the request. |
+
+#### Returns
+
+`Promise`<[`OwnedBaseNftsResponse`](interfaces/OwnedBaseNftsResponse.md)\>
+
+#### Defined in
+
+[api/nft-api.ts:174](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L174)
+
+▸ **getNftsForOwner**(`alchemy`, `owner`, `options?`): `Promise`<[`OwnedNftsResponse`](interfaces/OwnedNftsResponse.md)\>
+
+Get all NFTs for an owner.
+
+This method returns the full NFTs in the contract. To get all NFTs without
+their associated metadata, use [GetBaseNftsForOwnerOptions](interfaces/GetBaseNftsForOwnerOptions.md).
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
+| `owner` | `string` | The address of the owner. |
+| `options?` | [`GetNftsForOwnerOptions`](interfaces/GetNftsForOwnerOptions.md) | The optional parameters to use for the request. |
+
+#### Returns
+
+`Promise`<[`OwnedNftsResponse`](interfaces/OwnedNftsResponse.md)\>
+
+#### Defined in
+
+[api/nft-api.ts:191](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L191)
+
+___
+
+### getNftsForOwnerIterator
+
+▸ **getNftsForOwnerIterator**(`alchemy`, `owner`, `options?`): `AsyncIterable`<[`OwnedBaseNft`](interfaces/OwnedBaseNft.md)\>
 
 Fetches all NFTs for a given owner and yields them in an async iterable.
 
@@ -401,7 +428,8 @@ through all page keys until all NFTs have been fetched.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
-| `params` | [`GetBaseNftsParams`](interfaces/GetBaseNftsParams.md) | The parameters to use for the request. |
+| `owner` | `string` | The address of the owner. |
+| `options?` | [`GetBaseNftsForOwnerOptions`](interfaces/GetBaseNftsForOwnerOptions.md) | The optional parameters to use for the request. |
 
 #### Returns
 
@@ -409,9 +437,9 @@ through all page keys until all NFTs have been fetched.
 
 #### Defined in
 
-[api/nft-api.ts:105](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/nft-api.ts#L105)
+[api/nft-api.ts:111](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L111)
 
-▸ **getNftsPaginated**(`alchemy`, `params`): `AsyncIterable`<[`OwnedNft`](interfaces/OwnedNft.md)\>
+▸ **getNftsForOwnerIterator**(`alchemy`, `owner`, `options?`): `AsyncIterable`<[`OwnedNft`](interfaces/OwnedNft.md)\>
 
 Fetches all NFTs for a given owner and yields them in an async iterable.
 
@@ -423,7 +451,8 @@ keys until all NFTs have been fetched.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
-| `params` | [`GetNftsParams`](interfaces/GetNftsParams.md) | The parameters to use for the request. |
+| `owner` | `string` | The address of the owner. |
+| `options?` | [`GetNftsForOwnerOptions`](interfaces/GetNftsForOwnerOptions.md) | The optional parameters to use for the request. |
 
 #### Returns
 
@@ -431,13 +460,13 @@ keys until all NFTs have been fetched.
 
 #### Defined in
 
-[api/nft-api.ts:120](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/nft-api.ts#L120)
+[api/nft-api.ts:128](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L128)
 
 ___
 
-### getOwnersForToken
+### getOwnersForNft
 
-▸ **getOwnersForToken**(`alchemy`, `contractAddress`, `tokenId`): `Promise`<[`GetOwnersForTokenResponse`](interfaces/GetOwnersForTokenResponse.md)\>
+▸ **getOwnersForNft**(`alchemy`, `contractAddress`, `tokenId`): `Promise`<[`GetOwnersForNftResponse`](interfaces/GetOwnersForNftResponse.md)\>
 
 Gets all the owners for a given NFT contract address and token ID.
 
@@ -453,13 +482,13 @@ Gets all the owners for a given NFT contract address and token ID.
 
 #### Returns
 
-`Promise`<[`GetOwnersForTokenResponse`](interfaces/GetOwnersForTokenResponse.md)\>
+`Promise`<[`GetOwnersForNftResponse`](interfaces/GetOwnersForNftResponse.md)\>
 
 #### Defined in
 
-[api/nft-api.ts:261](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/nft-api.ts#L261)
+[api/nft-api.ts:287](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L287)
 
-▸ **getOwnersForToken**(`alchemy`, `nft`): `Promise`<[`GetOwnersForTokenResponse`](interfaces/GetOwnersForTokenResponse.md)\>
+▸ **getOwnersForNft**(`alchemy`, `nft`): `Promise`<[`GetOwnersForNftResponse`](interfaces/GetOwnersForNftResponse.md)\>
 
 Gets all the owners for a given NFT.
 
@@ -474,32 +503,11 @@ Gets all the owners for a given NFT.
 
 #### Returns
 
-`Promise`<[`GetOwnersForTokenResponse`](interfaces/GetOwnersForTokenResponse.md)\>
+`Promise`<[`GetOwnersForNftResponse`](interfaces/GetOwnersForNftResponse.md)\>
 
 #### Defined in
 
-[api/nft-api.ts:274](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/nft-api.ts#L274)
-
-___
-
-### getTokenAllowance
-
-▸ **getTokenAllowance**(`alchemy`, `params`): `Promise`<[`TokenAllowanceResponse`](modules.md#tokenallowanceresponse)\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `alchemy` | [`Alchemy`](classes/Alchemy.md) |
-| `params` | [`TokenAllowanceParams`](interfaces/TokenAllowanceParams.md) |
-
-#### Returns
-
-`Promise`<[`TokenAllowanceResponse`](modules.md#tokenallowanceresponse)\>
-
-#### Defined in
-
-[api/enhanced.ts:17](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/enhanced.ts#L17)
+[api/nft-api.ts:300](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L300)
 
 ___
 
@@ -521,7 +529,7 @@ ___
 
 #### Defined in
 
-[api/enhanced.ts:25](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/enhanced.ts#L25)
+[api/enhanced.ts:15](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/enhanced.ts#L15)
 
 ___
 
@@ -542,7 +550,7 @@ ___
 
 #### Defined in
 
-[api/enhanced.ts:39](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/enhanced.ts#L39)
+[api/enhanced.ts:29](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/enhanced.ts#L29)
 
 ___
 
@@ -563,7 +571,7 @@ ___
 
 #### Defined in
 
-[api/enhanced.ts:63](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/enhanced.ts#L63)
+[api/enhanced.ts:53](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/enhanced.ts#L53)
 
 ___
 
@@ -585,7 +593,7 @@ Entry point into the Alchemy SDK.
 
 #### Defined in
 
-[api/alchemy.ts:15](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/alchemy.ts#L15)
+[api/alchemy.ts:15](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/alchemy.ts#L15)
 
 ___
 
@@ -607,7 +615,7 @@ Checks if a value is a hex string.
 
 #### Defined in
 
-[api/util.ts:29](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/util.ts#L29)
+[api/util.ts:29](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/util.ts#L29)
 
 ___
 
@@ -629,7 +637,7 @@ Configures the verbosity of logging. The default log level is `info`.
 
 #### Defined in
 
-[util/logger.ts:56](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/util/logger.ts#L56)
+[util/logger.ts:56](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/util/logger.ts#L56)
 
 ___
 
@@ -651,4 +659,4 @@ Converts a number to a hex string.
 
 #### Defined in
 
-[api/util.ts:19](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/util.ts#L19)
+[api/util.ts:19](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/util.ts#L19)

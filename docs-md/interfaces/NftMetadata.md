@@ -1,4 +1,4 @@
-[exploring-pioneer](../README.md) / [Exports](../modules.md) / NftMetadata
+[alchemy-evm-js](../README.md) / [Exports](../modules.md) / NftMetadata
 
 # Interface: NftMetadata
 
@@ -32,7 +32,7 @@ The traits, attributes, and characteristics for the NFT asset.
 
 #### Defined in
 
-[types/types.ts:168](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L168)
+[types/types.ts:158](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L158)
 
 ___
 
@@ -44,7 +44,7 @@ Background color of the NFT item. Usually defined as a 6 character hex string.
 
 #### Defined in
 
-[types/types.ts:165](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L165)
+[types/types.ts:155](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L155)
 
 ___
 
@@ -56,7 +56,7 @@ A human-readable description of the NFT asset.
 
 #### Defined in
 
-[types/types.ts:153](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L153)
+[types/types.ts:143](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L143)
 
 ___
 
@@ -69,7 +69,7 @@ to be the highest resolution image.
 
 #### Defined in
 
-[types/types.ts:162](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L162)
+[types/types.ts:152](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L152)
 
 ___
 
@@ -81,7 +81,7 @@ URL to the NFT asset image.
 
 #### Defined in
 
-[types/types.ts:156](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L156)
+[types/types.ts:146](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L146)
 
 ___
 
@@ -93,4 +93,4 @@ Name of the NFT asset.
 
 #### Defined in
 
-[types/types.ts:150](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L150)
+[types/types.ts:140](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L140)

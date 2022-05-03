@@ -1,5 +1,5 @@
 {
-  "name": "exploring-pioneer",
+  "name": "alchemy-evm-js",
   "version": "1.0.0",
   "description": "",
   "author": "",
@@ -31,7 +31,7 @@
   "types": "./dist/src/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alchemyplatform/exploring-pioneer.git"
+    "url": "git+https://github.com/alchemyplatform/alchemy-evm-js.git"
   },
   "files": [
     "dist"
@@ -43,9 +43,9 @@
     ]
   },
   "bugs": {
-    "url": "https://github.com/alchemyplatform/exploring-pioneer/issues"
+    "url": "https://github.com/alchemyplatform/alchemy-evm-js/issues"
   },
-  "homepage": "https://github.com/alchemyplatform/exploring-pioneer#readme",
+  "homepage": "https://github.com/alchemyplatform/alchemy-evm-js#readme",
   "dependencies": {
     "axios": "^0.26.1",
     "ethers": "^5.6.1"

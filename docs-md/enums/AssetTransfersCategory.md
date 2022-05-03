@@ -1,4 +1,4 @@
-[exploring-pioneer](../README.md) / [Exports](../modules.md) / AssetTransfersCategory
+[alchemy-evm-js](../README.md) / [Exports](../modules.md) / AssetTransfersCategory
 
 # Enumeration: AssetTransfersCategory
 
@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[types/types.ts:104](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L104)
+[types/types.ts:94](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L94)
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:102](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L102)
+[types/types.ts:92](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L92)
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:103](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L103)
+[types/types.ts:93](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L93)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:99](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L99)
+[types/types.ts:89](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L89)
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:100](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L100)
+[types/types.ts:90](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L90)
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:105](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L105)
+[types/types.ts:95](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L95)
 
 ___
 
@@ -82,4 +82,4 @@ ___
 
 #### Defined in
 
-[types/types.ts:101](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L101)
+[types/types.ts:91](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L91)

@@ -1,4 +1,4 @@
-[exploring-pioneer](../README.md) / [Exports](../modules.md) / NftTokenType
+[alchemy-evm-js](../README.md) / [Exports](../modules.md) / NftTokenType
 
 # Enumeration: NftTokenType
 
@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[types/types.ts:117](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L117)
+[types/types.ts:107](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L107)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:116](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L116)
+[types/types.ts:106](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L106)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[types/types.ts:118](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L118)
+[types/types.ts:108](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L108)

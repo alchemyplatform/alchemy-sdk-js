@@ -1,4 +1,4 @@
-[exploring-pioneer](../README.md) / [Exports](../modules.md) / RawContract
+[alchemy-evm-js](../README.md) / [Exports](../modules.md) / RawContract
 
 # Interface: RawContract
 
@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[types/types.ts:332](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L332)
+[types/types.ts:341](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L341)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:333](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L333)
+[types/types.ts:342](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L342)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[types/types.ts:331](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L331)
+[types/types.ts:340](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L340)

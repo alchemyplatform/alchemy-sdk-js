@@ -1,4 +1,4 @@
-[exploring-pioneer](../README.md) / [Exports](../modules.md) / TransactionReceiptsBlockHash
+[alchemy-evm-js](../README.md) / [Exports](../modules.md) / TransactionReceiptsBlockHash
 
 # Interface: TransactionReceiptsBlockHash
 
@@ -16,4 +16,4 @@
 
 #### Defined in
 
-[types/types.ts:310](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L310)
+[types/types.ts:319](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L319)
