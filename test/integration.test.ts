@@ -2,11 +2,11 @@ import {
   Alchemy,
   findContractDeployer,
   getNftMetadata,
-  getNfts,
   getNftsForCollection,
-  getNftsForCollectionPaginated,
-  getNftsPaginated,
-  getOwnersForToken,
+  getNftsForCollectionIterator,
+  getNftsForOwner,
+  getNftsForOwnerIterator,
+  getOwnersForNft,
   initializeAlchemy,
   NftExcludeFilters,
   NftTokenType
@@ -23,8 +23,13 @@ describe('E2E integration tests', () => {
     alchemy = await initializeAlchemy();
 
     // Skip all timeouts for testing.
+    jest.setTimeout(50000);
     jest.useFakeTimers();
     jest.spyOn(global, 'setTimeout').mockImplementation((f: any) => f());
+  });
+
+  it('test', async () => {
+    console.log(await alchemy.getProvider().getBalance(ownerAddress, 'latest'));
   });
 
   // TODO: add unit test coverage. Integration tests are just sanity tests for now.
@@ -74,38 +79,37 @@ describe('E2E integration tests', () => {
   it('getOwnersForToken', async () => {
     const tokenId =
       '0x00000000000000000000000000000000000000000000000000000000008b57f0';
-    const response = await getOwnersForToken(alchemy, contractAddress, tokenId);
+    const response = await getOwnersForNft(alchemy, contractAddress, tokenId);
     console.log('res', response);
   });
 
   it('getOwnersForToken from NFT', async () => {
-    const nfts = await getNfts(alchemy, {
-      owner: ownerAddress,
+    const nfts = await getNftsForOwner(alchemy, ownerAddress, {
       excludeFilters: [NftExcludeFilters.SPAM],
       omitMetadata: true
     });
     console.log('nfts', nfts);
-    const owners = await getOwnersForToken(alchemy, nfts.ownedNfts[0]);
+    const owners = await getOwnersForNft(alchemy, nfts.ownedNfts[0]);
     console.log('owner', owners);
   });
 
   it('getNFTs()', async () => {
-    const nfts = await getNfts(alchemy, { owner: 'happy.eth' });
+    const nfts = await getNftsForOwner(alchemy, 'vitalik.eth');
     console.log('owner', nfts);
   });
 
   it('getNftsForCollection with pageKey', async () => {
-    let nftsForCollection = await getNftsForCollection(alchemy, {
+    let nftsForCollection = await getNftsForCollection(
+      alchemy,
       contractAddress
-    });
+    );
 
     console.log(
       'nftsForCollection: ',
       nftsForCollection.pageKey,
       nftsForCollection.nfts.length
     );
-    nftsForCollection = await getNftsForCollection(alchemy, {
-      contractAddress,
+    nftsForCollection = await getNftsForCollection(alchemy, contractAddress, {
       pageKey: nftsForCollection.pageKey
     });
     console.log(
@@ -115,14 +119,12 @@ describe('E2E integration tests', () => {
     );
   });
 
-  it('getPaginated', async () => {
+  it('getIterator', async () => {
     jest.setTimeout(15000);
     console.log('lets paginate');
     const allNfts = [];
     let totalCount = 0;
-    for await (const nft of getNftsPaginated(alchemy, {
-      owner: ownerAddress
-    })) {
+    for await (const nft of getNftsForOwnerIterator(alchemy, ownerAddress)) {
       if (totalCount === 10) {
         break;
       }
@@ -130,8 +132,7 @@ describe('E2E integration tests', () => {
       totalCount += 1;
     }
 
-    for await (const nft of getNftsPaginated(alchemy, {
-      owner: ownerAddress,
+    for await (const nft of getNftsForOwnerIterator(alchemy, ownerAddress, {
       omitMetadata: false
     })) {
       if (totalCount === 10) {
@@ -143,15 +144,18 @@ describe('E2E integration tests', () => {
     console.log('done', allNfts.length, allNfts);
   });
 
-  it('getNftsForCollectionPaginated', async () => {
+  it('getNftsForCollectionIterator', async () => {
     jest.setTimeout(15000);
     console.log('lets paginate');
     const allNfts = [];
     let totalCount = 0;
-    for await (const nft of getNftsForCollectionPaginated(alchemy, {
+    for await (const nft of getNftsForCollectionIterator(
+      alchemy,
       contractAddress,
-      omitMetadata: false
-    })) {
+      {
+        omitMetadata: false
+      }
+    )) {
       if (totalCount === 150) {
         break;
       }

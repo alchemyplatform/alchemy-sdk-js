@@ -40,16 +40,6 @@ export enum Network {
 }
 
 /** @public */
-export interface TokenAllowanceParams {
-  contract: string;
-  owner: string;
-  spender: string;
-}
-
-/** @public */
-export type TokenAllowanceResponse = string;
-
-/** @public */
 export interface TokenBalancesResponse {
   address: string;
   tokenBalances: TokenBalance[];
@@ -177,17 +167,15 @@ export interface TokenUri {
 }
 
 /**
- * Parameters object for the {@link (getNfts:2)} and {@link (getNftsPaginated:2)} functions.
+ * Optional parameters object for the {@link getNftsForOwner} and
+ * {@link getNftsForOwnerIterator} functions.
  *
  * This interface is used to fetch NFTs with their associated metadata. To get
- * Nfts without their associated metadata, use {@link GetBaseNftsParams}.
+ * Nfts without their associated metadata, use {@link GetBaseNftsForOwnerOptions}.
  *
  * @public
  */
-export interface GetNftsParams {
-  /** The owner address of the NFTs. */
-  owner: string;
-
+export interface GetNftsForOwnerOptions {
   /**
    * Optional page key from an existing {@link OwnedBaseNftsResponse} or
    * {@link OwnedNftsResponse}to use for pagination.
@@ -208,17 +196,15 @@ export interface GetNftsParams {
 }
 
 /**
- * Parameters object for the {@link (getNfts:1)} and {@link (getNftsPaginated:1)} functions.
+ * Optional parameters object for the {@link getNftsForOwner} and
+ * {@link getNftsForOwnerIterator} functions.
  *
  * This interface is used to fetch NFTs without their associated metadata. To
- * get Nfts with their associated metadata, use {@link GetNftsParams}.
+ * get Nfts with their associated metadata, use {@link GetNftsForOwnerOptions}.
  *
  * @public
  */
-export interface GetBaseNftsParams {
-  /** The owner address of the NFTs. */
-  owner: string;
-
+export interface GetBaseNftsForOwnerOptions {
   /**
    * Optional page key from an existing {@link OwnedBaseNftsResponse} or
    * {@link OwnedNftsResponse}to use for pagination.
@@ -239,19 +225,19 @@ export interface GetBaseNftsParams {
 }
 
 /**
- * Enum of NFT filters that can be applied to a {@link getNfts} request. NFTs
- * that match one or more of these filters are excluded from the response.
+ * Enum of NFT filters that can be applied to a {@link getNftsForOwner} request.
+ * NFTs that match one or more of these filters are excluded from the response.
  *
  * @beta
  */
 export enum NftExcludeFilters {
   /** Exclude NFTs that have been classified as spam. */
-  SPAM
+  SPAM = 'SPAM'
 }
 
 /**
- * The response object for the {@link (getNfts:2)} and
- * {@link (getNftsPaginated:2)} functions. The object contains the NFTs with
+ * The response object for the {@link getNftsForOwner} and
+ * {@link getNftsForOwnerIterator} functions. The object contains the NFTs with
  * metadata owned by the provided address, along with pagination information and
  * the total count.
  *
@@ -272,10 +258,10 @@ export interface OwnedNftsResponse {
 }
 
 /**
- * The response object for the {@link (getNfts:1)} and
- * {@link (getNftsPaginated:1)} functions. The object contains the NFTs without
- * metadata owned by the provided address, along with pagination information and
- * the total count.
+ * The response object for the {@link getNftsForOwner} and
+ * {@link getNftsForOwnerIterator)} functions. The object contains the NFTs
+ * without metadata owned by the provided address, along with pagination
+ * information and the total count.
  *
  * @public
  */
@@ -314,11 +300,11 @@ export interface OwnedBaseNft extends BaseNft {
 }
 
 /**
- * The response object for the {@link getOwnersForToken}.
+ * The response object for the {@link getOwnersForNft}.
  *
  * @public
  */
-export interface GetOwnersForTokenResponse {
+export interface GetOwnersForNftResponse {
   /** An array of owner addresses for the provided token. */
   readonly owners: string[];
 }
@@ -357,18 +343,15 @@ export interface RawContract {
 }
 
 /**
- * Parameters object for the {@link (getNftsForCollection:2)} and
- * {@link (getNftsForCollectionPaginated:2)} functions.
+ * Optional parameters object for the {@link getNftsForCollection} and
+ * {@link getNftsForCollectionIterator} functions.
  *
  * This interface is used to fetch NFTs with their associated metadata. To get
- * Nfts without their associated metadata, use {@link GetBaseNftsForCollectionParams}.
+ * Nfts without their associated metadata, use {@link GetBaseNftsForCollectionOptions}.
  *
  * @public
  */
-export interface GetNftsForCollectionParams {
-  /** The contract address of the collection. */
-  contractAddress: string;
-
+export interface GetNftsForCollectionOptions {
   /**
    * Optional page key from an existing {@link CollectionBaseNftsResponse} or
    * {@link CollectionNftsResponse}to use for pagination.
@@ -380,18 +363,15 @@ export interface GetNftsForCollectionParams {
 }
 
 /**
- * Parameters object for the {@link (getNftsForCollection:1)} and
- * {@link (getNftsForCollectionPaginated:1)} functions.
+ * Optional parameters object for the {@link getNftsForCollection} and
+ * {@link getNftsForCollectionIterator} functions.
  *
  * This interface is used to fetch NFTs without their associated metadata. To
- * get Nfts with their associated metadata, use {@link GetNftsForCollectionParams}.
+ * get Nfts with their associated metadata, use {@link GetNftsForCollectionOptions}.
  *
  * @public
  */
-export interface GetBaseNftsForCollectionParams {
-  /** The contract address of the collection. */
-  contractAddress: string;
-
+export interface GetBaseNftsForCollectionOptions {
   /**
    * Optional page key from an existing {@link CollectionBaseNftsResponse} or
    * {@link CollectionNftsResponse}to use for pagination.
@@ -403,8 +383,8 @@ export interface GetBaseNftsForCollectionParams {
 }
 
 /**
- * The response object for the {@link (getNftsForCollection:1)} function. The
- * object contains the NFTs without metadata inside the collection.
+ * The response object for the {@link getNftsForCollection} function. The object
+ * contains the NFTs without metadata inside the collection.
  *
  * @public
  */
@@ -420,8 +400,8 @@ export interface CollectionBaseNftsResponse {
 }
 
 /**
- * The response object for the {@link (getNftsForCollection:2)} function. The
- * object contains the NFTs with metadata inside the collection.
+ * The response object for the {@link getNftsForCollection} function. The object
+ * contains the NFTs with metadata inside the collection.
  *
  * @public
  */

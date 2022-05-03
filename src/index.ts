@@ -5,12 +5,12 @@ export { initializeAlchemy, Alchemy } from './api/alchemy';
 
 export {
   getNftMetadata,
-  getNfts,
-  getNftsPaginated,
+  getNftsForOwner,
+  getNftsForOwnerIterator,
   getNftsForCollection,
-  getNftsForCollectionPaginated,
-  getOwnersForToken,
-  checkOwnership,
+  getNftsForCollectionIterator,
+  getOwnersForNft,
+  checkNftOwnership,
   findContractDeployer
 } from './api/nft-api';
 
@@ -18,8 +18,7 @@ export {
   getTransactionReceipts,
   getAssetTransfers,
   getTokenMetadata,
-  getTokenBalances,
-  getTokenAllowance
+  getTokenBalances
 } from './api/enhanced';
 
 export { NftContract, Nft, BaseNft } from './api/nft';

@@ -1,17 +1,17 @@
 import {
   Alchemy,
   BaseNft,
-  checkOwnership,
+  checkNftOwnership,
   CollectionBaseNftsResponse,
   CollectionNftsResponse,
   fromHex,
   getNftMetadata,
-  getNfts,
   getNftsForCollection,
-  getNftsForCollectionPaginated,
-  getNftsPaginated,
-  GetNftsParams,
-  getOwnersForToken,
+  getNftsForCollectionIterator,
+  getNftsForOwner,
+  getNftsForOwnerIterator,
+  GetNftsForOwnerOptions,
+  getOwnersForNft,
   initializeAlchemy,
   Nft,
   NftExcludeFilters,
@@ -162,13 +162,13 @@ describe('NFT module', () => {
     });
   });
 
-  describe('getNfts()', () => {
+  describe('getNftsForOwner()', () => {
     const ownerAddress = '0xABC';
     const pageKey = 'page-key0';
     const contractAddresses = ['0xCA1', '0xCA2'];
     const excludeFilters = [NftExcludeFilters.SPAM];
-    const getNftsParams: GetNftsParams = {
-      owner: ownerAddress,
+    const expectedFilters = ['SPAM'];
+    const getNftsParams: GetNftsForOwnerOptions = {
       pageKey,
       contractAddresses,
       excludeFilters
@@ -200,7 +200,7 @@ describe('NFT module', () => {
       'called with the correct parameters',
       async (omitMetadata, expectedWithMetadata) => {
         mock.onGet().reply(200, nftResponse);
-        await getNfts(alchemy, {
+        await getNftsForOwner(alchemy, ownerAddress, {
           ...getNftsParams,
           omitMetadata
         });
@@ -215,7 +215,7 @@ describe('NFT module', () => {
         );
         expect(mock.history.get[0].params).toHaveProperty(
           'filters',
-          excludeFilters
+          expectedFilters
         );
         expect(mock.history.get[0].params).toHaveProperty('pageKey', pageKey);
         expect(mock.history.get[0].params).toHaveProperty(
@@ -255,7 +255,7 @@ describe('NFT module', () => {
       'normalizes fields in response',
       async (omitMetadata, rawResponse, expected) => {
         mock.onGet().reply(200, rawResponse);
-        const response = await getNfts(alchemy, {
+        const response = await getNftsForOwner(alchemy, ownerAddress, {
           ...getNftsParams,
           omitMetadata
         });
@@ -267,14 +267,19 @@ describe('NFT module', () => {
       mock.reset();
       mock.onGet().reply(500, 'Internal Server Error');
       await expect(
-        getNfts(alchemy, { ...getNftsParams, omitMetadata })
+        getNftsForOwner(alchemy, ownerAddress, {
+          ...getNftsParams,
+          omitMetadata
+        })
       ).rejects.toThrow('Internal Server Error');
     });
   });
 
-  describe('getNftsPaginated()', () => {
+  describe('getNftsIterator()', () => {
     const ownerAddress = '0xABC';
     const contractAddresses = ['0xCA1', '0xCA2'];
+    const excludeFilters = [NftExcludeFilters.SPAM];
+    const expectedFilters = ['SPAM'];
     const baseResponses: RawGetBaseNftsResponse[] = [
       {
         ownedNfts: [
@@ -334,16 +339,20 @@ describe('NFT module', () => {
       async (mockResponses, omitMetadata, expectedWithMetadata) => {
         setupMock(mockResponses);
         const ownedNfts = [];
-        for await (const ownedNft of getNftsPaginated(alchemy, {
-          owner: ownerAddress,
-          contractAddresses,
-          omitMetadata
-        })) {
+        for await (const ownedNft of getNftsForOwnerIterator(
+          alchemy,
+          ownerAddress,
+          {
+            excludeFilters,
+            contractAddresses,
+            omitMetadata
+          }
+        )) {
           ownedNfts.push(ownedNft);
         }
 
         expect(mock.history.get.length).toEqual(2);
-        expect(mock.history.get[0].params).not.toHaveProperty('pageKey');
+        expect(mock.history.get[0].params).toHaveProperty('pageKey', undefined);
         expect(mock.history.get[0].params).toHaveProperty(
           'owner',
           ownerAddress
@@ -355,6 +364,10 @@ describe('NFT module', () => {
         expect(mock.history.get[0].params).toHaveProperty(
           'withMetadata',
           expectedWithMetadata
+        );
+        expect(mock.history.get[0].params).toHaveProperty(
+          'filters',
+          expectedFilters
         );
         expect(mock.history.get[1].params).toHaveProperty(
           'pageKey',
@@ -380,11 +393,14 @@ describe('NFT module', () => {
       async (mockResponses, omitMetadata) => {
         setupMock(mockResponses);
         const ownedNfts = [];
-        for await (const ownedNft of getNftsPaginated(alchemy, {
-          owner: ownerAddress,
-          pageKey: 'page-key0',
-          omitMetadata
-        })) {
+        for await (const ownedNft of getNftsForOwnerIterator(
+          alchemy,
+          ownerAddress,
+          {
+            pageKey: 'page-key0',
+            omitMetadata
+          }
+        )) {
           ownedNfts.push(ownedNft);
         }
 
@@ -425,11 +441,14 @@ describe('NFT module', () => {
       async (omitMetadata, mockResponses, expected) => {
         setupMock(mockResponses);
         const nfts = [];
-        for await (const ownedNft of getNftsPaginated(alchemy, {
-          owner: ownerAddress,
-          contractAddresses,
-          omitMetadata
-        })) {
+        for await (const ownedNft of getNftsForOwnerIterator(
+          alchemy,
+          ownerAddress,
+          {
+            contractAddresses,
+            omitMetadata
+          }
+        )) {
           nfts.push(ownedNft);
         }
 
@@ -448,13 +467,16 @@ describe('NFT module', () => {
 
         const tokenIds: number[] = [];
         try {
-          for await (const ownedNft of getNftsPaginated(alchemy, {
-            owner: ownerAddress,
-            omitMetadata
-          })) {
+          for await (const ownedNft of getNftsForOwnerIterator(
+            alchemy,
+            ownerAddress,
+            {
+              omitMetadata
+            }
+          )) {
             tokenIds.push(fromHex(ownedNft.tokenId));
           }
-          fail('getNftsPaginated should have surfaced error');
+          fail('getNftsIterator should have surfaced error');
         } catch (e) {
           expect(tokenIds).toEqual([1, 2]);
           expect((e as Error).message).toContain('Internal Server Error');
@@ -501,8 +523,7 @@ describe('NFT module', () => {
       'called with the correct parameters',
       async (mockResponse, omitMetadata, expectedWithMetadata) => {
         mock.onGet().reply(200, mockResponse);
-        await getNftsForCollection(alchemy, {
-          contractAddress,
+        await getNftsForCollection(alchemy, contractAddress, {
           pageKey,
           omitMetadata
         });
@@ -547,8 +568,7 @@ describe('NFT module', () => {
       'normalizes responses',
       async (omitMetadata, mockResponse, expected) => {
         mock.onGet().reply(200, mockResponse);
-        const response = await getNftsForCollection(alchemy, {
-          contractAddress,
+        const response = await getNftsForCollection(alchemy, contractAddress, {
           pageKey,
           omitMetadata
         });
@@ -560,15 +580,14 @@ describe('NFT module', () => {
       mock.reset();
       mock.onGet().reply(500, 'Internal Server Error');
       await expect(
-        getNftsForCollection(alchemy, {
-          contractAddress,
+        getNftsForCollection(alchemy, contractAddress, {
           omitMetadata
         })
       ).rejects.toThrow('Internal Server Error');
     });
   });
 
-  describe('getNftsForCollectionPaginated()', () => {
+  describe('getNftsForCollectionIterator()', () => {
     const contractAddress = '0xCA1';
     const pageKey = 'page-key0';
     const baseResponses: RawGetBaseNftsForCollectionResponse[] = [
@@ -627,10 +646,13 @@ describe('NFT module', () => {
       async (mockResponses, omitMetadata, expectedWithMetadata) => {
         setupMock(mockResponses);
         const nfts = [];
-        for await (const nft of getNftsForCollectionPaginated(alchemy, {
+        for await (const nft of getNftsForCollectionIterator(
+          alchemy,
           contractAddress,
-          omitMetadata
-        })) {
+          {
+            omitMetadata
+          }
+        )) {
           nfts.push(nft);
         }
         expect(mock.history.get.length).toEqual(2);
@@ -659,11 +681,14 @@ describe('NFT module', () => {
       async (mockResponses, omitMetadata) => {
         setupMock(mockResponses);
         const nfts = [];
-        for await (const nft of getNftsForCollectionPaginated(alchemy, {
+        for await (const nft of getNftsForCollectionIterator(
+          alchemy,
           contractAddress,
-          pageKey,
-          omitMetadata
-        })) {
+          {
+            pageKey,
+            omitMetadata
+          }
+        )) {
           nfts.push(nft);
         }
         expect(nfts.length).toEqual(3);
@@ -707,10 +732,13 @@ describe('NFT module', () => {
       async (omitMetadata, mockResponses, expected) => {
         setupMock(mockResponses);
         const nfts = [];
-        for await (const ownedNft of getNftsForCollectionPaginated(alchemy, {
+        for await (const ownedNft of getNftsForCollectionIterator(
+          alchemy,
           contractAddress,
-          omitMetadata
-        })) {
+          {
+            omitMetadata
+          }
+        )) {
           nfts.push(ownedNft);
         }
 
@@ -728,13 +756,16 @@ describe('NFT module', () => {
           .replyOnce(500, 'Internal Server Error');
         const tokenIds: string[] = [];
         try {
-          for await (const nft of getNftsForCollectionPaginated(alchemy, {
+          for await (const nft of getNftsForCollectionIterator(
+            alchemy,
             contractAddress,
-            omitMetadata
-          })) {
+            {
+              omitMetadata
+            }
+          )) {
             tokenIds.push(nft.tokenId);
           }
-          fail('getNftsForCollectionPaginated should have surfaced error');
+          fail('getNftsForCollectionIterator() should have surfaced error');
         } catch (e) {
           expect(tokenIds).toEqual(['0x01', '0x02']);
           expect((e as Error).message).toContain('Internal Server Error');
@@ -756,7 +787,7 @@ describe('NFT module', () => {
     });
 
     it('calls with the correct parameters', async () => {
-      await getOwnersForToken(alchemy, contractAddress, tokenIdHex);
+      await getOwnersForNft(alchemy, contractAddress, tokenIdHex);
       expect(mock.history.get.length).toEqual(1);
       expect(mock.history.get[0].params).toHaveProperty(
         'contractAddress',
@@ -767,7 +798,7 @@ describe('NFT module', () => {
         toHex(tokenIdNumber)
       );
 
-      await getOwnersForToken(alchemy, contractAddress, tokenIdNumber);
+      await getOwnersForNft(alchemy, contractAddress, tokenIdNumber);
       expect(mock.history.get[0].params).toHaveProperty(
         'tokenId',
         toHex(tokenIdNumber)
@@ -775,7 +806,7 @@ describe('NFT module', () => {
     });
 
     it('can be called with BaseNft', async () => {
-      const response = await getOwnersForToken(
+      const response = await getOwnersForNft(
         alchemy,
         createBaseNft(contractAddress, tokenIdHex)
       );
@@ -797,7 +828,7 @@ describe('NFT module', () => {
       mock.onGet().reply(429, 'Too many requests');
 
       await expect(
-        getOwnersForToken(alchemy, contractAddress, tokenIdHex)
+        getOwnersForNft(alchemy, contractAddress, tokenIdHex)
       ).rejects.toThrow('Too many requests');
     });
   });
@@ -819,7 +850,7 @@ describe('NFT module', () => {
 
     it('calls with the correct parameters', async () => {
       mock.onGet().reply(200, emptyResponse);
-      await checkOwnership(alchemy, owner, addresses);
+      await checkNftOwnership(alchemy, owner, addresses);
       expect(mock.history.get.length).toEqual(1);
       expect(mock.history.get[0].params).toHaveProperty('owner', owner);
       expect(mock.history.get[0].params).toHaveProperty(
@@ -830,7 +861,7 @@ describe('NFT module', () => {
     });
 
     it('throws if no contract address is passed in', async () => {
-      await expect(checkOwnership(alchemy, owner, [])).rejects.toThrow(
+      await expect(checkNftOwnership(alchemy, owner, [])).rejects.toThrow(
         'Must provide at least one contract address'
       );
     });
@@ -843,15 +874,15 @@ describe('NFT module', () => {
       'returns the correct response',
       async (response, expected) => {
         mock.onGet().reply(200, response);
-        const result = await checkOwnership(alchemy, owner, addresses);
+        const result = await checkNftOwnership(alchemy, owner, addresses);
         expect(result).toEqual(expected);
       }
     );
     it('surfaces errors', async () => {
       mock.onGet().reply(500, 'Internal Server Error');
-      await expect(checkOwnership(alchemy, owner, addresses)).rejects.toThrow(
-        'Internal Server Error'
-      );
+      await expect(
+        checkNftOwnership(alchemy, owner, addresses)
+      ).rejects.toThrow('Internal Server Error');
     });
   });
 
