@@ -1,9 +1,9 @@
-[exploring-pioneer](../README.md) / [Exports](../modules.md) / CollectionNftsResponse
+[alchemy-evm-js](../README.md) / [Exports](../modules.md) / CollectionNftsResponse
 
 # Interface: CollectionNftsResponse
 
-The response object for the {@link (getNftsForCollection:2)} function. The
-object contains the NFTs with metadata inside the collection.
+The response object for the [getNftsForCollection](../modules.md#getnftsforcollection) function. The object
+contains the NFTs with metadata inside the collection.
 
 ## Table of contents
 
@@ -22,7 +22,7 @@ An array of NFTs with metadata.
 
 #### Defined in
 
-[types/types.ts:407](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L407)
+[types/types.ts:410](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L410)
 
 ___
 
@@ -35,4 +35,4 @@ NFTs. If there is no page key, then there are no more NFTs to fetch.
 
 #### Defined in
 
-[types/types.ts:413](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L413)
+[types/types.ts:416](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L416)

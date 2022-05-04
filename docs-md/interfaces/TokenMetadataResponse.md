@@ -1,4 +1,4 @@
-[exploring-pioneer](../README.md) / [Exports](../modules.md) / TokenMetadataResponse
+[alchemy-evm-js](../README.md) / [Exports](../modules.md) / TokenMetadataResponse
 
 # Interface: TokenMetadataResponse
 
@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[types/types.ts:77](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L77)
+[types/types.ts:67](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L67)
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:78](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L78)
+[types/types.ts:68](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L68)
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:79](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L79)
+[types/types.ts:69](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L69)
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 #### Defined in
 
-[types/types.ts:80](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L80)
+[types/types.ts:70](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L70)

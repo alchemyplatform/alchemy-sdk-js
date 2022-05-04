@@ -1,6 +1,6 @@
-# exploring-pioneer
+# Alchemy EVM JS SDK
 
-This is a prototype for the Alchemy JS SDK.
+This is a prototype for Alchemy's JS SDK for EVM-based chains.
 
 The goal is to create a lightweight, modular SDK that encapsulates common usage patterns and abstracts away the
 complexities of the HTTP endpoints. To start, we're trying to create feature parity with the existing `alchemy-web3`
@@ -8,17 +8,17 @@ library. From there, we'll add additional features and higher level abstractions
 
 ## Getting started
 
-The SDK is currently packaged in the repository as a tarball file. To install, copy the `exploring-pioneer-1.0.0.tgz`
+The SDK is currently packaged in the repository as a tarball file. To install, copy the `alchemy-evm-js-1.0.0.tgz`
 file in this repo into your project's root directory and run:
 
 ```
-npm install exploring-pioneer-1.0.0.tgz
+npm install alchemy-evm-js-1.0.0.tgz
 ```
 
 After installing the app, you can then import and use the SDK:
 
 ```ts
-import { AlchemyConfig, Network, initializeAlchemy } from 'exploring-pioneer';
+import { AlchemyConfig, Network, initializeAlchemy } from 'alchemy-evm-js';
 
 // Optional Config object, but defaults to demo api-key and eth-mainnet.
 const settings = {
@@ -35,7 +35,7 @@ this can make it harder to discover the full API surface. If you want your IDE t
 the entire SDK:
 
 ```ts
-import * as alchemySdk from 'exploring-pioneer';
+import * as alchemySdk from 'alchemy-evm-js';
 
 const alchemy = alchemySdk.initializeAlchemy();
 alchemySdk.getNftsForOwner(alchemy, { owner: '0x123' });
@@ -56,15 +56,14 @@ allows you to perform the core json-rpc calls with the Alchemy as your provider.
 Here's an example of how this could be used:
 
 ```ts
-// NFT API
-import { getNftsForOwner } from 'exploring-pioneer';
+import { getNftsForOwner } from 'alchemy-evm-js';
 
 getNftsForOwner(alchemy, { owner: '0xABC' }).then(nfts => {
   console.log(nfts);
 });
 
 // Enhanced API
-import { getAssetTransfers } from 'exploring-pioneer';
+import { getAssetTransfers } from 'alchemy-evm-js';
 
 getAssetTransfers(alchemy, {
   fromAddress: '0xABC...',
@@ -142,7 +141,7 @@ differences with the Alchemy REST endpoints:
 
 The SDK is documented via `tsdoc` comments in the source code. The generated types and documentation are included when
 using an IDE. To browse the documentation separately, you can view the generated API interfaces
-in `etc/exploring-pioneer.api.md`. You can view generated Markdown files for each endpoint in the `docs-md` directory,
+in `etc/alchemy-evm-js.api.md`. You can view generated Markdown files for each endpoint in the `docs-md` directory,
 or as a webpage by opening `docs/index.html` in your browser.
 
 ## Future Work

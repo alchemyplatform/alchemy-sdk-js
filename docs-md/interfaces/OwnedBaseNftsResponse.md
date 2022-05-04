@@ -1,11 +1,11 @@
-[exploring-pioneer](../README.md) / [Exports](../modules.md) / OwnedBaseNftsResponse
+[alchemy-evm-js](../README.md) / [Exports](../modules.md) / OwnedBaseNftsResponse
 
 # Interface: OwnedBaseNftsResponse
 
-The response object for the {@link (getNfts:1)} and
-{@link (getNftsPaginated:1)} functions. The object contains the NFTs without
-metadata owned by the provided address, along with pagination information and
-the total count.
+The response object for the [getNftsForOwner](../modules.md#getnftsforowner) and
+{@link getNftsForOwnerIterator)} functions. The object contains the NFTs
+without metadata owned by the provided address, along with pagination
+information and the total count.
 
 ## Table of contents
 
@@ -25,7 +25,7 @@ The NFTs owned by the provided address.
 
 #### Defined in
 
-[types/types.ts:261](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L261)
+[types/types.ts:270](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L270)
 
 ___
 
@@ -38,7 +38,7 @@ NFTs. If there is no page key, then there are no more NFTs to fetch.
 
 #### Defined in
 
-[types/types.ts:267](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L267)
+[types/types.ts:276](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L276)
 
 ___
 
@@ -50,4 +50,4 @@ The total count of NFTs owned by the provided address.
 
 #### Defined in
 
-[types/types.ts:270](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L270)
+[types/types.ts:279](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L279)

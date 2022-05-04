@@ -1,4 +1,4 @@
-[exploring-pioneer](../README.md) / [Exports](../modules.md) / TransactionReceiptsBlockNumber
+[alchemy-evm-js](../README.md) / [Exports](../modules.md) / TransactionReceiptsBlockNumber
 
 # Interface: TransactionReceiptsBlockNumber
 
@@ -16,4 +16,4 @@
 
 #### Defined in
 
-[types/types.ts:305](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L305)
+[types/types.ts:314](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L314)

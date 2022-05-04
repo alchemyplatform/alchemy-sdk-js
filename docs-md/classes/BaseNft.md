@@ -1,4 +1,4 @@
-[exploring-pioneer](../README.md) / [Exports](../modules.md) / BaseNft
+[alchemy-evm-js](../README.md) / [Exports](../modules.md) / BaseNft
 
 # Class: BaseNft
 
@@ -43,7 +43,7 @@ be created from a backend response via the `fromResponse` method.
 
 #### Defined in
 
-[api/nft.ts:27](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/nft.ts#L27)
+[api/nft.ts:27](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft.ts#L27)
 
 ## Properties
 
@@ -53,7 +53,7 @@ be created from a backend response via the `fromResponse` method.
 
 #### Defined in
 
-[api/nft.ts:21](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/nft.ts#L21)
+[api/nft.ts:21](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft.ts#L21)
 
 ___
 

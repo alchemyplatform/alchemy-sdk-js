@@ -1,4 +1,4 @@
-[exploring-pioneer](../README.md) / [Exports](../modules.md) / Alchemy
+[alchemy-evm-js](../README.md) / [Exports](../modules.md) / Alchemy
 
 # Class: Alchemy
 
@@ -29,7 +29,7 @@ to get an instance of the SDK.
 
 #### Defined in
 
-[api/alchemy.ts:29](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/alchemy.ts#L29)
+[api/alchemy.ts:29](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/alchemy.ts#L29)
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 #### Defined in
 
-[api/alchemy.ts:31](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/alchemy.ts#L31)
+[api/alchemy.ts:31](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/alchemy.ts#L31)
 
 ___
 
@@ -49,7 +49,7 @@ ___
 
 #### Defined in
 
-[api/alchemy.ts:30](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/alchemy.ts#L30)
+[api/alchemy.ts:30](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/alchemy.ts#L30)
 
 ## Methods
 
@@ -65,7 +65,7 @@ Lazy loads the ethers provider and creates an AlchemyProvider instance.
 
 #### Defined in
 
-[api/alchemy.ts:61](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/alchemy.ts#L61)
+[api/alchemy.ts:61](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/alchemy.ts#L61)
 
 ___
 
@@ -87,4 +87,4 @@ Changes the network that the SDK requests data from.
 
 #### Defined in
 
-[api/alchemy.ts:52](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/alchemy.ts#L52)
+[api/alchemy.ts:52](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/alchemy.ts#L52)

@@ -1,4 +1,4 @@
-[exploring-pioneer](../README.md) / [Exports](../modules.md) / AssetTransfersOrder
+[alchemy-evm-js](../README.md) / [Exports](../modules.md) / AssetTransfersOrder
 
 # Enumeration: AssetTransfersOrder
 
@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[types/types.ts:110](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L110)
+[types/types.ts:100](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L100)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[types/types.ts:111](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L111)
+[types/types.ts:101](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L101)

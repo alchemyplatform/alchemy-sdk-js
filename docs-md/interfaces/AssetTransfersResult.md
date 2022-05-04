@@ -1,4 +1,4 @@
-[exploring-pioneer](../README.md) / [Exports](../modules.md) / AssetTransfersResult
+[alchemy-evm-js](../README.md) / [Exports](../modules.md) / AssetTransfersResult
 
 # Interface: AssetTransfersResult
 
@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[types/types.ts:137](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L137)
+[types/types.ts:127](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L127)
 
 ___
 
@@ -36,7 +36,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:130](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L130)
+[types/types.ts:120](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L120)
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:129](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L129)
+[types/types.ts:119](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L119)
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:135](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L135)
+[types/types.ts:125](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L125)
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:134](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L134)
+[types/types.ts:124](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L124)
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:131](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L131)
+[types/types.ts:121](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L121)
 
 ___
 
@@ -86,7 +86,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:138](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L138)
+[types/types.ts:128](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L128)
 
 ___
 
@@ -96,7 +96,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:139](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L139)
+[types/types.ts:129](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L129)
 
 ___
 
@@ -106,7 +106,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:132](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L132)
+[types/types.ts:122](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L122)
 
 ___
 
@@ -116,7 +116,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:136](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L136)
+[types/types.ts:126](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L126)
 
 ___
 
@@ -126,4 +126,4 @@ ___
 
 #### Defined in
 
-[types/types.ts:133](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L133)
+[types/types.ts:123](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L123)

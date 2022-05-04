@@ -1,4 +1,4 @@
-[exploring-pioneer](../README.md) / [Exports](../modules.md) / OwnedBaseNft
+[alchemy-evm-js](../README.md) / [Exports](../modules.md) / OwnedBaseNft
 
 # Interface: OwnedBaseNft
 
@@ -29,7 +29,7 @@ The token balance of the NFT.
 
 #### Defined in
 
-[types/types.ts:290](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L290)
+[types/types.ts:299](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L299)
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 #### Defined in
 
-[api/nft.ts:21](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/api/nft.ts#L21)
+[api/nft.ts:21](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft.ts#L21)
 
 ___
 

@@ -1,4 +1,4 @@
-[exploring-pioneer](../README.md) / [Exports](../modules.md) / TransactionReceiptsResponse
+[alchemy-evm-js](../README.md) / [Exports](../modules.md) / TransactionReceiptsResponse
 
 # Interface: TransactionReceiptsResponse
 
@@ -16,4 +16,4 @@
 
 #### Defined in
 
-[types/types.ts:320](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L320)
+[types/types.ts:329](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L329)

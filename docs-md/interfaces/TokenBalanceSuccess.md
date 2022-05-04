@@ -1,4 +1,4 @@
-[exploring-pioneer](../README.md) / [Exports](../modules.md) / TokenBalanceSuccess
+[alchemy-evm-js](../README.md) / [Exports](../modules.md) / TokenBalanceSuccess
 
 # Interface: TokenBalanceSuccess
 
@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[types/types.ts:63](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L63)
+[types/types.ts:53](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L53)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:65](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L65)
+[types/types.ts:55](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L55)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[types/types.ts:64](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L64)
+[types/types.ts:54](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L54)

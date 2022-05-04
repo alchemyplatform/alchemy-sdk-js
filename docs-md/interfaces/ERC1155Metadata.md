@@ -1,4 +1,4 @@
-[exploring-pioneer](../README.md) / [Exports](../modules.md) / ERC1155Metadata
+[alchemy-evm-js](../README.md) / [Exports](../modules.md) / ERC1155Metadata
 
 # Interface: ERC1155Metadata
 
@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[types/types.ts:325](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L325)
+[types/types.ts:334](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L334)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[types/types.ts:326](https://github.com/alchemyplatform/exploring-pioneer/blob/7c86334/src/types/types.ts#L326)
+[types/types.ts:335](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L335)
