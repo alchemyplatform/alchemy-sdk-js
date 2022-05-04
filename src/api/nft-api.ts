@@ -2,11 +2,11 @@ import {
   CollectionBaseNftsResponse,
   CollectionNftsResponse,
   DeployResult,
-  GetBaseNftsForCollectionParams,
-  GetBaseNftsParams,
-  GetNftsForCollectionParams,
-  GetNftsParams,
-  GetOwnersForTokenResponse,
+  GetBaseNftsForCollectionOptions,
+  GetBaseNftsForOwnerOptions,
+  GetNftsForCollectionOptions,
+  GetNftsForOwnerOptions,
+  GetOwnersForNftResponse,
   NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
@@ -104,12 +104,14 @@ export async function getNftMetadata(
  * through all page keys until all NFTs have been fetched.
  *
  * @param alchemy - The Alchemy SDK instance.
- * @param params - The parameters to use for the request.
+ * @param owner - The address of the owner.
+ * @param options - The optional parameters to use for the request.
  * @public
  */
-export function getNftsPaginated(
+export function getNftsForOwnerIterator(
   alchemy: Alchemy,
-  params: GetBaseNftsParams
+  owner: string,
+  options?: GetBaseNftsForOwnerOptions
 ): AsyncIterable<OwnedBaseNft>;
 
 /**
@@ -119,25 +121,31 @@ export function getNftsPaginated(
  * keys until all NFTs have been fetched.
  *
  * @param alchemy - The Alchemy SDK instance.
- * @param params - The parameters to use for the request.
+ * @param owner - The address of the owner.
+ * @param options - The optional parameters to use for the request.
  * @public
  */
-export function getNftsPaginated(
+export function getNftsForOwnerIterator(
   alchemy: Alchemy,
-  params: GetNftsParams
+  owner: string,
+  options?: GetNftsForOwnerOptions
 ): AsyncIterable<OwnedNft>;
-export async function* getNftsPaginated(
+export async function* getNftsForOwnerIterator(
   alchemy: Alchemy,
-  params: GetNftsParams | GetBaseNftsParams
+  owner: string,
+  options?: GetNftsForOwnerOptions | GetBaseNftsForOwnerOptions
 ): AsyncIterable<OwnedBaseNft | OwnedNft> {
-  const withMetadata = omitMetadataToWithMetadata(params.omitMetadata);
+  const withMetadata = omitMetadataToWithMetadata(options?.omitMetadata);
   for await (const response of paginateEndpoint(
     alchemy,
     'getNFTs',
     'pageKey',
     'pageKey',
     {
-      ...params,
+      contractAddresses: options?.contractAddresses,
+      pageKey: options?.pageKey,
+      filters: options?.excludeFilters,
+      owner,
       withMetadata
     }
   )) {
@@ -156,41 +164,49 @@ export async function* getNftsPaginated(
  * Get all base NFTs for an owner.
  *
  * This method returns the base NFTs that omit the associated metadata. To get
- * all NFTs with their associated metadata, use {@link GetNftsParams}.
+ * all NFTs with their associated metadata, use {@link GetNftsForOwnerOptions}.
  *
  * @param alchemy - The Alchemy SDK instance.
- * @param params - The parameters to use for the request.
+ * @param owner - The address of the owner.
+ * @param options - The optional parameters to use for the request.
  * @public
  */
-export async function getNfts(
+export async function getNftsForOwner(
   alchemy: Alchemy,
-  params: GetBaseNftsParams
+  owner: string,
+  options?: GetBaseNftsForOwnerOptions
 ): Promise<OwnedBaseNftsResponse>;
 
 /**
  * Get all NFTs for an owner.
  *
  * This method returns the full NFTs in the contract. To get all NFTs without
- * their associated metadata, use {@link GetBaseNftsParams}.
+ * their associated metadata, use {@link GetBaseNftsForOwnerOptions}.
  *
  * @param alchemy - The Alchemy SDK instance.
- * @param params - The parameters to use for the request.
+ * @param owner - The address of the owner.
+ * @param options - The optional parameters to use for the request.
  * @public
  */
-export async function getNfts(
+export async function getNftsForOwner(
   alchemy: Alchemy,
-  params: GetNftsParams
+  owner: string,
+  options?: GetNftsForOwnerOptions
 ): Promise<OwnedNftsResponse>;
-export async function getNfts(
+export async function getNftsForOwner(
   alchemy: Alchemy,
-  params: GetNftsParams | GetBaseNftsParams
+  owner: string,
+  options?: GetNftsForOwnerOptions | GetBaseNftsForOwnerOptions
 ): Promise<OwnedNftsResponse | OwnedBaseNftsResponse> {
-  const withMetadata = omitMetadataToWithMetadata(params.omitMetadata);
+  const withMetadata = omitMetadataToWithMetadata(options?.omitMetadata);
   const response = await requestHttpWithBackoff<
     GetNftsAlchemyParams,
     RawGetBaseNftsResponse | RawGetNftsResponse
   >(alchemy, 'getNFTs', {
-    ...params,
+    contractAddresses: options?.contractAddresses,
+    pageKey: options?.pageKey,
+    filters: options?.excludeFilters,
+    owner,
     withMetadata
   });
   return {
@@ -207,49 +223,54 @@ export async function getNfts(
  * Get all base NFTs for a given contract address.
  *
  * This method returns the base NFTs that omit the associated metadata. To get
- * all NFTs with their associated metadata, use {@link GetNftsForCollectionParams}.
+ * all NFTs with their associated metadata, use {@link GetNftsForCollectionOptions}.
  *
  * @param alchemy - The Alchemy SDK instance.
- * @param params - The parameters to use for the request.
+ * @param contractAddress - The contract address of the collection.
+ * @param options - The optional parameters to use for the request.
  * @beta
  */
 export async function getNftsForCollection(
   alchemy: Alchemy,
-  params: GetBaseNftsForCollectionParams
+  contractAddress: string,
+  options?: GetBaseNftsForCollectionOptions
 ): Promise<CollectionBaseNftsResponse>;
 
 /**
  * Get all NFTs for a given contract address.
  *
  * This method returns the full NFTs in the contract. To get all NFTs without
- * their associated metadata, use {@link GetBaseNftsForCollectionParams}.
+ * their associated metadata, use {@link GetBaseNftsForCollectionOptions}.
  *
  * @param alchemy - The Alchemy SDK instance.
- * @param params - The parameters to use for the request. or
+ * @param contractAddress - The contract address of the collection.
+ * @param options - The parameters to use for the request. or
  *   {@link CollectionNftsResponse} response.
  * @beta
  */
 export async function getNftsForCollection(
   alchemy: Alchemy,
-  params: GetNftsForCollectionParams
+  contractAddress: string,
+  options?: GetNftsForCollectionOptions
 ): Promise<CollectionNftsResponse>;
 export async function getNftsForCollection(
   alchemy: Alchemy,
-  params: GetBaseNftsForCollectionParams | GetNftsForCollectionParams
+  contractAddress: string,
+  options?: GetBaseNftsForCollectionOptions | GetNftsForCollectionOptions
 ): Promise<CollectionNftsResponse | CollectionBaseNftsResponse> {
-  const withMetadata = omitMetadataToWithMetadata(params.omitMetadata);
+  const withMetadata = omitMetadataToWithMetadata(options?.omitMetadata);
   const response = await requestHttpWithBackoff<
     GetNftsForCollectionAlchemyParams,
     RawGetBaseNftsForCollectionResponse | RawGetNftsForCollectionResponse
   >(alchemy, 'getNFTsForCollection', {
-    contractAddress: params.contractAddress,
-    startToken: params.pageKey,
+    contractAddress,
+    startToken: options?.pageKey,
     withMetadata
   });
 
   return {
     nfts: response.nfts.map(res =>
-      nftFromGetNftCollectionResponse(res, params.contractAddress)
+      nftFromGetNftCollectionResponse(res, contractAddress)
     ),
     pageKey: response.nextToken
   };
@@ -263,11 +284,11 @@ export async function getNftsForCollection(
  * @param tokenId - Token id of the NFT as a hex string or integer.
  * @beta
  */
-export function getOwnersForToken(
+export function getOwnersForNft(
   alchemy: Alchemy,
   contractAddress: string,
   tokenId: number | string
-): Promise<GetOwnersForTokenResponse>;
+): Promise<GetOwnersForNftResponse>;
 
 /**
  * Gets all the owners for a given NFT.
@@ -276,15 +297,15 @@ export function getOwnersForToken(
  * @param nft - The NFT object to get the owners for.
  * @beta
  */
-export function getOwnersForToken(
+export function getOwnersForNft(
   alchemy: Alchemy,
   nft: BaseNft
-): Promise<GetOwnersForTokenResponse>;
-export function getOwnersForToken(
+): Promise<GetOwnersForNftResponse>;
+export function getOwnersForNft(
   alchemy: Alchemy,
   contractAddressOrNft: string | BaseNft,
   tokenId?: number | string
-): Promise<GetOwnersForTokenResponse> {
+): Promise<GetOwnersForNftResponse> {
   if (typeof contractAddressOrNft === 'string') {
     return requestHttpWithBackoff(alchemy, 'getOwnersForToken', {
       contractAddress: contractAddressOrNft,
@@ -304,15 +325,17 @@ export function getOwnersForToken(
  *
  * This method returns the base NFTs that omit the associated metadata and pages
  * through all page keys until all NFTs have been fetched. To get all NFTs with
- * their associated metadata, use {@link GetNftsForCollectionParams}.
+ * their associated metadata, use {@link GetNftsForCollectionOptions}.
  *
  * @param alchemy - The Alchemy SDK instance.
- * @param params - The parameters to use for the request.
+ * @param contractAddress - The contract address of the collection.
+ * @param options - The optional parameters to use for the request.
  * @beta
  */
-export function getNftsForCollectionPaginated(
+export function getNftsForCollectionIterator(
   alchemy: Alchemy,
-  params: GetBaseNftsForCollectionParams
+  contractAddress: string,
+  options: GetBaseNftsForCollectionOptions
 ): AsyncIterable<BaseNft>;
 
 /**
@@ -320,36 +343,39 @@ export function getNftsForCollectionPaginated(
  *
  * This method returns the full NFTs in the contract and pages through all page
  * keys until all NFTs have been fetched. To get all NFTs without their
- * associated metadata, use {@link GetBaseNftsForCollectionParams}.
+ * associated metadata, use {@link GetBaseNftsForCollectionOptions}.
  *
  * @param alchemy - The Alchemy SDK instance.
- * @param params - The parameters to use for the request.
+ * @param contractAddress - The contract address of the collection.
+ * @param options - The optional parameters to use for the request.
  * @beta
  */
-export function getNftsForCollectionPaginated(
+export function getNftsForCollectionIterator(
   alchemy: Alchemy,
-  params: GetNftsForCollectionParams
+  contractAddress: string,
+  options: GetNftsForCollectionOptions
 ): AsyncIterable<Nft>;
-export async function* getNftsForCollectionPaginated(
+export async function* getNftsForCollectionIterator(
   alchemy: Alchemy,
-  params: GetBaseNftsForCollectionParams | GetNftsForCollectionParams
+  contractAddress: string,
+  options: GetBaseNftsForCollectionOptions | GetNftsForCollectionOptions
 ): AsyncIterable<BaseNft | Nft> {
-  const withMetadata = omitMetadataToWithMetadata(params.omitMetadata);
+  const withMetadata = omitMetadataToWithMetadata(options.omitMetadata);
   for await (const response of paginateEndpoint(
     alchemy,
     'getNFTsForCollection',
     'startToken',
     'nextToken',
     {
-      contractAddress: params.contractAddress,
-      startToken: params.pageKey,
+      contractAddress,
+      startToken: options.pageKey,
       withMetadata
     }
   )) {
     for (const nft of response.nfts as
       | RawCollectionBaseNft[]
       | RawCollectionNft[]) {
-      yield nftFromGetNftCollectionResponse(nft, params.contractAddress);
+      yield nftFromGetNftCollectionResponse(nft, contractAddress);
     }
   }
 }
@@ -362,7 +388,7 @@ export async function* getNftsForCollectionPaginated(
  * @param contractAddresses - An array of NFT contract addresses to check ownership for.
  * @beta
  */
-export async function checkOwnership(
+export async function checkNftOwnership(
   alchemy: Alchemy,
   owner: string,
   contractAddresses: string[]
@@ -370,8 +396,7 @@ export async function checkOwnership(
   if (contractAddresses.length === 0) {
     throw new Error('Must provide at least one contract address');
   }
-  const response = await getNfts(alchemy, {
-    owner,
+  const response = await getNftsForOwner(alchemy, owner, {
     contractAddresses,
     omitMetadata: true
   });
@@ -525,6 +550,7 @@ interface GetNftsAlchemyParams {
   owner: string;
   pageKey?: string;
   contractAddresses?: string[];
+  filters?: string[];
   withMetadata: boolean;
 }
 

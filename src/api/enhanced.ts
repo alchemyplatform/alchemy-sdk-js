@@ -1,8 +1,6 @@
 import {
   AssetTransfersParams,
   AssetTransfersResponse,
-  TokenAllowanceParams,
-  TokenAllowanceResponse,
   TokenBalancesResponse,
   TokenMetadataResponse,
   TransactionReceiptsParams,
@@ -12,14 +10,6 @@ import { formatBlock } from '../util/util';
 import { Alchemy } from './alchemy';
 import { DEFAULT_CONTRACT_ADDRESSES } from '../util/const';
 import { toHex } from './util';
-
-/** @public */
-export function getTokenAllowance(
-  alchemy: Alchemy,
-  params: TokenAllowanceParams
-): Promise<TokenAllowanceResponse> {
-  return alchemy.getProvider().send('alchemy_getTokenAllowance', [params]);
-}
 
 /** @public */
 export function getTokenBalances(
