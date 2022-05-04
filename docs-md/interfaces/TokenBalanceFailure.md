@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[types/types.ts:60](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L60)
+[types/types.ts:60](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L60)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:62](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L62)
+[types/types.ts:62](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L62)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[types/types.ts:61](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L61)
+[types/types.ts:61](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L61)

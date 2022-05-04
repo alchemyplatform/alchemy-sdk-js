@@ -27,7 +27,7 @@ Optional list of contract addresses to filter the results by. Limit is 20.
 
 #### Defined in
 
-[types/types.ts:215](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L215)
+[types/types.ts:215](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L215)
 
 ___
 
@@ -40,7 +40,7 @@ of these filters are excluded from the response.
 
 #### Defined in
 
-[types/types.ts:221](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L221)
+[types/types.ts:221](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L221)
 
 ___
 
@@ -52,7 +52,7 @@ Optional boolean flag to include NFT metadata. Defaults to `false`.
 
 #### Defined in
 
-[types/types.ts:224](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L224)
+[types/types.ts:224](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L224)
 
 ___
 
@@ -65,4 +65,4 @@ Optional page key from an existing [OwnedBaseNftsResponse](OwnedBaseNftsResponse
 
 #### Defined in
 
-[types/types.ts:212](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L212)
+[types/types.ts:212](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L212)

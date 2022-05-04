@@ -85,7 +85,7 @@ The level of verbosity for the logger.
 
 #### Defined in
 
-[util/logger.ts:22](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/util/logger.ts#L22)
+[util/logger.ts:22](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/util/logger.ts#L22)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:49](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L49)
+[types/types.ts:49](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L49)
 
 ___
 
@@ -105,7 +105,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:323](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L323)
+[types/types.ts:323](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L323)
 
 ## Functions
 
@@ -131,7 +131,7 @@ Checks that the provided owner address owns one of more of the provided NFTs.
 
 #### Defined in
 
-[api/nft-api.ts:391](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L391)
+[api/nft-api.ts:391](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/nft-api.ts#L391)
 
 ___
 
@@ -162,7 +162,7 @@ this information cached.
 
 #### Defined in
 
-[api/nft-api.ts:419](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L419)
+[api/nft-api.ts:419](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/nft-api.ts#L419)
 
 ___
 
@@ -184,7 +184,7 @@ Converts a hex string to a decimal number.
 
 #### Defined in
 
-[api/util.ts:9](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/util.ts#L9)
+[api/util.ts:9](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/util.ts#L9)
 
 ___
 
@@ -205,7 +205,7 @@ ___
 
 #### Defined in
 
-[api/enhanced.ts:37](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/enhanced.ts#L37)
+[api/enhanced.ts:37](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/enhanced.ts#L37)
 
 ___
 
@@ -228,7 +228,7 @@ Get the NFT metadata associated with the provided Base NFT.
 
 #### Defined in
 
-[api/nft-api.ts:43](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L43)
+[api/nft-api.ts:43](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/nft-api.ts#L43)
 
 ▸ **getNftMetadata**(`alchemy`, `contractAddress`, `tokenId`, `tokenType?`): `Promise`<[`Nft`](classes/Nft.md)\>
 
@@ -249,7 +249,7 @@ Get the NFT metadata associated with the provided parameters.
 
 #### Defined in
 
-[api/nft-api.ts:57](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L57)
+[api/nft-api.ts:57](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/nft-api.ts#L57)
 
 ___
 
@@ -278,7 +278,7 @@ all NFTs with their associated metadata, use [GetNftsForCollectionOptions](inter
 
 #### Defined in
 
-[api/nft-api.ts:233](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L233)
+[api/nft-api.ts:233](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/nft-api.ts#L233)
 
 ▸ **getNftsForCollection**(`alchemy`, `contractAddress`, `options?`): `Promise`<[`CollectionNftsResponse`](interfaces/CollectionNftsResponse.md)\>
 
@@ -303,7 +303,7 @@ their associated metadata, use [GetBaseNftsForCollectionOptions](interfaces/GetB
 
 #### Defined in
 
-[api/nft-api.ts:251](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L251)
+[api/nft-api.ts:251](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/nft-api.ts#L251)
 
 ___
 
@@ -334,7 +334,7 @@ their associated metadata, use [GetNftsForCollectionOptions](interfaces/GetNftsF
 
 #### Defined in
 
-[api/nft-api.ts:335](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L335)
+[api/nft-api.ts:335](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/nft-api.ts#L335)
 
 ▸ **getNftsForCollectionIterator**(`alchemy`, `contractAddress`, `options`): `AsyncIterable`<[`Nft`](classes/Nft.md)\>
 
@@ -360,7 +360,7 @@ associated metadata, use [GetBaseNftsForCollectionOptions](interfaces/GetBaseNft
 
 #### Defined in
 
-[api/nft-api.ts:353](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L353)
+[api/nft-api.ts:353](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/nft-api.ts#L353)
 
 ___
 
@@ -387,7 +387,7 @@ all NFTs with their associated metadata, use [GetNftsForOwnerOptions](interfaces
 
 #### Defined in
 
-[api/nft-api.ts:174](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L174)
+[api/nft-api.ts:174](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/nft-api.ts#L174)
 
 ▸ **getNftsForOwner**(`alchemy`, `owner`, `options?`): `Promise`<[`OwnedNftsResponse`](interfaces/OwnedNftsResponse.md)\>
 
@@ -410,7 +410,7 @@ their associated metadata, use [GetBaseNftsForOwnerOptions](interfaces/GetBaseNf
 
 #### Defined in
 
-[api/nft-api.ts:191](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L191)
+[api/nft-api.ts:191](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/nft-api.ts#L191)
 
 ___
 
@@ -437,7 +437,7 @@ through all page keys until all NFTs have been fetched.
 
 #### Defined in
 
-[api/nft-api.ts:111](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L111)
+[api/nft-api.ts:111](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/nft-api.ts#L111)
 
 ▸ **getNftsForOwnerIterator**(`alchemy`, `owner`, `options?`): `AsyncIterable`<[`OwnedNft`](interfaces/OwnedNft.md)\>
 
@@ -460,7 +460,7 @@ keys until all NFTs have been fetched.
 
 #### Defined in
 
-[api/nft-api.ts:128](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L128)
+[api/nft-api.ts:128](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/nft-api.ts#L128)
 
 ___
 
@@ -486,7 +486,7 @@ Gets all the owners for a given NFT contract address and token ID.
 
 #### Defined in
 
-[api/nft-api.ts:287](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L287)
+[api/nft-api.ts:287](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/nft-api.ts#L287)
 
 ▸ **getOwnersForNft**(`alchemy`, `nft`): `Promise`<[`GetOwnersForNftResponse`](interfaces/GetOwnersForNftResponse.md)\>
 
@@ -507,7 +507,7 @@ Gets all the owners for a given NFT.
 
 #### Defined in
 
-[api/nft-api.ts:300](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/nft-api.ts#L300)
+[api/nft-api.ts:300](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/nft-api.ts#L300)
 
 ___
 
@@ -529,7 +529,7 @@ ___
 
 #### Defined in
 
-[api/enhanced.ts:15](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/enhanced.ts#L15)
+[api/enhanced.ts:15](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/enhanced.ts#L15)
 
 ___
 
@@ -550,7 +550,7 @@ ___
 
 #### Defined in
 
-[api/enhanced.ts:29](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/enhanced.ts#L29)
+[api/enhanced.ts:29](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/enhanced.ts#L29)
 
 ___
 
@@ -571,7 +571,7 @@ ___
 
 #### Defined in
 
-[api/enhanced.ts:53](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/enhanced.ts#L53)
+[api/enhanced.ts:53](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/enhanced.ts#L53)
 
 ___
 
@@ -593,7 +593,7 @@ Entry point into the Alchemy SDK.
 
 #### Defined in
 
-[api/alchemy.ts:15](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/alchemy.ts#L15)
+[api/alchemy.ts:15](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/alchemy.ts#L15)
 
 ___
 
@@ -615,7 +615,7 @@ Checks if a value is a hex string.
 
 #### Defined in
 
-[api/util.ts:29](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/util.ts#L29)
+[api/util.ts:29](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/util.ts#L29)
 
 ___
 
@@ -637,7 +637,7 @@ Configures the verbosity of logging. The default log level is `info`.
 
 #### Defined in
 
-[util/logger.ts:56](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/util/logger.ts#L56)
+[util/logger.ts:56](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/util/logger.ts#L56)
 
 ___
 
@@ -659,4 +659,4 @@ Converts a number to a hex string.
 
 #### Defined in
 
-[api/util.ts:19](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/api/util.ts#L19)
+[api/util.ts:19](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/util.ts#L19)

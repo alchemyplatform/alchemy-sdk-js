@@ -25,7 +25,7 @@ The NFTs owned by the provided address.
 
 #### Defined in
 
-[types/types.ts:270](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L270)
+[types/types.ts:270](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L270)
 
 ___
 
@@ -38,7 +38,7 @@ NFTs. If there is no page key, then there are no more NFTs to fetch.
 
 #### Defined in
 
-[types/types.ts:276](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L276)
+[types/types.ts:276](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L276)
 
 ___
 
@@ -50,4 +50,4 @@ The total count of NFTs owned by the provided address.
 
 #### Defined in
 
-[types/types.ts:279](https://github.com/alchemyplatform/exploring-pioneer/blob/53a912f/src/types/types.ts#L279)
+[types/types.ts:279](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L279)
