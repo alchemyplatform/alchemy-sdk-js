@@ -56,7 +56,6 @@ allows you to perform the core json-rpc calls with the Alchemy as your provider.
 Here's an example of how this could be used:
 
 ```ts
-// NFT API
 import { getNftsForOwner } from 'alchemy-evm-js';
 
 getNftsForOwner(alchemy, { owner: '0xABC' }).then(nfts => {
