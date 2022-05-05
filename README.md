@@ -58,7 +58,8 @@ Here's an example of how this could be used:
 ```ts
 import { getNftsForOwner } from 'alchemy-evm-js';
 
-getNftsForOwner(alchemy, { owner: '0xABC' }).then(nfts => {
+const owner = 'vitalik.eth';
+getNftsForOwner(alchemy, owner).then(nfts => {
   console.log(nfts);
 });
 
