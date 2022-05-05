@@ -20,4 +20,4 @@ The NFT contract address.
 
 #### Defined in
 
-[api/nft.ts:12](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/nft.ts#L12)
+[api/nft.ts:12](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/nft.ts#L12)

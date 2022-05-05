@@ -4,6 +4,7 @@
 
 ```ts
 
+import { BigNumberish } from 'ethers';
 import { providers } from 'ethers';
 import { TransactionReceipt } from '@ethersproject/abstract-provider';
 
@@ -178,7 +179,7 @@ export interface GetBaseNftsForOwnerOptions {
 export function getNftMetadata(alchemy: Alchemy, baseNft: BaseNft): Promise<Nft>;
 
 // @public
-export function getNftMetadata(alchemy: Alchemy, contractAddress: string, tokenId: number | string, tokenType?: NftTokenType): Promise<Nft>;
+export function getNftMetadata(alchemy: Alchemy, contractAddress: string, tokenId: BigNumberish, tokenType?: NftTokenType): Promise<Nft>;
 
 // @beta
 export function getNftsForCollection(alchemy: Alchemy, contractAddress: string, options?: GetBaseNftsForCollectionOptions): Promise<CollectionBaseNftsResponse>;
@@ -220,7 +221,7 @@ export interface GetNftsForOwnerOptions {
 }
 
 // @beta
-export function getOwnersForNft(alchemy: Alchemy, contractAddress: string, tokenId: number | string): Promise<GetOwnersForNftResponse>;
+export function getOwnersForNft(alchemy: Alchemy, contractAddress: string, tokenId: BigNumberish): Promise<GetOwnersForNftResponse>;
 
 // @beta
 export function getOwnersForNft(alchemy: Alchemy, nft: BaseNft): Promise<GetOwnersForNftResponse>;

@@ -29,7 +29,7 @@ on all networks. Please refer to the Alchemy documentation for more details.
 
 #### Defined in
 
-[types/types.ts:36](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L36)
+[types/types.ts:36](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L36)
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:37](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L37)
+[types/types.ts:37](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L37)
 
 ___
 
@@ -49,7 +49,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:31](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L31)
+[types/types.ts:31](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L31)
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:32](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L32)
+[types/types.ts:32](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L32)
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:29](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L29)
+[types/types.ts:29](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L29)
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:33](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L33)
+[types/types.ts:33](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L33)
 
 ___
 
@@ -89,7 +89,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:30](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L30)
+[types/types.ts:30](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L30)
 
 ___
 
@@ -99,7 +99,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:38](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L38)
+[types/types.ts:38](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L38)
 
 ___
 
@@ -109,7 +109,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:39](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L39)
+[types/types.ts:39](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L39)
 
 ___
 
@@ -119,7 +119,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:35](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L35)
+[types/types.ts:35](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L35)
 
 ___
 
@@ -129,4 +129,4 @@ ___
 
 #### Defined in
 
-[types/types.ts:34](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L34)
+[types/types.ts:34](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L34)

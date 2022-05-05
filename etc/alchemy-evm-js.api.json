@@ -1430,7 +1430,7 @@
             {
               "kind": "Property",
               "canonicalReference": "alchemy-evm-js!BaseNft#tokenId:member",
-              "docComment": "/**\n * The NFT token ID as a hex string.\n */\n",
+              "docComment": "/**\n * The NFT token ID as an integer string.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -2306,7 +2306,7 @@
         {
           "kind": "Function",
           "canonicalReference": "alchemy-evm-js!getNftMetadata:function(2)",
-          "docComment": "/**\n * Get the NFT metadata associated with the provided parameters.\n *\n * @param alchemy - The Alchemy SDK instance.\n *\n * @param contractAddress - The contract address of the NFT.\n *\n * @param tokenId - Token id of the NFT as a hex string or integer.\n *\n * @param tokenType - Optionally specify the type of token to speed up the query.\n *\n * @public\n */\n",
+          "docComment": "/**\n * Get the NFT metadata associated with the provided parameters.\n *\n * @param alchemy - The Alchemy SDK instance.\n *\n * @param contractAddress - The contract address of the NFT.\n *\n * @param tokenId - Token id of the NFT.\n *\n * @param tokenType - Optionally specify the type of token to speed up the query.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2330,8 +2330,9 @@
               "text": ", tokenId: "
             },
             {
-              "kind": "Content",
-              "text": "number | string"
+              "kind": "Reference",
+              "text": "BigNumberish",
+              "canonicalReference": "@ethersproject/bignumber!BigNumberish:type"
             },
             {
               "kind": "Content",
@@ -3315,7 +3316,7 @@
         {
           "kind": "Function",
           "canonicalReference": "alchemy-evm-js!getOwnersForNft:function(1)",
-          "docComment": "/**\n * Gets all the owners for a given NFT contract address and token ID.\n *\n * @param alchemy - The Alchemy SDK instance.\n *\n * @param contractAddress - The NFT contract address.\n *\n * @param tokenId - Token id of the NFT as a hex string or integer.\n *\n * @beta\n */\n",
+          "docComment": "/**\n * Gets all the owners for a given NFT contract address and token ID.\n *\n * @param alchemy - The Alchemy SDK instance.\n *\n * @param contractAddress - The NFT contract address.\n *\n * @param tokenId - Token id of the NFT.\n *\n * @beta\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3339,8 +3340,9 @@
               "text": ", tokenId: "
             },
             {
-              "kind": "Content",
-              "text": "number | string"
+              "kind": "Reference",
+              "text": "BigNumberish",
+              "canonicalReference": "@ethersproject/bignumber!BigNumberish:type"
             },
             {
               "kind": "Content",
