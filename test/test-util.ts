@@ -13,6 +13,7 @@ import {
   OwnedNft,
   TokenUri
 } from '../src';
+import { BigNumber } from 'ethers';
 
 export function createRawOwnedBaseNft(
   address: string,
@@ -53,7 +54,7 @@ export function createRawBaseNft(
 ): RawBaseNft {
   return {
     id: {
-      tokenId,
+      tokenId: BigNumber.from(tokenId).toString(),
       tokenMetadata: { tokenType }
     }
   };
