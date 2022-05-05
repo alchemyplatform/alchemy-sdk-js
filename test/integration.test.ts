@@ -76,14 +76,14 @@ describe('E2E integration tests', () => {
     console.log('res', response, tokenIdHex, tokenId);
   });
 
-  it('getOwnersForToken', async () => {
+  it('getOwnersForNft', async () => {
     const tokenId =
       '0x00000000000000000000000000000000000000000000000000000000008b57f0';
     const response = await getOwnersForNft(alchemy, contractAddress, tokenId);
     console.log('res', response);
   });
 
-  it('getOwnersForToken from NFT', async () => {
+  it('getOwnersForNft from NFT', async () => {
     const nfts = await getNftsForOwner(alchemy, ownerAddress, {
       excludeFilters: [NftExcludeFilters.SPAM],
       omitMetadata: true

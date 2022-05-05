@@ -26,7 +26,7 @@ export class BaseNft {
    */
   protected constructor(
     address: string,
-    /** The NFT token ID as a hex string. */
+    /** The NFT token ID as an integer string. */
     readonly tokenId: string,
     /** The type of ERC token, if known. */
     readonly tokenType: NftTokenType
@@ -40,7 +40,7 @@ export class BaseNft {
       contractAddress,
       // We have to normalize the token id here since the backend sometimes
       // returns the token ID as a hex string and sometimes as an integer.
-      normalizeTokenIdToHex(ownedNft.id.tokenId),
+      BigNumber.from(ownedNft.id.tokenId).toString(),
       ownedNft.id.tokenMetadata?.tokenType ?? NftTokenType.UNKNOWN
     );
   }
@@ -109,8 +109,8 @@ export class Nft extends BaseNft {
     return new Nft(
       contractAddress,
       // We have to normalize the token id here since the backend sometimes
-      // returns the token ID as a hex string and sometimes as an integer.
-      normalizeTokenIdToHex(ownedNft.id.tokenId),
+      // returns the token ID as a hex string and sometimes as an integer string.
+      BigNumber.from(ownedNft.id.tokenId).toString(),
       ownedNft.id.tokenMetadata?.tokenType ?? NftTokenType.UNKNOWN,
       ownedNft.title,
       ownedNft.description,
@@ -147,14 +147,4 @@ export class Nft extends BaseNft {
     }
     return arr.filter(uri => this.parseTokenUri(uri) !== undefined);
   }
-}
-
-/**
- * Helper method that returns the token ID input as hex string.
- *
- * @param tokenId The token ID as an integer or hex string.
- * @internal
- */
-export function normalizeTokenIdToHex(tokenId: string | number): string {
-  return BigNumber.from(tokenId).toHexString();
 }

@@ -15,7 +15,7 @@ import {
 } from '../types/types';
 import { Alchemy } from './alchemy';
 import { paginateEndpoint, requestHttpWithBackoff } from '../internal/dispatch';
-import { BaseNft, Nft, normalizeTokenIdToHex } from './nft';
+import { BaseNft, Nft } from './nft';
 import {
   RawBaseNft,
   RawCollectionBaseNft,
@@ -30,6 +30,7 @@ import {
 } from '../internal/raw-interfaces';
 import { toHex } from './util';
 import { getTransactionReceipts } from './enhanced';
+import { BigNumber, BigNumberish } from 'ethers';
 
 const ETH_NULL_VALUE = '0x';
 
@@ -50,20 +51,20 @@ export function getNftMetadata(
  *
  * @param alchemy - The Alchemy SDK instance.
  * @param contractAddress - The contract address of the NFT.
- * @param tokenId - Token id of the NFT as a hex string or integer.
+ * @param tokenId - Token id of the NFT.
  * @param tokenType - Optionally specify the type of token to speed up the query.
  * @public
  */
 export function getNftMetadata(
   alchemy: Alchemy,
   contractAddress: string,
-  tokenId: number | string,
+  tokenId: BigNumberish,
   tokenType?: NftTokenType
 ): Promise<Nft>;
 export async function getNftMetadata(
   alchemy: Alchemy,
   contractAddressOrBaseNft: string | BaseNft,
-  tokenId?: string | number,
+  tokenId?: BigNumberish,
   tokenType?: NftTokenType
 ): Promise<Nft> {
   let response;
@@ -75,7 +76,7 @@ export async function getNftMetadata(
       'getNFTMetadata',
       {
         contractAddress: contractAddressOrBaseNft,
-        tokenId: normalizeTokenIdToHex(tokenId!),
+        tokenId: BigNumber.from(tokenId!).toString(),
         tokenType: tokenType !== NftTokenType.UNKNOWN ? tokenType : undefined
       }
     );
@@ -86,7 +87,7 @@ export async function getNftMetadata(
       'getNFTMetadata',
       {
         contractAddress: contractAddressOrBaseNft.contract.address,
-        tokenId: normalizeTokenIdToHex(contractAddressOrBaseNft.tokenId),
+        tokenId: BigNumber.from(contractAddressOrBaseNft.tokenId).toString(),
         tokenType:
           contractAddressOrBaseNft.tokenType !== NftTokenType.UNKNOWN
             ? contractAddressOrBaseNft.tokenType
@@ -281,13 +282,13 @@ export async function getNftsForCollection(
  *
  * @param alchemy - The Alchemy SDK instance.
  * @param contractAddress - The NFT contract address.
- * @param tokenId - Token id of the NFT as a hex string or integer.
+ * @param tokenId - Token id of the NFT.
  * @beta
  */
 export function getOwnersForNft(
   alchemy: Alchemy,
   contractAddress: string,
-  tokenId: number | string
+  tokenId: BigNumberish
 ): Promise<GetOwnersForNftResponse>;
 
 /**
@@ -304,17 +305,17 @@ export function getOwnersForNft(
 export function getOwnersForNft(
   alchemy: Alchemy,
   contractAddressOrNft: string | BaseNft,
-  tokenId?: number | string
+  tokenId?: BigNumberish
 ): Promise<GetOwnersForNftResponse> {
   if (typeof contractAddressOrNft === 'string') {
     return requestHttpWithBackoff(alchemy, 'getOwnersForToken', {
       contractAddress: contractAddressOrNft,
-      tokenId: normalizeTokenIdToHex(tokenId!)
+      tokenId: BigNumber.from(tokenId!).toString()
     });
   } else {
     return requestHttpWithBackoff(alchemy, 'getOwnersForToken', {
       contractAddress: contractAddressOrNft.contract.address,
-      tokenId: normalizeTokenIdToHex(contractAddressOrNft.tokenId)
+      tokenId: BigNumber.from(contractAddressOrNft.tokenId).toString()
     });
   }
 }

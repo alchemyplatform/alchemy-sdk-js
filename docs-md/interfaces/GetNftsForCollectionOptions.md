@@ -25,7 +25,7 @@ Optional boolean flag to omit NFT metadata. Defaults to `false`.
 
 #### Defined in
 
-[types/types.ts:362](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L362)
+[types/types.ts:362](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L362)
 
 ___
 
@@ -38,4 +38,4 @@ Optional page key from an existing [CollectionBaseNftsResponse](CollectionBaseNf
 
 #### Defined in
 
-[types/types.ts:359](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/types/types.ts#L359)
+[types/types.ts:359](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L359)

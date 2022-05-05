@@ -43,7 +43,7 @@ be created from a backend response via the `fromResponse` method.
 
 #### Defined in
 
-[api/nft.ts:27](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/nft.ts#L27)
+[api/nft.ts:27](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/nft.ts#L27)
 
 ## Properties
 
@@ -53,7 +53,7 @@ be created from a backend response via the `fromResponse` method.
 
 #### Defined in
 
-[api/nft.ts:21](https://github.com/alchemyplatform/alchemy-evm-js/blob/9408ee9/src/api/nft.ts#L21)
+[api/nft.ts:21](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/nft.ts#L21)
 
 ___
 

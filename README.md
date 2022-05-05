@@ -134,7 +134,7 @@ differences with the Alchemy REST endpoints:
 - SDK standardizes to `omitMetadata` parameter (vs. `withMetadata`).
 - Standardization to `pageKey` parameter for pagination (vs. `nextToken`/`startToken`)
 - Empty `TokenUri` fields are omitted.
-- Token ID is always normalized to a hex string on `BaseNft` and `Nft.
+- Token ID is always normalized to an integer string on `BaseNft` and `Nft.
 - Some fields omitted in the REST response are included in the SDK response in order to return an `Nft` object.
 - Some fields in the SDK's `Nft` object are named differently than the REST response.
 
