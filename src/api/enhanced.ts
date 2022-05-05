@@ -17,6 +17,11 @@ export function getTokenBalances(
   address: string,
   contractAddresses?: string[]
 ): Promise<TokenBalancesResponse> {
+  if (contractAddresses && contractAddresses.length > 1500) {
+    throw new Error(
+      'You cannot pass in more than 1500 contract addresses to getTokenBalances()'
+    );
+  }
   return alchemy
     .getProvider()
     .send('alchemy_getTokenBalances', [
