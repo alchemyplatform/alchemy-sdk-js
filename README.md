@@ -30,8 +30,21 @@ const settings = {
 const alchemy = initializeAlchemy(settings);
 ```
 
-The SDK's modular approach exports all functions at the top-level to reduce bundle size. However,
-this can make it harder to discover the full API surface. If you want your IDE to find all functions, you can import
+The SDK's modular approach exports all functions at the top-level to reduce bundle size (only the functions you import and use will be included). This means you access each method like: 
+
+```ts
+// Initializing the alchemy config object
+import { initializeAlchemy } from 'alchemy-evm-js';
+
+const alchemy = initializeAlchemy(); // using default settings - pass in a settings object to specify your API key and network
+
+// Get all NFTs for a given owner
+import { getNFTs } from 'alchemy-evm-js';
+
+getNfts(alchemy, { onwer: '0xABC' });
+```
+
+However, this can make it harder to discover the full API surface. If you want your IDE to find all functions, you can import
 the entire SDK:
 
 ```ts
@@ -45,38 +58,21 @@ alchemySdk.getNftsForOwner(alchemy, { owner: '0x123' });
 
 The `Alchemy` object returned by `initializeAlchemy()` is an object that holds configuration settings. An optional
 config object can be passed in when initializing to set a custom API key, change the network, or specify the max number
-of retries. The object can be passed into other top-level functions like `getNftsForOwner()` or `getAssetTransfers()`.
-The
-current supported functions are the NFT API endpoints and Alchemy Enhanced APIs.
+of retries. The object can then be passed into other top-level functions like `getNftsForOwner()` or `getAssetTransfers()`.
+The current supported functions using this pattern are the NFT API endpoints and Alchemy Enhanced APIs.
 
-The `Alchemy.getProvider()` function uses the
+## Ethers.js for for JSON-RPC Calls
+
+The `Alchemy.getProvider()` function configures the
 Ethers.js [AlchemyProvider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) and returns it. This
-allows you to perform the core json-rpc calls with the Alchemy as your provider.
-
-Here's an example of how this could be used:
+allows you to perform  core json-rpc calls with an Alchemy provider, just as you normally would with Ethers,js. So if you are already using ethers, you can simply use the provider from `alchemy-evm-js`:
 
 ```ts
-import { getNftsForOwner } from 'alchemy-evm-js';
-
-const owner = 'vitalik.eth';
-getNftsForOwner(alchemy, owner).then(nfts => {
-  console.log(nfts);
-});
-
-// Enhanced API
-import { getAssetTransfers } from 'alchemy-evm-js';
-
-getAssetTransfers(alchemy, {
-  fromAddress: '0xABC...',
-  toAddress: '0xDEF...'
-}).then(transfers => {
-  console.log(transfers);
-});
+const alchemy = alchemySdk.initializeAlchemy();
 
 // ETH JSON-RPC calls through ethers.js Provider
 const ethersAlchemyProvider = alchemy.getProvider();
-ethersAlchemyProvider.getBalance('0xABC...', 'latest')
-        .then(console.log);
+ethersAlchemyProvider.getBalance('0xABC...', 'latest').then(console.log);
 ```
 
 ## NFT Module
@@ -154,3 +150,56 @@ There's a long list, but here are the main ones:
 - More config options for the base ethers.js AlchemyProvider.
 - Most of these changes require extending the base ethers.js SDK with custom implementations.
 - Separating SDK into separate packages.
+
+## Examples
+
+Below are a few usage examples:
+
+Getting the NFTs owned by an address
+```ts
+// Get how many NFTs an address owns
+import { getNfts, getNftsIterator } from 'alchemy-evm-js';
+
+getNfts(alchemy, {
+    owner: '0xshah.eth'
+}).then(nfts => {
+    console.log(nfts.totalCount);
+});
+
+//Get all the image urls for all the NFTs an address owns
+for await (const nft of getNftsIterator(alchemy, {
+    owner: '0xshah.eth'
+})) {
+    console.log(nft.media);
+}
+```
+
+Getting the transfer history of an NFT
+```ts
+import { getAssetTransfersIterator } from 'alchemy-evm-js';
+
+const transfer_history = [];
+for await (const txn of getAssetTransfersIterator(alchemy, {
+  fromAddress: '0x0',
+  contractAddress: '0xABC',
+  category: 'token'
+})) {
+  transfer_history.pust(txn); 
+}
+console.log(transfer_history);
+```
+
+Get all the NFTs someone has ever received
+```ts
+import { getAssetTransfers, AssetTransfersCategory } from 'alchemy-evm-js';
+
+getAssetTransfers(alchemy, {
+    fromBlock: '0x0',
+    toAddress: '0x994b342Dd87fc825F66E51FfA3EF71aD818B6893',
+    category: [AssetTransfersCategory.TOKEN]
+}).then(resp => {
+    for (const transfer of resp.transfers) {
+        console.log(transfer);
+    }
+});
+```
