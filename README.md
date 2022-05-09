@@ -65,7 +65,7 @@ The current supported functions using this pattern are the NFT API endpoints and
 
 The `Alchemy.getProvider()` function configures the
 Ethers.js [AlchemyProvider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) and returns it. This
-allows you to perform  core json-rpc calls with an Alchemy provider, just as you normally would with Ethers,js. So if you are already using ethers, you can simply use the provider from `alchemy-evm-js`:
+allows you to perform  core json-rpc calls with an Alchemy provider, just as you normally would with Ethers. So if you are already using Ethers, you can simply use the provider from `alchemy-evm-js` and the rest of your code should just work:
 
 ```ts
 const alchemy = alchemySdk.initializeAlchemy();
