@@ -1,4 +1,4 @@
-# Alchemy EVM JS SDK
+# Alchemy JS SDK
 
 This is a prototype for Alchemy's JS SDK for EVM-based chains.
 
@@ -8,17 +8,17 @@ library. From there, we'll add additional features and higher level abstractions
 
 ## Getting started
 
-The SDK is currently packaged in the repository as a tarball file. To install, copy the `alchemy-evm-js-1.0.0.tgz`
+The SDK is currently packaged in the repository as a tarball file. To install, copy the `alchemy-sdk-1.0.0.tgz`
 file in this repo into your project's root directory and run:
 
 ```
-npm install alchemy-evm-js-1.0.0.tgz
+npm install alchemy-sdk-1.0.0.tgz
 ```
 
 After installing the app, you can then import and use the SDK:
 
 ```ts
-import { AlchemyConfig, Network, initializeAlchemy } from 'alchemy-evm-js';
+import { AlchemyConfig, Network, initializeAlchemy } from 'alchemy-sdk';
 
 // Optional Config object, but defaults to demo api-key and eth-mainnet.
 const settings = {
@@ -34,12 +34,12 @@ The SDK's modular approach exports all functions at the top-level to reduce bund
 
 ```ts
 // Initializing the alchemy config object
-import { initializeAlchemy } from 'alchemy-evm-js';
+import { initializeAlchemy } from 'alchemy-sdk';
 
 const alchemy = initializeAlchemy(); // using default settings - pass in a settings object to specify your API key and network
 
 // Get all NFTs for a given owner
-import { getNftsForOwner } from 'alchemy-evm-js';
+import { getNftsForOwner } from 'alchemy-sdk';
 
 getNftsForOwner(alchemy, '0xABC');
 ```
@@ -48,7 +48,7 @@ However, this can make it harder to discover the full API surface. If you want y
 the entire SDK:
 
 ```ts
-import * as alchemySdk from 'alchemy-evm-js';
+import * as alchemySdk from 'alchemy-sdk';
 
 const alchemy = alchemySdk.initializeAlchemy();
 alchemySdk.getNftsForOwner(alchemy, { owner: '0x123' });
@@ -65,7 +65,7 @@ The current supported functions using this pattern are the NFT API endpoints and
 
 The `Alchemy.getProvider()` function configures the
 Ethers.js [AlchemyProvider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) and returns it. This
-allows you to perform  core json-rpc calls with an Alchemy provider, just as you normally would with Ethers. So if you are already using Ethers, you can simply use the provider from `alchemy-evm-js` and the rest of your code should just work:
+allows you to perform  core json-rpc calls with an Alchemy provider, just as you normally would with Ethers. So if you are already using Ethers, you can simply use the provider from `alchemy-sdk` and the rest of your code should just work:
 
 ```ts
 const alchemy = alchemySdk.initializeAlchemy();
@@ -139,7 +139,7 @@ differences with the Alchemy REST endpoints:
 
 The SDK is documented via `tsdoc` comments in the source code. The generated types and documentation are included when
 using an IDE. To browse the documentation separately, you can view the generated API interfaces
-in `etc/alchemy-evm-js.api.md`. You can view generated Markdown files for each endpoint in the `docs-md` directory,
+in `etc/alchemy-sdk.api.md`. You can view generated Markdown files for each endpoint in the `docs-md` directory,
 or as a webpage by opening `docs/index.html` in your browser.
 
 ## Future Work
@@ -160,7 +160,7 @@ Getting the NFTs owned by an address.
 
 ```ts
 // Get how many NFTs an address owns.
-import { getNftsForOwner, getNftsForOwnerIterator } from 'alchemy-evm-js';
+import { getNftsForOwner, getNftsForOwnerIterator } from 'alchemy-sdk';
 import { NftExcludeFilters } from "./types";
 
 getNftsForOwner(alchemy, '0xshah.eth').then(nfts => {
