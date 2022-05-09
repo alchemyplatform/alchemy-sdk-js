@@ -49,7 +49,7 @@ export function createOwnedBaseNft(
 }
 
 export function createRawBaseNft(
-  tokenId: string,
+  tokenId: string | number,
   tokenType = NftTokenType.UNKNOWN
 ): RawBaseNft {
   return {
@@ -62,7 +62,7 @@ export function createRawBaseNft(
 
 export function createBaseNft(
   address: string,
-  tokenId: string,
+  tokenId: string | number,
   tokenType = NftTokenType.UNKNOWN
 ): BaseNft {
   return BaseNft.fromResponse(createRawBaseNft(tokenId, tokenType), address);
@@ -87,12 +87,13 @@ export function createRawNft(
   tokenId: string,
   tokenType = NftTokenType.UNKNOWN,
   tokenUri?: TokenUri,
-  media?: TokenUri[] | undefined
+  media?: TokenUri[] | undefined,
+  timeLastUpdated?: string
 ): RawNft {
   return {
     title,
     description: `a truly unique NFT: ${title}`,
-    timeLastUpdated: '2022-02-16T17:12:00.280Z',
+    timeLastUpdated: timeLastUpdated ?? '2022-02-16T17:12:00.280Z',
     id: {
       tokenId,
       tokenMetadata: {

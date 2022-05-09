@@ -19,7 +19,8 @@ import {
   OwnedBaseNft,
   OwnedBaseNftsResponse,
   OwnedNft,
-  OwnedNftsResponse
+  OwnedNftsResponse,
+  refreshNftMetadata
 } from '../../src';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
@@ -59,10 +60,11 @@ describe('NFT module', () => {
 
   describe('getNftMetadata()', () => {
     const contractAddress = '0xABC';
+    const title = 'NFT Title';
     const tokenId = '42';
     // Special case token ID as an integer string, since that's what the NFT
     // API endpoint returns.
-    const rawNftResponse = createRawNft(contractAddress, tokenId.toString());
+    const rawNftResponse = createRawNft(title, tokenId.toString());
     const expectedNft = Nft.fromResponse(rawNftResponse, contractAddress);
 
     beforeEach(() => {
@@ -874,6 +876,107 @@ describe('NFT module', () => {
       mock.onGet().reply(500, 'Internal Server Error');
       await expect(
         checkNftOwnership(alchemy, owner, addresses)
+      ).rejects.toThrow('Internal Server Error');
+    });
+  });
+
+  describe('refreshNftMetadata()', () => {
+    const originalTimestamp = '2022-02-16T17:12:00.280Z';
+    const updatedTimestamp = '2022-02-16T17:12:10.281Z';
+    const contractAddress = '0xCA1';
+    const tokenId = '66';
+    const tokenIdHex = '0x42';
+    const rawNftResponse = createRawNft(
+      'title',
+      tokenIdHex,
+      NftTokenType.UNKNOWN,
+      undefined,
+      [],
+      originalTimestamp
+    );
+    const rawNftResponseRefreshed = createRawNft(
+      'title',
+      tokenIdHex,
+      NftTokenType.UNKNOWN,
+      undefined,
+      [],
+      updatedTimestamp
+    );
+
+    function verifyCorrectParams(): void {
+      expect(mock.history.get.length).toEqual(2);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        contractAddress
+      );
+      expect(mock.history.get[0].params).toHaveProperty('tokenId', tokenId);
+      expect(mock.history.get[0].params).not.toHaveProperty('refreshCache');
+      expect(mock.history.get[1].params).toHaveProperty(
+        'contractAddress',
+        contractAddress
+      );
+      expect(mock.history.get[1].params).toHaveProperty('tokenId', tokenId);
+      expect(mock.history.get[1].params).toHaveProperty('refreshCache', true);
+    }
+
+    function useRefreshTrue(): void {
+      mock.reset();
+      mock
+        .onGet()
+        .replyOnce(200, rawNftResponse)
+        .onGet()
+        .replyOnce(200, rawNftResponseRefreshed);
+    }
+
+    function useRefreshFalse(): void {
+      mock.reset();
+      mock
+        .onGet()
+        .replyOnce(200, rawNftResponse)
+        .onGet()
+        .replyOnce(200, rawNftResponse);
+    }
+
+    beforeEach(() => {
+      useRefreshTrue();
+    });
+
+    it('can be called with a BaseNft', async () => {
+      await refreshNftMetadata(
+        alchemy,
+        createBaseNft(contractAddress, tokenIdHex)
+      );
+      verifyCorrectParams();
+    });
+
+    it('can be called with raw parameters', async () => {
+      const res = await refreshNftMetadata(alchemy, contractAddress, tokenId);
+      expect(res).toBe(true);
+      verifyCorrectParams();
+    });
+
+    it('returns false if metadata was not refreshed', async () => {
+      useRefreshFalse();
+      const res = await refreshNftMetadata(alchemy, contractAddress, tokenId);
+      expect(res).toBe(false);
+      verifyCorrectParams();
+    });
+
+    it('normalizes tokenId as a hex string', async () => {
+      const res = await refreshNftMetadata(
+        alchemy,
+        contractAddress,
+        tokenIdHex
+      );
+      expect(res).toBe(true);
+      verifyCorrectParams();
+    });
+
+    it('surfaces errors', async () => {
+      mock.reset();
+      mock.onGet().reply(500, 'Internal Server Error');
+      await expect(
+        refreshNftMetadata(alchemy, contractAddress, tokenId)
       ).rejects.toThrow('Internal Server Error');
     });
   });
