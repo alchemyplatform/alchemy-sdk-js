@@ -11,7 +11,8 @@ export {
   getNftsForCollectionIterator,
   getOwnersForNft,
   checkNftOwnership,
-  findContractDeployer
+  findContractDeployer,
+  refreshNftMetadata
 } from './api/nft-api';
 
 export {

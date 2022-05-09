@@ -452,6 +452,78 @@ export async function findContractDeployer(
 }
 
 /**
+ * Refreshes the cached metadata for a provided NFT contract address and token
+ * id. Returns a boolean value indicating whether the metadata was refreshed.
+ *
+ * This method is useful when you want to refresh the metadata for a NFT that
+ * has been updated since the last time it was fetched. Note that the backend
+ * only allows one refresh per token every 15 minutes, globally for all users.
+ *
+ * @param alchemy - The Alchemy SDK instance.
+ * @param nft - The NFT to refresh the metadata for.
+ */
+export async function refreshNftMetadata(
+  alchemy: Alchemy,
+  nft: BaseNft
+): Promise<boolean>;
+
+/**
+ * Refreshes the cached metadata for a provided NFT contract address and token
+ * id. Returns a boolean value indicating whether the metadata was refreshed.
+ *
+ * This method is useful when you want to refresh the metadata for a NFT that
+ * has been updated since the last time it was fetched. Note that the backend
+ * only allows one refresh per token every 15 minutes, globally for all users.
+ * The last refresh time for an NFT can be accessed on the
+ * {@link Nft.timeLastUpdated} field.
+ *
+ * @param alchemy - The Alchemy SDK instance.
+ * @param contractAddress - The contract address of the NFT.
+ * @param tokenId - The token id of the NFT.
+ */
+export async function refreshNftMetadata(
+  alchemy: Alchemy,
+  contractAddress: string,
+  tokenId: BigNumberish
+): Promise<boolean>;
+
+export async function refreshNftMetadata(
+  alchemy: Alchemy,
+  contractAddressOrBaseNft: string | BaseNft,
+  tokenId?: BigNumberish
+): Promise<boolean> {
+  let contractAddress: string;
+  let tokenIdString: string;
+  if (typeof contractAddressOrBaseNft === 'string') {
+    contractAddress = contractAddressOrBaseNft;
+    tokenIdString = BigNumber.from(tokenId!).toString();
+  } else {
+    contractAddress = contractAddressOrBaseNft.contract.address;
+    tokenIdString = contractAddressOrBaseNft.tokenId;
+  }
+  const first = await getNftMetadata(alchemy, contractAddress, tokenIdString);
+  const second = await refresh(alchemy, contractAddress, tokenIdString);
+  return first.timeLastUpdated !== second.timeLastUpdated;
+}
+
+async function refresh(
+  alchemy: Alchemy,
+  contractAddress: string,
+  tokenId: BigNumberish
+): Promise<Nft> {
+  const response = await requestHttpWithBackoff<GetNftMetadataParams, RawNft>(
+    alchemy,
+    'getNFTMetadata',
+    {
+      contractAddress,
+      tokenId: BigNumber.from(tokenId!).toString(),
+      refreshCache: true
+    }
+  );
+  return Nft.fromResponse(response, contractAddress);
+}
+
+/**
  * Perform a binary search between an integer range of block numbers to find the
  * block number where the contract was deployed.
  *
@@ -555,8 +627,14 @@ interface GetNftsAlchemyParams {
   withMetadata: boolean;
 }
 
+/**
+ * Interface for the `getNftMetadata` endpoint.
+ *
+ * @internal
+ */
 interface GetNftMetadataParams {
   contractAddress: string;
   tokenId: string;
   tokenType?: NftTokenType;
+  refreshCache?: boolean;
 }

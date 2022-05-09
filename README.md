@@ -75,8 +75,7 @@ getAssetTransfers(alchemy, {
 
 // ETH JSON-RPC calls through ethers.js Provider
 const ethersAlchemyProvider = alchemy.getProvider();
-ethersAlchemyProvider.getBalance('0xABC...', 'latest')
-        .then(console.log);
+ethersAlchemyProvider.getBalance('0xABC...', 'latest').then(console.log);
 ```
 
 ## NFT Module
@@ -91,6 +90,7 @@ The SDK currently supports the following NFT endpoints:
 - `getOwnersForNft()`: Get all the owners for a given NFT contract address and token ID.
 - `checkNftOwnership()`: Checks that the provided owner address owns one or more of the provided NFT contract addresses.
 - `findContractDeployer()`: Finds the contract deployer and block number for a given NFT contract address.
+- `refreshNftMetadata()`: Refreshes the cached NFT metadata for a contract address and tokenId.
 
 ### Comparing `BaseNft` and `Nft`
 

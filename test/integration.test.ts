@@ -9,7 +9,8 @@ import {
   getOwnersForNft,
   initializeAlchemy,
   NftExcludeFilters,
-  NftTokenType
+  NftTokenType,
+  refreshNftMetadata
 } from '../src';
 
 /** Temporary test */
@@ -56,8 +57,6 @@ describe('E2E integration tests', () => {
   it('getNftMetadata', async () => {
     console.log(await alchemy.getProvider().getBlockNumber());
     const contractAddress = '0x0510745d2ca36729bed35c818527c4485912d99e';
-    const tokenIdHex =
-      '0x0000000000000000000000000000000000000000000000000000000000000193';
     const tokenId = 403;
     const response = await getNftMetadata(
       alchemy,
@@ -66,14 +65,7 @@ describe('E2E integration tests', () => {
       NftTokenType.UNKNOWN
     );
 
-    // const response4 = await getNftMetadata(
-    //   alchemy,
-    //   contractAddress,
-    //   tokenId,
-    //   NftTokenType.UNKNOWN
-    // );
-
-    console.log('res', response, tokenIdHex, tokenId);
+    console.log('res', response);
   });
 
   it('getOwnersForNft', async () => {
@@ -93,9 +85,17 @@ describe('E2E integration tests', () => {
     console.log('owner', owners);
   });
 
-  it('getNFTs()', async () => {
+  it('getNftsForOwner()', async () => {
     const nfts = await getNftsForOwner(alchemy, 'vitalik.eth');
     console.log('owner', nfts);
+  });
+
+  it('getNftsForOwner() spam check', async () => {
+    const withSpam = await getNftsForOwner(alchemy, 'vitalik.eth');
+    const noSpam = await getNftsForOwner(alchemy, 'vitalik.eth', {
+      excludeFilters: [NftExcludeFilters.SPAM]
+    });
+    expect(withSpam.totalCount).not.toEqual(noSpam.totalCount);
   });
 
   it('getNftsForCollection with pageKey', async () => {
@@ -163,5 +163,14 @@ describe('E2E integration tests', () => {
       totalCount += 1;
     }
     console.log('done', allNfts.length, allNfts[100], totalCount);
+  });
+
+  it('refreshNftMetadata()', async () => {
+    const contractAddress = '0x0510745d2ca36729bed35c818527c4485912d99e';
+    const tokenId = '404';
+    await refreshNftMetadata(alchemy, contractAddress, tokenId);
+
+    const nft = await getNftMetadata(alchemy, contractAddress, tokenId);
+    await refreshNftMetadata(alchemy, nft);
   });
 });
