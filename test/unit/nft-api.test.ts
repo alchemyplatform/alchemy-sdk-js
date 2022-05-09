@@ -267,9 +267,15 @@ describe('NFT module', () => {
         })
       ).rejects.toThrow('Internal Server Error');
     });
+
+    it('uses the correct overload with no options', async () => {
+      mock.onGet().reply(200, nftResponse);
+      const response = await getNftsForOwner(alchemy, ownerAddress);
+      response.ownedNfts.forEach(nft => expect(nft.media).toBeDefined());
+    });
   });
 
-  describe('getNftsIterator()', () => {
+  describe('getNftsForOwnerIterator()', () => {
     const ownerAddress = '0xABC';
     const contractAddresses = ['0xCA1', '0xCA2'];
     const excludeFilters = [NftExcludeFilters.SPAM];
@@ -477,6 +483,16 @@ describe('NFT module', () => {
         }
       }
     );
+
+    it('uses the correct overload with no options', async () => {
+      setupMock(nftResponses);
+      for await (const ownedNft of getNftsForOwnerIterator(
+        alchemy,
+        ownerAddress
+      )) {
+        expect(ownedNft.media).toBeDefined();
+      }
+    });
   });
 
   describe('getNftsForCollection()', () => {
@@ -578,6 +594,12 @@ describe('NFT module', () => {
           omitMetadata
         })
       ).rejects.toThrow('Internal Server Error');
+    });
+
+    it('uses the correct overload with no options', async () => {
+      mock.onGet().reply(200, nftResponse);
+      const response = await getNftsForCollection(alchemy, contractAddress);
+      response.nfts.forEach(nft => expect(nft.media).toBeDefined());
     });
   });
 
@@ -766,6 +788,16 @@ describe('NFT module', () => {
         }
       }
     );
+
+    it('uses the correct overload with no options', async () => {
+      setupMock(nftResponses);
+      for await (const nft of getNftsForCollectionIterator(
+        alchemy,
+        contractAddress
+      )) {
+        expect(nft.media).toBeDefined();
+      }
+    });
   });
 
   describe('getOwnersForNft()', () => {

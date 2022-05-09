@@ -7,6 +7,7 @@ import {
   getNftsForOwner,
   getNftsForOwnerIterator,
   getOwnersForNft,
+  getTokenBalances,
   initializeAlchemy,
   NftExcludeFilters,
   NftTokenType,
@@ -172,5 +173,48 @@ describe('E2E integration tests', () => {
 
     const nft = await getNftMetadata(alchemy, contractAddress, tokenId);
     await refreshNftMetadata(alchemy, nft);
+  });
+
+  describe('README examples', () => {
+    it('Example 1: Getting the Nfts owned by an address', async () => {
+      void getNftsForOwner(alchemy, '0xshah.eth').then(nfts => {
+        console.log(nfts.totalCount);
+      });
+
+      // Get all the image urls for all the NFTs an address owns.
+      for await (const nft of getNftsForOwnerIterator(alchemy, '0xshah.eth')) {
+        console.log(nft.media);
+        console.log('done', nft);
+      }
+
+      // Filter out spam NFTs.
+      for await (const nft of getNftsForOwnerIterator(alchemy, '0xshah.eth', {
+        excludeFilters: [NftExcludeFilters.SPAM]
+      })) {
+        console.log(nft.media);
+      }
+    });
+
+    it('Example 2: BAYC NFTs', async () => {
+      // Bored Ape Yacht Club contract address.
+      const baycAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D';
+
+      for await (const nft of getNftsForCollectionIterator(
+        alchemy,
+        baycAddress,
+        {
+          // Omit the NFT metadata for smaller payloads.
+          omitMetadata: true
+        }
+      )) {
+        await getOwnersForNft(alchemy, nft).then(response =>
+          console.log('owners:', response.owners, 'tokenId:', nft.tokenId)
+        );
+      }
+    });
+
+    it('Example 3: Token balances', async () => {
+      await getTokenBalances(alchemy, ownerAddress).then(console.log);
+    });
   });
 });
