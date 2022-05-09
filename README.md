@@ -156,7 +156,7 @@ There's a long list, but here are the main ones:
 
 Below are a few usage examples:
 
-Getting the NFTs owned by an address
+Getting the NFTs owned by an address.
 
 ```ts
 // Get how many NFTs an address owns.
