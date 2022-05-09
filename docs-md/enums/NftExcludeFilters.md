@@ -23,4 +23,4 @@ Exclude NFTs that have been classified as spam.
 
 #### Defined in
 
-[types/types.ts:235](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L235)
+[types/types.ts:235](https://github.com/alchemyplatform/alchemy-sdk-js/blob/31c6d92/src/types/types.ts#L235)

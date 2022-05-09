@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[types/types.ts:53](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L53)
+[types/types.ts:53](https://github.com/alchemyplatform/alchemy-sdk-js/blob/31c6d92/src/types/types.ts#L53)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:55](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L55)
+[types/types.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/31c6d92/src/types/types.ts#L55)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[types/types.ts:54](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L54)
+[types/types.ts:54](https://github.com/alchemyplatform/alchemy-sdk-js/blob/31c6d92/src/types/types.ts#L54)
