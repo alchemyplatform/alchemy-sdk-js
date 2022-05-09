@@ -30,7 +30,7 @@ const settings = {
 const alchemy = initializeAlchemy(settings);
 ```
 
-The SDK's modular approach exports all functions at the top-level to reduce bundle size (only the functions you import and use will be included). This means you access each method like: 
+The SDK's modular approach exports all functions at the top-level to reduce bundle size (only the functions you import and use will be included). This means you access each method like:
 
 ```ts
 // Initializing the alchemy config object
@@ -65,7 +65,7 @@ The current supported functions using this pattern are the NFT API endpoints and
 
 The `Alchemy.getProvider()` function configures the
 Ethers.js [AlchemyProvider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) and returns it. This
-allows you to perform  core json-rpc calls with an Alchemy provider, just as you normally would with Ethers. So if you are already using Ethers, you can simply use the provider from `alchemy-sdk` and the rest of your code should just work:
+allows you to perform core json-rpc calls with an Alchemy provider, just as you normally would with Ethers. So if you are already using Ethers, you can simply use the provider from `alchemy-sdk` and the rest of your code should just work:
 
 ```ts
 const alchemy = alchemySdk.initializeAlchemy();
@@ -161,7 +161,7 @@ Getting the NFTs owned by an address.
 ```ts
 // Get how many NFTs an address owns.
 import { getNftsForOwner, getNftsForOwnerIterator } from 'alchemy-sdk';
-import { NftExcludeFilters } from "./types";
+import { NftExcludeFilters } from './types';
 
 getNftsForOwner(alchemy, '0xshah.eth').then(nfts => {
   console.log(nfts.totalCount);
@@ -189,7 +189,7 @@ for await (const nft of getNftsForCollectionIterator(alchemy, baycAddress, {
   omitMetadata: true
 })) {
   await getOwnersForNft(alchemy, nft).then(response =>
-          console.log('owners:', response.owners, 'tokenId:', nft.tokenId)
+    console.log('owners:', response.owners, 'tokenId:', nft.tokenId)
   );
 }
 ```
@@ -197,8 +197,7 @@ for await (const nft of getNftsForCollectionIterator(alchemy, baycAddress, {
 Get all outbound transfers for a provided address.
 
 ```ts
-import { getTokenBalances } from "./enhanced";
+import { getTokenBalances } from './enhanced';
 
 getTokenBalances(alchemy, '0xABC...').then(console.log);
 ```
-
