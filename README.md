@@ -39,9 +39,9 @@ import { initializeAlchemy } from 'alchemy-evm-js';
 const alchemy = initializeAlchemy(); // using default settings - pass in a settings object to specify your API key and network
 
 // Get all NFTs for a given owner
-import { getNFTs } from 'alchemy-evm-js';
+import { getNftsForOwner } from 'alchemy-evm-js';
 
-getNfts(alchemy, { onwer: '0xABC' });
+getNftsForOwner(alchemy, '0xABC');
 ```
 
 However, this can make it harder to discover the full API surface. If you want your IDE to find all functions, you can import
@@ -157,50 +157,48 @@ There's a long list, but here are the main ones:
 Below are a few usage examples:
 
 Getting the NFTs owned by an address
-```ts
-// Get how many NFTs an address owns
-import { getNfts, getNftsIterator } from 'alchemy-evm-js';
 
-getNfts(alchemy, {
-    owner: '0xshah.eth'
-}).then(nfts => {
-    console.log(nfts.totalCount);
+```ts
+// Get how many NFTs an address owns.
+import { getNftsForOwner, getNftsForOwnerIterator } from 'alchemy-evm-js';
+import { NftExcludeFilters } from "./types";
+
+getNftsForOwner(alchemy, '0xshah.eth').then(nfts => {
+  console.log(nfts.totalCount);
 });
 
-//Get all the image urls for all the NFTs an address owns
-for await (const nft of getNftsIterator(alchemy, {
-    owner: '0xshah.eth'
+// Get all the image urls for all the NFTs an address owns.
+for await (const nft of getNftsForOwnerIterator(alchemy, '0xshah.eth')) {
+  console.log(nft.media);
+}
+
+// Filter out spam NFTs.
+getNftsForOwner(alchemy, '0xshah.eth', {
+  excludeFilters: [NftExcludeFilters.SPAM]
+}).then(console.log);
+```
+
+Getting all the owners of the BAYC NFT.
+
+```ts
+// Bored Ape Yacht Club contract address.
+const baycAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D';
+
+for await (const nft of getNftsForCollectionIterator(alchemy, baycAddress, {
+  // Omit the NFT metadata for smaller payloads.
+  omitMetadata: true
 })) {
-    console.log(nft.media);
+  await getOwnersForNft(alchemy, nft).then(response =>
+          console.log('owners:', response.owners, 'tokenId:', nft.tokenId)
+  );
 }
 ```
 
-Getting the transfer history of an NFT
-```ts
-import { getAssetTransfersIterator } from 'alchemy-evm-js';
+Get all outbound transfers for a provided address.
 
-const transfer_history = [];
-for await (const txn of getAssetTransfersIterator(alchemy, {
-  fromAddress: '0x0',
-  contractAddress: '0xABC',
-  category: 'token'
-})) {
-  transfer_history.pust(txn); 
-}
-console.log(transfer_history);
+```ts
+import { getTokenBalances } from "./enhanced";
+
+getTokenBalances(alchemy, '0xABC...').then(console.log);
 ```
 
-Get all the NFTs someone has ever received
-```ts
-import { getAssetTransfers, AssetTransfersCategory } from 'alchemy-evm-js';
-
-getAssetTransfers(alchemy, {
-    fromBlock: '0x0',
-    toAddress: '0x994b342Dd87fc825F66E51FfA3EF71aD818B6893',
-    category: [AssetTransfersCategory.TOKEN]
-}).then(resp => {
-    for (const transfer of resp.transfers) {
-        console.log(transfer);
-    }
-});
-```
