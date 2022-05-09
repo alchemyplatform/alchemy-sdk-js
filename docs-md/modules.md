@@ -1,6 +1,6 @@
-[alchemy-evm-js](README.md) / Exports
+[alchemy-sdk](README.md) / Exports
 
-# alchemy-evm-js
+# alchemy-sdk
 
 ## Table of contents
 
@@ -72,6 +72,7 @@
 - [getTransactionReceipts](modules.md#gettransactionreceipts)
 - [initializeAlchemy](modules.md#initializealchemy)
 - [isHex](modules.md#ishex)
+- [refreshNftMetadata](modules.md#refreshnftmetadata)
 - [setLogLevel](modules.md#setloglevel)
 - [toHex](modules.md#tohex)
 
@@ -85,7 +86,7 @@ The level of verbosity for the logger.
 
 #### Defined in
 
-[util/logger.ts:22](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/util/logger.ts#L22)
+[util/logger.ts:22](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/util/logger.ts#L22)
 
 ___
 
@@ -95,7 +96,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:49](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L49)
+[types/types.ts:49](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L49)
 
 ___
 
@@ -105,7 +106,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:323](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L323)
+[types/types.ts:323](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L323)
 
 ## Functions
 
@@ -131,7 +132,7 @@ Checks that the provided owner address owns one of more of the provided NFTs.
 
 #### Defined in
 
-[api/nft-api.ts:392](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/nft-api.ts#L392)
+[api/nft-api.ts:396](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/nft-api.ts#L396)
 
 ___
 
@@ -162,7 +163,7 @@ this information cached.
 
 #### Defined in
 
-[api/nft-api.ts:420](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/nft-api.ts#L420)
+[api/nft-api.ts:424](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/nft-api.ts#L424)
 
 ___
 
@@ -184,7 +185,7 @@ Converts a hex string to a decimal number.
 
 #### Defined in
 
-[api/util.ts:9](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/util.ts#L9)
+[api/util.ts:9](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/util.ts#L9)
 
 ___
 
@@ -205,7 +206,7 @@ ___
 
 #### Defined in
 
-[api/enhanced.ts:37](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/enhanced.ts#L37)
+[api/enhanced.ts:42](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/enhanced.ts#L42)
 
 ___
 
@@ -228,7 +229,7 @@ Get the NFT metadata associated with the provided Base NFT.
 
 #### Defined in
 
-[api/nft-api.ts:44](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/nft-api.ts#L44)
+[api/nft-api.ts:44](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/nft-api.ts#L44)
 
 ▸ **getNftMetadata**(`alchemy`, `contractAddress`, `tokenId`, `tokenType?`): `Promise`<[`Nft`](classes/Nft.md)\>
 
@@ -249,36 +250,11 @@ Get the NFT metadata associated with the provided parameters.
 
 #### Defined in
 
-[api/nft-api.ts:58](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/nft-api.ts#L58)
+[api/nft-api.ts:58](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/nft-api.ts#L58)
 
 ___
 
 ### getNftsForCollection
-
-▸ **getNftsForCollection**(`alchemy`, `contractAddress`, `options?`): `Promise`<[`CollectionBaseNftsResponse`](interfaces/CollectionBaseNftsResponse.md)\>
-
-Get all base NFTs for a given contract address.
-
-This method returns the base NFTs that omit the associated metadata. To get
-all NFTs with their associated metadata, use [GetNftsForCollectionOptions](interfaces/GetNftsForCollectionOptions.md).
-
-**`beta`**
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
-| `contractAddress` | `string` | The contract address of the collection. |
-| `options?` | [`GetBaseNftsForCollectionOptions`](interfaces/GetBaseNftsForCollectionOptions.md) | The optional parameters to use for the request. |
-
-#### Returns
-
-`Promise`<[`CollectionBaseNftsResponse`](interfaces/CollectionBaseNftsResponse.md)\>
-
-#### Defined in
-
-[api/nft-api.ts:234](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/nft-api.ts#L234)
 
 ▸ **getNftsForCollection**(`alchemy`, `contractAddress`, `options?`): `Promise`<[`CollectionNftsResponse`](interfaces/CollectionNftsResponse.md)\>
 
@@ -303,13 +279,64 @@ their associated metadata, use [GetBaseNftsForCollectionOptions](interfaces/GetB
 
 #### Defined in
 
-[api/nft-api.ts:252](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/nft-api.ts#L252)
+[api/nft-api.ts:237](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/nft-api.ts#L237)
+
+▸ **getNftsForCollection**(`alchemy`, `contractAddress`, `options?`): `Promise`<[`CollectionBaseNftsResponse`](interfaces/CollectionBaseNftsResponse.md)\>
+
+Get all base NFTs for a given contract address.
+
+This method returns the base NFTs that omit the associated metadata. To get
+all NFTs with their associated metadata, use [GetNftsForCollectionOptions](interfaces/GetNftsForCollectionOptions.md).
+
+**`beta`**
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
+| `contractAddress` | `string` | The contract address of the collection. |
+| `options?` | [`GetBaseNftsForCollectionOptions`](interfaces/GetBaseNftsForCollectionOptions.md) | The optional parameters to use for the request. |
+
+#### Returns
+
+`Promise`<[`CollectionBaseNftsResponse`](interfaces/CollectionBaseNftsResponse.md)\>
+
+#### Defined in
+
+[api/nft-api.ts:254](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/nft-api.ts#L254)
 
 ___
 
 ### getNftsForCollectionIterator
 
-▸ **getNftsForCollectionIterator**(`alchemy`, `contractAddress`, `options`): `AsyncIterable`<[`BaseNft`](classes/BaseNft.md)\>
+▸ **getNftsForCollectionIterator**(`alchemy`, `contractAddress`, `options?`): `AsyncIterable`<[`Nft`](classes/Nft.md)\>
+
+Fetches all NFTs for a given contract address and yields them in an async iterable.
+
+This method returns the full NFTs in the contract and pages through all page
+keys until all NFTs have been fetched. To get all NFTs without their
+associated metadata, use [GetBaseNftsForCollectionOptions](interfaces/GetBaseNftsForCollectionOptions.md).
+
+**`beta`**
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
+| `contractAddress` | `string` | The contract address of the collection. |
+| `options?` | [`GetNftsForCollectionOptions`](interfaces/GetNftsForCollectionOptions.md) | The optional parameters to use for the request. |
+
+#### Returns
+
+`AsyncIterable`<[`Nft`](classes/Nft.md)\>
+
+#### Defined in
+
+[api/nft-api.ts:338](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/nft-api.ts#L338)
+
+▸ **getNftsForCollectionIterator**(`alchemy`, `contractAddress`, `options?`): `AsyncIterable`<[`BaseNft`](classes/BaseNft.md)\>
 
 Fetches all base NFTs for a given contract address and yields them in an
 async iterable.
@@ -326,7 +353,7 @@ their associated metadata, use [GetNftsForCollectionOptions](interfaces/GetNftsF
 | :------ | :------ | :------ |
 | `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
 | `contractAddress` | `string` | The contract address of the collection. |
-| `options` | [`GetBaseNftsForCollectionOptions`](interfaces/GetBaseNftsForCollectionOptions.md) | The optional parameters to use for the request. |
+| `options?` | [`GetBaseNftsForCollectionOptions`](interfaces/GetBaseNftsForCollectionOptions.md) | The optional parameters to use for the request. |
 
 #### Returns
 
@@ -334,60 +361,11 @@ their associated metadata, use [GetNftsForCollectionOptions](interfaces/GetNftsF
 
 #### Defined in
 
-[api/nft-api.ts:336](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/nft-api.ts#L336)
-
-▸ **getNftsForCollectionIterator**(`alchemy`, `contractAddress`, `options`): `AsyncIterable`<[`Nft`](classes/Nft.md)\>
-
-Fetches all NFTs for a given contract address and yields them in an async iterable.
-
-This method returns the full NFTs in the contract and pages through all page
-keys until all NFTs have been fetched. To get all NFTs without their
-associated metadata, use [GetBaseNftsForCollectionOptions](interfaces/GetBaseNftsForCollectionOptions.md).
-
-**`beta`**
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
-| `contractAddress` | `string` | The contract address of the collection. |
-| `options` | [`GetNftsForCollectionOptions`](interfaces/GetNftsForCollectionOptions.md) | The optional parameters to use for the request. |
-
-#### Returns
-
-`AsyncIterable`<[`Nft`](classes/Nft.md)\>
-
-#### Defined in
-
-[api/nft-api.ts:354](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/nft-api.ts#L354)
+[api/nft-api.ts:357](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/nft-api.ts#L357)
 
 ___
 
 ### getNftsForOwner
-
-▸ **getNftsForOwner**(`alchemy`, `owner`, `options?`): `Promise`<[`OwnedBaseNftsResponse`](interfaces/OwnedBaseNftsResponse.md)\>
-
-Get all base NFTs for an owner.
-
-This method returns the base NFTs that omit the associated metadata. To get
-all NFTs with their associated metadata, use [GetNftsForOwnerOptions](interfaces/GetNftsForOwnerOptions.md).
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
-| `owner` | `string` | The address of the owner. |
-| `options?` | [`GetBaseNftsForOwnerOptions`](interfaces/GetBaseNftsForOwnerOptions.md) | The optional parameters to use for the request. |
-
-#### Returns
-
-`Promise`<[`OwnedBaseNftsResponse`](interfaces/OwnedBaseNftsResponse.md)\>
-
-#### Defined in
-
-[api/nft-api.ts:175](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/nft-api.ts#L175)
 
 ▸ **getNftsForOwner**(`alchemy`, `owner`, `options?`): `Promise`<[`OwnedNftsResponse`](interfaces/OwnedNftsResponse.md)\>
 
@@ -410,18 +388,14 @@ their associated metadata, use [GetBaseNftsForOwnerOptions](interfaces/GetBaseNf
 
 #### Defined in
 
-[api/nft-api.ts:192](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/nft-api.ts#L192)
+[api/nft-api.ts:176](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/nft-api.ts#L176)
 
-___
+▸ **getNftsForOwner**(`alchemy`, `owner`, `options?`): `Promise`<[`OwnedBaseNftsResponse`](interfaces/OwnedBaseNftsResponse.md)\>
 
-### getNftsForOwnerIterator
+Get all base NFTs for an owner.
 
-▸ **getNftsForOwnerIterator**(`alchemy`, `owner`, `options?`): `AsyncIterable`<[`OwnedBaseNft`](interfaces/OwnedBaseNft.md)\>
-
-Fetches all NFTs for a given owner and yields them in an async iterable.
-
-This method returns the base NFTs that omit the associated metadata and pages
-through all page keys until all NFTs have been fetched.
+This method returns the base NFTs that omit the associated metadata. To get
+all NFTs with their associated metadata, use [GetNftsForOwnerOptions](interfaces/GetNftsForOwnerOptions.md).
 
 #### Parameters
 
@@ -433,11 +407,15 @@ through all page keys until all NFTs have been fetched.
 
 #### Returns
 
-`AsyncIterable`<[`OwnedBaseNft`](interfaces/OwnedBaseNft.md)\>
+`Promise`<[`OwnedBaseNftsResponse`](interfaces/OwnedBaseNftsResponse.md)\>
 
 #### Defined in
 
-[api/nft-api.ts:112](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/nft-api.ts#L112)
+[api/nft-api.ts:193](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/nft-api.ts#L193)
+
+___
+
+### getNftsForOwnerIterator
 
 ▸ **getNftsForOwnerIterator**(`alchemy`, `owner`, `options?`): `AsyncIterable`<[`OwnedNft`](interfaces/OwnedNft.md)\>
 
@@ -460,7 +438,30 @@ keys until all NFTs have been fetched.
 
 #### Defined in
 
-[api/nft-api.ts:129](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/nft-api.ts#L129)
+[api/nft-api.ts:112](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/nft-api.ts#L112)
+
+▸ **getNftsForOwnerIterator**(`alchemy`, `owner`, `options?`): `AsyncIterable`<[`OwnedBaseNft`](interfaces/OwnedBaseNft.md)\>
+
+Fetches all NFTs for a given owner and yields them in an async iterable.
+
+This method returns the base NFTs that omit the associated metadata and pages
+through all page keys until all NFTs have been fetched.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
+| `owner` | `string` | The address of the owner. |
+| `options?` | [`GetBaseNftsForOwnerOptions`](interfaces/GetBaseNftsForOwnerOptions.md) | The optional parameters to use for the request. |
+
+#### Returns
+
+`AsyncIterable`<[`OwnedBaseNft`](interfaces/OwnedBaseNft.md)\>
+
+#### Defined in
+
+[api/nft-api.ts:129](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/nft-api.ts#L129)
 
 ___
 
@@ -486,7 +487,7 @@ Gets all the owners for a given NFT contract address and token ID.
 
 #### Defined in
 
-[api/nft-api.ts:288](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/nft-api.ts#L288)
+[api/nft-api.ts:291](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/nft-api.ts#L291)
 
 ▸ **getOwnersForNft**(`alchemy`, `nft`): `Promise`<[`GetOwnersForNftResponse`](interfaces/GetOwnersForNftResponse.md)\>
 
@@ -507,7 +508,7 @@ Gets all the owners for a given NFT.
 
 #### Defined in
 
-[api/nft-api.ts:301](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/nft-api.ts#L301)
+[api/nft-api.ts:304](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/nft-api.ts#L304)
 
 ___
 
@@ -529,7 +530,7 @@ ___
 
 #### Defined in
 
-[api/enhanced.ts:15](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/enhanced.ts#L15)
+[api/enhanced.ts:15](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/enhanced.ts#L15)
 
 ___
 
@@ -550,7 +551,7 @@ ___
 
 #### Defined in
 
-[api/enhanced.ts:29](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/enhanced.ts#L29)
+[api/enhanced.ts:34](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/enhanced.ts#L34)
 
 ___
 
@@ -571,7 +572,7 @@ ___
 
 #### Defined in
 
-[api/enhanced.ts:53](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/enhanced.ts#L53)
+[api/enhanced.ts:58](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/enhanced.ts#L58)
 
 ___
 
@@ -593,7 +594,7 @@ Entry point into the Alchemy SDK.
 
 #### Defined in
 
-[api/alchemy.ts:15](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/alchemy.ts#L15)
+[api/alchemy.ts:15](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/alchemy.ts#L15)
 
 ___
 
@@ -615,7 +616,62 @@ Checks if a value is a hex string.
 
 #### Defined in
 
-[api/util.ts:29](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/util.ts#L29)
+[api/util.ts:29](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/util.ts#L29)
+
+___
+
+### refreshNftMetadata
+
+▸ **refreshNftMetadata**(`alchemy`, `nft`): `Promise`<`boolean`\>
+
+Refreshes the cached metadata for a provided NFT contract address and token
+id. Returns a boolean value indicating whether the metadata was refreshed.
+
+This method is useful when you want to refresh the metadata for a NFT that
+has been updated since the last time it was fetched. Note that the backend
+only allows one refresh per token every 15 minutes, globally for all users.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
+| `nft` | [`BaseNft`](classes/BaseNft.md) | The NFT to refresh the metadata for. |
+
+#### Returns
+
+`Promise`<`boolean`\>
+
+#### Defined in
+
+[api/nft-api.ts:469](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/nft-api.ts#L469)
+
+▸ **refreshNftMetadata**(`alchemy`, `contractAddress`, `tokenId`): `Promise`<`boolean`\>
+
+Refreshes the cached metadata for a provided NFT contract address and token
+id. Returns a boolean value indicating whether the metadata was refreshed.
+
+This method is useful when you want to refresh the metadata for a NFT that
+has been updated since the last time it was fetched. Note that the backend
+only allows one refresh per token every 15 minutes, globally for all users.
+The last refresh time for an NFT can be accessed on the
+[Nft.timeLastUpdated](classes/Nft.md#timelastupdated) field.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `alchemy` | [`Alchemy`](classes/Alchemy.md) | The Alchemy SDK instance. |
+| `contractAddress` | `string` | The contract address of the NFT. |
+| `tokenId` | `BigNumberish` | The token id of the NFT. |
+
+#### Returns
+
+`Promise`<`boolean`\>
+
+#### Defined in
+
+[api/nft-api.ts:488](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/nft-api.ts#L488)
 
 ___
 
@@ -637,7 +693,7 @@ Configures the verbosity of logging. The default log level is `info`.
 
 #### Defined in
 
-[util/logger.ts:56](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/util/logger.ts#L56)
+[util/logger.ts:56](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/util/logger.ts#L56)
 
 ___
 
@@ -659,4 +715,4 @@ Converts a number to a hex string.
 
 #### Defined in
 
-[api/util.ts:19](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/util.ts#L19)
+[api/util.ts:19](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/util.ts#L19)

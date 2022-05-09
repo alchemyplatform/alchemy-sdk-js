@@ -1,4 +1,4 @@
-[alchemy-evm-js](../README.md) / [Exports](../modules.md) / NftMetadata
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / NftMetadata
 
 # Interface: NftMetadata
 
@@ -32,7 +32,7 @@ The traits, attributes, and characteristics for the NFT asset.
 
 #### Defined in
 
-[types/types.ts:158](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L158)
+[types/types.ts:158](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L158)
 
 ___
 
@@ -44,7 +44,7 @@ Background color of the NFT item. Usually defined as a 6 character hex string.
 
 #### Defined in
 
-[types/types.ts:155](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L155)
+[types/types.ts:155](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L155)
 
 ___
 
@@ -56,7 +56,7 @@ A human-readable description of the NFT asset.
 
 #### Defined in
 
-[types/types.ts:143](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L143)
+[types/types.ts:143](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L143)
 
 ___
 
@@ -69,7 +69,7 @@ to be the highest resolution image.
 
 #### Defined in
 
-[types/types.ts:152](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L152)
+[types/types.ts:152](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L152)
 
 ___
 
@@ -81,7 +81,7 @@ URL to the NFT asset image.
 
 #### Defined in
 
-[types/types.ts:146](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L146)
+[types/types.ts:146](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L146)
 
 ___
 
@@ -93,4 +93,4 @@ Name of the NFT asset.
 
 #### Defined in
 
-[types/types.ts:140](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L140)
+[types/types.ts:140](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L140)

@@ -1,4 +1,4 @@
-[alchemy-evm-js](../README.md) / [Exports](../modules.md) / AlchemyConfig
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / AlchemyConfig
 
 # Interface: AlchemyConfig
 
@@ -22,7 +22,7 @@ The Alchemy API key that can be found in the Alchemy dashboard.
 
 #### Defined in
 
-[types/types.ts:13](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L13)
+[types/types.ts:13](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L13)
 
 ___
 
@@ -34,7 +34,7 @@ The maximum number of retries to attempt if a request fails. Defaults to 5.
 
 #### Defined in
 
-[types/types.ts:19](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L19)
+[types/types.ts:19](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L19)
 
 ___
 
@@ -46,4 +46,4 @@ The name of the network.
 
 #### Defined in
 
-[types/types.ts:16](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L16)
+[types/types.ts:16](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L16)

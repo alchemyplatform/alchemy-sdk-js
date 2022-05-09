@@ -1,4 +1,4 @@
-[alchemy-evm-js](../README.md) / [Exports](../modules.md) / OwnedBaseNft
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / OwnedBaseNft
 
 # Interface: OwnedBaseNft
 
@@ -29,7 +29,7 @@ The token balance of the NFT.
 
 #### Defined in
 
-[types/types.ts:299](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L299)
+[types/types.ts:299](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L299)
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 #### Defined in
 
-[api/nft.ts:21](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/api/nft.ts#L21)
+[api/nft.ts:21](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/api/nft.ts#L21)
 
 ___
 

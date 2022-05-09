@@ -1,4 +1,4 @@
-[alchemy-evm-js](../README.md) / [Exports](../modules.md) / DeployResult
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / DeployResult
 
 # Interface: DeployResult
 
@@ -21,7 +21,7 @@ The block number the contract was deployed in.
 
 #### Defined in
 
-[types/types.ts:429](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L429)
+[types/types.ts:429](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L429)
 
 ___
 
@@ -33,4 +33,4 @@ The address of the contract deployer, if it is available.
 
 #### Defined in
 
-[types/types.ts:426](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L426)
+[types/types.ts:426](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L426)

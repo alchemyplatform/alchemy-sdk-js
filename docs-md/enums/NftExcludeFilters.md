@@ -1,4 +1,4 @@
-[alchemy-evm-js](../README.md) / [Exports](../modules.md) / NftExcludeFilters
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / NftExcludeFilters
 
 # Enumeration: NftExcludeFilters
 
@@ -23,4 +23,4 @@ Exclude NFTs that have been classified as spam.
 
 #### Defined in
 
-[types/types.ts:235](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L235)
+[types/types.ts:235](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L235)

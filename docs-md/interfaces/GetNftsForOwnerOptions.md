@@ -1,4 +1,4 @@
-[alchemy-evm-js](../README.md) / [Exports](../modules.md) / GetNftsForOwnerOptions
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / GetNftsForOwnerOptions
 
 # Interface: GetNftsForOwnerOptions
 
@@ -27,7 +27,7 @@ Optional list of contract addresses to filter the results by. Limit is 20.
 
 #### Defined in
 
-[types/types.ts:186](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L186)
+[types/types.ts:186](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L186)
 
 ___
 
@@ -40,7 +40,7 @@ of these filters are excluded from the response.
 
 #### Defined in
 
-[types/types.ts:192](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L192)
+[types/types.ts:192](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L192)
 
 ___
 
@@ -52,7 +52,7 @@ Optional boolean flag to omit NFT metadata. Defaults to `false`.
 
 #### Defined in
 
-[types/types.ts:195](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L195)
+[types/types.ts:195](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L195)
 
 ___
 
@@ -65,4 +65,4 @@ Optional page key from an existing [OwnedBaseNftsResponse](OwnedBaseNftsResponse
 
 #### Defined in
 
-[types/types.ts:183](https://github.com/alchemyplatform/alchemy-evm-js/blob/0259d36/src/types/types.ts#L183)
+[types/types.ts:183](https://github.com/alchemyplatform/alchemy-evm-js/blob/45d638a/src/types/types.ts#L183)
