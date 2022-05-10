@@ -1,15 +1,14 @@
-# Alchemy JS SDK
+# Alchemy SDK for Javascript
 
-This is a prototype for Alchemy's JS SDK for EVM-based chains.
+Alchemy SDK helps developers use Alchemy's APIs and endpoints more efficiently. This is a lightweight, modular SDK 
+that encapsulates common usage patterns and abstracts away the complexities of both our HTTP and JSON-RPC endpoints.
 
-The goal is to create a lightweight, modular SDK that encapsulates common usage patterns and abstracts away the
-complexities of both our HTTP and JSON-RPC endpoints. To start, we're trying to create feature parity with the existing `alchemy-web3`
-library. From there, we'll add additional features and higher level abstractions.
+Note that the SDK is still in private beta and is not published in NPM. Alchemy reserves the right to make breaking
+API changes in subsequent releases.
 
 ## Getting started
 
-The SDK is currently packaged in the repository as a tarball file. To install, copy the `alchemy-sdk-1.0.0.tgz`
-file in this repo into your project's root directory and run:
+Download the `alchemy-sdk-1.0.0.tgz` file in this repo into your project's root directory and run:
 
 ```
 npm install alchemy-sdk-1.0.0.tgz
@@ -65,7 +64,7 @@ The current supported functions using this pattern are the NFT API endpoints and
 
 The `Alchemy.getProvider()` function configures the
 Ethers.js [AlchemyProvider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) and returns it. This
-allows you to perform core json-rpc calls with an Alchemy provider, just as you normally would with Ethers. So if you are already using Ethers, you can simply use the provider from `alchemy-sdk` and the rest of your code should just work:
+allows you to perform core json-rpc calls with an Alchemy provider, just as you normally would with Ethers. If you are already using Ethers, you can simply use the provider from `alchemy-sdk` and the rest of your code should just work:
 
 ```ts
 const alchemy = alchemySdk.initializeAlchemy();
