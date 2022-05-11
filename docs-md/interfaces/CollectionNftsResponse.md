@@ -22,7 +22,7 @@ An array of NFTs with metadata.
 
 #### Defined in
 
-[types/types.ts:410](https://github.com/alchemyplatform/alchemy-sdk-js/blob/31c6d92/src/types/types.ts#L410)
+[types/types.ts:410](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L410)
 
 ___
 
@@ -35,4 +35,4 @@ NFTs. If there is no page key, then there are no more NFTs to fetch.
 
 #### Defined in
 
-[types/types.ts:416](https://github.com/alchemyplatform/alchemy-sdk-js/blob/31c6d92/src/types/types.ts#L416)
+[types/types.ts:416](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L416)

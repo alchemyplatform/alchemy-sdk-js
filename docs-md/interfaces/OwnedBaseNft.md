@@ -29,7 +29,7 @@ The token balance of the NFT.
 
 #### Defined in
 
-[types/types.ts:299](https://github.com/alchemyplatform/alchemy-sdk-js/blob/31c6d92/src/types/types.ts#L299)
+[types/types.ts:299](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L299)
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 #### Defined in
 
-[api/nft.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/31c6d92/src/api/nft.ts#L21)
+[api/nft.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/api/nft.ts#L21)
 
 ___
 
