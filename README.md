@@ -40,7 +40,7 @@ const alchemy = initializeAlchemy(); // using default settings - pass in a setti
 // Import and call a method, passing in the alchemy config object
 import { getNftsForOwner } from 'alchemy-sdk';
 
-getNftsForOwner(alchemy, '0xshah.eth');
+getNftsForOwner(alchemy, '0xshah.eth').then(console.log);
 ```
 
 However, this can make it harder to discover the full API surface. If you want your IDE to find all functions, you can alternatively import
@@ -50,7 +50,7 @@ the entire SDK (though this is not recommended, as it will increase the bundle s
 import * as alchemySdk from 'alchemy-sdk';
 
 const alchemy = alchemySdk.initializeAlchemy();
-alchemySdk.getNftsForOwner(alchemy, '0xshah.eth');
+alchemySdk.getNftsForOwner(alchemy, '0xshah.eth').then(console.log);
 ```
 
 ## SDK Structure
