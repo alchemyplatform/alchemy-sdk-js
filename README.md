@@ -3,8 +3,8 @@
 Alchemy SDK helps developers use Alchemy's APIs and endpoints more efficiently. This is a lightweight, modular SDK 
 that encapsulates common usage patterns and abstracts away the complexities of both our HTTP and JSON-RPC endpoints.
 
-Note that the SDK is still in private beta and is not published in NPM. Alchemy reserves the right to make breaking
-API changes in subsequent releases.
+Note that the SDK is still in private beta and is not published in NPM. Alchemy reserves the right to (and almost certainly will) make breaking
+API changes in subsequent releases (don't write production code around it just yet). 
 
 ## Getting started
 
@@ -40,7 +40,7 @@ const alchemy = initializeAlchemy(); // using default settings - pass in a setti
 // Import and call a method, passing in the alchemy config object
 import { getNftsForOwner } from 'alchemy-sdk';
 
-getNftsForOwner(alchemy, '0xABC');
+getNftsForOwner(alchemy, '0xshah.eth');
 ```
 
 However, this can make it harder to discover the full API surface. If you want your IDE to find all functions, you can alternatively import
@@ -50,7 +50,7 @@ the entire SDK (though this is not recommended, as it will increase the bundle s
 import * as alchemySdk from 'alchemy-sdk';
 
 const alchemy = alchemySdk.initializeAlchemy();
-alchemySdk.getNftsForOwner(alchemy, { owner: '0x123' });
+alchemySdk.getNftsForOwner(alchemy, '0xshah.eth');
 ```
 
 ## SDK Structure
@@ -62,16 +62,16 @@ The current supported functions using this pattern are the NFT API endpoints and
 
 ## Ethers.js for standard JSON-RPC Calls
 
-The `Alchemy.getProvider()` function configures the
-Ethers.js [AlchemyProvider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) and returns it. This
+To access standard JSON-RPC calls not in the NFT API or Alchemy Enhanced APIs, the SDK includes Ethers.js. The `Alchemy.getProvider()` function configures the Ethers.js [AlchemyProvider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) and returns it. This
 allows you to perform core json-rpc calls with an Alchemy provider, just as you normally would with Ethers. If you are already using Ethers, you can simply use the provider from `alchemy-sdk` and the rest of your code should just work:
 
 ```ts
-const alchemy = alchemySdk.initializeAlchemy();
+import { initializeAlchemy } from 'alchemy-sdk';
+const alchemy = initializeAlchemy();
 
 // ETH JSON-RPC calls through ethers.js Provider
 const ethersAlchemyProvider = alchemy.getProvider();
-ethersAlchemyProvider.getBalance('0xABC...', 'latest').then(console.log);
+ethersAlchemyProvider.getBalance('0x994b342dd87fc825f66e51ffa3ef71ad818b6893', 'latest').then(console.log);
 ```
 
 Consult the [Ethers.js documentation](https://docs.ethers.io/v5/) for how to use it to call standard JSON-RPC methods. 
@@ -132,7 +132,7 @@ differences compared to the Alchemy REST endpoints:
 - SDK standardizes to `omitMetadata` parameter (vs. `withMetadata`).
 - Standardization to `pageKey` parameter for pagination (vs. `nextToken`/`startToken`)
 - Empty `TokenUri` fields are omitted.
-- Token ID is always normalized to an integer string on `BaseNft` and `Nft.
+- Token ID is always normalized to an integer string on `BaseNft` and `Nft`.
 - Some fields omitted in the REST response are included in the SDK response in order to return an `Nft` object.
 - Some fields in the SDK's `Nft` object are named differently than the REST response.
 
@@ -185,6 +185,8 @@ getNftsForOwner(alchemy, '0xshah.eth', {
 Getting all the owners of the BAYC NFT.
 
 ```ts
+import { getOwnersForNft, getNftsForCollectionIterator } from 'alchemy-sdk';
+
 // Bored Ape Yacht Club contract address.
 const baycAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D';
 
