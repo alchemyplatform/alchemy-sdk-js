@@ -1,10 +1,11 @@
-import { providers } from 'ethers';
 import { AlchemyConfig, Network } from '../types/types';
 import {
   DEFAULT_ALCHEMY_API_KEY,
   DEFAULT_MAX_RETRIES,
-  DEFAULT_NETWORK
+  DEFAULT_NETWORK,
+  getAlchemyHttpUrl
 } from '../util/const';
+import { AlchemyProvider } from '../internal/alchemy-provider';
 
 /**
  * Entry point into the Alchemy SDK.
@@ -31,7 +32,7 @@ export class Alchemy {
   readonly maxRetries: number;
 
   /** @internal */
-  private _baseEthersProvider: providers.AlchemyProvider | undefined;
+  private _baseEthersProvider: AlchemyProvider | undefined;
 
   /**
    * @hideconstructor
@@ -43,6 +44,11 @@ export class Alchemy {
     this.maxRetries = config?.maxRetries || DEFAULT_MAX_RETRIES;
   }
 
+  /** @internal */
+  getBaseUrl(): string {
+    return getAlchemyHttpUrl(this.network, this.apiKey);
+  }
+
   /**
    * Changes the network that the SDK requests data from.
    *
@@ -50,6 +56,7 @@ export class Alchemy {
    * @public
    */
   setNetwork(network: Network) {
+    // TODO(ethers): Add support for changing the network in the returned provider.
     this.network = network;
   }
 
@@ -58,41 +65,14 @@ export class Alchemy {
    *
    * @public
    */
-  getProvider(): providers.AlchemyProvider {
+  getProvider(): AlchemyProvider {
     if (!this._baseEthersProvider) {
-      this._baseEthersProvider = new providers.AlchemyProvider(
-        EthersNetwork[this.network],
-        this.apiKey
-      ) as providers.AlchemyProvider;
+      this._baseEthersProvider = new AlchemyProvider(
+        this.network,
+        this.apiKey,
+        this.maxRetries
+      ) as AlchemyProvider;
     }
     return this._baseEthersProvider;
   }
-
-  /**
-   * Returns the base URL for making Alchemy API requests. The `alchemy.com`
-   * endpoints only work with non eth json-rpc requests.
-   *
-   * @internal
-   */
-  _getBaseUrl(): string {
-    return `https://${this.network}.g.alchemy.com/v2/${this.apiKey}`;
-  }
 }
-
-/**
- * Mapping of network names to their corresponding Network strings used to
- * create an Ethers.js Provider instance.
- */
-const EthersNetwork = {
-  [Network.ETH_MAINNET]: 'mainnet',
-  [Network.ETH_ROPSTEN]: 'ropsten',
-  [Network.ETH_GOERLI]: 'goerli',
-  [Network.ETH_KOVAN]: 'kovan',
-  [Network.ETH_RINKEBY]: 'rinkeby',
-  [Network.OPT_MAINNET]: 'optimism',
-  [Network.OPT_KOVAN]: 'optimism-kovan',
-  [Network.ARB_MAINNET]: 'arbitrum',
-  [Network.ARB_RINKEBY]: 'arbitrum-rinkeby',
-  [Network.MATIC_MAINNET]: 'matic',
-  [Network.MATIC_MUMBAI]: 'maticmum'
-};

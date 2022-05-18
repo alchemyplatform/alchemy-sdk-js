@@ -12,7 +12,7 @@ import {
   NftExcludeFilters,
   NftTokenType,
   refreshNftMetadata
-} from '../src';
+} from '../../src';
 
 /** Temporary test */
 // TODO: REMOVE these tests once we have more comprehensive unit testing.
@@ -22,7 +22,9 @@ describe('E2E integration tests', () => {
   const contractAddress = '0x01234567bac6ff94d7e4f0ee23119cf848f93245';
 
   beforeAll(async () => {
-    alchemy = await initializeAlchemy();
+    alchemy = await initializeAlchemy({
+      apiKey: 'o8EEA9hbCQCTx6CsJqsUrlQFxZQ_8ado'
+    });
 
     // Skip all timeouts for testing.
     jest.setTimeout(50000);
