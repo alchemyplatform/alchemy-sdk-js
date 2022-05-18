@@ -34,7 +34,7 @@ export async function requestHttpWithBackoff<Req, Res>(
         break;
       }
       const response = await sendAxiosRequest<Req, Res>(
-        alchemy._getBaseUrl(),
+        alchemy.getBaseUrl(),
         method,
         params
       );
