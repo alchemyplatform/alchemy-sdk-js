@@ -1,7 +1,10 @@
-import { TransactionReceipt } from '@ethersproject/abstract-provider';
+import {
+  EventType,
+  TransactionReceipt
+} from '@ethersproject/abstract-provider';
 import { BaseNft, Nft } from '../api/nft';
 
-// TODO: Add documentation and annotations for all types here.
+// TODO: separate this file into other files.
 
 /**
  * Options object used to configure the Alchemy SDK.
@@ -428,3 +431,14 @@ export interface DeployResult {
   /** The block number the contract was deployed in. */
   readonly blockNumber: number;
 }
+
+export type AlchemyEventFilter =
+  | {
+      method: 'alchemy_newFullPendingTransactions';
+    }
+  | {
+      method: 'alchemy_filteredNewFullPendingTransactions';
+      address: string;
+    };
+
+export type AlchemyEventType = EventType | AlchemyEventFilter;

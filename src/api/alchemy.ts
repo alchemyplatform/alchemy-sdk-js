@@ -6,6 +6,7 @@ import {
   getAlchemyHttpUrl
 } from '../util/const';
 import { AlchemyProvider } from '../internal/alchemy-provider';
+import { AlchemyWebSocketProvider } from '../internal/alchemy-websocket-provider';
 
 /**
  * Entry point into the Alchemy SDK.
@@ -32,7 +33,10 @@ export class Alchemy {
   readonly maxRetries: number;
 
   /** @internal */
-  private _baseEthersProvider: AlchemyProvider | undefined;
+  private _baseAlchemyProvider: AlchemyProvider | undefined;
+
+  /** @internal */
+  private _baseAlchemyWssProvider: AlchemyWebSocketProvider | undefined;
 
   /**
    * @hideconstructor
@@ -61,18 +65,35 @@ export class Alchemy {
   }
 
   /**
-   * Lazy loads the ethers provider and creates an AlchemyProvider instance.
+   * Creates an AlchemyProvider instance. Only one provider is created per
+   * Alchemy instance.
    *
    * @public
    */
   getProvider(): AlchemyProvider {
-    if (!this._baseEthersProvider) {
-      this._baseEthersProvider = new AlchemyProvider(
+    if (!this._baseAlchemyProvider) {
+      this._baseAlchemyProvider = new AlchemyProvider(
         this.network,
         this.apiKey,
         this.maxRetries
-      ) as AlchemyProvider;
+      );
     }
-    return this._baseEthersProvider;
+    return this._baseAlchemyProvider;
+  }
+
+  /**
+   * Creates an AlchemyWebsocketProvider instance. Only one provider is created
+   * per Alchemy instance.
+   *
+   * @public
+   */
+  getWebsocketProvider(): AlchemyWebSocketProvider {
+    if (!this._baseAlchemyWssProvider) {
+      this._baseAlchemyWssProvider = new AlchemyWebSocketProvider(
+        this.network,
+        this.apiKey
+      );
+    }
+    return this._baseAlchemyWssProvider;
   }
 }

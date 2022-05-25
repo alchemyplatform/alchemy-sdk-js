@@ -1,10 +1,10 @@
 # Alchemy SDK for Javascript
 
-Alchemy SDK helps developers use Alchemy's APIs and endpoints more efficiently. This is a lightweight, modular SDK 
+Alchemy SDK helps developers use Alchemy's APIs and endpoints more efficiently. This is a lightweight, modular SDK
 that encapsulates common usage patterns and abstracts away the complexities of both our HTTP and JSON-RPC endpoints.
 
 Note that the SDK is still in private beta and is not published in NPM. Alchemy reserves the right to (and almost certainly will) make breaking
-API changes in subsequent releases (don't write production code around it just yet). 
+API changes in subsequent releases (don't write production code around it just yet).
 
 ## Getting started
 
@@ -71,10 +71,12 @@ const alchemy = initializeAlchemy();
 
 // ETH JSON-RPC calls through ethers.js Provider
 const ethersAlchemyProvider = alchemy.getProvider();
-ethersAlchemyProvider.getBalance('0x994b342dd87fc825f66e51ffa3ef71ad818b6893', 'latest').then(console.log);
+ethersAlchemyProvider
+  .getBalance('0x994b342dd87fc825f66e51ffa3ef71ad818b6893', 'latest')
+  .then(console.log);
 ```
 
-Consult the [Ethers.js documentation](https://docs.ethers.io/v5/) for how to use it to call standard JSON-RPC methods. 
+Consult the [Ethers.js documentation](https://docs.ethers.io/v5/) for how to use it to call standard JSON-RPC methods.
 
 ## NFT Module
 
@@ -208,5 +210,7 @@ Get all outbound transfers for a provided address.
 ```ts
 import { getTokenBalances } from 'alchemy-sdk';
 
-getTokenBalances(alchemy, '0x994b342dd87fc825f66e51ffa3ef71ad818b6893').then(console.log);
+getTokenBalances(alchemy, '0x994b342dd87fc825f66e51ffa3ef71ad818b6893').then(
+  console.log
+);
 ```

@@ -1,4 +1,4 @@
-import { providers } from 'ethers';
+import { providers, Transaction } from 'ethers';
 import { initializeAlchemy } from '../../src';
 import { EthersNetwork } from '../../src/util/const';
 
@@ -13,6 +13,8 @@ describe('AlchemyProvider', () => {
     EthersNetwork[alchemy.network],
     alchemy.apiKey
   ) as providers.AlchemyProvider;
+
+  const wsProvider = alchemy.getWebsocketProvider();
   const provider = alchemy.getProvider();
 
   // TODO(ethers): Extract into helper method to verify all inputs.
@@ -26,6 +28,40 @@ describe('AlchemyProvider', () => {
       'latest'
     ]);
     expect(actual).toEqual(expected);
+  });
+
+  // TODO(wss): Add unit test coverage for websocket provider.
+  it('filtered transactions', done => {
+    let eventCount = 0;
+    const address = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
+    wsProvider.on(
+      {
+        method: 'alchemy_filteredNewFullPendingTransactions',
+        address
+      },
+      (res: Transaction) => {
+        expect(res.to).toEqual(address.toLowerCase());
+        if (eventCount === 10) {
+          done();
+        }
+        eventCount++;
+      }
+    );
+  });
+
+  it('full transactions', done => {
+    let eventCount = 0;
+    wsProvider.on(
+      {
+        method: 'alchemy_newFullPendingTransactions'
+      },
+      () => {
+        if (eventCount === 10) {
+          done();
+        }
+        eventCount++;
+      }
+    );
   });
 
   // TODO(ethers): Write tests to make sure that the SDK's provider instance

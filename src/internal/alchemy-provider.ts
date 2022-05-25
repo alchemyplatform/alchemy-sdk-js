@@ -1,16 +1,18 @@
 import { providers } from 'ethers';
 import {
-  Networkish,
-  Network as NetworkFromEthers
+  Network as NetworkFromEthers,
+  Networkish
 } from '@ethersproject/networks';
 import { ConnectionInfo } from '@ethersproject/web';
 import {
   DEFAULT_ALCHEMY_API_KEY,
   DEFAULT_NETWORK,
   EthersNetwork,
-  getAlchemyHttpUrl
+  getAlchemyHttpUrl,
+  getAlchemyWsUrl
 } from '../util/const';
 import { Network } from '../types/types';
+import { logWarn } from '../util/logger';
 
 /**
  * SDK's custom implementation of ethers' {@link providers.AlchemyProvider}.
@@ -32,7 +34,8 @@ export class AlchemyProvider
     const alchemyNetwork = AlchemyProvider.getAlchemyNetwork(network);
     const connection = AlchemyProvider.getAlchemyConnectionInfo(
       alchemyNetwork,
-      apiKey
+      apiKey,
+      'http'
     );
 
     // Normalize the Alchemy named network input to the network names used by
@@ -98,9 +101,13 @@ export class AlchemyProvider
    */
   static getAlchemyConnectionInfo(
     network: Network,
-    apiKey: string
+    apiKey: string,
+    type: 'wss' | 'http'
   ): ConnectionInfo {
-    const url = getAlchemyHttpUrl(network, apiKey);
+    const url =
+      type === 'http'
+        ? getAlchemyHttpUrl(network, apiKey)
+        : getAlchemyWsUrl(network, apiKey);
     return {
       headers: {
         'Alchemy-Ethers-Sdk-Version': '1.0.0'
@@ -126,6 +133,10 @@ export class AlchemyProvider
       }
     }
     return network;
+  }
+
+  _startPending(): void {
+    logWarn('WARNING: Alchemy Provider does not support pending filters');
   }
 
   /**
