@@ -51,13 +51,13 @@ describe('Nft class', () => {
       createRawNft('title', tokenIdHex),
       contractAddress
     );
-    expect(nft.tokenId).toEqual(tokenIdHex);
+    expect(nft.tokenId).toEqual(tokenIdIntegerAsString);
 
     nft = Nft.fromResponse(
       createRawNft('title', tokenIdIntegerAsString),
       contractAddress
     );
-    expect(nft.tokenId).toEqual(tokenIdHex);
+    expect(nft.tokenId).toEqual(tokenIdIntegerAsString);
   });
 
   it('constructor parses token uri and media fields', () => {

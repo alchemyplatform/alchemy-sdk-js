@@ -37,7 +37,7 @@ export class AlchemyWebSocketProvider
     );
 
     // TODO: Add full WSS support and backfill
-    const ws = new SturdyWebSocket(connection.url, 'alchemy-web3', {
+    const ws = new SturdyWebSocket(connection.url, 'alchemy-sdk', {
       wsConstructor: getWebSocketConstructor()
     });
 
@@ -86,19 +86,18 @@ export class AlchemyWebSocketProvider
    * @internal
    */
   _startEvent(event: EthersEvent): void {
+    // Check if the event type is a custom Alchemy subscription.
     if (event.type === 'alchemy') {
-      if (!!event.address) {
+      const { address } = event;
+      if (!!address) {
         void this._subscribe(
           event.tag,
-          [
-            'alchemy_filteredNewFullPendingTransactions',
-            { address: event.address }
-          ],
+          ['alchemy_filteredNewFullPendingTransactions', { address }],
           res => {
             this.emit(
               {
                 method: 'alchemy_filteredNewFullPendingTransactions',
-                address: event.address!
+                address
               },
               res
             );
@@ -119,7 +118,14 @@ export class AlchemyWebSocketProvider
   }
 
   /**
+   * DO NOT MODIFY.
+   *
    * Original code copied over from {@link providers.BaseProvider}.
+   *
+   * This method is copied over directly in order to implement Alchemy's unique
+   * subscription types. The only difference is that this method calls
+   * {@link getAlchemyEventTag} instead of the original `getEventTag()` method in
+   * order to parse the Alchemy subscription event.
    *
    * @internal
    * @override
@@ -130,7 +136,9 @@ export class AlchemyWebSocketProvider
 
       const stopped: Array<Event> = [];
 
+      // This line is the only modified line from the original method.
       const eventTag = getAlchemyEventTag(eventName);
+
       this._events = this._events.filter(event => {
         if (event.tag !== eventTag) {
           return true;
