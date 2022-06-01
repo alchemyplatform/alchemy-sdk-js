@@ -15,6 +15,10 @@ export function getAlchemyHttpUrl(network: Network, apiKey: string): string {
   return `https://${network}.g.alchemy.com/v2/${apiKey}`;
 }
 
+export function getAlchemyWsUrl(network: Network, apiKey: string): string {
+  return `wss://${network}.g.alchemy.com/v2/${apiKey}`;
+}
+
 /**
  * Mapping of network names to their corresponding Network strings used to
  * create an Ethers.js Provider instance.
