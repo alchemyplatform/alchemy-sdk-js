@@ -4,13 +4,14 @@ import { createNft, createRawBaseNft, createRawNft } from '../test-util';
 describe('BaseNft class', () => {
   const contractAddress = '0xCA1';
   const tokenId = '0x01';
+  const tokenIdString = '1';
   it('fromResponse() defaults to UNKNOWN token type', () => {
     const nft = BaseNft.fromResponse(
       createRawBaseNft(tokenId),
       contractAddress
     );
     expect(nft.tokenType).toEqual(NftTokenType.UNKNOWN);
-    expect(nft.tokenId).toEqual(tokenId);
+    expect(nft.tokenId).toEqual(tokenIdString);
     expect(nft.contract.address).toEqual(contractAddress);
   });
 
@@ -21,26 +22,27 @@ describe('BaseNft class', () => {
       createRawBaseNft(tokenIdHex),
       contractAddress
     );
-    expect(nft.tokenId).toEqual(tokenIdHex);
+    expect(nft.tokenId).toEqual(tokenIdIntegerAsString);
 
     nft = BaseNft.fromResponse(
       createRawBaseNft(tokenIdIntegerAsString),
       contractAddress
     );
-    expect(nft.tokenId).toEqual(tokenIdHex);
+    expect(nft.tokenId).toEqual(tokenIdIntegerAsString);
   });
 });
 
 describe('Nft class', () => {
   const contractAddress = '0xCA1';
   const tokenId = 1;
+  const tokenIdString = '1';
   it('fromResponse() defaults to UNKNOWN token type', () => {
     const nft = Nft.fromResponse(
       createRawNft('title', toHex(tokenId)),
       contractAddress
     );
     expect(nft.tokenType).toEqual(NftTokenType.UNKNOWN);
-    expect(nft.tokenId).toEqual(toHex(tokenId));
+    expect(nft.tokenId).toEqual(tokenIdString);
     expect(nft.contract.address).toEqual(contractAddress);
   });
 
