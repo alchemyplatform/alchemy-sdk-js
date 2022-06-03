@@ -246,7 +246,6 @@ export class WebsocketBackfiller {
       return [];
     }
     const batchParts: BatchPart[] = [];
-    const headEventBatches: Array<Promise<BlockHead[]>> = [];
     for (let i = fromBlockInclusive; i < toBlockExclusive; i++) {
       batchParts.push({
         method: 'eth_getBlockByNumber',
@@ -255,9 +254,7 @@ export class WebsocketBackfiller {
     }
 
     // TODO: just fire off each send() separately since we're no longer batching:
-    headEventBatches.push(this.provider.sendBatch(batchParts));
-
-    const batchedBlockHeads = await Promise.all(headEventBatches);
+    const batchedBlockHeads = await this.provider.sendBatch(batchParts);
     const blockHeads = batchedBlockHeads.reduce(
       (acc, batch) => acc.concat(batch),
       []
@@ -321,30 +318,25 @@ export class WebsocketBackfiller {
   ): Promise<CommonAncestor> {
     // Iterate from the most recent head backwards in order to find the first
     // block that was part of a re-org.
+    let blockHead = await this.getBlockByNumber(
+      fromHex(previousLogs[previousLogs.length - 1].blockNumber)
+    );
+    throwIfCancelled(isCancelled);
     for (let i = previousLogs.length - 1; i >= 0; i--) {
       const oldLog = previousLogs[i];
-      const blockHead = await this.getBlockByNumber(
-        fromHex(oldLog.blockNumber)
-      );
-      throwIfCancelled(isCancelled);
 
-      // Once we find a common block number, iterate backwards to find the
-      // largest log index.
+      // Ensure that updated blocks are fetched every time the log's block number
+      // changes.
+      if (oldLog.blockNumber !== blockHead.number) {
+        blockHead = await this.getBlockByNumber(fromHex(oldLog.blockNumber));
+      }
+
+      // Since logs are ordered in ascending order, the first log that matches
+      // the hash should be the largest logIndex.
       if (oldLog.blockHash === blockHead.hash) {
-        let largestLogIndex = fromHex(oldLog.logIndex);
-        for (let j = i - 1; j >= 0; j--) {
-          if (previousLogs[j].blockHash !== blockHead.hash) {
-            break;
-          }
-          largestLogIndex = Math.max(
-            largestLogIndex,
-            fromHex(previousLogs[j].logIndex)
-          );
-        }
-
         return {
           blockNumber: fromHex(oldLog.blockNumber),
-          logIndex: largestLogIndex
+          logIndex: fromHex(oldLog.logIndex)
         };
       }
     }

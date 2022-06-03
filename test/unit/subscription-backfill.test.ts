@@ -438,5 +438,26 @@ describe('Backfill tests', () => {
       expectGetLogRangeCalled(11, 14);
       expect(result).toEqual(newLogs);
     });
+
+    it('fetches the block once per block number in previous logs', async () => {
+      const previousLogs = [
+        makeLogsEvent(10, 'a', false, 1),
+        makeLogsEvent(10, 'a', false, 2),
+        makeLogsEvent(10, 'a', false, 3)
+      ];
+
+      provider.send
+        .mockResolvedValueOnce(toHex(11))
+        .mockResolvedValueOnce(makeNewHeadsEvent(10, 'a'))
+        .mockResolvedValueOnce([]);
+
+      await backfiller.getLogsBackfill(isCancelled, {}, previousLogs, 9);
+      expect(
+        provider.send.mock.calls.filter(
+          (call: string[]) =>
+            call[0] === 'eth_getBlockByNumber' && fromHex(call[1][0]) === 10
+        ).length
+      ).toEqual(1);
+    });
   });
 });
