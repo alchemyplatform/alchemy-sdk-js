@@ -6,6 +6,7 @@ import { Listener } from '@ethersproject/abstract-provider';
 import { Event } from '@ethersproject/providers/lib/base-provider';
 import SturdyWebSocket from 'sturdy-websocket';
 import { AlchemyEventType } from '../types/types';
+import { BatchPart } from './websocket-backfiller';
 
 function isAlchemyEvent(event: AlchemyEventType): event is object {
   return typeof event === 'object' && 'method' in event;
@@ -16,6 +17,15 @@ function getAlchemyEventTag(event: AlchemyEventType): string {
     throw new Error('Event tag requires AlchemyEventType');
   }
   return 'alchemy:' + (('address' in event && event.address) || '*');
+}
+
+export type JsonRpcId = string | number | null;
+
+export interface JsonRpcRequest {
+  jsonrpc: '2.0';
+  method: string;
+  params?: any[];
+  id?: JsonRpcId;
 }
 
 export class AlchemyWebSocketProvider
@@ -115,6 +125,12 @@ export class AlchemyWebSocketProvider
     } else {
       super._startEvent(event);
     }
+  }
+
+  // TODO: implement sendBatch.
+  async sendBatch(parts: BatchPart[]): Promise<any[]> {
+    console.log('parts', parts);
+    throw new Error('not implemented');
   }
 
   /**

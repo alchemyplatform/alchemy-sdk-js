@@ -36,3 +36,7 @@ export const EthersNetwork = {
   [Network.MATIC_MAINNET]: 'matic',
   [Network.MATIC_MUMBAI]: 'maticmum'
 };
+
+export function noop(): void {
+  // It's a no-op
+}

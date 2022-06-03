@@ -149,3 +149,7 @@ export function createRawCollectionBaseNft(
     }
   };
 }
+
+export type Mocked<T> = T & {
+  [K in keyof T]: T[K] extends Function ? T[K] & jest.Mock : T[K];
+};
