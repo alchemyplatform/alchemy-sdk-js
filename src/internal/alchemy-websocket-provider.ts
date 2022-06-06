@@ -180,7 +180,7 @@ export class AlchemyWebSocketProvider
 
       return result;
     } else {
-      return super.emit(eventName, args);
+      return super.emit(eventName, ...args);
     }
   }
 
