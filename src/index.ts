@@ -3,6 +3,7 @@ export * from './types/types';
 
 export { initializeAlchemy, Alchemy } from './api/alchemy';
 
+export { AlchemyProvider } from './internal/alchemy-provider';
 export {
   getNftMetadata,
   getNftsForOwner,
