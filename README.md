@@ -8,16 +8,14 @@ API changes in subsequent releases (don't write production code around it just y
 
 ## Getting started
 
-Download the `alchemy-sdk-1.0.0.tgz` file in this repo into your project's root directory and run:
-
 ```
-npm install alchemy-sdk-1.0.0.tgz
+npm install @alch/alchemy-sdk
 ```
 
 After installing the app, you can then import and use the SDK:
 
 ```ts
-import { AlchemyConfig, Network, initializeAlchemy } from 'alchemy-sdk';
+import { AlchemyConfig, Network, initializeAlchemy } from '@alch/alchemy-sdk';
 
 // Optional Config object, but defaults to demo api-key and eth-mainnet.
 const settings = {
@@ -33,12 +31,12 @@ The SDK's modular approach exports all functions at the top-level to reduce bund
 
 ```ts
 // Initializing the alchemy config object
-import { initializeAlchemy } from 'alchemy-sdk';
+import { initializeAlchemy } from '@alch/alchemy-sdk';
 
 const alchemy = initializeAlchemy(); // using default settings - pass in a settings object to specify your API key and network
 
 // Import and call a method, passing in the alchemy config object
-import { getNftsForOwner } from 'alchemy-sdk';
+import { getNftsForOwner } from '@alch/alchemy-sdk';
 
 getNftsForOwner(alchemy, '0xshah.eth').then(console.log);
 ```
@@ -66,7 +64,7 @@ To access standard JSON-RPC calls not in the NFT API or Alchemy Enhanced APIs, t
 allows you to perform core json-rpc calls with an Alchemy provider, just as you normally would with Ethers. If you are already using Ethers, you can simply use the provider from `alchemy-sdk` and the rest of your code should just work:
 
 ```ts
-import { initializeAlchemy } from 'alchemy-sdk';
+import { initializeAlchemy } from '@alch/alchemy-sdk';
 const alchemy = initializeAlchemy();
 
 // ETH JSON-RPC calls through ethers.js Provider
@@ -112,7 +110,7 @@ an `AsyncIterable`.
 Here's an example of how to paginate through all the NFTs in Vitalik's ENS address:
 
 ```ts
-import { getNftsForOwnerIterator } from 'alchemy-sdk';
+import { getNftsForOwnerIterator } from '@alch/alchemy-sdk';
 
 async function main() {
   const ownerAddress = 'vitalik.eth';
@@ -187,7 +185,7 @@ getNftsForOwner(alchemy, '0xshah.eth', {
 Getting all the owners of the BAYC NFT.
 
 ```ts
-import { getOwnersForNft, getNftsForCollectionIterator } from 'alchemy-sdk';
+import { getOwnersForNft, getNftsForCollectionIterator } from '@alch/alchemy-sdk';
 
 // Bored Ape Yacht Club contract address.
 const baycAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D';
@@ -208,7 +206,7 @@ main();
 Get all outbound transfers for a provided address.
 
 ```ts
-import { getTokenBalances } from 'alchemy-sdk';
+import { getTokenBalances } from '@alch/alchemy-sdk';
 
 getTokenBalances(alchemy, '0x994b342dd87fc825f66e51ffa3ef71ad818b6893').then(
   console.log
