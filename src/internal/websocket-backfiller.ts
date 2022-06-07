@@ -254,6 +254,7 @@ export class WebsocketBackfiller {
     }
 
     // TODO: just fire off each send() separately since we're no longer batching:
+    // TODO: handle errors
     const batchedBlockHeads = await this.provider.sendBatch(batchParts);
     const blockHeads = batchedBlockHeads.reduce(
       (acc, batch) => acc.concat(batch),

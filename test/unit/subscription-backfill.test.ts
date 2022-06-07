@@ -11,8 +11,6 @@ import {
 } from '../../src/internal/alchemy-websocket-provider';
 import { Mocked } from '../test-util';
 
-const isCancelled = () => false;
-
 describe('Backfill tests', () => {
   const sdk = initializeAlchemy();
   let provider: Mocked<AlchemyWebSocketProvider>;
@@ -34,10 +32,6 @@ describe('Backfill tests', () => {
         (call: string[]) => call[0] === 'eth_getBlockByNumber'
       )
     ).toBe(false);
-  }
-
-  function makeNewHeadsEvent(blockNumber: number, hash: string): BlockHead {
-    return { hash, number: toHex(blockNumber) } as any;
   }
 
   beforeEach(() => {
@@ -194,20 +188,6 @@ describe('Backfill tests', () => {
   });
 
   describe('getLogsBackfill', () => {
-    function makeLogsEvent(
-      blockNumber: number,
-      blockHash: string,
-      isRemoved = false,
-      logIndex = 1
-    ): LogsEvent {
-      return {
-        blockHash,
-        blockNumber: toHex(blockNumber),
-        logIndex: toHex(logIndex),
-        ...(isRemoved && { removed: isRemoved })
-      } as any;
-    }
-
     function expectGetLogRangeCalled(
       startInclusive: number,
       endExclusive: number
@@ -461,3 +441,26 @@ describe('Backfill tests', () => {
     });
   });
 });
+
+const isCancelled = () => false;
+
+export function makeNewHeadsEvent(
+  blockNumber: number,
+  hash: string
+): BlockHead {
+  return { hash, number: toHex(blockNumber) } as any;
+}
+
+export function makeLogsEvent(
+  blockNumber: number,
+  blockHash: string,
+  isRemoved = false,
+  logIndex = 1
+): LogsEvent {
+  return {
+    blockHash,
+    blockNumber: toHex(blockNumber),
+    logIndex: toHex(logIndex),
+    removed: isRemoved
+  } as any;
+}
