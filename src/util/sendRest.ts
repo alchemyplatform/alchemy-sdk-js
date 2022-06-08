@@ -3,6 +3,7 @@
  * returns the response.
  */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { VERSION } from '../version';
 
 /**
  * Helper function to send http requests using Axis.
@@ -17,9 +18,8 @@ export function sendAxiosRequest<Req, Res>(
 ): Promise<AxiosResponse<Res>> {
   const methodUrl = baseUrl + '/' + methodName;
   const config: AxiosRequestConfig = {
-    // TODO: Add versioning to the SDK.
     headers: {
-      'Alchemy-Ethers-Sdk-Version': '1.0.0'
+      'Alchemy-Ethers-Sdk-Version': VERSION
     },
     method: 'get',
     url: methodUrl,
