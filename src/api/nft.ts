@@ -35,13 +35,13 @@ export class BaseNft {
   }
 
   /** @internal */
-  static fromResponse(ownedNft: RawBaseNft, contractAddress: string): BaseNft {
+  static fromResponse(baseNft: RawBaseNft, contractAddress: string): BaseNft {
     return new BaseNft(
       contractAddress,
       // We have to normalize the token id here since the backend sometimes
       // returns the token ID as a hex string and sometimes as an integer.
-      BigNumber.from(ownedNft.id.tokenId).toString(),
-      ownedNft.id.tokenMetadata?.tokenType ?? NftTokenType.UNKNOWN
+      BigNumber.from(baseNft.id.tokenId).toString(),
+      baseNft.id.tokenMetadata?.tokenType ?? NftTokenType.UNKNOWN
     );
   }
 }
@@ -87,7 +87,7 @@ export class Nft extends BaseNft {
     tokenId: string,
     tokenType: NftTokenType,
     title: string,
-    description: string,
+    description: string | Array<string>,
     timeLastUpdated: string,
     tokenUri?: TokenUri,
     media?: TokenUri[],
@@ -96,7 +96,7 @@ export class Nft extends BaseNft {
   ) {
     super(address, tokenId, tokenType);
     this.title = title;
-    this.description = description;
+    this.description = Nft.parseDescription(description);
     this.timeLastUpdated = timeLastUpdated;
     this.metadataError = error;
     this.rawMetadata = metadata;
@@ -105,21 +105,28 @@ export class Nft extends BaseNft {
   }
 
   /** @internal */
-  static fromResponse(ownedNft: RawNft, contractAddress: string): Nft {
+  static fromResponse(nft: RawNft, contractAddress: string): Nft {
     return new Nft(
       contractAddress,
       // We have to normalize the token id here since the backend sometimes
       // returns the token ID as a hex string and sometimes as an integer string.
-      BigNumber.from(ownedNft.id.tokenId).toString(),
-      ownedNft.id.tokenMetadata?.tokenType ?? NftTokenType.UNKNOWN,
-      ownedNft.title,
-      ownedNft.description,
-      ownedNft.timeLastUpdated,
-      ownedNft.tokenUri,
-      ownedNft.media,
-      ownedNft.metadata,
-      ownedNft.error
+      BigNumber.from(nft.id.tokenId).toString(),
+      nft.id.tokenMetadata?.tokenType ?? NftTokenType.UNKNOWN,
+      nft.title,
+      nft.description,
+      nft.timeLastUpdated,
+      nft.tokenUri,
+      nft.media,
+      nft.metadata,
+      nft.error
     );
+  }
+
+  /** @internal */
+  private static parseDescription(description: string | Array<string>): string {
+    return typeof description === 'string'
+      ? description
+      : description.join(' ');
   }
 
   /**
