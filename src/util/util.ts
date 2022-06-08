@@ -8,5 +8,3 @@ export function formatBlock(block: string | number): string {
   }
   return block.toString();
 }
-
-export type Web3Callback<T> = (error: Error | null, result?: T) => void;
