@@ -6,6 +6,7 @@ import {
   getNftsForCollectionIterator,
   getNftsForOwner,
   getNftsForOwnerIterator,
+  getOwnersForCollection,
   getOwnersForNft,
   getTokenBalances,
   initializeAlchemy,
@@ -99,6 +100,11 @@ describe('E2E integration tests', () => {
       excludeFilters: [NftExcludeFilters.SPAM]
     });
     expect(withSpam.totalCount).not.toEqual(noSpam.totalCount);
+  });
+
+  it('getOwnersForCollection', async () => {
+    const owners = await getOwnersForCollection(alchemy, contractAddress);
+    console.log('owners', owners);
   });
 
   it('getNftsForCollection with pageKey', async () => {

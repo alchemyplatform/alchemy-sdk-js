@@ -137,3 +137,12 @@ export interface RawCollectionBaseNft {
  * @internal
  */
 export interface RawCollectionNft extends RawNft, RawCollectionBaseNft {}
+
+/**
+ * Represents Alchemy's HTTP response for `getOwnersForCollection`.
+ *
+ * @internal
+ */
+export interface RawGetOwnersForCollectionResponse {
+  ownerAddresses: string[];
+}

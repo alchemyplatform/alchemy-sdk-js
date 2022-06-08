@@ -312,6 +312,16 @@ export interface GetOwnersForNftResponse {
   readonly owners: string[];
 }
 
+/**
+ * The response object for the {@link getOwnersForCollection}.
+ *
+ * @public
+ */
+export interface GetOwnersForCollectionResponse {
+  /** An array of owner addresses for the provided contract address */
+  readonly owners: string[];
+}
+
 /** @public */
 export interface TransactionReceiptsBlockNumber {
   blockNumber: string;
