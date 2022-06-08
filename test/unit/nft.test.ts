@@ -88,6 +88,22 @@ describe('Nft class', () => {
     expect(nft.media[2]).toEqual(rawMedia[3]);
   });
 
+  it('constructor merges descriptions when it is an array', () => {
+    const description = ['very', 'special', 'and unique', 'description'];
+
+    const rawNft = createRawNft(
+      'title',
+      tokenIdString,
+      NftTokenType.ERC721,
+      { raw: '', gateway: '' },
+      [],
+      '2022-02-16T17:12:00.280Z',
+      description
+    );
+    const nft = Nft.fromResponse(rawNft, '0xCA1');
+    expect(nft.description).toEqual('very special and unique description');
+  });
+
   it('media field is set to empty array even if undefined ', () => {
     const nft = createNft(
       'title',

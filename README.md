@@ -185,7 +185,10 @@ getNftsForOwner(alchemy, '0xshah.eth', {
 Getting all the owners of the BAYC NFT.
 
 ```ts
-import { getOwnersForNft, getNftsForCollectionIterator } from '@alch/alchemy-sdk';
+import {
+  getOwnersForNft,
+  getNftsForCollectionIterator
+} from '@alch/alchemy-sdk';
 
 // Bored Ape Yacht Club contract address.
 const baycAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D';

@@ -22,7 +22,7 @@ export interface RawBaseNft {
  */
 export interface RawNft extends RawBaseNft {
   title: string;
-  description: string;
+  description: string | Array<string>;
   tokenUri?: TokenUri;
   media?: TokenUri[];
   metadata?: NftMetadata;
