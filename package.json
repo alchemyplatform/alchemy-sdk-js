@@ -40,6 +40,10 @@
     "**/*.ts": [
       "yarn lint-file --fix",
       "yarn format-file"
+    ],
+    "package.json": [
+      "./inject-version.js",
+      "git add src/version.ts"
     ]
   },
   "bugs": {
