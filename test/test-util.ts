@@ -88,11 +88,12 @@ export function createRawNft(
   tokenType = NftTokenType.UNKNOWN,
   tokenUri?: TokenUri,
   media?: TokenUri[] | undefined,
-  timeLastUpdated?: string
+  timeLastUpdated?: string,
+  description?: string | Array<string>
 ): RawNft {
   return {
     title,
-    description: `a truly unique NFT: ${title}`,
+    description: description ?? `a truly unique NFT: ${title}`,
     timeLastUpdated: timeLastUpdated ?? '2022-02-16T17:12:00.280Z',
     id: {
       tokenId,
