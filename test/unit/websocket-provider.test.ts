@@ -1,7 +1,6 @@
-import { Network, toHex } from '../../src';
+import { AlchemyProvider, Network, toHex } from '../../src';
 import { AlchemyWebSocketProvider } from '../../src/internal/alchemy-websocket-provider';
 import { Deferred, Mocked } from '../test-util';
-import { AlchemyProvider } from '../../src/internal/alchemy-provider';
 import { Server, WebSocket } from 'mock-socket';
 import {
   LogsEvent,
@@ -142,10 +141,25 @@ describe('AlchemyWebSocketProvider', () => {
 
   it('handles json-rpc requests', async () => {
     const mockBlockNumber = 100;
-    setupMockServer();
     initializeWebSocketProvider();
+    setupMockServer();
     const res = await wsProvider.getBlockNumber();
     expect(res).toEqual(mockBlockNumber);
+  });
+
+  it('initializes and removes socket listeners', async () => {
+    initializeWebSocketProvider();
+
+    // Verify there are 3 listeners: 'message', 'reopen', and 'down'
+    expect(
+      Object.values(wsProvider._websocket.listeners).flat().length
+    ).toEqual(3);
+    await wsProvider.destroy();
+
+    // Verify the 3 listeners have been removed.
+    expect(
+      Object.values(wsProvider._websocket.listeners).flat().length
+    ).toEqual(0);
   });
 
   describe('newHeads/on(block)', () => {

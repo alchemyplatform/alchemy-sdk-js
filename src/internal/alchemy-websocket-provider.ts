@@ -18,6 +18,7 @@ import {
 import { fromHex } from '../api/util';
 import SturdyWebSocket from 'sturdy-websocket';
 import { BigNumber } from '@ethersproject/bignumber';
+import { VERSION } from '../version';
 
 const HEARTBEAT_INTERVAL = 30000;
 const HEARTBEAT_WAIT_TIME = 10000;
@@ -128,7 +129,8 @@ export class AlchemyWebSocketProvider
       'wss'
     );
 
-    const ws = new SturdyWebSocket(connection.url, 'alchemy-sdk-1.0.0', {
+    const protocol = `alchemy-sdk-${VERSION}`;
+    const ws = new SturdyWebSocket(connection.url, protocol, {
       wsConstructor: wsConstructor ?? getWebsocketConstructor()
     });
 
@@ -310,7 +312,7 @@ export class AlchemyWebSocketProvider
         method,
         params,
         jsonrpc: '2.0',
-        id: `alc-web3:${nextId++}`
+        id: `alchemy-sdk:${nextId++}`
       };
     });
 
@@ -343,12 +345,9 @@ export class AlchemyWebSocketProvider
   }
 
   private addSocketListeners(): void {
-    this._websocket.addEventListener('message', this.handleMessage.bind(this));
-    this._websocket.addEventListener('reopen', this.handleReopen.bind(this));
-    this._websocket.addEventListener(
-      'down',
-      this.stopHeartbeatAndBackfill.bind(this)
-    );
+    this._websocket.addEventListener('message', this.handleMessage);
+    this._websocket.addEventListener('reopen', this.handleReopen);
+    this._websocket.addEventListener('down', this.stopHeartbeatAndBackfill);
   }
 
   private removeSocketListeners(): void {
@@ -360,6 +359,9 @@ export class AlchemyWebSocketProvider
   /**
    * The underlying ethers WebsocketProvider already handles and emits messages.
    * To allow backfilling, track all messages that are emitted.
+   *
+   * This is a field arrow function in order to preserve `this` context when
+   * passing the method as an event listener.
    */
   private handleMessage = (event: MessageEvent): void => {
     const message: WebSocketMessage = JSON.parse(event.data);
@@ -419,9 +421,12 @@ export class AlchemyWebSocketProvider
    * 1. Resubscribe to all existing subscriptions and start backfilling
    * 2. Restart heart beat.
    *
+   * This is a field arrow function in order to preserve `this` context when
+   * passing the method as an event listener.
+   *
    * @private
    */
-  private handleReopen(): void {
+  private handleReopen = () => {
     this.virtualIdsByPhysicalId.clear();
     const { cancel, isCancelled } = makeCancelToken();
     this.cancelBackfill = cancel;
@@ -440,7 +445,7 @@ export class AlchemyWebSocketProvider
       })();
     }
     this.startHeartbeat();
-  }
+  };
 
   /**
    * Reopens the backfill based on
@@ -521,15 +526,18 @@ export class AlchemyWebSocketProvider
    * Cancels the heartbeat and any pending backfills being performed. This is
    * called when the websocket connection goes down or is disconnected.
    *
+   * This is a field arrow function in order to preserve `this` context when
+   * passing the method as an event listener.
+   *
    * @private
    */
-  private stopHeartbeatAndBackfill(): void {
+  private stopHeartbeatAndBackfill = () => {
     if (this.heartbeatIntervalId != null) {
       clearInterval(this.heartbeatIntervalId);
       this.heartbeatIntervalId = undefined;
     }
     this.cancelBackfill();
-  }
+  };
 
   private emitNewHeadsEvent(virtualId: string, result: NewHeadsEvent): void {
     this.emitAndRememberEvent(virtualId, result, getNewHeadsBlockNumber);
