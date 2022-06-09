@@ -95,6 +95,12 @@ export enum AssetTransfersCategory {
   ERC20 = 'erc20',
   ERC721 = 'erc721',
   ERC1155 = 'erc1155',
+
+  /**
+   * Special contracts that don't follow ERC 721/1155, (ex: CryptoKitties).
+   *
+   * @beta
+   */
   SPECIALNFT = 'specialnft'
 }
 
