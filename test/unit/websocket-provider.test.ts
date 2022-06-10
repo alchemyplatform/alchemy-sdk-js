@@ -1,6 +1,11 @@
 import { AlchemyProvider, Network, toHex } from '../../src';
 import { AlchemyWebSocketProvider } from '../../src/internal/alchemy-websocket-provider';
-import { Deferred, Mocked } from '../test-util';
+import {
+  Deferred,
+  makeLogsEvent,
+  makeNewHeadsEvent,
+  Mocked
+} from '../test-util';
 import { Server, WebSocket } from 'mock-socket';
 import {
   LogsEvent,
@@ -8,7 +13,6 @@ import {
   NewHeadsEvent,
   WebsocketBackfiller
 } from '../../src/internal/websocket-backfiller';
-import { makeLogsEvent, makeNewHeadsEvent } from './subscription-backfill.test';
 import { Formatter } from '@ethersproject/providers/lib/formatter';
 import SpyInstance = jest.SpyInstance;
 
@@ -148,6 +152,7 @@ describe('AlchemyWebSocketProvider', () => {
   });
 
   it('initializes and removes socket listeners', async () => {
+    setupMockServer();
     initializeWebSocketProvider();
 
     // Verify there are 3 listeners: 'message', 'reopen', and 'down'
