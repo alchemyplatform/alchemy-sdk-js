@@ -70,6 +70,7 @@
     "husky": "^7.0.0",
     "jest": "^27.5.1",
     "lint-staged": "^12.3.7",
+    "mock-socket": "^9.1.4",
     "prettier": "2.6.0",
     "prettier-plugin-jsdoc": "^0.3.38",
     "rollup": "^2.70.1",

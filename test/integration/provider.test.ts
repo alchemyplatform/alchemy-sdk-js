@@ -49,19 +49,39 @@ describe('AlchemyProvider', () => {
     );
   });
 
+  it('can send normal json-rpc methods', async () => {
+    const res = await wsProvider.getBlockNumber();
+    expect(typeof res).toBe('string');
+  });
+
   it('full transactions', done => {
     let eventCount = 0;
     wsProvider.on(
       {
         method: 'alchemy_newFullPendingTransactions'
       },
-      () => {
+      msg => {
+        console.log('message', msg);
         if (eventCount === 10) {
           done();
         }
         eventCount++;
       }
     );
+  });
+
+  it('handles blocks', done => {
+    let eventCount = 0;
+    ethersProvider.on('block', res => {
+      console.log('block from ethers', res);
+    });
+    wsProvider.on('block', res => {
+      console.log('block from provider', res);
+      if (eventCount == 10) {
+        done();
+      }
+      eventCount++;
+    });
   });
 
   // TODO(ethers): Write tests to make sure that the SDK's provider instance
