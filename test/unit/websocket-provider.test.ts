@@ -139,7 +139,7 @@ describe('AlchemyWebSocketProvider', () => {
     jest.restoreAllMocks();
   });
 
-  it.only('handles json-rpc requests', async () => {
+  it('handles json-rpc requests', async () => {
     const mockBlockNumber = 100;
     setupMockServer();
     initializeWebSocketProvider();
