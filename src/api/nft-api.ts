@@ -266,7 +266,7 @@ export async function getNftsForCollection(
 ): Promise<CollectionNftsResponse | CollectionBaseNftsResponse> {
   const withMetadata = omitMetadataToWithMetadata(options?.omitMetadata);
   const response = await requestHttpWithBackoff<
-    GetOwnersForCollectionAlchemyParams,
+    GetNftsForCollectionAlchemyParams,
     RawGetBaseNftsForCollectionResponse | RawGetNftsForCollectionResponse
   >(alchemy, 'getNFTsForCollection', {
     contractAddress,
@@ -355,14 +355,14 @@ export async function getOwnersForCollection(
   let response;
   if (typeof contractAddressOrNft === 'string') {
     response = await requestHttpWithBackoff<
-      GetOwnersForCollectionParams,
+      GetOwnersForCollectionAlchemyParams,
       RawGetOwnersForCollectionResponse
     >(alchemy, 'getOwnersForCollection', {
       contractAddress: contractAddressOrNft
     });
   } else {
     response = await requestHttpWithBackoff<
-      GetOwnersForCollectionParams,
+      GetOwnersForCollectionAlchemyParams,
       RawGetOwnersForCollectionResponse
     >(alchemy, 'getOwnersForCollection', {
       contractAddress: contractAddressOrNft.contract.address
@@ -661,7 +661,7 @@ function omitMetadataToWithMetadata(
  *
  * @internal
  */
-interface GetOwnersForCollectionAlchemyParams {
+interface GetNftsForCollectionAlchemyParams {
   contractAddress: string;
   startToken?: string;
   withMetadata: boolean;
@@ -699,6 +699,6 @@ interface GetNftMetadataParams {
  *
  * @internal
  */
-interface GetOwnersForCollectionParams {
+interface GetOwnersForCollectionAlchemyParams {
   contractAddress: string;
 }
