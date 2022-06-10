@@ -139,10 +139,10 @@ describe('AlchemyWebSocketProvider', () => {
     jest.restoreAllMocks();
   });
 
-  it('handles json-rpc requests', async () => {
+  it.only('handles json-rpc requests', async () => {
     const mockBlockNumber = 100;
-    initializeWebSocketProvider();
     setupMockServer();
+    initializeWebSocketProvider();
     const res = await wsProvider.getBlockNumber();
     expect(res).toEqual(mockBlockNumber);
   });
@@ -165,11 +165,11 @@ describe('AlchemyWebSocketProvider', () => {
   describe('newHeads/on(block)', () => {
     it('handles default ethers subscriptions', done => {
       const sendSpy = jest.spyOn(AlchemyWebSocketProvider.prototype, 'send');
-      initializeWebSocketProvider();
       setupMockServer({
         ethSubscribeIds: ['0xabc'],
         ethSubscribeMessages: [[{ number: toHex(100) }, { number: toHex(101) }]]
       });
+      initializeWebSocketProvider();
 
       let eventCount = 0;
       const expected = [100, 101];
@@ -300,7 +300,6 @@ describe('AlchemyWebSocketProvider', () => {
 
     it('handles default ethers subscriptions', done => {
       const sendSpy = jest.spyOn(AlchemyWebSocketProvider.prototype, 'send');
-      initializeWebSocketProvider();
       const logsEvents = [
         makeLogsEvent(100, 'a', false),
         makeLogsEvent(101, 'b', false)
@@ -309,6 +308,7 @@ describe('AlchemyWebSocketProvider', () => {
         ethSubscribeIds: ['0xabc'],
         ethSubscribeMessages: [logsEvents]
       });
+      initializeWebSocketProvider();
 
       let eventCount = 0;
       wsProvider.on({ address: contractAddress }, res => {
@@ -460,11 +460,11 @@ describe('AlchemyWebSocketProvider', () => {
   describe('alchemy_newFullPendingTransactions', () => {
     it('handles default subscriptions', done => {
       const sendSpy = jest.spyOn(AlchemyWebSocketProvider.prototype, 'send');
-      initializeWebSocketProvider();
       setupMockServer({
         ethSubscribeIds: ['0xabc'],
         ethSubscribeMessages: [[{ blockNumber: 10 }, { blockNumber: 11 }]]
       });
+      initializeWebSocketProvider();
 
       let eventCount = 0;
       const expected = [{ blockNumber: 10 }, { blockNumber: 11 }];
@@ -490,11 +490,11 @@ describe('AlchemyWebSocketProvider', () => {
     it('handles default subscriptions', done => {
       const contractAddress = '0x65d25E3F2696B73b850daA07Dd1E267dCfa67F2D';
       const sendSpy = jest.spyOn(AlchemyWebSocketProvider.prototype, 'send');
-      initializeWebSocketProvider();
       setupMockServer({
         ethSubscribeIds: ['0xabc'],
         ethSubscribeMessages: [[{ blockNumber: 10 }, { blockNumber: 11 }]]
       });
+      initializeWebSocketProvider();
 
       let eventCount = 0;
       const expected = [{ blockNumber: 10 }, { blockNumber: 11 }];
