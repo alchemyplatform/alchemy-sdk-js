@@ -3,11 +3,9 @@ import {
   GetLogsOptions,
   WebsocketBackfiller
 } from '../../src/internal/websocket-backfiller';
-import {
-  AlchemyWebSocketProvider,
-  JsonRpcRequest
-} from '../../src/internal/alchemy-websocket-provider';
+import { AlchemyWebSocketProvider } from '../../src/api/alchemy-websocket-provider';
 import { makeLogsEvent, makeNewHeadsEvent, Mocked } from '../test-util';
+import { JsonRpcRequest } from '../../src/internal/internal-types';
 
 describe('Backfill tests', () => {
   const sdk = initializeAlchemy();

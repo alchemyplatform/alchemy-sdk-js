@@ -16,7 +16,10 @@ const allBuilds = {
       sourcemap: true
     }
   ],
-  external: [...Object.keys(pkg.dependencies || {})],
+  external: [
+    ...Object.keys(pkg.dependencies || {}),
+    '@ethersproject/providers/lib/base-provider'
+  ],
   plugins: [typescriptPlugin(), terser()]
 };
 

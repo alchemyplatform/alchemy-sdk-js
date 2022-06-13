@@ -1,4 +1,4 @@
-import { providers } from 'ethers';
+import { BigNumber, providers } from 'ethers';
 import { Networkish } from '@ethersproject/networks';
 import { DEFAULT_ALCHEMY_API_KEY, EthersNetwork, noop } from '../util/const';
 import { AlchemyProvider } from './alchemy-provider';
@@ -14,11 +14,21 @@ import {
   NewHeadsEvent,
   throwIfCancelled,
   WebsocketBackfiller
-} from './websocket-backfiller';
-import { fromHex } from '../api/util';
+} from '../internal/websocket-backfiller';
+import { fromHex } from './util';
 import SturdyWebSocket from 'sturdy-websocket';
-import { BigNumber } from '@ethersproject/bignumber';
 import { VERSION } from '../version';
+import {
+  EthersEvent,
+  JsonRpcRequest,
+  JsonRpcResponse,
+  LogsSubscription,
+  NewHeadsSubscription,
+  SingleOrBatchResponse,
+  SubscriptionEvent,
+  VirtualSubscription,
+  WebSocketMessage
+} from '../internal/internal-types';
 
 const HEARTBEAT_INTERVAL = 30000;
 const HEARTBEAT_WAIT_TIME = 10000;
@@ -36,59 +46,6 @@ const BACKFILL_RETRIES = 5;
  */
 const RETAINED_EVENT_BLOCK_COUNT = 10;
 
-type JsonRpcId = string | number | null;
-
-export interface JsonRpcRequest {
-  jsonrpc: '2.0';
-  method: string;
-  params?: any[];
-  id?: JsonRpcId;
-}
-
-interface VirtualSubscription {
-  event: EthersEvent;
-  virtualId: string;
-  physicalId: string;
-  method: string;
-  params: any[];
-  isBackfilling: boolean;
-  startingBlockNumber: number;
-  sentEvents: any[];
-  backfillBuffer: any[];
-}
-
-export interface JsonRpcResponse<T = any> {
-  jsonrpc: '2.0';
-  result?: T;
-  error?: JsonRpcError;
-  id: JsonRpcId;
-}
-
-export interface JsonRpcError<T = any> {
-  code: number;
-  message: string;
-  data?: T;
-}
-
-interface NewHeadsSubscription extends VirtualSubscription {
-  method: 'eth_subscribe';
-  params: ['newHeads'];
-  isBackfilling: boolean;
-  sentEvents: NewHeadsEvent[];
-  backfillBuffer: NewHeadsEvent[];
-}
-
-interface LogsSubscription extends VirtualSubscription {
-  method: 'eth_subscribe';
-  params: ['logs', LogsSubscriptionFilter?];
-  isBackfilling: boolean;
-  sentEvents: LogsEvent[];
-  backfillBuffer: LogsEvent[];
-}
-
-export type WebSocketMessage = SingleOrBatchResponse | SubscriptionEvent;
-export type SingleOrBatchResponse = JsonRpcResponse | JsonRpcResponse[];
-
 export class AlchemyWebSocketProvider
   extends providers.WebSocketProvider
   implements providers.CommunityResourcable
@@ -101,11 +58,16 @@ export class AlchemyWebSocketProvider
   // "virtual" subscription ids which are visible to the consumer to the
   // "physical" subscription ids of the actual connections. This terminology is
   // borrowed from virtual and physical memory, which has a similar mapping.
+  /** @internal */
   private readonly virtualSubscriptionsById: Map<string, VirtualSubscription> =
     new Map();
+  /** @internal */
   private readonly virtualIdsByPhysicalId: Map<string, string> = new Map();
+  /** @internal */
   private readonly backfiller: WebsocketBackfiller;
+  /** @internal */
   private heartbeatIntervalId?: NodeJS.Timeout;
+  /** @internal */
   private cancelBackfill: () => void;
 
   /**
@@ -344,12 +306,14 @@ export class AlchemyWebSocketProvider
     return this.apiKey === DEFAULT_ALCHEMY_API_KEY;
   }
 
+  /** @internal */
   private addSocketListeners(): void {
     this._websocket.addEventListener('message', this.handleMessage);
     this._websocket.addEventListener('reopen', this.handleReopen);
     this._websocket.addEventListener('down', this.stopHeartbeatAndBackfill);
   }
 
+  /** @internal */
   private removeSocketListeners(): void {
     this._websocket.removeEventListener('message', this.handleMessage);
     this._websocket.removeEventListener('reopen', this.handleReopen);
@@ -362,6 +326,8 @@ export class AlchemyWebSocketProvider
    *
    * This is a field arrow function in order to preserve `this` context when
    * passing the method as an event listener.
+   *
+   * @internal
    */
   private handleMessage = (event: MessageEvent): void => {
     const message: WebSocketMessage = JSON.parse(event.data);
@@ -424,7 +390,7 @@ export class AlchemyWebSocketProvider
    * This is a field arrow function in order to preserve `this` context when
    * passing the method as an event listener.
    *
-   * @private
+   * @internal
    */
   private handleReopen = () => {
     this.virtualIdsByPhysicalId.clear();
@@ -450,9 +416,9 @@ export class AlchemyWebSocketProvider
   /**
    * Reopens the backfill based on
    *
-   * @private
    * @param isCancelled
    * @param subscription
+   * @internal
    */
   private async resubscribeAndBackfill(
     isCancelled: () => boolean,
@@ -529,7 +495,7 @@ export class AlchemyWebSocketProvider
    * This is a field arrow function in order to preserve `this` context when
    * passing the method as an event listener.
    *
-   * @private
+   * @internal
    */
   private stopHeartbeatAndBackfill = () => {
     if (this.heartbeatIntervalId != null) {
@@ -539,10 +505,12 @@ export class AlchemyWebSocketProvider
     this.cancelBackfill();
   };
 
+  /** @internal */
   private emitNewHeadsEvent(virtualId: string, result: NewHeadsEvent): void {
     this.emitAndRememberEvent(virtualId, result, getNewHeadsBlockNumber);
   }
 
+  /** @internal */
   private emitLogsEvent(virtualId: string, result: LogsEvent): void {
     this.emitAndRememberEvent(virtualId, result, getLogsBlockNumber);
   }
@@ -551,6 +519,8 @@ export class AlchemyWebSocketProvider
    * Emits an event to consumers, but also remembers it in its subscriptions's
    * `sentEvents` buffer so that we can detect re-orgs if the connection drops
    * and needs to be reconnected.
+   *
+   * @internal
    */
   private emitAndRememberEvent<T>(
     virtualId: string,
@@ -566,6 +536,7 @@ export class AlchemyWebSocketProvider
     this.emitGenericEvent(subscription, result);
   }
 
+  /** @internal */
   private rememberEvent<T>(
     virtualId: string,
     result: T,
@@ -585,6 +556,7 @@ export class AlchemyWebSocketProvider
     );
   }
 
+  /** @internal */
   private emitGenericEvent(
     subscription: VirtualSubscription,
     result: any
@@ -597,7 +569,7 @@ export class AlchemyWebSocketProvider
    * Starts a heartbeat that pings the websocket server periodically to ensure
    * that the connection stays open.
    *
-   * @private
+   * @internal
    */
   private startHeartbeat(): void {
     if (this.heartbeatIntervalId != null) {
@@ -617,8 +589,8 @@ export class AlchemyWebSocketProvider
    * as a batch, which was the original implementation. The original batch logic
    * is preserved in this implementation in order for faster porting.
    *
-   * @private
    * @param payload
+   * @internal
    */
   // TODO(cleanup): Refactor and remove usages of `sendBatch()`.
   // TODO(errors): Use allSettled() once we have more error handling.
@@ -628,6 +600,7 @@ export class AlchemyWebSocketProvider
     return Promise.all(payload.map(req => this.send(req.method, req.params)));
   }
 
+  /** @internal */
   private customStartEvent(event: EthersEvent): void {
     if (event.type === 'alchemy') {
       const { address } = event;
@@ -663,6 +636,7 @@ export class AlchemyWebSocketProvider
     }
   }
 
+  /** @internal */
   private emitProcessFn(event: EthersEvent): (result: any) => void {
     switch (event.type) {
       case 'alchemy':
@@ -699,26 +673,6 @@ export class AlchemyWebSocketProvider
   }
 }
 
-/**
- * Wrapper class around the {@link Event} class in order to add support for
- * Alchemy's custom subscriptions types.
- *
- * @private
- */
-class EthersEvent extends Event {
-  get address(): string | null {
-    const comps = this.tag.split(':');
-    if (comps[0] !== 'alchemy') {
-      return null;
-    }
-    if (comps[1] && comps[1] !== '*') {
-      return comps[1];
-    } else {
-      return null;
-    }
-  }
-}
-
 function getWebsocketConstructor(): any {
   return isNodeEnvironment() ? require('ws') : WebSocket;
 }
@@ -732,16 +686,8 @@ function isNodeEnvironment(): boolean {
   );
 }
 
-interface SubscriptionEvent<T = any> {
-  jsonrpc: '2.0';
-  method: 'eth_subscription';
-  params: {
-    subscription: string;
-    result: T;
-  };
-}
-
-export interface CancelToken {
+/** @internal */
+interface CancelToken {
   cancel(): void;
   isCancelled(): boolean;
 }

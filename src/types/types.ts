@@ -448,6 +448,12 @@ export interface DeployResult {
   readonly blockNumber: number;
 }
 
+/**
+ * Event filters for the {@link AlchemyWebSocketProvider.on} method to use
+ * Alchemy's custom Subscription API endpoints.
+ *
+ * @public
+ */
 export type AlchemyEventFilter =
   | {
       method: 'alchemy_newFullPendingTransactions';
@@ -457,4 +463,10 @@ export type AlchemyEventFilter =
       address: string;
     };
 
+/**
+ * Alchemy's event filter that extends the default {@link EventType} interface to
+ * also include Alchemy's Subscription API.
+ *
+ * @public
+ */
 export type AlchemyEventType = EventType | AlchemyEventFilter;
