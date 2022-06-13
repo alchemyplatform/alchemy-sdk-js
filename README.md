@@ -80,15 +80,16 @@ Consult the [Ethers.js documentation](https://docs.ethers.io/v5/) for how to use
 
 The SDK currently supports the following [NFT API](https://docs.alchemy.com/alchemy/enhanced-apis/nft-api) endpoints:
 
-- `getNftMetadata()`: Gets the NFT metadata for a contract address and tokenId.
+- `getNftMetadata()`: Get the NFT metadata for a contract address and tokenId.
 - `getNftsForOwner()`: Get NFTs for an owner address.
 - `getNftsForOwnerIterator()`: Get NFTs for an owner address as an async iterator (handles paging automatically).
-- `getNftsForCollection()`: Gets all NFTs for a contract address.
-- `getNftForCollectionIterator()`: Gets all NFTs for a contract address as an async iterator (handles paging automatically).
-- `getOwnersForNft()`: Get all the owners for a given NFT contract address and token ID.
-- `checkNftOwnership()`: Checks that the provided owner address owns one or more of the provided NFT contract addresses.
-- `findContractDeployer()`: Finds the contract deployer and block number for a given NFT contract address.
-- `refreshNftMetadata()`: Refreshes the cached NFT metadata for a contract address and tokenId.
+- `getNftsForCollection()`: Get all NFTs for a contract address.
+- `getNftForCollectionIterator()`: Get all NFTs for a contract address as an async iterator (handles paging automatically).
+- `getOwnersForNft()`: Get all the owners for a given NFT contract address and a particular token ID.
+- `getOwnersForCollection()`: Get all the owners for a given NFT contract address.
+- `checkNftOwnership()`: Check that the provided owner address owns one or more of the provided NFT contract addresses.
+- `findContractDeployer()`: Find the contract deployer and block number for a given NFT contract address.
+- `refreshNftMetadata()`: Refresh the cached NFT metadata for a contract address and tokenId.
 
 ### Comparing `BaseNft` and `Nft`
 
@@ -148,10 +149,8 @@ or as a webpage by opening `docs/index.html` in your browser.
 There's a long list, but here are the main ones:
 
 - Websocket support
-- Retry count support for json-rpc calls (currently only HTTP calls are retried)
+- Retry count support for json-rpc calls (currently only for NFT API calls).
 - More config options for the base ethers.js AlchemyProvider.
-- Most of these changes require extending the base ethers.js SDK with custom implementations.
-- Separating SDK into separate packages.
 
 ## Examples
 

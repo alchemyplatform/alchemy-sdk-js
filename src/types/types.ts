@@ -95,6 +95,12 @@ export enum AssetTransfersCategory {
   ERC20 = 'erc20',
   ERC721 = 'erc721',
   ERC1155 = 'erc1155',
+
+  /**
+   * Special contracts that don't follow ERC 721/1155, (ex: CryptoKitties).
+   *
+   * @beta
+   */
   SPECIALNFT = 'specialnft'
 }
 
@@ -309,6 +315,16 @@ export interface OwnedBaseNft extends BaseNft {
  */
 export interface GetOwnersForNftResponse {
   /** An array of owner addresses for the provided token. */
+  readonly owners: string[];
+}
+
+/**
+ * The response object for the {@link getOwnersForCollection}.
+ *
+ * @public
+ */
+export interface GetOwnersForCollectionResponse {
+  /** An array of owner addresses for the provided contract address */
   readonly owners: string[];
 }
 

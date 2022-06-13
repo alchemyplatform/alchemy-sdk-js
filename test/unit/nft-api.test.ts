@@ -11,6 +11,7 @@ import {
   getNftsForOwner,
   getNftsForOwnerIterator,
   GetNftsForOwnerOptions,
+  getOwnersForCollection,
   getOwnersForNft,
   initializeAlchemy,
   Nft,
@@ -844,6 +845,50 @@ describe('NFT module', () => {
       expect(mock.history.get[0].params).toHaveProperty(
         'tokenId',
         tokenIdNumber
+      );
+
+      expect(response).toEqual({ owners });
+    });
+
+    it('retries with maxAttempts', async () => {
+      mock.reset();
+      mock.onGet().reply(429, 'Too many requests');
+
+      await expect(
+        getOwnersForNft(alchemy, contractAddress, tokenIdHex)
+      ).rejects.toThrow('Too many requests');
+    });
+  });
+
+  describe('getOwnersForCollection()', () => {
+    const contractAddress = '0xCA1';
+    const tokenIdHex = '0x1b7';
+    const owners = ['0x1', '0x2', '0x3'];
+
+    beforeEach(() => {
+      mock.onGet().reply(200, {
+        ownerAddresses: owners
+      });
+    });
+
+    it('calls with the correct parameters', async () => {
+      await getOwnersForCollection(alchemy, contractAddress);
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        contractAddress
+      );
+    });
+
+    it('can be called with BaseNft', async () => {
+      const response = await getOwnersForCollection(
+        alchemy,
+        createBaseNft(contractAddress, tokenIdHex)
+      );
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        contractAddress
       );
 
       expect(response).toEqual({ owners });

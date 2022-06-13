@@ -11,6 +11,7 @@ export {
   getNftsForCollection,
   getNftsForCollectionIterator,
   getOwnersForNft,
+  getOwnersForCollection,
   checkNftOwnership,
   findContractDeployer,
   refreshNftMetadata

@@ -6,6 +6,7 @@ import {
   GetBaseNftsForOwnerOptions,
   GetNftsForCollectionOptions,
   GetNftsForOwnerOptions,
+  GetOwnersForCollectionResponse,
   GetOwnersForNftResponse,
   NftTokenType,
   OwnedBaseNft,
@@ -24,6 +25,7 @@ import {
   RawGetBaseNftsResponse,
   RawGetNftsForCollectionResponse,
   RawGetNftsResponse,
+  RawGetOwnersForCollectionResponse,
   RawNft,
   RawOwnedBaseNft,
   RawOwnedNft
@@ -321,6 +323,55 @@ export function getOwnersForNft(
       tokenId: BigNumber.from(contractAddressOrNft.tokenId).toString()
     });
   }
+}
+
+/**
+ * Gets all the owners for a given NFT collection.
+ *
+ * @param alchemy - The Alchemy SDK instance.
+ * @param contractAddress - The NFT collection to get the owners for.
+ * @beta
+ */
+export function getOwnersForCollection(
+  alchemy: Alchemy,
+  contractAddress: string
+): Promise<GetOwnersForCollectionResponse>;
+
+/**
+ * Gets all the owners for a given NFT collection.
+ *
+ * @param alchemy - The Alchemy SDK instance.
+ * @param nft - The NFT to get the owners of the collection for.
+ * @beta
+ */
+export function getOwnersForCollection(
+  alchemy: Alchemy,
+  nft: BaseNft
+): Promise<GetOwnersForCollectionResponse>;
+export async function getOwnersForCollection(
+  alchemy: Alchemy,
+  contractAddressOrNft: string | BaseNft
+): Promise<GetOwnersForCollectionResponse> {
+  let response;
+  if (typeof contractAddressOrNft === 'string') {
+    response = await requestHttpWithBackoff<
+      GetOwnersForCollectionAlchemyParams,
+      RawGetOwnersForCollectionResponse
+    >(alchemy, 'getOwnersForCollection', {
+      contractAddress: contractAddressOrNft
+    });
+  } else {
+    response = await requestHttpWithBackoff<
+      GetOwnersForCollectionAlchemyParams,
+      RawGetOwnersForCollectionResponse
+    >(alchemy, 'getOwnersForCollection', {
+      contractAddress: contractAddressOrNft.contract.address
+    });
+  }
+
+  return {
+    owners: response.ownerAddresses
+  };
 }
 
 /**
@@ -641,4 +692,13 @@ interface GetNftMetadataParams {
   tokenId: string;
   tokenType?: NftTokenType;
   refreshCache?: boolean;
+}
+
+/**
+ * Interface for the `getOwnersForCollection` endpoint.
+ *
+ * @internal
+ */
+interface GetOwnersForCollectionAlchemyParams {
+  contractAddress: string;
 }
