@@ -11,9 +11,11 @@ import {
   NftTokenType,
   OwnedBaseNft,
   OwnedNft,
+  toHex,
   TokenUri
 } from '../src';
 import { BigNumber } from 'ethers';
+import { BlockHead, LogsEvent } from '../src/internal/websocket-backfiller';
 
 export function createRawOwnedBaseNft(
   address: string,
@@ -154,3 +156,44 @@ export function createRawCollectionBaseNft(
 export type Mocked<T> = T & {
   [K in keyof T]: T[K] extends Function ? T[K] & jest.Mock : T[K];
 };
+
+/** A Promise implementation for deferred resolution. */
+export class Deferred<R> {
+  promise: Promise<R>;
+
+  constructor() {
+    this.promise = new Promise<R>(
+      (
+        resolve: (value: R | Promise<R>) => void,
+        reject: (reason: Error) => void
+      ) => {
+        this.resolve = resolve;
+        this.reject = reject;
+      }
+    );
+  }
+
+  resolve: (value: R | Promise<R>) => void = () => {};
+  reject: (reason: Error) => void = () => {};
+}
+
+export function makeNewHeadsEvent(
+  blockNumber: number,
+  hash: string
+): BlockHead {
+  return { hash, number: toHex(blockNumber) } as any;
+}
+
+export function makeLogsEvent(
+  blockNumber: number,
+  blockHash: string,
+  isRemoved = false,
+  logIndex = 1
+): LogsEvent {
+  return {
+    blockHash,
+    blockNumber: toHex(blockNumber),
+    logIndex: toHex(logIndex),
+    removed: isRemoved
+  } as any;
+}
