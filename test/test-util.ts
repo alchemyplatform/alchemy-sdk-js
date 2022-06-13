@@ -11,9 +11,11 @@ import {
   NftTokenType,
   OwnedBaseNft,
   OwnedNft,
+  toHex,
   TokenUri
 } from '../src';
 import { BigNumber } from 'ethers';
+import { BlockHead, LogsEvent } from '../src/internal/websocket-backfiller';
 
 export function createRawOwnedBaseNft(
   address: string,
@@ -173,4 +175,25 @@ export class Deferred<R> {
 
   resolve: (value: R | Promise<R>) => void = () => {};
   reject: (reason: Error) => void = () => {};
+}
+
+export function makeNewHeadsEvent(
+  blockNumber: number,
+  hash: string
+): BlockHead {
+  return { hash, number: toHex(blockNumber) } as any;
+}
+
+export function makeLogsEvent(
+  blockNumber: number,
+  blockHash: string,
+  isRemoved = false,
+  logIndex = 1
+): LogsEvent {
+  return {
+    blockHash,
+    blockNumber: toHex(blockNumber),
+    logIndex: toHex(logIndex),
+    removed: isRemoved
+  } as any;
 }

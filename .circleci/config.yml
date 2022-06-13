@@ -5,22 +5,34 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  say-hello:
+  test:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: cimg/base:stable
+      - image: cimg/node:16.13.2
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
+      - restore_cache:
+          name: Restore Yarn package cache
+          keys:
+              - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: Install dependencies
+          command: "yarn --frozen-lockfile"
+      - save_cache:
+          name: Save Yarn package cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+              - ~/.cache/yarn
+      - run:
+          name: Run tests
+          command: "yarn test"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  workflow:
     jobs:
-      - say-hello
+      - test

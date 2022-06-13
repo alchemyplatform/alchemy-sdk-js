@@ -1,15 +1,13 @@
 import { fromHex, initializeAlchemy, toHex } from '../../src';
 import {
-  BlockHead,
   GetLogsOptions,
-  LogsEvent,
   WebsocketBackfiller
 } from '../../src/internal/websocket-backfiller';
 import {
   AlchemyWebSocketProvider,
   JsonRpcRequest
 } from '../../src/internal/alchemy-websocket-provider';
-import { Mocked } from '../test-util';
+import { makeLogsEvent, makeNewHeadsEvent, Mocked } from '../test-util';
 
 describe('Backfill tests', () => {
   const sdk = initializeAlchemy();
@@ -443,24 +441,3 @@ describe('Backfill tests', () => {
 });
 
 const isCancelled = () => false;
-
-export function makeNewHeadsEvent(
-  blockNumber: number,
-  hash: string
-): BlockHead {
-  return { hash, number: toHex(blockNumber) } as any;
-}
-
-export function makeLogsEvent(
-  blockNumber: number,
-  blockHash: string,
-  isRemoved = false,
-  logIndex = 1
-): LogsEvent {
-  return {
-    blockHash,
-    blockNumber: toHex(blockNumber),
-    logIndex: toHex(logIndex),
-    removed: isRemoved
-  } as any;
-}
