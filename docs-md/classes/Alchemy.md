@@ -1,4 +1,4 @@
-[alchemy-sdk](../README.md) / [Exports](../modules.md) / Alchemy
+[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / Alchemy
 
 # Class: Alchemy
 
@@ -19,6 +19,7 @@ to get an instance of the SDK.
 ### Methods
 
 - [getProvider](Alchemy.md#getprovider)
+- [getWebsocketProvider](Alchemy.md#getwebsocketprovider)
 - [setNetwork](Alchemy.md#setnetwork)
 
 ## Properties
@@ -29,7 +30,7 @@ to get an instance of the SDK.
 
 #### Defined in
 
-[api/alchemy.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/api/alchemy.ts#L29)
+[src/api/alchemy.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/alchemy.ts#L31)
 
 ___
 
@@ -39,7 +40,7 @@ ___
 
 #### Defined in
 
-[api/alchemy.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/api/alchemy.ts#L31)
+[src/api/alchemy.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/alchemy.ts#L33)
 
 ___
 
@@ -49,23 +50,41 @@ ___
 
 #### Defined in
 
-[api/alchemy.ts:30](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/api/alchemy.ts#L30)
+[src/api/alchemy.ts:32](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/alchemy.ts#L32)
 
 ## Methods
 
 ### getProvider
 
-▸ **getProvider**(): `AlchemyProvider`
+▸ **getProvider**(): [`AlchemyProvider`](AlchemyProvider.md)
 
-Lazy loads the ethers provider and creates an AlchemyProvider instance.
+Creates an AlchemyProvider instance. Only one provider is created per
+Alchemy instance.
 
 #### Returns
 
-`AlchemyProvider`
+[`AlchemyProvider`](AlchemyProvider.md)
 
 #### Defined in
 
-[api/alchemy.ts:61](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/api/alchemy.ts#L61)
+[src/api/alchemy.ts:73](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/alchemy.ts#L73)
+
+___
+
+### getWebsocketProvider
+
+▸ **getWebsocketProvider**(): [`AlchemyWebSocketProvider`](AlchemyWebSocketProvider.md)
+
+Creates an AlchemyWebsocketProvider instance. Only one provider is created
+per Alchemy instance.
+
+#### Returns
+
+[`AlchemyWebSocketProvider`](AlchemyWebSocketProvider.md)
+
+#### Defined in
+
+[src/api/alchemy.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/alchemy.ts#L90)
 
 ___
 
@@ -87,4 +106,4 @@ Changes the network that the SDK requests data from.
 
 #### Defined in
 
-[api/alchemy.ts:52](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/api/alchemy.ts#L52)
+[src/api/alchemy.ts:62](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/alchemy.ts#L62)

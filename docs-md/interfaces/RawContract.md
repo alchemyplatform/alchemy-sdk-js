@@ -1,4 +1,4 @@
-[alchemy-sdk](../README.md) / [Exports](../modules.md) / RawContract
+[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / RawContract
 
 # Interface: RawContract
 
@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[types/types.ts:341](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L341)
+[src/types/types.ts:360](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L360)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:342](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L342)
+[src/types/types.ts:361](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L361)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[types/types.ts:340](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L340)
+[src/types/types.ts:359](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L359)

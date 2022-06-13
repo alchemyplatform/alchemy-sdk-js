@@ -1,4 +1,4 @@
-[alchemy-sdk](../README.md) / [Exports](../modules.md) / NftTokenType
+[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / NftTokenType
 
 # Enumeration: NftTokenType
 
@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[types/types.ts:107](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L107)
+[src/types/types.ts:116](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L116)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:106](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L106)
+[src/types/types.ts:115](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L115)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[types/types.ts:108](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L108)
+[src/types/types.ts:117](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L117)

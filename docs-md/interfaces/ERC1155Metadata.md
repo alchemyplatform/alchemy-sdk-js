@@ -1,4 +1,4 @@
-[alchemy-sdk](../README.md) / [Exports](../modules.md) / ERC1155Metadata
+[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / ERC1155Metadata
 
 # Interface: ERC1155Metadata
 
@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[types/types.ts:334](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L334)
+[src/types/types.ts:353](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L353)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[types/types.ts:335](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L335)
+[src/types/types.ts:354](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L354)

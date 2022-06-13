@@ -1,4 +1,4 @@
-[alchemy-sdk](../README.md) / [Exports](../modules.md) / BaseNft
+[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / BaseNft
 
 # Class: BaseNft
 
@@ -43,7 +43,7 @@ be created from a backend response via the `fromResponse` method.
 
 #### Defined in
 
-[api/nft.ts:27](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/api/nft.ts#L27)
+[src/api/nft.ts:27](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/nft.ts#L27)
 
 ## Properties
 
@@ -53,7 +53,7 @@ be created from a backend response via the `fromResponse` method.
 
 #### Defined in
 
-[api/nft.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/api/nft.ts#L21)
+[src/api/nft.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/nft.ts#L21)
 
 ___
 

@@ -1,4 +1,4 @@
-[alchemy-sdk](../README.md) / [Exports](../modules.md) / AssetTransfersCategory
+[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / AssetTransfersCategory
 
 # Enumeration: AssetTransfersCategory
 
@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[types/types.ts:94](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L94)
+[src/types/types.ts:97](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L97)
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:92](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L92)
+[src/types/types.ts:95](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L95)
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:93](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L93)
+[src/types/types.ts:96](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L96)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:89](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L89)
+[src/types/types.ts:92](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L92)
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L90)
+[src/types/types.ts:93](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L93)
 
 ___
 
@@ -70,9 +70,13 @@ ___
 
 • **SPECIALNFT** = `"specialnft"`
 
+Special contracts that don't follow ERC 721/1155, (ex: CryptoKitties).
+
+**`beta`**
+
 #### Defined in
 
-[types/types.ts:95](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L95)
+[src/types/types.ts:104](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L104)
 
 ___
 
@@ -82,4 +86,4 @@ ___
 
 #### Defined in
 
-[types/types.ts:91](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L91)
+[src/types/types.ts:94](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L94)

@@ -1,4 +1,4 @@
-[alchemy-sdk](../README.md) / [Exports](../modules.md) / GetNftsForCollectionOptions
+[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / GetNftsForCollectionOptions
 
 # Interface: GetNftsForCollectionOptions
 
@@ -25,7 +25,7 @@ Optional boolean flag to omit NFT metadata. Defaults to `false`.
 
 #### Defined in
 
-[types/types.ts:362](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L362)
+[src/types/types.ts:381](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L381)
 
 ___
 
@@ -38,4 +38,4 @@ Optional page key from an existing [CollectionBaseNftsResponse](CollectionBaseNf
 
 #### Defined in
 
-[types/types.ts:359](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L359)
+[src/types/types.ts:378](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L378)

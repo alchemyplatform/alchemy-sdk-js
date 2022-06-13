@@ -1,4 +1,4 @@
-[alchemy-sdk](../README.md) / [Exports](../modules.md) / GetOwnersForNftResponse
+[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / GetOwnersForNftResponse
 
 # Interface: GetOwnersForNftResponse
 
@@ -20,4 +20,4 @@ An array of owner addresses for the provided token.
 
 #### Defined in
 
-[types/types.ts:309](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L309)
+[src/types/types.ts:318](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L318)

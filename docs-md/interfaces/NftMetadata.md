@@ -1,4 +1,4 @@
-[alchemy-sdk](../README.md) / [Exports](../modules.md) / NftMetadata
+[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / NftMetadata
 
 # Interface: NftMetadata
 
@@ -32,7 +32,7 @@ The traits, attributes, and characteristics for the NFT asset.
 
 #### Defined in
 
-[types/types.ts:158](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L158)
+[src/types/types.ts:167](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L167)
 
 ___
 
@@ -44,7 +44,7 @@ Background color of the NFT item. Usually defined as a 6 character hex string.
 
 #### Defined in
 
-[types/types.ts:155](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L155)
+[src/types/types.ts:164](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L164)
 
 ___
 
@@ -56,7 +56,7 @@ A human-readable description of the NFT asset.
 
 #### Defined in
 
-[types/types.ts:143](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L143)
+[src/types/types.ts:152](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L152)
 
 ___
 
@@ -69,7 +69,7 @@ to be the highest resolution image.
 
 #### Defined in
 
-[types/types.ts:152](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L152)
+[src/types/types.ts:161](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L161)
 
 ___
 
@@ -81,7 +81,7 @@ URL to the NFT asset image.
 
 #### Defined in
 
-[types/types.ts:146](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L146)
+[src/types/types.ts:155](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L155)
 
 ___
 
@@ -93,4 +93,4 @@ Name of the NFT asset.
 
 #### Defined in
 
-[types/types.ts:140](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L140)
+[src/types/types.ts:149](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L149)

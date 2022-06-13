@@ -1,4 +1,4 @@
-[alchemy-sdk](../README.md) / [Exports](../modules.md) / TokenMetadataResponse
+[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / TokenMetadataResponse
 
 # Interface: TokenMetadataResponse
 
@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[types/types.ts:67](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L67)
+[src/types/types.ts:70](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L70)
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:68](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L68)
+[src/types/types.ts:71](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L71)
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:69](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L69)
+[src/types/types.ts:72](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L72)
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 #### Defined in
 
-[types/types.ts:70](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/types/types.ts#L70)
+[src/types/types.ts:73](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L73)

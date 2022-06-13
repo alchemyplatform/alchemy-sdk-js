@@ -1,4 +1,4 @@
-[alchemy-sdk](../README.md) / [Exports](../modules.md) / NftContract
+[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / NftContract
 
 # Interface: NftContract
 
@@ -20,4 +20,4 @@ The NFT contract address.
 
 #### Defined in
 
-[api/nft.ts:12](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9f71253/src/api/nft.ts#L12)
+[src/api/nft.ts:12](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/nft.ts#L12)
