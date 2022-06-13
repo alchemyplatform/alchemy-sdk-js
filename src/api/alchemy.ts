@@ -5,8 +5,8 @@ import {
   DEFAULT_NETWORK,
   getAlchemyHttpUrl
 } from '../util/const';
-import { AlchemyProvider } from '../internal/alchemy-provider';
-import { AlchemyWebSocketProvider } from '../internal/alchemy-websocket-provider';
+import { AlchemyProvider } from './alchemy-provider';
+import { AlchemyWebSocketProvider } from './alchemy-websocket-provider';
 
 /**
  * Entry point into the Alchemy SDK.

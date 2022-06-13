@@ -1,5 +1,5 @@
 import { AlchemyProvider, Network, toHex } from '../../src';
-import { AlchemyWebSocketProvider } from '../../src/internal/alchemy-websocket-provider';
+import { AlchemyWebSocketProvider } from '../../src/api/alchemy-websocket-provider';
 import {
   Deferred,
   makeLogsEvent,

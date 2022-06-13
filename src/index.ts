@@ -3,7 +3,10 @@ export * from './types/types';
 
 export { initializeAlchemy, Alchemy } from './api/alchemy';
 
-export { AlchemyProvider } from './internal/alchemy-provider';
+export { AlchemyProvider } from './api/alchemy-provider';
+
+export { AlchemyWebSocketProvider } from './api/alchemy-websocket-provider';
+
 export {
   getNftMetadata,
   getNftsForOwner,
