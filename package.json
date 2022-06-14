@@ -20,7 +20,7 @@
     "prepare": "husky install"
   },
   "main": "dist/index.cjs.js",
-  "main-esm": "dist/index.mjs",
+  "main-es": "dist/index.mjs",
   "module": "dist/index.esm.js",
   "exports": {
     "node": {
@@ -78,7 +78,6 @@
     "prettier": "2.6.0",
     "prettier-plugin-jsdoc": "^0.3.38",
     "rollup": "^2.70.1",
-    "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.31.2",
     "size-limit": "^7.0.8",
     "ts-jest": "^27.1.4",

@@ -1,6 +1,5 @@
 import pkg from './package.json';
 import typescriptPlugin from 'rollup-plugin-typescript2';
-import { terser } from 'rollup-plugin-terser';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 
@@ -18,7 +17,7 @@ const allBuilds = {
       sourcemap: true
     },
     {
-      file: pkg['main-esm'],
+      file: pkg['main-es'],
       format: 'es',
       sourcemap: true
     }
@@ -26,7 +25,6 @@ const allBuilds = {
   external: [...Object.keys(pkg.dependencies || {})],
   plugins: [
     typescriptPlugin(),
-    terser(),
 
     // Needed to resolve `Event` class from Ethers in AlchemyWebSocketProvider
     nodeResolve({ preferBuiltins: true }),
