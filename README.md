@@ -20,8 +20,8 @@ import { AlchemyConfig, Network, initializeAlchemy } from '@alch/alchemy-sdk';
 
 // Optional Config object, but defaults to demo api-key and eth-mainnet.
 const settings = {
-  apiKey: 'your-api-key',
-  network: Network.ETH_RINKEBY,
+  apiKey: 'demo',  // Replace with your Alchemy API Key.
+  network: Network.ETH_MAINNET,  // Replace with your network.
   maxRetries: 10
 };
 
