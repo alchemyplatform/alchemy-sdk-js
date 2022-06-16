@@ -34,12 +34,9 @@ and use will be included). This means you access each method using the following
 
 ```ts
 // Initializing the alchemy config object
-import { initializeAlchemy } from '@alch/alchemy-sdk';
+import { initializeAlchemy, getNftsForOwner } from '@alch/alchemy-sdk';
 
 const alchemy = initializeAlchemy(); // using default settings - pass in a settings object to specify your API key and network
-
-// Import and call a method, passing in the alchemy config object
-import { getNftsForOwner } from '@alch/alchemy-sdk';
 
 getNftsForOwner(alchemy, '0xshah.eth').then(console.log);
 ```
@@ -49,7 +46,7 @@ alternatively import
 the entire SDK (though this is not recommended, as it will increase the bundle size):
 
 ```ts
-import * as alchemySdk from 'alchemy-sdk';
+import * as alchemySdk from '@alch/alchemy-sdk';
 
 const alchemy = alchemySdk.initializeAlchemy();
 alchemySdk.getNftsForOwner(alchemy, '0xshah.eth').then(console.log);
