@@ -16,7 +16,7 @@ npm install @alch/alchemy-sdk
 After installing the app, you can then import and use the SDK:
 
 ```ts
-import { AlchemyConfig, Network, initializeAlchemy } from '@alch/alchemy-sdk';
+import { Network, initializeAlchemy } from '@alch/alchemy-sdk';
 
 // Optional Config object, but defaults to demo api-key and eth-mainnet.
 const settings = {
