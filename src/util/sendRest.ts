@@ -19,7 +19,8 @@ export function sendAxiosRequest<Req, Res>(
   const methodUrl = baseUrl + '/' + methodName;
   const config: AxiosRequestConfig = {
     headers: {
-      'Alchemy-Ethers-Sdk-Version': VERSION
+      'Alchemy-Ethers-Sdk-Version': VERSION,
+      'Accept-Encoding': 'gzip'
     },
     method: 'get',
     url: methodUrl,

@@ -13,6 +13,7 @@ import {
 } from '../util/const';
 import { Network } from '../types/types';
 import { logWarn } from '../util/logger';
+import { VERSION } from '../version';
 
 /**
  * SDK's custom implementation of ethers' {@link providers.AlchemyProvider}.
@@ -110,7 +111,8 @@ export class AlchemyProvider
         : getAlchemyWsUrl(network, apiKey);
     return {
       headers: {
-        'Alchemy-Ethers-Sdk-Version': '1.0.0'
+        'Alchemy-Ethers-Sdk-Version': VERSION,
+        'Accept-Encoding': 'gzip'
       },
       allowGzip: true,
       url
