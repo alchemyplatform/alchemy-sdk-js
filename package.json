@@ -25,10 +25,10 @@
   "exports": {
     "node": {
       "require": "./dist/index.cjs.js",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.cjs.js"
     },
-    "default": "./dist/index.esm.js",
-    "package.json": "./package.json"
+    "package.json": "./package.json",
+    "default": "./dist/index.esm.js"
   },
   "types": "./dist/src/index.d.ts",
   "repository": {
