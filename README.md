@@ -54,11 +54,18 @@ alchemySdk.getNftsForOwner(alchemy, '0xshah.eth').then(console.log);
 
 ## SDK Structure
 
-The `Alchemy` object returned by `initializeAlchemy()` is an object that holds configuration settings. An optional
-config object can be passed in when initializing to set your API key, change the network, or specify the max number
-of retries. The `Alchemy` object is then passed into other top-level functions like `getNftsForOwner()`
-or `getAssetTransfers()`.
-The current supported functions using this pattern are the NFT API endpoints and Alchemy Enhanced APIs.
+
+The `Alchemy` object returned by `initializeAlchemy()` provides access to the Alchemy API. An optional config 
+object can be passed in when initializing to set your API key, change the network, or specify the max number of retries.
+
+There are two different patterns for the Alchemy object to be used:
+
+1. It can be passed into top-level functions like `getNftsForOwner()` or `getAssetTransfers()`. The current supported 
+functions using this pattern are the Alchemy NFT API endpoints and Alchemy Enhanced APIs.
+
+2. It can be used to generate an Ethers.js provider that allows access to Alchemy Provider-specific 
+[Ethers.js methods](https://docs.ethers.io/v5/single-page/). These encompass most standard JSON-RPC requests to 
+the blockchain.
 
 ## Ethers.js for standard JSON-RPC Calls
 
