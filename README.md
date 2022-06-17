@@ -34,12 +34,9 @@ and use will be included). This means you access each method using the following
 
 ```ts
 // Initializing the alchemy config object
-import { initializeAlchemy } from '@alch/alchemy-sdk';
+import { initializeAlchemy, getNftsForOwner } from '@alch/alchemy-sdk';
 
 const alchemy = initializeAlchemy(); // using default settings - pass in a settings object to specify your API key and network
-
-// Import and call a method, passing in the alchemy config object
-import { getNftsForOwner } from '@alch/alchemy-sdk';
 
 getNftsForOwner(alchemy, '0xshah.eth').then(console.log);
 ```
@@ -49,7 +46,7 @@ alternatively import
 the entire SDK (though this is not recommended, as it will increase the bundle size):
 
 ```ts
-import * as alchemySdk from 'alchemy-sdk';
+import * as alchemySdk from '@alch/alchemy-sdk';
 
 const alchemy = alchemySdk.initializeAlchemy();
 alchemySdk.getNftsForOwner(alchemy, '0xshah.eth').then(console.log);
@@ -57,11 +54,18 @@ alchemySdk.getNftsForOwner(alchemy, '0xshah.eth').then(console.log);
 
 ## SDK Structure
 
-The `Alchemy` object returned by `initializeAlchemy()` is an object that holds configuration settings. An optional
-config object can be passed in when initializing to set your API key, change the network, or specify the max number
-of retries. The `Alchemy` object is then passed into other top-level functions like `getNftsForOwner()`
-or `getAssetTransfers()`.
-The current supported functions using this pattern are the NFT API endpoints and Alchemy Enhanced APIs.
+
+The `Alchemy` object returned by `initializeAlchemy()` provides access to the Alchemy API. An optional config 
+object can be passed in when initializing to set your API key, change the network, or specify the max number of retries.
+
+There are two different patterns for the Alchemy object to be used:
+
+1. It can be passed into top-level functions like `getNftsForOwner()` or `getAssetTransfers()`. The current supported 
+functions using this pattern are the Alchemy NFT API endpoints and Alchemy Enhanced APIs.
+
+2. It can be used to generate an Ethers.js provider that allows access to Alchemy Provider-specific 
+[Ethers.js methods](https://docs.ethers.io/v5/single-page/). These encompass most standard JSON-RPC requests to 
+the blockchain.
 
 ## Ethers.js for standard JSON-RPC Calls
 
@@ -124,14 +128,14 @@ dropped connections. As with any network connection, you should not assume that 
 without interruption, but correctly handling dropped connections and reconnection by hand can be challenging to get
 right. `alchemy-sdk` automatically handles these failures with no configuration necessary. The main benefits are:
 
-- Unlike standard Web3.js or Ethers.js, you will not permanently miss events which arrive while the backing WebSocket is
-  temporarily down. Instead, you will receive these events as soon as the connection is reopened. Note that if the
-  connection is down for more than 120 blocks (approximately 20 minutes), you may still miss some events that were not
-  part of the most recent 120 blocks.
-- Compared to standard Web3.js or Ethers.js, there is lowered rate of failure when sending requests over the WebSocket
-  while the connection is down. Alchemy Web3 will attempt to send the requests once the connection is reopened. Note
-  that it is still possible, with a lower likelihood, for outgoing requests to be lost, so you should still have error
-  handling as with any network request.
+- Resilient event delivery: Unlike standard Web3.js or Ethers.js, you will not permanently miss events which arrive 
+  while the backing WebSocket is temporarily down. Instead, you will receive these events as soon as the connection 
+  is reopened. Note that if the connection is down for more than 120 blocks (approximately 20 minutes), you may 
+  still miss some events that were not part of the most recent 120 blocks.
+- Lowered rate of failure: Compared to standard Web3.js or Ethers.js, there are fewer failures when sending requests 
+  over the WebSocket while the connection is down. Alchemy Web3 will attempt to send the requests once the connection 
+  is reopened. Note that it is still possible, with a lower likelihood, for outgoing requests to be lost, 
+  so you should still have error handling as with any network request.
 
 ## NFT Module
 
@@ -171,12 +175,13 @@ an `AsyncIterable`.
 Here's an example of how to paginate through all the NFTs in Vitalik's ENS address:
 
 ```ts
-import { getNftsForOwnerIterator } from '@alch/alchemy-sdk';
+import { initializeAlchemy, getNftsForOwnerIterator } from "@alch/alchemy-sdk";
+const alchemy = initializeAlchemy();
 
 async function main() {
-  const ownerAddress = 'vitalik.eth';
+  const ownerAddress = "vitalik.eth";
   for await (const nft of getNftsForOwnerIterator(alchemy, ownerAddress)) {
-    console.log('ownedNft:', nft);
+    console.log("ownedNft:", nft);
   }
 }
 
@@ -218,17 +223,23 @@ Below are a few usage examples:
 Getting the NFTs owned by an address.
 
 ```ts
-// Get how many NFTs an address owns.
-import { getNftsForOwner, getNftsForOwnerIterator } from 'alchemy-sdk';
-import { NftExcludeFilters } from 'alchemy-sdk';
+import {
+  getNftsForOwner,
+  getNftsForOwnerIterator,
+  NftExcludeFilters,
+  initializeAlchemy,
+} from "@alch/alchemy-sdk";
 
-getNftsForOwner(alchemy, '0xshah.eth').then(nfts => {
+const alchemy = initializeAlchemy();
+
+// Get how many NFTs an address owns.
+getNftsForOwner(alchemy, "0xshah.eth").then((nfts) => {
   console.log(nfts.totalCount);
 });
 
 // Get all the image urls for all the NFTs an address owns.
 async function main() {
-  for await (const nft of getNftsForOwnerIterator(alchemy, '0xshah.eth')) {
+  for await (const nft of getNftsForOwnerIterator(alchemy, "0xshah.eth")) {
     console.log(nft.media);
   }
 }
@@ -236,8 +247,8 @@ async function main() {
 main();
 
 // Filter out spam NFTs.
-getNftsForOwner(alchemy, '0xshah.eth', {
-  excludeFilters: [NftExcludeFilters.SPAM]
+getNftsForOwner(alchemy, "0xshah.eth", {
+  excludeFilters: [NftExcludeFilters.SPAM],
 }).then(console.log);
 ```
 
@@ -246,8 +257,11 @@ Getting all the owners of the BAYC NFT.
 ```ts
 import {
   getOwnersForNft,
-  getNftsForCollectionIterator
+  getNftsForCollectionIterator,
+  initializeAlchemy
 } from '@alch/alchemy-sdk';
+
+const alchemy = initializeAlchemy();
 
 // Bored Ape Yacht Club contract address.
 const baycAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D';
@@ -269,9 +283,10 @@ main();
 Get all outbound transfers for a provided address.
 
 ```ts
-import { getTokenBalances } from '@alch/alchemy-sdk';
+import { getTokenBalances, initializeAlchemy } from "@alch/alchemy-sdk";
+const alchemy = initializeAlchemy();
 
-getTokenBalances(alchemy, '0x994b342dd87fc825f66e51ffa3ef71ad818b6893').then(
+getTokenBalances(alchemy, "0x994b342dd87fc825f66e51ffa3ef71ad818b6893").then(
   console.log
 );
 ```
