@@ -64,6 +64,8 @@ export class Alchemy {
     this.network = network;
   }
 
+  getBlockNumber() {}
+
   /**
    * Creates an AlchemyProvider instance. Only one provider is created per
    * Alchemy instance.

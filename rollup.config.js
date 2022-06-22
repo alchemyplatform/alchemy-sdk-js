@@ -27,7 +27,7 @@ const allBuilds = {
     typescriptPlugin(),
 
     // Needed to resolve `Event` class from Ethers in AlchemyWebSocketProvider
-    nodeResolve({ preferBuiltins: true }),
+    nodeResolve(),
     commonjs()
   ]
 };

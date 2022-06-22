@@ -674,7 +674,7 @@ export class AlchemyWebSocketProvider
 }
 
 function getWebsocketConstructor(): any {
-  return isNodeEnvironment() ? require('ws') : WebSocket;
+  return isNodeEnvironment() ? require('websocket').w3cwebsocket : WebSocket;
 }
 
 function isNodeEnvironment(): boolean {
