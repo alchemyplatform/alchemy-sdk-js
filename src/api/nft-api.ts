@@ -37,18 +37,6 @@ import { BigNumber, BigNumberish } from 'ethers';
 const ETH_NULL_VALUE = '0x';
 
 /**
- * Get the NFT metadata associated with the provided Base NFT.
- *
- * @param alchemy - The Alchemy SDK instance.
- * @param baseNft - The base NFT object to be used for the request.
- * @public
- */
-export function getNftMetadata(
-  alchemy: Alchemy,
-  baseNft: BaseNft
-): Promise<Nft>;
-
-/**
  * Get the NFT metadata associated with the provided parameters.
  *
  * @param alchemy - The Alchemy SDK instance.
@@ -62,6 +50,18 @@ export function getNftMetadata(
   contractAddress: string,
   tokenId: BigNumberish,
   tokenType?: NftTokenType
+): Promise<Nft>;
+
+/**
+ * Get the NFT metadata associated with the provided Base NFT.
+ *
+ * @param alchemy - The Alchemy SDK instance.
+ * @param baseNft - The base NFT object to be used for the request.
+ * @public
+ */
+export function getNftMetadata(
+  alchemy: Alchemy,
+  baseNft: BaseNft
 ): Promise<Nft>;
 export async function getNftMetadata(
   alchemy: Alchemy,
@@ -513,22 +513,6 @@ export async function findContractDeployer(
  * This method is useful when you want to refresh the metadata for a NFT that
  * has been updated since the last time it was fetched. Note that the backend
  * only allows one refresh per token every 15 minutes, globally for all users.
- *
- * @param alchemy - The Alchemy SDK instance.
- * @param nft - The NFT to refresh the metadata for.
- */
-export async function refreshNftMetadata(
-  alchemy: Alchemy,
-  nft: BaseNft
-): Promise<boolean>;
-
-/**
- * Refreshes the cached metadata for a provided NFT contract address and token
- * id. Returns a boolean value indicating whether the metadata was refreshed.
- *
- * This method is useful when you want to refresh the metadata for a NFT that
- * has been updated since the last time it was fetched. Note that the backend
- * only allows one refresh per token every 15 minutes, globally for all users.
  * The last refresh time for an NFT can be accessed on the
  * {@link Nft.timeLastUpdated} field.
  *
@@ -540,6 +524,22 @@ export async function refreshNftMetadata(
   alchemy: Alchemy,
   contractAddress: string,
   tokenId: BigNumberish
+): Promise<boolean>;
+
+/**
+ * Refreshes the cached metadata for a provided NFT contract address and token
+ * id. Returns a boolean value indicating whether the metadata was refreshed.
+ *
+ * This method is useful when you want to refresh the metadata for a NFT that
+ * has been updated since the last time it was fetched. Note that the backend
+ * only allows one refresh per token every 15 minutes, globally for all users.
+ *
+ * @param alchemy - The Alchemy SDK instance.
+ * @param nft - The NFT to refresh the metadata for.
+ */
+export async function refreshNftMetadata(
+  alchemy: Alchemy,
+  nft: BaseNft
 ): Promise<boolean>;
 
 export async function refreshNftMetadata(
