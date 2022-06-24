@@ -31,4 +31,8 @@ export { NftContract, Nft, BaseNft } from './api/nft';
 
 export { fromHex, toHex, isHex } from './api/util';
 
-export { setLogLevel, LogLevelString as LogLevel } from './util/logger';
+export {
+  setLogLevel,
+  LogLevelString as LogLevel,
+  helloThere
+} from './util/logger';

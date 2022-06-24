@@ -145,3 +145,7 @@ function stringify(obj: unknown): string | unknown {
 
 // Instantiate default logger for the SDK.
 const loggerClient: Logger = new Logger();
+
+export function helloThere() {
+  console.log('hello there');
+}

@@ -23,6 +23,9 @@ const allBuilds = {
     }
   ],
   external: [...Object.keys(pkg.dependencies || {})],
+  treeshake: {
+    moduleSideEffects: false
+  },
   plugins: [
     typescriptPlugin(),
 

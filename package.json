@@ -38,6 +38,7 @@
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "lint-staged": {
     "**/*.ts": [
       "yarn lint-file --fix",
