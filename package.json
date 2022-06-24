@@ -35,6 +35,7 @@
     "type": "git",
     "url": "git+https://github.com/alchemyplatform/alchemy-sdk-js.git"
   },
+  "sideEffects": false,
   "files": [
     "dist"
   ],
