@@ -18,6 +18,12 @@ export function initializeAlchemy(config?: AlchemyConfig): Alchemy {
   return new Alchemy(config);
 }
 
+export function initializeAlchemyModular(
+  config?: AlchemyConfig
+): AlchemyModular {
+  return new AlchemyModular(config);
+}
+
 /**
  * The Alchemy SDK client. This class holds config information and must be
  * passed into SDK methods.
@@ -97,5 +103,26 @@ export class Alchemy {
       );
     }
     return this._baseAlchemyWssProvider;
+  }
+}
+
+export class AlchemyModular {
+  readonly apiKey: string;
+  network: Network;
+  readonly maxRetries: number;
+
+  /**
+   * @hideconstructor
+   * @internal
+   */
+  constructor(config?: AlchemyConfig) {
+    this.apiKey = config?.apiKey || DEFAULT_ALCHEMY_API_KEY;
+    this.network = config?.network || DEFAULT_NETWORK;
+    this.maxRetries = config?.maxRetries || DEFAULT_MAX_RETRIES;
+  }
+
+  /** @internal */
+  getBaseUrl(): string {
+    return getAlchemyHttpUrl(this.network, this.apiKey);
   }
 }

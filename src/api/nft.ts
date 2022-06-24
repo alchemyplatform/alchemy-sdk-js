@@ -1,6 +1,6 @@
 import { NftMetadata, NftTokenType, TokenUri } from '../types/types';
 import { RawBaseNft, RawNft } from '../internal/raw-interfaces';
-import { BigNumber } from 'ethers';
+import { BigNumber } from '@ethersproject/bignumber';
 
 /**
  * Represents an NFT contract.

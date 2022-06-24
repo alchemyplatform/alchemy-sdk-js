@@ -1,4 +1,4 @@
-import { BigNumber, providers } from 'ethers';
+import { BigNumber } from '@ethersproject/bignumber';
 import { Networkish } from '@ethersproject/networks';
 import { DEFAULT_ALCHEMY_API_KEY, EthersNetwork, noop } from '../util/const';
 import { AlchemyProvider } from './alchemy-provider';
@@ -29,6 +29,10 @@ import {
   VirtualSubscription,
   WebSocketMessage
 } from '../internal/internal-types';
+import {
+  CommunityResourcable,
+  WebSocketProvider
+} from '@ethersproject/providers';
 
 const HEARTBEAT_INTERVAL = 30000;
 const HEARTBEAT_WAIT_TIME = 10000;
@@ -47,8 +51,8 @@ const BACKFILL_RETRIES = 5;
 const RETAINED_EVENT_BLOCK_COUNT = 10;
 
 export class AlchemyWebSocketProvider
-  extends providers.WebSocketProvider
-  implements providers.CommunityResourcable
+  extends WebSocketProvider
+  implements CommunityResourcable
 {
   readonly apiKey: string;
 
