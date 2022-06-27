@@ -1,15 +1,69 @@
 import { NftMetadata, NftTokenType, TokenUri } from '../types/types';
-import { RawBaseNft, RawNft } from '../internal/raw-interfaces';
+import {
+  RawBaseNft,
+  RawBaseNftContract,
+  RawNft,
+  RawNftContract
+} from '../internal/raw-interfaces';
 import { BigNumber } from 'ethers';
 
+export interface NftContractMetadata {
+  /** The name of the contract. */
+  name: string;
+  /** The symbol of the contract. */
+  symbol: string;
+  /** The number of NFTs in the contract. */
+  totalSupply: number;
+  /** The type of the token in the contract. */
+  tokenType?: NftTokenType;
+}
+
 /**
- * Represents an NFT contract.
+ * Alchemy representation of a base NFT contract that doesn't contain metadata.
  *
  * @public
  */
-export interface NftContract {
-  /** The NFT contract address. */
+export class BaseNftContract {
   address: string;
+
+  /**
+   * This constructor should never be called directly. All Nft instances should
+   * be created from a backend response via the `fromResponse` method.
+   */
+  protected constructor(address: string) {
+    this.address = address;
+  }
+
+  /** @internal */
+  static fromResponse(baseNftContract: RawBaseNftContract): BaseNftContract {
+    return new BaseNftContract(baseNftContract.address);
+  }
+}
+
+/**
+ * Alchemy representation of an NFT contract.
+ *
+ * @public
+ */
+export class NftContract extends BaseNftContract {
+  /** The metadata of the contract. */
+  contractMetadata: NftContractMetadata;
+
+  /**
+   * This constructor should never be called directly. All Nft instances should
+   * be created from a backend response via the `fromResponse` method.
+   *
+   * @internal
+   */
+  private constructor(address: string, contractMetadata: NftContractMetadata) {
+    super(address);
+    this.contractMetadata = contractMetadata;
+  }
+
+  /** @internal */
+  static fromResponse(nftContract: RawNftContract): NftContract {
+    return new NftContract(nftContract.address, nftContract.contractMetadata);
+  }
 }
 
 /**
@@ -18,7 +72,7 @@ export interface NftContract {
  * @public
  */
 export class BaseNft {
-  readonly contract: NftContract;
+  readonly contract: BaseNftContract;
 
   /**
    * This constructor should never be called directly. All Nft instances should

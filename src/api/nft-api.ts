@@ -16,7 +16,7 @@ import {
 } from '../types/types';
 import { Alchemy } from './alchemy';
 import { paginateEndpoint, requestHttpWithBackoff } from '../internal/dispatch';
-import { BaseNft, Nft } from './nft';
+import { BaseNft, BaseNftContract, Nft, NftContract } from './nft';
 import {
   RawBaseNft,
   RawCollectionBaseNft,
@@ -27,6 +27,7 @@ import {
   RawGetNftsResponse,
   RawGetOwnersForCollectionResponse,
   RawNft,
+  RawNftContract,
   RawOwnedBaseNft,
   RawOwnedNft
 } from '../internal/raw-interfaces';
@@ -98,6 +99,56 @@ export async function getNftMetadata(
     );
   }
   return Nft.fromResponse(response, contractAddress);
+}
+
+/**
+ * Get the NFT collection metadata associated with the provided parameters.
+ *
+ * @param alchemy - The Alchemy SDK instance.
+ * @param contractAddress - The contract address of the NFT.
+ * @param tokenType - Optionally specify the type of token to speed up the query.
+ * @public
+ */
+export function getNFTContractMetadata(
+  alchemy: Alchemy,
+  contractAddress: string
+): Promise<NftContract>;
+
+/**
+ * Get the NFT metadata associated with the provided Base NFT.
+ *
+ * @param alchemy - The Alchemy SDK instance.
+ * @param baseNft - The base NFT object to be used for the request.
+ * @public
+ */
+export function getNFTContractMetadata(
+  alchemy: Alchemy,
+  baseNftContract: BaseNftContract
+): Promise<NftContract>;
+export async function getNFTContractMetadata(
+  alchemy: Alchemy,
+  contractAddressOrBaseNftContract: string | BaseNftContract,
+  tokenType?: NftTokenType
+): Promise<NftContract> {
+  let response;
+  if (typeof contractAddressOrBaseNftContract === 'string') {
+    response = await requestHttpWithBackoff<
+      GetNFTContractMetadataParams,
+      RawNftContract
+    >(alchemy, 'getContractMetadata', {
+      contractAddress: contractAddressOrBaseNftContract,
+      tokenType: tokenType !== NftTokenType.UNKNOWN ? tokenType : undefined
+    });
+  } else {
+    response = await requestHttpWithBackoff<
+      GetNFTContractMetadataParams,
+      RawNftContract
+    >(alchemy, 'getContractMetadata', {
+      contractAddress: contractAddressOrBaseNftContract.address,
+      tokenType: tokenType !== NftTokenType.UNKNOWN ? tokenType : undefined
+    });
+  }
+  return NftContract.fromResponse(response);
 }
 
 /**
@@ -690,6 +741,17 @@ interface GetNftsAlchemyParams {
 interface GetNftMetadataParams {
   contractAddress: string;
   tokenId: string;
+  tokenType?: NftTokenType;
+  refreshCache?: boolean;
+}
+
+/**
+ * Interface for the `getNFTContractMetadata` endpoint.
+ *
+ * @internal
+ */
+interface GetNFTContractMetadataParams {
+  contractAddress: string;
   tokenType?: NftTokenType;
   refreshCache?: boolean;
 }
