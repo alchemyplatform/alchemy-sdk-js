@@ -45,6 +45,7 @@ import {
   RawGetNftsForCollectionResponse,
   RawGetNftsResponse
 } from '../../src/internal/raw-interfaces';
+import { getNftContractFromRaw } from '../../src/api/util';
 
 describe('NFT module', () => {
   let alchemy: Alchemy;
@@ -72,14 +73,12 @@ describe('NFT module', () => {
 
     const rawNftContractResponse = createRawNftContract(
       address,
+      tokenType,
       name,
       symbol,
-      totalSupply,
-      tokenType
+      totalSupply
     );
-    const expectedNftContract = NftContract.fromResponse(
-      rawNftContractResponse
-    );
+    const expectedNftContract = getNftContractFromRaw(rawNftContractResponse);
 
     beforeEach(() => {
       mock.onGet().reply(200, rawNftContractResponse);
@@ -97,12 +96,10 @@ describe('NFT module', () => {
       expect(actualNftContract).toEqual(expectedNftContract);
 
       expect(actualNftContract.address).toEqual(address);
-      expect(actualNftContract.contractMetadata.name).toEqual(name);
-      expect(actualNftContract.contractMetadata.symbol).toEqual(symbol);
-      expect(actualNftContract.contractMetadata.totalSupply).toEqual(
-        totalSupply
-      );
-      expect(actualNftContract.contractMetadata.tokenType).toEqual(tokenType);
+      expect(actualNftContract.name).toEqual(name);
+      expect(actualNftContract.symbol).toEqual(symbol);
+      expect(actualNftContract.totalSupply).toEqual(totalSupply);
+      expect(actualNftContract.tokenType).toEqual(tokenType);
 
       expect(mock.history.get.length).toEqual(1);
       expect(mock.history.get[0].params).toHaveProperty(

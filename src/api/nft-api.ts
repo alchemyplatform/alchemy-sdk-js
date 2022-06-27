@@ -31,7 +31,7 @@ import {
   RawOwnedBaseNft,
   RawOwnedNft
 } from '../internal/raw-interfaces';
-import { toHex } from './util';
+import { getNftContractFromRaw, toHex } from './util';
 import { getTransactionReceipts } from './enhanced';
 import { BigNumber, BigNumberish } from 'ethers';
 
@@ -127,8 +127,7 @@ export function getNFTContractMetadata(
 ): Promise<NftContract>;
 export async function getNFTContractMetadata(
   alchemy: Alchemy,
-  contractAddressOrBaseNftContract: string | BaseNftContract,
-  tokenType?: NftTokenType
+  contractAddressOrBaseNftContract: string | BaseNftContract
 ): Promise<NftContract> {
   let response;
   if (typeof contractAddressOrBaseNftContract === 'string') {
@@ -136,19 +135,17 @@ export async function getNFTContractMetadata(
       GetNFTContractMetadataParams,
       RawNftContract
     >(alchemy, 'getContractMetadata', {
-      contractAddress: contractAddressOrBaseNftContract,
-      tokenType: tokenType !== NftTokenType.UNKNOWN ? tokenType : undefined
+      contractAddress: contractAddressOrBaseNftContract
     });
   } else {
     response = await requestHttpWithBackoff<
       GetNFTContractMetadataParams,
       RawNftContract
     >(alchemy, 'getContractMetadata', {
-      contractAddress: contractAddressOrBaseNftContract.address,
-      tokenType: tokenType !== NftTokenType.UNKNOWN ? tokenType : undefined
+      contractAddress: contractAddressOrBaseNftContract.address
     });
   }
-  return NftContract.fromResponse(response);
+  return getNftContractFromRaw(response);
 }
 
 /**
@@ -752,8 +749,6 @@ interface GetNftMetadataParams {
  */
 interface GetNFTContractMetadataParams {
   contractAddress: string;
-  tokenType?: NftTokenType;
-  refreshCache?: boolean;
 }
 
 /**

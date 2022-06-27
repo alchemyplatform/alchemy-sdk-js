@@ -53,10 +53,10 @@ export interface RawNftContract {
 }
 
 interface RawNftContractMetadata {
-  name: string;
-  symbol: string;
-  totalSupply: number;
-  tokenType?: NftTokenType;
+  name?: string;
+  symbol?: string;
+  totalSupply?: number;
+  tokenType: NftTokenType;
 }
 
 /**
