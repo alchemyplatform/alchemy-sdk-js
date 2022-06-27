@@ -1,12 +1,15 @@
 import {
   RawBaseNft,
+  RawBaseNftContract,
   RawCollectionBaseNft,
   RawNft,
+  RawNftContract,
   RawOwnedBaseNft,
   RawOwnedNft
 } from '../src/internal/raw-interfaces';
 import {
   BaseNft,
+  BaseNftContract,
   Nft,
   NftTokenType,
   OwnedBaseNft,
@@ -16,6 +19,32 @@ import {
 } from '../src';
 import { BigNumber } from 'ethers';
 import { BlockHead, LogsEvent } from '../src/internal/websocket-backfiller';
+
+export function createRawNftContract(
+  address: string,
+  name: string,
+  symbol: string,
+  totalSupply: number,
+  tokenType?: NftTokenType
+): RawNftContract {
+  return {
+    address,
+    contractMetadata: {
+      name,
+      symbol,
+      totalSupply,
+      tokenType
+    }
+  };
+}
+
+export function createRawBaseNftContract(address: string): RawBaseNftContract {
+  return { address };
+}
+
+export function createBaseNftContract(address: string): BaseNftContract {
+  return BaseNftContract.fromResponse(createRawBaseNftContract(address));
+}
 
 export function createRawOwnedBaseNft(
   address: string,
