@@ -2,16 +2,16 @@ import {
   Alchemy,
   BaseNft,
   checkNftOwnership,
-  CollectionBaseNftsResponse,
-  CollectionNftsResponse,
+  NftContractBaseNftsResponse,
+  NftContractNftsResponse,
   fromHex,
   getNftMetadata,
-  getNftsForCollection,
-  getNftsForCollectionIterator,
+  getNftsForNftContract,
+  getNftsForNftContractIterator,
   getNftsForOwner,
   getNftsForOwnerIterator,
   GetNftsForOwnerOptions,
-  getOwnersForCollection,
+  getOwnersForNftContract,
   getOwnersForNft,
   initializeAlchemy,
   Nft,
@@ -30,15 +30,15 @@ import {
   createNft,
   createOwnedBaseNft,
   createOwnedNft,
-  createRawCollectionBaseNft,
+  createRawNftContractBaseNft,
   createRawNft,
   createRawOwnedBaseNft,
   createRawOwnedNft
 } from '../test-util';
 import {
-  RawGetBaseNftsForCollectionResponse,
+  RawGetBaseNftsForNftContractResponse,
   RawGetBaseNftsResponse,
-  RawGetNftsForCollectionResponse,
+  RawGetNftsForNftContractResponse,
   RawGetNftsResponse
 } from '../../src/internal/raw-interfaces';
 
@@ -496,18 +496,18 @@ describe('NFT module', () => {
     });
   });
 
-  describe('getNftsForCollection()', () => {
+  describe('getNftsForNftContract()', () => {
     const contractAddress = '0xCA1';
     const pageKey = 'page-key0';
-    const baseResponse: RawGetBaseNftsForCollectionResponse = {
+    const baseResponse: RawGetBaseNftsForNftContractResponse = {
       nfts: [
-        createRawCollectionBaseNft('0x1'),
-        createRawCollectionBaseNft('0x2')
+        createRawNftContractBaseNft('0x1'),
+        createRawNftContractBaseNft('0x2')
       ],
       nextToken: 'page-key1'
     };
 
-    const nftResponse: RawGetNftsForCollectionResponse = {
+    const nftResponse: RawGetNftsForNftContractResponse = {
       nfts: [
         createRawNft('a', '0x1', NftTokenType.ERC1155),
         createRawNft('b', '0x2', NftTokenType.ERC1155)
@@ -521,7 +521,7 @@ describe('NFT module', () => {
 
     const paramCases: Array<
       [
-        RawGetBaseNftsForCollectionResponse | RawGetNftsForCollectionResponse,
+        RawGetBaseNftsForNftContractResponse | RawGetNftsForNftContractResponse,
         boolean | undefined,
         boolean
       ]
@@ -534,7 +534,7 @@ describe('NFT module', () => {
       'called with the correct parameters',
       async (mockResponse, omitMetadata, expectedWithMetadata) => {
         mock.onGet().reply(200, mockResponse);
-        await getNftsForCollection(alchemy, contractAddress, {
+        await getNftsForNftContract(alchemy, contractAddress, {
           pageKey,
           omitMetadata
         });
@@ -554,11 +554,11 @@ describe('NFT module', () => {
       }
     );
 
-    const baseExpected: CollectionBaseNftsResponse = {
+    const baseExpected: NftContractBaseNftsResponse = {
       nfts: [createBaseNft('0xCA1', '0x1'), createBaseNft('0xCA1', '0x2')],
       pageKey: 'page-key1'
     };
-    const nftExpected: CollectionNftsResponse = {
+    const nftExpected: NftContractNftsResponse = {
       nfts: [
         createNft('a', '0xCA1', '0x1', NftTokenType.ERC1155),
         createNft('b', '0xCA1', '0x2', NftTokenType.ERC1155)
@@ -568,8 +568,8 @@ describe('NFT module', () => {
     const responseCases: Array<
       [
         boolean,
-        RawGetBaseNftsForCollectionResponse | RawGetNftsForCollectionResponse,
-        CollectionBaseNftsResponse | CollectionNftsResponse
+        RawGetBaseNftsForNftContractResponse | RawGetNftsForNftContractResponse,
+        NftContractBaseNftsResponse | NftContractNftsResponse
       ]
     > = [
       [true, baseResponse, baseExpected],
@@ -579,7 +579,7 @@ describe('NFT module', () => {
       'normalizes responses',
       async (omitMetadata, mockResponse, expected) => {
         mock.onGet().reply(200, mockResponse);
-        const response = await getNftsForCollection(alchemy, contractAddress, {
+        const response = await getNftsForNftContract(alchemy, contractAddress, {
           pageKey,
           omitMetadata
         });
@@ -591,7 +591,7 @@ describe('NFT module', () => {
       mock.reset();
       mock.onGet().reply(500, 'Internal Server Error');
       await expect(
-        getNftsForCollection(alchemy, contractAddress, {
+        getNftsForNftContract(alchemy, contractAddress, {
           omitMetadata
         })
       ).rejects.toThrow('Internal Server Error');
@@ -599,27 +599,27 @@ describe('NFT module', () => {
 
     it('uses the correct overload with no options', async () => {
       mock.onGet().reply(200, nftResponse);
-      const response = await getNftsForCollection(alchemy, contractAddress);
+      const response = await getNftsForNftContract(alchemy, contractAddress);
       response.nfts.forEach(nft => expect(nft.media).toBeDefined());
     });
   });
 
-  describe('getNftsForCollectionIterator()', () => {
+  describe('getNftsForNftContractIterator()', () => {
     const contractAddress = '0xCA1';
     const pageKey = 'page-key0';
-    const baseResponses: RawGetBaseNftsForCollectionResponse[] = [
+    const baseResponses: RawGetBaseNftsForNftContractResponse[] = [
       {
         nfts: [
-          createRawCollectionBaseNft('0x1'),
-          createRawCollectionBaseNft('0x2')
+          createRawNftContractBaseNft('0x1'),
+          createRawNftContractBaseNft('0x2')
         ],
         nextToken: 'page-key1'
       },
       {
-        nfts: [createRawCollectionBaseNft('0x3')]
+        nfts: [createRawNftContractBaseNft('0x3')]
       }
     ];
-    const nftResponses: RawGetNftsForCollectionResponse[] = [
+    const nftResponses: RawGetNftsForNftContractResponse[] = [
       {
         nfts: [
           createRawNft('a', '0x1', NftTokenType.ERC721),
@@ -634,8 +634,8 @@ describe('NFT module', () => {
 
     function setupMock(
       mockResponses:
-        | RawGetBaseNftsForCollectionResponse[]
-        | RawGetNftsForCollectionResponse[]
+        | RawGetBaseNftsForNftContractResponse[]
+        | RawGetNftsForNftContractResponse[]
     ): void {
       mock
         .onGet()
@@ -647,8 +647,8 @@ describe('NFT module', () => {
     const paramCases: Array<
       [
         (
-          | RawGetBaseNftsForCollectionResponse[]
-          | RawGetNftsForCollectionResponse[]
+          | RawGetBaseNftsForNftContractResponse[]
+          | RawGetNftsForNftContractResponse[]
         ),
         boolean | undefined,
         boolean
@@ -663,7 +663,7 @@ describe('NFT module', () => {
       async (mockResponses, omitMetadata, expectedWithMetadata) => {
         setupMock(mockResponses);
         const nfts = [];
-        for await (const nft of getNftsForCollectionIterator(
+        for await (const nft of getNftsForNftContractIterator(
           alchemy,
           contractAddress,
           {
@@ -698,7 +698,7 @@ describe('NFT module', () => {
       async (mockResponses, omitMetadata) => {
         setupMock(mockResponses);
         const nfts = [];
-        for await (const nft of getNftsForCollectionIterator(
+        for await (const nft of getNftsForNftContractIterator(
           alchemy,
           contractAddress,
           {
@@ -735,8 +735,8 @@ describe('NFT module', () => {
       [
         boolean,
         (
-          | RawGetBaseNftsForCollectionResponse[]
-          | RawGetNftsForCollectionResponse[]
+          | RawGetBaseNftsForNftContractResponse[]
+          | RawGetNftsForNftContractResponse[]
         ),
         BaseNft[] | Nft[]
       ]
@@ -749,7 +749,7 @@ describe('NFT module', () => {
       async (omitMetadata, mockResponses, expected) => {
         setupMock(mockResponses);
         const nfts = [];
-        for await (const ownedNft of getNftsForCollectionIterator(
+        for await (const ownedNft of getNftsForNftContractIterator(
           alchemy,
           contractAddress,
           {
@@ -773,7 +773,7 @@ describe('NFT module', () => {
           .replyOnce(500, 'Internal Server Error');
         const tokenIds: string[] = [];
         try {
-          for await (const nft of getNftsForCollectionIterator(
+          for await (const nft of getNftsForNftContractIterator(
             alchemy,
             contractAddress,
             {
@@ -782,7 +782,7 @@ describe('NFT module', () => {
           )) {
             tokenIds.push(nft.tokenId);
           }
-          fail('getNftsForCollectionIterator() should have surfaced error');
+          fail('getNftsForNftContractIterator() should have surfaced error');
         } catch (e) {
           expect(tokenIds).toEqual(['1', '2']);
           expect((e as Error).message).toContain('Internal Server Error');
@@ -792,7 +792,7 @@ describe('NFT module', () => {
 
     it('uses the correct overload with no options', async () => {
       setupMock(nftResponses);
-      for await (const nft of getNftsForCollectionIterator(
+      for await (const nft of getNftsForNftContractIterator(
         alchemy,
         contractAddress
       )) {
@@ -860,7 +860,7 @@ describe('NFT module', () => {
     });
   });
 
-  describe('getOwnersForCollection()', () => {
+  describe('getOwnersForNftContract()', () => {
     const contractAddress = '0xCA1';
     const tokenIdHex = '0x1b7';
     const owners = ['0x1', '0x2', '0x3'];
@@ -872,7 +872,7 @@ describe('NFT module', () => {
     });
 
     it('calls with the correct parameters', async () => {
-      await getOwnersForCollection(alchemy, contractAddress);
+      await getOwnersForNftContract(alchemy, contractAddress);
       expect(mock.history.get.length).toEqual(1);
       expect(mock.history.get[0].params).toHaveProperty(
         'contractAddress',
@@ -881,7 +881,7 @@ describe('NFT module', () => {
     });
 
     it('can be called with BaseNft', async () => {
-      const response = await getOwnersForCollection(
+      const response = await getOwnersForNftContract(
         alchemy,
         createBaseNft(contractAddress, tokenIdHex)
       );

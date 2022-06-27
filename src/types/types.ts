@@ -319,11 +319,11 @@ export interface GetOwnersForNftResponse {
 }
 
 /**
- * The response object for the {@link getOwnersForCollection}.
+ * The response object for the {@link getOwnersForNftContract}.
  *
  * @public
  */
-export interface GetOwnersForCollectionResponse {
+export interface GetOwnersForNftContractResponse {
   /** An array of owner addresses for the provided contract address */
   readonly owners: string[];
 }
@@ -362,18 +362,18 @@ export interface RawContract {
 }
 
 /**
- * Optional parameters object for the {@link getNftsForCollection} and
- * {@link getNftsForCollectionIterator} functions.
+ * Optional parameters object for the {@link getNftsForNftContract} and
+ * {@link getNftsForNftContractIterator} functions.
  *
  * This interface is used to fetch NFTs with their associated metadata. To get
- * Nfts without their associated metadata, use {@link GetBaseNftsForCollectionOptions}.
+ * Nfts without their associated metadata, use {@link GetBaseNftsForNftContractOptions}.
  *
  * @public
  */
-export interface GetNftsForCollectionOptions {
+export interface GetNftsForNftContractOptions {
   /**
-   * Optional page key from an existing {@link CollectionBaseNftsResponse} or
-   * {@link CollectionNftsResponse}to use for pagination.
+   * Optional page key from an existing {@link NftContractBaseNftsResponse} or
+   * {@link NftContractNftsResponse}to use for pagination.
    */
   pageKey?: string;
 
@@ -382,18 +382,18 @@ export interface GetNftsForCollectionOptions {
 }
 
 /**
- * Optional parameters object for the {@link getNftsForCollection} and
- * {@link getNftsForCollectionIterator} functions.
+ * Optional parameters object for the {@link getNftsForNftContract} and
+ * {@link getNftsForNftContractIterator} functions.
  *
  * This interface is used to fetch NFTs without their associated metadata. To
- * get Nfts with their associated metadata, use {@link GetNftsForCollectionOptions}.
+ * get Nfts with their associated metadata, use {@link GetNftsForNftContractOptions}.
  *
  * @public
  */
-export interface GetBaseNftsForCollectionOptions {
+export interface GetBaseNftsForNftContractOptions {
   /**
-   * Optional page key from an existing {@link CollectionBaseNftsResponse} or
-   * {@link CollectionNftsResponse}to use for pagination.
+   * Optional page key from an existing {@link NftContractBaseNftsResponse} or
+   * {@link NftContractNftsResponse}to use for pagination.
    */
   pageKey?: string;
 
@@ -402,12 +402,12 @@ export interface GetBaseNftsForCollectionOptions {
 }
 
 /**
- * The response object for the {@link getNftsForCollection} function. The object
- * contains the NFTs without metadata inside the collection.
+ * The response object for the {@link getNftsForNftContract} function. The object
+ * contains the NFTs without metadata inside the NFT contract.
  *
  * @public
  */
-export interface CollectionBaseNftsResponse {
+export interface NftContractBaseNftsResponse {
   /** An array of NFTs without metadata. */
   nfts: BaseNft[];
 
@@ -419,12 +419,12 @@ export interface CollectionBaseNftsResponse {
 }
 
 /**
- * The response object for the {@link getNftsForCollection} function. The object
- * contains the NFTs with metadata inside the collection.
+ * The response object for the {@link getNftsForNftContract} function. The object
+ * contains the NFTs with metadata inside the NFT contract.
  *
  * @public
  */
-export interface CollectionNftsResponse {
+export interface NftContractNftsResponse {
   /** An array of NFTs with metadata. */
   nfts: Nft[];
 

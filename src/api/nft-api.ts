@@ -1,12 +1,12 @@
 import {
-  CollectionBaseNftsResponse,
-  CollectionNftsResponse,
+  NftContractBaseNftsResponse,
+  NftContractNftsResponse,
   DeployResult,
-  GetBaseNftsForCollectionOptions,
+  GetBaseNftsForNftContractOptions,
   GetBaseNftsForOwnerOptions,
-  GetNftsForCollectionOptions,
+  GetNftsForNftContractOptions,
   GetNftsForOwnerOptions,
-  GetOwnersForCollectionResponse,
+  GetOwnersForNftContractResponse,
   GetOwnersForNftResponse,
   NftTokenType,
   OwnedBaseNft,
@@ -19,13 +19,13 @@ import { paginateEndpoint, requestHttpWithBackoff } from '../internal/dispatch';
 import { BaseNft, Nft } from './nft';
 import {
   RawBaseNft,
-  RawCollectionBaseNft,
-  RawCollectionNft,
-  RawGetBaseNftsForCollectionResponse,
+  RawNftContractBaseNft,
+  RawNftContractNft,
+  RawGetBaseNftsForNftContractResponse,
   RawGetBaseNftsResponse,
-  RawGetNftsForCollectionResponse,
+  RawGetNftsForNftContractResponse,
   RawGetNftsResponse,
-  RawGetOwnersForCollectionResponse,
+  RawGetOwnersForNftContractResponse,
   RawNft,
   RawOwnedBaseNft,
   RawOwnedNft
@@ -228,47 +228,47 @@ export async function getNftsForOwner(
  * Get all NFTs for a given contract address.
  *
  * This method returns the full NFTs in the contract. To get all NFTs without
- * their associated metadata, use {@link GetBaseNftsForCollectionOptions}.
+ * their associated metadata, use {@link GetBaseNftsForNftContractOptions}.
  *
  * @param alchemy - The Alchemy SDK instance.
- * @param contractAddress - The contract address of the collection.
+ * @param contractAddress - The contract address of the NFT contract.
  * @param options - The parameters to use for the request. or
- *   {@link CollectionNftsResponse} response.
+ *   {@link NftContractNftsResponse} response.
  * @beta
  */
-export async function getNftsForCollection(
+export async function getNftsForNftContract(
   alchemy: Alchemy,
   contractAddress: string,
-  options?: GetNftsForCollectionOptions
-): Promise<CollectionNftsResponse>;
+  options?: GetNftsForNftContractOptions
+): Promise<NftContractNftsResponse>;
 
 /**
  * Get all base NFTs for a given contract address.
  *
  * This method returns the base NFTs that omit the associated metadata. To get
- * all NFTs with their associated metadata, use {@link GetNftsForCollectionOptions}.
+ * all NFTs with their associated metadata, use {@link GetNftsForNftContractOptions}.
  *
  * @param alchemy - The Alchemy SDK instance.
- * @param contractAddress - The contract address of the collection.
+ * @param contractAddress - The contract address of the NFT contract.
  * @param options - The optional parameters to use for the request.
  * @beta
  */
-export async function getNftsForCollection(
+export async function getNftsForNftContract(
   alchemy: Alchemy,
   contractAddress: string,
-  options?: GetBaseNftsForCollectionOptions
-): Promise<CollectionBaseNftsResponse>;
+  options?: GetBaseNftsForNftContractOptions
+): Promise<NftContractBaseNftsResponse>;
 
-export async function getNftsForCollection(
+export async function getNftsForNftContract(
   alchemy: Alchemy,
   contractAddress: string,
-  options?: GetBaseNftsForCollectionOptions | GetNftsForCollectionOptions
-): Promise<CollectionNftsResponse | CollectionBaseNftsResponse> {
+  options?: GetBaseNftsForNftContractOptions | GetNftsForNftContractOptions
+): Promise<NftContractNftsResponse | NftContractBaseNftsResponse> {
   const withMetadata = omitMetadataToWithMetadata(options?.omitMetadata);
   const response = await requestHttpWithBackoff<
-    GetNftsForCollectionAlchemyParams,
-    RawGetBaseNftsForCollectionResponse | RawGetNftsForCollectionResponse
-  >(alchemy, 'getNFTsForCollection', {
+    GetNftsForNftContractAlchemyParams,
+    RawGetBaseNftsForNftContractResponse | RawGetNftsForNftContractResponse
+  >(alchemy, 'getNFTsForNftContract', {
     contractAddress,
     startToken: options?.pageKey,
     withMetadata
@@ -276,7 +276,7 @@ export async function getNftsForCollection(
 
   return {
     nfts: response.nfts.map(res =>
-      nftFromGetNftCollectionResponse(res, contractAddress)
+      nftFromGetNftNftContractResponse(res, contractAddress)
     ),
     pageKey: response.nextToken
   };
@@ -326,45 +326,45 @@ export function getOwnersForNft(
 }
 
 /**
- * Gets all the owners for a given NFT collection.
+ * Gets all the owners for a given NFT NFT contract.
  *
  * @param alchemy - The Alchemy SDK instance.
- * @param contractAddress - The NFT collection to get the owners for.
+ * @param contractAddress - The NFT NFT contract to get the owners for.
  * @beta
  */
-export function getOwnersForCollection(
+export function getOwnersForNftContract(
   alchemy: Alchemy,
   contractAddress: string
-): Promise<GetOwnersForCollectionResponse>;
+): Promise<GetOwnersForNftContractResponse>;
 
 /**
- * Gets all the owners for a given NFT collection.
+ * Gets all the owners for a given NFT NFT contract.
  *
  * @param alchemy - The Alchemy SDK instance.
- * @param nft - The NFT to get the owners of the collection for.
+ * @param nft - The NFT to get the owners of the NFT contract for.
  * @beta
  */
-export function getOwnersForCollection(
+export function getOwnersForNftContract(
   alchemy: Alchemy,
   nft: BaseNft
-): Promise<GetOwnersForCollectionResponse>;
-export async function getOwnersForCollection(
+): Promise<GetOwnersForNftContractResponse>;
+export async function getOwnersForNftContract(
   alchemy: Alchemy,
   contractAddressOrNft: string | BaseNft
-): Promise<GetOwnersForCollectionResponse> {
+): Promise<GetOwnersForNftContractResponse> {
   let response;
   if (typeof contractAddressOrNft === 'string') {
     response = await requestHttpWithBackoff<
-      GetOwnersForCollectionAlchemyParams,
-      RawGetOwnersForCollectionResponse
-    >(alchemy, 'getOwnersForCollection', {
+      GetOwnersForNftContractAlchemyParams,
+      RawGetOwnersForNftContractResponse
+    >(alchemy, 'getOwnersForNftContract', {
       contractAddress: contractAddressOrNft
     });
   } else {
     response = await requestHttpWithBackoff<
-      GetOwnersForCollectionAlchemyParams,
-      RawGetOwnersForCollectionResponse
-    >(alchemy, 'getOwnersForCollection', {
+      GetOwnersForNftContractAlchemyParams,
+      RawGetOwnersForNftContractResponse
+    >(alchemy, 'getOwnersForNftContract', {
       contractAddress: contractAddressOrNft.contract.address
     });
   }
@@ -379,17 +379,17 @@ export async function getOwnersForCollection(
  *
  * This method returns the full NFTs in the contract and pages through all page
  * keys until all NFTs have been fetched. To get all NFTs without their
- * associated metadata, use {@link GetBaseNftsForCollectionOptions}.
+ * associated metadata, use {@link GetBaseNftsForNftContractOptions}.
  *
  * @param alchemy - The Alchemy SDK instance.
- * @param contractAddress - The contract address of the collection.
+ * @param contractAddress - The contract address of the NFT contract.
  * @param options - The optional parameters to use for the request.
  * @beta
  */
-export function getNftsForCollectionIterator(
+export function getNftsForNftContractIterator(
   alchemy: Alchemy,
   contractAddress: string,
-  options?: GetNftsForCollectionOptions
+  options?: GetNftsForNftContractOptions
 ): AsyncIterable<Nft>;
 
 /**
@@ -398,28 +398,28 @@ export function getNftsForCollectionIterator(
  *
  * This method returns the base NFTs that omit the associated metadata and pages
  * through all page keys until all NFTs have been fetched. To get all NFTs with
- * their associated metadata, use {@link GetNftsForCollectionOptions}.
+ * their associated metadata, use {@link GetNftsForNftContractOptions}.
  *
  * @param alchemy - The Alchemy SDK instance.
- * @param contractAddress - The contract address of the collection.
+ * @param contractAddress - The contract address of the NFT contract.
  * @param options - The optional parameters to use for the request.
  * @beta
  */
-export function getNftsForCollectionIterator(
+export function getNftsForNftContractIterator(
   alchemy: Alchemy,
   contractAddress: string,
-  options?: GetBaseNftsForCollectionOptions
+  options?: GetBaseNftsForNftContractOptions
 ): AsyncIterable<BaseNft>;
 
-export async function* getNftsForCollectionIterator(
+export async function* getNftsForNftContractIterator(
   alchemy: Alchemy,
   contractAddress: string,
-  options?: GetBaseNftsForCollectionOptions | GetNftsForCollectionOptions
+  options?: GetBaseNftsForNftContractOptions | GetNftsForNftContractOptions
 ): AsyncIterable<BaseNft | Nft> {
   const withMetadata = omitMetadataToWithMetadata(options?.omitMetadata);
   for await (const response of paginateEndpoint(
     alchemy,
-    'getNFTsForCollection',
+    'getNFTsForNftContract',
     'startToken',
     'nextToken',
     {
@@ -429,9 +429,9 @@ export async function* getNftsForCollectionIterator(
     }
   )) {
     for (const nft of response.nfts as
-      | RawCollectionBaseNft[]
-      | RawCollectionNft[]) {
-      yield nftFromGetNftCollectionResponse(nft, contractAddress);
+      | RawNftContractBaseNft[]
+      | RawNftContractNft[]) {
+      yield nftFromGetNftNftContractResponse(nft, contractAddress);
     }
   }
 }
@@ -624,8 +624,8 @@ function nftFromGetNftResponse(
  *
  * @internal
  */
-function nftFromGetNftCollectionResponse(
-  ownedNft: RawCollectionBaseNft | RawCollectionNft,
+function nftFromGetNftNftContractResponse(
+  ownedNft: RawNftContractBaseNft | RawNftContractNft,
   contractAddress: string
 ): Nft | BaseNft {
   if (isNftWithMetadata(ownedNft)) {
@@ -655,13 +655,13 @@ function omitMetadataToWithMetadata(
 }
 
 /**
- * Interface for the `getNftsForCollection` endpoint. The main difference is
+ * Interface for the `getNftsForNftContract` endpoint. The main difference is
  * that the endpoint has a `startToken` parameter, but the SDK standardizes all
  * pagination parameters to `pageKey`.
  *
  * @internal
  */
-interface GetNftsForCollectionAlchemyParams {
+interface GetNftsForNftContractAlchemyParams {
   contractAddress: string;
   startToken?: string;
   withMetadata: boolean;
@@ -695,10 +695,10 @@ interface GetNftMetadataParams {
 }
 
 /**
- * Interface for the `getOwnersForCollection` endpoint.
+ * Interface for the `getOwnersForNftContract` endpoint.
  *
  * @internal
  */
-interface GetOwnersForCollectionAlchemyParams {
+interface GetOwnersForNftContractAlchemyParams {
   contractAddress: string;
 }

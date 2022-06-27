@@ -144,11 +144,11 @@ The SDK currently supports the following [NFT API](https://docs.alchemy.com/alch
 - `getNftMetadata()`: Get the NFT metadata for a contract address and tokenId.
 - `getNftsForOwner()`: Get NFTs for an owner address.
 - `getNftsForOwnerIterator()`: Get NFTs for an owner address as an async iterator (handles paging automatically).
-- `getNftsForCollection()`: Get all NFTs for a contract address.
-- `getNftForCollectionIterator()`: Get all NFTs for a contract address as an async iterator (handles paging
+- `getNftsForNftContract()`: Get all NFTs for a contract address.
+- `getNftForNftContractIterator()`: Get all NFTs for a contract address as an async iterator (handles paging
   automatically).
 - `getOwnersForNft()`: Get all the owners for a given NFT contract address and a particular token ID.
-- `getOwnersForCollection()`: Get all the owners for a given NFT contract address.
+- `getOwnersForNftContract()`: Get all the owners for a given NFT contract address.
 - `checkNftOwnership()`: Check that the provided owner address owns one or more of the provided NFT contract addresses.
 - `findContractDeployer()`: Find the contract deployer and block number for a given NFT contract address.
 - `refreshNftMetadata()`: Refresh the cached NFT metadata for a contract address and tokenId.
@@ -169,7 +169,7 @@ interfaces in more detail.
 The Alchemy NFT endpoints return 100 results per page. To get the next page, you can pass in the `pageKey` returned by
 the
 previous call. To simplify paginating through all results, the SDK provides the `getNftsIterator()`
-and `getNftsForCollectionIterator()` functions that automatically paginate through all NFTs and yields them via
+and `getNftsForNftContractIterator()` functions that automatically paginate through all NFTs and yields them via
 an `AsyncIterable`.
 
 Here's an example of how to paginate through all the NFTs in Vitalik's ENS address:
@@ -257,7 +257,7 @@ Getting all the owners of the BAYC NFT.
 ```ts
 import {
   getOwnersForNft,
-  getNftsForCollectionIterator,
+  getNftsForNftContractIterator,
   initializeAlchemy
 } from '@alch/alchemy-sdk';
 
@@ -267,7 +267,7 @@ const alchemy = initializeAlchemy();
 const baycAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D';
 
 async function main() {
-  for await (const nft of getNftsForCollectionIterator(alchemy, baycAddress, {
+  for await (const nft of getNftsForNftContractIterator(alchemy, baycAddress, {
     // Omit the NFT metadata for smaller payloads.
     omitMetadata: true
   })) {
