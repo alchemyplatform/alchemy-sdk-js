@@ -109,7 +109,7 @@ export async function getNftMetadata(
  * @param tokenType - Optionally specify the type of token to speed up the query.
  * @public
  */
-export function getNFTContractMetadata(
+export function getNftContractMetadata(
   alchemy: Alchemy,
   contractAddress: string
 ): Promise<NftContract>;
@@ -121,25 +121,25 @@ export function getNFTContractMetadata(
  * @param baseNft - The base NFT object to be used for the request.
  * @public
  */
-export function getNFTContractMetadata(
+export function getNftContractMetadata(
   alchemy: Alchemy,
   baseNftContract: BaseNftContract
 ): Promise<NftContract>;
-export async function getNFTContractMetadata(
+export async function getNftContractMetadata(
   alchemy: Alchemy,
   contractAddressOrBaseNftContract: string | BaseNftContract
 ): Promise<NftContract> {
   let response;
   if (typeof contractAddressOrBaseNftContract === 'string') {
     response = await requestHttpWithBackoff<
-      GetNFTContractMetadataParams,
+      GetNftContractMetadataParams,
       RawNftContract
     >(alchemy, 'getContractMetadata', {
       contractAddress: contractAddressOrBaseNftContract
     });
   } else {
     response = await requestHttpWithBackoff<
-      GetNFTContractMetadataParams,
+      GetNftContractMetadataParams,
       RawNftContract
     >(alchemy, 'getContractMetadata', {
       contractAddress: contractAddressOrBaseNftContract.address
@@ -743,11 +743,11 @@ interface GetNftMetadataParams {
 }
 
 /**
- * Interface for the `getNFTContractMetadata` endpoint.
+ * Interface for the `getNftContractMetadata` endpoint.
  *
  * @internal
  */
-interface GetNFTContractMetadataParams {
+interface GetNftContractMetadataParams {
   contractAddress: string;
 }
 

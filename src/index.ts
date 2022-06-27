@@ -9,7 +9,7 @@ export { AlchemyWebSocketProvider } from './api/alchemy-websocket-provider';
 
 export {
   getNftMetadata,
-  getNFTContractMetadata,
+  getNftContractMetadata,
   getNftsForOwner,
   getNftsForOwnerIterator,
   getNftsForCollection,

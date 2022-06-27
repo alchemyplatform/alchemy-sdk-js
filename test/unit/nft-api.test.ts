@@ -5,7 +5,7 @@ import {
   CollectionBaseNftsResponse,
   CollectionNftsResponse,
   fromHex,
-  getNFTContractMetadata,
+  getNftContractMetadata,
   getNftMetadata,
   getNftsForCollection,
   getNftsForCollectionIterator,
@@ -111,7 +111,7 @@ describe('NFT module', () => {
     it('can be called with a BaseNftContract', async () => {
       const nftContract = createBaseNftContract(address);
       verifyNftContractMetadata(
-        await getNFTContractMetadata(alchemy, nftContract),
+        await getNftContractMetadata(alchemy, nftContract),
         expectedNftContract,
         address,
         name,
@@ -123,7 +123,7 @@ describe('NFT module', () => {
 
     it('can be called with raw parameters', async () => {
       verifyNftContractMetadata(
-        await getNFTContractMetadata(alchemy, address),
+        await getNftContractMetadata(alchemy, address),
         expectedNftContract,
         address,
         name,
@@ -136,7 +136,7 @@ describe('NFT module', () => {
     it('surfaces errors', async () => {
       mock.reset();
       mock.onGet().reply(500, 'Internal Server Error');
-      await expect(getNFTContractMetadata(alchemy, address)).rejects.toThrow(
+      await expect(getNftContractMetadata(alchemy, address)).rejects.toThrow(
         'Internal Server Error'
       );
     });
