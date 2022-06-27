@@ -2,11 +2,11 @@ import {
   Alchemy,
   findContractDeployer,
   getNftMetadata,
-  getNftsForCollection,
-  getNftsForCollectionIterator,
+  getNftsForNftContract,
+  getNftsForNftContractIterator,
   getNftsForOwner,
   getNftsForOwnerIterator,
-  getOwnersForCollection,
+  getOwnersForNftContract,
   getOwnersForNft,
   getTokenBalances,
   initializeAlchemy,
@@ -102,29 +102,29 @@ describe('E2E integration tests', () => {
     expect(withSpam.totalCount).not.toEqual(noSpam.totalCount);
   });
 
-  it('getOwnersForCollection', async () => {
-    const owners = await getOwnersForCollection(alchemy, contractAddress);
+  it('getOwnersForNftContract', async () => {
+    const owners = await getOwnersForNftContract(alchemy, contractAddress);
     console.log('owners', owners);
   });
 
-  it('getNftsForCollection with pageKey', async () => {
-    let nftsForCollection = await getNftsForCollection(
+  it('getNftsForNftContract with pageKey', async () => {
+    let nftsForNftContract = await getNftsForNftContract(
       alchemy,
       contractAddress
     );
 
     console.log(
-      'nftsForCollection: ',
-      nftsForCollection.pageKey,
-      nftsForCollection.nfts.length
+      'nftsForNftContract: ',
+      nftsForNftContract.pageKey,
+      nftsForNftContract.nfts.length
     );
-    nftsForCollection = await getNftsForCollection(alchemy, contractAddress, {
-      pageKey: nftsForCollection.pageKey
+    nftsForNftContract = await getNftsForNftContract(alchemy, contractAddress, {
+      pageKey: nftsForNftContract.pageKey
     });
     console.log(
-      'nftsForCollection: ',
-      nftsForCollection.pageKey,
-      nftsForCollection.nfts.length
+      'nftsForNftContract: ',
+      nftsForNftContract.pageKey,
+      nftsForNftContract.nfts.length
     );
   });
 
@@ -153,12 +153,12 @@ describe('E2E integration tests', () => {
     console.log('done', allNfts.length, allNfts);
   });
 
-  it('getNftsForCollectionIterator', async () => {
+  it('getNftsForNftContractIterator', async () => {
     jest.setTimeout(15000);
     console.log('lets paginate');
     const allNfts = [];
     let totalCount = 0;
-    for await (const nft of getNftsForCollectionIterator(
+    for await (const nft of getNftsForNftContractIterator(
       alchemy,
       contractAddress,
       {
@@ -207,7 +207,7 @@ describe('E2E integration tests', () => {
       // Bored Ape Yacht Club contract address.
       const baycAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D';
 
-      for await (const nft of getNftsForCollectionIterator(
+      for await (const nft of getNftsForNftContractIterator(
         alchemy,
         baycAddress,
         {
