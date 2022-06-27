@@ -214,6 +214,7 @@ main();
 The NFT API in the SDK standardizes response types to reduce developer friction, but note this results in some
 differences compared to the Alchemy REST endpoints:
 
+- All "Collection" methods in the NFT API have been renamed to use "NftContract", which is a more precise term.
 - Some methods have different naming that the REST API counterparts in order to provide a consistent API interface (
   e.g. `getNftsForOwner()` is `alchemy_getNfts`, `getOwnersForNft()` is `alchemy_getOwnersForToken`).
 - SDK standardizes to `omitMetadata` parameter (vs. `withMetadata`).
