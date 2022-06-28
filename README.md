@@ -52,6 +52,22 @@ const alchemy = alchemySdk.initializeAlchemy();
 alchemySdk.getNftsForOwner(alchemy, '0xshah.eth').then(console.log);
 ```
 
+### Preventing Breaking Changes
+
+The SDK is currently in public beta, and will have breaking changes made. To protect your project from breaking changes,
+make sure to pin the version of the SDK you are using in your `package.json` file. Please check the release notes to see
+if any breaking changes have been made. While the SDK in the public beta, minor versions may contain breaking changes,
+but patch versions should be safe to use.
+
+To pin to a specific version in your `package.json` file:
+```
+{
+  "dependencies": {
+    "@alch/alchemy-sdk": "1.1.0"
+  }
+}
+```
+
 ## SDK Structure
 
 
