@@ -436,6 +436,17 @@ export interface CollectionNftsResponse {
 }
 
 /**
+ * The response object for the {@link getSpamContracts} function. The object
+ * contains a list of NFT spam contracts as marked by Alchemy.
+ *
+ * @public
+ */
+export interface GetSpamContractsResponse {
+  /** A list of spam contracts. */
+  spamContracts: string[];
+}
+
+/**
  * The response object for the {@link findContractDeployer} function.
  *
  * @public

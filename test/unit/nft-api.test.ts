@@ -13,6 +13,7 @@ import {
   GetNftsForOwnerOptions,
   getOwnersForCollection,
   getOwnersForNft,
+  getSpamContracts,
   initializeAlchemy,
   isSpamContract,
   Nft,
@@ -968,6 +969,14 @@ describe('NFT module', () => {
         'contractAddress',
         spamContract
       );
+    });
+  });
+
+  describe('getSpamContracts', () => {
+    it('calls with the correct parameters', async () => {
+      mock.onGet().reply(200, ['0xABC', '0xABD']);
+      await getSpamContracts(alchemy);
+      expect(mock.history.get.length).toEqual(1);
     });
   });
 

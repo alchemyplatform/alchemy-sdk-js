@@ -8,6 +8,7 @@ import {
   GetNftsForOwnerOptions,
   GetOwnersForCollectionResponse,
   GetOwnersForNftResponse,
+  GetSpamContractsResponse,
   NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
@@ -495,6 +496,24 @@ export async function isSpamContract(
       contractAddress
     }
   );
+  return response;
+}
+
+/**
+ * Returns a list of all spam contracts marked by Alchemy. For details on how
+ * Alchemy marks spam contracts, go to
+ * https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification.
+ *
+ * @param alchemy - The Alchemy SDK instance.
+ * @beta
+ */
+export async function getSpamContracts(
+  alchemy: Alchemy
+): Promise<GetSpamContractsResponse> {
+  const response = await requestHttpWithBackoff<
+    undefined,
+    GetSpamContractsResponse
+  >(alchemy, AlchemyApiType.NFT, 'getSpamContracts', undefined);
   return response;
 }
 
