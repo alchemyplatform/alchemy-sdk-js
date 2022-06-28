@@ -3,7 +3,8 @@ import {
   DEFAULT_ALCHEMY_API_KEY,
   DEFAULT_MAX_RETRIES,
   DEFAULT_NETWORK,
-  getAlchemyHttpUrl
+  getAlchemyHttpUrl,
+  getAlchemyNftHttpUrl
 } from '../util/const';
 import { AlchemyProvider } from './alchemy-provider';
 import { AlchemyWebSocketProvider } from './alchemy-websocket-provider';
@@ -51,6 +52,11 @@ export class Alchemy {
   /** @internal */
   getBaseUrl(): string {
     return getAlchemyHttpUrl(this.network, this.apiKey);
+  }
+
+  /** @internal */
+  getNftUrl(): string {
+    return getAlchemyNftHttpUrl(this.network, this.apiKey);
   }
 
   /**

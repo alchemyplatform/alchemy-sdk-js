@@ -14,6 +14,7 @@ import {
   getOwnersForCollection,
   getOwnersForNft,
   initializeAlchemy,
+  isSpamContract,
   Nft,
   NftExcludeFilters,
   NftTokenType,
@@ -904,7 +905,7 @@ describe('NFT module', () => {
     });
   });
 
-  describe('checkOwnership', () => {
+  describe('checkNftOwnership', () => {
     const owner = '0xABC';
     const addresses = ['0xCA1', '0xCA2'];
     const emptyResponse: RawGetNftsResponse = {
@@ -954,6 +955,19 @@ describe('NFT module', () => {
       await expect(
         checkNftOwnership(alchemy, owner, addresses)
       ).rejects.toThrow('Internal Server Error');
+    });
+  });
+
+  describe('isSpamContract', () => {
+    const spamContract = '0x000440f08436a7b866d1ae42db5e0be801da722a';
+    it('calls with the correct parameters', async () => {
+      mock.onGet().reply(200, true);
+      await isSpamContract(alchemy, spamContract);
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        spamContract
+      );
     });
   });
 
