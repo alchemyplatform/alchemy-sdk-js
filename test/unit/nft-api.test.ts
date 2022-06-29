@@ -5,6 +5,8 @@ import {
   CollectionBaseNftsResponse,
   CollectionNftsResponse,
   fromHex,
+  getFloorPrice,
+  GetFloorPriceResponse,
   getNftMetadata,
   getNftsForCollection,
   getNftsForCollectionIterator,
@@ -977,6 +979,55 @@ describe('NFT module', () => {
       mock.onGet().reply(200, ['0xABC', '0xABD']);
       await getSpamContracts(alchemy);
       expect(mock.history.get.length).toEqual(1);
+    });
+  });
+
+  describe('getFloorPrice', () => {
+    const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
+    const templateResponse: GetFloorPriceResponse = {
+      openSea: {
+        floorPrice: 90.969,
+        priceCurrency: 'ETH',
+        retrievedAt: '2022-06-29T19:31:18.816Z',
+        collectionUrl: 'https://opensea.io/collection/boredapeyachtclub'
+      },
+      looksRare: {
+        floorPrice: 86.2828,
+        priceCurrency: 'ETH',
+        retrievedAt: '2022-06-29T19:33:18.280Z',
+        collectionUrl:
+          'https://looksrare.org/collections/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d'
+      }
+    };
+
+    beforeEach(() => {
+      mock.onGet().reply(200, templateResponse);
+    });
+
+    it('calls with the correct parameters', async () => {
+      await getFloorPrice(alchemy, contractAddress);
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        contractAddress
+      );
+    });
+
+    it('retries with maxAttempts', async () => {
+      mock.reset();
+      mock.onGet().reply(429, 'Too many requests');
+
+      await expect(getFloorPrice(alchemy, contractAddress)).rejects.toThrow(
+        'Too many requests'
+      );
+    });
+
+    it('surfaces errors', async () => {
+      mock.reset();
+      mock.onGet().reply(500, 'Internal Server Error');
+      await expect(getFloorPrice(alchemy, contractAddress)).rejects.toThrow(
+        'Internal Server Error'
+      );
     });
   });
 

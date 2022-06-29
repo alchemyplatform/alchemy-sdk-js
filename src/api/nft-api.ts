@@ -4,6 +4,7 @@ import {
   DeployResult,
   GetBaseNftsForCollectionOptions,
   GetBaseNftsForOwnerOptions,
+  GetFloorPriceResponse,
   GetNftsForCollectionOptions,
   GetNftsForOwnerOptions,
   GetOwnersForCollectionResponse,
@@ -518,6 +519,26 @@ export async function getSpamContracts(
 }
 
 /**
+ * Returns the floor prices of a NFT collection by marketplace.
+ *
+ * @param alchemy - The Alchemy SDK instance.
+ * @param contractAddress - The contract address for the NFT collection.
+ * @beta
+ */
+export async function getFloorPrice(
+  alchemy: Alchemy,
+  contractAddress: string
+): Promise<GetFloorPriceResponse> {
+  const response = await requestHttpWithBackoff<
+    GetFloorPriceParams,
+    GetFloorPriceResponse
+  >(alchemy, AlchemyApiType.NFT, 'getFloorPrice', {
+    contractAddress
+  });
+  return response;
+}
+
+/**
  * Finds the address that deployed the provided contract and block number it was
  * deployed in.
  *
@@ -768,5 +789,14 @@ interface IsSpamContractParams {
  * @internal
  */
 interface GetOwnersForCollectionAlchemyParams {
+  contractAddress: string;
+}
+
+/**
+ * Interface for the `getFloorPrice` endpoint.
+ *
+ * @internal
+ */
+interface GetFloorPriceParams {
   contractAddress: string;
 }
