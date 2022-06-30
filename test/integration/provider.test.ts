@@ -51,7 +51,7 @@ describe('AlchemyProvider', () => {
 
   it('can send normal json-rpc methods', async () => {
     const res = await wsProvider.getBlockNumber();
-    expect(typeof res).toBe('string');
+    expect(typeof res).toBe('number');
   });
 
   it('full transactions', done => {
