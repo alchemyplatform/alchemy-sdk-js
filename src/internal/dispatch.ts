@@ -3,6 +3,7 @@ import { sendAxiosRequest } from '../util/sendRest';
 import { ExponentialBackoff } from './backoff';
 import axios, { AxiosError } from 'axios';
 import { logDebug, logInfo } from '../util/logger';
+import { AlchemyApiType } from '../util/const';
 
 /**
  * A wrapper function to make http requests and retry if the request fails.
@@ -15,6 +16,7 @@ import { logDebug, logInfo } from '../util/logger';
 // TODO: Wrap Axios error in AlchemyError.
 export async function requestHttpWithBackoff<Req, Res>(
   alchemy: Alchemy,
+  apiType: AlchemyApiType,
   method: string,
   params: Req
 ): Promise<Res> {
@@ -33,11 +35,25 @@ export async function requestHttpWithBackoff<Req, Res>(
         // out of the loop to preserve the last error.
         break;
       }
-      const response = await sendAxiosRequest<Req, Res>(
-        alchemy.getBaseUrl(),
-        method,
-        params
-      );
+
+      let response;
+      switch (apiType) {
+        case AlchemyApiType.NFT:
+          response = await sendAxiosRequest<Req, Res>(
+            alchemy.getNftUrl(),
+            method,
+            params
+          );
+          break;
+        default:
+        case AlchemyApiType.BASE:
+          response = await sendAxiosRequest<Req, Res>(
+            alchemy.getBaseUrl(),
+            method,
+            params
+          );
+          break;
+      }
 
       if (response.status === 200) {
         logDebug(method, `Successful request: ${method}`);
@@ -83,6 +99,7 @@ export async function* paginateEndpoint<
   Res extends Partial<Record<string, any> & Record<ResPageKey, string>>
 >(
   alchemy: Alchemy,
+  apiType: AlchemyApiType,
   methodName: string,
   reqPageKey: ReqPageKey,
   resPageKey: ResPageKey,
@@ -93,6 +110,7 @@ export async function* paginateEndpoint<
   while (hasNext) {
     const response = await requestHttpWithBackoff<Req, Res>(
       alchemy,
+      apiType,
       methodName,
       requestParams
     );

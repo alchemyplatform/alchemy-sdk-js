@@ -4,6 +4,7 @@ import {
   DeployResult,
   GetBaseNftsForCollectionOptions,
   GetBaseNftsForOwnerOptions,
+  GetFloorPriceResponse,
   GetNftsForCollectionOptions,
   GetNftsForOwnerOptions,
   GetOwnersForCollectionResponse,
@@ -34,10 +35,11 @@ import {
 import { toHex } from './util';
 import { getTransactionReceipts } from './enhanced';
 import { BigNumber, BigNumberish } from 'ethers';
+import { AlchemyApiType } from '../util/const';
 import {
-  getBaseNftFromRaw,
   getNftContractFromRaw,
-  getNftFromRaw
+  getNftFromRaw,
+  getBaseNftFromRaw
 } from '../util/util';
 
 const ETH_NULL_VALUE = '0x';
@@ -81,6 +83,7 @@ export async function getNftMetadata(
     contractAddress = contractAddressOrBaseNft;
     response = await requestHttpWithBackoff<GetNftMetadataParams, RawNft>(
       alchemy,
+      AlchemyApiType.NFT,
       'getNFTMetadata',
       {
         contractAddress: contractAddressOrBaseNft,
@@ -92,6 +95,7 @@ export async function getNftMetadata(
     contractAddress = contractAddressOrBaseNft.contract.address;
     response = await requestHttpWithBackoff<GetNftMetadataParams, RawNft>(
       alchemy,
+      AlchemyApiType.NFT,
       'getNFTMetadata',
       {
         contractAddress: contractAddressOrBaseNft.contract.address,
@@ -139,14 +143,14 @@ export async function getNftContractMetadata(
     response = await requestHttpWithBackoff<
       GetNftContractMetadataParams,
       RawNftContract
-    >(alchemy, 'getContractMetadata', {
+    >(alchemy, AlchemyApiType.NFT, 'getContractMetadata', {
       contractAddress: contractAddressOrBaseNftContract
     });
   } else {
     response = await requestHttpWithBackoff<
       GetNftContractMetadataParams,
       RawNftContract
-    >(alchemy, 'getContractMetadata', {
+    >(alchemy, AlchemyApiType.NFT, 'getContractMetadata', {
       contractAddress: contractAddressOrBaseNftContract.address
     });
   }
@@ -195,6 +199,7 @@ export async function* getNftsForOwnerIterator(
   const withMetadata = omitMetadataToWithMetadata(options?.omitMetadata);
   for await (const response of paginateEndpoint(
     alchemy,
+    AlchemyApiType.NFT,
     'getNFTs',
     'pageKey',
     'pageKey',
@@ -260,7 +265,7 @@ export async function getNftsForOwner(
   const response = await requestHttpWithBackoff<
     GetNftsAlchemyParams,
     RawGetBaseNftsResponse | RawGetNftsResponse
-  >(alchemy, 'getNFTs', {
+  >(alchemy, AlchemyApiType.NFT, 'getNFTs', {
     contractAddresses: options?.contractAddresses,
     pageKey: options?.pageKey,
     filters: options?.excludeFilters,
@@ -321,7 +326,7 @@ export async function getNftsForCollection(
   const response = await requestHttpWithBackoff<
     GetNftsForCollectionAlchemyParams,
     RawGetBaseNftsForCollectionResponse | RawGetNftsForCollectionResponse
-  >(alchemy, 'getNFTsForCollection', {
+  >(alchemy, AlchemyApiType.NFT, 'getNFTsForCollection', {
     contractAddress,
     startToken: options?.pageKey,
     withMetadata
@@ -366,15 +371,25 @@ export function getOwnersForNft(
   tokenId?: BigNumberish
 ): Promise<GetOwnersForNftResponse> {
   if (typeof contractAddressOrNft === 'string') {
-    return requestHttpWithBackoff(alchemy, 'getOwnersForToken', {
-      contractAddress: contractAddressOrNft,
-      tokenId: BigNumber.from(tokenId!).toString()
-    });
+    return requestHttpWithBackoff(
+      alchemy,
+      AlchemyApiType.NFT,
+      'getOwnersForToken',
+      {
+        contractAddress: contractAddressOrNft,
+        tokenId: BigNumber.from(tokenId!).toString()
+      }
+    );
   } else {
-    return requestHttpWithBackoff(alchemy, 'getOwnersForToken', {
-      contractAddress: contractAddressOrNft.contract.address,
-      tokenId: BigNumber.from(contractAddressOrNft.tokenId).toString()
-    });
+    return requestHttpWithBackoff(
+      alchemy,
+      AlchemyApiType.NFT,
+      'getOwnersForToken',
+      {
+        contractAddress: contractAddressOrNft.contract.address,
+        tokenId: BigNumber.from(contractAddressOrNft.tokenId).toString()
+      }
+    );
   }
 }
 
@@ -410,14 +425,14 @@ export async function getOwnersForCollection(
     response = await requestHttpWithBackoff<
       GetOwnersForCollectionAlchemyParams,
       RawGetOwnersForCollectionResponse
-    >(alchemy, 'getOwnersForCollection', {
+    >(alchemy, AlchemyApiType.NFT, 'getOwnersForCollection', {
       contractAddress: contractAddressOrNft
     });
   } else {
     response = await requestHttpWithBackoff<
       GetOwnersForCollectionAlchemyParams,
       RawGetOwnersForCollectionResponse
-    >(alchemy, 'getOwnersForCollection', {
+    >(alchemy, AlchemyApiType.NFT, 'getOwnersForCollection', {
       contractAddress: contractAddressOrNft.contract.address
     });
   }
@@ -472,6 +487,7 @@ export async function* getNftsForCollectionIterator(
   const withMetadata = omitMetadataToWithMetadata(options?.omitMetadata);
   for await (const response of paginateEndpoint(
     alchemy,
+    AlchemyApiType.NFT,
     'getNFTsForCollection',
     'startToken',
     'nextToken',
@@ -510,6 +526,68 @@ export async function checkNftOwnership(
     omitMetadata: true
   });
   return response.ownedNfts.length > 0;
+}
+
+/**
+ * Returns whether a contract is marked as spam or not by Alchemy. For more
+ * information on how we classify spam, go to our NFT API FAQ at
+ * https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification.
+ *
+ * @param alchemy - The Alchemy SDK instance.
+ * @param contractAddress - The contract address to check.
+ * @beta
+ */
+export async function isSpamContract(
+  alchemy: Alchemy,
+  contractAddress: string
+): Promise<boolean> {
+  const response = await requestHttpWithBackoff<IsSpamContractParams, boolean>(
+    alchemy,
+    AlchemyApiType.NFT,
+    'isSpamContract',
+    {
+      contractAddress
+    }
+  );
+  return response;
+}
+
+/**
+ * Returns a list of all spam contracts marked by Alchemy. For details on how
+ * Alchemy marks spam contracts, go to
+ * https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification.
+ *
+ * @param alchemy - The Alchemy SDK instance.
+ * @beta
+ */
+export async function getSpamContracts(alchemy: Alchemy): Promise<string[]> {
+  const response = await requestHttpWithBackoff<undefined, string[]>(
+    alchemy,
+    AlchemyApiType.NFT,
+    'getSpamContracts',
+    undefined
+  );
+  return response;
+}
+
+/**
+ * Returns the floor prices of a NFT collection by marketplace.
+ *
+ * @param alchemy - The Alchemy SDK instance.
+ * @param contractAddress - The contract address for the NFT collection.
+ * @beta
+ */
+export async function getFloorPrice(
+  alchemy: Alchemy,
+  contractAddress: string
+): Promise<GetFloorPriceResponse> {
+  const response = await requestHttpWithBackoff<
+    GetFloorPriceParams,
+    GetFloorPriceResponse
+  >(alchemy, AlchemyApiType.NFT, 'getFloorPrice', {
+    contractAddress
+  });
+  return response;
 }
 
 /**
@@ -621,6 +699,7 @@ async function refresh(
 ): Promise<Nft> {
   const response = await requestHttpWithBackoff<GetNftMetadataParams, RawNft>(
     alchemy,
+    AlchemyApiType.NFT,
     'getNFTMetadata',
     {
       contractAddress,
@@ -748,6 +827,15 @@ interface GetNftMetadataParams {
 }
 
 /**
+ * <<<<<<< HEAD Interface for the `isSpamContract` endpoint.
+ *
+ * @internal
+ */
+interface IsSpamContractParams {
+  contractAddress: string;
+}
+
+/**
  * Interface for the `getNftContractMetadata` endpoint.
  *
  * @internal
@@ -762,5 +850,14 @@ interface GetNftContractMetadataParams {
  * @internal
  */
 interface GetOwnersForCollectionAlchemyParams {
+  contractAddress: string;
+}
+
+/**
+ * Interface for the `getFloorPrice` endpoint.
+ *
+ * @internal
+ */
+interface GetFloorPriceParams {
   contractAddress: string;
 }
