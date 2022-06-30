@@ -9,7 +9,6 @@ import {
 } from '../src/internal/raw-interfaces';
 import {
   BaseNft,
-  BaseNftContract,
   Nft,
   NftTokenType,
   OwnedBaseNft,
@@ -19,7 +18,12 @@ import {
 } from '../src';
 import { BigNumber } from 'ethers';
 import { BlockHead, LogsEvent } from '../src/internal/websocket-backfiller';
-import { getBaseNftContractFromRaw } from '../src/api/util';
+import {
+  getBaseNftContractFromRaw,
+  getBaseNftFromRaw,
+  getNftFromRaw
+} from '../src/util/util';
+import { BaseNftContract } from '../src/api/nft';
 
 export function createRawNftContract(
   address: string,
@@ -97,7 +101,7 @@ export function createBaseNft(
   tokenId: string | number,
   tokenType = NftTokenType.UNKNOWN
 ): BaseNft {
-  return BaseNft.fromResponse(createRawBaseNft(tokenId, tokenType), address);
+  return getBaseNftFromRaw(createRawBaseNft(tokenId, tokenType), address);
 }
 
 export function createNft(
@@ -108,7 +112,7 @@ export function createNft(
   tokenUri?: TokenUri,
   media?: TokenUri[] | undefined
 ): Nft {
-  return Nft.fromResponse(
+  return getNftFromRaw(
     createRawNft(title, tokenId, tokenType, tokenUri, media),
     address
   );

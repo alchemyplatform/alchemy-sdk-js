@@ -7,7 +7,6 @@ import {
   fromHex,
   getFloorPrice,
   GetFloorPriceResponse,
-  getNftContractMetadata,
   getNftMetadata,
   getNftsForCollection,
   getNftsForCollectionIterator,
@@ -49,7 +48,8 @@ import {
   RawGetNftsForCollectionResponse,
   RawGetNftsResponse
 } from '../../src/internal/raw-interfaces';
-import { getNftContractFromRaw } from '../../src/api/util';
+import { getNftContractFromRaw, getNftFromRaw } from '../../src/util/util';
+import { getNftContractMetadata } from '../../src/api/nft-api';
 
 describe('NFT module', () => {
   let alchemy: Alchemy;
@@ -153,7 +153,7 @@ describe('NFT module', () => {
     // Special case token ID as an integer string, since that's what the NFT
     // API endpoint returns.
     const rawNftResponse = createRawNft(title, tokenId.toString());
-    const expectedNft = Nft.fromResponse(rawNftResponse, contractAddress);
+    const expectedNft = getNftFromRaw(rawNftResponse, contractAddress);
 
     beforeEach(() => {
       mock.onGet().reply(200, rawNftResponse);

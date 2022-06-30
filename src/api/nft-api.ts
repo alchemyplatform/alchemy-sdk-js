@@ -32,10 +32,15 @@ import {
   RawOwnedBaseNft,
   RawOwnedNft
 } from '../internal/raw-interfaces';
-import { getNftContractFromRaw, toHex } from './util';
+import { toHex } from './util';
 import { getTransactionReceipts } from './enhanced';
 import { BigNumber, BigNumberish } from 'ethers';
 import { AlchemyApiType } from '../util/const';
+import {
+  getNftContractFromRaw,
+  getNftFromRaw,
+  getBaseNftFromRaw
+} from '../util/util';
 
 const ETH_NULL_VALUE = '0x';
 
@@ -102,7 +107,7 @@ export async function getNftMetadata(
       }
     );
   }
-  return Nft.fromResponse(response, contractAddress);
+  return getNftFromRaw(response, contractAddress);
 }
 
 /**
@@ -702,7 +707,7 @@ async function refresh(
       refreshCache: true
     }
   );
-  return Nft.fromResponse(response, contractAddress);
+  return getNftFromRaw(response, contractAddress);
 }
 
 /**
@@ -739,9 +744,9 @@ function nftFromGetNftResponse(
   ownedNft: RawOwnedBaseNft | RawOwnedNft
 ): Nft | BaseNft {
   if (isNftWithMetadata(ownedNft)) {
-    return Nft.fromResponse(ownedNft, ownedNft.contract.address);
+    return getNftFromRaw(ownedNft, ownedNft.contract.address);
   } else {
-    return BaseNft.fromResponse(ownedNft, ownedNft.contract.address);
+    return getBaseNftFromRaw(ownedNft, ownedNft.contract.address);
   }
 }
 
@@ -756,9 +761,9 @@ function nftFromGetNftCollectionResponse(
   contractAddress: string
 ): Nft | BaseNft {
   if (isNftWithMetadata(ownedNft)) {
-    return Nft.fromResponse(ownedNft, contractAddress);
+    return getNftFromRaw(ownedNft, contractAddress);
   } else {
-    return BaseNft.fromResponse(ownedNft, contractAddress);
+    return getBaseNftFromRaw(ownedNft, contractAddress);
   }
 }
 
