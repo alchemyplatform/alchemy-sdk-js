@@ -52,6 +52,23 @@ const alchemy = alchemySdk.initializeAlchemy();
 alchemySdk.getNftsForOwner(alchemy, '0xshah.eth').then(console.log);
 ```
 
+### Preventing Breaking Changes
+
+The SDK is currently in public beta, and will undergo breaking changes before its official release. To protect your
+project from breaking changes, make sure to pin the version of the SDK you are using in your `package.json` file. Please
+check the release notes to see if any breaking changes have been made. While the SDK in the public beta, minor versions
+may contain breaking changes, but patch versions under the same minor version should be safe to use interchangeably.
+
+For example, to pin to a specific version of the SDK in your `package.json` file:
+
+```
+{
+  "dependencies": {
+    "@alch/alchemy-sdk": "1.0.4"
+  }
+}
+```
+
 ## SDK Structure
 
 The `Alchemy` object returned by `initializeAlchemy()` provides access to the Alchemy API. An optional config
@@ -181,6 +198,7 @@ Here's an example of how to paginate through all the NFTs in Vitalik's ENS addre
 
 ```ts
 import { initializeAlchemy, getNftsForOwnerIterator } from '@alch/alchemy-sdk';
+
 const alchemy = initializeAlchemy();
 
 async function main() {
@@ -289,6 +307,7 @@ Get all outbound transfers for a provided address.
 
 ```ts
 import { getTokenBalances, initializeAlchemy } from '@alch/alchemy-sdk';
+
 const alchemy = initializeAlchemy();
 
 getTokenBalances(alchemy, '0x994b342dd87fc825f66e51ffa3ef71ad818b6893').then(
