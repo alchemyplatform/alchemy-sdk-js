@@ -1,4 +1,5 @@
-import { BaseNft, Nft, NftTokenType, toHex } from '../../src';
+import { NftTokenType, toHex } from '../../src';
+import { getBaseNftFromRaw, getNftFromRaw } from '../../src/util/util';
 import { createNft, createRawBaseNft, createRawNft } from '../test-util';
 
 describe('BaseNft class', () => {
@@ -6,10 +7,7 @@ describe('BaseNft class', () => {
   const tokenId = '0x01';
   const tokenIdString = '1';
   it('fromResponse() defaults to UNKNOWN token type', () => {
-    const nft = BaseNft.fromResponse(
-      createRawBaseNft(tokenId),
-      contractAddress
-    );
+    const nft = getBaseNftFromRaw(createRawBaseNft(tokenId), contractAddress);
     expect(nft.tokenType).toEqual(NftTokenType.UNKNOWN);
     expect(nft.tokenId).toEqual(tokenIdString);
     expect(nft.contract.address).toEqual(contractAddress);
@@ -18,13 +16,10 @@ describe('BaseNft class', () => {
   it('fromResponse() normalizes tokenId fields', () => {
     const tokenIdIntegerAsString = '42';
     const tokenIdHex = toHex(42);
-    let nft = BaseNft.fromResponse(
-      createRawBaseNft(tokenIdHex),
-      contractAddress
-    );
+    let nft = getBaseNftFromRaw(createRawBaseNft(tokenIdHex), contractAddress);
     expect(nft.tokenId).toEqual(tokenIdIntegerAsString);
 
-    nft = BaseNft.fromResponse(
+    nft = getBaseNftFromRaw(
       createRawBaseNft(tokenIdIntegerAsString),
       contractAddress
     );
@@ -37,7 +32,7 @@ describe('Nft class', () => {
   const tokenId = 1;
   const tokenIdString = '1';
   it('fromResponse() defaults to UNKNOWN token type', () => {
-    const nft = Nft.fromResponse(
+    const nft = getNftFromRaw(
       createRawNft('title', toHex(tokenId)),
       contractAddress
     );
@@ -49,13 +44,10 @@ describe('Nft class', () => {
   it('fromResponse() normalizes tokenId fields', () => {
     const tokenIdIntegerAsString = '42';
     const tokenIdHex = toHex(42);
-    let nft = Nft.fromResponse(
-      createRawNft('title', tokenIdHex),
-      contractAddress
-    );
+    let nft = getNftFromRaw(createRawNft('title', tokenIdHex), contractAddress);
     expect(nft.tokenId).toEqual(tokenIdIntegerAsString);
 
-    nft = Nft.fromResponse(
+    nft = getNftFromRaw(
       createRawNft('title', tokenIdIntegerAsString),
       contractAddress
     );
@@ -100,7 +92,7 @@ describe('Nft class', () => {
       '2022-02-16T17:12:00.280Z',
       description
     );
-    const nft = Nft.fromResponse(rawNft, '0xCA1');
+    const nft = getNftFromRaw(rawNft, '0xCA1');
     expect(nft.description).toEqual('very special and unique description');
   });
 
