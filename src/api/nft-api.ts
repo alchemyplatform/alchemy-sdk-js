@@ -9,7 +9,6 @@ import {
   GetNftsForOwnerOptions,
   GetOwnersForCollectionResponse,
   GetOwnersForNftResponse,
-  GetSpamContractsResponse,
   NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
@@ -556,13 +555,13 @@ export async function isSpamContract(
  * @param alchemy - The Alchemy SDK instance.
  * @beta
  */
-export async function getSpamContracts(
-  alchemy: Alchemy
-): Promise<GetSpamContractsResponse> {
-  const response = await requestHttpWithBackoff<
-    undefined,
-    GetSpamContractsResponse
-  >(alchemy, AlchemyApiType.NFT, 'getSpamContracts', undefined);
+export async function getSpamContracts(alchemy: Alchemy): Promise<string[]> {
+  const response = await requestHttpWithBackoff<undefined, string[]>(
+    alchemy,
+    AlchemyApiType.NFT,
+    'getSpamContracts',
+    undefined
+  );
   return response;
 }
 

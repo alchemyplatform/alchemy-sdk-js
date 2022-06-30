@@ -328,6 +328,12 @@ export interface GetOwnersForCollectionResponse {
   readonly owners: string[];
 }
 
+/**
+ * The successful object returned by the {@link getFloorPrice} call for each
+ * marketplace (e.g. looksRare).
+ *
+ * @public
+ */
 export interface FloorPriceMarketplace {
   /** The floor price of the collection on the given marketplace */
   readonly floorPrice: number;
@@ -338,6 +344,13 @@ export interface FloorPriceMarketplace {
   /** UTC timestamp of when the floor price was retrieved from the marketplace */
   readonly retrievedAt: string;
 }
+
+/**
+ * The failing object returned by the {@link getFloorPrice} call for each
+ * marketplace (e.g. looksRare).
+ *
+ * @public
+ */
 export interface FloorPriceError {
   /** Error fetching floor prices from the given marketplace */
   readonly error: string;
@@ -462,17 +475,6 @@ export interface CollectionNftsResponse {
    * NFTs. If there is no page key, then there are no more NFTs to fetch.
    */
   pageKey?: string;
-}
-
-/**
- * The response object for the {@link getSpamContracts} function. The object
- * contains a list of NFT spam contracts as marked by Alchemy.
- *
- * @public
- */
-export interface GetSpamContractsResponse {
-  /** A list of spam contracts. */
-  spamContracts: string[];
 }
 
 /**
