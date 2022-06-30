@@ -3,8 +3,10 @@ import { BaseNft, BaseNftContract, Nft, NftContract } from '../api/nft';
 import { toHex } from '../api/util';
 import {
   RawBaseNftContract,
-  RawNftContract
-, RawBaseNft, RawNft } from '../internal/raw-interfaces';
+  RawNftContract,
+  RawBaseNft,
+  RawNft
+} from '../internal/raw-interfaces';
 import { NftTokenType, TokenUri } from '../types/types';
 
 export function formatBlock(block: string | number): string {
