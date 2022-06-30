@@ -5,8 +5,8 @@ import {
   CollectionBaseNftsResponse,
   CollectionNftsResponse,
   fromHex,
-  getFloorPrice,
-  GetFloorPriceResponse,
+  getNftFloorPrice,
+  GetNftFloorPriceResponse,
   getNftMetadata,
   getNftsForCollection,
   getNftsForCollectionIterator,
@@ -15,9 +15,9 @@ import {
   GetNftsForOwnerOptions,
   getOwnersForCollection,
   getOwnersForNft,
-  getSpamContracts,
+  getSpamNftContracts,
   initializeAlchemy,
-  isSpamContract,
+  isSpamNftContract,
   Nft,
   NftContract,
   NftExcludeFilters,
@@ -1044,11 +1044,11 @@ describe('NFT module', () => {
     });
   });
 
-  describe('isSpamContract', () => {
+  describe('isSpamNftContract', () => {
     const spamContract = '0x000440f08436a7b866d1ae42db5e0be801da722a';
     it('calls with the correct parameters', async () => {
       mock.onGet().reply(200, true);
-      await isSpamContract(alchemy, spamContract);
+      await isSpamNftContract(alchemy, spamContract);
       expect(mock.history.get.length).toEqual(1);
       expect(mock.history.get[0].params).toHaveProperty(
         'contractAddress',
@@ -1057,17 +1057,17 @@ describe('NFT module', () => {
     });
   });
 
-  describe('getSpamContracts', () => {
+  describe('getSpamNftContracts', () => {
     it('calls with the correct parameters', async () => {
       mock.onGet().reply(200, ['0xABC', '0xABD']);
-      await getSpamContracts(alchemy);
+      await getSpamNftContracts(alchemy);
       expect(mock.history.get.length).toEqual(1);
     });
   });
 
-  describe('getFloorPrice', () => {
+  describe('getNftFloorPrice', () => {
     const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
-    const templateResponse: GetFloorPriceResponse = {
+    const templateResponse: GetNftFloorPriceResponse = {
       openSea: {
         floorPrice: 90.969,
         priceCurrency: 'ETH',
@@ -1088,7 +1088,7 @@ describe('NFT module', () => {
     });
 
     it('calls with the correct parameters', async () => {
-      await getFloorPrice(alchemy, contractAddress);
+      await getNftFloorPrice(alchemy, contractAddress);
       expect(mock.history.get.length).toEqual(1);
       expect(mock.history.get[0].params).toHaveProperty(
         'contractAddress',
@@ -1100,7 +1100,7 @@ describe('NFT module', () => {
       mock.reset();
       mock.onGet().reply(429, 'Too many requests');
 
-      await expect(getFloorPrice(alchemy, contractAddress)).rejects.toThrow(
+      await expect(getNftFloorPrice(alchemy, contractAddress)).rejects.toThrow(
         'Too many requests'
       );
     });
@@ -1108,7 +1108,7 @@ describe('NFT module', () => {
     it('surfaces errors', async () => {
       mock.reset();
       mock.onGet().reply(500, 'Internal Server Error');
-      await expect(getFloorPrice(alchemy, contractAddress)).rejects.toThrow(
+      await expect(getNftFloorPrice(alchemy, contractAddress)).rejects.toThrow(
         'Internal Server Error'
       );
     });

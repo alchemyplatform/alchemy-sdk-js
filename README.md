@@ -172,9 +172,11 @@ The SDK currently supports the following [NFT API](https://docs.alchemy.com/alch
 - `getOwnersForNft()`: Get all the owners for a given NFT contract address and a particular token ID.
 - `getOwnersForCollection()`: Get all the owners for a given NFT contract address.
 - `checkNftOwnership()`: Check that the provided owner address owns one or more of the provided NFT contract addresses.
-- `isSpamContract()`: Check whether the given NFT contract address is a spam contract as defined by Alchemy (see the [NFT API FAQ](https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification))
+- `isSpamNftContract()`: Check whether the given NFT contract address is a spam contract as defined by Alchemy (see the [NFT API FAQ](https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification))
+- `getSpamNftContracts()`: Returns a list of all spam contracts marked by Alchemy.
 - `findContractDeployer()`: Find the contract deployer and block number for a given NFT contract address.
 - `refreshNftMetadata()`: Refresh the cached NFT metadata for a contract address and tokenId.
+- `getNftFloorPrice()`: Returns the floor prices of a NFT contract by marketplace.
 
 ### Comparing `BaseNft` and `Nft`
 
