@@ -1,44 +1,33 @@
-[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / OwnedNft
+[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / Nft
 
-# Interface: OwnedNft
+# Interface: Nft
 
-Represents an NFT with metadata owned by an address.
+Alchemy representation of an NFT.
 
 ## Hierarchy
 
-- [`Nft`](Nft.md)
+- [`BaseNft`](BaseNft.md)
 
-  ↳ **`OwnedNft`**
+  ↳ **`Nft`**
+
+  ↳↳ [`OwnedNft`](OwnedNft.md)
 
 ## Table of contents
 
 ### Properties
 
-- [balance](OwnedNft.md#balance)
-- [contract](OwnedNft.md#contract)
-- [description](OwnedNft.md#description)
-- [media](OwnedNft.md#media)
-- [metadataError](OwnedNft.md#metadataerror)
-- [rawMetadata](OwnedNft.md#rawmetadata)
-- [timeLastUpdated](OwnedNft.md#timelastupdated)
-- [title](OwnedNft.md#title)
-- [tokenId](OwnedNft.md#tokenid)
-- [tokenType](OwnedNft.md#tokentype)
-- [tokenUri](OwnedNft.md#tokenuri)
+- [contract](Nft.md#contract)
+- [description](Nft.md#description)
+- [media](Nft.md#media)
+- [metadataError](Nft.md#metadataerror)
+- [rawMetadata](Nft.md#rawmetadata)
+- [timeLastUpdated](Nft.md#timelastupdated)
+- [title](Nft.md#title)
+- [tokenId](Nft.md#tokenid)
+- [tokenType](Nft.md#tokentype)
+- [tokenUri](Nft.md#tokenuri)
 
 ## Properties
-
-### balance
-
-• `Readonly` **balance**: `number`
-
-The token balance of the NFT.
-
-#### Defined in
-
-[src/types/types.ts:298](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L298)
-
-___
 
 ### contract
 
@@ -46,7 +35,7 @@ ___
 
 #### Inherited from
 
-[Nft](Nft.md).[contract](Nft.md#contract)
+[BaseNft](BaseNft.md).[contract](BaseNft.md#contract)
 
 #### Defined in
 
@@ -60,10 +49,6 @@ ___
 
 The NFT description.
 
-#### Inherited from
-
-[Nft](Nft.md).[description](Nft.md#description)
-
 #### Defined in
 
 [src/api/nft.ts:50](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/nft.ts#L50)
@@ -76,10 +61,6 @@ ___
 
 URIs for accessing the NFT's media assets.
 
-#### Inherited from
-
-[Nft](Nft.md).[media](Nft.md#media)
-
 #### Defined in
 
 [src/api/nft.ts:68](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/nft.ts#L68)
@@ -91,10 +72,6 @@ ___
 • **metadataError**: `undefined` \| `string`
 
 Holds an error message if there was an issue fetching metadata.
-
-#### Inherited from
-
-[Nft](Nft.md).[metadataError](Nft.md#metadataerror)
 
 #### Defined in
 
@@ -109,10 +86,6 @@ ___
 The raw metadata fetched from the metadata URL specified by the NFT. The
 field is undefined if Alchemy was unable to fetch metadata.
 
-#### Inherited from
-
-[Nft](Nft.md).[rawMetadata](Nft.md#rawmetadata)
-
 #### Defined in
 
 [src/api/nft.ts:62](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/nft.ts#L62)
@@ -125,10 +98,6 @@ ___
 
 When the NFT was last updated in the blockchain. Represented in ISO-8601 format.
 
-#### Inherited from
-
-[Nft](Nft.md).[timeLastUpdated](Nft.md#timelastupdated)
-
 #### Defined in
 
 [src/api/nft.ts:53](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/nft.ts#L53)
@@ -140,10 +109,6 @@ ___
 • **title**: `string`
 
 The NFT title.
-
-#### Inherited from
-
-[Nft](Nft.md).[title](Nft.md#title)
 
 #### Defined in
 
@@ -159,7 +124,7 @@ The NFT token ID as an integer string.
 
 #### Inherited from
 
-[Nft](Nft.md).[tokenId](Nft.md#tokenid)
+[BaseNft](BaseNft.md).[tokenId](BaseNft.md#tokenid)
 
 #### Defined in
 
@@ -175,7 +140,7 @@ The type of ERC token, if known.
 
 #### Inherited from
 
-[Nft](Nft.md).[tokenType](Nft.md#tokentype)
+[BaseNft](BaseNft.md).[tokenType](BaseNft.md#tokentype)
 
 #### Defined in
 
@@ -188,10 +153,6 @@ ___
 • **tokenUri**: `undefined` \| [`TokenUri`](TokenUri.md)
 
 URIs for accessing the NFT's metadata blob.
-
-#### Inherited from
-
-[Nft](Nft.md).[tokenUri](Nft.md#tokenuri)
 
 #### Defined in
 
