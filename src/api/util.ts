@@ -1,4 +1,6 @@
 import { BigNumber } from 'ethers';
+import { RawBaseNftContract, RawNftContract } from '../internal/raw-interfaces';
+import { BaseNftContract, NftContract } from './nft';
 
 /**
  * Converts a hex string to a decimal number.
@@ -28,4 +30,22 @@ export function toHex(num: number): string {
  */
 export function isHex(possibleHexString: string): boolean {
   return /^0x[0-9a-fA-F]+$/.test(possibleHexString);
+}
+
+export function getBaseNftContractFromRaw(
+  rawBaseNftContract: RawBaseNftContract
+): BaseNftContract {
+  return { address: rawBaseNftContract.address };
+}
+
+export function getNftContractFromRaw(
+  rawNftContract: RawNftContract
+): NftContract {
+  return {
+    address: rawNftContract.address,
+    name: rawNftContract.contractMetadata.name,
+    symbol: rawNftContract.contractMetadata.symbol,
+    totalSupply: rawNftContract.contractMetadata.totalSupply,
+    tokenType: rawNftContract.contractMetadata.tokenType
+  };
 }
