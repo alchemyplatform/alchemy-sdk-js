@@ -2,11 +2,9 @@ import { BigNumber } from 'ethers';
 import { BaseNft, BaseNftContract, Nft, NftContract } from '../api/nft';
 import { toHex } from '../api/util';
 import {
-  RawBaseNft,
   RawBaseNftContract,
-  RawNft,
   RawNftContract
-} from '../internal/raw-interfaces';
+, RawBaseNft, RawNft } from '../internal/raw-interfaces';
 import { NftTokenType, TokenUri } from '../types/types';
 
 export function formatBlock(block: string | number): string {
