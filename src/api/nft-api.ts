@@ -34,7 +34,11 @@ import {
 import { toHex } from './util';
 import { getTransactionReceipts } from './enhanced';
 import { BigNumber, BigNumberish } from 'ethers';
-import { getBaseNftFromRaw, getNftContractFromRaw, getNftFromRaw } from '../util/util';
+import {
+  getBaseNftFromRaw,
+  getNftContractFromRaw,
+  getNftFromRaw
+} from '../util/util';
 
 const ETH_NULL_VALUE = '0x';
 
