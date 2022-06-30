@@ -1,15 +1,29 @@
 import { NftMetadata, NftTokenType, TokenUri } from '../types/types';
 import { RawBaseNft, RawNft } from '../internal/raw-interfaces';
 import { BigNumber } from 'ethers';
-
 /**
- * Represents an NFT contract.
+ * Alchemy representation of a base NFT contract that doesn't contain metadata.
  *
  * @public
  */
-export interface NftContract {
-  /** The NFT contract address. */
+export interface BaseNftContract {
   address: string;
+}
+
+/**
+ * Alchemy representation of an NFT contract.
+ *
+ * @public
+ */
+export interface NftContract extends BaseNftContract {
+  /** The type of the token in the contract. */
+  tokenType: NftTokenType;
+  /** The name of the contract. */
+  name?: string;
+  /** The symbol of the contract. */
+  symbol?: string;
+  /** The number of NFTs in the contract. */
+  totalSupply?: number;
 }
 
 /**
@@ -18,7 +32,7 @@ export interface NftContract {
  * @public
  */
 export class BaseNft {
-  readonly contract: NftContract;
+  readonly contract: BaseNftContract;
 
   /**
    * This constructor should never be called directly. All Nft instances should

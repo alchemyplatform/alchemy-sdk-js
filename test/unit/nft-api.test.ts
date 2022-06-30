@@ -7,6 +7,7 @@ import {
   fromHex,
   getFloorPrice,
   GetFloorPriceResponse,
+  getNftContractMetadata,
   getNftMetadata,
   getNftsForCollection,
   getNftsForCollectionIterator,
@@ -19,6 +20,7 @@ import {
   initializeAlchemy,
   isSpamContract,
   Nft,
+  NftContract,
   NftExcludeFilters,
   NftTokenType,
   OwnedBaseNft,
@@ -31,11 +33,13 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import {
   createBaseNft,
+  createBaseNftContract,
   createNft,
   createOwnedBaseNft,
   createOwnedNft,
   createRawCollectionBaseNft,
   createRawNft,
+  createRawNftContract,
   createRawOwnedBaseNft,
   createRawOwnedNft
 } from '../test-util';
@@ -45,6 +49,7 @@ import {
   RawGetNftsForCollectionResponse,
   RawGetNftsResponse
 } from '../../src/internal/raw-interfaces';
+import { getNftContractFromRaw } from '../../src/api/util';
 
 describe('NFT module', () => {
   let alchemy: Alchemy;
@@ -61,6 +66,84 @@ describe('NFT module', () => {
 
   afterEach(() => {
     mock.reset();
+  });
+
+  describe('getNftContractMetadata()', () => {
+    const address = '0xABC';
+    const name = 'NFT Contract Name';
+    const symbol = 'NCN';
+    const totalSupply = 9999;
+    const tokenType = NftTokenType.ERC721;
+
+    const rawNftContractResponse = createRawNftContract(
+      address,
+      tokenType,
+      name,
+      symbol,
+      totalSupply
+    );
+    const expectedNftContract = getNftContractFromRaw(rawNftContractResponse);
+
+    beforeEach(() => {
+      mock.onGet().reply(200, rawNftContractResponse);
+    });
+
+    function verifyNftContractMetadata(
+      actualNftContract: NftContract,
+      expectedNftContract: NftContract,
+      address: string,
+      name: string,
+      symbol: string,
+      totalSupply: number,
+      tokenType?: NftTokenType
+    ) {
+      expect(actualNftContract).toEqual(expectedNftContract);
+
+      expect(actualNftContract.address).toEqual(address);
+      expect(actualNftContract.name).toEqual(name);
+      expect(actualNftContract.symbol).toEqual(symbol);
+      expect(actualNftContract.totalSupply).toEqual(totalSupply);
+      expect(actualNftContract.tokenType).toEqual(tokenType);
+
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        address
+      );
+    }
+
+    it('can be called with a BaseNftContract', async () => {
+      const nftContract = createBaseNftContract(address);
+      verifyNftContractMetadata(
+        await getNftContractMetadata(alchemy, nftContract),
+        expectedNftContract,
+        address,
+        name,
+        symbol,
+        totalSupply,
+        tokenType
+      );
+    });
+
+    it('can be called with raw parameters', async () => {
+      verifyNftContractMetadata(
+        await getNftContractMetadata(alchemy, address),
+        expectedNftContract,
+        address,
+        name,
+        symbol,
+        totalSupply,
+        tokenType
+      );
+    });
+
+    it('surfaces errors', async () => {
+      mock.reset();
+      mock.onGet().reply(500, 'Internal Server Error');
+      await expect(getNftContractMetadata(alchemy, address)).rejects.toThrow(
+        'Internal Server Error'
+      );
+    });
   });
 
   describe('getNftMetadata()', () => {

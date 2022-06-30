@@ -9,6 +9,7 @@ export { AlchemyWebSocketProvider } from './api/alchemy-websocket-provider';
 
 export {
   getNftMetadata,
+  getNftContractMetadata,
   getNftsForOwner,
   getNftsForOwnerIterator,
   getNftsForCollection,
@@ -30,7 +31,7 @@ export {
   getTokenBalances
 } from './api/enhanced';
 
-export { NftContract, Nft, BaseNft } from './api/nft';
+export { BaseNftContract, NftContract, Nft, BaseNft } from './api/nft';
 
 export { fromHex, toHex, isHex } from './api/util';
 

@@ -146,6 +146,7 @@ right. `alchemy-sdk` automatically handles these failures with no configuration 
 The SDK currently supports the following [NFT API](https://docs.alchemy.com/alchemy/enhanced-apis/nft-api) endpoints:
 
 - `getNftMetadata()`: Get the NFT metadata for a contract address and tokenId.
+- `getNftContractMetadata()`: Get the metadata associated with an NFT contract
 - `getNftsForOwner()`: Get NFTs for an owner address.
 - `getNftsForOwnerIterator()`: Get NFTs for an owner address as an async iterator (handles paging automatically).
 - `getNftsForCollection()`: Get all NFTs for a contract address.
