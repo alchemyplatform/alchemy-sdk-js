@@ -4,7 +4,7 @@ import {
   DeployResult,
   GetBaseNftsForCollectionOptions,
   GetBaseNftsForOwnerOptions,
-  GetFloorPriceResponse,
+  GetNftFloorPriceResponse,
   GetNftsForCollectionOptions,
   GetNftsForOwnerOptions,
   GetOwnersForCollectionResponse,
@@ -537,11 +537,11 @@ export async function checkNftOwnership(
  * @param contractAddress - The contract address to check.
  * @beta
  */
-export async function isSpamContract(
+export async function isSpamNftContract(
   alchemy: Alchemy,
   contractAddress: string
 ): Promise<boolean> {
-  const response = await requestHttpWithBackoff<IsSpamContractParams, boolean>(
+  return requestHttpWithBackoff<IsSpamContractParams, boolean>(
     alchemy,
     AlchemyApiType.NFT,
     'isSpamContract',
@@ -549,7 +549,6 @@ export async function isSpamContract(
       contractAddress
     }
   );
-  return response;
 }
 
 /**
@@ -560,34 +559,34 @@ export async function isSpamContract(
  * @param alchemy - The Alchemy SDK instance.
  * @beta
  */
-export async function getSpamContracts(alchemy: Alchemy): Promise<string[]> {
-  const response = await requestHttpWithBackoff<undefined, string[]>(
+export async function getSpamNftContracts(alchemy: Alchemy): Promise<string[]> {
+  return requestHttpWithBackoff<undefined, string[]>(
     alchemy,
     AlchemyApiType.NFT,
     'getSpamContracts',
     undefined
   );
-  return response;
 }
 
 /**
- * Returns the floor prices of a NFT collection by marketplace.
+ * Returns the floor prices of a NFT contract by marketplace.
  *
  * @param alchemy - The Alchemy SDK instance.
  * @param contractAddress - The contract address for the NFT collection.
  * @beta
  */
-export async function getFloorPrice(
+export async function getNftFloorPrice(
   alchemy: Alchemy,
   contractAddress: string
-): Promise<GetFloorPriceResponse> {
-  const response = await requestHttpWithBackoff<
-    GetFloorPriceParams,
-    GetFloorPriceResponse
-  >(alchemy, AlchemyApiType.NFT, 'getFloorPrice', {
-    contractAddress
-  });
-  return response;
+): Promise<GetNftFloorPriceResponse> {
+  return requestHttpWithBackoff<GetFloorPriceParams, GetNftFloorPriceResponse>(
+    alchemy,
+    AlchemyApiType.NFT,
+    'getFloorPrice',
+    {
+      contractAddress
+    }
+  );
 }
 
 /**
@@ -827,7 +826,7 @@ interface GetNftMetadataParams {
 }
 
 /**
- * <<<<<<< HEAD Interface for the `isSpamContract` endpoint.
+ * Interface for the `isSpamContract` endpoint.
  *
  * @internal
  */

@@ -17,9 +17,9 @@ export {
   getOwnersForNft,
   getOwnersForCollection,
   checkNftOwnership,
-  isSpamContract,
-  getSpamContracts,
-  getFloorPrice,
+  isSpamNftContract,
+  getSpamNftContracts,
+  getNftFloorPrice,
   findContractDeployer,
   refreshNftMetadata
 } from './api/nft-api';

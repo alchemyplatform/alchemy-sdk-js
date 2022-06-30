@@ -329,7 +329,7 @@ export interface GetOwnersForCollectionResponse {
 }
 
 /**
- * The successful object returned by the {@link getFloorPrice} call for each
+ * The successful object returned by the {@link getNftFloorPrice} call for each
  * marketplace (e.g. looksRare).
  *
  * @public
@@ -346,7 +346,7 @@ export interface FloorPriceMarketplace {
 }
 
 /**
- * The failing object returned by the {@link getFloorPrice} call for each
+ * The failing object returned by the {@link getNftFloorPrice} call for each
  * marketplace (e.g. looksRare).
  *
  * @public
@@ -357,11 +357,11 @@ export interface FloorPriceError {
 }
 
 /**
- * The response object for the {@link getFloorPrice}.
+ * The response object for the {@link getNftFloorPrice} method.
  *
  * @public
  */
-export interface GetFloorPriceResponse {
+export interface GetNftFloorPriceResponse {
   /**
    * Name of the NFT marketplace where the collection is listed. Current
    * marketplaces supported: OpenSea, LooksRare
