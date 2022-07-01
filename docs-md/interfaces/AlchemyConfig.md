@@ -22,7 +22,7 @@ The Alchemy API key that can be found in the Alchemy dashboard.
 
 #### Defined in
 
-[src/types/types.ts:16](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L16)
+[src/types/types.ts:16](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L16)
 
 ___
 
@@ -34,7 +34,7 @@ The maximum number of retries to attempt if a request fails. Defaults to 5.
 
 #### Defined in
 
-[src/types/types.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L22)
+[src/types/types.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L22)
 
 ___
 
@@ -46,4 +46,4 @@ The name of the network.
 
 #### Defined in
 
-[src/types/types.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L19)
+[src/types/types.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L19)

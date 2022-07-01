@@ -30,7 +30,7 @@ to get an instance of the SDK.
 
 #### Defined in
 
-[src/api/alchemy.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/alchemy.ts#L31)
+[src/api/alchemy.ts:32](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy.ts#L32)
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/alchemy.ts#L33)
+[src/api/alchemy.ts:34](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy.ts#L34)
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy.ts:32](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/alchemy.ts#L32)
+[src/api/alchemy.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy.ts#L33)
 
 ## Methods
 
@@ -67,7 +67,7 @@ Alchemy instance.
 
 #### Defined in
 
-[src/api/alchemy.ts:73](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/alchemy.ts#L73)
+[src/api/alchemy.ts:79](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy.ts#L79)
 
 ___
 
@@ -84,7 +84,7 @@ per Alchemy instance.
 
 #### Defined in
 
-[src/api/alchemy.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/alchemy.ts#L90)
+[src/api/alchemy.ts:96](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy.ts#L96)
 
 ___
 
@@ -106,4 +106,4 @@ Changes the network that the SDK requests data from.
 
 #### Defined in
 
-[src/api/alchemy.ts:62](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/alchemy.ts#L62)
+[src/api/alchemy.ts:68](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy.ts#L68)

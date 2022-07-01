@@ -5,6 +5,7 @@ import {
   GetBaseNftsForNftContractOptions,
   GetBaseNftsForOwnerOptions,
   GetNftsForNftContractOptions,
+  GetNftFloorPriceResponse,
   GetNftsForOwnerOptions,
   GetOwnersForNftContractResponse,
   GetOwnersForNftResponse,
@@ -31,9 +32,15 @@ import {
   RawOwnedBaseNft,
   RawOwnedNft
 } from '../internal/raw-interfaces';
-import { getNftContractFromRaw, toHex } from './util';
+import { toHex } from './util';
 import { getTransactionReceipts } from './enhanced';
 import { BigNumber, BigNumberish } from 'ethers';
+import { AlchemyApiType } from '../util/const';
+import {
+  getNftContractFromRaw,
+  getNftFromRaw,
+  getBaseNftFromRaw
+} from '../util/util';
 
 const ETH_NULL_VALUE = '0x';
 
@@ -76,6 +83,7 @@ export async function getNftMetadata(
     contractAddress = contractAddressOrBaseNft;
     response = await requestHttpWithBackoff<GetNftMetadataParams, RawNft>(
       alchemy,
+      AlchemyApiType.NFT,
       'getNFTMetadata',
       {
         contractAddress: contractAddressOrBaseNft,
@@ -87,6 +95,7 @@ export async function getNftMetadata(
     contractAddress = contractAddressOrBaseNft.contract.address;
     response = await requestHttpWithBackoff<GetNftMetadataParams, RawNft>(
       alchemy,
+      AlchemyApiType.NFT,
       'getNFTMetadata',
       {
         contractAddress: contractAddressOrBaseNft.contract.address,
@@ -98,7 +107,7 @@ export async function getNftMetadata(
       }
     );
   }
-  return Nft.fromResponse(response, contractAddress);
+  return getNftFromRaw(response, contractAddress);
 }
 
 /**
@@ -134,14 +143,14 @@ export async function getNftContractMetadata(
     response = await requestHttpWithBackoff<
       GetNftContractMetadataParams,
       RawNftContract
-    >(alchemy, 'getContractMetadata', {
+    >(alchemy, AlchemyApiType.NFT, 'getContractMetadata', {
       contractAddress: contractAddressOrBaseNftContract
     });
   } else {
     response = await requestHttpWithBackoff<
       GetNftContractMetadataParams,
       RawNftContract
-    >(alchemy, 'getContractMetadata', {
+    >(alchemy, AlchemyApiType.NFT, 'getContractMetadata', {
       contractAddress: contractAddressOrBaseNftContract.address
     });
   }
@@ -190,6 +199,7 @@ export async function* getNftsForOwnerIterator(
   const withMetadata = omitMetadataToWithMetadata(options?.omitMetadata);
   for await (const response of paginateEndpoint(
     alchemy,
+    AlchemyApiType.NFT,
     'getNFTs',
     'pageKey',
     'pageKey',
@@ -255,7 +265,7 @@ export async function getNftsForOwner(
   const response = await requestHttpWithBackoff<
     GetNftsAlchemyParams,
     RawGetBaseNftsResponse | RawGetNftsResponse
-  >(alchemy, 'getNFTs', {
+  >(alchemy, AlchemyApiType.NFT, 'getNFTs', {
     contractAddresses: options?.contractAddresses,
     pageKey: options?.pageKey,
     filters: options?.excludeFilters,
@@ -316,7 +326,7 @@ export async function getNftsForNftContract(
   const response = await requestHttpWithBackoff<
     GetNftsForNftContractAlchemyParams,
     RawGetBaseNftsForNftContractResponse | RawGetNftsForNftContractResponse
-  >(alchemy, 'getNFTsForNftContract', {
+  >(alchemy, AlchemyApiType.NFT, 'getNFTsForCollection', {
     contractAddress,
     startToken: options?.pageKey,
     withMetadata
@@ -361,15 +371,25 @@ export function getOwnersForNft(
   tokenId?: BigNumberish
 ): Promise<GetOwnersForNftResponse> {
   if (typeof contractAddressOrNft === 'string') {
-    return requestHttpWithBackoff(alchemy, 'getOwnersForToken', {
-      contractAddress: contractAddressOrNft,
-      tokenId: BigNumber.from(tokenId!).toString()
-    });
+    return requestHttpWithBackoff(
+      alchemy,
+      AlchemyApiType.NFT,
+      'getOwnersForToken',
+      {
+        contractAddress: contractAddressOrNft,
+        tokenId: BigNumber.from(tokenId!).toString()
+      }
+    );
   } else {
-    return requestHttpWithBackoff(alchemy, 'getOwnersForToken', {
-      contractAddress: contractAddressOrNft.contract.address,
-      tokenId: BigNumber.from(contractAddressOrNft.tokenId).toString()
-    });
+    return requestHttpWithBackoff(
+      alchemy,
+      AlchemyApiType.NFT,
+      'getOwnersForToken',
+      {
+        contractAddress: contractAddressOrNft.contract.address,
+        tokenId: BigNumber.from(contractAddressOrNft.tokenId).toString()
+      }
+    );
   }
 }
 
@@ -405,14 +425,14 @@ export async function getOwnersForNftContract(
     response = await requestHttpWithBackoff<
       GetOwnersForNftContractAlchemyParams,
       RawGetOwnersForNftContractResponse
-    >(alchemy, 'getOwnersForNftContract', {
+    >(alchemy, AlchemyApiType.NFT, 'getOwnersForCollection', {
       contractAddress: contractAddressOrNft
     });
   } else {
     response = await requestHttpWithBackoff<
       GetOwnersForNftContractAlchemyParams,
       RawGetOwnersForNftContractResponse
-    >(alchemy, 'getOwnersForNftContract', {
+    >(alchemy, AlchemyApiType.NFT, 'getOwnersForCollection', {
       contractAddress: contractAddressOrNft.contract.address
     });
   }
@@ -467,6 +487,7 @@ export async function* getNftsForNftContractIterator(
   const withMetadata = omitMetadataToWithMetadata(options?.omitMetadata);
   for await (const response of paginateEndpoint(
     alchemy,
+    AlchemyApiType.NFT,
     'getNFTsForNftContract',
     'startToken',
     'nextToken',
@@ -505,6 +526,67 @@ export async function checkNftOwnership(
     omitMetadata: true
   });
   return response.ownedNfts.length > 0;
+}
+
+/**
+ * Returns whether a contract is marked as spam or not by Alchemy. For more
+ * information on how we classify spam, go to our NFT API FAQ at
+ * https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification.
+ *
+ * @param alchemy - The Alchemy SDK instance.
+ * @param contractAddress - The contract address to check.
+ * @beta
+ */
+export async function isSpamNftContract(
+  alchemy: Alchemy,
+  contractAddress: string
+): Promise<boolean> {
+  return requestHttpWithBackoff<IsSpamContractParams, boolean>(
+    alchemy,
+    AlchemyApiType.NFT,
+    'isSpamContract',
+    {
+      contractAddress
+    }
+  );
+}
+
+/**
+ * Returns a list of all spam contracts marked by Alchemy. For details on how
+ * Alchemy marks spam contracts, go to
+ * https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification.
+ *
+ * @param alchemy - The Alchemy SDK instance.
+ * @beta
+ */
+export async function getSpamNftContracts(alchemy: Alchemy): Promise<string[]> {
+  return requestHttpWithBackoff<undefined, string[]>(
+    alchemy,
+    AlchemyApiType.NFT,
+    'getSpamContracts',
+    undefined
+  );
+}
+
+/**
+ * Returns the floor prices of a NFT contract by marketplace.
+ *
+ * @param alchemy - The Alchemy SDK instance.
+ * @param contractAddress - The contract address for the NFT collection.
+ * @beta
+ */
+export async function getNftFloorPrice(
+  alchemy: Alchemy,
+  contractAddress: string
+): Promise<GetNftFloorPriceResponse> {
+  return requestHttpWithBackoff<GetFloorPriceParams, GetNftFloorPriceResponse>(
+    alchemy,
+    AlchemyApiType.NFT,
+    'getFloorPrice',
+    {
+      contractAddress
+    }
+  );
 }
 
 /**
@@ -616,6 +698,7 @@ async function refresh(
 ): Promise<Nft> {
   const response = await requestHttpWithBackoff<GetNftMetadataParams, RawNft>(
     alchemy,
+    AlchemyApiType.NFT,
     'getNFTMetadata',
     {
       contractAddress,
@@ -623,7 +706,7 @@ async function refresh(
       refreshCache: true
     }
   );
-  return Nft.fromResponse(response, contractAddress);
+  return getNftFromRaw(response, contractAddress);
 }
 
 /**
@@ -660,9 +743,9 @@ function nftFromGetNftResponse(
   ownedNft: RawOwnedBaseNft | RawOwnedNft
 ): Nft | BaseNft {
   if (isNftWithMetadata(ownedNft)) {
-    return Nft.fromResponse(ownedNft, ownedNft.contract.address);
+    return getNftFromRaw(ownedNft, ownedNft.contract.address);
   } else {
-    return BaseNft.fromResponse(ownedNft, ownedNft.contract.address);
+    return getBaseNftFromRaw(ownedNft, ownedNft.contract.address);
   }
 }
 
@@ -677,9 +760,9 @@ function nftFromGetNftNftContractResponse(
   contractAddress: string
 ): Nft | BaseNft {
   if (isNftWithMetadata(ownedNft)) {
-    return Nft.fromResponse(ownedNft, contractAddress);
+    return getNftFromRaw(ownedNft, contractAddress);
   } else {
-    return BaseNft.fromResponse(ownedNft, contractAddress);
+    return getBaseNftFromRaw(ownedNft, contractAddress);
   }
 }
 
@@ -743,6 +826,15 @@ interface GetNftMetadataParams {
 }
 
 /**
+ * Interface for the `isSpamContract` endpoint.
+ *
+ * @internal
+ */
+interface IsSpamContractParams {
+  contractAddress: string;
+}
+
+/**
  * Interface for the `getNftContractMetadata` endpoint.
  *
  * @internal
@@ -757,5 +849,14 @@ interface GetNftContractMetadataParams {
  * @internal
  */
 interface GetOwnersForNftContractAlchemyParams {
+  contractAddress: string;
+}
+
+/**
+ * Interface for the `getFloorPrice` endpoint.
+ *
+ * @internal
+ */
+interface GetFloorPriceParams {
   contractAddress: string;
 }

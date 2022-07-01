@@ -328,6 +328,48 @@ export interface GetOwnersForNftContractResponse {
   readonly owners: string[];
 }
 
+/**
+ * The successful object returned by the {@link getNftFloorPrice} call for each
+ * marketplace (e.g. looksRare).
+ *
+ * @public
+ */
+export interface FloorPriceMarketplace {
+  /** The floor price of the collection on the given marketplace */
+  readonly floorPrice: number;
+  /** The currency in which the floor price is denominated */
+  readonly priceCurrency: string;
+  /** The link to the collection on the given marketplace */
+  readonly collectionUrl: string;
+  /** UTC timestamp of when the floor price was retrieved from the marketplace */
+  readonly retrievedAt: string;
+}
+
+/**
+ * The failing object returned by the {@link getNftFloorPrice} call for each
+ * marketplace (e.g. looksRare).
+ *
+ * @public
+ */
+export interface FloorPriceError {
+  /** Error fetching floor prices from the given marketplace */
+  readonly error: string;
+}
+
+/**
+ * The response object for the {@link getNftFloorPrice} method.
+ *
+ * @public
+ */
+export interface GetNftFloorPriceResponse {
+  /**
+   * Name of the NFT marketplace where the collection is listed. Current
+   * marketplaces supported: OpenSea, LooksRare
+   */
+  readonly openSea: FloorPriceMarketplace | FloorPriceError;
+  readonly looksRare: FloorPriceMarketplace | FloorPriceError;
+}
+
 /** @public */
 export interface TransactionReceiptsBlockNumber {
   blockNumber: string;

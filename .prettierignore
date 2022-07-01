@@ -4,3 +4,4 @@ docs/
 docs-md/
 etc/
 temp/
+src/version.ts

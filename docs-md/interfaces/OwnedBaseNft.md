@@ -6,7 +6,7 @@ Represents an NFT without metadata owned by an address.
 
 ## Hierarchy
 
-- [`BaseNft`](../classes/BaseNft.md)
+- [`BaseNft`](BaseNft.md)
 
   ↳ **`OwnedBaseNft`**
 
@@ -29,38 +29,50 @@ The token balance of the NFT.
 
 #### Defined in
 
-[src/types/types.ts:308](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L308)
+[src/types/types.ts:308](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L308)
 
 ___
 
 ### contract
 
-• `Readonly` **contract**: [`NftContract`](NftContract.md)
+• **contract**: [`BaseNftContract`](BaseNftContract.md)
 
 #### Inherited from
 
-[BaseNft](../classes/BaseNft.md).[contract](../classes/BaseNft.md#contract)
+[BaseNft](BaseNft.md).[contract](BaseNft.md#contract)
 
 #### Defined in
 
-[src/api/nft.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/nft.ts#L21)
+[src/api/nft.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/nft.ts#L33)
 
 ___
 
 ### tokenId
 
-• `Readonly` **tokenId**: `string`
+• **tokenId**: `string`
+
+The NFT token ID as an integer string.
 
 #### Inherited from
 
-[BaseNft](../classes/BaseNft.md).[tokenId](../classes/BaseNft.md#tokenid)
+[BaseNft](BaseNft.md).[tokenId](BaseNft.md#tokenid)
+
+#### Defined in
+
+[src/api/nft.ts:35](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/nft.ts#L35)
 
 ___
 
 ### tokenType
 
-• `Readonly` **tokenType**: [`NftTokenType`](../enums/NftTokenType.md)
+• **tokenType**: [`NftTokenType`](../enums/NftTokenType.md)
+
+The type of ERC token, if known.
 
 #### Inherited from
 
-[BaseNft](../classes/BaseNft.md).[tokenType](../classes/BaseNft.md#tokentype)
+[BaseNft](BaseNft.md).[tokenType](BaseNft.md#tokentype)
+
+#### Defined in
+
+[src/api/nft.ts:37](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/nft.ts#L37)

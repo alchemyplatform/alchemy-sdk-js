@@ -15,8 +15,17 @@ export function getAlchemyHttpUrl(network: Network, apiKey: string): string {
   return `https://${network}.g.alchemy.com/v2/${apiKey}`;
 }
 
+export function getAlchemyNftHttpUrl(network: Network, apiKey: string): string {
+  return `https://${network}.g.alchemy.com/nft/v2/${apiKey}`;
+}
+
 export function getAlchemyWsUrl(network: Network, apiKey: string): string {
   return `wss://${network}.g.alchemy.com/v2/${apiKey}`;
+}
+
+export enum AlchemyApiType {
+  BASE,
+  NFT
 }
 
 /**

@@ -19,7 +19,7 @@ Public gateway URI for the raw URI. Generally offers better performance.
 
 #### Defined in
 
-[src/types/types.ts:175](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L175)
+[src/types/types.ts:175](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L175)
 
 ___
 
@@ -31,4 +31,4 @@ URI for the location of the NFT's original metadata blob.
 
 #### Defined in
 
-[src/types/types.ts:173](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L173)
+[src/types/types.ts:173](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L173)

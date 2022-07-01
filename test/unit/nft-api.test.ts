@@ -5,7 +5,8 @@ import {
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
   fromHex,
-  getNftContractMetadata,
+  getNftFloorPrice,
+  GetNftFloorPriceResponse,
   getNftMetadata,
   getNftsForNftContract,
   getNftsForNftContractIterator,
@@ -14,7 +15,9 @@ import {
   GetNftsForOwnerOptions,
   getOwnersForNftContract,
   getOwnersForNft,
+  getSpamNftContracts,
   initializeAlchemy,
+  isSpamNftContract,
   Nft,
   NftContract,
   NftExcludeFilters,
@@ -45,7 +48,8 @@ import {
   RawGetNftsForNftContractResponse,
   RawGetNftsResponse
 } from '../../src/internal/raw-interfaces';
-import { getNftContractFromRaw } from '../../src/api/util';
+import { getNftContractFromRaw, getNftFromRaw } from '../../src/util/util';
+import { getNftContractMetadata } from '../../src/api/nft-api';
 
 describe('NFT module', () => {
   let alchemy: Alchemy;
@@ -149,7 +153,7 @@ describe('NFT module', () => {
     // Special case token ID as an integer string, since that's what the NFT
     // API endpoint returns.
     const rawNftResponse = createRawNft(title, tokenId.toString());
-    const expectedNft = Nft.fromResponse(rawNftResponse, contractAddress);
+    const expectedNft = getNftFromRaw(rawNftResponse, contractAddress);
 
     beforeEach(() => {
       mock.onGet().reply(200, rawNftResponse);
@@ -987,7 +991,7 @@ describe('NFT module', () => {
     });
   });
 
-  describe('checkOwnership', () => {
+  describe('checkNftOwnership', () => {
     const owner = '0xABC';
     const addresses = ['0xCA1', '0xCA2'];
     const emptyResponse: RawGetNftsResponse = {
@@ -1037,6 +1041,76 @@ describe('NFT module', () => {
       await expect(
         checkNftOwnership(alchemy, owner, addresses)
       ).rejects.toThrow('Internal Server Error');
+    });
+  });
+
+  describe('isSpamNftContract', () => {
+    const spamContract = '0x000440f08436a7b866d1ae42db5e0be801da722a';
+    it('calls with the correct parameters', async () => {
+      mock.onGet().reply(200, true);
+      await isSpamNftContract(alchemy, spamContract);
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        spamContract
+      );
+    });
+  });
+
+  describe('getSpamNftContracts', () => {
+    it('calls with the correct parameters', async () => {
+      mock.onGet().reply(200, ['0xABC', '0xABD']);
+      await getSpamNftContracts(alchemy);
+      expect(mock.history.get.length).toEqual(1);
+    });
+  });
+
+  describe('getNftFloorPrice', () => {
+    const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
+    const templateResponse: GetNftFloorPriceResponse = {
+      openSea: {
+        floorPrice: 90.969,
+        priceCurrency: 'ETH',
+        retrievedAt: '2022-06-29T19:31:18.816Z',
+        collectionUrl: 'https://opensea.io/collection/boredapeyachtclub'
+      },
+      looksRare: {
+        floorPrice: 86.2828,
+        priceCurrency: 'ETH',
+        retrievedAt: '2022-06-29T19:33:18.280Z',
+        collectionUrl:
+          'https://looksrare.org/collections/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d'
+      }
+    };
+
+    beforeEach(() => {
+      mock.onGet().reply(200, templateResponse);
+    });
+
+    it('calls with the correct parameters', async () => {
+      await getNftFloorPrice(alchemy, contractAddress);
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        contractAddress
+      );
+    });
+
+    it('retries with maxAttempts', async () => {
+      mock.reset();
+      mock.onGet().reply(429, 'Too many requests');
+
+      await expect(getNftFloorPrice(alchemy, contractAddress)).rejects.toThrow(
+        'Too many requests'
+      );
+    });
+
+    it('surfaces errors', async () => {
+      mock.reset();
+      mock.onGet().reply(500, 'Internal Server Error');
+      await expect(getNftFloorPrice(alchemy, contractAddress)).rejects.toThrow(
+        'Internal Server Error'
+      );
     });
   });
 

@@ -496,7 +496,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:53](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/alchemy-websocket-provider.ts#L53)
+[src/api/alchemy-websocket-provider.ts:53](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy-websocket-provider.ts#L53)
 
 ___
 
@@ -1161,7 +1161,7 @@ providers.WebSocketProvider.destroy
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:293](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/alchemy-websocket-provider.ts#L293)
+[src/api/alchemy-websocket-provider.ts:293](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy-websocket-provider.ts#L293)
 
 ___
 
@@ -1633,7 +1633,7 @@ providers.CommunityResourcable.isCommunityResource
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:305](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/alchemy-websocket-provider.ts#L305)
+[src/api/alchemy-websocket-provider.ts:305](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy-websocket-provider.ts#L305)
 
 ___
 
@@ -1777,7 +1777,7 @@ providers.WebSocketProvider.on
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:122](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/api/alchemy-websocket-provider.ts#L122)
+[src/api/alchemy-websocket-provider.ts:122](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy-websocket-provider.ts#L122)
 
 ___
 

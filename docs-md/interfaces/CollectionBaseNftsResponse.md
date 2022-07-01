@@ -16,13 +16,13 @@ contains the NFTs without metadata inside the collection.
 
 ### nfts
 
-• **nfts**: [`BaseNft`](../classes/BaseNft.md)[]
+• **nfts**: [`BaseNft`](BaseNft.md)[]
 
 An array of NFTs without metadata.
 
 #### Defined in
 
-[src/types/types.ts:412](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L412)
+[src/types/types.ts:454](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L454)
 
 ___
 
@@ -35,4 +35,4 @@ NFTs. If there is no page key, then there are no more NFTs to fetch.
 
 #### Defined in
 
-[src/types/types.ts:418](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0fdf0d4/src/types/types.ts#L418)
+[src/types/types.ts:460](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L460)
