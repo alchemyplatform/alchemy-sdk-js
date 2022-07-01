@@ -1,6 +1,6 @@
-import { providers, Transaction } from 'ethers';
 import { initializeAlchemy } from '../../src';
 import { EthersNetwork } from '../../src/util/const';
+import { AlchemyProvider } from '@ethersproject/providers';
 
 /**
  * These integrations are sanity checks to ensure that the SDK's overriden
@@ -9,10 +9,10 @@ import { EthersNetwork } from '../../src/util/const';
 // TODO(ethers): Figure out appropriate unit tests for the SDK's custom AlchemyProvider.
 describe('AlchemyProvider', () => {
   const alchemy = initializeAlchemy();
-  const ethersProvider = new providers.AlchemyProvider(
+  const ethersProvider = new AlchemyProvider(
     EthersNetwork[alchemy.network],
     alchemy.apiKey
-  ) as providers.AlchemyProvider;
+  ) as AlchemyProvider;
 
   const wsProvider = alchemy.getWebsocketProvider();
   const provider = alchemy.getProvider();
@@ -39,7 +39,7 @@ describe('AlchemyProvider', () => {
         method: 'alchemy_filteredNewFullPendingTransactions',
         address
       },
-      (res: Transaction) => {
+      res => {
         expect(res.to).toEqual(address.toLowerCase());
         if (eventCount === 10) {
           done();

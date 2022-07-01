@@ -22,12 +22,17 @@ const allBuilds = {
       sourcemap: true
     }
   ],
-  external: [...Object.keys(pkg.dependencies || {})],
+  external: [
+    ...Object.keys(pkg.dependencies || {}),
+
+    // Needed for '/lib' import in AlchemyWebSocketProvider
+    '@ethersproject/providers/lib/base-provider'
+  ],
   plugins: [
     typescriptPlugin(),
 
     // Needed to resolve `Event` class from Ethers in AlchemyWebSocketProvider
-    nodeResolve({ preferBuiltins: true }),
+    nodeResolve(),
     commonjs()
   ]
 };

@@ -53,8 +53,12 @@
   },
   "homepage": "https://github.com/alchemyplatform/alchemy-sdk-js#readme",
   "dependencies": {
+    "@ethersproject/abstract-provider": "^5.6.1",
+    "@ethersproject/bignumber": "^5.6.2",
+    "@ethersproject/networks": "^5.6.4",
+    "@ethersproject/providers": "^5.6.8",
+    "@ethersproject/web": "^5.6.1",
     "axios": "^0.26.1",
-    "ethers": "^5.6.8",
     "sturdy-websocket": "^0.2.1",
     "websocket": "^1.0.34"
   },

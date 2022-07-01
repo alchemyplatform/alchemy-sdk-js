@@ -1,4 +1,7 @@
-import { providers } from 'ethers';
+import {
+  JsonRpcProvider,
+  CommunityResourcable
+} from '@ethersproject/providers';
 import {
   Network as NetworkFromEthers,
   Networkish
@@ -21,8 +24,8 @@ import { VERSION } from '../version';
  * @public
  */
 export class AlchemyProvider
-  extends providers.JsonRpcProvider
-  implements providers.CommunityResourcable
+  extends JsonRpcProvider
+  implements CommunityResourcable
 {
   readonly apiKey: string;
   readonly maxRetries: number;

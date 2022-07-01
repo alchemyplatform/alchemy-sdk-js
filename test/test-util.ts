@@ -16,7 +16,7 @@ import {
   toHex,
   TokenUri
 } from '../src';
-import { BigNumber } from 'ethers';
+import { BigNumber } from '@ethersproject/bignumber';
 import { BlockHead, LogsEvent } from '../src/internal/websocket-backfiller';
 import {
   getBaseNftContractFromRaw,

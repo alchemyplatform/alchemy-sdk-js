@@ -34,13 +34,13 @@ import {
 } from '../internal/raw-interfaces';
 import { toHex } from './util';
 import { getTransactionReceipts } from './enhanced';
-import { BigNumber, BigNumberish } from 'ethers';
 import { AlchemyApiType } from '../util/const';
 import {
   getNftContractFromRaw,
   getNftFromRaw,
   getBaseNftFromRaw
 } from '../util/util';
+import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 
 const ETH_NULL_VALUE = '0x';
 
