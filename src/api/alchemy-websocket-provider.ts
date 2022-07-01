@@ -1,4 +1,5 @@
-import { BigNumber, providers } from 'ethers';
+import * as providers from '@ethersproject/providers';
+import { BigNumber } from '@ethersproject/bignumber';
 import { Networkish } from '@ethersproject/networks';
 import { DEFAULT_ALCHEMY_API_KEY, EthersNetwork, noop } from '../util/const';
 import { AlchemyProvider } from './alchemy-provider';

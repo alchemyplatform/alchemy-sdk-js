@@ -13,7 +13,7 @@ import {
   NewHeadsEvent,
   WebsocketBackfiller
 } from '../../src/internal/websocket-backfiller';
-import { Formatter } from '@ethersproject/providers/lib/formatter';
+import { Formatter } from '@ethersproject/providers';
 import SpyInstance = jest.SpyInstance;
 
 describe('AlchemyWebSocketProvider', () => {

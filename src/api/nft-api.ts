@@ -34,7 +34,7 @@ import {
 } from '../internal/raw-interfaces';
 import { toHex } from './util';
 import { getTransactionReceipts } from './enhanced';
-import { BigNumber, BigNumberish } from 'ethers';
+import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { AlchemyApiType } from '../util/const';
 import {
   getNftContractFromRaw,

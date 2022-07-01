@@ -1,4 +1,4 @@
-import { providers } from 'ethers';
+import * as providers from '@ethersproject/providers';
 import {
   Network as NetworkFromEthers,
   Networkish
@@ -49,8 +49,8 @@ export class AlchemyProvider
   }
 
   /**
-   * Overrides the {@link UrlJsonRpcProvider.getApiKey} method as implemented by
-   * ethers.js. Returns the API key for an Alchemy provider.
+   * Overrides the {@link providers.UrlJsonRpcProvider.getApiKey} method as
+   * implemented by ethers.js. Returns the API key for an Alchemy provider.
    *
    * @internal
    * @override

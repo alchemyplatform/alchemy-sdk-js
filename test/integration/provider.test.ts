@@ -1,4 +1,5 @@
-import { providers, Transaction } from 'ethers';
+import * as providers from '@ethersproject/providers';
+import { Transaction } from '@ethersproject/transactions';
 import { initializeAlchemy } from '../../src';
 import { EthersNetwork } from '../../src/util/const';
 
