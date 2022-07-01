@@ -154,8 +154,8 @@ export class AlchemyWebSocketProvider
   }
 
   /**
-   * Overrides the `_startEvent()` method in {@link providers.WebSocketProvider}
-   * to include additional alchemy methods.
+   * Overrides the `_startEvent()` method in ether.js's `WebSocketProvider` to
+   * include additional alchemy methods.
    *
    * @param event
    * @override
@@ -172,7 +172,7 @@ export class AlchemyWebSocketProvider
   }
 
   /**
-   * Overridden from {@link providers.WebSocketProvider}.
+   * Overridden from ethers.js's `WebSocketProvider`.
    *
    * Modified in order to add mappings for backfilling.
    *
@@ -222,7 +222,7 @@ export class AlchemyWebSocketProvider
   /**
    * DO NOT MODIFY.
    *
-   * Original code copied over from {@link providers.BaseProvider}.
+   * Original code copied over from ether.js's `BaseProvider`.
    *
    * This method is copied over directly in order to implement Alchemy's unique
    * subscription types. The only difference is that this method calls
