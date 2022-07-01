@@ -115,7 +115,6 @@ export async function getNftMetadata(
  *
  * @param alchemy - The Alchemy SDK instance.
  * @param contractAddress - The contract address of the NFT.
- * @param tokenType - Optionally specify the type of token to speed up the query.
  * @public
  */
 export function getNftContractMetadata(
@@ -127,7 +126,7 @@ export function getNftContractMetadata(
  * Get the NFT metadata associated with the provided Base NFT.
  *
  * @param alchemy - The Alchemy SDK instance.
- * @param baseNft - The base NFT object to be used for the request.
+ * @param baseNftContract - The base NFT contract object to be used for the request.
  * @public
  */
 export function getNftContractMetadata(
