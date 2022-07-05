@@ -4,23 +4,23 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 
 const allBuilds = {
-  input: 'src/index.ts',
+  input: 'src/index.ts',  
   output: [
     {
-      file: pkg.main,
+      dir: "dist",
       format: 'cjs',
       sourcemap: true
     },
-    {
-      file: pkg.module,
-      format: 'esm',
-      sourcemap: true
-    },
-    {
-      file: pkg['main-es'],
-      format: 'es',
-      sourcemap: true
-    }
+    // {
+    //   file: pkg.module,
+    //   format: 'esm',
+    //   sourcemap: true
+    // },
+    // {
+    //   file: pkg['main-es'],
+    //   format: 'es',
+    //   sourcemap: true
+    // }
   ],
   external: [...Object.keys(pkg.dependencies || {})],
   plugins: [

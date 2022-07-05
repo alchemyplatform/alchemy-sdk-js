@@ -16,8 +16,9 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "target": "es6",
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": ["node_modules/@types"],
+    "module": "esnext",
   },
   "include": ["src/**/*.ts", "test/**/*.ts"],
-  "exclude": ["dist/**/*"]
+  "exclude": ["dist/**/*"],
 }

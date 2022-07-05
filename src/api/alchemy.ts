@@ -6,8 +6,6 @@ import {
   getAlchemyHttpUrl,
   getAlchemyNftHttpUrl
 } from '../util/const';
-import { AlchemyProvider } from './alchemy-provider';
-import { AlchemyWebSocketProvider } from './alchemy-websocket-provider';
 
 /**
  * Entry point into the Alchemy SDK.
@@ -34,10 +32,10 @@ export class Alchemy {
   readonly maxRetries: number;
 
   /** @internal */
-  private _baseAlchemyProvider: AlchemyProvider | undefined;
+  // private _baseAlchemyProvider: AlchemyProvider | undefined;
 
   /** @internal */
-  private _baseAlchemyWssProvider: AlchemyWebSocketProvider | undefined;
+  // private _baseAlchemyWssProvider: AlchemyWebSocketProvider | undefined;
 
   /**
    * @hideconstructor
@@ -76,30 +74,30 @@ export class Alchemy {
    *
    * @public
    */
-  getProvider(): AlchemyProvider {
-    if (!this._baseAlchemyProvider) {
-      this._baseAlchemyProvider = new AlchemyProvider(
-        this.network,
-        this.apiKey,
-        this.maxRetries
-      );
-    }
-    return this._baseAlchemyProvider;
+  async getProvider() {
+    const { AlchemyProvider } = await import('./alchemy-provider');
+    return AlchemyProvider;
+    // const provider = new AlchemyProvider(
+    //     this.network,
+    //     this.apiKey,
+    //     this.maxRetries
+    //   );
+    // return provider;
   }
 
-  /**
-   * Creates an AlchemyWebsocketProvider instance. Only one provider is created
-   * per Alchemy instance.
-   *
-   * @public
-   */
-  getWebsocketProvider(): AlchemyWebSocketProvider {
-    if (!this._baseAlchemyWssProvider) {
-      this._baseAlchemyWssProvider = new AlchemyWebSocketProvider(
-        this.network,
-        this.apiKey
-      );
-    }
-    return this._baseAlchemyWssProvider;
-  }
+  // /**
+  //  * Creates an AlchemyWebsocketProvider instance. Only one provider is created
+  //  * per Alchemy instance.
+  //  *
+  //  * @public
+  //  */
+  // getWebsocketProvider(): AlchemyWebSocketProvider {
+  //   if (!this._baseAlchemyWssProvider) {
+  //     this._baseAlchemyWssProvider = new AlchemyWebSocketProvider(
+  //       this.network,
+  //       this.apiKey
+  //     );
+  //   }
+  //   return this._baseAlchemyWssProvider;
+  // }
 }

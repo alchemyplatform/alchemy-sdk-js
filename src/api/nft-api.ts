@@ -1,10 +1,8 @@
 import {
   CollectionBaseNftsResponse,
   CollectionNftsResponse,
-  DeployResult,
   GetBaseNftsForCollectionOptions,
   GetBaseNftsForOwnerOptions,
-  GetFloorPriceResponse,
   GetNftsForCollectionOptions,
   GetNftsForOwnerOptions,
   GetOwnersForCollectionResponse,
@@ -32,17 +30,16 @@ import {
   RawOwnedBaseNft,
   RawOwnedNft
 } from '../internal/raw-interfaces';
-import { toHex } from './util';
-import { getTransactionReceipts } from './enhanced';
+// import { getTransactionReceipts } from './enhanced';
 import { BigNumber, BigNumberish } from 'ethers';
 import { AlchemyApiType } from '../util/const';
 import {
-  getNftContractFromRaw,
   getNftFromRaw,
-  getBaseNftFromRaw
+  getBaseNftFromRaw,
+  getNftContractFromRaw
 } from '../util/util';
 
-const ETH_NULL_VALUE = '0x';
+// const ETH_NULL_VALUE = '0x';
 
 /**
  * Get the NFT metadata associated with the provided parameters.
@@ -527,115 +524,52 @@ export async function checkNftOwnership(
   });
   return response.ownedNfts.length > 0;
 }
+// /**
+//  * Finds the address that deployed the provided contract and block number it was
+//  * deployed in.
+//  *
+//  * NOTE: This method performs a binary search across all blocks since genesis
+//  * and can take a long time to complete. This method is a convenience method
+//  * that will eventually be replaced by a single call to an Alchemy endpoint with
+//  * this information cached.
+//  *
+//  * @param alchemy - The Alchemy SDK instance.
+//  * @param contractAddress - The contract address to find the deployer for.
+//  * @beta
+//  */
+// export async function findContractDeployer(
+//   alchemy: Alchemy,
+//   contractAddress: string
+// ): Promise<DeployResult> {
+//   const provider = await alchemy.getProvider();
+//   const currentBlockNum = await provider.getBlockNumber();
+//   if (
+//     (await provider.getCode(contractAddress, currentBlockNum)) ===
+//     ETH_NULL_VALUE
+//   ) {
+//     throw new Error(`Contract '${contractAddress}' does not exist`);
+//   }
 
-/**
- * Returns whether a contract is marked as spam or not by Alchemy. For more
- * information on how we classify spam, go to our NFT API FAQ at
- * https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification.
- *
- * @param alchemy - The Alchemy SDK instance.
- * @param contractAddress - The contract address to check.
- * @beta
- */
-export async function isSpamContract(
-  alchemy: Alchemy,
-  contractAddress: string
-): Promise<boolean> {
-  const response = await requestHttpWithBackoff<IsSpamContractParams, boolean>(
-    alchemy,
-    AlchemyApiType.NFT,
-    'isSpamContract',
-    {
-      contractAddress
-    }
-  );
-  return response;
-}
+//   // Binary search for the block number that the contract was deployed in.
+//   const firstBlock = await binarySearchFirstBlock(
+//     0,
+//     currentBlockNum + 1,
+//     contractAddress,
+//     alchemy
+//   );
 
-/**
- * Returns a list of all spam contracts marked by Alchemy. For details on how
- * Alchemy marks spam contracts, go to
- * https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification.
- *
- * @param alchemy - The Alchemy SDK instance.
- * @beta
- */
-export async function getSpamContracts(alchemy: Alchemy): Promise<string[]> {
-  const response = await requestHttpWithBackoff<undefined, string[]>(
-    alchemy,
-    AlchemyApiType.NFT,
-    'getSpamContracts',
-    undefined
-  );
-  return response;
-}
-
-/**
- * Returns the floor prices of a NFT collection by marketplace.
- *
- * @param alchemy - The Alchemy SDK instance.
- * @param contractAddress - The contract address for the NFT collection.
- * @beta
- */
-export async function getFloorPrice(
-  alchemy: Alchemy,
-  contractAddress: string
-): Promise<GetFloorPriceResponse> {
-  const response = await requestHttpWithBackoff<
-    GetFloorPriceParams,
-    GetFloorPriceResponse
-  >(alchemy, AlchemyApiType.NFT, 'getFloorPrice', {
-    contractAddress
-  });
-  return response;
-}
-
-/**
- * Finds the address that deployed the provided contract and block number it was
- * deployed in.
- *
- * NOTE: This method performs a binary search across all blocks since genesis
- * and can take a long time to complete. This method is a convenience method
- * that will eventually be replaced by a single call to an Alchemy endpoint with
- * this information cached.
- *
- * @param alchemy - The Alchemy SDK instance.
- * @param contractAddress - The contract address to find the deployer for.
- * @beta
- */
-export async function findContractDeployer(
-  alchemy: Alchemy,
-  contractAddress: string
-): Promise<DeployResult> {
-  const provider = alchemy.getProvider();
-  const currentBlockNum = await provider.getBlockNumber();
-  if (
-    (await provider.getCode(contractAddress, currentBlockNum)) ===
-    ETH_NULL_VALUE
-  ) {
-    throw new Error(`Contract '${contractAddress}' does not exist`);
-  }
-
-  // Binary search for the block number that the contract was deployed in.
-  const firstBlock = await binarySearchFirstBlock(
-    0,
-    currentBlockNum + 1,
-    contractAddress,
-    alchemy
-  );
-
-  // Find the first transaction in the block that matches the provided address.
-  const txReceipts = await getTransactionReceipts(alchemy, {
-    blockNumber: toHex(firstBlock)
-  });
-  const matchingReceipt = txReceipts.receipts?.find(
-    receipt => receipt.contractAddress === contractAddress.toLowerCase()
-  );
-  return {
-    deployerAddress: matchingReceipt?.from,
-    blockNumber: firstBlock
-  };
-}
+//   // Find the first transaction in the block that matches the provided address.
+//   const txReceipts = await getTransactionReceipts(alchemy, {
+//     blockNumber: toHex(firstBlock)
+//   });
+//   const matchingReceipt = txReceipts.receipts?.find(
+//     receipt => receipt.contractAddress === contractAddress.toLowerCase()
+//   );
+//   return {
+//     deployerAddress: matchingReceipt?.from,
+//     blockNumber: firstBlock
+//   };
+// }
 
 /**
  * Refreshes the cached metadata for a provided NFT contract address and token
@@ -710,29 +644,30 @@ async function refresh(
   return getNftFromRaw(response, contractAddress);
 }
 
-/**
- * Perform a binary search between an integer range of block numbers to find the
- * block number where the contract was deployed.
- *
- * @internal
- */
-async function binarySearchFirstBlock(
-  start: number,
-  end: number,
-  address: string,
-  alchemy: Alchemy
-): Promise<number> {
-  if (start >= end) {
-    return end;
-  }
+// /**
+//  * Perform a binary search between an integer range of block numbers to find the
+//  * block number where the contract was deployed.
+//  *
+//  * @internal
+//  */
+// async function binarySearchFirstBlock(
+//   start: number,
+//   end: number,
+//   address: string,
+//   alchemy: Alchemy
+// ): Promise<number> {
+//   if (start >= end) {
+//     return end;
+//   }
 
-  const mid = Math.floor((start + end) / 2);
-  const code = await alchemy.getProvider().getCode(address, mid);
-  if (code === ETH_NULL_VALUE) {
-    return binarySearchFirstBlock(mid + 1, end, address, alchemy);
-  }
-  return binarySearchFirstBlock(start, mid, address, alchemy);
-}
+//   const mid = Math.floor((start + end) / 2);
+//   const provider = await alchemy.getProvider();
+//   const code = provider.getCode(address, mid);
+//   if (code === ETH_NULL_VALUE) {
+//     return binarySearchFirstBlock(mid + 1, end, address, alchemy);
+//   }
+//   return binarySearchFirstBlock(start, mid, address, alchemy);
+// }
 
 /**
  * Helper method to convert a NFT response received from Alchemy backend to an
@@ -827,15 +762,6 @@ interface GetNftMetadataParams {
 }
 
 /**
- * <<<<<<< HEAD Interface for the `isSpamContract` endpoint.
- *
- * @internal
- */
-interface IsSpamContractParams {
-  contractAddress: string;
-}
-
-/**
  * Interface for the `getNftContractMetadata` endpoint.
  *
  * @internal
@@ -850,14 +776,5 @@ interface GetNftContractMetadataParams {
  * @internal
  */
 interface GetOwnersForCollectionAlchemyParams {
-  contractAddress: string;
-}
-
-/**
- * Interface for the `getFloorPrice` endpoint.
- *
- * @internal
- */
-interface GetFloorPriceParams {
   contractAddress: string;
 }
