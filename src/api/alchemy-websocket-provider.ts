@@ -154,8 +154,8 @@ export class AlchemyWebSocketProvider
   }
 
   /**
-   * Overrides the `_startEvent()` method in ether.js's `WebSocketProvider` to
-   * include additional alchemy methods.
+   * Overrides the `_startEvent()` method in ethers.js's
+   * {@link WebSocketProvider} to include additional alchemy methods.
    *
    * @param event
    * @override
@@ -172,7 +172,7 @@ export class AlchemyWebSocketProvider
   }
 
   /**
-   * Overridden from ethers.js's `WebSocketProvider`.
+   * Overridden from ethers.js's {@link WebSocketProvider}
    *
    * Modified in order to add mappings for backfilling.
    *
@@ -325,8 +325,8 @@ export class AlchemyWebSocketProvider
   }
 
   /**
-   * The underlying ethers WebsocketProvider already handles and emits messages.
-   * To allow backfilling, track all messages that are emitted.
+   * The underlying ethers {@link WebSocketProvider} already handles and emits
+   * messages. To allow backfilling, track all messages that are emitted.
    *
    * This is a field arrow function in order to preserve `this` context when
    * passing the method as an event listener.
