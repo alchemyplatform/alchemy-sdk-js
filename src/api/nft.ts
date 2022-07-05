@@ -1,4 +1,5 @@
 import { NftMetadata, NftTokenType, TokenUri } from '../types/types';
+
 /**
  * Alchemy representation of a base NFT contract that doesn't contain metadata.
  *

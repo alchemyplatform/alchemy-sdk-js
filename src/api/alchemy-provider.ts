@@ -1,4 +1,7 @@
-import { providers } from 'ethers';
+import {
+  JsonRpcProvider,
+  CommunityResourcable
+} from '@ethersproject/providers';
 import {
   Network as NetworkFromEthers,
   Networkish
@@ -16,13 +19,13 @@ import { logWarn } from '../util/logger';
 import { VERSION } from '../version';
 
 /**
- * SDK's custom implementation of ethers' {@link providers.AlchemyProvider}.
+ * SDK's custom implementation of ethers.js's 'AlchemyProvider'.
  *
  * @public
  */
 export class AlchemyProvider
-  extends providers.JsonRpcProvider
-  implements providers.CommunityResourcable
+  extends JsonRpcProvider
+  implements CommunityResourcable
 {
   readonly apiKey: string;
   readonly maxRetries: number;
@@ -49,7 +52,7 @@ export class AlchemyProvider
   }
 
   /**
-   * Overrides the {@link UrlJsonRpcProvider.getApiKey} method as implemented by
+   * Overrides the `UrlJsonRpcProvider.getApiKey` method as implemented by
    * ethers.js. Returns the API key for an Alchemy provider.
    *
    * @internal
@@ -120,8 +123,8 @@ export class AlchemyProvider
   }
 
   /**
-   * Overrides the method in ethers' `StaticJsonRpcProvider` class. This method
-   * is called when calling methods on {@link providers.BaseProvider}.
+   * Overrides the method in ethers.js's `StaticJsonRpcProvider` class. This
+   * method is called when calling methods on the parent class `BaseProvider`.
    *
    * @override
    */
@@ -152,8 +155,8 @@ export class AlchemyProvider
   }
 
   /**
-   * Overrides the base {@link providers.JsonRpcProvider.send} method to
-   * implement custom logic for sending requests to Alchemy.
+   * Overrides the base {@link JsonRpcProvider.send} method to implement custom
+   * logic for sending requests to Alchemy.
    *
    * @param method The method name to use for the request.
    * @param params The parameters to use for the request.
