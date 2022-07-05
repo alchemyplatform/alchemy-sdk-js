@@ -1,11 +1,11 @@
-import { BigNumber } from 'ethers';
+import { BigNumber } from '@ethersproject/bignumber';
 import { BaseNft, BaseNftContract, Nft, NftContract } from '../api/nft';
 import { toHex } from '../api/util';
 import {
-  RawBaseNftContract,
-  RawNftContract,
   RawBaseNft,
-  RawNft
+  RawBaseNftContract,
+  RawNft,
+  RawNftContract
 } from '../internal/raw-interfaces';
 import { NftTokenType, TokenUri } from '../types/types';
 
@@ -32,7 +32,7 @@ export function getNftContractFromRaw(
     name: rawNftContract.contractMetadata.name,
     symbol: rawNftContract.contractMetadata.symbol,
     totalSupply: rawNftContract.contractMetadata.totalSupply,
-    tokenType: rawNftContract.contractMetadata.tokenType
+    tokenType: parseNftTokenType(rawNftContract.contractMetadata.tokenType)
   };
 }
 
@@ -43,7 +43,7 @@ export function getBaseNftFromRaw(
   return {
     contract: { address: contractAddress },
     tokenId: BigNumber.from(rawBaseNft.id.tokenId).toString(),
-    tokenType: rawBaseNft.id.tokenMetadata?.tokenType ?? NftTokenType.UNKNOWN
+    tokenType: parseNftTokenType(rawBaseNft.id.tokenMetadata?.tokenType)
   };
 }
 
@@ -68,8 +68,17 @@ function parseNftTokenId(tokenId: string): string {
   return BigNumber.from(tokenId).toString();
 }
 
-function parseNftTokenType(tokenType: NftTokenType | undefined): NftTokenType {
-  return tokenType ?? NftTokenType.UNKNOWN;
+function parseNftTokenType(tokenType: string | undefined): NftTokenType {
+  switch (tokenType) {
+    case 'erc721':
+    case 'ERC721':
+      return NftTokenType.ERC721;
+    case 'erc1155':
+    case 'ERC1155':
+      return NftTokenType.ERC1155;
+    default:
+      return NftTokenType.UNKNOWN;
+  }
 }
 
 function parseNftDescription(description: string | string[]): string {

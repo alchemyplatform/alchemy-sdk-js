@@ -112,9 +112,9 @@ export enum AssetTransfersOrder {
 
 /** @public */
 export enum NftTokenType {
-  ERC721 = 'erc721',
-  ERC1155 = 'erc1155',
-  UNKNOWN = 'unknown'
+  ERC721 = 'ERC721',
+  ERC1155 = 'ERC1155',
+  UNKNOWN = 'UNKNOWN'
 }
 
 /** @public */

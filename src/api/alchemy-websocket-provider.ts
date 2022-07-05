@@ -1,4 +1,4 @@
-import { BigNumber, providers } from 'ethers';
+import { BigNumber } from '@ethersproject/bignumber';
 import { Networkish } from '@ethersproject/networks';
 import { DEFAULT_ALCHEMY_API_KEY, EthersNetwork, noop } from '../util/const';
 import { AlchemyProvider } from './alchemy-provider';
@@ -29,6 +29,10 @@ import {
   VirtualSubscription,
   WebSocketMessage
 } from '../internal/internal-types';
+import {
+  CommunityResourcable,
+  WebSocketProvider
+} from '@ethersproject/providers';
 
 const HEARTBEAT_INTERVAL = 30000;
 const HEARTBEAT_WAIT_TIME = 10000;
@@ -47,8 +51,8 @@ const BACKFILL_RETRIES = 5;
 const RETAINED_EVENT_BLOCK_COUNT = 10;
 
 export class AlchemyWebSocketProvider
-  extends providers.WebSocketProvider
-  implements providers.CommunityResourcable
+  extends WebSocketProvider
+  implements CommunityResourcable
 {
   readonly apiKey: string;
 
@@ -150,8 +154,8 @@ export class AlchemyWebSocketProvider
   }
 
   /**
-   * Overrides the `_startEvent()` method in {@link providers.WebSocketProvider}
-   * to include additional alchemy methods.
+   * Overrides the `_startEvent()` method in ethers.js's
+   * {@link WebSocketProvider} to include additional alchemy methods.
    *
    * @param event
    * @override
@@ -168,7 +172,7 @@ export class AlchemyWebSocketProvider
   }
 
   /**
-   * Overridden from {@link providers.WebSocketProvider}.
+   * Overridden from ethers.js's {@link WebSocketProvider}
    *
    * Modified in order to add mappings for backfilling.
    *
@@ -218,7 +222,7 @@ export class AlchemyWebSocketProvider
   /**
    * DO NOT MODIFY.
    *
-   * Original code copied over from {@link providers.BaseProvider}.
+   * Original code copied over from ether.js's `BaseProvider`.
    *
    * This method is copied over directly in order to implement Alchemy's unique
    * subscription types. The only difference is that this method calls
@@ -321,8 +325,8 @@ export class AlchemyWebSocketProvider
   }
 
   /**
-   * The underlying ethers WebsocketProvider already handles and emits messages.
-   * To allow backfilling, track all messages that are emitted.
+   * The underlying ethers {@link WebSocketProvider} already handles and emits
+   * messages. To allow backfilling, track all messages that are emitted.
    *
    * This is a field arrow function in order to preserve `this` context when
    * passing the method as an event listener.
