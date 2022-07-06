@@ -8,6 +8,7 @@ import {
   getNftsForOwnerIterator,
   getOwnersForCollection,
   getOwnersForNft,
+  getProvider,
   getTokenBalances,
   initializeAlchemy,
   NftExcludeFilters,
@@ -34,7 +35,7 @@ describe('E2E integration tests', () => {
   });
 
   it('test', async () => {
-    console.log(await alchemy.getProvider().getBalance(ownerAddress, 'latest'));
+    console.log(await getProvider(alchemy).getBalance(ownerAddress, 'latest'));
   });
 
   // TODO: add unit test coverage. Integration tests are just sanity tests for now.
@@ -59,7 +60,7 @@ describe('E2E integration tests', () => {
   });
 
   it('getNftMetadata', async () => {
-    console.log(await alchemy.getProvider().getBlockNumber());
+    console.log(await getProvider(alchemy).getBlockNumber());
     const contractAddress = '0x0510745d2ca36729bed35c818527c4485912d99e';
     const tokenId = 403;
     const response = await getNftMetadata(

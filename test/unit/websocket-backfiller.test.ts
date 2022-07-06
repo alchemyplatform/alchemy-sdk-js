@@ -1,4 +1,9 @@
-import { fromHex, initializeAlchemy, toHex } from '../../src';
+import {
+  fromHex,
+  getWebsocketProvider,
+  initializeAlchemy,
+  toHex
+} from '../../src';
 import {
   GetLogsOptions,
   WebsocketBackfiller
@@ -31,7 +36,7 @@ describe('Backfill tests', () => {
   }
 
   beforeEach(() => {
-    provider = sdk.getWebsocketProvider() as Mocked<AlchemyWebSocketProvider>;
+    provider = getWebsocketProvider(sdk) as Mocked<AlchemyWebSocketProvider>;
     backfiller = new WebsocketBackfiller(provider);
     provider.send = jest.fn();
     provider.sendBatch = jest.fn();

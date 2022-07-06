@@ -1,4 +1,8 @@
-import { initializeAlchemy } from '../../src';
+import {
+  getProvider,
+  getWebsocketProvider,
+  initializeAlchemy
+} from '../../src';
 import { EthersNetwork } from '../../src/util/const';
 import { AlchemyProvider } from '@ethersproject/providers';
 
@@ -14,8 +18,8 @@ describe('AlchemyProvider', () => {
     alchemy.apiKey
   ) as AlchemyProvider;
 
-  const wsProvider = alchemy.getWebsocketProvider();
-  const provider = alchemy.getProvider();
+  const wsProvider = getWebsocketProvider(alchemy);
+  const provider = getProvider(alchemy);
 
   // TODO(ethers): Extract into helper method to verify all inputs.
   it('methods should return the same result', async () => {

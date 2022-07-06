@@ -1,4 +1,9 @@
-import { AlchemyConfig, initializeAlchemy, Network } from '../../src';
+import {
+  AlchemyConfig,
+  getProvider,
+  initializeAlchemy,
+  Network
+} from '../../src';
 import {
   DEFAULT_ALCHEMY_API_KEY,
   DEFAULT_MAX_RETRIES,
@@ -12,7 +17,7 @@ describe('Alchemy class', () => {
         const alchemy = initializeAlchemy({
           network
         });
-        alchemy.getProvider();
+        getProvider(alchemy);
       });
     }
 

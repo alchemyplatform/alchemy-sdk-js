@@ -3,5 +3,5 @@
   "printWidth": 80,
   "trailingComma": "none",
   "arrowParens": "avoid",
-  "plugins": ["prettier-plugin-jsdoc"]
+  "plugins": ["./node_modules/prettier-plugin-jsdoc"]
 }

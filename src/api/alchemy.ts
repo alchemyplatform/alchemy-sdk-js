@@ -33,12 +33,6 @@ export class Alchemy {
   network: Network;
   readonly maxRetries: number;
 
-  /** @internal */
-  private _baseAlchemyProvider: AlchemyProvider | undefined;
-
-  /** @internal */
-  private _baseAlchemyWssProvider: AlchemyWebSocketProvider | undefined;
-
   /**
    * @hideconstructor
    * @internal
@@ -69,37 +63,41 @@ export class Alchemy {
     // TODO(ethers): Add support for changing the network in the returned provider.
     this.network = network;
   }
-
-  /**
-   * Creates an AlchemyProvider instance. Only one provider is created per
-   * Alchemy instance.
-   *
-   * @public
-   */
-  getProvider(): AlchemyProvider {
-    if (!this._baseAlchemyProvider) {
-      this._baseAlchemyProvider = new AlchemyProvider(
-        this.network,
-        this.apiKey,
-        this.maxRetries
-      );
-    }
-    return this._baseAlchemyProvider;
-  }
-
-  /**
-   * Creates an AlchemyWebsocketProvider instance. Only one provider is created
-   * per Alchemy instance.
-   *
-   * @public
-   */
-  getWebsocketProvider(): AlchemyWebSocketProvider {
-    if (!this._baseAlchemyWssProvider) {
-      this._baseAlchemyWssProvider = new AlchemyWebSocketProvider(
-        this.network,
-        this.apiKey
-      );
-    }
-    return this._baseAlchemyWssProvider;
-  }
 }
+
+/** Creates an AlchemyProvider instance. Only one provider is created per Alchemy instance. */
+export const getProvider: (alchemy: Alchemy) => AlchemyProvider =
+  /*#__PURE__*/ (() => {
+    let _baseAlchemyProvider: AlchemyProvider | undefined;
+    return (alchemy: Alchemy) => {
+      if (!_baseAlchemyProvider) {
+        _baseAlchemyProvider = new AlchemyProvider(
+          alchemy.network,
+          alchemy.apiKey,
+          alchemy.maxRetries
+        );
+      }
+      return _baseAlchemyProvider;
+    };
+  })();
+
+// prettier-ignore
+// Ignoring prettier is required to preserve /*#__PURE__*/ annotation in build.
+/**
+ * Creates an AlchemyWebsocketProvider instance. Only one provider is created
+ * per Alchemy instance.
+ */
+export const getWebsocketProvider: (
+  alchemy: Alchemy
+) => AlchemyWebSocketProvider = (/*#__PURE__*/ (() => {
+  let _baseAlchemyWssProvider: AlchemyWebSocketProvider | undefined;
+  return (alchemy: Alchemy) => {
+    if (!_baseAlchemyWssProvider) {
+      _baseAlchemyWssProvider = new AlchemyWebSocketProvider(
+        alchemy.network,
+        alchemy.apiKey
+      );
+    }
+    return _baseAlchemyWssProvider;
+  };
+})());

@@ -7,7 +7,7 @@ import {
   TransactionReceiptsResponse
 } from '../types/types';
 import { formatBlock } from '../util/util';
-import { Alchemy } from './alchemy';
+import { Alchemy, getProvider } from './alchemy';
 import { DEFAULT_CONTRACT_ADDRESSES } from '../util/const';
 import { toHex } from './util';
 
@@ -22,12 +22,10 @@ export function getTokenBalances(
       'You cannot pass in more than 1500 contract addresses to getTokenBalances()'
     );
   }
-  return alchemy
-    .getProvider()
-    .send('alchemy_getTokenBalances', [
-      address,
-      contractAddresses || DEFAULT_CONTRACT_ADDRESSES
-    ]);
+  return getProvider(alchemy).send('alchemy_getTokenBalances', [
+    address,
+    contractAddresses || DEFAULT_CONTRACT_ADDRESSES
+  ]);
 }
 
 /** @public */
@@ -35,7 +33,7 @@ export function getTokenMetadata(
   alchemy: Alchemy,
   address: string
 ): Promise<TokenMetadataResponse> {
-  return alchemy.getProvider().send('alchemy_getTokenMetadata', [address]);
+  return getProvider(alchemy).send('alchemy_getTokenMetadata', [address]);
 }
 
 /** @public */
@@ -43,7 +41,7 @@ export function getAssetTransfers(
   alchemy: Alchemy,
   params: AssetTransfersParams
 ): Promise<AssetTransfersResponse> {
-  return alchemy.getProvider().send('alchemy_getAssetTransfers', [
+  return getProvider(alchemy).send('alchemy_getAssetTransfers', [
     {
       ...params,
       fromBlock:
@@ -59,5 +57,5 @@ export function getTransactionReceipts(
   alchemy: Alchemy,
   params: TransactionReceiptsParams
 ): Promise<TransactionReceiptsResponse> {
-  return alchemy.getProvider().send('alchemy_getTransactionReceipts', [params]);
+  return getProvider(alchemy).send('alchemy_getTransactionReceipts', [params]);
 }

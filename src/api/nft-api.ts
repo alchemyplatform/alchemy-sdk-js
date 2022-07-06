@@ -15,7 +15,7 @@ import {
   OwnedNft,
   OwnedNftsResponse
 } from '../types/types';
-import { Alchemy } from './alchemy';
+import { Alchemy, getProvider } from './alchemy';
 import { paginateEndpoint, requestHttpWithBackoff } from '../internal/dispatch';
 import { BaseNft, BaseNftContract, Nft, NftContract } from './nft';
 import {
@@ -605,7 +605,7 @@ export async function findContractDeployer(
   alchemy: Alchemy,
   contractAddress: string
 ): Promise<DeployResult> {
-  const provider = alchemy.getProvider();
+  const provider = getProvider(alchemy);
   const currentBlockNum = await provider.getBlockNumber();
   if (
     (await provider.getCode(contractAddress, currentBlockNum)) ===
@@ -725,7 +725,7 @@ async function binarySearchFirstBlock(
   }
 
   const mid = Math.floor((start + end) / 2);
-  const code = await alchemy.getProvider().getCode(address, mid);
+  const code = await getProvider(alchemy).getCode(address, mid);
   if (code === ETH_NULL_VALUE) {
     return binarySearchFirstBlock(mid + 1, end, address, alchemy);
   }
