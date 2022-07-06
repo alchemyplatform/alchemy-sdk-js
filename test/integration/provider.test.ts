@@ -1,6 +1,11 @@
-import { initializeAlchemy } from '../../src';
+import {
+  Alchemy,
+  initializeAlchemy,
+  AlchemyProvider,
+  AlchemyWebSocketProvider
+} from '../../src';
 import { EthersNetwork } from '../../src/util/const';
-import { AlchemyProvider } from '@ethersproject/providers';
+import { AlchemyProvider as EthersAlchemyProvider } from '@ethersproject/providers';
 
 /**
  * These integrations are sanity checks to ensure that the SDK's overriden
@@ -8,14 +13,20 @@ import { AlchemyProvider } from '@ethersproject/providers';
  */
 // TODO(ethers): Figure out appropriate unit tests for the SDK's custom AlchemyProvider.
 describe('AlchemyProvider', () => {
-  const alchemy = initializeAlchemy();
-  const ethersProvider = new AlchemyProvider(
-    EthersNetwork[alchemy.network],
-    alchemy.apiKey
-  ) as AlchemyProvider;
+  let alchemy: Alchemy;
+  let wsProvider: AlchemyWebSocketProvider;
+  let provider: AlchemyProvider;
+  let ethersProvider: EthersAlchemyProvider;
 
-  const wsProvider = alchemy.getWebsocketProvider();
-  const provider = alchemy.getProvider();
+  beforeEach(async () => {
+    alchemy = initializeAlchemy();
+    ethersProvider = new EthersAlchemyProvider(
+      EthersNetwork[alchemy.network],
+      alchemy.apiKey
+    );
+    wsProvider = await alchemy.getWebsocketProvider();
+    provider = await alchemy.getProvider();
+  });
 
   // TODO(ethers): Extract into helper method to verify all inputs.
   it('methods should return the same result', async () => {

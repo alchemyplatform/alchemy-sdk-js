@@ -6,8 +6,8 @@ import {
   getAlchemyHttpUrl,
   getAlchemyNftHttpUrl
 } from '../util/const';
-import { AlchemyProvider } from './alchemy-provider';
-import { AlchemyWebSocketProvider } from './alchemy-websocket-provider';
+import type { AlchemyWebSocketProvider } from './alchemy-websocket-provider';
+import type { AlchemyProvider } from './alchemy-provider';
 
 /**
  * Entry point into the Alchemy SDK.
@@ -60,24 +60,14 @@ export class Alchemy {
   }
 
   /**
-   * Changes the network that the SDK requests data from.
-   *
-   * @param network - The network to change to.
-   * @public
-   */
-  setNetwork(network: Network) {
-    // TODO(ethers): Add support for changing the network in the returned provider.
-    this.network = network;
-  }
-
-  /**
    * Creates an AlchemyProvider instance. Only one provider is created per
    * Alchemy instance.
    *
    * @public
    */
-  getProvider(): AlchemyProvider {
+  async getProvider(): Promise<AlchemyProvider> {
     if (!this._baseAlchemyProvider) {
+      const { AlchemyProvider } = await import('./alchemy-provider');
       this._baseAlchemyProvider = new AlchemyProvider(
         this.network,
         this.apiKey,
@@ -93,8 +83,11 @@ export class Alchemy {
    *
    * @public
    */
-  getWebsocketProvider(): AlchemyWebSocketProvider {
+  async getWebsocketProvider(): Promise<AlchemyWebSocketProvider> {
     if (!this._baseAlchemyWssProvider) {
+      const { AlchemyWebSocketProvider } = await import(
+        './alchemy-websocket-provider'
+      );
       this._baseAlchemyWssProvider = new AlchemyWebSocketProvider(
         this.network,
         this.apiKey
