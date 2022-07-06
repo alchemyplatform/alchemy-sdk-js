@@ -4,7 +4,7 @@ import { AlchemyProvider } from '@ethersproject/providers';
 
 /**
  * These integrations are sanity checks to ensure that the SDK's overriden
- * implementation of {@link providers.AlchemyProvider} is working as expected.
+ * implementation of {@link AlchemyProvider} is working as expected.
  */
 // TODO(ethers): Figure out appropriate unit tests for the SDK's custom AlchemyProvider.
 describe('AlchemyProvider', () => {
