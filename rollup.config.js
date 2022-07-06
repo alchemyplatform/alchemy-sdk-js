@@ -22,19 +22,8 @@ const allBuilds = {
       sourcemap: true
     }
   ],
-  external: [
-    ...Object.keys(pkg.dependencies || {}),
-
-    // Needed for '/lib' import in AlchemyWebSocketProvider
-    '@ethersproject/providers/lib/base-provider'
-  ],
-  plugins: [
-    typescriptPlugin(),
-
-    // Needed to resolve `Event` class from Ethers in AlchemyWebSocketProvider
-    nodeResolve(),
-    commonjs()
-  ]
+  external: [...Object.keys(pkg.dependencies || {})],
+  plugins: [typescriptPlugin(), nodeResolve(), commonjs()]
 };
 
 export default allBuilds;

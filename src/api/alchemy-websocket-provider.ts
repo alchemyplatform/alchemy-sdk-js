@@ -3,7 +3,6 @@ import { Networkish } from '@ethersproject/networks';
 import { DEFAULT_ALCHEMY_API_KEY, EthersNetwork, noop } from '../util/const';
 import { AlchemyProvider } from './alchemy-provider';
 import { Listener } from '@ethersproject/abstract-provider';
-import { Event } from '@ethersproject/providers/lib/base-provider';
 import { AlchemyEventType } from '../types/types';
 import {
   BatchPart,
@@ -54,6 +53,7 @@ export class AlchemyWebSocketProvider
   extends WebSocketProvider
   implements CommunityResourcable
 {
+  _events: Array<EthersEvent> = [];
   readonly apiKey: string;
 
   // In the case of a WebSocket reconnection, all subscriptions are lost and we
@@ -236,7 +236,7 @@ export class AlchemyWebSocketProvider
     if (isAlchemyEvent(eventName)) {
       let result = false;
 
-      const stopped: Array<Event> = [];
+      const stopped: Array<EthersEvent> = [];
 
       // This line is the only modified line from the original method.
       const eventTag = getAlchemyEventTag(eventName);
