@@ -34,7 +34,8 @@ describe('E2E integration tests', () => {
   });
 
   it('test', async () => {
-    console.log(await alchemy.getProvider().getBalance(ownerAddress, 'latest'));
+    const provider = await alchemy.getProvider();
+    console.log(await provider.getBalance(ownerAddress, 'latest'));
   });
 
   // TODO: add unit test coverage. Integration tests are just sanity tests for now.
@@ -59,7 +60,8 @@ describe('E2E integration tests', () => {
   });
 
   it('getNftMetadata', async () => {
-    console.log(await alchemy.getProvider().getBlockNumber());
+    const provider = await alchemy.getProvider();
+    console.log(await provider.getBlockNumber());
     const contractAddress = '0x0510745d2ca36729bed35c818527c4485912d99e';
     const tokenId = 403;
     const response = await getNftMetadata(

@@ -605,7 +605,7 @@ export async function findContractDeployer(
   alchemy: Alchemy,
   contractAddress: string
 ): Promise<DeployResult> {
-  const provider = alchemy.getProvider();
+  const provider = await alchemy.getProvider();
   const currentBlockNum = await provider.getBlockNumber();
   if (
     (await provider.getCode(contractAddress, currentBlockNum)) ===
@@ -725,7 +725,8 @@ async function binarySearchFirstBlock(
   }
 
   const mid = Math.floor((start + end) / 2);
-  const code = await alchemy.getProvider().getCode(address, mid);
+  const provider = await alchemy.getProvider();
+  const code = await provider.getCode(address, mid);
   if (code === ETH_NULL_VALUE) {
     return binarySearchFirstBlock(mid + 1, end, address, alchemy);
   }

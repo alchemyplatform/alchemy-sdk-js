@@ -8,11 +8,11 @@ import {
 describe('Alchemy class', () => {
   describe('translates Network to ethers', () => {
     function testNetwork(network: Network) {
-      it(`should return a valid provider for ${network}`, () => {
+      it(`should return a valid provider for ${network}`, async () => {
         const alchemy = initializeAlchemy({
           network
         });
-        alchemy.getProvider();
+        await alchemy.getProvider();
       });
     }
 
@@ -42,13 +42,5 @@ describe('Alchemy class', () => {
     expect(alchemy.apiKey).toEqual(DEFAULT_ALCHEMY_API_KEY);
     expect(alchemy.network).toEqual(DEFAULT_NETWORK);
     expect(alchemy.maxRetries).toEqual(DEFAULT_MAX_RETRIES);
-  });
-
-  it('can change network', () => {
-    const alchemy = initializeAlchemy();
-    alchemy.setNetwork(DEFAULT_NETWORK);
-    expect(alchemy.network).toEqual(DEFAULT_NETWORK);
-    alchemy.setNetwork(Network.OPT_MAINNET);
-    expect(alchemy.network).toEqual(Network.OPT_MAINNET);
   });
 });
