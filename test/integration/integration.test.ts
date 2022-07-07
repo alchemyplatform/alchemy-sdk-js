@@ -1,18 +1,9 @@
 import {
   Alchemy,
-  findContractDeployer,
-  getNftMetadata,
-  getNftsForNftContract,
-  getNftsForNftContractIterator,
-  getNftsForOwner,
-  getNftsForOwnerIterator,
-  getOwnersForNftContract,
-  getOwnersForNft,
   getTokenBalances,
   initializeAlchemy,
   NftExcludeFilters,
-  NftTokenType,
-  refreshNftMetadata
+  NftTokenType
 } from '../../src';
 
 /** Temporary test */
@@ -42,7 +33,7 @@ describe('E2E integration tests', () => {
   it('findContractDeployer()', async () => {
     // BAYC
     let contractAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D';
-    let contractDeployer = await findContractDeployer(alchemy, contractAddress);
+    let contractDeployer = await alchemy.findContractDeployer(contractAddress);
     expect(contractDeployer.deployerAddress).toEqual(
       '0xaba7161a7fb69c88e16ed9f455ce62b791ee4d03'
     );
@@ -51,7 +42,7 @@ describe('E2E integration tests', () => {
 
     // ENS
     contractAddress = '0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85';
-    contractDeployer = await findContractDeployer(alchemy, contractAddress);
+    contractDeployer = await alchemy.findContractDeployer(contractAddress);
     expect(contractDeployer.deployerAddress).toEqual(
       '0x4fe4e666be5752f1fdd210f4ab5de2cc26e3e0e8'
     );
@@ -64,8 +55,7 @@ describe('E2E integration tests', () => {
     console.log(await provider.getBlockNumber());
     const contractAddress = '0x0510745d2ca36729bed35c818527c4485912d99e';
     const tokenId = 403;
-    const response = await getNftMetadata(
-      alchemy,
+    const response = await alchemy.getNftMetadata(
       contractAddress,
       tokenId,
       NftTokenType.UNKNOWN
@@ -77,41 +67,40 @@ describe('E2E integration tests', () => {
   it('getOwnersForNft', async () => {
     const tokenId =
       '0x00000000000000000000000000000000000000000000000000000000008b57f0';
-    const response = await getOwnersForNft(alchemy, contractAddress, tokenId);
+    const response = await alchemy.getOwnersForNft(contractAddress, tokenId);
     console.log('res', response);
   });
 
   it('getOwnersForNft from NFT', async () => {
-    const nfts = await getNftsForOwner(alchemy, ownerAddress, {
+    const nfts = await alchemy.getNftsForOwner(ownerAddress, {
       excludeFilters: [NftExcludeFilters.SPAM],
       omitMetadata: true
     });
     console.log('nfts', nfts);
-    const owners = await getOwnersForNft(alchemy, nfts.ownedNfts[0]);
+    const owners = await alchemy.getOwnersForNft(nfts.ownedNfts[0]);
     console.log('owner', owners);
   });
 
   it('getNftsForOwner()', async () => {
-    const nfts = await getNftsForOwner(alchemy, 'vitalik.eth');
+    const nfts = await alchemy.getNftsForOwner('vitalik.eth');
     console.log('owner', nfts);
   });
 
   it('getNftsForOwner() spam check', async () => {
-    const withSpam = await getNftsForOwner(alchemy, 'vitalik.eth');
-    const noSpam = await getNftsForOwner(alchemy, 'vitalik.eth', {
+    const withSpam = await alchemy.getNftsForOwner('vitalik.eth');
+    const noSpam = await alchemy.getNftsForOwner('vitalik.eth', {
       excludeFilters: [NftExcludeFilters.SPAM]
     });
     expect(withSpam.totalCount).not.toEqual(noSpam.totalCount);
   });
 
   it('getOwnersForNftContract', async () => {
-    const owners = await getOwnersForNftContract(alchemy, contractAddress);
+    const owners = await alchemy.getOwnersForNftContract(contractAddress);
     console.log('owners', owners);
   });
 
   it('getNftsForNftContract with pageKey', async () => {
-    let nftsForNftContract = await getNftsForNftContract(
-      alchemy,
+    let nftsForNftContract = await alchemy.getNftsForNftContract(
       contractAddress
     );
 
@@ -120,7 +109,7 @@ describe('E2E integration tests', () => {
       nftsForNftContract.pageKey,
       nftsForNftContract.nfts.length
     );
-    nftsForNftContract = await getNftsForNftContract(alchemy, contractAddress, {
+    nftsForNftContract = await alchemy.getNftsForNftContract(contractAddress, {
       pageKey: nftsForNftContract.pageKey
     });
     console.log(
@@ -135,7 +124,7 @@ describe('E2E integration tests', () => {
     console.log('lets paginate');
     const allNfts = [];
     let totalCount = 0;
-    for await (const nft of getNftsForOwnerIterator(alchemy, ownerAddress)) {
+    for await (const nft of alchemy.getNftsForOwnerIterator(ownerAddress)) {
       if (totalCount === 10) {
         break;
       }
@@ -143,7 +132,7 @@ describe('E2E integration tests', () => {
       totalCount += 1;
     }
 
-    for await (const nft of getNftsForOwnerIterator(alchemy, ownerAddress, {
+    for await (const nft of alchemy.getNftsForOwnerIterator(ownerAddress, {
       omitMetadata: false
     })) {
       if (totalCount === 10) {
@@ -160,8 +149,7 @@ describe('E2E integration tests', () => {
     console.log('lets paginate');
     const allNfts = [];
     let totalCount = 0;
-    for await (const nft of getNftsForNftContractIterator(
-      alchemy,
+    for await (const nft of alchemy.getNftsForNftContractIterator(
       contractAddress,
       {
         omitMetadata: false
@@ -179,26 +167,26 @@ describe('E2E integration tests', () => {
   it('refreshNftMetadata()', async () => {
     const contractAddress = '0x0510745d2ca36729bed35c818527c4485912d99e';
     const tokenId = '404';
-    await refreshNftMetadata(alchemy, contractAddress, tokenId);
+    await alchemy.refreshNftMetadata(contractAddress, tokenId);
 
-    const nft = await getNftMetadata(alchemy, contractAddress, tokenId);
-    await refreshNftMetadata(alchemy, nft);
+    const nft = await alchemy.getNftMetadata(contractAddress, tokenId);
+    await alchemy.refreshNftMetadata(nft);
   });
 
   describe('README examples', () => {
     it('Example 1: Getting the Nfts owned by an address', async () => {
-      void getNftsForOwner(alchemy, '0xshah.eth').then(nfts => {
+      void alchemy.getNftsForOwner('0xshah.eth').then(nfts => {
         console.log(nfts.totalCount);
       });
 
       // Get all the image urls for all the NFTs an address owns.
-      for await (const nft of getNftsForOwnerIterator(alchemy, '0xshah.eth')) {
+      for await (const nft of alchemy.getNftsForOwnerIterator('0xshah.eth')) {
         console.log(nft.media);
         console.log('done', nft);
       }
 
       // Filter out spam NFTs.
-      for await (const nft of getNftsForOwnerIterator(alchemy, '0xshah.eth', {
+      for await (const nft of alchemy.getNftsForOwnerIterator('0xshah.eth', {
         excludeFilters: [NftExcludeFilters.SPAM]
       })) {
         console.log(nft.media);
@@ -209,17 +197,18 @@ describe('E2E integration tests', () => {
       // Bored Ape Yacht Club contract address.
       const baycAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D';
 
-      for await (const nft of getNftsForNftContractIterator(
-        alchemy,
+      for await (const nft of alchemy.getNftsForNftContractIterator(
         baycAddress,
         {
           // Omit the NFT metadata for smaller payloads.
           omitMetadata: true
         }
       )) {
-        await getOwnersForNft(alchemy, nft).then(response =>
-          console.log('owners:', response.owners, 'tokenId:', nft.tokenId)
-        );
+        await alchemy
+          .getOwnersForNft(nft)
+          .then(response =>
+            console.log('owners:', response.owners, 'tokenId:', nft.tokenId)
+          );
       }
     });
 

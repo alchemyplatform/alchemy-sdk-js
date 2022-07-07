@@ -28,28 +28,15 @@ const settings = {
 const alchemy = initializeAlchemy(settings);
 ```
 
-The SDK's modular approach exports all Alchemy functions at the top-level to reduce bundle size (only the functions you
-import
-and use will be included). This means you access each method using the following pattern:
+You can access each method using the following pattern:
 
 ```ts
 // Initializing the alchemy config object
-import { initializeAlchemy, getNftsForOwner } from '@alch/alchemy-sdk';
+import { initializeAlchemy } from '@alch/alchemy-sdk';
 
 const alchemy = initializeAlchemy(); // using default settings - pass in a settings object to specify your API key and network
 
-getNftsForOwner(alchemy, '0xshah.eth').then(console.log);
-```
-
-However, this can make it harder to discover the full API surface. If you want your IDE to find all functions, you can
-alternatively import
-the entire SDK (though this is not recommended, as it will increase the bundle size):
-
-```ts
-import * as alchemySdk from '@alch/alchemy-sdk';
-
-const alchemy = alchemySdk.initializeAlchemy();
-alchemySdk.getNftsForOwner(alchemy, '0xshah.eth').then(console.log);
+alchemy.getNftsForOwner('0xshah.eth').then(console.log);
 ```
 
 ### Preventing Breaking Changes
@@ -64,13 +51,14 @@ For example, to pin to a specific version of the SDK in your `package.json` file
 ```
 {
   "dependencies": {
-    "@alch/alchemy-sdk": "1.0.4"
+    "@alch/alchemy-sdk": "1.1.0"
   }
 }
 ```
 
 ## SDK Structure
 
+#### TODO: UPDATE THIS SECTION AFTER FULL MIGRATION
 The `Alchemy` object returned by `initializeAlchemy()` provides access to the Alchemy API. An optional config
 object can be passed in when initializing to set your API key, change the network, or specify the max number of retries.
 
@@ -160,7 +148,8 @@ right. `alchemy-sdk` automatically handles these failures with no configuration 
 
 ## NFT Module
 
-The SDK currently supports the following [NFT API](https://docs.alchemy.com/alchemy/enhanced-apis/nft-api) endpoints:
+The SDK currently supports the following [NFT API](https://docs.alchemy.com/alchemy/enhanced-apis/nft-api) endpoints
+under the `Alchemy` class:
 
 - `getNftMetadata()`: Get the NFT metadata for a contract address and tokenId.
 - `getNftContractMetadata()`: Get the metadata associated with an NFT contract
@@ -200,13 +189,13 @@ an `AsyncIterable`.
 Here's an example of how to paginate through all the NFTs in Vitalik's ENS address:
 
 ```ts
-import { initializeAlchemy, getNftsForOwnerIterator } from '@alch/alchemy-sdk';
+import { initializeAlchemy } from '@alch/alchemy-sdk';
 
 const alchemy = initializeAlchemy();
 
 async function main() {
   const ownerAddress = 'vitalik.eth';
-  for await (const nft of getNftsForOwnerIterator(alchemy, ownerAddress)) {
+  for await (const nft of alchemy.getNftsForOwnerIterator(ownerAddress)) {
     console.log('ownedNft:', nft);
   }
 }
@@ -250,8 +239,6 @@ Getting the NFTs owned by an address.
 
 ```ts
 import {
-  getNftsForOwner,
-  getNftsForOwnerIterator,
   NftExcludeFilters,
   initializeAlchemy
 } from '@alch/alchemy-sdk';
@@ -259,13 +246,13 @@ import {
 const alchemy = initializeAlchemy();
 
 // Get how many NFTs an address owns.
-getNftsForOwner(alchemy, '0xshah.eth').then(nfts => {
+alchemy.getNftsForOwner('0xshah.eth').then(nfts => {
   console.log(nfts.totalCount);
 });
 
 // Get all the image urls for all the NFTs an address owns.
 async function main() {
-  for await (const nft of getNftsForOwnerIterator(alchemy, '0xshah.eth')) {
+  for await (const nft of alchemy.getNftsForOwnerIterator('0xshah.eth')) {
     console.log(nft.media);
   }
 }
@@ -273,7 +260,7 @@ async function main() {
 main();
 
 // Filter out spam NFTs.
-getNftsForOwner(alchemy, '0xshah.eth', {
+alchemy.getNftsForOwner('0xshah.eth', {
   excludeFilters: [NftExcludeFilters.SPAM]
 }).then(console.log);
 ```
@@ -282,8 +269,6 @@ Getting all the owners of the BAYC NFT.
 
 ```ts
 import {
-  getOwnersForNft,
-  getNftsForCollectionIterator,
   initializeAlchemy
 } from '@alch/alchemy-sdk';
 
@@ -293,11 +278,11 @@ const alchemy = initializeAlchemy();
 const baycAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D';
 
 async function main() {
-  for await (const nft of getNftsForCollectionIterator(alchemy, baycAddress, {
+  for await (const nft of alchemy.getNftsForCollectionIterator(baycAddress, {
     // Omit the NFT metadata for smaller payloads.
     omitMetadata: true
   })) {
-    await getOwnersForNft(alchemy, nft).then(response =>
+    await alchemy.getOwnersForNft(nft).then(response =>
       console.log('owners:', response.owners, 'tokenId:', nft.tokenId)
     );
   }
@@ -309,11 +294,11 @@ main();
 Get all outbound transfers for a provided address.
 
 ```ts
-import { getTokenBalances, initializeAlchemy } from '@alch/alchemy-sdk';
+import { initializeAlchemy } from '@alch/alchemy-sdk';
 
 const alchemy = initializeAlchemy();
 
-getTokenBalances(alchemy, '0x994b342dd87fc825f66e51ffa3ef71ad818b6893').then(
+alchemy.getTokenBalances('0x994b342dd87fc825f66e51ffa3ef71ad818b6893').then(
   console.log
 );
 ```

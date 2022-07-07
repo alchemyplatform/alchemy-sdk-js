@@ -4,23 +4,6 @@ export * from './types/types';
 export { initializeAlchemy, Alchemy } from './api/alchemy';
 
 export {
-  getNftMetadata,
-  getNftContractMetadata,
-  getNftsForOwner,
-  getNftsForOwnerIterator,
-  getNftsForNftContract,
-  getNftsForNftContractIterator,
-  getOwnersForNft,
-  getOwnersForNftContract,
-  checkNftOwnership,
-  isSpamNftContract,
-  getSpamNftContracts,
-  getNftFloorPrice,
-  findContractDeployer,
-  refreshNftMetadata
-} from './api/nft-api';
-
-export {
   getTransactionReceipts,
   getAssetTransfers,
   getTokenMetadata,
