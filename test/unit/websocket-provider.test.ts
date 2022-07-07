@@ -1,4 +1,4 @@
-import { AlchemyProvider, Network, toHex } from '../../src';
+import { Network, toHex } from '../../src';
 import { AlchemyWebSocketProvider } from '../../src/api/alchemy-websocket-provider';
 import {
   Deferred,
@@ -15,6 +15,7 @@ import {
 } from '../../src/internal/websocket-backfiller';
 import { Formatter } from '@ethersproject/providers/lib/formatter';
 import SpyInstance = jest.SpyInstance;
+import { AlchemyProvider } from '../../src/api/alchemy-provider';
 
 describe('AlchemyWebSocketProvider', () => {
   let wsProvider: Mocked<AlchemyWebSocketProvider>;

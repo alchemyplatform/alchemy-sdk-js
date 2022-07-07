@@ -1,11 +1,8 @@
-import {
-  Alchemy,
-  initializeAlchemy,
-  AlchemyProvider,
-  AlchemyWebSocketProvider
-} from '../../src';
+import { Alchemy, initializeAlchemy } from '../../src';
 import { EthersNetwork } from '../../src/util/const';
 import { AlchemyProvider as EthersAlchemyProvider } from '@ethersproject/providers';
+import { AlchemyWebSocketProvider } from '../../src/api/alchemy-websocket-provider';
+import { AlchemyProvider } from '../../src/api/alchemy-provider';
 
 /**
  * These integrations are sanity checks to ensure that the SDK's overriden
