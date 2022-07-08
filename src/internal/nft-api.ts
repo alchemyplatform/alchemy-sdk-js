@@ -39,7 +39,6 @@ import {
   getNftFromRaw
 } from '../util/util';
 import { Alchemy } from '../api/alchemy';
-import { getTransactionReceipts } from '../api/enhanced';
 import { toHex } from '../api/util';
 
 const ETH_NULL_VALUE = '0x';
@@ -348,7 +347,7 @@ export async function findContractDeployer(
   );
 
   // Find the first transaction in the block that matches the provided address.
-  const txReceipts = await getTransactionReceipts(alchemy, {
+  const txReceipts = await alchemy.getTransactionReceipts({
     blockNumber: toHex(firstBlock)
   });
   const matchingReceipt = txReceipts.receipts?.find(
