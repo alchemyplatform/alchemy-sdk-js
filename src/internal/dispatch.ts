@@ -40,7 +40,7 @@ export async function requestHttpWithBackoff<Req, Res>(
       switch (apiType) {
         case AlchemyApiType.NFT:
           response = await sendAxiosRequest<Req, Res>(
-            alchemy.getNftUrl(),
+            alchemy._getNftUrl(),
             method,
             params
           );
@@ -48,7 +48,7 @@ export async function requestHttpWithBackoff<Req, Res>(
         default:
         case AlchemyApiType.BASE:
           response = await sendAxiosRequest<Req, Res>(
-            alchemy.getBaseUrl(),
+            alchemy._getBaseUrl(),
             method,
             params
           );
