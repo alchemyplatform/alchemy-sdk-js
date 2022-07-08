@@ -1,5 +1,7 @@
 import {
   AlchemyConfig,
+  AssetTransfersParams,
+  AssetTransfersResponse,
   DeployResult,
   GetBaseNftsForNftContractOptions,
   GetBaseNftsForOwnerOptions,
@@ -15,10 +17,15 @@ import {
   OwnedBaseNft,
   OwnedBaseNftsResponse,
   OwnedNft,
-  OwnedNftsResponse
+  OwnedNftsResponse,
+  TokenBalancesResponse,
+  TokenMetadataResponse,
+  TransactionReceiptsParams,
+  TransactionReceiptsResponse
 } from '../types/types';
 import {
   DEFAULT_ALCHEMY_API_KEY,
+  DEFAULT_CONTRACT_ADDRESSES,
   DEFAULT_MAX_RETRIES,
   DEFAULT_NETWORK,
   getAlchemyHttpUrl,
@@ -44,6 +51,8 @@ import {
   findContractDeployer,
   refreshNftMetadata
 } from '../internal/nft-api';
+import { formatBlock } from '../util/util';
+import { toHex } from './util';
 
 /**
  * The Alchemy SDK client. This class holds config information and provides
@@ -423,6 +432,78 @@ export class Alchemy {
     tokenId?: BigNumberish
   ): Promise<boolean> {
     return refreshNftMetadata(this, contractAddressOrBaseNft, tokenId);
+  }
+
+  /**
+   * Returns the token balances for a specific owner address given a list of contracts.
+   *
+   * @param address The owner address to get the token balances for.
+   * @param contractAddresses A list of contract addresses to check. If omitted,
+   *   the top 100 tokens by 24 hour volume will be checked.
+   * @public
+   */
+  async getTokenBalances(
+    address: string,
+    contractAddresses?: string[]
+  ): Promise<TokenBalancesResponse> {
+    if (contractAddresses && contractAddresses.length > 1500) {
+      throw new Error(
+        'You cannot pass in more than 1500 contract addresses to getTokenBalances()'
+      );
+    }
+    const provider = await this.getProvider();
+    return provider.send('alchemy_getTokenBalances', [
+      address,
+      contractAddresses || DEFAULT_CONTRACT_ADDRESSES
+    ]);
+  }
+
+  /**
+   * Returns metadata for a given token contract address.
+   *
+   * @param address The contract address to get metadata for.
+   * @public
+   */
+  async getTokenMetadata(address: string): Promise<TokenMetadataResponse> {
+    const provider = await this.getProvider();
+    return provider.send('alchemy_getTokenMetadata', [address]);
+  }
+
+  /**
+   * Get transactions for specific addresses. See the web documentation for the
+   * full details:
+   * https://docs.alchemy.com/alchemy/enhanced-apis/transfers-api#alchemy_getassettransfers
+   *
+   * @param params An object containing fields for the asset transfer query.
+   * @public
+   */
+  async getAssetTransfers(
+    params: AssetTransfersParams
+  ): Promise<AssetTransfersResponse> {
+    const provider = await this.getProvider();
+    return provider.send('alchemy_getAssetTransfers', [
+      {
+        ...params,
+        fromBlock:
+          params.fromBlock != null ? formatBlock(params.fromBlock) : undefined,
+        toBlock:
+          params.toBlock != null ? formatBlock(params.toBlock) : undefined,
+        maxCount: params.maxCount != null ? toHex(params.maxCount) : undefined
+      }
+    ]);
+  }
+
+  /**
+   * Gets all transaction receipts for a given block by number or block hash.
+   *
+   * @param params An object containing fields for the transaction receipt query.
+   * @public
+   */
+  async getTransactionReceipts(
+    params: TransactionReceiptsParams
+  ): Promise<TransactionReceiptsResponse> {
+    const provider = await this.getProvider();
+    return provider.send('alchemy_getTransactionReceipts', [params]);
   }
 
   /**

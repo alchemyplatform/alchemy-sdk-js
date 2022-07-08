@@ -1,9 +1,4 @@
-import {
-  Alchemy,
-  getTokenBalances,
-  NftExcludeFilters,
-  NftTokenType
-} from '../../src';
+import { Alchemy, NftExcludeFilters, NftTokenType } from '../../src';
 
 /** Temporary test */
 // TODO: REMOVE these tests once we have more comprehensive unit testing.
@@ -212,7 +207,7 @@ describe('E2E integration tests', () => {
     });
 
     it('Example 3: Token balances', async () => {
-      await getTokenBalances(alchemy, ownerAddress).then(console.log);
+      await alchemy.getTokenBalances(ownerAddress).then(console.log);
     });
   });
 });

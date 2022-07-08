@@ -3,13 +3,6 @@ export * from './types/types';
 
 export { Alchemy } from './api/alchemy';
 
-export {
-  getTransactionReceipts,
-  getAssetTransfers,
-  getTokenMetadata,
-  getTokenBalances
-} from './api/enhanced';
-
 export { BaseNftContract, NftContract, Nft, BaseNft } from './api/nft';
 
 export { fromHex, toHex, isHex } from './api/util';
