@@ -1,4 +1,4 @@
-import { Alchemy, initializeAlchemy } from '../../src';
+import { Alchemy } from '../../src';
 import { EthersNetwork } from '../../src/util/const';
 import { AlchemyProvider as EthersAlchemyProvider } from '@ethersproject/providers';
 import { AlchemyWebSocketProvider } from '../../src/api/alchemy-websocket-provider';
@@ -16,7 +16,7 @@ describe('AlchemyProvider', () => {
   let ethersProvider: EthersAlchemyProvider;
 
   beforeEach(async () => {
-    alchemy = initializeAlchemy();
+    alchemy = new Alchemy();
     ethersProvider = new EthersAlchemyProvider(
       EthersNetwork[alchemy.network],
       alchemy.apiKey

@@ -46,21 +46,8 @@ import {
 } from '../internal/nft-api';
 
 /**
- * Entry point into the Alchemy SDK.
- *
- * @param config - Configuration object for the Alchemy SDK
- * @public
- */
-export function initializeAlchemy(config?: AlchemyConfig): Alchemy {
-  return new Alchemy(config);
-}
-
-/**
- * The Alchemy SDK client. This class holds config information and must be
- * passed into SDK methods.
- *
- * Do not call this constructor directly. Instead, use {@link initializeAlchemy}
- * to get an instance of the SDK.
+ * The Alchemy SDK client. This class holds config information and provides
+ * access to all of Alchemy's APIs.
  *
  * @public
  */
@@ -76,8 +63,10 @@ export class Alchemy {
   private _baseAlchemyWssProvider: AlchemyWebSocketProvider | undefined;
 
   /**
-   * @hideconstructor
-   * @internal
+   * @param {string} [config.apiKey] - The API key to use for Alchemy
+   * @param {Network} [config.network] - The network to use for Alchemy
+   * @param {number} [config.maxRetries] - The maximum number of retries to attempt
+   * @public
    */
   constructor(config?: AlchemyConfig) {
     this.apiKey = config?.apiKey || DEFAULT_ALCHEMY_API_KEY;
