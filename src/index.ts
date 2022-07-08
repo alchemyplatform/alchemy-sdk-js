@@ -1,7 +1,7 @@
 /** This is the main entry point for the library and exports user-facing API. */
 export * from './types/types';
 
-export { initializeAlchemy, Alchemy } from './api/alchemy';
+export { Alchemy } from './api/alchemy';
 
 export {
   getTransactionReceipts,

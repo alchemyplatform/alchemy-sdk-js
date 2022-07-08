@@ -8,6 +8,7 @@ Note that the SDK is still in public beta. Alchemy reserves the right to (and al
 API changes in subsequent releases (don't write production code around it just yet).
 
 ## Getting started
+### TODO: Remove usage of `initializeAlchemy()`
 
 ```
 npm install @alch/alchemy-sdk

@@ -1,4 +1,4 @@
-import { fromHex, initializeAlchemy, toHex } from '../../src';
+import { Alchemy, fromHex, toHex } from '../../src';
 import {
   GetLogsOptions,
   WebsocketBackfiller
@@ -8,7 +8,7 @@ import { makeLogsEvent, makeNewHeadsEvent, Mocked } from '../test-util';
 import { JsonRpcRequest } from '../../src/internal/internal-types';
 
 describe('Backfill tests', () => {
-  const sdk = initializeAlchemy();
+  const sdk = new Alchemy();
   let provider: Mocked<AlchemyWebSocketProvider>;
   let backfiller: WebsocketBackfiller;
 

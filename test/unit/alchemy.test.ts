@@ -1,4 +1,4 @@
-import { AlchemyConfig, initializeAlchemy, Network } from '../../src';
+import { Alchemy, AlchemyConfig, Network } from '../../src';
 import {
   DEFAULT_ALCHEMY_API_KEY,
   DEFAULT_MAX_RETRIES,
@@ -9,7 +9,7 @@ describe('Alchemy class', () => {
   describe('translates Network to ethers', () => {
     function testNetwork(network: Network) {
       it(`should return a valid provider for ${network}`, async () => {
-        const alchemy = initializeAlchemy({
+        const alchemy = new Alchemy({
           network
         });
         await alchemy.getProvider();
@@ -27,7 +27,7 @@ describe('Alchemy class', () => {
       network: Network.OPT_KOVAN,
       maxRetries: 2
     };
-    const alchemy = initializeAlchemy(config);
+    const alchemy = new Alchemy(config);
     config.apiKey = 'new-api-key';
     config.network = Network.OPT_MAINNET;
     config.maxRetries = 3;
@@ -38,7 +38,7 @@ describe('Alchemy class', () => {
   });
 
   it('initializes to default values', () => {
-    const alchemy = initializeAlchemy();
+    const alchemy = new Alchemy();
     expect(alchemy.apiKey).toEqual(DEFAULT_ALCHEMY_API_KEY);
     expect(alchemy.network).toEqual(DEFAULT_NETWORK);
     expect(alchemy.maxRetries).toEqual(DEFAULT_MAX_RETRIES);

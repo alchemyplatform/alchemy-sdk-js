@@ -1,7 +1,6 @@
 import {
   Alchemy,
   getTokenBalances,
-  initializeAlchemy,
   NftExcludeFilters,
   NftTokenType
 } from '../../src';
@@ -14,7 +13,7 @@ describe('E2E integration tests', () => {
   const contractAddress = '0x01234567bac6ff94d7e4f0ee23119cf848f93245';
 
   beforeAll(async () => {
-    alchemy = await initializeAlchemy({
+    alchemy = await new Alchemy({
       apiKey: 'o8EEA9hbCQCTx6CsJqsUrlQFxZQ_8ado'
     });
 

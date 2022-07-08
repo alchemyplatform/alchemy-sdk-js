@@ -6,7 +6,6 @@ import {
   fromHex,
   GetNftFloorPriceResponse,
   GetNftsForOwnerOptions,
-  initializeAlchemy,
   NftContract,
   NftExcludeFilters,
   NftTokenType,
@@ -43,7 +42,7 @@ describe('NFT module', () => {
   let mock: MockAdapter;
 
   beforeAll(async () => {
-    alchemy = await initializeAlchemy();
+    alchemy = new Alchemy();
     mock = new MockAdapter(axios);
 
     // Skip all timeouts for testing.
