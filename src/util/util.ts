@@ -81,7 +81,10 @@ function parseNftTokenType(tokenType: string | undefined): NftTokenType {
   }
 }
 
-function parseNftDescription(description: string | string[]): string {
+function parseNftDescription(description?: string | string[]): string {
+  if (description === undefined) {
+    return '';
+  }
   return typeof description === 'string' ? description : description.join(' ');
 }
 
