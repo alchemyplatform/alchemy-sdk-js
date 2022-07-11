@@ -248,7 +248,7 @@ export async function* getNftsForNftContractIterator(
   for await (const response of paginateEndpoint(
     alchemy,
     AlchemyApiType.NFT,
-    'getNFTsForNftContract',
+    'getNFTsForCollection',
     'startToken',
     'nextToken',
     {
