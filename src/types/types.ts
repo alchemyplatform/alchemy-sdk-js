@@ -15,7 +15,10 @@ export interface AlchemyConfig {
   /** The Alchemy API key that can be found in the Alchemy dashboard. */
   apiKey?: string;
 
-  /** The name of the network. */
+  /**
+   * The name of the network. Once configured, the network cannot be changed. To
+   * use a different network, instantiate a new `Alchemy` instance
+   */
   network?: Network;
 
   /** The maximum number of retries to attempt if a request fails. Defaults to 5. */
