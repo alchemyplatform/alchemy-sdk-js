@@ -66,6 +66,11 @@ import type {
 } from '@ethersproject/abstract-provider';
 import type { Network as EthersNetworkAlias } from '@ethersproject/networks';
 import type { Deferrable } from '@ethersproject/properties';
+import {
+  Filter,
+  FilterByBlockHash,
+  Log
+} from '@ethersproject/abstract-provider';
 
 /**
  * The Alchemy SDK client. This class holds config information and provides
@@ -784,6 +789,19 @@ export class Alchemy {
   ): Promise<TransactionReceipt | null> {
     const provider = await this.getProvider();
     return provider.waitForTransaction(transactionHash, confirmations, timeout);
+  }
+
+  /**
+   * Returns an array of logs that match the provided filter.
+   *
+   * @param filter The filter object to use.
+   * @public
+   */
+  async getLogs(
+    filter: Filter | FilterByBlockHash | Promise<Filter | FilterByBlockHash>
+  ): Promise<Array<Log>> {
+    const provider = await this.getProvider();
+    return provider.getLogs(filter);
   }
 
   /**
