@@ -1,5 +1,12 @@
-import { Network, toHex } from '../../src';
-import { AlchemyWebSocketProvider } from '../../src/api/alchemy-websocket-provider';
+import {
+  AlchemyPendingTransactionsEventFilter,
+  Network,
+  toHex
+} from '../../src';
+import {
+  AlchemyWebSocketProvider,
+  getAlchemyEventTag
+} from '../../src/api/alchemy-websocket-provider';
 import {
   Deferred,
   makeLogsEvent,
@@ -16,6 +23,8 @@ import {
 import { Formatter } from '@ethersproject/providers/lib/formatter';
 import SpyInstance = jest.SpyInstance;
 import { AlchemyProvider } from '../../src/api/alchemy-provider';
+import { noop } from '../../src/util/const';
+import { EthersEvent } from '../../src/internal/internal-types';
 
 describe('AlchemyWebSocketProvider', () => {
   let wsProvider: Mocked<AlchemyWebSocketProvider>;
@@ -463,7 +472,7 @@ describe('AlchemyWebSocketProvider', () => {
     });
   });
 
-  describe('alchemy_newFullPendingTransactions', () => {
+  describe('alchemy_pendingTransactions', () => {
     it('handles default subscriptions', done => {
       const sendSpy = jest.spyOn(AlchemyWebSocketProvider.prototype, 'send');
       setupMockServer({
@@ -476,24 +485,20 @@ describe('AlchemyWebSocketProvider', () => {
       const expected = [{ blockNumber: 10 }, { blockNumber: 11 }];
       wsProvider.on(
         {
-          method: 'alchemy_newFullPendingTransactions'
+          method: 'alchemy_pendingTransactions'
         },
         res => {
           expect(res).toEqual(expected[eventCount]);
           eventCount++;
           if (eventCount === 2) {
-            expectSubscribeCalled(sendSpy, [
-              'alchemy_newFullPendingTransactions'
-            ]);
+            expectSubscribeCalled(sendSpy, ['alchemy_pendingTransactions', {}]);
             done();
           }
         }
       );
     });
-  });
 
-  describe('alchemy_filteredNewFullPendingTransactions', () => {
-    it('handles default subscriptions', done => {
+    it('handles subscriptions with params', done => {
       const contractAddress = '0x65d25E3F2696B73b850daA07Dd1E267dCfa67F2D';
       const sendSpy = jest.spyOn(AlchemyWebSocketProvider.prototype, 'send');
       setupMockServer({
@@ -506,20 +511,60 @@ describe('AlchemyWebSocketProvider', () => {
       const expected = [{ blockNumber: 10 }, { blockNumber: 11 }];
       wsProvider.on(
         {
-          method: 'alchemy_filteredNewFullPendingTransactions',
-          address: contractAddress
+          method: 'alchemy_pendingTransactions',
+          toAddress: contractAddress,
+          hashesOnly: true
         },
         res => {
           expect(res).toEqual(expected[eventCount]);
           eventCount++;
           if (eventCount === 2) {
             expectSubscribeCalled(sendSpy, [
-              'alchemy_filteredNewFullPendingTransactions',
-              { address: contractAddress }
+              'alchemy_pendingTransactions',
+              { toAddress: contractAddress, hashesOnly: true }
             ]);
             done();
           }
         }
+      );
+    });
+
+    function verifyRoundTrip(
+      event: AlchemyPendingTransactionsEventFilter,
+      expected: string
+    ) {
+      const serialized = getAlchemyEventTag(event);
+      expect(serialized).toEqual(expected);
+      const deserialized = new EthersEvent(expected, noop, true);
+      expect(deserialized.fromAddress).toEqual(event.fromAddress);
+      expect(deserialized.toAddress).toEqual(event.toAddress);
+      expect(deserialized.hashesOnly).toEqual(event.hashesOnly);
+    }
+
+    it('serializes and deserializes event tag properly', () => {
+      setupMockServer();
+      initializeWebSocketProvider();
+      verifyRoundTrip(
+        {
+          method: 'alchemy_pendingTransactions',
+          fromAddress: '0xABC',
+          hashesOnly: true
+        },
+        'alchemy:0xABC:*:true'
+      );
+
+      verifyRoundTrip(
+        {
+          method: 'alchemy_pendingTransactions',
+          toAddress: ['0xABC', '0xDEF'],
+          hashesOnly: false
+        },
+        'alchemy:*:0xABC|0xDEF:false'
+      );
+
+      verifyRoundTrip(
+        { method: 'alchemy_pendingTransactions' },
+        'alchemy:*:*:*'
       );
     });
   });

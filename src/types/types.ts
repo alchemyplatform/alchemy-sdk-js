@@ -494,19 +494,37 @@ export interface DeployResult {
 }
 
 /**
- * Event filters for the {@link AlchemyWebSocketProvider.on} method to use
- * Alchemy's custom Subscription API endpoints.
+ * Event filter for the {@link AlchemyWebSocketProvider.on} and
+ * {@link AlchemyWebSocketProvider.once} methods to use Alchemy's custom
+ * `alchemy_pendingTransactions` endpoint.
+ *
+ * Returns the transaction information for all pending transactions that match a
+ * given filter. For full documentation, see:
+ * https://docs.alchemy.com/alchemy/enhanced-apis/subscription-api-websockets#alchemy_pendingtransactions
+ *
+ * Note that excluding all optional parameters will return transaction
+ * information for ALL pending transactions that are added to the mempool.
  *
  * @public
  */
-export type AlchemyEventFilter =
-  | {
-      method: 'alchemy_newFullPendingTransactions';
-    }
-  | {
-      method: 'alchemy_filteredNewFullPendingTransactions';
-      address: string;
-    };
+export type AlchemyPendingTransactionsEventFilter = {
+  method: 'alchemy_pendingTransactions';
+  /** Filter pending transactions sent FROM the provided address or array of addresses. */
+  fromAddress?: string | string[];
+
+  /** Filter pending transactions sent TO the provided address or array of addresses. */
+  toAddress?: string | string[];
+
+  /**
+   * Whether to only include transaction hashes and exclude the rest of the
+   * transaction response for a smaller payload. Defaults to false (by default,
+   * the entire transaction response is included).
+   *
+   * Note that setting only {@link hashesOnly} to true will return the same
+   * response as subscribing to `newPendingTransactions`.
+   */
+  hashesOnly?: boolean;
+};
 
 /**
  * Alchemy's event filter that extends the default {@link EventType} interface to
@@ -514,4 +532,6 @@ export type AlchemyEventFilter =
  *
  * @public
  */
-export type AlchemyEventType = EventType | AlchemyEventFilter;
+export type AlchemyEventType =
+  | EventType
+  | AlchemyPendingTransactionsEventFilter;

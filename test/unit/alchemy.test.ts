@@ -50,8 +50,8 @@ describe('Alchemy class', () => {
     const provider2 = await alchemy.getProvider();
     expect(provider).toBe(provider2);
 
-    const wsProvider = await alchemy.getWebsocketProvider();
-    const wsProvider2 = await alchemy.getWebsocketProvider();
+    const wsProvider = await alchemy.getWebSocketProvider();
+    const wsProvider2 = await alchemy.getWebSocketProvider();
     expect(wsProvider).toBe(wsProvider2);
   });
 
@@ -63,8 +63,8 @@ describe('Alchemy class', () => {
     const provider2 = await provider2Promise;
     expect(provider).toBe(provider2);
 
-    const wsProviderPromise = alchemy.getWebsocketProvider();
-    const wsProvider2Promise = alchemy.getWebsocketProvider();
+    const wsProviderPromise = alchemy.getWebSocketProvider();
+    const wsProvider2Promise = alchemy.getWebSocketProvider();
     const wsProvider = await wsProviderPromise;
     const wsProvider2 = await wsProvider2Promise;
     expect(wsProvider).toBe(wsProvider2);

@@ -5,6 +5,8 @@ import {
 } from './websocket-backfiller';
 import { EventType, Filter, Listener } from '@ethersproject/abstract-provider';
 
+/** This file contains internal types used by the SDK and are not exposed to the end user. */
+
 type JsonRpcId = string | number | null;
 
 export interface JsonRpcRequest {
@@ -140,15 +142,39 @@ class Event {
  * @internal
  */
 export class EthersEvent extends Event {
-  get address(): string | null {
+  get fromAddress(): string | string[] | undefined {
     const comps = this.tag.split(':');
     if (comps[0] !== 'alchemy') {
-      return null;
+      return undefined;
     }
     if (comps[1] && comps[1] !== '*') {
-      return comps[1];
+      return deserializeAddressField(comps[1]);
     } else {
-      return null;
+      return undefined;
+    }
+  }
+
+  get toAddress(): string | string[] | undefined {
+    const comps = this.tag.split(':');
+    if (comps[0] !== 'alchemy') {
+      return undefined;
+    }
+    if (comps[2] && comps[2] !== '*') {
+      return deserializeAddressField(comps[2]);
+    } else {
+      return undefined;
+    }
+  }
+
+  get hashesOnly(): boolean | undefined {
+    const comps = this.tag.split(':');
+    if (comps[0] !== 'alchemy') {
+      return undefined;
+    }
+    if (comps[3] && comps[3] !== '*') {
+      return comps[3] === 'true';
+    } else {
+      return undefined;
     }
   }
 }
@@ -179,4 +205,13 @@ function deserializeTopics(data: string): any {
 
     return comps.length === 1 ? comps[0] : comps;
   });
+}
+
+function deserializeAddressField(data: string): string | string[] | undefined {
+  if (data === '') {
+    return undefined;
+  }
+
+  const addresses = data.split('|');
+  return addresses.length === 1 ? addresses[0] : addresses;
 }

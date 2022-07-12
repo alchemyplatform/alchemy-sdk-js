@@ -32,7 +32,7 @@ describe('Backfill tests', () => {
 
   beforeEach(async () => {
     provider =
-      (await sdk.getWebsocketProvider()) as Mocked<AlchemyWebSocketProvider>;
+      (await sdk.getWebSocketProvider()) as Mocked<AlchemyWebSocketProvider>;
     backfiller = new WebsocketBackfiller(provider);
     provider.send = jest.fn();
     provider.sendBatch = jest.fn();

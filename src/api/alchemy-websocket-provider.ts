@@ -3,7 +3,10 @@ import { Networkish } from '@ethersproject/networks';
 import { DEFAULT_ALCHEMY_API_KEY, EthersNetwork, noop } from '../util/const';
 import { AlchemyProvider } from './alchemy-provider';
 import { Listener } from '@ethersproject/abstract-provider';
-import { AlchemyEventType } from '../types/types';
+import {
+  AlchemyEventType,
+  AlchemyPendingTransactionsEventFilter
+} from '../types/types';
 import {
   BatchPart,
   dedupeLogs,
@@ -32,6 +35,7 @@ import {
   CommunityResourcable,
   WebSocketProvider
 } from '@ethersproject/providers';
+import { stripUndefined } from '../util/util';
 
 const HEARTBEAT_INTERVAL = 30000;
 const HEARTBEAT_WAIT_TIME = 10000;
@@ -687,22 +691,16 @@ export class AlchemyWebSocketProvider
   /** @internal */
   private customStartEvent(event: EthersEvent): void {
     if (event.type === 'alchemy') {
-      const { address } = event;
-      if (!!address) {
-        void this._subscribe(
-          event.tag,
-          ['alchemy_filteredNewFullPendingTransactions', { address }],
-          this.emitProcessFn(event),
-          event
-        );
-      } else {
-        void this._subscribe(
-          event.tag,
-          ['alchemy_newFullPendingTransactions'],
-          this.emitProcessFn(event),
-          event
-        );
-      }
+      const { fromAddress, toAddress, hashesOnly } = event;
+      void this._subscribe(
+        event.tag,
+        [
+          'alchemy_pendingTransactions',
+          stripUndefined({ fromAddress, toAddress, hashesOnly })
+        ],
+        this.emitProcessFn(event),
+        event
+      );
     } else if (event.type === 'block') {
       void this._subscribe(
         'block',
@@ -724,20 +722,17 @@ export class AlchemyWebSocketProvider
   private emitProcessFn(event: EthersEvent): (result: any) => void {
     switch (event.type) {
       case 'alchemy':
-        const { address } = event;
-        if (!!address) {
-          return result =>
-            this.emit(
-              {
-                method: 'alchemy_filteredNewFullPendingTransactions',
-                address: event.address!
-              },
-              result
-            );
-        } else {
-          return result =>
-            this.emit({ method: 'alchemy_newFullPendingTransactions' }, result);
-        }
+        const { fromAddress, toAddress, hashesOnly } = event;
+        return result =>
+          this.emit(
+            {
+              method: 'alchemy_pendingTransactions',
+              fromAddress,
+              toAddress,
+              hashesOnly
+            },
+            result
+          );
       case 'block':
         return result => {
           const blockNumber = BigNumber.from(result.number).toNumber();
@@ -1008,13 +1003,57 @@ function addToPastEventsBuffer<T>(
   pastEvents.push(event);
 }
 
-function isAlchemyEvent(event: AlchemyEventType): event is object {
+function isAlchemyEvent(
+  event: AlchemyEventType
+): event is AlchemyPendingTransactionsEventFilter {
   return typeof event === 'object' && 'method' in event;
 }
 
-function getAlchemyEventTag(event: AlchemyEventType): string {
+/**
+ * Creates a string representation of an `alchemy_pendingTransaction`
+ * subscription filter that is compatible with the ethers implementation of event tag.
+ *
+ * @example
+ *   ```js
+ *   // Returns 'alchemy:0xABC:0xDEF|0xGHI:true'
+ *   const eventTag =  getAlchemyEventTag(
+ *   {
+ *     "method": "alchemy_pendingTransaction",
+ *     "fromAddress": "0xABC",
+ *     "toAddress": ["0xDEF", "0xGHI"],
+ *     "hashesOnly: true
+ *   });
+ *   ```;
+ *
+ * @param event
+ * @internal
+ */
+export function getAlchemyEventTag(event: AlchemyEventType): string {
   if (!isAlchemyEvent(event)) {
     throw new Error('Event tag requires AlchemyEventType');
   }
-  return 'alchemy:' + (('address' in event && event.address) || '*');
+  const fromAddress = serializeAddressField(event.fromAddress);
+  const toAddress = serializeAddressField(event.toAddress);
+  const hashesOnly = serializeBooleanField(event.hashesOnly);
+  return 'alchemy:' + fromAddress + ':' + toAddress + ':' + hashesOnly;
+}
+
+function serializeAddressField(
+  field: string | Array<string> | undefined
+): string {
+  if (field === undefined) {
+    return '*';
+  } else if (Array.isArray(field)) {
+    return field.join('|');
+  } else {
+    return field;
+  }
+}
+
+function serializeBooleanField(field: boolean | undefined): string | undefined {
+  if (field === undefined) {
+    return '*';
+  } else {
+    return field ? 'true' : 'false';
+  }
 }

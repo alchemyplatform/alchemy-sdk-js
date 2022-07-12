@@ -97,39 +97,35 @@ runAlchemy();
 
 In addition to the built-in Ethers.js listeners, the Alchemy SDK includes support for Alchemy's Subscription API. This
 allows you to subscribe to events and receive updates
-as they occur. The two supported subscriptions are
-[alchemy_newFullPendingTransactions](https://alchemy.com/alchemy/enhanced-apis/subscription-api-websockets#alchemy_newfullpendingtransactions)
-and
-[alchemy_filteredNewFullPendingTransactions](https://alchemy.com/alchemy/enhanced-apis/subscription-api-websockets#alchemy_filterednewfullpendingtransactions)
-.
+as they occur. The main subscription API is
+[alchemy_pendingTransactions](https://docs.alchemy.com/alchemy/enhanced-apis/subscription-api-websockets#alchemy_pendingtransactions).
 
-The `Alchemy.getWebsocketProvider()` function configures the
-Alchemy [AlchemyWebSocketProvider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyWebSocketProvider) and
-returns it. This can be used like the standard Ethers.js Websocket provider to add listeners for Alchemy events:
+The top level `Alchemy` instance can be used can be used like the standard Ethers.js [WebSocketProvider](https://docs.ethers.io/v5/api/providers/other/#WebSocketProvider) to add listeners for Alchemy events:
 
 ```ts
 import { Alchemy } from '@alch/alchemy-sdk';
 
 const alchemy = new Alchemy();
 
-const websocketProvider = alchemy.getWebsocketProvider();
-
 // Listen to all new pending transactions.
-websocketProvider.on(
+alchemy.on(
   {
-    method: 'alchemy_newFullPendingTransactions'
+    method: 'alchemy_pendingTransactions'
   },
   res => console.log(res)
 );
 
 // Listen to all transactions on the USDC contract.
-websocketProvider.on(
+alchemy.once(
   {
     method: 'alchemy_filteredNewFullPendingTransactions',
-    address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+    toAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
   },
   res => console.log(res)
 );
+
+// Remove all listeners.
+alchemy.removeAllListeners();
 ```
 
 The SDK brings multiple improvements to ensure correct WebSocket behavior in cases of temporary network failure or

@@ -21,7 +21,7 @@ describe('AlchemyProvider', () => {
       EthersNetwork[alchemy.network],
       alchemy.apiKey
     );
-    wsProvider = await alchemy.getWebsocketProvider();
+    wsProvider = await alchemy.getWebSocketProvider();
     provider = await alchemy.getProvider();
   });
 
@@ -44,11 +44,13 @@ describe('AlchemyProvider', () => {
     const address = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
     wsProvider.on(
       {
-        method: 'alchemy_filteredNewFullPendingTransactions',
-        address
+        method: 'alchemy_pendingTransactions',
+        toAddress: address,
+        hashesOnly: true
       },
       res => {
         expect(res.to).toEqual(address.toLowerCase());
+        console.log(res);
         if (eventCount === 10) {
           done();
         }
@@ -66,7 +68,7 @@ describe('AlchemyProvider', () => {
     let eventCount = 0;
     wsProvider.on(
       {
-        method: 'alchemy_newFullPendingTransactions'
+        method: 'alchemy_pendingTransactions'
       },
       msg => {
         console.log('message', msg);
