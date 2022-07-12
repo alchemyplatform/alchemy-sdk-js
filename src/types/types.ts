@@ -170,12 +170,45 @@ export interface NftMetadata extends Record<string, any> {
   attributes?: Array<Record<string, any>>;
 }
 
-/** @public */
+/**
+ * Represents the URI information the NFT's metadata.
+ *
+ * @public
+ */
 export interface TokenUri {
-  /** URI for the location of the NFT's original metadata blob. */
+  /**
+   * URI for the location of the NFT's original metadata blob (ex: the original
+   * IPFS link).
+   */
   raw: string;
+
   /** Public gateway URI for the raw URI. Generally offers better performance. */
   gateway: string;
+}
+
+/**
+ * Represents the URI information for the NFT's media assets.
+ *
+ * @public
+ */
+export interface Media {
+  /**
+   * URI for the location of the NFT's original metadata blob for media (ex: the
+   * original IPFS link).
+   */
+  raw: string;
+
+  /** Public gateway URI for the raw URI. Generally offers better performance. */
+  gateway: string;
+
+  /** URL for a resized thumbnail of the NFT media asset. */
+  thumbnail?: string;
+
+  /**
+   * The media format (ex: jpg, gif, png) of the {@link gateway} and
+   * {@link thumbnail} assets.
+   */
+  format?: string;
 }
 
 /**

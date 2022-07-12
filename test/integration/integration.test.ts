@@ -9,7 +9,7 @@ describe('E2E integration tests', () => {
 
   beforeAll(async () => {
     alchemy = await new Alchemy({
-      apiKey: 'o8EEA9hbCQCTx6CsJqsUrlQFxZQ_8ado'
+      apiKey: 'alch-demo'
     });
 
     // Skip all timeouts for testing.

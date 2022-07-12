@@ -1,4 +1,4 @@
-import { NftMetadata, NftTokenType, TokenUri } from '../types/types';
+import { Media, NftMetadata, NftTokenType, TokenUri } from '../types/types';
 
 /**
  * Alchemy representation of a base NFT contract that doesn't contain metadata.
@@ -66,5 +66,5 @@ export interface Nft extends BaseNft {
   tokenUri: TokenUri | undefined;
 
   /** URIs for accessing the NFT's media assets. */
-  media: TokenUri[];
+  media: Media[];
 }
