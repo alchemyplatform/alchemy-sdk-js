@@ -919,7 +919,7 @@ export class Alchemy {
    *
    * @public
    */
-  async getProvider(): Promise<AlchemyProvider> {
+  getProvider(): Promise<AlchemyProvider> {
     if (!this._baseAlchemyProvider) {
       this._baseAlchemyProvider = (async () => {
         const { AlchemyProvider } = await import('./alchemy-provider');
@@ -943,7 +943,7 @@ export class Alchemy {
    *
    * @public
    */
-  async getWebsocketProvider(): Promise<AlchemyWebSocketProvider> {
+  getWebsocketProvider(): Promise<AlchemyWebSocketProvider> {
     if (!this._baseAlchemyWssProvider) {
       this._baseAlchemyWssProvider = (async () => {
         const { AlchemyWebSocketProvider } = await import(
