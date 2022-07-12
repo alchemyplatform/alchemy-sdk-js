@@ -43,4 +43,30 @@ describe('Alchemy class', () => {
     expect(alchemy.network).toEqual(DEFAULT_NETWORK);
     expect(alchemy.maxRetries).toEqual(DEFAULT_MAX_RETRIES);
   });
+
+  it('reuses the same provider', async () => {
+    const alchemy = new Alchemy();
+    const provider = await alchemy.getProvider();
+    const provider2 = await alchemy.getProvider();
+    expect(provider).toBe(provider2);
+
+    const wsProvider = await alchemy.getWebsocketProvider();
+    const wsProvider2 = await alchemy.getWebsocketProvider();
+    expect(wsProvider).toBe(wsProvider2);
+  });
+
+  it('providers are loaded once', async () => {
+    const alchemy = new Alchemy();
+    const providerPromise = alchemy.getProvider();
+    const provider2Promise = alchemy.getProvider();
+    const provider = await providerPromise;
+    const provider2 = await provider2Promise;
+    expect(provider).toBe(provider2);
+
+    const wsProviderPromise = alchemy.getWebsocketProvider();
+    const wsProvider2Promise = alchemy.getWebsocketProvider();
+    const wsProvider = await wsProviderPromise;
+    const wsProvider2 = await wsProvider2Promise;
+    expect(wsProvider).toBe(wsProvider2);
+  });
 });
