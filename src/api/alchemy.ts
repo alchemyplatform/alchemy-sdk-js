@@ -84,10 +84,12 @@ export class Alchemy {
   readonly maxRetries: number;
 
   /** @internal */
-  private _baseAlchemyProvider: AlchemyProvider | undefined;
+  private _baseAlchemyProvider: Promise<AlchemyProvider> | undefined;
 
   /** @internal */
-  private _baseAlchemyWssProvider: AlchemyWebSocketProvider | undefined;
+  private _baseAlchemyWssProvider:
+    | Promise<AlchemyWebSocketProvider>
+    | undefined;
 
   /**
    * @param {string} [config.apiKey] - The API key to use for Alchemy
@@ -825,12 +827,12 @@ export class Alchemy {
    * @param listener The listener to call when the event is triggered.
    * @public
    */
-  async on(
-    eventName: AlchemyEventType,
-    listener: Listener
-  ): Promise<AlchemyWebSocketProvider> {
-    const provider = await this.getWebsocketProvider();
-    return provider.on(eventName, listener);
+  on(eventName: AlchemyEventType, listener: Listener): this {
+    void (async () => {
+      const provider = await this.getWebsocketProvider();
+      provider.on(eventName, listener);
+    })();
+    return this;
   }
 
   /**
@@ -842,12 +844,12 @@ export class Alchemy {
    * @param listener The listener to call when the event is triggered.
    * @public
    */
-  async once(
-    eventName: AlchemyEventType,
-    listener: Listener
-  ): Promise<AlchemyWebSocketProvider> {
-    const provider = await this.getWebsocketProvider();
-    return provider.once(eventName, listener);
+  once(eventName: AlchemyEventType, listener: Listener): this {
+    void (async () => {
+      const provider = await this.getWebsocketProvider();
+      provider.once(eventName, listener);
+    })();
+    return this;
   }
 
   /**
@@ -858,12 +860,12 @@ export class Alchemy {
    * @param listener The listener to remove.
    * @public
    */
-  async off(
-    eventName: AlchemyEventType,
-    listener?: Listener
-  ): Promise<AlchemyWebSocketProvider> {
-    const provider = await this.getWebsocketProvider();
-    return provider.off(eventName, listener);
+  off(eventName: AlchemyEventType, listener?: Listener): this {
+    void (async () => {
+      const provider = await this.getWebsocketProvider();
+      return provider.off(eventName, listener);
+    })();
+    return this;
   }
 
   /**
@@ -873,11 +875,12 @@ export class Alchemy {
    * @param eventName The event to remove all listeners for.
    * @public
    */
-  async removeAllListeners(
-    eventName?: AlchemyEventType
-  ): Promise<AlchemyWebSocketProvider> {
-    const provider = await this.getWebsocketProvider();
-    return provider.removeAllListeners(eventName);
+  removeAllListeners(eventName?: AlchemyEventType): this {
+    void (async () => {
+      const provider = await this.getWebsocketProvider();
+      provider.removeAllListeners(eventName);
+    })();
+    return this;
   }
 
   /**
@@ -918,12 +921,10 @@ export class Alchemy {
    */
   async getProvider(): Promise<AlchemyProvider> {
     if (!this._baseAlchemyProvider) {
-      const { AlchemyProvider } = await import('./alchemy-provider');
-      this._baseAlchemyProvider = new AlchemyProvider(
-        this.network,
-        this.apiKey,
-        this.maxRetries
-      );
+      this._baseAlchemyProvider = (async () => {
+        const { AlchemyProvider } = await import('./alchemy-provider');
+        return new AlchemyProvider(this.network, this.apiKey, this.maxRetries);
+      })();
     }
     return this._baseAlchemyProvider;
   }
@@ -944,13 +945,12 @@ export class Alchemy {
    */
   async getWebsocketProvider(): Promise<AlchemyWebSocketProvider> {
     if (!this._baseAlchemyWssProvider) {
-      const { AlchemyWebSocketProvider } = await import(
-        './alchemy-websocket-provider'
-      );
-      this._baseAlchemyWssProvider = new AlchemyWebSocketProvider(
-        this.network,
-        this.apiKey
-      );
+      this._baseAlchemyWssProvider = (async () => {
+        const { AlchemyWebSocketProvider } = await import(
+          './alchemy-websocket-provider'
+        );
+        return new AlchemyWebSocketProvider(this.network, this.apiKey);
+      })();
     }
     return this._baseAlchemyWssProvider;
   }
