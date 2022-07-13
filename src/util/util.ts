@@ -99,6 +99,7 @@ function parseNftTokenUriArray(arr: TokenUri[] | undefined): TokenUri[] {
   return arr.filter(uri => parseNftTokenUri(uri) !== undefined);
 }
 
+/** Recursively strips any undefined values from the provided object. */
 export function stripUndefined(obj: { [key: string]: any }): {
   [key: string]: any;
 } {

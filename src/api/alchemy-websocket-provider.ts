@@ -701,6 +701,8 @@ export class AlchemyWebSocketProvider
         event.tag,
         [
           'alchemy_pendingTransactions',
+
+          // Make sure undefined fields are not included in the payload.
           stripUndefined({ fromAddress, toAddress, hashesOnly })
         ],
         this.emitProcessFn(event),
