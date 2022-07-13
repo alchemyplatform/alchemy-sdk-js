@@ -24,7 +24,10 @@ import { Formatter } from '@ethersproject/providers/lib/formatter';
 import SpyInstance = jest.SpyInstance;
 import { AlchemyProvider } from '../../src/api/alchemy-provider';
 import { noop } from '../../src/util/const';
-import { EthersEvent } from '../../src/internal/internal-types';
+import {
+  ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE,
+  EthersEvent
+} from '../../src/internal/internal-types';
 
 describe('AlchemyWebSocketProvider', () => {
   let wsProvider: Mocked<AlchemyWebSocketProvider>;
@@ -550,7 +553,7 @@ describe('AlchemyWebSocketProvider', () => {
           fromAddress: '0xABC',
           hashesOnly: true
         },
-        'alchemy:0xABC:*:true'
+        ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE + ':0xABC:*:true'
       );
 
       verifyRoundTrip(
@@ -559,12 +562,12 @@ describe('AlchemyWebSocketProvider', () => {
           toAddress: ['0xABC', '0xDEF'],
           hashesOnly: false
         },
-        'alchemy:*:0xABC|0xDEF:false'
+        ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE + ':*:0xABC|0xDEF:false'
       );
 
       verifyRoundTrip(
         { method: 'alchemy_pendingTransactions' },
-        'alchemy:*:*:*'
+        ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE + ':*:*:*'
       );
     });
   });

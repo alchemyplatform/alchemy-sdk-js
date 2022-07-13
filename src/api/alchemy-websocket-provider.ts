@@ -21,6 +21,7 @@ import { fromHex } from './util';
 import SturdyWebSocket from 'sturdy-websocket';
 import { VERSION } from '../version';
 import {
+  ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE,
   EthersEvent,
   JsonRpcRequest,
   JsonRpcResponse,
@@ -247,7 +248,11 @@ export class AlchemyWebSocketProvider
    */
   _startEvent(event: EthersEvent): void {
     // Check if the event type is a custom Alchemy subscription.
-    const customLogicTypes = ['alchemy', 'block', 'filter'];
+    const customLogicTypes = [
+      ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE,
+      'block',
+      'filter'
+    ];
     if (customLogicTypes.includes(event.type)) {
       this.customStartEvent(event);
     } else {
@@ -690,7 +695,7 @@ export class AlchemyWebSocketProvider
 
   /** @internal */
   private customStartEvent(event: EthersEvent): void {
-    if (event.type === 'alchemy') {
+    if (event.type === ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE) {
       const { fromAddress, toAddress, hashesOnly } = event;
       void this._subscribe(
         event.tag,
@@ -721,7 +726,7 @@ export class AlchemyWebSocketProvider
   /** @internal */
   private emitProcessFn(event: EthersEvent): (result: any) => void {
     switch (event.type) {
-      case 'alchemy':
+      case ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE:
         const { fromAddress, toAddress, hashesOnly } = event;
         return result =>
           this.emit(
@@ -1011,11 +1016,15 @@ function isAlchemyEvent(
 
 /**
  * Creates a string representation of an `alchemy_pendingTransaction`
- * subscription filter that is compatible with the ethers implementation of event tag.
+ * subscription filter that is compatible with the ethers implementation of
+ * `getEventTag()`. The method is not an exported function in ethers, which is
+ * why the SDK has its own implementation.
+ *
+ * The event tag is then deserialized by the SDK's {@link EthersEvent} getters.
  *
  * @example
  *   ```js
- *   // Returns 'alchemy:0xABC:0xDEF|0xGHI:true'
+ *   // Returns 'alchemy-pending-transactions:0xABC:0xDEF|0xGHI:true'
  *   const eventTag =  getAlchemyEventTag(
  *   {
  *     "method": "alchemy_pendingTransaction",
@@ -1035,7 +1044,15 @@ export function getAlchemyEventTag(event: AlchemyEventType): string {
   const fromAddress = serializeAddressField(event.fromAddress);
   const toAddress = serializeAddressField(event.toAddress);
   const hashesOnly = serializeBooleanField(event.hashesOnly);
-  return 'alchemy:' + fromAddress + ':' + toAddress + ':' + hashesOnly;
+  return (
+    ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE +
+    ':' +
+    fromAddress +
+    ':' +
+    toAddress +
+    ':' +
+    hashesOnly
+  );
 }
 
 function serializeAddressField(
@@ -1054,6 +1071,6 @@ function serializeBooleanField(field: boolean | undefined): string | undefined {
   if (field === undefined) {
     return '*';
   } else {
-    return field ? 'true' : 'false';
+    return field.toString();
   }
 }
