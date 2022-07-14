@@ -15,7 +15,9 @@ import {
   OwnedBaseNft,
   OwnedBaseNftsResponse,
   OwnedNft,
-  OwnedNftsResponse
+  OwnedNftsResponse,
+  RefreshNftContractResult,
+  RefreshState
 } from '../types/types';
 import { paginateEndpoint, requestHttpWithBackoff } from './dispatch';
 import {
@@ -30,7 +32,8 @@ import {
   RawNftContractBaseNft,
   RawNftContractNft,
   RawOwnedBaseNft,
-  RawOwnedNft
+  RawOwnedNft,
+  RawReingestContractResponse
 } from './raw-interfaces';
 import { AlchemyApiType } from '../util/const';
 import {
@@ -378,6 +381,33 @@ export async function refreshNftMetadata(
   return first.timeLastUpdated !== second.timeLastUpdated;
 }
 
+export async function refreshNftContract(
+  alchemy: Alchemy,
+  contractAddressOrBaseNft: string | BaseNft
+): Promise<RefreshNftContractResult> {
+  let response;
+  if (typeof contractAddressOrBaseNft === 'string') {
+    response = await requestHttpWithBackoff<
+      ReingestContractParams,
+      RawReingestContractResponse
+    >(alchemy, AlchemyApiType.NFT, 'reingestContract', {
+      contractAddress: contractAddressOrBaseNft
+    });
+  } else {
+    response = await requestHttpWithBackoff<
+      ReingestContractParams,
+      RawReingestContractResponse
+    >(alchemy, AlchemyApiType.NFT, 'reingestContract', {
+      contractAddress: contractAddressOrBaseNft.contract.address
+    });
+  }
+  return {
+    contractAddress: response.contractAddress,
+    refreshState: parseReingestionState(response.reingestionState),
+    progress: response.progress
+  };
+}
+
 async function refresh(
   alchemy: Alchemy,
   contractAddress: string,
@@ -473,6 +503,25 @@ function omitMetadataToWithMetadata(
   return omitMetadata === undefined ? true : !omitMetadata;
 }
 
+function parseReingestionState(reingestionState: string): RefreshState {
+  switch (reingestionState) {
+    case 'does_not_exist':
+      return RefreshState.DOES_NOT_EXIST;
+    case 'already_queued':
+      return RefreshState.ALREADY_QUEUED;
+    case 'in_progress':
+      return RefreshState.IN_PROGRESS;
+    case 'finished':
+      return RefreshState.FINISHED;
+    case 'queued':
+      return RefreshState.QUEUED;
+    case 'queue_failed':
+      return RefreshState.QUEUE_FAILED;
+    default:
+      throw new Error('Unknown reingestion state: ' + reingestionState);
+  }
+}
+
 /**
  * Interface for the `getNftsForNftContract` endpoint. The main difference is
  * that the endpoint has a `startToken` parameter, but the SDK standardizes all
@@ -546,5 +595,9 @@ interface GetOwnersForNftContractAlchemyParams {
  * @internal
  */
 interface GetFloorPriceParams {
+  contractAddress: string;
+}
+
+interface ReingestContractParams {
   contractAddress: string;
 }

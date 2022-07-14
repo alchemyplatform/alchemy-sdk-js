@@ -19,6 +19,7 @@ import {
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
+  RefreshNftContractResult,
   TokenBalancesResponse,
   TokenMetadataResponse,
   TransactionReceiptsParams,
@@ -49,7 +50,8 @@ import {
   getSpamNftContracts,
   getNftFloorPrice,
   findContractDeployer,
-  refreshNftMetadata
+  refreshNftMetadata,
+  refreshNftContract
 } from '../internal/nft-api';
 import { formatBlock } from '../util/util';
 import { toHex } from './util';
@@ -429,6 +431,9 @@ export class Alchemy {
    * The last refresh time for an NFT can be accessed on the
    * {@link Nft.timeLastUpdated} field.
    *
+   * To trigger a refresh for all NFTs in a contract, use
+   * {@link refreshNftContract} instead.
+   *
    * @param contractAddress - The contract address of the NFT.
    * @param tokenId - The token id of the NFT.
    */
@@ -444,6 +449,9 @@ export class Alchemy {
    * has been updated since the last time it was fetched. Note that the backend
    * only allows one refresh per token every 15 minutes, globally for all users.
    *
+   * To trigger a refresh for all NFTs in a contract, use
+   * {@link refreshNftContract} instead.
+   *
    * @param nft - The NFT to refresh the metadata for.
    */
   refreshNftMetadata(nft: BaseNft): Promise<boolean>;
@@ -452,6 +460,38 @@ export class Alchemy {
     tokenId?: BigNumberish
   ): Promise<boolean> {
     return refreshNftMetadata(this, contractAddressOrBaseNft, tokenId);
+  }
+
+  /**
+   * Triggers a metadata refresh all NFTs in the provided contract address. This
+   * method is useful after an NFT collection is revealed.
+   *
+   * Refreshes are queued on the Alchemy backend and may take time to fully
+   * process. To refresh the metadata for a specific token, use the
+   * {@link refreshNftMetadata} method instead.
+   *
+   * @param contractAddress - The contract address of the NFT collection.
+   * @beta
+   */
+  refreshNftContract(
+    contractAddress: string
+  ): Promise<RefreshNftContractResult>;
+  /**
+   * Triggers a metadata refresh all NFTs in the provided contract address. This
+   * method is useful after an NFT collection is revealed.
+   *
+   * Refreshes are queued on the Alchemy backend and may take time to fully
+   * process. To refresh the metadata for a specific token, use the
+   * {@link refreshNftMetadata} method instead.
+   *
+   * @param nft - The contract address of the NFT collection.
+   * @beta
+   */
+  refreshNftContract(nft: BaseNft): Promise<RefreshNftContractResult>;
+  refreshNftContract(
+    contractAddressOrBaseNft: string | BaseNft
+  ): Promise<RefreshNftContractResult> {
+    return refreshNftContract(this, contractAddressOrBaseNft);
   }
 
   /**
