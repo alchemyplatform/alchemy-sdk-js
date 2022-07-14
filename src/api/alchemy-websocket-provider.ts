@@ -36,7 +36,6 @@ import {
   CommunityResourcable,
   WebSocketProvider
 } from '@ethersproject/providers';
-import { stripUndefined } from '../util/util';
 
 const HEARTBEAT_INTERVAL = 30000;
 const HEARTBEAT_WAIT_TIME = 10000;
@@ -703,7 +702,7 @@ export class AlchemyWebSocketProvider
           'alchemy_pendingTransactions',
 
           // Make sure undefined fields are not included in the payload.
-          stripUndefined({ fromAddress, toAddress, hashesOnly })
+          { fromAddress, toAddress, hashesOnly }
         ],
         this.emitProcessFn(event),
         event
