@@ -869,7 +869,7 @@ export class Alchemy {
    */
   on(eventName: AlchemyEventType, listener: Listener): this {
     void (async () => {
-      const provider = await this.getWebsocketProvider();
+      const provider = await this.getWebSocketProvider();
       provider.on(eventName, listener);
     })();
     return this;
@@ -886,7 +886,7 @@ export class Alchemy {
    */
   once(eventName: AlchemyEventType, listener: Listener): this {
     void (async () => {
-      const provider = await this.getWebsocketProvider();
+      const provider = await this.getWebSocketProvider();
       provider.once(eventName, listener);
     })();
     return this;
@@ -902,7 +902,7 @@ export class Alchemy {
    */
   off(eventName: AlchemyEventType, listener?: Listener): this {
     void (async () => {
-      const provider = await this.getWebsocketProvider();
+      const provider = await this.getWebSocketProvider();
       return provider.off(eventName, listener);
     })();
     return this;
@@ -917,7 +917,7 @@ export class Alchemy {
    */
   removeAllListeners(eventName?: AlchemyEventType): this {
     void (async () => {
-      const provider = await this.getWebsocketProvider();
+      const provider = await this.getWebSocketProvider();
       provider.removeAllListeners(eventName);
     })();
     return this;
@@ -931,7 +931,7 @@ export class Alchemy {
    * @public
    */
   async listenerCount(eventName?: AlchemyEventType): Promise<number> {
-    const provider = await this.getWebsocketProvider();
+    const provider = await this.getWebSocketProvider();
     return provider.listenerCount(eventName);
   }
 
@@ -942,7 +942,7 @@ export class Alchemy {
    * @param eventName The event to get the listeners for.
    */
   async listeners(eventName?: AlchemyEventType): Promise<Listener[]> {
-    const provider = await this.getWebsocketProvider();
+    const provider = await this.getWebSocketProvider();
     return provider.listeners(eventName);
   }
 
@@ -983,7 +983,7 @@ export class Alchemy {
    *
    * @public
    */
-  getWebsocketProvider(): Promise<AlchemyWebSocketProvider> {
+  getWebSocketProvider(): Promise<AlchemyWebSocketProvider> {
     if (!this._baseAlchemyWssProvider) {
       this._baseAlchemyWssProvider = (async () => {
         const { AlchemyWebSocketProvider } = await import(
