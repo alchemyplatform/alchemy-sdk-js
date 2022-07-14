@@ -1,6 +1,6 @@
 {
   "name": "@alch/alchemy-sdk",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Extended Ethers.js SDK for Alchemy APIs",
   "author": "Alchemy",
   "license": "MIT",
@@ -93,7 +93,7 @@
   "sideEffects": false,
   "size-limit": [
     {
-      "path": "dist/cjs/index.js",
+      "path": "dist/index.cjs.js",
       "limit": "100 kB"
     }
   ]
