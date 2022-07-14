@@ -167,6 +167,12 @@ describe('E2E integration tests', () => {
     await alchemy.refreshNftMetadata(nft);
   });
 
+  it('refreshNftContract()', async () => {
+    const contractAddress = '0x0510745d2ca36729bed35c818527c4485912d99e';
+    const result = await alchemy.refreshNftContract(contractAddress);
+    console.log('result', result);
+  });
+
   describe('README examples', () => {
     it('Example 1: Getting the Nfts owned by an address', async () => {
       void alchemy.getNftsForOwner('0xshah.eth').then(nfts => {

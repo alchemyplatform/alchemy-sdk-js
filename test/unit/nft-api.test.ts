@@ -13,7 +13,8 @@ import {
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
-  Nft
+  Nft,
+  RefreshState
 } from '../../src';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
@@ -1178,6 +1179,57 @@ describe('NFT module', () => {
       await expect(
         alchemy.refreshNftMetadata(contractAddress, tokenId)
       ).rejects.toThrow('Internal Server Error');
+    });
+  });
+
+  describe('refreshNftContract', () => {
+    const contractAddress = '0xCA1';
+    const refreshResponse = {
+      contractAddress,
+      reingestionState: 'queued',
+      progress: '5'
+    };
+    beforeEach(() => {
+      mock.onGet().reply(200, refreshResponse);
+    });
+    it('calls with the correct parameters', async () => {
+      const response = await alchemy.refreshNftContract(contractAddress);
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        contractAddress
+      );
+      expect(response).toEqual({
+        contractAddress,
+        refreshState: RefreshState.QUEUED,
+        progress: '5'
+      });
+    });
+
+    it('can be called with BaseNft', async () => {
+      const response = await alchemy.refreshNftContract(
+        createBaseNft(contractAddress, '0x42')
+      );
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        contractAddress
+      );
+
+      expect(response).toEqual({
+        contractAddress,
+        refreshState: RefreshState.QUEUED,
+        progress: '5'
+      });
+    });
+
+    it('retries with maxAttempts', async () => {
+      mock.reset();
+      mock.onGet().reply(429, 'Too many requests');
+
+      await expect(alchemy.refreshNftContract(contractAddress)).rejects.toThrow(
+        'Too many requests'
+      );
     });
   });
 

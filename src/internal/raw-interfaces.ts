@@ -165,3 +165,9 @@ export interface RawNftContractNft extends RawNft, RawNftContractBaseNft {}
 export interface RawGetOwnersForNftContractResponse {
   ownerAddresses: string[];
 }
+
+export interface RawReingestContractResponse {
+  contractAddress: string;
+  reingestionState: string;
+  progress: string | null;
+}

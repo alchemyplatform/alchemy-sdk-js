@@ -406,6 +406,42 @@ export interface GetNftFloorPriceResponse {
   readonly looksRare: FloorPriceMarketplace | FloorPriceError;
 }
 
+/** The refresh result response object returned by {@link refreshNftContract}. */
+export interface RefreshNftContractResult {
+  /** The NFT contract address that was passed in to be refreshed. */
+  contractAddress: string;
+
+  /** The current state of the refresh request. */
+  refreshState: RefreshState;
+
+  /**
+   * Percentage of tokens currently refreshed, represented as an integer string.
+   * Field can be null if the refresh has not occurred.
+   */
+  progress: string | null;
+}
+
+/** The current state of the NFT contract refresh process. */
+export enum RefreshState {
+  /** The provided contract is not an NFT or does not contain metadata. */
+  DOES_NOT_EXIST = 'does_not_exist',
+
+  /** The contract has already been queued for refresh. */
+  ALREADY_QUEUED = 'already_queued',
+
+  /** The contract is currently being refreshed. */
+  IN_PROGRESS = 'in_progress',
+
+  /** The contract refresh is complete. */
+  FINISHED = 'finished',
+
+  /** The contract refresh has been queued and await execution. */
+  QUEUED = 'queued',
+
+  /** The contract was unable to be queued due to an internal error. */
+  QUEUE_FAILED = 'queue_failed'
+}
+
 /** @public */
 export interface TransactionReceiptsBlockNumber {
   blockNumber: string;
