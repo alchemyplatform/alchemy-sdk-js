@@ -165,7 +165,7 @@ under the `Alchemy` class:
 - `getSpamNftContracts()`: Returns a list of all spam contracts marked by Alchemy.
 - `findContractDeployer()`: Find the contract deployer and block number for a given NFT contract address.
 - `refreshNftMetadata()`: Refresh the cached NFT metadata for a contract address and a single tokenId.
-- `refreshNftContract()`: Refresh the cached metadata for all tokens in the specified contract address. 
+- `refreshNftContract()`: Enqueues the specified contract address to have all token ids' metadata refreshed. 
 - `getNftFloorPrice()`: Return the floor prices of a NFT contract by marketplace.
 
 ### Comparing `BaseNft` and `Nft`
