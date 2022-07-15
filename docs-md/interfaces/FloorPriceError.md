@@ -2,7 +2,7 @@
 
 # Interface: FloorPriceError
 
-The failing object returned by the [getNftFloorPrice](../modules.md#getnftfloorprice) call for each
+The failing object returned by the [getNftFloorPrice](../classes/Alchemy.md#getnftfloorprice) call for each
 marketplace (e.g. looksRare).
 
 ## Table of contents
@@ -21,4 +21,4 @@ Error fetching floor prices from the given marketplace
 
 #### Defined in
 
-[src/types/types.ts:356](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L356)
+[types/types.ts:392](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L392)

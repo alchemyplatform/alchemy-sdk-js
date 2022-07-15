@@ -2,6 +2,8 @@
 
 # Interface: TokenUri
 
+Represents the URI information the NFT's metadata.
+
 ## Table of contents
 
 ### Properties
@@ -19,7 +21,7 @@ Public gateway URI for the raw URI. Generally offers better performance.
 
 #### Defined in
 
-[src/types/types.ts:175](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L175)
+[types/types.ts:186](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L186)
 
 ___
 
@@ -27,8 +29,9 @@ ___
 
 • **raw**: `string`
 
-URI for the location of the NFT's original metadata blob.
+URI for the location of the NFT's original metadata blob (ex: the original
+IPFS link).
 
 #### Defined in
 
-[src/types/types.ts:173](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L173)
+[types/types.ts:183](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L183)

@@ -2,7 +2,7 @@
 
 # Interface: DeployResult
 
-The response object for the [findContractDeployer](../modules.md#findcontractdeployer) function.
+The response object for the [findContractDeployer](../classes/Alchemy.md#findcontractdeployer) function.
 
 ## Table of contents
 
@@ -21,7 +21,7 @@ The block number the contract was deployed in.
 
 #### Defined in
 
-[src/types/types.ts:490](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L490)
+[types/types.ts:562](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L562)
 
 ___
 
@@ -33,4 +33,4 @@ The address of the contract deployer, if it is available.
 
 #### Defined in
 
-[src/types/types.ts:487](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L487)
+[types/types.ts:559](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L559)

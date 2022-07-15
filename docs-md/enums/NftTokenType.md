@@ -14,28 +14,28 @@
 
 ### ERC1155
 
-• **ERC1155** = `"erc1155"`
+• **ERC1155** = `"ERC1155"`
 
 #### Defined in
 
-[src/types/types.ts:116](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L116)
+[types/types.ts:119](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L119)
 
 ___
 
 ### ERC721
 
-• **ERC721** = `"erc721"`
+• **ERC721** = `"ERC721"`
 
 #### Defined in
 
-[src/types/types.ts:115](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L115)
+[types/types.ts:118](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L118)
 
 ___
 
 ### UNKNOWN
 
-• **UNKNOWN** = `"unknown"`
+• **UNKNOWN** = `"UNKNOWN"`
 
 #### Defined in
 
-[src/types/types.ts:117](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L117)
+[types/types.ts:120](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L120)

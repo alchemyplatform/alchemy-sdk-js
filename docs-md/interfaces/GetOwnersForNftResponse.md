@@ -2,7 +2,7 @@
 
 # Interface: GetOwnersForNftResponse
 
-The response object for the [getOwnersForNft](../modules.md#getownersfornft).
+The response object for the [getOwnersForNft](../classes/Alchemy.md#getownersfornft).
 
 ## Table of contents
 
@@ -20,4 +20,4 @@ An array of owner addresses for the provided token.
 
 #### Defined in
 
-[src/types/types.ts:318](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L318)
+[types/types.ts:354](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L354)

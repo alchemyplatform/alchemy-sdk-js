@@ -2,7 +2,7 @@
 
 # Interface: GetNftFloorPriceResponse
 
-The response object for the [getNftFloorPrice](../modules.md#getnftfloorprice) method.
+The response object for the [getNftFloorPrice](../classes/Alchemy.md#getnftfloorprice) method.
 
 ## Table of contents
 
@@ -19,7 +19,7 @@ The response object for the [getNftFloorPrice](../modules.md#getnftfloorprice) m
 
 #### Defined in
 
-[src/types/types.ts:370](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L370)
+[types/types.ts:406](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L406)
 
 ___
 
@@ -32,4 +32,4 @@ marketplaces supported: OpenSea, LooksRare
 
 #### Defined in
 
-[src/types/types.ts:369](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L369)
+[types/types.ts:405](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L405)
