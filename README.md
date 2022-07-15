@@ -7,12 +7,6 @@ JSON-RPC endpoints.
 Note that the SDK is still in public beta. Alchemy reserves the right to (and almost certainly will) make breaking
 API changes in subsequent releases (don't write production code around it just yet).
 
-**IMPORTANT NOTE:** Please install the v1.2.0 package using `npm install @alch/alchemy-sdk@beta` and refer to the upcoming [v1.2.0 branch](https://github.com/alchemyplatform/alchemy-sdk-js/pull/40) for the latest breaking syntax. This will be pushed to production on 7/25.
-
-```
-npm install @alch/alchemy-sdk@beta
-```
-
 ## Getting started
 
 ```
