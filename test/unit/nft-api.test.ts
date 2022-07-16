@@ -4,7 +4,7 @@ import {
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
   fromHex,
-  GetNftFloorPriceResponse,
+  GetFloorPriceResponse,
   GetNftsForOwnerOptions,
   NftContract,
   NftExcludeFilters,
@@ -20,7 +20,6 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import {
   createBaseNft,
-  createBaseNftContract,
   createNft,
   createOwnedBaseNft,
   createOwnedNft,
@@ -99,19 +98,6 @@ describe('NFT module', () => {
       );
     }
 
-    it('can be called with a BaseNftContract', async () => {
-      const nftContract = createBaseNftContract(address);
-      verifyNftContractMetadata(
-        await alchemy.nft.getNftContractMetadata(nftContract),
-        expectedNftContract,
-        address,
-        name,
-        symbol,
-        totalSupply,
-        tokenType
-      );
-    });
-
     it('can be called with raw parameters', async () => {
       verifyNftContractMetadata(
         await alchemy.nft.getNftContractMetadata(address),
@@ -166,17 +152,6 @@ describe('NFT module', () => {
         tokenType ?? undefined
       );
     }
-
-    it('can be called with a BaseNft', async () => {
-      const nft = createBaseNft(contractAddress, tokenId, NftTokenType.ERC721);
-      verifyNftMetadata(
-        await alchemy.nft.getNftMetadata(nft),
-        expectedNft,
-        contractAddress,
-        tokenId,
-        NftTokenType.ERC721
-      );
-    });
 
     it('can be called with raw parameters', async () => {
       verifyNftMetadata(
@@ -886,21 +861,9 @@ describe('NFT module', () => {
         tokenIdNumber
       );
 
-      await alchemy.nft.getOwnersForNft(contractAddress, tokenIdNumber);
-      expect(mock.history.get[0].params).toHaveProperty(
-        'tokenId',
-        tokenIdNumber
-      );
-    });
-
-    it('can be called with BaseNft', async () => {
       const response = await alchemy.nft.getOwnersForNft(
-        createBaseNft(contractAddress, tokenIdHex)
-      );
-      expect(mock.history.get.length).toEqual(1);
-      expect(mock.history.get[0].params).toHaveProperty(
-        'contractAddress',
-        contractAddress
+        contractAddress,
+        tokenIdNumber
       );
       expect(mock.history.get[0].params).toHaveProperty(
         'tokenId',
@@ -932,24 +895,12 @@ describe('NFT module', () => {
     });
 
     it('calls with the correct parameters', async () => {
-      await alchemy.nft.getOwnersForContract(contractAddress);
+      const response = await alchemy.nft.getOwnersForContract(contractAddress);
       expect(mock.history.get.length).toEqual(1);
       expect(mock.history.get[0].params).toHaveProperty(
         'contractAddress',
         contractAddress
       );
-    });
-
-    it('can be called with BaseNft', async () => {
-      const response = await alchemy.nft.getOwnersForContract(
-        createBaseNft(contractAddress, tokenIdHex)
-      );
-      expect(mock.history.get.length).toEqual(1);
-      expect(mock.history.get[0].params).toHaveProperty(
-        'contractAddress',
-        contractAddress
-      );
-
       expect(response).toEqual({ owners });
     });
 
@@ -1039,7 +990,7 @@ describe('NFT module', () => {
 
   describe('getNftFloorPrice', () => {
     const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
-    const templateResponse: GetNftFloorPriceResponse = {
+    const templateResponse: GetFloorPriceResponse = {
       openSea: {
         floorPrice: 90.969,
         priceCurrency: 'ETH',
@@ -1147,13 +1098,6 @@ describe('NFT module', () => {
       useRefreshTrue();
     });
 
-    it('can be called with a BaseNft', async () => {
-      await alchemy.nft.refreshNftMetadata(
-        createBaseNft(contractAddress, tokenIdHex)
-      );
-      verifyCorrectParams();
-    });
-
     it('can be called with raw parameters', async () => {
       const res = await alchemy.nft.refreshNftMetadata(
         contractAddress,
@@ -1208,23 +1152,6 @@ describe('NFT module', () => {
         'contractAddress',
         contractAddress
       );
-      expect(response).toEqual({
-        contractAddress,
-        refreshState: RefreshState.QUEUED,
-        progress: '5'
-      });
-    });
-
-    it('can be called with BaseNft', async () => {
-      const response = await alchemy.nft.refreshContract(
-        createBaseNft(contractAddress, '0x42')
-      );
-      expect(mock.history.get.length).toEqual(1);
-      expect(mock.history.get[0].params).toHaveProperty(
-        'contractAddress',
-        contractAddress
-      );
-
       expect(response).toEqual({
         contractAddress,
         refreshState: RefreshState.QUEUED,

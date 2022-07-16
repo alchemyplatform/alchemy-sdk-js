@@ -355,7 +355,7 @@ export interface GetOwnersForNftResponse {
 }
 
 /**
- * The response object for the {@link getOwnersForNftContract}.
+ * The response object for the {@link getOwnersForContract}.
  *
  * @public
  */
@@ -365,7 +365,7 @@ export interface GetOwnersForContractResponse {
 }
 
 /**
- * The successful object returned by the {@link getNftFloorPrice} call for each
+ * The successful object returned by the {@link getFloorPrice} call for each
  * marketplace (e.g. looksRare).
  *
  * @public
@@ -382,7 +382,7 @@ export interface FloorPriceMarketplace {
 }
 
 /**
- * The failing object returned by the {@link getNftFloorPrice} call for each
+ * The failing object returned by the {@link getFloorPrice} call for each
  * marketplace (e.g. looksRare).
  *
  * @public
@@ -393,11 +393,11 @@ export interface FloorPriceError {
 }
 
 /**
- * The response object for the {@link getNftFloorPrice} method.
+ * The response object for the {@link getFloorPrice} method.
  *
  * @public
  */
-export interface GetNftFloorPriceResponse {
+export interface GetFloorPriceResponse {
   /**
    * Name of the NFT marketplace where the collection is listed. Current
    * marketplaces supported: OpenSea, LooksRare
@@ -476,7 +476,7 @@ export interface RawContract {
 }
 
 /**
- * Optional parameters object for the {@link getNftsForNftContract} and
+ * Optional parameters object for the {@link getNftsForContract} and
  * {@link getNftsForNftContractIterator} functions.
  *
  * This interface is used to fetch NFTs with their associated metadata. To get
@@ -496,7 +496,7 @@ export interface GetNftsForContractOptions {
 }
 
 /**
- * Optional parameters object for the {@link getNftsForNftContract} and
+ * Optional parameters object for the {@link getNftsForContract} and
  * {@link getNftsForNftContractIterator} functions.
  *
  * This interface is used to fetch NFTs without their associated metadata. To
@@ -516,7 +516,7 @@ export interface GetBaseNftsForContractOptions {
 }
 
 /**
- * The response object for the {@link getNftsForNftContract} function. The object
+ * The response object for the {@link getNftsForContract} function. The object
  * contains the NFTs without metadata inside the NFT contract.
  *
  * @public
@@ -533,7 +533,7 @@ export interface NftContractBaseNftsResponse {
 }
 
 /**
- * The response object for the {@link getNftsForNftContract} function. The object
+ * The response object for the {@link getNftsForContract} function. The object
  * contains the NFTs with metadata inside the NFT contract.
  *
  * @public

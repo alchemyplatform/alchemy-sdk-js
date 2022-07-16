@@ -74,7 +74,10 @@ describe('E2E integration tests', () => {
       omitMetadata: true
     });
     console.log('nfts', nfts);
-    const owners = await alchemy.nft.getOwnersForNft(nfts.ownedNfts[0]);
+    const owners = await alchemy.nft.getOwnersForNft(
+      nfts.ownedNfts[0].contract.address,
+      nfts.ownedNfts[0].tokenId
+    );
     console.log('owner', owners);
   });
 
@@ -167,7 +170,7 @@ describe('E2E integration tests', () => {
     await alchemy.nft.refreshNftMetadata(contractAddress, tokenId);
 
     const nft = await alchemy.nft.getNftMetadata(contractAddress, tokenId);
-    await alchemy.nft.refreshNftMetadata(nft);
+    await alchemy.nft.refreshNftMetadata(nft.contract.address, nft.tokenId);
   });
 
   it('refreshNftContract()', async () => {
@@ -213,7 +216,7 @@ describe('E2E integration tests', () => {
         }
       )) {
         await alchemy.nft
-          .getOwnersForNft(nft)
+          .getOwnersForNft(nft.contract.address, nft.tokenId)
           .then(response =>
             console.log('owners:', response.owners, 'tokenId:', nft.tokenId)
           );

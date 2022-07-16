@@ -3,7 +3,7 @@ import { BigNumberish } from '@ethersproject/bignumber';
 import {
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
-  GetNftFloorPriceResponse,
+  GetFloorPriceResponse,
   GetNftsForContractOptions,
   GetNftsForOwnerOptions,
   GetOwnersForContractResponse,
@@ -17,7 +17,7 @@ import {
   OwnedNftsResponse,
   RefreshContractResult
 } from '../types/types';
-import { BaseNft, BaseNftContract, Nft, NftContract } from './nft';
+import { BaseNft, Nft, NftContract } from './nft';
 import {
   checkNftOwnership,
   getNftContractMetadata,
@@ -50,25 +50,8 @@ export class NftModule {
     contractAddress: string,
     tokenId: BigNumberish,
     tokenType?: NftTokenType
-  ): Promise<Nft>;
-  /**
-   * Get the NFT metadata associated with the provided Base NFT.
-   *
-   * @param baseNft - The base NFT object to be used for the request.
-   * @public
-   */
-  getNftMetadata(baseNft: BaseNft): Promise<Nft>;
-  getNftMetadata(
-    contractAddressOrBaseNft: string | BaseNft,
-    tokenId?: BigNumberish,
-    tokenType?: NftTokenType
   ): Promise<Nft> {
-    return getNftMetadata(
-      this.alchemy,
-      contractAddressOrBaseNft,
-      tokenId,
-      tokenType
-    );
+    return getNftMetadata(this.alchemy, contractAddress, tokenId, tokenType);
   }
 
   /**
@@ -77,23 +60,8 @@ export class NftModule {
    * @param contractAddress - The contract address of the NFT.
    * @public
    */
-  getNftContractMetadata(contractAddress: string): Promise<NftContract>;
-  /**
-   * Get the NFT metadata associated with the provided Base NFT.
-   *
-   * @param baseNftContract - The base NFT contract object to be used for the request.
-   * @public
-   */
-  getNftContractMetadata(
-    baseNftContract: BaseNftContract
-  ): Promise<NftContract>;
-  getNftContractMetadata(
-    contractAddressOrBaseNftContract: string | BaseNftContract
-  ): Promise<NftContract> {
-    return getNftContractMetadata(
-      this.alchemy,
-      contractAddressOrBaseNftContract
-    );
+  getNftContractMetadata(contractAddress: string): Promise<NftContract> {
+    return getNftContractMetadata(this.alchemy, contractAddress);
   }
 
   /**
@@ -252,18 +220,8 @@ export class NftModule {
    */
   getOwnersForContract(
     contractAddress: string
-  ): Promise<GetOwnersForContractResponse>;
-  /**
-   * Gets all the owners for a given NFT contract.
-   *
-   * @param nft - The NFT to get the owners of the NFT contract for.
-   * @beta
-   */
-  getOwnersForContract(nft: BaseNft): Promise<GetOwnersForContractResponse>;
-  getOwnersForContract(
-    contractAddressOrNft: string | BaseNft
   ): Promise<GetOwnersForContractResponse> {
-    return getOwnersForContract(this.alchemy, contractAddressOrNft);
+    return getOwnersForContract(this.alchemy, contractAddress);
   }
 
   /**
@@ -276,19 +234,8 @@ export class NftModule {
   getOwnersForNft(
     contractAddress: string,
     tokenId: BigNumberish
-  ): Promise<GetOwnersForNftResponse>;
-  /**
-   * Gets all the owners for a given NFT.
-   *
-   * @param nft - The NFT object to get the owners for.
-   * @beta
-   */
-  getOwnersForNft(nft: BaseNft): Promise<GetOwnersForNftResponse>;
-  getOwnersForNft(
-    contractAddressOrNft: string | BaseNft,
-    tokenId?: BigNumberish
   ): Promise<GetOwnersForNftResponse> {
-    return getOwnersForNft(this.alchemy, contractAddressOrNft, tokenId);
+    return getOwnersForNft(this.alchemy, contractAddress, tokenId);
   }
 
   /**
@@ -334,7 +281,7 @@ export class NftModule {
    * @param contractAddress - The contract address for the NFT collection.
    * @beta
    */
-  getFloorPrice(contractAddress: string): Promise<GetNftFloorPriceResponse> {
+  getFloorPrice(contractAddress: string): Promise<GetFloorPriceResponse> {
     return getFloorPrice(this.alchemy, contractAddress);
   }
 
@@ -356,25 +303,8 @@ export class NftModule {
   refreshNftMetadata(
     contractAddress: string,
     tokenId: BigNumberish
-  ): Promise<boolean>;
-  /**
-   * Refreshes the cached metadata for a provided NFT contract address and token
-   * id. Returns a boolean value indicating whether the metadata was refreshed.
-   *
-   * This method is useful when you want to refresh the metadata for a NFT that
-   * has been updated since the last time it was fetched. Note that the backend
-   * only allows one refresh per token every 15 minutes, globally for all users.
-   *
-   * To trigger a refresh for all NFTs in a contract, use {@link refreshContract} instead.
-   *
-   * @param nft - The NFT to refresh the metadata for.
-   */
-  refreshNftMetadata(nft: BaseNft): Promise<boolean>;
-  refreshNftMetadata(
-    contractAddressOrBaseNft: string | BaseNft,
-    tokenId?: BigNumberish
   ): Promise<boolean> {
-    return refreshNftMetadata(this.alchemy, contractAddressOrBaseNft, tokenId);
+    return refreshNftMetadata(this.alchemy, contractAddress, tokenId);
   }
 
   /**
@@ -388,22 +318,7 @@ export class NftModule {
    * @param contractAddress - The contract address of the NFT collection.
    * @beta
    */
-  refreshContract(contractAddress: string): Promise<RefreshContractResult>;
-  /**
-   * Triggers a metadata refresh all NFTs in the provided contract address. This
-   * method is useful after an NFT collection is revealed.
-   *
-   * Refreshes are queued on the Alchemy backend and may take time to fully
-   * process. To refresh the metadata for a specific token, use the
-   * {@link refreshNftMetadata} method instead.
-   *
-   * @param nft - The contract address of the NFT collection.
-   * @beta
-   */
-  refreshContract(nft: BaseNft): Promise<RefreshContractResult>;
-  refreshContract(
-    contractAddressOrBaseNft: string | BaseNft
-  ): Promise<RefreshContractResult> {
-    return refreshNftContract(this.alchemy, contractAddressOrBaseNft);
+  refreshContract(contractAddress: string): Promise<RefreshContractResult> {
+    return refreshNftContract(this.alchemy, contractAddress);
   }
 }

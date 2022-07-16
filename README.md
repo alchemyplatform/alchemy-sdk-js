@@ -1,6 +1,6 @@
 # Alchemy SDK for Javascript
 
-Alchemy SDK helps developers use Alchemy's APIs and endpoints more efficiently. This is a lightweight, modular SDK built as a drop-in replacement of Ethers.js that provides a superset of functionality - enabling access to the Alchemy NFT API, Websockets, and Enhanced API methods. 
+Alchemy SDK helps developers use Alchemy's APIs and endpoints more efficiently. This is a lightweight, modular SDK built as a drop-in replacement of Ethers.js that provides a superset of functionality - enabling access to the Alchemy NFT API, Websockets, and Enhanced API methods.
 
 It also provides access to Alchemy's hardened node infrastructure, guaranteeing reliability, scalability, and quality-of-life improvements such as automatic exponential backoff retries.
 
@@ -27,7 +27,8 @@ const settings = {
 const alchemy = new Alchemy(settings);
 ```
 
-You can access each method using the following pattern. Methods supported include: 
+You can access each method using the following pattern. Methods supported include:
+
 - All commonly-used Ethers.js methods
 - Alchemy NFT API methods
 - Alchemy Enhanced API methods
@@ -39,7 +40,7 @@ If you are already using Ethers.js, you should be simply able to replace the Eth
 import { Alchemy } from '@alch/alchemy-sdk';
 
 // Using default settings - pass in a settings object to specify your API key and network
-const alchemy = new Alchemy(); 
+const alchemy = new Alchemy();
 
 // Access standard Ethers.js JSON-RPC node requests
 alchemy.getBlockNumber().then(console.log);
@@ -148,21 +149,21 @@ The SDK currently supports the following [NFT API](https://docs.alchemy.com/alch
 under the `Alchemy` class:
 
 - `getNftMetadata()`: Get the NFT metadata for a contract address and tokenId.
-- `getNftContractMetadata()`: Get the metadata associated with an NFT contract
+- `getContractMetadata()`: Get the metadata associated with an NFT contract
 - `getNftsForOwner()`: Get NFTs for an owner address.
 - `getNftsForOwnerIterator()`: Get NFTs for an owner address as an async iterator (handles paging automatically).
-- `getNftsForNftContract()`: Get all NFTs for a contract address.
-- `getNftForNftContractIterator()`: Get all NFTs for a contract address as an async iterator (handles paging
+- `getNftsForContract()`: Get all NFTs for a contract address.
+- `getNftForContractIterator()`: Get all NFTs for a contract address as an async iterator (handles paging
   automatically).
 - `getOwnersForNft()`: Get all the owners for a given NFT contract address and a particular token ID.
-- `getOwnersForNftContract()`: Get all the owners for a given NFT contract address.
+- `getOwnersForContract()`: Get all the owners for a given NFT contract address.
 - `checkNftOwnership()`: Check that the provided owner address owns one or more of the provided NFT contract addresses.
-- `isSpamNftContract()`: Check whether the given NFT contract address is a spam contract as defined by Alchemy (see the [NFT API FAQ](https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification))
-- `getSpamNftContracts()`: Returns a list of all spam contracts marked by Alchemy.
+- `isSpamContract()`: Check whether the given NFT contract address is a spam contract as defined by Alchemy (see the [NFT API FAQ](https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification))
+- `getSpamContracts()`: Returns a list of all spam contracts marked by Alchemy.
 - `findContractDeployer()`: Find the contract deployer and block number for a given NFT contract address.
 - `refreshNftMetadata()`: Refresh the cached NFT metadata for a contract address and a single tokenId.
-- `refreshNftContract()`: Enqueues the specified contract address to have all token ids' metadata refreshed. 
-- `getNftFloorPrice()`: Return the floor prices of a NFT contract by marketplace.
+- `refreshContract()`: Enqueues the specified contract address to have all token ids' metadata refreshed.
+- `getFloorPrice()`: Return the floor prices of a NFT contract by marketplace.
 
 ### Comparing `BaseNft` and `Nft`
 
@@ -205,7 +206,7 @@ main();
 The NFT API in the SDK standardizes response types to reduce developer friction, but note this results in some
 differences compared to the Alchemy REST endpoints:
 
-- Methods referencing `Collection` have been renamed to use the name `NftContract` for greater accuracy: e.g. `getNftsForNftContract`.
+- Methods referencing `Collection` have been renamed to use the name `Contract` for greater accuracy: e.g. `getNftsForContract`.
 - Some methods have different naming that the REST API counterparts in order to provide a consistent API interface (
   e.g. `getNftsForOwner()` is `alchemy_getNfts`, `getOwnersForNft()` is `alchemy_getOwnersForToken`).
 - SDK standardizes to `omitMetadata` parameter (vs. `withMetadata`).
@@ -236,21 +237,18 @@ Below are a few usage examples:
 Getting the NFTs owned by an address.
 
 ```ts
-import {
-  NftExcludeFilters,
-  Alchemy
-} from '@alch/alchemy-sdk';
+import { NftExcludeFilters, Alchemy } from '@alch/alchemy-sdk';
 
 const alchemy = new Alchemy();
 
 // Get how many NFTs an address owns.
-alchemy.getNftsForOwner('0xshah.eth').then(nfts => {
+alchemy.nft.getNftsForOwner('0xshah.eth').then(nfts => {
   console.log(nfts.totalCount);
 });
 
 // Get all the image urls for all the NFTs an address owns.
 async function main() {
-  for await (const nft of alchemy.getNftsForOwnerIterator('0xshah.eth')) {
+  for await (const nft of alchem.nft.getNftsForOwnerIterator('0xshah.eth')) {
     console.log(nft.media);
   }
 }
@@ -258,17 +256,17 @@ async function main() {
 main();
 
 // Filter out spam NFTs.
-alchemy.getNftsForOwner('0xshah.eth', {
-  excludeFilters: [NftExcludeFilters.SPAM]
-}).then(console.log);
+alchemy.nft
+  .getNftsForOwner('0xshah.eth', {
+    excludeFilters: [NftExcludeFilters.SPAM]
+  })
+  .then(console.log);
 ```
 
 Getting all the owners of the BAYC NFT.
 
 ```ts
-import {
-  Alchemy
-} from '@alch/alchemy-sdk';
+import { Alchemy } from '@alch/alchemy-sdk';
 
 const alchemy = new Alchemy();
 
@@ -276,13 +274,18 @@ const alchemy = new Alchemy();
 const baycAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D';
 
 async function main() {
-  for await (const nft of alchemy.getNftsForNftContractIterator(baycAddress, {
-    // Omit the NFT metadata for smaller payloads.
-    omitMetadata: true
-  })) {
-    await alchemy.getOwnersForNft(nft).then(response =>
-      console.log('owners:', response.owners, 'tokenId:', nft.tokenId)
-    );
+  for await (const nft of alchemy.nft.getNftsForNftContractIterator(
+    baycAddress,
+    {
+      // Omit the NFT metadata for smaller payloads.
+      omitMetadata: true
+    }
+  )) {
+    await alchemy.nft
+      .getOwnersForNft(nft)
+      .then(response =>
+        console.log('owners:', response.owners, 'tokenId:', nft.tokenId)
+      );
   }
 }
 
@@ -296,9 +299,9 @@ import { Alchemy } from '@alch/alchemy-sdk';
 
 const alchemy = new Alchemy();
 
-alchemy.getTokenBalances('0x994b342dd87fc825f66e51ffa3ef71ad818b6893').then(
-  console.log
-);
+alchemy
+  .getTokenBalances('0x994b342dd87fc825f66e51ffa3ef71ad818b6893')
+  .then(console.log);
 ```
 
 ## Questions and Feedback
