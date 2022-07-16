@@ -92,12 +92,12 @@ describe('E2E integration tests', () => {
   });
 
   it('getOwnersForNftContract', async () => {
-    const owners = await alchemy.nft.getOwnersForNftContract(contractAddress);
+    const owners = await alchemy.nft.getOwnersForContract(contractAddress);
     console.log('owners', owners);
   });
 
   it('getNftsForNftContract with pageKey', async () => {
-    let nftsForNftContract = await alchemy.nft.getNftsForNftContract(
+    let nftsForNftContract = await alchemy.nft.getNftsForContract(
       contractAddress
     );
 
@@ -106,12 +106,9 @@ describe('E2E integration tests', () => {
       nftsForNftContract.pageKey,
       nftsForNftContract.nfts.length
     );
-    nftsForNftContract = await alchemy.nft.getNftsForNftContract(
-      contractAddress,
-      {
-        pageKey: nftsForNftContract.pageKey
-      }
-    );
+    nftsForNftContract = await alchemy.nft.getNftsForContract(contractAddress, {
+      pageKey: nftsForNftContract.pageKey
+    });
     console.log(
       'nftsForNftContract: ',
       nftsForNftContract.pageKey,
@@ -149,7 +146,7 @@ describe('E2E integration tests', () => {
     console.log('lets paginate');
     const allNfts = [];
     let totalCount = 0;
-    for await (const nft of alchemy.nft.getNftsForNftContractIterator(
+    for await (const nft of alchemy.nft.getNftsForContractIterator(
       contractAddress,
       {
         omitMetadata: false
@@ -175,7 +172,7 @@ describe('E2E integration tests', () => {
 
   it('refreshNftContract()', async () => {
     const contractAddress = '0x0510745d2ca36729bed35c818527c4485912d99e';
-    const result = await alchemy.nft.refreshNftContract(contractAddress);
+    const result = await alchemy.nft.refreshContract(contractAddress);
     console.log('result', result);
   });
 
@@ -208,7 +205,7 @@ describe('E2E integration tests', () => {
       // Bored Ape Yacht Club contract address.
       const baycAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D';
 
-      for await (const nft of alchemy.nft.getNftsForNftContractIterator(
+      for await (const nft of alchemy.nft.getNftsForContractIterator(
         baycAddress,
         {
           // Omit the NFT metadata for smaller payloads.

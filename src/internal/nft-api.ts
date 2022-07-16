@@ -2,12 +2,12 @@ import { BaseNft, BaseNftContract, Nft, NftContract } from '../api/nft';
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import {
   DeployResult,
-  GetBaseNftsForNftContractOptions,
+  GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
   GetNftFloorPriceResponse,
-  GetNftsForNftContractOptions,
+  GetNftsForContractOptions,
   GetNftsForOwnerOptions,
-  GetOwnersForNftContractResponse,
+  GetOwnersForContractResponse,
   GetOwnersForNftResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
@@ -16,7 +16,7 @@ import {
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
-  RefreshNftContractResult,
+  RefreshContractResult,
   RefreshState
 } from '../types/types';
 import { paginateEndpoint, requestHttpWithBackoff } from './dispatch';
@@ -165,10 +165,10 @@ export async function getNftsForOwner(
   };
 }
 
-export async function getNftsForNftContract(
+export async function getNftsForContract(
   alchemy: Alchemy,
   contractAddress: string,
-  options?: GetBaseNftsForNftContractOptions | GetNftsForNftContractOptions
+  options?: GetBaseNftsForContractOptions | GetNftsForContractOptions
 ): Promise<NftContractNftsResponse | NftContractBaseNftsResponse> {
   const withMetadata = omitMetadataToWithMetadata(options?.omitMetadata);
   const response = await requestHttpWithBackoff<
@@ -188,10 +188,10 @@ export async function getNftsForNftContract(
   };
 }
 
-export async function getOwnersForNftContract(
+export async function getOwnersForContract(
   alchemy: Alchemy,
   contractAddressOrNft: string | BaseNft
-): Promise<GetOwnersForNftContractResponse> {
+): Promise<GetOwnersForContractResponse> {
   let response;
   if (typeof contractAddressOrNft === 'string') {
     response = await requestHttpWithBackoff<
@@ -245,7 +245,7 @@ export function getOwnersForNft(
 export async function* getNftsForNftContractIterator(
   alchemy: Alchemy,
   contractAddress: string,
-  options?: GetBaseNftsForNftContractOptions | GetNftsForNftContractOptions
+  options?: GetBaseNftsForContractOptions | GetNftsForContractOptions
 ): AsyncIterable<BaseNft | Nft> {
   const withMetadata = omitMetadataToWithMetadata(options?.omitMetadata);
   for await (const response of paginateEndpoint(
@@ -283,7 +283,7 @@ export async function checkNftOwnership(
   return response.ownedNfts.length > 0;
 }
 
-export async function isSpamNftContract(
+export async function isSpamContract(
   alchemy: Alchemy,
   contractAddress: string
 ): Promise<boolean> {
@@ -305,7 +305,7 @@ export async function isSpamNftContract(
  * @param alchemy - The Alchemy SDK instance.
  * @beta
  */
-export async function getSpamNftContracts(alchemy: Alchemy): Promise<string[]> {
+export async function getSpamContracts(alchemy: Alchemy): Promise<string[]> {
   return requestHttpWithBackoff<undefined, string[]>(
     alchemy,
     AlchemyApiType.NFT,
@@ -314,7 +314,7 @@ export async function getSpamNftContracts(alchemy: Alchemy): Promise<string[]> {
   );
 }
 
-export async function getNftFloorPrice(
+export async function getFloorPrice(
   alchemy: Alchemy,
   contractAddress: string
 ): Promise<GetNftFloorPriceResponse> {
@@ -384,7 +384,7 @@ export async function refreshNftMetadata(
 export async function refreshNftContract(
   alchemy: Alchemy,
   contractAddressOrBaseNft: string | BaseNft
-): Promise<RefreshNftContractResult> {
+): Promise<RefreshContractResult> {
   let response;
   if (typeof contractAddressOrBaseNft === 'string') {
     response = await requestHttpWithBackoff<

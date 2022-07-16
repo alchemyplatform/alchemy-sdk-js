@@ -359,7 +359,7 @@ export interface GetOwnersForNftResponse {
  *
  * @public
  */
-export interface GetOwnersForNftContractResponse {
+export interface GetOwnersForContractResponse {
   /** An array of owner addresses for the provided contract address */
   readonly owners: string[];
 }
@@ -407,7 +407,7 @@ export interface GetNftFloorPriceResponse {
 }
 
 /** The refresh result response object returned by {@link refreshNftContract}. */
-export interface RefreshNftContractResult {
+export interface RefreshContractResult {
   /** The NFT contract address that was passed in to be refreshed. */
   contractAddress: string;
 
@@ -480,11 +480,11 @@ export interface RawContract {
  * {@link getNftsForNftContractIterator} functions.
  *
  * This interface is used to fetch NFTs with their associated metadata. To get
- * Nfts without their associated metadata, use {@link GetBaseNftsForNftContractOptions}.
+ * Nfts without their associated metadata, use {@link GetBaseNftsForContractOptions}.
  *
  * @public
  */
-export interface GetNftsForNftContractOptions {
+export interface GetNftsForContractOptions {
   /**
    * Optional page key from an existing {@link NftContractBaseNftsResponse} or
    * {@link NftContractNftsResponse}to use for pagination.
@@ -500,11 +500,11 @@ export interface GetNftsForNftContractOptions {
  * {@link getNftsForNftContractIterator} functions.
  *
  * This interface is used to fetch NFTs without their associated metadata. To
- * get Nfts with their associated metadata, use {@link GetNftsForNftContractOptions}.
+ * get Nfts with their associated metadata, use {@link GetNftsForContractOptions}.
  *
  * @public
  */
-export interface GetBaseNftsForNftContractOptions {
+export interface GetBaseNftsForContractOptions {
   /**
    * Optional page key from an existing {@link NftContractBaseNftsResponse} or
    * {@link NftContractNftsResponse}to use for pagination.
