@@ -248,7 +248,7 @@ alchemy.nft.getNftsForOwner('0xshah.eth').then(nfts => {
 
 // Get all the image urls for all the NFTs an address owns.
 async function main() {
-  for await (const nft of alchem.nft.getNftsForOwnerIterator('0xshah.eth')) {
+  for await (const nft of alchemy.nft.getNftsForOwnerIterator('0xshah.eth')) {
     console.log(nft.media);
   }
 }
