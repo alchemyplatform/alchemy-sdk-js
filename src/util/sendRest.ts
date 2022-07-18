@@ -5,6 +5,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { VERSION } from '../version';
 
+const IS_BROWSER = typeof window !== 'undefined' && window !== null;
+
 /**
  * Helper function to send http requests using Axis.
  *
@@ -18,10 +20,14 @@ export function sendAxiosRequest<Req, Res>(
 ): Promise<AxiosResponse<Res>> {
   const methodUrl = baseUrl + '/' + methodName;
   const config: AxiosRequestConfig = {
-    headers: {
-      'Alchemy-Ethers-Sdk-Version': VERSION,
-      'Accept-Encoding': 'gzip'
-    },
+    headers: IS_BROWSER
+      ? {
+          'Alchemy-Ethers-Sdk-Version': VERSION
+        }
+      : {
+          'Alchemy-Ethers-Sdk-Version': VERSION,
+          'Accept-Encoding': 'gzip'
+        },
     method: 'get',
     url: methodUrl,
     params
