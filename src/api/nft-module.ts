@@ -1,4 +1,3 @@
-import { Alchemy } from './alchemy';
 import { BigNumberish } from '@ethersproject/bignumber';
 import {
   GetBaseNftsForContractOptions,
@@ -34,9 +33,10 @@ import {
   refreshNftContract,
   refreshNftMetadata
 } from '../internal/nft-api';
+import { AlchemyConfig } from './alchemy-config';
 
 export class NftModule {
-  constructor(private readonly alchemy: Alchemy) {}
+  constructor(private readonly config: AlchemyConfig) {}
 
   /**
    * Get the NFT metadata associated with the provided parameters.
@@ -51,7 +51,7 @@ export class NftModule {
     tokenId: BigNumberish,
     tokenType?: NftTokenType
   ): Promise<Nft> {
-    return getNftMetadata(this.alchemy, contractAddress, tokenId, tokenType);
+    return getNftMetadata(this.config, contractAddress, tokenId, tokenType);
   }
 
   /**
@@ -61,7 +61,7 @@ export class NftModule {
    * @public
    */
   getNftContractMetadata(contractAddress: string): Promise<NftContract> {
-    return getNftContractMetadata(this.alchemy, contractAddress);
+    return getNftContractMetadata(this.config, contractAddress);
   }
 
   /**
@@ -96,7 +96,7 @@ export class NftModule {
     owner: string,
     options?: GetNftsForOwnerOptions | GetBaseNftsForOwnerOptions
   ): AsyncIterable<OwnedBaseNft | OwnedNft> {
-    return getNftsForOwnerIterator(this.alchemy, owner, options);
+    return getNftsForOwnerIterator(this.config, owner, options);
   }
 
   /**
@@ -131,7 +131,7 @@ export class NftModule {
     owner: string,
     options?: GetNftsForOwnerOptions | GetBaseNftsForOwnerOptions
   ): Promise<OwnedNftsResponse | OwnedBaseNftsResponse> {
-    return getNftsForOwner(this.alchemy, owner, options);
+    return getNftsForOwner(this.config, owner, options);
   }
 
   /**
@@ -167,7 +167,7 @@ export class NftModule {
     contractAddress: string,
     options?: GetBaseNftsForContractOptions | GetNftsForContractOptions
   ): Promise<NftContractNftsResponse | NftContractBaseNftsResponse> {
-    return getNftsForContract(this.alchemy, contractAddress, options);
+    return getNftsForContract(this.config, contractAddress, options);
   }
 
   /**
@@ -205,11 +205,7 @@ export class NftModule {
     contractAddress: string,
     options?: GetBaseNftsForContractOptions | GetNftsForContractOptions
   ): AsyncIterable<BaseNft | Nft> {
-    return getNftsForNftContractIterator(
-      this.alchemy,
-      contractAddress,
-      options
-    );
+    return getNftsForNftContractIterator(this.config, contractAddress, options);
   }
 
   /**
@@ -221,7 +217,7 @@ export class NftModule {
   getOwnersForContract(
     contractAddress: string
   ): Promise<GetOwnersForContractResponse> {
-    return getOwnersForContract(this.alchemy, contractAddress);
+    return getOwnersForContract(this.config, contractAddress);
   }
 
   /**
@@ -235,7 +231,7 @@ export class NftModule {
     contractAddress: string,
     tokenId: BigNumberish
   ): Promise<GetOwnersForNftResponse> {
-    return getOwnersForNft(this.alchemy, contractAddress, tokenId);
+    return getOwnersForNft(this.config, contractAddress, tokenId);
   }
 
   /**
@@ -249,7 +245,7 @@ export class NftModule {
     owner: string,
     contractAddresses: string[]
   ): Promise<boolean> {
-    return checkNftOwnership(this.alchemy, owner, contractAddresses);
+    return checkNftOwnership(this.config, owner, contractAddresses);
   }
 
   /**
@@ -261,7 +257,7 @@ export class NftModule {
    * @beta
    */
   isSpamContract(contractAddress: string): Promise<boolean> {
-    return isSpamContract(this.alchemy, contractAddress);
+    return isSpamContract(this.config, contractAddress);
   }
 
   /**
@@ -272,7 +268,7 @@ export class NftModule {
    * @beta
    */
   getSpamContracts(): Promise<string[]> {
-    return getSpamContracts(this.alchemy);
+    return getSpamContracts(this.config);
   }
 
   /**
@@ -282,7 +278,7 @@ export class NftModule {
    * @beta
    */
   getFloorPrice(contractAddress: string): Promise<GetFloorPriceResponse> {
-    return getFloorPrice(this.alchemy, contractAddress);
+    return getFloorPrice(this.config, contractAddress);
   }
 
   /**
@@ -304,7 +300,7 @@ export class NftModule {
     contractAddress: string,
     tokenId: BigNumberish
   ): Promise<boolean> {
-    return refreshNftMetadata(this.alchemy, contractAddress, tokenId);
+    return refreshNftMetadata(this.config, contractAddress, tokenId);
   }
 
   /**
@@ -319,6 +315,6 @@ export class NftModule {
    * @beta
    */
   refreshContract(contractAddress: string): Promise<RefreshContractResult> {
-    return refreshNftContract(this.alchemy, contractAddress);
+    return refreshNftContract(this.config, contractAddress);
   }
 }

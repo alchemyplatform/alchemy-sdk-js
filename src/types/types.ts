@@ -11,7 +11,7 @@ import { BaseNft, Nft } from '../api/nft';
  *
  * @public
  */
-export interface AlchemyConfig {
+export interface AlchemySettings {
   /** The Alchemy API key that can be found in the Alchemy dashboard. */
   apiKey?: string;
 

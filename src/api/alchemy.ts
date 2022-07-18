@@ -1,10 +1,8 @@
 import {
-  AlchemyConfig,
-  AlchemyEventType,
+  AlchemySettings,
   AssetTransfersParams,
   AssetTransfersResponse,
   DeployResult,
-  Network,
   TokenBalancesResponse,
   TokenMetadataResponse,
   TransactionReceiptsParams,
@@ -14,9 +12,7 @@ import {
   DEFAULT_ALCHEMY_API_KEY,
   DEFAULT_CONTRACT_ADDRESSES,
   DEFAULT_MAX_RETRIES,
-  DEFAULT_NETWORK,
-  getAlchemyHttpUrl,
-  getAlchemyNftHttpUrl
+  DEFAULT_NETWORK
 } from '../util/const';
 import type { AlchemyWebSocketProvider } from './alchemy-websocket-provider';
 import type { AlchemyProvider } from './alchemy-provider';
@@ -30,7 +26,6 @@ import type {
   BlockWithTransactions,
   FeeData,
   TransactionRequest,
-  Listener,
   TransactionReceipt,
   TransactionResponse
 } from '@ethersproject/abstract-provider';
@@ -42,25 +37,22 @@ import {
   Log
 } from '@ethersproject/abstract-provider';
 import { NftModule } from './nft-module';
+import { WebSocketModule } from './websocket-module';
+import { AlchemyConfig } from './alchemy-config';
 
 /**
- * The Alchemy SDK client. This class holds config information and provides
- * access to all of Alchemy's APIs.
+ * The Alchemy SDK client. This class is the main entry point into Alchemy's
+ * APIs and separates functionality into different modules.
+ *
+ * Each SDK instance is associated with a specific network and API key. To use a
+ * different network or API key, create a new instance of {@link Alchemy}.
  *
  * @public
  */
 export class Alchemy {
-  readonly apiKey: string;
-  network: Network;
-  readonly maxRetries: number;
-
-  /** @internal */
-  private _baseAlchemyProvider: Promise<AlchemyProvider> | undefined;
-
-  /** @internal */
-  private _baseAlchemyWssProvider:
-    | Promise<AlchemyWebSocketProvider>
-    | undefined;
+  readonly nft: NftModule;
+  readonly ws: WebSocketModule;
+  readonly config: AlchemyConfig;
 
   /**
    * @param {string} [config.apiKey] - The API key to use for Alchemy
@@ -68,24 +60,15 @@ export class Alchemy {
    * @param {number} [config.maxRetries] - The maximum number of retries to attempt
    * @public
    */
-  constructor(config?: AlchemyConfig) {
-    this.apiKey = config?.apiKey || DEFAULT_ALCHEMY_API_KEY;
-    this.network = config?.network || DEFAULT_NETWORK;
-    this.maxRetries = config?.maxRetries || DEFAULT_MAX_RETRIES;
-  }
+  constructor(config?: AlchemySettings) {
+    this.config = new AlchemyConfig(
+      config?.apiKey || DEFAULT_ALCHEMY_API_KEY,
+      config?.network || DEFAULT_NETWORK,
+      config?.maxRetries || DEFAULT_MAX_RETRIES
+    );
 
-  get nft(): NftModule {
-    return new NftModule(this);
-  }
-
-  /** @internal */
-  _getBaseUrl(): string {
-    return getAlchemyHttpUrl(this.network, this.apiKey);
-  }
-
-  /** @internal */
-  _getNftUrl(): string {
-    return getAlchemyNftHttpUrl(this.network, this.apiKey);
+    this.nft = new NftModule(this.config);
+    this.ws = new WebSocketModule(this.config);
   }
 
   /**
@@ -468,140 +451,15 @@ export class Alchemy {
     return provider.send(method, params);
   }
 
-  /**
-   * Adds a listener to be triggered for each {@link eventName} event. Also
-   * includes Alchemy's Subscription API events. See {@link AlchemyEventType} for
-   * how to use them.
-   *
-   * @param eventName The event to listen for.
-   * @param listener The listener to call when the event is triggered.
-   * @public
-   */
-  on(eventName: AlchemyEventType, listener: Listener): this {
-    void (async () => {
-      const provider = await this.getWebSocketProvider();
-      provider.on(eventName, listener);
-    })();
-    return this;
-  }
-
-  /**
-   * Adds a listener to be triggered for only the next {@link eventName} event,
-   * after which it will be removed. Also includes Alchemy's Subscription API
-   * events. See {@link AlchemyEventType} for how to use them.
-   *
-   * @param eventName The event to listen for.
-   * @param listener The listener to call when the event is triggered.
-   * @public
-   */
-  once(eventName: AlchemyEventType, listener: Listener): this {
-    void (async () => {
-      const provider = await this.getWebSocketProvider();
-      provider.once(eventName, listener);
-    })();
-    return this;
-  }
-
-  /**
-   * Removes the provided {@link listener} for the {@link eventName} event. If no
-   * listener is provided, all listeners for the event will be removed.
-   *
-   * @param eventName The event to unlisten to.
-   * @param listener The listener to remove.
-   * @public
-   */
-  off(eventName: AlchemyEventType, listener?: Listener): this {
-    void (async () => {
-      const provider = await this.getWebSocketProvider();
-      return provider.off(eventName, listener);
-    })();
-    return this;
-  }
-
-  /**
-   * Remove all listeners for the provided {@link eventName} event. If no event
-   * is provided, all events and their listeners are removed.
-   *
-   * @param eventName The event to remove all listeners for.
-   * @public
-   */
-  removeAllListeners(eventName?: AlchemyEventType): this {
-    void (async () => {
-      const provider = await this.getWebSocketProvider();
-      provider.removeAllListeners(eventName);
-    })();
-    return this;
-  }
-
-  /**
-   * Returns the number of listeners for the provided {@link eventName} event. If
-   * no event is provided, the total number of listeners for all events is returned.
-   *
-   * @param eventName The event to get the number of listeners for.
-   * @public
-   */
-  async listenerCount(eventName?: AlchemyEventType): Promise<number> {
-    const provider = await this.getWebSocketProvider();
-    return provider.listenerCount(eventName);
-  }
-
-  /**
-   * Returns an array of listeners for the provided {@link eventName} event. If
-   * no event is provided, all listeners will be included.
-   *
-   * @param eventName The event to get the listeners for.
-   */
-  async listeners(eventName?: AlchemyEventType): Promise<Listener[]> {
-    const provider = await this.getWebSocketProvider();
-    return provider.listeners(eventName);
-  }
-
-  /**
-   * Returns an AlchemyProvider instance. Only one provider is created per
-   * Alchemy instance.
-   *
-   * The AlchemyProvider is a wrapper around ether's `AlchemyProvider` class and
-   * has been expanded to support Alchemy's Enhanced APIs.
-   *
-   * Most common methods on the provider are available as top-level methods on
-   * the {@link Alchemy} instance, but the provider is exposed here to access
-   * other less-common methods.
-   *
-   * @public
-   */
+  // Temporary helper method during the refactor.
+  // TODO: remove this method.
   getProvider(): Promise<AlchemyProvider> {
-    if (!this._baseAlchemyProvider) {
-      this._baseAlchemyProvider = (async () => {
-        const { AlchemyProvider } = await import('./alchemy-provider');
-        return new AlchemyProvider(this.network, this.apiKey, this.maxRetries);
-      })();
-    }
-    return this._baseAlchemyProvider;
+    return this.config.getProvider();
   }
 
-  /**
-   * Returns an AlchemyWebsocketProvider instance. Only one provider is created
-   * per Alchemy instance.
-   *
-   * The AlchemyWebSocketProvider is a wrapper around ether's
-   * `AlchemyWebSocketProvider` class and has been expanded to support Alchemy's
-   * Subscription APIs, automatic backfilling, and other performance improvements.
-   *
-   * Most common methods on the provider are available as top-level methods on
-   * the {@link Alchemy} instance, but the provider is exposed here to access
-   * other less-common methods.
-   *
-   * @public
-   */
+  // Temporary helper method during the refactor.
+  // TODO: remove this method.
   getWebSocketProvider(): Promise<AlchemyWebSocketProvider> {
-    if (!this._baseAlchemyWssProvider) {
-      this._baseAlchemyWssProvider = (async () => {
-        const { AlchemyWebSocketProvider } = await import(
-          './alchemy-websocket-provider'
-        );
-        return new AlchemyWebSocketProvider(this.network, this.apiKey);
-      })();
-    }
-    return this._baseAlchemyWssProvider;
+    return this.config.getWebSocketProvider();
   }
 }
