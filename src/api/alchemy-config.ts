@@ -1,7 +1,13 @@
-import { Network } from '../types/types';
+import { AlchemySettings, Network } from '../types/types';
 import type { AlchemyProvider } from './alchemy-provider';
 import type { AlchemyWebSocketProvider } from './alchemy-websocket-provider';
-import { getAlchemyHttpUrl, getAlchemyNftHttpUrl } from '../util/const';
+import {
+  DEFAULT_ALCHEMY_API_KEY,
+  DEFAULT_MAX_RETRIES,
+  DEFAULT_NETWORK,
+  getAlchemyHttpUrl,
+  getAlchemyNftHttpUrl
+} from '../util/const';
 
 /**
  * This class holds the config information for the SDK client instance and
@@ -35,10 +41,10 @@ export class AlchemyConfig {
     | Promise<AlchemyWebSocketProvider>
     | undefined;
 
-  constructor(apiKey: string, network: Network, maxRetries: number) {
-    this.apiKey = apiKey;
-    this.network = network;
-    this.maxRetries = maxRetries;
+  constructor(config?: AlchemySettings) {
+    this.apiKey = config?.apiKey || DEFAULT_ALCHEMY_API_KEY;
+    this.network = config?.network || DEFAULT_NETWORK;
+    this.maxRetries = config?.maxRetries || DEFAULT_MAX_RETRIES;
   }
 
   /** @internal */

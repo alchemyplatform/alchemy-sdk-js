@@ -8,12 +8,7 @@ import {
   TransactionReceiptsParams,
   TransactionReceiptsResponse
 } from '../types/types';
-import {
-  DEFAULT_ALCHEMY_API_KEY,
-  DEFAULT_CONTRACT_ADDRESSES,
-  DEFAULT_MAX_RETRIES,
-  DEFAULT_NETWORK
-} from '../util/const';
+import { DEFAULT_CONTRACT_ADDRESSES } from '../util/const';
 import type { AlchemyWebSocketProvider } from './alchemy-websocket-provider';
 import type { AlchemyProvider } from './alchemy-provider';
 import { findContractDeployer } from '../internal/nft-api';
@@ -55,17 +50,13 @@ export class Alchemy {
   readonly config: AlchemyConfig;
 
   /**
-   * @param {string} [config.apiKey] - The API key to use for Alchemy
-   * @param {Network} [config.network] - The network to use for Alchemy
-   * @param {number} [config.maxRetries] - The maximum number of retries to attempt
+   * @param {string} [settings.apiKey] - The API key to use for Alchemy
+   * @param {Network} [settings.network] - The network to use for Alchemy
+   * @param {number} [settings.maxRetries] - The maximum number of retries to attempt
    * @public
    */
-  constructor(config?: AlchemySettings) {
-    this.config = new AlchemyConfig(
-      config?.apiKey || DEFAULT_ALCHEMY_API_KEY,
-      config?.network || DEFAULT_NETWORK,
-      config?.maxRetries || DEFAULT_MAX_RETRIES
-    );
+  constructor(settings?: AlchemySettings) {
+    this.config = new AlchemyConfig(settings);
 
     this.nft = new NftModule(this.config);
     this.ws = new WebSocketModule(this.config);
