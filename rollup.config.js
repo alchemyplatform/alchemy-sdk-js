@@ -7,20 +7,20 @@ const allBuilds = {
   input: 'src/index.ts',
   output: [
     {
-      dir: "dist/cjs",
+      dir: 'dist/cjs',
       format: 'cjs',
       sourcemap: true
     },
     {
-      dir: "dist/esm",
+      dir: 'dist/esm',
       format: 'esm',
       sourcemap: true
     },
     {
-      dir: "dist/es",
+      dir: 'dist/es',
       format: 'es',
       sourcemap: true
-    },
+    }
   ],
   external: [...Object.keys(pkg.dependencies || {})],
   plugins: [typescriptPlugin(), nodeResolve(), commonjs()]

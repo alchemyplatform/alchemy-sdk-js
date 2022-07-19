@@ -3,6 +3,12 @@ export * from './types/types';
 
 export { Alchemy } from './api/alchemy';
 
+export { AlchemyProvider } from './api/alchemy-provider';
+
+export { AlchemyWebSocketProvider } from './api/alchemy-websocket-provider';
+
+export { NftModule } from './api/nft-module';
+
 export { BaseNftContract, NftContract, Nft, BaseNft } from './api/nft';
 
 export { fromHex, toHex, isHex } from './api/util';
