@@ -68,7 +68,7 @@ export type SingleOrBatchResponse = JsonRpcResponse | JsonRpcResponse[];
  * Subscription API types. The original class is not exported by ethers. Minimal
  * changes have been made in order to get TS to compile.
  */
-class Event {
+export class Event {
   readonly listener: Listener;
   readonly once: boolean;
   readonly tag: string;
@@ -136,8 +136,6 @@ class Event {
 /**
  * Wrapper class around the ethers `Event` class in order to add support for
  * Alchemy's custom subscriptions types.
- *
- * @internal
  */
 export class EthersEvent extends Event {
   get address(): string | null {
@@ -153,7 +151,6 @@ export class EthersEvent extends Event {
   }
 }
 
-/** @internal */
 export interface SubscriptionEvent<T = any> {
   jsonrpc: '2.0';
   method: 'eth_subscription';
