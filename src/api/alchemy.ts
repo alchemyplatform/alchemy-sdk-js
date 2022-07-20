@@ -22,15 +22,13 @@ import type {
   FeeData,
   TransactionRequest,
   TransactionReceipt,
-  TransactionResponse
-} from '@ethersproject/abstract-provider';
-import type { Network as EthersNetworkAlias } from '@ethersproject/networks';
-import type { Deferrable } from '@ethersproject/properties';
-import {
+  TransactionResponse,
   Filter,
   FilterByBlockHash,
   Log
 } from '@ethersproject/abstract-provider';
+import type { Network as EthersNetworkAlias } from '@ethersproject/networks';
+import type { Deferrable } from '@ethersproject/properties';
 import { NftModule } from './nft-module';
 import { WebSocketModule } from './websocket-module';
 import { AlchemyConfig } from './alchemy-config';
