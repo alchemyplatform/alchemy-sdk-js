@@ -19,7 +19,7 @@ describe('E2E integration tests', () => {
   });
 
   it('test', async () => {
-    const provider = await alchemy.getProvider();
+    const provider = await alchemy.config.getProvider();
     console.log(await provider.getBalance(ownerAddress, 'latest'));
   });
 
@@ -27,7 +27,7 @@ describe('E2E integration tests', () => {
   it('findContractDeployer()', async () => {
     // BAYC
     let contractAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D';
-    let contractDeployer = await alchemy.findContractDeployer(contractAddress);
+    let contractDeployer = await alchemy.enhanced.findContractDeployer(contractAddress);
     expect(contractDeployer.deployerAddress).toEqual(
       '0xaba7161a7fb69c88e16ed9f455ce62b791ee4d03'
     );
@@ -36,7 +36,7 @@ describe('E2E integration tests', () => {
 
     // ENS
     contractAddress = '0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85';
-    contractDeployer = await alchemy.findContractDeployer(contractAddress);
+    contractDeployer = await alchemy.enhanced.findContractDeployer(contractAddress);
     expect(contractDeployer.deployerAddress).toEqual(
       '0x4fe4e666be5752f1fdd210f4ab5de2cc26e3e0e8'
     );
@@ -45,7 +45,7 @@ describe('E2E integration tests', () => {
   });
 
   it('getNftMetadata', async () => {
-    const provider = await alchemy.getProvider();
+    const provider = await alchemy.config.getProvider();
     console.log(await provider.getBlockNumber());
     const contractAddress = '0x0510745d2ca36729bed35c818527c4485912d99e';
     const tokenId = 403;
@@ -224,7 +224,7 @@ describe('E2E integration tests', () => {
     });
 
     it('Example 3: Token balances', async () => {
-      await alchemy.getTokenBalances(ownerAddress).then(console.log);
+      await alchemy.enhanced.getTokenBalances(ownerAddress).then(console.log);
     });
   });
 });

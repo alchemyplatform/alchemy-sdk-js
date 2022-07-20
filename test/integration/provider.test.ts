@@ -19,8 +19,8 @@ describe('AlchemyProvider', () => {
       EthersNetwork[alchemy.config.network],
       alchemy.config.apiKey
     );
-    wsProvider = await alchemy.getWebSocketProvider();
-    provider = await alchemy.getProvider();
+    wsProvider = await alchemy.config.getWebSocketProvider();
+    provider = await alchemy.config.getProvider();
   });
 
   // TODO(ethers): Extract into helper method to verify all inputs.
