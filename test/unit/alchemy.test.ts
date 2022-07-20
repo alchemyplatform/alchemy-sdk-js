@@ -12,7 +12,7 @@ describe('Alchemy class', () => {
         const alchemy = new Alchemy({
           network
         });
-        await alchemy.getProvider();
+        await alchemy.config.getProvider();
       });
     }
 
@@ -46,25 +46,25 @@ describe('Alchemy class', () => {
 
   it('reuses the same provider', async () => {
     const alchemy = new Alchemy();
-    const provider = await alchemy.getProvider();
-    const provider2 = await alchemy.getProvider();
+    const provider = await alchemy.config.getProvider();
+    const provider2 = await alchemy.config.getProvider();
     expect(provider).toBe(provider2);
 
-    const wsProvider = await alchemy.getWebSocketProvider();
-    const wsProvider2 = await alchemy.getWebSocketProvider();
+    const wsProvider = await alchemy.config.getWebSocketProvider();
+    const wsProvider2 = await alchemy.config.getWebSocketProvider();
     expect(wsProvider).toBe(wsProvider2);
   });
 
   it('providers are loaded once', async () => {
     const alchemy = new Alchemy();
-    const providerPromise = alchemy.getProvider();
-    const provider2Promise = alchemy.getProvider();
+    const providerPromise = alchemy.config.getProvider();
+    const provider2Promise = alchemy.config.getProvider();
     const provider = await providerPromise;
     const provider2 = await provider2Promise;
     expect(provider).toBe(provider2);
 
-    const wsProviderPromise = alchemy.getWebSocketProvider();
-    const wsProvider2Promise = alchemy.getWebSocketProvider();
+    const wsProviderPromise = alchemy.config.getWebSocketProvider();
+    const wsProvider2Promise = alchemy.config.getWebSocketProvider();
     const wsProvider = await wsProviderPromise;
     const wsProvider2 = await wsProvider2Promise;
     expect(wsProvider).toBe(wsProvider2);

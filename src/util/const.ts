@@ -49,3 +49,5 @@ export const EthersNetwork = {
 export function noop(): void {
   // It's a no-op
 }
+
+export const ETH_NULL_VALUE = '0x';
