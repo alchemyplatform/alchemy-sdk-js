@@ -1,7 +1,6 @@
 import { BaseNft, Nft, NftContract } from '../api/nft';
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import {
-  DeployResult,
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
   GetFloorPriceResponse,
@@ -35,17 +34,9 @@ import {
   RawOwnedNft,
   RawReingestContractResponse
 } from './raw-interfaces';
-import { AlchemyApiType } from '../util/const';
-import {
-  getBaseNftFromRaw,
-  getNftContractFromRaw,
-  getNftFromRaw
-} from '../util/util';
-import { toHex } from '../api/util';
+import { AlchemyApiType  } from '../util/const';
+import { getBaseNftFromRaw, getNftContractFromRaw, getNftFromRaw } from '../util/util';
 import { AlchemyConfig } from '../api/alchemy-config';
-import { Alchemy } from '../api/alchemy';
-
-const ETH_NULL_VALUE = '0x';
 
 export async function getNftMetadata(
   config: AlchemyConfig,
@@ -280,41 +271,6 @@ export async function getFloorPrice(
   );
 }
 
-// TODO: Pass in enhanced module here to complete refactor.
-export async function findContractDeployer(
-  alchemy: Alchemy,
-  contractAddress: string
-): Promise<DeployResult> {
-  const provider = await alchemy.getProvider();
-  const currentBlockNum = await provider.getBlockNumber();
-  if (
-    (await provider.getCode(contractAddress, currentBlockNum)) ===
-    ETH_NULL_VALUE
-  ) {
-    throw new Error(`Contract '${contractAddress}' does not exist`);
-  }
-
-  // Binary search for the block number that the contract was deployed in.
-  const firstBlock = await binarySearchFirstBlock(
-    0,
-    currentBlockNum + 1,
-    contractAddress,
-    alchemy.config
-  );
-
-  // Find the first transaction in the block that matches the provided address.
-  const txReceipts = await alchemy.getTransactionReceipts({
-    blockNumber: toHex(firstBlock)
-  });
-  const matchingReceipt = txReceipts.receipts?.find(
-    receipt => receipt.contractAddress === contractAddress.toLowerCase()
-  );
-  return {
-    deployerAddress: matchingReceipt?.from,
-    blockNumber: firstBlock
-  };
-}
-
 export async function refreshNftMetadata(
   config: AlchemyConfig,
   contractAddress: string,
@@ -360,31 +316,6 @@ async function refresh(
     }
   );
   return getNftFromRaw(response, contractAddress);
-}
-
-/**
- * Perform a binary search between an integer range of block numbers to find the
- * block number where the contract was deployed.
- *
- * @internal
- */
-async function binarySearchFirstBlock(
-  start: number,
-  end: number,
-  address: string,
-  config: AlchemyConfig
-): Promise<number> {
-  if (start >= end) {
-    return end;
-  }
-
-  const mid = Math.floor((start + end) / 2);
-  const provider = await config.getProvider();
-  const code = await provider.getCode(address, mid);
-  if (code === ETH_NULL_VALUE) {
-    return binarySearchFirstBlock(mid + 1, end, address, config);
-  }
-  return binarySearchFirstBlock(start, mid, address, config);
 }
 
 /**
