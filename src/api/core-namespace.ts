@@ -19,13 +19,15 @@ import {
   AssetTransfersResponse,
   DeployResult,
   TokenBalancesResponse,
-  TokenMetadataResponse, TransactionReceiptsParams, TransactionReceiptsResponse
+  TokenMetadataResponse,
+  TransactionReceiptsParams,
+  TransactionReceiptsResponse
 } from '../types/types';
 import { DEFAULT_CONTRACT_ADDRESSES, ETH_NULL_VALUE } from '../util/const';
 import { toHex } from './util';
 import { formatBlock } from '../util/util';
 
-export class CoreModule {
+export class CoreNamespace {
   constructor(private readonly config: AlchemyConfig) {}
 
   /**
@@ -436,7 +438,6 @@ export class CoreModule {
   }
 }
 
-
 /**
  * Perform a binary search between an integer range of block numbers to find the
  * block number where the contract was deployed.
@@ -461,4 +462,3 @@ async function binarySearchFirstBlock(
   }
   return binarySearchFirstBlock(start, mid, address, config);
 }
-

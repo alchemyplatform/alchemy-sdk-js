@@ -9,9 +9,9 @@ export type { AlchemyProvider } from './api/alchemy-provider';
 
 export type { AlchemyWebSocketProvider } from './api/alchemy-websocket-provider';
 
-export type { NftModule } from './api/nft-module';
+export type { NftNamespace } from './api/nft-namespace';
 
-export type { WebSocketModule } from './api/websocket-module';
+export type { WebSocketNamespace } from './api/websocket-namespace';
 
 export type { BaseNftContract, NftContract, Nft, BaseNft } from './api/nft';
 
