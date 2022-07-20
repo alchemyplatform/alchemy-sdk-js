@@ -35,7 +35,7 @@ import {
 } from '../internal/nft-api';
 import { AlchemyConfig } from './alchemy-config';
 
-export class NftModule {
+export class NftNamespace {
   constructor(private readonly config: AlchemyConfig) {}
 
   /**

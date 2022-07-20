@@ -38,9 +38,7 @@ describe('E2E integration tests', () => {
 
     // ENS
     contractAddress = '0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85';
-    contractDeployer = await alchemy.core.findContractDeployer(
-      contractAddress
-    );
+    contractDeployer = await alchemy.core.findContractDeployer(contractAddress);
     expect(contractDeployer.deployerAddress).toEqual(
       '0x4fe4e666be5752f1fdd210f4ab5de2cc26e3e0e8'
     );

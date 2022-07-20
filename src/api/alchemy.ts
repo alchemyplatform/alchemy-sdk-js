@@ -1,12 +1,12 @@
 import { AlchemySettings } from '../types/types';
-import { NftModule } from './nft-module';
-import { WebSocketModule } from './websocket-module';
+import { NftNamespace } from './nft-namespace';
+import { WebSocketNamespace } from './websocket-namespace';
 import { AlchemyConfig } from './alchemy-config';
-import { CoreModule } from './core-module';
+import { CoreNamespace } from './core-namespace';
 
 /**
  * The Alchemy SDK client. This class is the main entry point into Alchemy's
- * APIs and separates functionality into different modules.
+ * APIs and separates functionality into different namespaces.
  *
  * Each SDK instance is associated with a specific network and API key. To use a
  * different network or API key, create a new instance of {@link Alchemy}.
@@ -14,9 +14,22 @@ import { CoreModule } from './core-module';
  * @public
  */
 export class Alchemy {
-  readonly core: CoreModule;
-  readonly nft: NftModule;
-  readonly ws: WebSocketModule;
+  /**
+   * The `core` namespace contains the core eth json-rpc calls and Alchemy's
+   * Enhanced APIs.
+   */
+  readonly core: CoreNamespace;
+
+  /** The `nft` namespace contains methods for Alchemy's NFT API. */
+  readonly nft: NftNamespace;
+
+  /** The `ws` namespace contains methods for using WebSockets and creating subscriptions. */
+  readonly ws: WebSocketNamespace;
+
+  /**
+   * Holds the setting information for the instance of the Alchemy SDK client
+   * and allows access to the underlying providers.
+   */
   readonly config: AlchemyConfig;
 
   /**
@@ -28,8 +41,8 @@ export class Alchemy {
   constructor(settings?: AlchemySettings) {
     this.config = new AlchemyConfig(settings);
 
-    this.core = new CoreModule(this.config);
-    this.nft = new NftModule(this.config);
-    this.ws = new WebSocketModule(this.config);
+    this.core = new CoreNamespace(this.config);
+    this.nft = new NftNamespace(this.config);
+    this.ws = new WebSocketNamespace(this.config);
   }
 }

@@ -2,8 +2,7 @@ import { AlchemyEventType } from '../types/types';
 import type { Listener } from '@ethersproject/abstract-provider';
 import { AlchemyConfig } from './alchemy-config';
 
-export class WebSocketModule {
-  // TODO: Only pass in the provider cuz that's all we need: readability
+export class WebSocketNamespace {
   constructor(private readonly config: AlchemyConfig) {}
 
   /**
