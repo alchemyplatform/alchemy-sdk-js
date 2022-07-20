@@ -41,19 +41,20 @@ import {
   getNftContractFromRaw,
   getNftFromRaw
 } from '../util/util';
-import { Alchemy } from '../api/alchemy';
 import { toHex } from '../api/util';
+import { AlchemyConfig } from '../api/alchemy-config';
+import { Alchemy } from '../api/alchemy';
 
 const ETH_NULL_VALUE = '0x';
 
 export async function getNftMetadata(
-  alchemy: Alchemy,
+  config: AlchemyConfig,
   contractAddress: string,
   tokenId: BigNumberish,
   tokenType?: NftTokenType
 ): Promise<Nft> {
   const response = await requestHttpWithBackoff<GetNftMetadataParams, RawNft>(
-    alchemy,
+    config,
     AlchemyApiType.NFT,
     'getNFTMetadata',
     {
@@ -66,13 +67,13 @@ export async function getNftMetadata(
 }
 
 export async function getNftContractMetadata(
-  alchemy: Alchemy,
+  config: AlchemyConfig,
   contractAddress: string
 ): Promise<NftContract> {
   const response = await requestHttpWithBackoff<
     GetNftContractMetadataParams,
     RawNftContract
-  >(alchemy, AlchemyApiType.NFT, 'getContractMetadata', {
+  >(config, AlchemyApiType.NFT, 'getContractMetadata', {
     contractAddress
   });
 
@@ -80,13 +81,13 @@ export async function getNftContractMetadata(
 }
 
 export async function* getNftsForOwnerIterator(
-  alchemy: Alchemy,
+  config: AlchemyConfig,
   owner: string,
   options?: GetNftsForOwnerOptions | GetBaseNftsForOwnerOptions
 ): AsyncIterable<OwnedBaseNft | OwnedNft> {
   const withMetadata = omitMetadataToWithMetadata(options?.omitMetadata);
   for await (const response of paginateEndpoint(
-    alchemy,
+    config,
     AlchemyApiType.NFT,
     'getNFTs',
     'pageKey',
@@ -111,7 +112,7 @@ export async function* getNftsForOwnerIterator(
 }
 
 export async function getNftsForOwner(
-  alchemy: Alchemy,
+  config: AlchemyConfig,
   owner: string,
   options?: GetNftsForOwnerOptions | GetBaseNftsForOwnerOptions
 ): Promise<OwnedNftsResponse | OwnedBaseNftsResponse> {
@@ -119,7 +120,7 @@ export async function getNftsForOwner(
   const response = await requestHttpWithBackoff<
     GetNftsAlchemyParams,
     RawGetBaseNftsResponse | RawGetNftsResponse
-  >(alchemy, AlchemyApiType.NFT, 'getNFTs', {
+  >(config, AlchemyApiType.NFT, 'getNFTs', {
     contractAddresses: options?.contractAddresses,
     pageKey: options?.pageKey,
     filters: options?.excludeFilters,
@@ -137,7 +138,7 @@ export async function getNftsForOwner(
 }
 
 export async function getNftsForContract(
-  alchemy: Alchemy,
+  config: AlchemyConfig,
   contractAddress: string,
   options?: GetBaseNftsForContractOptions | GetNftsForContractOptions
 ): Promise<NftContractNftsResponse | NftContractBaseNftsResponse> {
@@ -145,7 +146,7 @@ export async function getNftsForContract(
   const response = await requestHttpWithBackoff<
     GetNftsForNftContractAlchemyParams,
     RawGetBaseNftsForNftContractResponse | RawGetNftsForNftContractResponse
-  >(alchemy, AlchemyApiType.NFT, 'getNFTsForCollection', {
+  >(config, AlchemyApiType.NFT, 'getNFTsForCollection', {
     contractAddress,
     startToken: options?.pageKey,
     withMetadata
@@ -160,13 +161,13 @@ export async function getNftsForContract(
 }
 
 export async function getOwnersForContract(
-  alchemy: Alchemy,
+  config: AlchemyConfig,
   contractAddress: string
 ): Promise<GetOwnersForContractResponse> {
   const response = await requestHttpWithBackoff<
     GetOwnersForNftContractAlchemyParams,
     RawGetOwnersForNftContractResponse
-  >(alchemy, AlchemyApiType.NFT, 'getOwnersForCollection', {
+  >(config, AlchemyApiType.NFT, 'getOwnersForCollection', {
     contractAddress
   });
 
@@ -176,12 +177,12 @@ export async function getOwnersForContract(
 }
 
 export function getOwnersForNft(
-  alchemy: Alchemy,
+  config: AlchemyConfig,
   contractAddress: string,
   tokenId?: BigNumberish
 ): Promise<GetOwnersForNftResponse> {
   return requestHttpWithBackoff(
-    alchemy,
+    config,
     AlchemyApiType.NFT,
     'getOwnersForToken',
     {
@@ -192,13 +193,13 @@ export function getOwnersForNft(
 }
 
 export async function* getNftsForNftContractIterator(
-  alchemy: Alchemy,
+  config: AlchemyConfig,
   contractAddress: string,
   options?: GetBaseNftsForContractOptions | GetNftsForContractOptions
 ): AsyncIterable<BaseNft | Nft> {
   const withMetadata = omitMetadataToWithMetadata(options?.omitMetadata);
   for await (const response of paginateEndpoint(
-    alchemy,
+    config,
     AlchemyApiType.NFT,
     'getNFTsForCollection',
     'startToken',
@@ -218,14 +219,14 @@ export async function* getNftsForNftContractIterator(
 }
 
 export async function checkNftOwnership(
-  alchemy: Alchemy,
+  config: AlchemyConfig,
   owner: string,
   contractAddresses: string[]
 ): Promise<boolean> {
   if (contractAddresses.length === 0) {
     throw new Error('Must provide at least one contract address');
   }
-  const response = await getNftsForOwner(alchemy, owner, {
+  const response = await getNftsForOwner(config, owner, {
     contractAddresses,
     omitMetadata: true
   });
@@ -233,11 +234,11 @@ export async function checkNftOwnership(
 }
 
 export async function isSpamContract(
-  alchemy: Alchemy,
+  config: AlchemyConfig,
   contractAddress: string
 ): Promise<boolean> {
   return requestHttpWithBackoff<IsSpamContractParams, boolean>(
-    alchemy,
+    config,
     AlchemyApiType.NFT,
     'isSpamContract',
     {
@@ -249,14 +250,16 @@ export async function isSpamContract(
 /**
  * Returns a list of all spam contracts marked by Alchemy. For details on how
  * Alchemy marks spam contracts, go to
- * https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification.
+ * https://docs.config.com/config/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification.
  *
- * @param alchemy - The Alchemy SDK instance.
+ * @param config - The Alchemy SDK instance.
  * @beta
  */
-export async function getSpamContracts(alchemy: Alchemy): Promise<string[]> {
+export async function getSpamContracts(
+  config: AlchemyConfig
+): Promise<string[]> {
   return requestHttpWithBackoff<undefined, string[]>(
-    alchemy,
+    config,
     AlchemyApiType.NFT,
     'getSpamContracts',
     undefined
@@ -264,11 +267,11 @@ export async function getSpamContracts(alchemy: Alchemy): Promise<string[]> {
 }
 
 export async function getFloorPrice(
-  alchemy: Alchemy,
+  config: AlchemyConfig,
   contractAddress: string
 ): Promise<GetFloorPriceResponse> {
   return requestHttpWithBackoff<GetFloorPriceParams, GetFloorPriceResponse>(
-    alchemy,
+    config,
     AlchemyApiType.NFT,
     'getFloorPrice',
     {
@@ -277,6 +280,7 @@ export async function getFloorPrice(
   );
 }
 
+// TODO: Pass in enhanced module here to complete refactor.
 export async function findContractDeployer(
   alchemy: Alchemy,
   contractAddress: string
@@ -295,7 +299,7 @@ export async function findContractDeployer(
     0,
     currentBlockNum + 1,
     contractAddress,
-    alchemy
+    alchemy.config
   );
 
   // Find the first transaction in the block that matches the provided address.
@@ -312,24 +316,24 @@ export async function findContractDeployer(
 }
 
 export async function refreshNftMetadata(
-  alchemy: Alchemy,
+  config: AlchemyConfig,
   contractAddress: string,
   tokenId?: BigNumberish
 ): Promise<boolean> {
   const tokenIdString = BigNumber.from(tokenId!).toString();
-  const first = await getNftMetadata(alchemy, contractAddress, tokenIdString);
-  const second = await refresh(alchemy, contractAddress, tokenIdString);
+  const first = await getNftMetadata(config, contractAddress, tokenIdString);
+  const second = await refresh(config, contractAddress, tokenIdString);
   return first.timeLastUpdated !== second.timeLastUpdated;
 }
 
 export async function refreshNftContract(
-  alchemy: Alchemy,
+  config: AlchemyConfig,
   contractAddress: string
 ): Promise<RefreshContractResult> {
   const response = await requestHttpWithBackoff<
     ReingestContractParams,
     RawReingestContractResponse
-  >(alchemy, AlchemyApiType.NFT, 'reingestContract', {
+  >(config, AlchemyApiType.NFT, 'reingestContract', {
     contractAddress
   });
 
@@ -341,12 +345,12 @@ export async function refreshNftContract(
 }
 
 async function refresh(
-  alchemy: Alchemy,
+  config: AlchemyConfig,
   contractAddress: string,
   tokenId: BigNumberish
 ): Promise<Nft> {
   const response = await requestHttpWithBackoff<GetNftMetadataParams, RawNft>(
-    alchemy,
+    config,
     AlchemyApiType.NFT,
     'getNFTMetadata',
     {
@@ -368,19 +372,19 @@ async function binarySearchFirstBlock(
   start: number,
   end: number,
   address: string,
-  alchemy: Alchemy
+  config: AlchemyConfig
 ): Promise<number> {
   if (start >= end) {
     return end;
   }
 
   const mid = Math.floor((start + end) / 2);
-  const provider = await alchemy.getProvider();
+  const provider = await config.getProvider();
   const code = await provider.getCode(address, mid);
   if (code === ETH_NULL_VALUE) {
-    return binarySearchFirstBlock(mid + 1, end, address, alchemy);
+    return binarySearchFirstBlock(mid + 1, end, address, config);
   }
-  return binarySearchFirstBlock(start, mid, address, alchemy);
+  return binarySearchFirstBlock(start, mid, address, config);
 }
 
 /**

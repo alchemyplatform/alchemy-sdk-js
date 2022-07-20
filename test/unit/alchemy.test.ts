@@ -1,4 +1,4 @@
-import { Alchemy, AlchemyConfig, Network } from '../../src';
+import { Alchemy, AlchemySettings, Network } from '../../src';
 import {
   DEFAULT_ALCHEMY_API_KEY,
   DEFAULT_MAX_RETRIES,
@@ -22,7 +22,7 @@ describe('Alchemy class', () => {
   });
 
   it('preserves settings', () => {
-    const config: AlchemyConfig = {
+    const config: AlchemySettings = {
       apiKey: 'api-key-here',
       network: Network.OPT_KOVAN,
       maxRetries: 2
@@ -32,16 +32,16 @@ describe('Alchemy class', () => {
     config.network = Network.OPT_MAINNET;
     config.maxRetries = 3;
 
-    expect(alchemy.apiKey).toEqual('api-key-here');
-    expect(alchemy.network).toEqual(Network.OPT_KOVAN);
-    expect(alchemy.maxRetries).toEqual(2);
+    expect(alchemy.config.apiKey).toEqual('api-key-here');
+    expect(alchemy.config.network).toEqual(Network.OPT_KOVAN);
+    expect(alchemy.config.maxRetries).toEqual(2);
   });
 
   it('initializes to default values', () => {
     const alchemy = new Alchemy();
-    expect(alchemy.apiKey).toEqual(DEFAULT_ALCHEMY_API_KEY);
-    expect(alchemy.network).toEqual(DEFAULT_NETWORK);
-    expect(alchemy.maxRetries).toEqual(DEFAULT_MAX_RETRIES);
+    expect(alchemy.config.apiKey).toEqual(DEFAULT_ALCHEMY_API_KEY);
+    expect(alchemy.config.network).toEqual(DEFAULT_NETWORK);
+    expect(alchemy.config.maxRetries).toEqual(DEFAULT_MAX_RETRIES);
   });
 
   it('reuses the same provider', async () => {

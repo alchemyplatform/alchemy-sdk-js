@@ -3,13 +3,17 @@ export * from './types/types';
 
 export { Alchemy } from './api/alchemy';
 
-export { AlchemyProvider } from './api/alchemy-provider';
+export type { AlchemyConfig } from './api/alchemy-config';
 
-export { AlchemyWebSocketProvider } from './api/alchemy-websocket-provider';
+export type { AlchemyProvider } from './api/alchemy-provider';
 
-export { NftModule } from './api/nft-module';
+export type { AlchemyWebSocketProvider } from './api/alchemy-websocket-provider';
 
-export { BaseNftContract, NftContract, Nft, BaseNft } from './api/nft';
+export type { NftModule } from './api/nft-module';
+
+export type { WebSocketModule } from './api/websocket-module';
+
+export type { BaseNftContract, NftContract, Nft, BaseNft } from './api/nft';
 
 export { fromHex, toHex, isHex } from './api/util';
 
