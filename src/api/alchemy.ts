@@ -6,7 +6,7 @@ import { CoreNamespace } from './core-namespace';
 
 /**
  * The Alchemy SDK client. This class is the main entry point into Alchemy's
- * APIs and separates functionality into different modules.
+ * APIs and separates functionality into different namespaces.
  *
  * Each SDK instance is associated with a specific network and API key. To use a
  * different network or API key, create a new instance of {@link Alchemy}.
