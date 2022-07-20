@@ -34,8 +34,12 @@ import {
   RawOwnedNft,
   RawReingestContractResponse
 } from './raw-interfaces';
-import { AlchemyApiType  } from '../util/const';
-import { getBaseNftFromRaw, getNftContractFromRaw, getNftFromRaw } from '../util/util';
+import { AlchemyApiType } from '../util/const';
+import {
+  getBaseNftFromRaw,
+  getNftContractFromRaw,
+  getNftFromRaw
+} from '../util/util';
 import { AlchemyConfig } from '../api/alchemy-config';
 
 export async function getNftMetadata(

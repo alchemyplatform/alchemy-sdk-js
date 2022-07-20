@@ -1,11 +1,8 @@
-import {
-  AlchemySettings,
-} from '../types/types';
+import { AlchemySettings } from '../types/types';
 import { NftModule } from './nft-module';
 import { WebSocketModule } from './websocket-module';
 import { AlchemyConfig } from './alchemy-config';
-import { EnhancedModule } from './enhanced-module';
-import { RpcModule } from './rpc-module';
+import { CoreModule } from './core-module';
 
 /**
  * The Alchemy SDK client. This class is the main entry point into Alchemy's
@@ -17,8 +14,7 @@ import { RpcModule } from './rpc-module';
  * @public
  */
 export class Alchemy {
-  readonly rpc: RpcModule
-  readonly enhanced: EnhancedModule
+  readonly core: CoreModule;
   readonly nft: NftModule;
   readonly ws: WebSocketModule;
   readonly config: AlchemyConfig;
@@ -32,8 +28,7 @@ export class Alchemy {
   constructor(settings?: AlchemySettings) {
     this.config = new AlchemyConfig(settings);
 
-    this.rpc = new RpcModule(this.config);
-    this.enhanced = new EnhancedModule(this.config);
+    this.core = new CoreModule(this.config);
     this.nft = new NftModule(this.config);
     this.ws = new WebSocketModule(this.config);
   }
