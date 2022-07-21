@@ -1,8 +1,6 @@
-import { Alchemy } from '../../src';
+import { Alchemy, AlchemyWebSocketProvider, AlchemyProvider } from '../../src';
 import { EthersNetwork } from '../../src/util/const';
 import { AlchemyProvider as EthersAlchemyProvider } from '@ethersproject/providers';
-import { AlchemyWebSocketProvider } from '../../src/api/alchemy-websocket-provider';
-import { AlchemyProvider } from '../../src/api/alchemy-provider';
 
 /**
  * These integrations are sanity checks to ensure that the SDK's overriden
@@ -18,11 +16,11 @@ describe('AlchemyProvider', () => {
   beforeEach(async () => {
     alchemy = new Alchemy();
     ethersProvider = new EthersAlchemyProvider(
-      EthersNetwork[alchemy.network],
-      alchemy.apiKey
+      EthersNetwork[alchemy.config.network],
+      alchemy.config.apiKey
     );
-    wsProvider = await alchemy.getWebSocketProvider();
-    provider = await alchemy.getProvider();
+    wsProvider = await alchemy.config.getWebSocketProvider();
+    provider = await alchemy.config.getProvider();
   });
 
   // TODO(ethers): Extract into helper method to verify all inputs.

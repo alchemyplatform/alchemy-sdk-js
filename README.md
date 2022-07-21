@@ -1,6 +1,6 @@
 # Alchemy SDK for Javascript
 
-Alchemy SDK helps developers use Alchemy's APIs and endpoints more efficiently. This is a lightweight, modular SDK built as a drop-in replacement of Ethers.js that provides a superset of functionality - enabling access to the Alchemy NFT API, Websockets, and Enhanced API methods. 
+Alchemy SDK helps developers use Alchemy's APIs and endpoints more efficiently. This is a lightweight, modular SDK built as a drop-in replacement of Ethers.js that provides a superset of functionality - enabling access to the Alchemy NFT API, Websockets, and Enhanced API methods.
 
 It also provides access to Alchemy's hardened node infrastructure, guaranteeing reliability, scalability, and quality-of-life improvements such as automatic exponential backoff retries.
 
@@ -41,7 +41,7 @@ If you are already using Ethers.js, you should be simply able to replace the Eth
 import { Alchemy } from '@alch/alchemy-sdk';
 
 // Using default settings - pass in a settings object to specify your API key and network
-const alchemy = new Alchemy(); 
+const alchemy = new Alchemy();
 
 // Access standard Ethers.js JSON-RPC node request
 alchemy.core.getBlockNumber().then(console.log);
@@ -244,10 +244,7 @@ Below are a few usage examples:
 Getting the NFTs owned by an address.
 
 ```ts
-import {
-  NftExcludeFilters,
-  Alchemy
-} from '@alch/alchemy-sdk';
+import { NftExcludeFilters, Alchemy } from '@alch/alchemy-sdk';
 
 const alchemy = new Alchemy();
 
@@ -274,9 +271,7 @@ alchemy.nft.getNftsForOwner('vitalik.eth', {
 Getting all the owners of the BAYC NFT.
 
 ```ts
-import {
-  Alchemy
-} from '@alch/alchemy-sdk';
+import { Alchemy } from '@alch/alchemy-sdk';
 
 const alchemy = new Alchemy();
 
