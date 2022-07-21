@@ -237,11 +237,9 @@ There's a long list, but here are the main ones:
 - Retry count support for json-rpc calls (currently only for NFT API calls).
 - More config options for the base ethers.js AlchemyProvider.
 
-## Examples
+## Usage Examples
 
-Below are a few usage examples:
-
-Getting the NFTs owned by an address.
+### Getting the NFTs owned by an address 
 
 ```ts
 import { NftExcludeFilters, Alchemy } from '@alch/alchemy-sdk';
@@ -268,7 +266,7 @@ alchemy.nft.getNftsForOwner('vitalik.eth', {
 }).then(console.log);
 ```
 
-Getting all the owners of the BAYC NFT.
+### Getting all the owners of the BAYC NFT
 
 ```ts
 import { Alchemy } from '@alch/alchemy-sdk';
@@ -294,7 +292,7 @@ async function main() {
 main();
 ```
 
-Get all outbound transfers for a provided address.
+### Get all outbound transfers for a provided address
 
 ```ts
 import { Alchemy } from '@alch/alchemy-sdk';
