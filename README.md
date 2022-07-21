@@ -21,7 +21,6 @@ import { Network, Alchemy } from '@alch/alchemy-sdk';
 const settings = {
   apiKey: 'demo', // Replace with your Alchemy API Key.
   network: Network.ETH_MAINNET, // Replace with your network.
-  maxRetries: 10
 };
 
 const alchemy = new Alchemy(settings);
