@@ -398,6 +398,57 @@ export class AlchemyWebSocketProvider
     return this.apiKey === DEFAULT_ALCHEMY_API_KEY;
   }
 
+  /**
+   * DO NOT MODIFY.
+   *
+   * Original code copied over from ether.js's `WebSocketProvider._stopEvent()`.
+   *
+   * This method is copied over directly in order to support Alchemy's
+   * subscription type by allowing the provider to properly stop Alchemy's
+   * subscription events.
+   *
+   * @internal
+   */
+  _stopEvent(event: EthersEvent): void {
+    let tag = event.tag;
+
+    // START MODIFIED CODE
+    if (event.type === ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE) {
+      // There are remaining pending transaction listeners.
+      if (
+        this._events.filter(
+          e => e.type === ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE
+        ).length
+      ) {
+        return;
+      }
+      // END MODIFIED CODE
+    } else if (event.type === 'tx') {
+      // There are remaining transaction event listeners
+      if (this._events.filter(e => e.type === 'tx').length) {
+        return;
+      }
+      tag = 'tx';
+    } else if (this.listenerCount(event.event)) {
+      // There are remaining event listeners
+      return;
+    }
+
+    const subId = this._subIds[tag];
+    if (!subId) {
+      return;
+    }
+
+    delete this._subIds[tag];
+    void subId.then(subId => {
+      if (!this._subs[subId]) {
+        return;
+      }
+      delete this._subs[subId];
+      void this.send('eth_unsubscribe', [subId]);
+    });
+  }
+
   /** @internal */
   private addSocketListeners(): void {
     this._websocket.addEventListener('message', this.handleMessage);
@@ -698,12 +749,7 @@ export class AlchemyWebSocketProvider
       const { fromAddress, toAddress, hashesOnly } = event;
       void this._subscribe(
         event.tag,
-        [
-          'alchemy_pendingTransactions',
-
-          // Make sure undefined fields are not included in the payload.
-          { fromAddress, toAddress, hashesOnly }
-        ],
+        ['alchemy_pendingTransactions', { fromAddress, toAddress, hashesOnly }],
         this.emitProcessFn(event),
         event
       );

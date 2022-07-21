@@ -57,6 +57,40 @@ describe('AlchemyProvider', () => {
     );
   });
 
+  it('once', done => {
+    const address = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
+    let eventCount = 0;
+    wsProvider.once(
+      {
+        method: 'alchemy_pendingTransactions',
+        toAddress: address,
+        hashesOnly: true
+      },
+      res => {
+        console.log('1', res);
+        eventCount++;
+        if (eventCount > 1) {
+          done();
+        }
+      }
+    );
+
+    wsProvider.once(
+      {
+        method: 'alchemy_pendingTransactions',
+        toAddress: address,
+        hashesOnly: true
+      },
+      res => {
+        console.log('2', res);
+        eventCount++;
+        if (eventCount > 1) {
+          done();
+        }
+      }
+    );
+  });
+
   it('can send normal json-rpc methods', async () => {
     const res = await wsProvider.getBlockNumber();
     expect(typeof res).toBe('number');
