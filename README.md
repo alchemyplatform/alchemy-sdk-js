@@ -286,11 +286,13 @@ const baycAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D';
 async function main() {
   for await (const nft of alchemy.nft.getNftsForContractIterator(baycAddress, {
     // Omit the NFT metadata for smaller payloads.
-    omitMetadata: true
+    omitMetadata: true,
   })) {
-    await alchemy.nft.getOwnersForNft(nft).then(response =>
-      console.log('owners:', response.owners, 'tokenId:', nft.tokenId)
-    );
+    await alchemy.nft
+      .getOwnersForNft(nft.contract.address, nft.tokenId)
+      .then((response) =>
+        console.log("owners:", response.owners, "tokenId:", nft.tokenId)
+      );
   }
 }
 
