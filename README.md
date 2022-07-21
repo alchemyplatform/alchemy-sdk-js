@@ -51,7 +51,7 @@ alchemy.core.getBlockNumber().then(console.log);
 alchemy.core.getTokenBalances("0x3f5CE5FBFe3E9af3971dD833D26bA9b5C936f0bE").then(console.log);
 
 // Access the Alchemy NFT API
-alchemy.nft.getNftsForOwner('0xshah.eth').then(console.log);
+alchemy.nft.getNftsForOwner('vitalik.eth').then(console.log);
 
 // Access WebSockets and Alchemy-specific WS methods
 alchemy.ws.on(
@@ -91,7 +91,7 @@ It also includes the majority of Alchemy Enhanced APIs, including:
 
 ### Accessing the full Ethers.js provider
 
-To keep the package clean, we don't support certain uncommonly-used Ethers.js methods as top-level methods the Alchemy object - for example, `provider.formatter`. If you'd like to access these methods, simply use the `alchemy.getProvider()` function to configure the
+To keep the package clean, we don't support certain uncommonly-used Ethers.js methods as top-level methods the Alchemy object - for example, `provider.formatter`. If you'd like to access these methods, simply use the `alchemy.config.getProvider()` function to configure the
 Ethers.js [AlchemyProvider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) and return it.
 
 ```ts
@@ -99,7 +99,7 @@ import { Alchemy } from '@alch/alchemy-sdk';
 const alchemy = new Alchemy();
 
 async function runAlchemy() {
-  const ethersProvider = await alchemy.getProvider();
+  const ethersProvider = await alchemy.config.getProvider();
   console.log(ethersProvider.formatter);
 }
 runAlchemy();
@@ -253,13 +253,13 @@ import {
 const alchemy = new Alchemy();
 
 // Get how many NFTs an address owns.
-alchemy.nft.getNftsForOwner('0xshah.eth').then(nfts => {
+alchemy.nft.getNftsForOwner('vitalik.eth').then(nfts => {
   console.log(nfts.totalCount);
 });
 
 // Get all the image urls for all the NFTs an address owns.
 async function main() {
-  for await (const nft of alchemy.nft.getNftsForOwnerIterator('0xshah.eth')) {
+  for await (const nft of alchemy.nft.getNftsForOwnerIterator('vitalik.eth')) {
     console.log(nft.media);
   }
 }
@@ -267,7 +267,7 @@ async function main() {
 main();
 
 // Filter out spam NFTs.
-alchemy.nft.getNftsForOwner('0xshah.eth', {
+alchemy.nft.getNftsForOwner('vitalik.eth', {
   excludeFilters: [NftExcludeFilters.SPAM]
 }).then(console.log);
 ```
