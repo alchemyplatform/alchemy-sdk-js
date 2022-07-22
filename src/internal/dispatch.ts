@@ -1,28 +1,25 @@
-import { Alchemy } from '../api/alchemy';
 import { sendAxiosRequest } from '../util/sendRest';
 import { ExponentialBackoff } from './backoff';
 import axios, { AxiosError } from 'axios';
 import { logDebug, logInfo } from '../util/logger';
 import { AlchemyApiType } from '../util/const';
+import { AlchemyConfig } from '../api/alchemy-config';
 
 /**
  * A wrapper function to make http requests and retry if the request fails.
  *
- * @param alchemy
- * @param method
- * @param params
  * @internal
  */
 // TODO: Wrap Axios error in AlchemyError.
 export async function requestHttpWithBackoff<Req, Res>(
-  alchemy: Alchemy,
+  config: AlchemyConfig,
   apiType: AlchemyApiType,
   method: string,
   params: Req
 ): Promise<Res> {
   let lastError: Error | undefined = undefined;
-  const backoff = new ExponentialBackoff(alchemy.maxRetries);
-  for (let attempt = 0; attempt < alchemy.maxRetries + 1; attempt++) {
+  const backoff = new ExponentialBackoff(config.maxRetries);
+  for (let attempt = 0; attempt < config.maxRetries + 1; attempt++) {
     try {
       if (lastError !== undefined) {
         logInfo('requestHttp', `Retrying after error: ${lastError.message}`);
@@ -40,7 +37,7 @@ export async function requestHttpWithBackoff<Req, Res>(
       switch (apiType) {
         case AlchemyApiType.NFT:
           response = await sendAxiosRequest<Req, Res>(
-            alchemy._getNftUrl(),
+            config._getNftUrl(),
             method,
             params
           );
@@ -48,7 +45,7 @@ export async function requestHttpWithBackoff<Req, Res>(
         default:
         case AlchemyApiType.BASE:
           response = await sendAxiosRequest<Req, Res>(
-            alchemy._getBaseUrl(),
+            config._getBaseUrl(),
             method,
             params
           );
@@ -98,7 +95,7 @@ export async function* paginateEndpoint<
   Req extends Partial<Record<string, any> & Record<ReqPageKey, string>>,
   Res extends Partial<Record<string, any> & Record<ResPageKey, string>>
 >(
-  alchemy: Alchemy,
+  config: AlchemyConfig,
   apiType: AlchemyApiType,
   methodName: string,
   reqPageKey: ReqPageKey,
@@ -109,7 +106,7 @@ export async function* paginateEndpoint<
   const requestParams = { ...params };
   while (hasNext) {
     const response = await requestHttpWithBackoff<Req, Res>(
-      alchemy,
+      config,
       apiType,
       methodName,
       requestParams

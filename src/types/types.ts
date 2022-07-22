@@ -11,7 +11,7 @@ import { BaseNft, Nft } from '../api/nft';
  *
  * @public
  */
-export interface AlchemyConfig {
+export interface AlchemySettings {
   /** The Alchemy API key that can be found in the Alchemy dashboard. */
   apiKey?: string;
 
@@ -355,17 +355,17 @@ export interface GetOwnersForNftResponse {
 }
 
 /**
- * The response object for the {@link getOwnersForNftContract}.
+ * The response object for the {@link getOwnersForContract}.
  *
  * @public
  */
-export interface GetOwnersForNftContractResponse {
+export interface GetOwnersForContractResponse {
   /** An array of owner addresses for the provided contract address */
   readonly owners: string[];
 }
 
 /**
- * The successful object returned by the {@link getNftFloorPrice} call for each
+ * The successful object returned by the {@link getFloorPrice} call for each
  * marketplace (e.g. looksRare).
  *
  * @public
@@ -382,7 +382,7 @@ export interface FloorPriceMarketplace {
 }
 
 /**
- * The failing object returned by the {@link getNftFloorPrice} call for each
+ * The failing object returned by the {@link getFloorPrice} call for each
  * marketplace (e.g. looksRare).
  *
  * @public
@@ -393,11 +393,11 @@ export interface FloorPriceError {
 }
 
 /**
- * The response object for the {@link getNftFloorPrice} method.
+ * The response object for the {@link getFloorPrice} method.
  *
  * @public
  */
-export interface GetNftFloorPriceResponse {
+export interface GetFloorPriceResponse {
   /**
    * Name of the NFT marketplace where the collection is listed. Current
    * marketplaces supported: OpenSea, LooksRare
@@ -407,7 +407,7 @@ export interface GetNftFloorPriceResponse {
 }
 
 /** The refresh result response object returned by {@link refreshNftContract}. */
-export interface RefreshNftContractResult {
+export interface RefreshContractResult {
   /** The NFT contract address that was passed in to be refreshed. */
   contractAddress: string;
 
@@ -476,15 +476,15 @@ export interface RawContract {
 }
 
 /**
- * Optional parameters object for the {@link getNftsForNftContract} and
+ * Optional parameters object for the {@link getNftsForContract} and
  * {@link getNftsForNftContractIterator} functions.
  *
  * This interface is used to fetch NFTs with their associated metadata. To get
- * Nfts without their associated metadata, use {@link GetBaseNftsForNftContractOptions}.
+ * Nfts without their associated metadata, use {@link GetBaseNftsForContractOptions}.
  *
  * @public
  */
-export interface GetNftsForNftContractOptions {
+export interface GetNftsForContractOptions {
   /**
    * Optional page key from an existing {@link NftContractBaseNftsResponse} or
    * {@link NftContractNftsResponse}to use for pagination.
@@ -496,15 +496,15 @@ export interface GetNftsForNftContractOptions {
 }
 
 /**
- * Optional parameters object for the {@link getNftsForNftContract} and
+ * Optional parameters object for the {@link getNftsForContract} and
  * {@link getNftsForNftContractIterator} functions.
  *
  * This interface is used to fetch NFTs without their associated metadata. To
- * get Nfts with their associated metadata, use {@link GetNftsForNftContractOptions}.
+ * get Nfts with their associated metadata, use {@link GetNftsForContractOptions}.
  *
  * @public
  */
-export interface GetBaseNftsForNftContractOptions {
+export interface GetBaseNftsForContractOptions {
   /**
    * Optional page key from an existing {@link NftContractBaseNftsResponse} or
    * {@link NftContractNftsResponse}to use for pagination.
@@ -516,7 +516,7 @@ export interface GetBaseNftsForNftContractOptions {
 }
 
 /**
- * The response object for the {@link getNftsForNftContract} function. The object
+ * The response object for the {@link getNftsForContract} function. The object
  * contains the NFTs without metadata inside the NFT contract.
  *
  * @public
@@ -533,7 +533,7 @@ export interface NftContractBaseNftsResponse {
 }
 
 /**
- * The response object for the {@link getNftsForNftContract} function. The object
+ * The response object for the {@link getNftsForContract} function. The object
  * contains the NFTs with metadata inside the NFT contract.
  *
  * @public

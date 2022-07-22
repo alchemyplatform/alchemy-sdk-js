@@ -1,6 +1,6 @@
 import {
   RawBaseNft,
-  RawNftContractBaseNft,
+  RawContractBaseNft,
   RawBaseNftContract,
   RawNft,
   RawNftContract,
@@ -179,7 +179,7 @@ export function createOwnedNft(
 
 export function createRawNftContractBaseNft(
   tokenId: string
-): RawNftContractBaseNft {
+): RawContractBaseNft {
   return {
     id: {
       tokenId
