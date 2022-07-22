@@ -16,10 +16,15 @@
 ### Classes
 
 - [Alchemy](classes/Alchemy.md)
+- [AlchemyConfig](classes/AlchemyConfig.md)
+- [AlchemyProvider](classes/AlchemyProvider.md)
+- [AlchemyWebSocketProvider](classes/AlchemyWebSocketProvider.md)
+- [NftNamespace](classes/NftNamespace.md)
+- [WebSocketNamespace](classes/WebSocketNamespace.md)
 
 ### Interfaces
 
-- [AlchemyConfig](interfaces/AlchemyConfig.md)
+- [AlchemySettings](interfaces/AlchemySettings.md)
 - [AssetTransfersParams](interfaces/AssetTransfersParams.md)
 - [AssetTransfersResponse](interfaces/AssetTransfersResponse.md)
 - [AssetTransfersResult](interfaces/AssetTransfersResult.md)
@@ -29,12 +34,12 @@
 - [ERC1155Metadata](interfaces/ERC1155Metadata.md)
 - [FloorPriceError](interfaces/FloorPriceError.md)
 - [FloorPriceMarketplace](interfaces/FloorPriceMarketplace.md)
-- [GetBaseNftsForNftContractOptions](interfaces/GetBaseNftsForNftContractOptions.md)
+- [GetBaseNftsForContractOptions](interfaces/GetBaseNftsForContractOptions.md)
 - [GetBaseNftsForOwnerOptions](interfaces/GetBaseNftsForOwnerOptions.md)
-- [GetNftFloorPriceResponse](interfaces/GetNftFloorPriceResponse.md)
-- [GetNftsForNftContractOptions](interfaces/GetNftsForNftContractOptions.md)
+- [GetFloorPriceResponse](interfaces/GetFloorPriceResponse.md)
+- [GetNftsForContractOptions](interfaces/GetNftsForContractOptions.md)
 - [GetNftsForOwnerOptions](interfaces/GetNftsForOwnerOptions.md)
-- [GetOwnersForNftContractResponse](interfaces/GetOwnersForNftContractResponse.md)
+- [GetOwnersForContractResponse](interfaces/GetOwnersForContractResponse.md)
 - [GetOwnersForNftResponse](interfaces/GetOwnersForNftResponse.md)
 - [Media](interfaces/Media.md)
 - [Nft](interfaces/Nft.md)
@@ -47,7 +52,7 @@
 - [OwnedNft](interfaces/OwnedNft.md)
 - [OwnedNftsResponse](interfaces/OwnedNftsResponse.md)
 - [RawContract](interfaces/RawContract.md)
-- [RefreshNftContractResult](interfaces/RefreshNftContractResult.md)
+- [RefreshContractResult](interfaces/RefreshContractResult.md)
 - [TokenBalanceFailure](interfaces/TokenBalanceFailure.md)
 - [TokenBalanceSuccess](interfaces/TokenBalanceSuccess.md)
 - [TokenBalancesResponse](interfaces/TokenBalancesResponse.md)
@@ -83,7 +88,7 @@ also include Alchemy's Subscription API.
 
 #### Defined in
 
-[types/types.ts:604](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L604)
+[src/types/types.ts:604](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L604)
 
 ___
 
@@ -91,8 +96,8 @@ ___
 
 Ƭ **AlchemyPendingTransactionsEventFilter**: `Object`
 
-Event filter for the {@link AlchemyWebSocketProvider.on} and
-{@link AlchemyWebSocketProvider.once} methods to use Alchemy's custom
+Event filter for the [AlchemyWebSocketProvider.on](classes/AlchemyWebSocketProvider.md#on) and
+[AlchemyWebSocketProvider.once](classes/AlchemyWebSocketProvider.md#once) methods to use Alchemy's custom
 `alchemy_pendingTransactions` endpoint.
 
 Returns the transaction information for all pending transactions that match a
@@ -113,7 +118,7 @@ information for ALL pending transactions that are added to the mempool.
 
 #### Defined in
 
-[types/types.ts:579](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L579)
+[src/types/types.ts:579](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L579)
 
 ___
 
@@ -125,7 +130,7 @@ The level of verbosity for the logger.
 
 #### Defined in
 
-[util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/util/logger.ts#L22)
+[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/util/logger.ts#L22)
 
 ___
 
@@ -135,7 +140,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L55)
+[src/types/types.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L55)
 
 ___
 
@@ -145,7 +150,7 @@ ___
 
 #### Defined in
 
-[types/types.ts:456](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L456)
+[src/types/types.ts:456](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L456)
 
 ## Functions
 
@@ -167,7 +172,7 @@ Converts a hex string to a decimal number.
 
 #### Defined in
 
-[api/util.ts:11](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/api/util.ts#L11)
+[src/api/util.ts:11](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/util.ts#L11)
 
 ___
 
@@ -189,7 +194,7 @@ Checks if a value is a hex string.
 
 #### Defined in
 
-[api/util.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/api/util.ts#L31)
+[src/api/util.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/util.ts#L31)
 
 ___
 
@@ -211,7 +216,7 @@ Configures the verbosity of logging. The default log level is `info`.
 
 #### Defined in
 
-[util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/util/logger.ts#L56)
+[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/util/logger.ts#L56)
 
 ___
 
@@ -233,4 +238,4 @@ Converts a number to a hex string.
 
 #### Defined in
 
-[api/util.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/api/util.ts#L21)
+[src/api/util.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/util.ts#L21)
