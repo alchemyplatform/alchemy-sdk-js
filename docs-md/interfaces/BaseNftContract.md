@@ -24,4 +24,4 @@ Alchemy representation of a base NFT contract that doesn't contain metadata.
 
 #### Defined in
 
-[api/nft.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/api/nft.ts#L9)
+[src/api/nft.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/nft.ts#L9)

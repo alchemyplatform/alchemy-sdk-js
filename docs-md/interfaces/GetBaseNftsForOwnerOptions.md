@@ -2,8 +2,8 @@
 
 # Interface: GetBaseNftsForOwnerOptions
 
-Optional parameters object for the [getNftsForOwner](../classes/Alchemy.md#getnftsforowner) and
-[getNftsForOwnerIterator](../classes/Alchemy.md#getnftsforowneriterator) functions.
+Optional parameters object for the [getNftsForOwner](../classes/NftNamespace.md#getnftsforowner) and
+[getNftsForOwnerIterator](../classes/NftNamespace.md#getnftsforowneriterator) functions.
 
 This interface is used to fetch NFTs without their associated metadata. To
 get Nfts with their associated metadata, use [GetNftsForOwnerOptions](GetNftsForOwnerOptions.md).
@@ -27,7 +27,7 @@ Optional list of contract addresses to filter the results by. Limit is 20.
 
 #### Defined in
 
-[types/types.ts:260](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L260)
+[src/types/types.ts:260](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L260)
 
 ___
 
@@ -40,7 +40,7 @@ of these filters are excluded from the response.
 
 #### Defined in
 
-[types/types.ts:266](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L266)
+[src/types/types.ts:266](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L266)
 
 ___
 
@@ -52,7 +52,7 @@ Optional boolean flag to include NFT metadata. Defaults to `false`.
 
 #### Defined in
 
-[types/types.ts:269](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L269)
+[src/types/types.ts:269](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L269)
 
 ___
 
@@ -65,4 +65,4 @@ Optional page key from an existing [OwnedBaseNftsResponse](OwnedBaseNftsResponse
 
 #### Defined in
 
-[types/types.ts:257](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L257)
+[src/types/types.ts:257](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L257)

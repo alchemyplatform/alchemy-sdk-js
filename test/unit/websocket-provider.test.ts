@@ -571,4 +571,119 @@ describe('AlchemyWebSocketProvider', () => {
       );
     });
   });
+
+  describe('methods', () => {
+    it('once() supports alchemy event', async () => {
+      setupMockServer({
+        ethSubscribeIds: ['0xabc'],
+        ethSubscribeMessages: [
+          [
+            {
+              dummy: 'response'
+            }
+          ]
+        ]
+      });
+      initializeWebSocketProvider();
+      const result = new Deferred<void>();
+
+      wsProvider.once(
+        {
+          method: 'alchemy_pendingTransactions',
+          fromAddress: '0xABC',
+          hashesOnly: true
+        },
+        res => {
+          expect(res).toEqual({ dummy: 'response' });
+          result.resolve();
+        }
+      );
+
+      // Check that the event was added to the list of subscribed events.
+      expect(wsProvider._events.length).toEqual(1);
+      await result.promise;
+      expect(wsProvider._events.length).toEqual(0);
+    });
+
+    it('off() supports alchemy event', () => {
+      setupMockServer();
+      initializeWebSocketProvider();
+      const event = {
+        method: 'alchemy_pendingTransactions',
+        fromAddress: '0xABC'
+      };
+      const fn1 = (res: any) => {
+        JSON.stringify(res);
+      };
+      const fn2 = (res: any) => {
+        JSON.stringify(res).toLowerCase();
+      };
+      wsProvider.on(event, noop);
+      wsProvider.on(event, fn1);
+      wsProvider.on(event, fn2);
+      expect(wsProvider._events.length).toEqual(3);
+
+      // Specifying a listener deletes it.
+      wsProvider.off(event, fn1);
+      expect(wsProvider._events.length).toEqual(2);
+
+      // Omitting the listener deletes all remaining listeners.
+      wsProvider.off(event);
+      expect(wsProvider._events.length).toEqual(0);
+    });
+
+    it('removeAllListeners() supports alchemy event', () => {
+      setupMockServer();
+      initializeWebSocketProvider();
+      const event1 = {
+        method: 'alchemy_pendingTransactions',
+        fromAddress: '0xABC'
+      };
+      const event2 = {
+        method: 'alchemy_pendingTransactions',
+        fromAddress: '0xDEF'
+      };
+      const fn1 = (res: any) => {
+        JSON.stringify(res);
+      };
+      wsProvider.on(event1, noop);
+      wsProvider.on(event1, fn1);
+      wsProvider.on(event2, noop);
+
+      // Remove a specific listener
+      wsProvider.removeAllListeners(event1);
+      expect(wsProvider._events.length).toEqual(1);
+
+      // Remove all listeners
+      wsProvider.on(event1, noop);
+      wsProvider.removeAllListeners();
+      expect(wsProvider._events.length).toEqual(0);
+    });
+
+    it('listeners() and listenerCount() support alchemy event', async () => {
+      setupMockServer();
+      initializeWebSocketProvider();
+      const event1 = {
+        method: 'alchemy_pendingTransactions',
+        fromAddress: '0xABC'
+      };
+      const event2 = {
+        method: 'alchemy_pendingTransactions',
+        fromAddress: '0xDEF'
+      };
+      const fn1 = (res: any) => {
+        JSON.stringify(res);
+      };
+      wsProvider.on(event1, noop);
+      wsProvider.on(event1, fn1);
+      wsProvider.on(event2, noop);
+      expect((await wsProvider.listeners()).length).toEqual(3);
+      expect((await wsProvider.listeners(event1)).length).toEqual(2);
+      expect((await wsProvider.listeners(event2)).length).toEqual(1);
+
+      expect(await wsProvider.listenerCount()).toEqual(3);
+      expect(await wsProvider.listenerCount(event1)).toEqual(2);
+      expect(await wsProvider.listenerCount(event2)).toEqual(1);
+    });
+  });
 });

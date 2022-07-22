@@ -1,6 +1,6 @@
-[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / AlchemyConfig
+[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / AlchemySettings
 
-# Interface: AlchemyConfig
+# Interface: AlchemySettings
 
 Options object used to configure the Alchemy SDK.
 
@@ -8,9 +8,9 @@ Options object used to configure the Alchemy SDK.
 
 ### Properties
 
-- [apiKey](AlchemyConfig.md#apikey)
-- [maxRetries](AlchemyConfig.md#maxretries)
-- [network](AlchemyConfig.md#network)
+- [apiKey](AlchemySettings.md#apikey)
+- [maxRetries](AlchemySettings.md#maxretries)
+- [network](AlchemySettings.md#network)
 
 ## Properties
 
@@ -22,7 +22,7 @@ The Alchemy API key that can be found in the Alchemy dashboard.
 
 #### Defined in
 
-[types/types.ts:16](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L16)
+[src/types/types.ts:16](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L16)
 
 ___
 
@@ -34,7 +34,7 @@ The maximum number of retries to attempt if a request fails. Defaults to 5.
 
 #### Defined in
 
-[types/types.ts:25](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L25)
+[src/types/types.ts:25](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L25)
 
 ___
 
@@ -47,4 +47,4 @@ use a different network, instantiate a new `Alchemy` instance
 
 #### Defined in
 
-[types/types.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L22)
+[src/types/types.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L22)

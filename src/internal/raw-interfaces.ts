@@ -124,8 +124,8 @@ export interface RawOwnedNft extends RawNft, RawOwnedBaseNft {}
  *
  * @internal
  */
-export interface RawGetBaseNftsForNftContractResponse {
-  nfts: RawNftContractBaseNft[];
+export interface RawGetBaseNftsForContractResponse {
+  nfts: RawContractBaseNft[];
   nextToken?: string;
 }
 
@@ -134,8 +134,8 @@ export interface RawGetBaseNftsForNftContractResponse {
  *
  * @internal
  */
-export interface RawGetNftsForNftContractResponse {
-  nfts: RawNftContractNft[];
+export interface RawGetNftsForContractResponse {
+  nfts: RawContractNft[];
   nextToken?: string;
 }
 
@@ -145,7 +145,7 @@ export interface RawGetNftsForNftContractResponse {
  *
  * @internal
  */
-export interface RawNftContractBaseNft {
+export interface RawContractBaseNft {
   id: RawNftId;
 }
 
@@ -155,14 +155,14 @@ export interface RawNftContractBaseNft {
  *
  * @internal
  */
-export interface RawNftContractNft extends RawNft, RawNftContractBaseNft {}
+export interface RawContractNft extends RawNft, RawContractBaseNft {}
 
 /**
  * Represents Alchemy's HTTP response for `getOwnersForNftContract`.
  *
  * @internal
  */
-export interface RawGetOwnersForNftContractResponse {
+export interface RawGetOwnersForContractResponse {
   ownerAddresses: string[];
 }
 

@@ -2,7 +2,7 @@
 
 # Interface: NftContractNftsResponse
 
-The response object for the [getNftsForNftContract](../classes/Alchemy.md#getnftsfornftcontract) function. The object
+The response object for the [getNftsForContract](../classes/NftNamespace.md#getnftsforcontract) function. The object
 contains the NFTs with metadata inside the NFT contract.
 
 ## Table of contents
@@ -22,7 +22,7 @@ An array of NFTs with metadata.
 
 #### Defined in
 
-[types/types.ts:543](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L543)
+[src/types/types.ts:543](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L543)
 
 ___
 
@@ -35,4 +35,4 @@ NFTs. If there is no page key, then there are no more NFTs to fetch.
 
 #### Defined in
 
-[types/types.ts:549](https://github.com/alchemyplatform/alchemy-sdk-js/blob/865aa2b/src/types/types.ts#L549)
+[src/types/types.ts:549](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L549)
