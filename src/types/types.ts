@@ -86,7 +86,7 @@ export interface AssetTransfersParams {
   contractAddresses?: string[];
   excludeZeroValue?: boolean;
   maxCount?: number;
-  category?: AssetTransfersCategory[];
+  category: AssetTransfersCategory[];
   pageKey?: string;
 }
 
