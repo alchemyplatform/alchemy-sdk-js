@@ -30,9 +30,9 @@ import {
   createRawOwnedNft
 } from '../test-util';
 import {
-  RawGetBaseNftsForNftContractResponse,
+  RawGetBaseNftsForContractResponse,
   RawGetBaseNftsResponse,
-  RawGetNftsForNftContractResponse,
+  RawGetNftsForContractResponse,
   RawGetNftsResponse
 } from '../../src/internal/raw-interfaces';
 import { getNftContractFromRaw, getNftFromRaw } from '../../src/util/util';
@@ -100,7 +100,7 @@ describe('NFT module', () => {
 
     it('can be called with raw parameters', async () => {
       verifyNftContractMetadata(
-        await alchemy.nft.getNftContractMetadata(address),
+        await alchemy.nft.getContractMetadata(address),
         expectedNftContract,
         address,
         name,
@@ -113,7 +113,7 @@ describe('NFT module', () => {
     it('surfaces errors', async () => {
       mock.reset();
       mock.onGet().reply(500, 'Internal Server Error');
-      await expect(alchemy.nft.getNftContractMetadata(address)).rejects.toThrow(
+      await expect(alchemy.nft.getContractMetadata(address)).rejects.toThrow(
         'Internal Server Error'
       );
     });
@@ -540,7 +540,7 @@ describe('NFT module', () => {
   describe('getNftsForNftContract()', () => {
     const contractAddress = '0xCA1';
     const pageKey = 'page-key0';
-    const baseResponse: RawGetBaseNftsForNftContractResponse = {
+    const baseResponse: RawGetBaseNftsForContractResponse = {
       nfts: [
         createRawNftContractBaseNft('0x1'),
         createRawNftContractBaseNft('0x2')
@@ -548,7 +548,7 @@ describe('NFT module', () => {
       nextToken: 'page-key1'
     };
 
-    const nftResponse: RawGetNftsForNftContractResponse = {
+    const nftResponse: RawGetNftsForContractResponse = {
       nfts: [
         createRawNft('a', '0x1', NftTokenType.ERC1155),
         createRawNft('b', '0x2', NftTokenType.ERC1155)
@@ -562,7 +562,7 @@ describe('NFT module', () => {
 
     const paramCases: Array<
       [
-        RawGetBaseNftsForNftContractResponse | RawGetNftsForNftContractResponse,
+        RawGetBaseNftsForContractResponse | RawGetNftsForContractResponse,
         boolean | undefined,
         boolean
       ]
@@ -609,7 +609,7 @@ describe('NFT module', () => {
     const responseCases: Array<
       [
         boolean,
-        RawGetBaseNftsForNftContractResponse | RawGetNftsForNftContractResponse,
+        RawGetBaseNftsForContractResponse | RawGetNftsForContractResponse,
         NftContractBaseNftsResponse | NftContractNftsResponse
       ]
     > = [
@@ -648,7 +648,7 @@ describe('NFT module', () => {
   describe('getNftsForNftContractIterator()', () => {
     const contractAddress = '0xCA1';
     const pageKey = 'page-key0';
-    const baseResponses: RawGetBaseNftsForNftContractResponse[] = [
+    const baseResponses: RawGetBaseNftsForContractResponse[] = [
       {
         nfts: [
           createRawNftContractBaseNft('0x1'),
@@ -660,7 +660,7 @@ describe('NFT module', () => {
         nfts: [createRawNftContractBaseNft('0x3')]
       }
     ];
-    const nftResponses: RawGetNftsForNftContractResponse[] = [
+    const nftResponses: RawGetNftsForContractResponse[] = [
       {
         nfts: [
           createRawNft('a', '0x1', NftTokenType.ERC721),
@@ -675,8 +675,8 @@ describe('NFT module', () => {
 
     function setupMock(
       mockResponses:
-        | RawGetBaseNftsForNftContractResponse[]
-        | RawGetNftsForNftContractResponse[]
+        | RawGetBaseNftsForContractResponse[]
+        | RawGetNftsForContractResponse[]
     ): void {
       mock
         .onGet()
@@ -687,10 +687,7 @@ describe('NFT module', () => {
 
     const paramCases: Array<
       [
-        (
-          | RawGetBaseNftsForNftContractResponse[]
-          | RawGetNftsForNftContractResponse[]
-        ),
+        RawGetBaseNftsForContractResponse[] | RawGetNftsForContractResponse[],
         boolean | undefined,
         boolean
       ]
@@ -773,10 +770,7 @@ describe('NFT module', () => {
     const responseCases: Array<
       [
         boolean,
-        (
-          | RawGetBaseNftsForNftContractResponse[]
-          | RawGetNftsForNftContractResponse[]
-        ),
+        RawGetBaseNftsForContractResponse[] | RawGetNftsForContractResponse[],
         BaseNft[] | Nft[]
       ]
     > = [

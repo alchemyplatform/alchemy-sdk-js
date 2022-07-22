@@ -22,15 +22,15 @@ import { AlchemyConfig } from './alchemy-config';
 import { paginateEndpoint, requestHttpWithBackoff } from '../internal/dispatch';
 import {
   RawBaseNft,
-  RawGetBaseNftsForNftContractResponse,
+  RawGetBaseNftsForContractResponse,
   RawGetBaseNftsResponse,
-  RawGetNftsForNftContractResponse,
+  RawGetNftsForContractResponse,
   RawGetNftsResponse,
-  RawGetOwnersForNftContractResponse,
+  RawGetOwnersForContractResponse,
   RawNft,
   RawNftContract,
-  RawNftContractBaseNft,
-  RawNftContractNft,
+  RawContractBaseNft,
+  RawContractNft,
   RawOwnedBaseNft,
   RawOwnedNft,
   RawReingestContractResponse
@@ -77,9 +77,9 @@ export class NftNamespace {
    * @param contractAddress - The contract address of the NFT.
    * @public
    */
-  async getNftContractMetadata(contractAddress: string): Promise<NftContract> {
+  async getContractMetadata(contractAddress: string): Promise<NftContract> {
     const response = await requestHttpWithBackoff<
-      GetNftContractMetadataParams,
+      GetContractMetadataParams,
       RawNftContract
     >(this.config, AlchemyApiType.NFT, 'getContractMetadata', {
       contractAddress
@@ -235,7 +235,7 @@ export class NftNamespace {
     const withMetadata = omitMetadataToWithMetadata(options?.omitMetadata);
     const response = await requestHttpWithBackoff<
       GetNftsForNftContractAlchemyParams,
-      RawGetBaseNftsForNftContractResponse | RawGetNftsForNftContractResponse
+      RawGetBaseNftsForContractResponse | RawGetNftsForContractResponse
     >(this.config, AlchemyApiType.NFT, 'getNFTsForCollection', {
       contractAddress,
       startToken: options?.pageKey,
@@ -299,8 +299,8 @@ export class NftNamespace {
       }
     )) {
       for (const nft of response.nfts as
-        | RawNftContractBaseNft[]
-        | RawNftContractNft[]) {
+        | RawContractBaseNft[]
+        | RawContractNft[]) {
         yield nftFromGetNftNftContractResponse(nft, contractAddress);
       }
     }
@@ -317,7 +317,7 @@ export class NftNamespace {
   ): Promise<GetOwnersForContractResponse> {
     const response = await requestHttpWithBackoff<
       GetOwnersForNftContractAlchemyParams,
-      RawGetOwnersForNftContractResponse
+      RawGetOwnersForContractResponse
     >(this.config, AlchemyApiType.NFT, 'getOwnersForCollection', {
       contractAddress
     });
@@ -517,7 +517,7 @@ function nftFromGetNftResponse(
  * @internal
  */
 function nftFromGetNftNftContractResponse(
-  ownedNft: RawNftContractBaseNft | RawNftContractNft,
+  ownedNft: RawContractBaseNft | RawContractNft,
   contractAddress: string
 ): Nft | BaseNft {
   if (isNftWithMetadata(ownedNft)) {
@@ -619,7 +619,7 @@ interface IsSpamContractParams {
  *
  * @internal
  */
-interface GetNftContractMetadataParams {
+interface GetContractMetadataParams {
   contractAddress: string;
 }
 
