@@ -4,8 +4,6 @@ Alchemy SDK helps developers use Alchemy's APIs and endpoints more efficiently. 
 
 It also provides access to Alchemy's hardened node infrastructure, guaranteeing reliability, scalability, and quality-of-life improvements such as automatic exponential backoff retries.
 
-Use emoji to call the user attention
-
 > :warning: **WARNING:** The `@alch/alchemy-sdk` package is now deprecated as of the v2.0.0 release. Please use the `alchemy-sdk` package instead. 
 
 To upgrade to v2.0.0 from v1.X.X, simply run one of the following: 
