@@ -4,13 +4,17 @@ Alchemy SDK helps developers use Alchemy's APIs and endpoints more efficiently. 
 
 It also provides access to Alchemy's hardened node infrastructure, guaranteeing reliability, scalability, and quality-of-life improvements such as automatic exponential backoff retries.
 
-> :warning: **WARNING:** The `@alch/alchemy-sdk` package is now deprecated as of the v2.0.0 release. Please use the `alchemy-sdk` package instead. To upgrade to v2.0.0 from v1.X.X, simply run one of the following: 
+> :warning: **WARNING:** The `@alch/alchemy-sdk` package is now deprecated as of the v2.0.0 release. Please use the `alchemy-sdk` package instead. Note that upgrading from v1 to v2 will be a breaking change. See the changelog for full details. 
+
+To upgrade to v2.0.0 from v1.X.X, simply run one of the following: 
 ```
 npm uninstall @alch/alchemy-sdk
 npm install alchemy-sdk@latest
 ```
 
-As of version `2.0.0` on NPM, the Alchemy SDK is out of beta. This means that all future releases will follow semantic versioning. The upgrade from `1.x.x` to `2.x.x` will be a breaking change. See the Releases changelog for full details. 
+> 🙋‍♀️ We'd love your thoughts on what features to build next! If you have 5 minutes, tell us what you want at our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback) and we'd love to build it for you: 
+
+
 
 ## Getting started
 
