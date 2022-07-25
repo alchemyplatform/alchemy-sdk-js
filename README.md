@@ -6,10 +6,17 @@ It also provides access to Alchemy's hardened node infrastructure, guaranteeing 
 
 As of version `2.0.0` on NPM, the Alchemy SDK is out of beta. This means that all future releases will follow semantic versioning.
 
+**IMPORTANT:** To upgrade to v2.0.0 from v1.X.X, simply run one of the following: 
+```
+npm install @alch/alchemy-sdk@latest
+yarn add @alch/alchemy-sdk@latest
+```
+
 ## Getting started
 
 ```
 npm install @alch/alchemy-sdk
+yarn add @alch/alchemy-sdk
 ```
 
 After installing the app, you can then import and use the SDK:
