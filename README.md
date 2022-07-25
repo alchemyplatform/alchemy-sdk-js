@@ -12,7 +12,7 @@ npm uninstall @alch/alchemy-sdk
 npm install alchemy-sdk@latest
 ```
 
-> 🙋‍♀️ We'd love your thoughts on what features to build next! If you have 5 minutes, tell us what you want at our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback) and we'd love to build it for you: 
+> 🙋‍♀️ **FEATURE REQUESTS:** We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want at our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback) and we'd love to build it for you: 
 
 
 
