@@ -4,7 +4,7 @@ Alchemy SDK helps developers use Alchemy's APIs and endpoints more efficiently. 
 
 It also provides access to Alchemy's hardened node infrastructure, guaranteeing reliability, scalability, and quality-of-life improvements such as automatic exponential backoff retries.
 
-As of version `2.0.0` on NPM, the Alchemy SDK is out of beta. This means that all future releases will follow semantic versioning.
+As of version `2.0.0` on NPM, the Alchemy SDK is out of beta. This means that all future releases will follow semantic versioning. The upgrade from `1.x.x` to `2.x.x` will be a breaking change. See the Releases changelog for full details.
 
 **IMPORTANT:** To upgrade to v2.0.0 from v1.X.X, simply run one of the following: 
 ```
