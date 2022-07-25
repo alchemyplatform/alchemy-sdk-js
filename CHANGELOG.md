@@ -1,7 +1,4 @@
 # Changelog for Alchemy SDK for JavaScript
-<!--LATEST=2.0.0-->
-<!--ENTRYINSERT-->
-
 ## 2.0.0
 
 ### Features
