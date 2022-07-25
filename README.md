@@ -4,7 +4,7 @@ Alchemy SDK helps developers use Alchemy's APIs and endpoints more efficiently. 
 
 It also provides access to Alchemy's hardened node infrastructure, guaranteeing reliability, scalability, and quality-of-life improvements such as automatic exponential backoff retries.
 
-Note that the SDK is still in public beta. Alchemy reserves the right to (and almost certainly will) make breaking API changes in subsequent releases (don't write production code around it just yet).
+As of version `2.0.0` on NPM, the Alchemy SDK is out of beta. This means that all future releases will follow semantic versioning.
 
 ## Getting started
 
@@ -60,21 +60,6 @@ alchemy.ws.on(
   res => console.log(res)
 );
 ```
-### Preventing Breaking Changes
-
-The SDK is currently in public beta, and will undergo breaking changes before its official release. To protect your
-project from breaking changes, make sure to pin the version of the SDK you are using in your `package.json` file. Please check the release notes to see if any breaking changes have been made. While the SDK in the public beta, minor versions may contain breaking changes, but patch versions under the same minor version should be safe to use interchangeably.
-
-For example, to pin to a specific version of the SDK in your `package.json` file:
-
-```
-{
-  "dependencies": {
-    "@alch/alchemy-sdk": "1.1.0"
-  }
-}
-```
-
 
 ## Alchemy Core
 
