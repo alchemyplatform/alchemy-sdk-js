@@ -4,9 +4,6 @@ Alchemy SDK helps developers use Alchemy's APIs and endpoints more efficiently. 
 
 It also provides access to Alchemy's hardened node infrastructure, guaranteeing reliability, scalability, and quality-of-life improvements such as automatic exponential backoff retries.
 
-As of version `2.0.0` on NPM, the Alchemy SDK is out of beta. This means that all future releases will follow semantic versioning. The upgrade from `1.x.x` to `2.x.x` will be a breaking change. See the Releases changelog for full details. 
-
-
 Use emoji to call the user attention
 
 > :warning: **WARNING:** The `@alch/alchemy-sdk` package is now deprecated as of the v2.0.0 release. Please use the `alchemy-sdk` package instead. 
@@ -16,6 +13,8 @@ To upgrade to v2.0.0 from v1.X.X, simply run one of the following:
 npm uninstall @alch/alchemy-sdk
 npm install alchemy-sdk@latest
 ```
+
+As of version `2.0.0` on NPM, the Alchemy SDK is out of beta. This means that all future releases will follow semantic versioning. The upgrade from `1.x.x` to `2.x.x` will be a breaking change. See the Releases changelog for full details. 
 
 ## Getting started
 
@@ -39,7 +38,7 @@ const alchemy = new Alchemy(settings);
 
 The `Alchemy` object returned by `new Alchemy()` provides access to the Alchemy API. An optional config object can be passed in when initializing to set your API key, change the network, or specify the max number of retries.
 
-## Alchemy SDK Namespaces
+## Using the Alchemy SDK
 
 The Alchemy SDK currently supports three different namespaces, including: 
 - `core`: All commonly-used Ethers.js methods and Alchemy Enhanced API methods
