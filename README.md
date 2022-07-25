@@ -9,9 +9,9 @@ As of version `2.0.0` on NPM, the Alchemy SDK is out of beta. This means that al
 
 Use emoji to call the user attention
 
-> :warning: **IMPORTANT:** The `@alch/alchemy-sdk` package is now deprecated as of the v2.0.0 release. Please use the `alchemy-sdk` package instead. 
+> :warning: **WARNING:** The `@alch/alchemy-sdk` package is now deprecated as of the v2.0.0 release. Please use the `alchemy-sdk` package instead. 
 
-> To upgrade to v2.0.0 from v1.X.X, simply run one of the following: 
+To upgrade to v2.0.0 from v1.X.X, simply run one of the following: 
 ```
 npm uninstall @alch/alchemy-sdk
 npm install alchemy-sdk@latest
