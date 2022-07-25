@@ -3,7 +3,10 @@ import { Networkish } from '@ethersproject/networks';
 import { DEFAULT_ALCHEMY_API_KEY, EthersNetwork, noop } from '../util/const';
 import { AlchemyProvider } from './alchemy-provider';
 import { Listener } from '@ethersproject/abstract-provider';
-import { AlchemyEventType } from '../types/types';
+import {
+  AlchemyEventType,
+  AlchemyPendingTransactionsEventFilter
+} from '../types/types';
 import {
   BatchPart,
   dedupeLogs,
@@ -18,6 +21,7 @@ import { fromHex } from './util';
 import SturdyWebSocket from 'sturdy-websocket';
 import { VERSION } from '../version';
 import {
+  ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE,
   EthersEvent,
   JsonRpcRequest,
   JsonRpcResponse,
@@ -115,7 +119,7 @@ export class AlchemyWebSocketProvider
   }
 
   /**
-   * Overridden implementation of ethers' that includes Alchemy based subscriptions.
+   * Overridden implementation of ethers that includes Alchemy based subscriptions.
    *
    * @param eventName Event to subscribe to
    * @param listener The listener function to call when the event is triggered.
@@ -125,6 +129,86 @@ export class AlchemyWebSocketProvider
   // TODO: Override `Listener` type to get type autocompletions.
   on(eventName: AlchemyEventType, listener: Listener): this {
     return this._addEventListener(eventName, listener, false);
+  }
+
+  /**
+   * Overridden implementation of ethers that includes Alchemy based
+   * subscriptions. Adds a listener to the triggered for only the next
+   * {@link eventName} event, after which it will be removed.
+   *
+   * @param eventName Event to subscribe to
+   * @param listener The listener function to call when the event is triggered.
+   * @override
+   * @public
+   */
+  // TODO: Override `Listener` type to get type autocompletions.
+  once(eventName: AlchemyEventType, listener: Listener): this {
+    return this._addEventListener(eventName, listener, true);
+  }
+
+  /**
+   * Removes the provided {@link listener} for the {@link eventName} event. If no
+   * listener is provided, all listeners for the event will be removed.
+   *
+   * @param eventName Event to unlisten to.
+   * @param listener The listener function to remove.
+   * @override
+   * @public
+   */
+  off(eventName: AlchemyEventType, listener?: Listener): this {
+    if (isAlchemyEvent(eventName)) {
+      return this._off(eventName, listener);
+    } else {
+      return super.off(eventName, listener);
+    }
+  }
+
+  /**
+   * Remove all listeners for the provided {@link eventName} event. If no event
+   * is provided, all events and their listeners are removed.
+   *
+   * @param eventName The event to remove all listeners for.
+   * @override
+   * @public
+   */
+  removeAllListeners(eventName?: AlchemyEventType): this {
+    if (eventName !== undefined && isAlchemyEvent(eventName)) {
+      return this._removeAllListeners(eventName);
+    } else {
+      return super.removeAllListeners(eventName);
+    }
+  }
+
+  /**
+   * Returns the number of listeners for the provided {@link eventName} event. If
+   * no event is provided, the total number of listeners for all events is returned.
+   *
+   * @param eventName The event to get the number of listeners for.
+   * @public
+   * @override
+   */
+  listenerCount(eventName?: AlchemyEventType): number {
+    if (eventName !== undefined && isAlchemyEvent(eventName)) {
+      return this._listenerCount(eventName);
+    } else {
+      return super.listenerCount(eventName);
+    }
+  }
+
+  /**
+   * Returns an array of listeners for the provided {@link eventName} event. If
+   * no event is provided, all listeners will be included.
+   *
+   * @param eventName The event to get the listeners for.
+   * @public
+   * @override
+   */
+  listeners(eventName?: AlchemyEventType): Array<Listener> {
+    if (eventName !== undefined && isAlchemyEvent(eventName)) {
+      return this._listeners(eventName);
+    } else {
+      return super.listeners(eventName);
+    }
   }
 
   /**
@@ -163,7 +247,11 @@ export class AlchemyWebSocketProvider
    */
   _startEvent(event: EthersEvent): void {
     // Check if the event type is a custom Alchemy subscription.
-    const customLogicTypes = ['alchemy', 'block', 'filter'];
+    const customLogicTypes = [
+      ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE,
+      'block',
+      'filter'
+    ];
     if (customLogicTypes.includes(event.type)) {
       this.customStartEvent(event);
     } else {
@@ -308,6 +396,57 @@ export class AlchemyWebSocketProvider
    */
   isCommunityResource(): boolean {
     return this.apiKey === DEFAULT_ALCHEMY_API_KEY;
+  }
+
+  /**
+   * DO NOT MODIFY.
+   *
+   * Original code copied over from ether.js's `WebSocketProvider._stopEvent()`.
+   *
+   * This method is copied over directly in order to support Alchemy's
+   * subscription type by allowing the provider to properly stop Alchemy's
+   * subscription events.
+   *
+   * @internal
+   */
+  _stopEvent(event: EthersEvent): void {
+    let tag = event.tag;
+
+    // START MODIFIED CODE
+    if (event.type === ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE) {
+      // There are remaining pending transaction listeners.
+      if (
+        this._events.filter(
+          e => e.type === ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE
+        ).length
+      ) {
+        return;
+      }
+      // END MODIFIED CODE
+    } else if (event.type === 'tx') {
+      // There are remaining transaction event listeners
+      if (this._events.filter(e => e.type === 'tx').length) {
+        return;
+      }
+      tag = 'tx';
+    } else if (this.listenerCount(event.event)) {
+      // There are remaining event listeners
+      return;
+    }
+
+    const subId = this._subIds[tag];
+    if (!subId) {
+      return;
+    }
+
+    delete this._subIds[tag];
+    void subId.then(subId => {
+      if (!this._subs[subId]) {
+        return;
+      }
+      delete this._subs[subId];
+      void this.send('eth_unsubscribe', [subId]);
+    });
   }
 
   /** @internal */
@@ -606,23 +745,14 @@ export class AlchemyWebSocketProvider
 
   /** @internal */
   private customStartEvent(event: EthersEvent): void {
-    if (event.type === 'alchemy') {
-      const { address } = event;
-      if (!!address) {
-        void this._subscribe(
-          event.tag,
-          ['alchemy_filteredNewFullPendingTransactions', { address }],
-          this.emitProcessFn(event),
-          event
-        );
-      } else {
-        void this._subscribe(
-          event.tag,
-          ['alchemy_newFullPendingTransactions'],
-          this.emitProcessFn(event),
-          event
-        );
-      }
+    if (event.type === ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE) {
+      const { fromAddress, toAddress, hashesOnly } = event;
+      void this._subscribe(
+        event.tag,
+        ['alchemy_pendingTransactions', { fromAddress, toAddress, hashesOnly }],
+        this.emitProcessFn(event),
+        event
+      );
     } else if (event.type === 'block') {
       void this._subscribe(
         'block',
@@ -643,21 +773,18 @@ export class AlchemyWebSocketProvider
   /** @internal */
   private emitProcessFn(event: EthersEvent): (result: any) => void {
     switch (event.type) {
-      case 'alchemy':
-        const { address } = event;
-        if (!!address) {
-          return result =>
-            this.emit(
-              {
-                method: 'alchemy_filteredNewFullPendingTransactions',
-                address: event.address!
-              },
-              result
-            );
-        } else {
-          return result =>
-            this.emit({ method: 'alchemy_newFullPendingTransactions' }, result);
-        }
+      case ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE:
+        const { fromAddress, toAddress, hashesOnly } = event;
+        return result =>
+          this.emit(
+            {
+              method: 'alchemy_pendingTransactions',
+              fromAddress,
+              toAddress,
+              hashesOnly
+            },
+            result
+          );
       case 'block':
         return result => {
           const blockNumber = BigNumber.from(result.number).toNumber();
@@ -674,6 +801,128 @@ export class AlchemyWebSocketProvider
       default:
         throw new Error('Invalid event type to `emitProcessFn()`');
     }
+  }
+
+  /**
+   * DO NOT MODIFY.
+   *
+   * Original code copied over from ether.js's `BaseProvider.off()`.
+   *
+   * This method is copied over directly in order to implement Alchemy's unique
+   * subscription types. The only difference is that this method calls
+   * {@link getAlchemyEventTag} instead of the original `getEventTag()` method in
+   * order to parse the Alchemy subscription event.
+   *
+   * @private
+   */
+  private _off(eventName: AlchemyEventType, listener?: Listener): this {
+    if (listener == null) {
+      return this.removeAllListeners(eventName);
+    }
+
+    const stopped: Array<EthersEvent> = [];
+
+    let found = false;
+    const eventTag = getAlchemyEventTag(eventName);
+    this._events = this._events.filter(event => {
+      if (event.tag !== eventTag || event.listener != listener) {
+        return true;
+      }
+      if (found) {
+        return true;
+      }
+      found = true;
+      stopped.push(event);
+      return false;
+    });
+
+    stopped.forEach(event => {
+      this._stopEvent(event);
+    });
+
+    return this;
+  }
+
+  /**
+   * DO NOT MODIFY.
+   *
+   * Original code copied over from ether.js's `BaseProvider.removeAllListeners()`.
+   *
+   * This method is copied over directly in order to implement Alchemy's unique
+   * subscription types. The only difference is that this method calls
+   * {@link getAlchemyEventTag} instead of the original `getEventTag()` method in
+   * order to parse the Alchemy subscription event.
+   *
+   * @private
+   */
+  private _removeAllListeners(eventName: AlchemyEventType): this {
+    let stopped: Array<EthersEvent> = [];
+    if (eventName == null) {
+      stopped = this._events;
+
+      this._events = [];
+    } else {
+      const eventTag = getAlchemyEventTag(eventName);
+      this._events = this._events.filter(event => {
+        if (event.tag !== eventTag) {
+          return true;
+        }
+        stopped.push(event);
+        return false;
+      });
+    }
+
+    stopped.forEach(event => {
+      this._stopEvent(event);
+    });
+
+    return this;
+  }
+
+  /**
+   * DO NOT MODIFY.
+   *
+   * Original code copied over from ether.js's `BaseProvider.listenerCount()`.
+   *
+   * This method is copied over directly in order to implement Alchemy's unique
+   * subscription types. The only difference is that this method calls
+   * {@link getAlchemyEventTag} instead of the original `getEventTag()` method in
+   * order to parse the Alchemy subscription event.
+   *
+   * @private
+   */
+  private _listenerCount(eventName?: AlchemyEventType): number {
+    if (!eventName) {
+      return this._events.length;
+    }
+
+    const eventTag = getAlchemyEventTag(eventName);
+    return this._events.filter(event => {
+      return event.tag === eventTag;
+    }).length;
+  }
+
+  /**
+   * DO NOT MODIFY.
+   *
+   * Original code copied over from ether.js's `BaseProvider.listeners()`.
+   *
+   * This method is copied over directly in order to implement Alchemy's unique
+   * subscription types. The only difference is that this method calls
+   * {@link getAlchemyEventTag} instead of the original `getEventTag()` method in
+   * order to parse the Alchemy subscription event.
+   *
+   * @private
+   */
+  private _listeners(eventName?: AlchemyEventType): Array<Listener> {
+    if (eventName == null) {
+      return this._events.map(event => event.listener);
+    }
+
+    const eventTag = getAlchemyEventTag(eventName);
+    return this._events
+      .filter(event => event.tag === eventTag)
+      .map(event => event.listener);
   }
 }
 
@@ -806,13 +1055,69 @@ function addToPastEventsBuffer<T>(
   pastEvents.push(event);
 }
 
-function isAlchemyEvent(event: AlchemyEventType): event is object {
+function isAlchemyEvent(
+  event: AlchemyEventType
+): event is AlchemyPendingTransactionsEventFilter {
   return typeof event === 'object' && 'method' in event;
 }
 
-function getAlchemyEventTag(event: AlchemyEventType): string {
+/**
+ * Creates a string representation of an `alchemy_pendingTransaction`
+ * subscription filter that is compatible with the ethers implementation of
+ * `getEventTag()`. The method is not an exported function in ethers, which is
+ * why the SDK has its own implementation.
+ *
+ * The event tag is then deserialized by the SDK's {@link EthersEvent} getters.
+ *
+ * @example
+ *   ```js
+ *   // Returns 'alchemy-pending-transactions:0xABC:0xDEF|0xGHI:true'
+ *   const eventTag =  getAlchemyEventTag(
+ *   {
+ *     "method": "alchemy_pendingTransaction",
+ *     "fromAddress": "0xABC",
+ *     "toAddress": ["0xDEF", "0xGHI"],
+ *     "hashesOnly: true
+ *   });
+ *   ```;
+ *
+ * @param event
+ * @internal
+ */
+export function getAlchemyEventTag(event: AlchemyEventType): string {
   if (!isAlchemyEvent(event)) {
     throw new Error('Event tag requires AlchemyEventType');
   }
-  return 'alchemy:' + (('address' in event && event.address) || '*');
+  const fromAddress = serializeAddressField(event.fromAddress);
+  const toAddress = serializeAddressField(event.toAddress);
+  const hashesOnly = serializeBooleanField(event.hashesOnly);
+  return (
+    ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE +
+    ':' +
+    fromAddress +
+    ':' +
+    toAddress +
+    ':' +
+    hashesOnly
+  );
+}
+
+function serializeAddressField(
+  field: string | Array<string> | undefined
+): string {
+  if (field === undefined) {
+    return '*';
+  } else if (Array.isArray(field)) {
+    return field.join('|');
+  } else {
+    return field;
+  }
+}
+
+function serializeBooleanField(field: boolean | undefined): string | undefined {
+  if (field === undefined) {
+    return '*';
+  } else {
+    return field.toString();
+  }
 }

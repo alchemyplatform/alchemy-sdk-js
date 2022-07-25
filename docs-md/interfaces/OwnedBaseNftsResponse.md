@@ -2,7 +2,7 @@
 
 # Interface: OwnedBaseNftsResponse
 
-The response object for the [getNftsForOwner](../modules.md#getnftsforowner) and
+The response object for the [getNftsForOwner](../classes/NftNamespace.md#getnftsforowner) and
 {@link getNftsForOwnerIterator)} functions. The object contains the NFTs
 without metadata owned by the provided address, along with pagination
 information and the total count.
@@ -25,7 +25,7 @@ The NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/types.ts:279](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L279)
+[src/types/types.ts:315](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L315)
 
 ___
 
@@ -38,7 +38,7 @@ NFTs. If there is no page key, then there are no more NFTs to fetch.
 
 #### Defined in
 
-[src/types/types.ts:285](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L285)
+[src/types/types.ts:321](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L321)
 
 ___
 
@@ -50,4 +50,4 @@ The total count of NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/types.ts:288](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L288)
+[src/types/types.ts:324](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L324)

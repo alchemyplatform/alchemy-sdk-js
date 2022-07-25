@@ -1,6 +1,6 @@
-import { initializeAlchemy } from '../../src';
+import { Alchemy, AlchemyWebSocketProvider, AlchemyProvider } from '../../src';
 import { EthersNetwork } from '../../src/util/const';
-import { AlchemyProvider } from '@ethersproject/providers';
+import { AlchemyProvider as EthersAlchemyProvider } from '@ethersproject/providers';
 
 /**
  * These integrations are sanity checks to ensure that the SDK's overriden
@@ -8,14 +8,20 @@ import { AlchemyProvider } from '@ethersproject/providers';
  */
 // TODO(ethers): Figure out appropriate unit tests for the SDK's custom AlchemyProvider.
 describe('AlchemyProvider', () => {
-  const alchemy = initializeAlchemy();
-  const ethersProvider = new AlchemyProvider(
-    EthersNetwork[alchemy.network],
-    alchemy.apiKey
-  ) as AlchemyProvider;
+  let alchemy: Alchemy;
+  let wsProvider: AlchemyWebSocketProvider;
+  let provider: AlchemyProvider;
+  let ethersProvider: EthersAlchemyProvider;
 
-  const wsProvider = alchemy.getWebsocketProvider();
-  const provider = alchemy.getProvider();
+  beforeEach(async () => {
+    alchemy = new Alchemy();
+    ethersProvider = new EthersAlchemyProvider(
+      EthersNetwork[alchemy.config.network],
+      alchemy.config.apiKey
+    );
+    wsProvider = await alchemy.config.getWebSocketProvider();
+    provider = await alchemy.config.getProvider();
+  });
 
   // TODO(ethers): Extract into helper method to verify all inputs.
   it('methods should return the same result', async () => {
@@ -36,15 +42,51 @@ describe('AlchemyProvider', () => {
     const address = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
     wsProvider.on(
       {
-        method: 'alchemy_filteredNewFullPendingTransactions',
-        address
+        method: 'alchemy_pendingTransactions',
+        toAddress: address,
+        hashesOnly: true
       },
       res => {
         expect(res.to).toEqual(address.toLowerCase());
+        console.log(res);
         if (eventCount === 10) {
           done();
         }
         eventCount++;
+      }
+    );
+  });
+
+  it('once', done => {
+    const address = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
+    let eventCount = 0;
+    wsProvider.once(
+      {
+        method: 'alchemy_pendingTransactions',
+        toAddress: address,
+        hashesOnly: true
+      },
+      res => {
+        console.log('1', res);
+        eventCount++;
+        if (eventCount > 1) {
+          done();
+        }
+      }
+    );
+
+    wsProvider.once(
+      {
+        method: 'alchemy_pendingTransactions',
+        toAddress: address,
+        hashesOnly: true
+      },
+      res => {
+        console.log('2', res);
+        eventCount++;
+        if (eventCount > 1) {
+          done();
+        }
       }
     );
   });
@@ -58,7 +100,7 @@ describe('AlchemyProvider', () => {
     let eventCount = 0;
     wsProvider.on(
       {
-        method: 'alchemy_newFullPendingTransactions'
+        method: 'alchemy_pendingTransactions'
       },
       msg => {
         console.log('message', msg);

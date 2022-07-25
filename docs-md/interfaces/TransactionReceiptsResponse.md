@@ -16,4 +16,4 @@
 
 #### Defined in
 
-[src/types/types.ts:390](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L390)
+[src/types/types.ts:462](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L462)

@@ -1,4 +1,4 @@
-import { AlchemyConfig, initializeAlchemy, Network } from '../../src';
+import { Alchemy, AlchemySettings, Network } from '../../src';
 import {
   DEFAULT_ALCHEMY_API_KEY,
   DEFAULT_MAX_RETRIES,
@@ -8,11 +8,11 @@ import {
 describe('Alchemy class', () => {
   describe('translates Network to ethers', () => {
     function testNetwork(network: Network) {
-      it(`should return a valid provider for ${network}`, () => {
-        const alchemy = initializeAlchemy({
+      it(`should return a valid provider for ${network}`, async () => {
+        const alchemy = new Alchemy({
           network
         });
-        alchemy.getProvider();
+        await alchemy.config.getProvider();
       });
     }
 
@@ -22,33 +22,51 @@ describe('Alchemy class', () => {
   });
 
   it('preserves settings', () => {
-    const config: AlchemyConfig = {
+    const config: AlchemySettings = {
       apiKey: 'api-key-here',
       network: Network.OPT_KOVAN,
       maxRetries: 2
     };
-    const alchemy = initializeAlchemy(config);
+    const alchemy = new Alchemy(config);
     config.apiKey = 'new-api-key';
     config.network = Network.OPT_MAINNET;
     config.maxRetries = 3;
 
-    expect(alchemy.apiKey).toEqual('api-key-here');
-    expect(alchemy.network).toEqual(Network.OPT_KOVAN);
-    expect(alchemy.maxRetries).toEqual(2);
+    expect(alchemy.config.apiKey).toEqual('api-key-here');
+    expect(alchemy.config.network).toEqual(Network.OPT_KOVAN);
+    expect(alchemy.config.maxRetries).toEqual(2);
   });
 
   it('initializes to default values', () => {
-    const alchemy = initializeAlchemy();
-    expect(alchemy.apiKey).toEqual(DEFAULT_ALCHEMY_API_KEY);
-    expect(alchemy.network).toEqual(DEFAULT_NETWORK);
-    expect(alchemy.maxRetries).toEqual(DEFAULT_MAX_RETRIES);
+    const alchemy = new Alchemy();
+    expect(alchemy.config.apiKey).toEqual(DEFAULT_ALCHEMY_API_KEY);
+    expect(alchemy.config.network).toEqual(DEFAULT_NETWORK);
+    expect(alchemy.config.maxRetries).toEqual(DEFAULT_MAX_RETRIES);
   });
 
-  it('can change network', () => {
-    const alchemy = initializeAlchemy();
-    alchemy.setNetwork(DEFAULT_NETWORK);
-    expect(alchemy.network).toEqual(DEFAULT_NETWORK);
-    alchemy.setNetwork(Network.OPT_MAINNET);
-    expect(alchemy.network).toEqual(Network.OPT_MAINNET);
+  it('reuses the same provider', async () => {
+    const alchemy = new Alchemy();
+    const provider = await alchemy.config.getProvider();
+    const provider2 = await alchemy.config.getProvider();
+    expect(provider).toBe(provider2);
+
+    const wsProvider = await alchemy.config.getWebSocketProvider();
+    const wsProvider2 = await alchemy.config.getWebSocketProvider();
+    expect(wsProvider).toBe(wsProvider2);
+  });
+
+  it('providers are loaded once', async () => {
+    const alchemy = new Alchemy();
+    const providerPromise = alchemy.config.getProvider();
+    const provider2Promise = alchemy.config.getProvider();
+    const provider = await providerPromise;
+    const provider2 = await provider2Promise;
+    expect(provider).toBe(provider2);
+
+    const wsProviderPromise = alchemy.config.getWebSocketProvider();
+    const wsProvider2Promise = alchemy.config.getWebSocketProvider();
+    const wsProvider = await wsProviderPromise;
+    const wsProvider2 = await wsProvider2Promise;
+    expect(wsProvider).toBe(wsProvider2);
   });
 });

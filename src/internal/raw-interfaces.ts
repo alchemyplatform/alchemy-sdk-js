@@ -1,4 +1,4 @@
-import { NftMetadata, NftTokenType, TokenUri } from '../types/types';
+import { Media, NftMetadata, NftTokenType, TokenUri } from '../types/types';
 
 /**
  * This file contains the raw HTTP responses returned by the Alchemy endpoints.
@@ -24,7 +24,7 @@ export interface RawNft extends RawBaseNft {
   title: string;
   description?: string | Array<string>;
   tokenUri?: TokenUri;
-  media?: TokenUri[];
+  media?: Media[];
   metadata?: NftMetadata;
   timeLastUpdated: string;
   error?: string;
@@ -120,48 +120,54 @@ export interface RawOwnedBaseNft extends RawBaseNft {
 export interface RawOwnedNft extends RawNft, RawOwnedBaseNft {}
 
 /**
- * Represents Alchemy's HTTP response for `getNftsForCollection` without metadata.
+ * Represents Alchemy's HTTP response for `getNftsForNftContract` without metadata.
  *
  * @internal
  */
-export interface RawGetBaseNftsForCollectionResponse {
-  nfts: RawCollectionBaseNft[];
+export interface RawGetBaseNftsForContractResponse {
+  nfts: RawContractBaseNft[];
   nextToken?: string;
 }
 
 /**
- * Represents Alchemy's HTTP response for `getNftsForCollection` with metadata.
+ * Represents Alchemy's HTTP response for `getNftsForNftContract` with metadata.
  *
  * @internal
  */
-export interface RawGetNftsForCollectionResponse {
-  nfts: RawCollectionNft[];
+export interface RawGetNftsForContractResponse {
+  nfts: RawContractNft[];
   nextToken?: string;
 }
 
 /**
  * Represents the `nfts` field from the Alchemy HTTP response when calling the
- * `getNftsForCollection` endpoint without metadata.
+ * `getNftsForNftContract` endpoint without metadata.
  *
  * @internal
  */
-export interface RawCollectionBaseNft {
+export interface RawContractBaseNft {
   id: RawNftId;
 }
 
 /**
  * Represents the `nfts` field from the Alchemy HTTP response when calling the
- * `getNftsForCollection` endpoint with metadata.
+ * `getNftsForNftContract` endpoint with metadata.
  *
  * @internal
  */
-export interface RawCollectionNft extends RawNft, RawCollectionBaseNft {}
+export interface RawContractNft extends RawNft, RawContractBaseNft {}
 
 /**
- * Represents Alchemy's HTTP response for `getOwnersForCollection`.
+ * Represents Alchemy's HTTP response for `getOwnersForNftContract`.
  *
  * @internal
  */
-export interface RawGetOwnersForCollectionResponse {
+export interface RawGetOwnersForContractResponse {
   ownerAddresses: string[];
+}
+
+export interface RawReingestContractResponse {
+  contractAddress: string;
+  reingestionState: string;
+  progress: string | null;
 }

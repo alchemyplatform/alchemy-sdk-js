@@ -2,7 +2,7 @@
 
 # Class: AlchemyProvider
 
-SDK's custom implementation of ethers' {@link providers.AlchemyProvider}.
+SDK's custom implementation of ethers.js's 'AlchemyProvider'.
 
 ## Hierarchy
 
@@ -140,11 +140,11 @@ SDK's custom implementation of ethers' {@link providers.AlchemyProvider}.
 
 #### Overrides
 
-providers.JsonRpcProvider.constructor
+JsonRpcProvider.constructor
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:30](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy-provider.ts#L30)
+[src/api/alchemy-provider.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-provider.ts#L33)
 
 ## Properties
 
@@ -154,7 +154,7 @@ providers.JsonRpcProvider.constructor
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_bootstrapPoll
+JsonRpcProvider.\_bootstrapPoll
 
 #### Defined in
 
@@ -172,7 +172,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_emitted
+JsonRpcProvider.\_emitted
 
 #### Defined in
 
@@ -186,7 +186,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_eventLoopCache
+JsonRpcProvider.\_eventLoopCache
 
 #### Defined in
 
@@ -200,7 +200,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_events
+JsonRpcProvider.\_events
 
 #### Defined in
 
@@ -214,7 +214,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_fastBlockNumber
+JsonRpcProvider.\_fastBlockNumber
 
 #### Defined in
 
@@ -228,7 +228,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_fastBlockNumberPromise
+JsonRpcProvider.\_fastBlockNumberPromise
 
 #### Defined in
 
@@ -242,7 +242,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_fastQueryDate
+JsonRpcProvider.\_fastQueryDate
 
 #### Defined in
 
@@ -256,7 +256,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_internalBlockNumber
+JsonRpcProvider.\_internalBlockNumber
 
 #### Defined in
 
@@ -270,7 +270,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_isProvider
+JsonRpcProvider.\_isProvider
 
 #### Defined in
 
@@ -284,7 +284,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_lastBlockNumber
+JsonRpcProvider.\_lastBlockNumber
 
 #### Defined in
 
@@ -298,7 +298,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_maxFilterBlockRange
+JsonRpcProvider.\_maxFilterBlockRange
 
 #### Defined in
 
@@ -312,7 +312,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_maxInternalBlockNumber
+JsonRpcProvider.\_maxInternalBlockNumber
 
 #### Defined in
 
@@ -326,7 +326,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_network
+JsonRpcProvider.\_network
 
 #### Defined in
 
@@ -340,7 +340,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_networkPromise
+JsonRpcProvider.\_networkPromise
 
 #### Defined in
 
@@ -354,7 +354,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_nextId
+JsonRpcProvider.\_nextId
 
 #### Defined in
 
@@ -368,7 +368,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_pendingFilter
+JsonRpcProvider.\_pendingFilter
 
 #### Defined in
 
@@ -382,7 +382,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_poller
+JsonRpcProvider.\_poller
 
 #### Defined in
 
@@ -396,7 +396,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_pollingInterval
+JsonRpcProvider.\_pollingInterval
 
 #### Defined in
 
@@ -410,7 +410,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.anyNetwork
+JsonRpcProvider.anyNetwork
 
 #### Defined in
 
@@ -424,7 +424,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:27](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy-provider.ts#L27)
+[src/api/alchemy-provider.ts:30](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-provider.ts#L30)
 
 ___
 
@@ -434,7 +434,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.connection
+JsonRpcProvider.connection
 
 #### Defined in
 
@@ -448,7 +448,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.disableCcipRead
+JsonRpcProvider.disableCcipRead
 
 #### Defined in
 
@@ -462,7 +462,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.formatter
+JsonRpcProvider.formatter
 
 #### Defined in
 
@@ -476,7 +476,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:28](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy-provider.ts#L28)
+[src/api/alchemy-provider.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-provider.ts#L31)
 
 ## Accessors
 
@@ -490,7 +490,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_cache
+JsonRpcProvider.\_cache
 
 #### Defined in
 
@@ -508,7 +508,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.blockNumber
+JsonRpcProvider.blockNumber
 
 #### Defined in
 
@@ -526,7 +526,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.network
+JsonRpcProvider.network
 
 #### Defined in
 
@@ -544,7 +544,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.polling
+JsonRpcProvider.polling
 
 #### Defined in
 
@@ -564,7 +564,7 @@ node_modules/@ethersproject/providers/lib/base-provider.d.ts:102
 
 #### Inherited from
 
-providers.JsonRpcProvider.polling
+JsonRpcProvider.polling
 
 #### Defined in
 
@@ -582,7 +582,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.pollingInterval
+JsonRpcProvider.pollingInterval
 
 #### Defined in
 
@@ -602,7 +602,7 @@ node_modules/@ethersproject/providers/lib/base-provider.d.ts:104
 
 #### Inherited from
 
-providers.JsonRpcProvider.pollingInterval
+JsonRpcProvider.pollingInterval
 
 #### Defined in
 
@@ -620,7 +620,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.ready
+JsonRpcProvider.ready
 
 #### Defined in
 
@@ -646,7 +646,7 @@ node_modules/@ethersproject/providers/lib/base-provider.d.ts:91
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_addEventListener
+JsonRpcProvider.\_addEventListener
 
 #### Defined in
 
@@ -672,7 +672,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_call
+JsonRpcProvider.\_call
 
 #### Defined in
 
@@ -696,7 +696,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_getAddress
+JsonRpcProvider.\_getAddress
 
 #### Defined in
 
@@ -721,7 +721,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_getBlock
+JsonRpcProvider.\_getBlock
 
 #### Defined in
 
@@ -745,7 +745,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_getBlockTag
+JsonRpcProvider.\_getBlockTag
 
 #### Defined in
 
@@ -763,7 +763,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_getFastBlockNumber
+JsonRpcProvider.\_getFastBlockNumber
 
 #### Defined in
 
@@ -787,7 +787,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_getFilter
+JsonRpcProvider.\_getFilter
 
 #### Defined in
 
@@ -811,7 +811,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_getInternalBlockNumber
+JsonRpcProvider.\_getInternalBlockNumber
 
 #### Defined in
 
@@ -836,7 +836,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_getResolver
+JsonRpcProvider.\_getResolver
 
 #### Defined in
 
@@ -860,7 +860,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_getTransactionRequest
+JsonRpcProvider.\_getTransactionRequest
 
 #### Defined in
 
@@ -878,7 +878,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_ready
+JsonRpcProvider.\_ready
 
 #### Defined in
 
@@ -902,7 +902,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_setFastBlockNumber
+JsonRpcProvider.\_setFastBlockNumber
 
 #### Defined in
 
@@ -926,7 +926,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_startEvent
+JsonRpcProvider.\_startEvent
 
 #### Defined in
 
@@ -944,11 +944,11 @@ ___
 
 #### Overrides
 
-providers.JsonRpcProvider.\_startPending
+JsonRpcProvider.\_startPending
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:140](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy-provider.ts#L140)
+[src/api/alchemy-provider.ts:143](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-provider.ts#L143)
 
 ___
 
@@ -968,7 +968,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_stopEvent
+JsonRpcProvider.\_stopEvent
 
 #### Defined in
 
@@ -986,7 +986,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_uncachedDetectNetwork
+JsonRpcProvider.\_uncachedDetectNetwork
 
 #### Defined in
 
@@ -1019,7 +1019,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_waitForTransaction
+JsonRpcProvider.\_waitForTransaction
 
 #### Defined in
 
@@ -1045,7 +1045,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.\_wrapTransaction
+JsonRpcProvider.\_wrapTransaction
 
 #### Defined in
 
@@ -1070,7 +1070,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.addListener
+JsonRpcProvider.addListener
 
 #### Defined in
 
@@ -1095,7 +1095,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.call
+JsonRpcProvider.call
 
 #### Defined in
 
@@ -1121,7 +1121,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.ccipReadFetch
+JsonRpcProvider.ccipReadFetch
 
 #### Defined in
 
@@ -1133,8 +1133,8 @@ ___
 
 ▸ **detectNetwork**(): `Promise`<`Network`\>
 
-Overrides the method in ethers' `StaticJsonRpcProvider` class. This method
-is called when calling methods on {@link providers.BaseProvider}.
+Overrides the method in ethers.js's `StaticJsonRpcProvider` class. This
+method is called when calling methods on the parent class `BaseProvider`.
 
 **`override`**
 
@@ -1144,11 +1144,11 @@ is called when calling methods on {@link providers.BaseProvider}.
 
 #### Overrides
 
-providers.JsonRpcProvider.detectNetwork
+JsonRpcProvider.detectNetwork
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:128](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy-provider.ts#L128)
+[src/api/alchemy-provider.ts:131](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-provider.ts#L131)
 
 ___
 
@@ -1169,7 +1169,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.emit
+JsonRpcProvider.emit
 
 #### Defined in
 
@@ -1193,7 +1193,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.estimateGas
+JsonRpcProvider.estimateGas
 
 #### Defined in
 
@@ -1217,7 +1217,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getAvatar
+JsonRpcProvider.getAvatar
 
 #### Defined in
 
@@ -1242,7 +1242,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getBalance
+JsonRpcProvider.getBalance
 
 #### Defined in
 
@@ -1266,7 +1266,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getBlock
+JsonRpcProvider.getBlock
 
 #### Defined in
 
@@ -1284,7 +1284,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getBlockNumber
+JsonRpcProvider.getBlockNumber
 
 #### Defined in
 
@@ -1308,7 +1308,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getBlockWithTransactions
+JsonRpcProvider.getBlockWithTransactions
 
 #### Defined in
 
@@ -1333,7 +1333,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getCode
+JsonRpcProvider.getCode
 
 #### Defined in
 
@@ -1351,7 +1351,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getEtherPrice
+JsonRpcProvider.getEtherPrice
 
 #### Defined in
 
@@ -1369,7 +1369,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getFeeData
+JsonRpcProvider.getFeeData
 
 #### Defined in
 
@@ -1387,7 +1387,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getGasPrice
+JsonRpcProvider.getGasPrice
 
 #### Defined in
 
@@ -1411,7 +1411,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getLogs
+JsonRpcProvider.getLogs
 
 #### Defined in
 
@@ -1429,7 +1429,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getNetwork
+JsonRpcProvider.getNetwork
 
 #### Defined in
 
@@ -1453,7 +1453,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getResolver
+JsonRpcProvider.getResolver
 
 #### Defined in
 
@@ -1477,7 +1477,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getSigner
+JsonRpcProvider.getSigner
 
 #### Defined in
 
@@ -1503,7 +1503,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getStorageAt
+JsonRpcProvider.getStorageAt
 
 #### Defined in
 
@@ -1527,7 +1527,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getTransaction
+JsonRpcProvider.getTransaction
 
 #### Defined in
 
@@ -1552,7 +1552,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getTransactionCount
+JsonRpcProvider.getTransactionCount
 
 #### Defined in
 
@@ -1576,7 +1576,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getTransactionReceipt
+JsonRpcProvider.getTransactionReceipt
 
 #### Defined in
 
@@ -1600,7 +1600,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getUncheckedSigner
+JsonRpcProvider.getUncheckedSigner
 
 #### Defined in
 
@@ -1623,11 +1623,11 @@ current api key is the default key.
 
 #### Implementation of
 
-providers.CommunityResourcable.isCommunityResource
+CommunityResourcable.isCommunityResource
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:150](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy-provider.ts#L150)
+[src/api/alchemy-provider.ts:153](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-provider.ts#L153)
 
 ___
 
@@ -1641,7 +1641,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.listAccounts
+JsonRpcProvider.listAccounts
 
 #### Defined in
 
@@ -1665,7 +1665,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.listenerCount
+JsonRpcProvider.listenerCount
 
 #### Defined in
 
@@ -1689,7 +1689,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.listeners
+JsonRpcProvider.listeners
 
 #### Defined in
 
@@ -1713,7 +1713,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.lookupAddress
+JsonRpcProvider.lookupAddress
 
 #### Defined in
 
@@ -1738,7 +1738,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.off
+JsonRpcProvider.off
 
 #### Defined in
 
@@ -1763,7 +1763,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.on
+JsonRpcProvider.on
 
 #### Defined in
 
@@ -1788,7 +1788,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.once
+JsonRpcProvider.once
 
 #### Defined in
 
@@ -1813,7 +1813,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.perform
+JsonRpcProvider.perform
 
 #### Defined in
 
@@ -1831,7 +1831,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.poll
+JsonRpcProvider.poll
 
 #### Defined in
 
@@ -1856,7 +1856,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.prepareRequest
+JsonRpcProvider.prepareRequest
 
 #### Defined in
 
@@ -1880,7 +1880,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.removeAllListeners
+JsonRpcProvider.removeAllListeners
 
 #### Defined in
 
@@ -1905,7 +1905,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.removeListener
+JsonRpcProvider.removeListener
 
 #### Defined in
 
@@ -1929,7 +1929,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.resetEventsBlock
+JsonRpcProvider.resetEventsBlock
 
 #### Defined in
 
@@ -1953,7 +1953,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.resolveName
+JsonRpcProvider.resolveName
 
 #### Defined in
 
@@ -1965,8 +1965,8 @@ ___
 
 ▸ **send**(`method`, `params`): `Promise`<`any`\>
 
-Overrides the base {@link providers.JsonRpcProvider.send} method to
-implement custom logic for sending requests to Alchemy.
+Overrides the base {@link JsonRpcProvider.send} method to implement custom
+logic for sending requests to Alchemy.
 
 **`override`**
 
@@ -1983,11 +1983,11 @@ implement custom logic for sending requests to Alchemy.
 
 #### Overrides
 
-providers.JsonRpcProvider.send
+JsonRpcProvider.send
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:164](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy-provider.ts#L164)
+[src/api/alchemy-provider.ts:167](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-provider.ts#L167)
 
 ___
 
@@ -2007,7 +2007,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.sendTransaction
+JsonRpcProvider.sendTransaction
 
 #### Defined in
 
@@ -2033,7 +2033,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.waitForTransaction
+JsonRpcProvider.waitForTransaction
 
 #### Defined in
 
@@ -2051,7 +2051,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.defaultUrl
+JsonRpcProvider.defaultUrl
 
 #### Defined in
 
@@ -2069,7 +2069,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getFormatter
+JsonRpcProvider.getFormatter
 
 #### Defined in
 
@@ -2093,7 +2093,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.getNetwork
+JsonRpcProvider.getNetwork
 
 #### Defined in
 
@@ -2118,7 +2118,7 @@ ___
 
 #### Inherited from
 
-providers.JsonRpcProvider.hexlifyTransaction
+JsonRpcProvider.hexlifyTransaction
 
 #### Defined in
 
@@ -2142,7 +2142,7 @@ value is Provider
 
 #### Inherited from
 
-providers.JsonRpcProvider.isProvider
+JsonRpcProvider.isProvider
 
 #### Defined in
 

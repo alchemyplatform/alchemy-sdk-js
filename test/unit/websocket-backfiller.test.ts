@@ -1,14 +1,13 @@
-import { fromHex, initializeAlchemy, toHex } from '../../src';
+import { Alchemy, AlchemyWebSocketProvider, fromHex, toHex } from '../../src';
 import {
   GetLogsOptions,
   WebsocketBackfiller
 } from '../../src/internal/websocket-backfiller';
-import { AlchemyWebSocketProvider } from '../../src/api/alchemy-websocket-provider';
 import { makeLogsEvent, makeNewHeadsEvent, Mocked } from '../test-util';
 import { JsonRpcRequest } from '../../src/internal/internal-types';
 
 describe('Backfill tests', () => {
-  const sdk = initializeAlchemy();
+  const sdk = new Alchemy();
   let provider: Mocked<AlchemyWebSocketProvider>;
   let backfiller: WebsocketBackfiller;
 
@@ -30,8 +29,9 @@ describe('Backfill tests', () => {
     ).toBe(false);
   }
 
-  beforeEach(() => {
-    provider = sdk.getWebsocketProvider() as Mocked<AlchemyWebSocketProvider>;
+  beforeEach(async () => {
+    provider =
+      (await sdk.config.getWebSocketProvider()) as Mocked<AlchemyWebSocketProvider>;
     backfiller = new WebsocketBackfiller(provider);
     provider.send = jest.fn();
     provider.sendBatch = jest.fn();

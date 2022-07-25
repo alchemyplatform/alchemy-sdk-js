@@ -2,7 +2,7 @@
 
 # Enumeration: NftExcludeFilters
 
-Enum of NFT filters that can be applied to a [getNftsForOwner](../modules.md#getnftsforowner) request.
+Enum of NFT filters that can be applied to a [getNftsForOwner](../classes/NftNamespace.md#getnftsforowner) request.
 NFTs that match one or more of these filters are excluded from the response.
 
 **`beta`**
@@ -23,4 +23,4 @@ Exclude NFTs that have been classified as spam.
 
 #### Defined in
 
-[src/types/types.ts:244](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L244)
+[src/types/types.ts:280](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L280)

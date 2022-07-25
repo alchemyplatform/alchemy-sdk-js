@@ -2,108 +2,87 @@
 
 # Class: Alchemy
 
-The Alchemy SDK client. This class holds config information and must be
-passed into SDK methods.
+The Alchemy SDK client. This class is the main entry point into Alchemy's
+APIs and separates functionality into different namespaces.
 
-Do not call this constructor directly. Instead, use [initializeAlchemy](../modules.md#initializealchemy)
-to get an instance of the SDK.
+Each SDK instance is associated with a specific network and API key. To use a
+different network or API key, create a new instance of [Alchemy](Alchemy.md).
 
 ## Table of contents
 
+### Constructors
+
+- [constructor](Alchemy.md#constructor)
+
 ### Properties
 
-- [apiKey](Alchemy.md#apikey)
-- [maxRetries](Alchemy.md#maxretries)
-- [network](Alchemy.md#network)
+- [config](Alchemy.md#config)
+- [core](Alchemy.md#core)
+- [nft](Alchemy.md#nft)
+- [ws](Alchemy.md#ws)
 
-### Methods
+## Constructors
 
-- [getProvider](Alchemy.md#getprovider)
-- [getWebsocketProvider](Alchemy.md#getwebsocketprovider)
-- [setNetwork](Alchemy.md#setnetwork)
+### constructor
 
-## Properties
-
-### apiKey
-
-• `Readonly` **apiKey**: `string`
-
-#### Defined in
-
-[src/api/alchemy.ts:32](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy.ts#L32)
-
-___
-
-### maxRetries
-
-• `Readonly` **maxRetries**: `number`
-
-#### Defined in
-
-[src/api/alchemy.ts:34](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy.ts#L34)
-
-___
-
-### network
-
-• **network**: [`Network`](../enums/Network.md)
-
-#### Defined in
-
-[src/api/alchemy.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy.ts#L33)
-
-## Methods
-
-### getProvider
-
-▸ **getProvider**(): [`AlchemyProvider`](AlchemyProvider.md)
-
-Creates an AlchemyProvider instance. Only one provider is created per
-Alchemy instance.
-
-#### Returns
-
-[`AlchemyProvider`](AlchemyProvider.md)
-
-#### Defined in
-
-[src/api/alchemy.ts:79](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy.ts#L79)
-
-___
-
-### getWebsocketProvider
-
-▸ **getWebsocketProvider**(): [`AlchemyWebSocketProvider`](AlchemyWebSocketProvider.md)
-
-Creates an AlchemyWebsocketProvider instance. Only one provider is created
-per Alchemy instance.
-
-#### Returns
-
-[`AlchemyWebSocketProvider`](AlchemyWebSocketProvider.md)
-
-#### Defined in
-
-[src/api/alchemy.ts:96](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy.ts#L96)
-
-___
-
-### setNetwork
-
-▸ **setNetwork**(`network`): `void`
-
-Changes the network that the SDK requests data from.
+• **new Alchemy**(`settings?`)
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `network` | [`Network`](../enums/Network.md) | The network to change to. |
-
-#### Returns
-
-`void`
+| Name | Type |
+| :------ | :------ |
+| `settings?` | [`AlchemySettings`](../interfaces/AlchemySettings.md) |
 
 #### Defined in
 
-[src/api/alchemy.ts:68](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy.ts#L68)
+[src/api/alchemy.ts:40](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy.ts#L40)
+
+## Properties
+
+### config
+
+• `Readonly` **config**: [`AlchemyConfig`](AlchemyConfig.md)
+
+Holds the setting information for the instance of the Alchemy SDK client
+and allows access to the underlying providers.
+
+#### Defined in
+
+[src/api/alchemy.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy.ts#L33)
+
+___
+
+### core
+
+• `Readonly` **core**: `CoreNamespace`
+
+The `core` namespace contains the core eth json-rpc calls and Alchemy's
+Enhanced APIs.
+
+#### Defined in
+
+[src/api/alchemy.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy.ts#L21)
+
+___
+
+### nft
+
+• `Readonly` **nft**: [`NftNamespace`](NftNamespace.md)
+
+The `nft` namespace contains methods for Alchemy's NFT API.
+
+#### Defined in
+
+[src/api/alchemy.ts:24](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy.ts#L24)
+
+___
+
+### ws
+
+• `Readonly` **ws**: [`WebSocketNamespace`](WebSocketNamespace.md)
+
+The `ws` namespace contains methods for using WebSockets and creating subscriptions.
+
+#### Defined in
+
+[src/api/alchemy.ts:27](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy.ts#L27)

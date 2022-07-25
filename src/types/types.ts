@@ -11,11 +11,14 @@ import { BaseNft, Nft } from '../api/nft';
  *
  * @public
  */
-export interface AlchemyConfig {
+export interface AlchemySettings {
   /** The Alchemy API key that can be found in the Alchemy dashboard. */
   apiKey?: string;
 
-  /** The name of the network. */
+  /**
+   * The name of the network. Once configured, the network cannot be changed. To
+   * use a different network, instantiate a new `Alchemy` instance
+   */
   network?: Network;
 
   /** The maximum number of retries to attempt if a request fails. Defaults to 5. */
@@ -167,12 +170,45 @@ export interface NftMetadata extends Record<string, any> {
   attributes?: Array<Record<string, any>>;
 }
 
-/** @public */
+/**
+ * Represents the URI information the NFT's metadata.
+ *
+ * @public
+ */
 export interface TokenUri {
-  /** URI for the location of the NFT's original metadata blob. */
+  /**
+   * URI for the location of the NFT's original metadata blob (ex: the original
+   * IPFS link).
+   */
   raw: string;
+
   /** Public gateway URI for the raw URI. Generally offers better performance. */
   gateway: string;
+}
+
+/**
+ * Represents the URI information for the NFT's media assets.
+ *
+ * @public
+ */
+export interface Media {
+  /**
+   * URI for the location of the NFT's original metadata blob for media (ex: the
+   * original IPFS link).
+   */
+  raw: string;
+
+  /** Public gateway URI for the raw URI. Generally offers better performance. */
+  gateway: string;
+
+  /** URL for a resized thumbnail of the NFT media asset. */
+  thumbnail?: string;
+
+  /**
+   * The media format (ex: jpg, gif, png) of the {@link gateway} and
+   * {@link thumbnail} assets.
+   */
+  format?: string;
 }
 
 /**
@@ -319,17 +355,17 @@ export interface GetOwnersForNftResponse {
 }
 
 /**
- * The response object for the {@link getOwnersForCollection}.
+ * The response object for the {@link getOwnersForContract}.
  *
  * @public
  */
-export interface GetOwnersForCollectionResponse {
+export interface GetOwnersForContractResponse {
   /** An array of owner addresses for the provided contract address */
   readonly owners: string[];
 }
 
 /**
- * The successful object returned by the {@link getNftFloorPrice} call for each
+ * The successful object returned by the {@link getFloorPrice} call for each
  * marketplace (e.g. looksRare).
  *
  * @public
@@ -346,7 +382,7 @@ export interface FloorPriceMarketplace {
 }
 
 /**
- * The failing object returned by the {@link getNftFloorPrice} call for each
+ * The failing object returned by the {@link getFloorPrice} call for each
  * marketplace (e.g. looksRare).
  *
  * @public
@@ -357,17 +393,53 @@ export interface FloorPriceError {
 }
 
 /**
- * The response object for the {@link getNftFloorPrice} method.
+ * The response object for the {@link getFloorPrice} method.
  *
  * @public
  */
-export interface GetNftFloorPriceResponse {
+export interface GetFloorPriceResponse {
   /**
    * Name of the NFT marketplace where the collection is listed. Current
    * marketplaces supported: OpenSea, LooksRare
    */
   readonly openSea: FloorPriceMarketplace | FloorPriceError;
   readonly looksRare: FloorPriceMarketplace | FloorPriceError;
+}
+
+/** The refresh result response object returned by {@link refreshNftContract}. */
+export interface RefreshContractResult {
+  /** The NFT contract address that was passed in to be refreshed. */
+  contractAddress: string;
+
+  /** The current state of the refresh request. */
+  refreshState: RefreshState;
+
+  /**
+   * Percentage of tokens currently refreshed, represented as an integer string.
+   * Field can be null if the refresh has not occurred.
+   */
+  progress: string | null;
+}
+
+/** The current state of the NFT contract refresh process. */
+export enum RefreshState {
+  /** The provided contract is not an NFT or does not contain metadata. */
+  DOES_NOT_EXIST = 'does_not_exist',
+
+  /** The contract has already been queued for refresh. */
+  ALREADY_QUEUED = 'already_queued',
+
+  /** The contract is currently being refreshed. */
+  IN_PROGRESS = 'in_progress',
+
+  /** The contract refresh is complete. */
+  FINISHED = 'finished',
+
+  /** The contract refresh has been queued and await execution. */
+  QUEUED = 'queued',
+
+  /** The contract was unable to be queued due to an internal error. */
+  QUEUE_FAILED = 'queue_failed'
 }
 
 /** @public */
@@ -404,18 +476,18 @@ export interface RawContract {
 }
 
 /**
- * Optional parameters object for the {@link getNftsForCollection} and
- * {@link getNftsForCollectionIterator} functions.
+ * Optional parameters object for the {@link getNftsForContract} and
+ * {@link getNftsForNftContractIterator} functions.
  *
  * This interface is used to fetch NFTs with their associated metadata. To get
- * Nfts without their associated metadata, use {@link GetBaseNftsForCollectionOptions}.
+ * Nfts without their associated metadata, use {@link GetBaseNftsForContractOptions}.
  *
  * @public
  */
-export interface GetNftsForCollectionOptions {
+export interface GetNftsForContractOptions {
   /**
-   * Optional page key from an existing {@link CollectionBaseNftsResponse} or
-   * {@link CollectionNftsResponse}to use for pagination.
+   * Optional page key from an existing {@link NftContractBaseNftsResponse} or
+   * {@link NftContractNftsResponse}to use for pagination.
    */
   pageKey?: string;
 
@@ -424,18 +496,18 @@ export interface GetNftsForCollectionOptions {
 }
 
 /**
- * Optional parameters object for the {@link getNftsForCollection} and
- * {@link getNftsForCollectionIterator} functions.
+ * Optional parameters object for the {@link getNftsForContract} and
+ * {@link getNftsForNftContractIterator} functions.
  *
  * This interface is used to fetch NFTs without their associated metadata. To
- * get Nfts with their associated metadata, use {@link GetNftsForCollectionOptions}.
+ * get Nfts with their associated metadata, use {@link GetNftsForContractOptions}.
  *
  * @public
  */
-export interface GetBaseNftsForCollectionOptions {
+export interface GetBaseNftsForContractOptions {
   /**
-   * Optional page key from an existing {@link CollectionBaseNftsResponse} or
-   * {@link CollectionNftsResponse}to use for pagination.
+   * Optional page key from an existing {@link NftContractBaseNftsResponse} or
+   * {@link NftContractNftsResponse}to use for pagination.
    */
   pageKey?: string;
 
@@ -444,12 +516,12 @@ export interface GetBaseNftsForCollectionOptions {
 }
 
 /**
- * The response object for the {@link getNftsForCollection} function. The object
- * contains the NFTs without metadata inside the collection.
+ * The response object for the {@link getNftsForContract} function. The object
+ * contains the NFTs without metadata inside the NFT contract.
  *
  * @public
  */
-export interface CollectionBaseNftsResponse {
+export interface NftContractBaseNftsResponse {
   /** An array of NFTs without metadata. */
   nfts: BaseNft[];
 
@@ -461,12 +533,12 @@ export interface CollectionBaseNftsResponse {
 }
 
 /**
- * The response object for the {@link getNftsForCollection} function. The object
- * contains the NFTs with metadata inside the collection.
+ * The response object for the {@link getNftsForContract} function. The object
+ * contains the NFTs with metadata inside the NFT contract.
  *
  * @public
  */
-export interface CollectionNftsResponse {
+export interface NftContractNftsResponse {
   /** An array of NFTs with metadata. */
   nfts: Nft[];
 
@@ -491,19 +563,37 @@ export interface DeployResult {
 }
 
 /**
- * Event filters for the {@link AlchemyWebSocketProvider.on} method to use
- * Alchemy's custom Subscription API endpoints.
+ * Event filter for the {@link AlchemyWebSocketProvider.on} and
+ * {@link AlchemyWebSocketProvider.once} methods to use Alchemy's custom
+ * `alchemy_pendingTransactions` endpoint.
+ *
+ * Returns the transaction information for all pending transactions that match a
+ * given filter. For full documentation, see:
+ * https://docs.alchemy.com/alchemy/enhanced-apis/subscription-api-websockets#alchemy_pendingtransactions
+ *
+ * Note that excluding all optional parameters will return transaction
+ * information for ALL pending transactions that are added to the mempool.
  *
  * @public
  */
-export type AlchemyEventFilter =
-  | {
-      method: 'alchemy_newFullPendingTransactions';
-    }
-  | {
-      method: 'alchemy_filteredNewFullPendingTransactions';
-      address: string;
-    };
+export type AlchemyPendingTransactionsEventFilter = {
+  method: 'alchemy_pendingTransactions';
+  /** Filter pending transactions sent FROM the provided address or array of addresses. */
+  fromAddress?: string | string[];
+
+  /** Filter pending transactions sent TO the provided address or array of addresses. */
+  toAddress?: string | string[];
+
+  /**
+   * Whether to only include transaction hashes and exclude the rest of the
+   * transaction response for a smaller payload. Defaults to false (by default,
+   * the entire transaction response is included).
+   *
+   * Note that setting only {@link hashesOnly} to true will return the same
+   * response as subscribing to `newPendingTransactions`.
+   */
+  hashesOnly?: boolean;
+};
 
 /**
  * Alchemy's event filter that extends the default {@link EventType} interface to
@@ -511,4 +601,6 @@ export type AlchemyEventFilter =
  *
  * @public
  */
-export type AlchemyEventType = EventType | AlchemyEventFilter;
+export type AlchemyEventType =
+  | EventType
+  | AlchemyPendingTransactionsEventFilter;

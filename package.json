@@ -1,6 +1,6 @@
 {
   "name": "@alch/alchemy-sdk",
-  "version": "1.2.0",
+  "version": "2.0.0-beta.0",
   "description": "Extended Ethers.js SDK for Alchemy APIs",
   "author": "Alchemy",
   "license": "MIT",
@@ -19,16 +19,16 @@
     "docs-md": "typedoc --plugin typedoc-plugin-markdown --out docs-md src/index.ts",
     "prepare": "husky install"
   },
-  "main": "dist/index.cjs.js",
-  "main-es": "dist/index.mjs",
-  "module": "dist/index.esm.js",
+  "main": "dist/cjs/index.js",
+  "main-es": "dist/es/index.js",
+  "module": "dist/esm/index.js",
   "exports": {
     "node": {
-      "require": "./dist/index.cjs.js",
-      "import": "./dist/index.cjs.js"
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/cjs/index.js"
     },
     "package.json": "./package.json",
-    "default": "./dist/index.esm.js"
+    "default": "./dist/esm/index.js"
   },
   "types": "./dist/src/index.d.ts",
   "repository": {

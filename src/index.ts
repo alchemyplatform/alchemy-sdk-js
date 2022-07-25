@@ -1,37 +1,19 @@
 /** This is the main entry point for the library and exports user-facing API. */
 export * from './types/types';
 
-export { initializeAlchemy, Alchemy } from './api/alchemy';
+export { Alchemy } from './api/alchemy';
 
-export { AlchemyProvider } from './api/alchemy-provider';
+export type { AlchemyConfig } from './api/alchemy-config';
 
-export { AlchemyWebSocketProvider } from './api/alchemy-websocket-provider';
+export type { AlchemyProvider } from './api/alchemy-provider';
 
-export {
-  getNftMetadata,
-  getNftContractMetadata,
-  getNftsForOwner,
-  getNftsForOwnerIterator,
-  getNftsForCollection,
-  getNftsForCollectionIterator,
-  getOwnersForNft,
-  getOwnersForCollection,
-  checkNftOwnership,
-  isSpamNftContract,
-  getSpamNftContracts,
-  getNftFloorPrice,
-  findContractDeployer,
-  refreshNftMetadata
-} from './api/nft-api';
+export type { AlchemyWebSocketProvider } from './api/alchemy-websocket-provider';
 
-export {
-  getTransactionReceipts,
-  getAssetTransfers,
-  getTokenMetadata,
-  getTokenBalances
-} from './api/enhanced';
+export type { NftNamespace } from './api/nft-namespace';
 
-export { BaseNftContract, NftContract, Nft, BaseNft } from './api/nft';
+export type { WebSocketNamespace } from './api/websocket-namespace';
+
+export type { BaseNftContract, NftContract, Nft, BaseNft } from './api/nft';
 
 export { fromHex, toHex, isHex } from './api/util';
 

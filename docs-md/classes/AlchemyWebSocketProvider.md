@@ -67,10 +67,13 @@
 - [\_getInternalBlockNumber](AlchemyWebSocketProvider.md#_getinternalblocknumber)
 - [\_getResolver](AlchemyWebSocketProvider.md#_getresolver)
 - [\_getTransactionRequest](AlchemyWebSocketProvider.md#_gettransactionrequest)
+- [\_listenerCount](AlchemyWebSocketProvider.md#_listenercount)
+- [\_listeners](AlchemyWebSocketProvider.md#_listeners)
+- [\_off](AlchemyWebSocketProvider.md#_off)
 - [\_ready](AlchemyWebSocketProvider.md#_ready)
+- [\_removeAllListeners](AlchemyWebSocketProvider.md#_removealllisteners)
 - [\_setFastBlockNumber](AlchemyWebSocketProvider.md#_setfastblocknumber)
 - [\_startPending](AlchemyWebSocketProvider.md#_startpending)
-- [\_stopEvent](AlchemyWebSocketProvider.md#_stopevent)
 - [\_uncachedDetectNetwork](AlchemyWebSocketProvider.md#_uncacheddetectnetwork)
 - [\_waitForTransaction](AlchemyWebSocketProvider.md#_waitfortransaction)
 - [\_wrapTransaction](AlchemyWebSocketProvider.md#_wraptransaction)
@@ -130,7 +133,7 @@
 
 #### Inherited from
 
-providers.WebSocketProvider.\_bootstrapPoll
+WebSocketProvider.\_bootstrapPoll
 
 #### Defined in
 
@@ -144,7 +147,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_detectNetwork
+WebSocketProvider.\_detectNetwork
 
 #### Defined in
 
@@ -162,7 +165,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_emitted
+WebSocketProvider.\_emitted
 
 #### Defined in
 
@@ -176,7 +179,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_eventLoopCache
+WebSocketProvider.\_eventLoopCache
 
 #### Defined in
 
@@ -186,15 +189,15 @@ ___
 
 ### \_events
 
-• **\_events**: `Event`[]
+• **\_events**: `EthersEvent`[] = `[]`
 
-#### Inherited from
+#### Overrides
 
-providers.WebSocketProvider.\_events
+WebSocketProvider.\_events
 
 #### Defined in
 
-node_modules/@ethersproject/providers/lib/base-provider.d.ts:59
+[src/api/alchemy-websocket-provider.ts:60](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L60)
 
 ___
 
@@ -204,7 +207,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_fastBlockNumber
+WebSocketProvider.\_fastBlockNumber
 
 #### Defined in
 
@@ -218,7 +221,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_fastBlockNumberPromise
+WebSocketProvider.\_fastBlockNumberPromise
 
 #### Defined in
 
@@ -232,7 +235,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_fastQueryDate
+WebSocketProvider.\_fastQueryDate
 
 #### Defined in
 
@@ -246,7 +249,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_internalBlockNumber
+WebSocketProvider.\_internalBlockNumber
 
 #### Defined in
 
@@ -260,7 +263,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_isProvider
+WebSocketProvider.\_isProvider
 
 #### Defined in
 
@@ -274,7 +277,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_lastBlockNumber
+WebSocketProvider.\_lastBlockNumber
 
 #### Defined in
 
@@ -288,7 +291,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_maxFilterBlockRange
+WebSocketProvider.\_maxFilterBlockRange
 
 #### Defined in
 
@@ -302,7 +305,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_maxInternalBlockNumber
+WebSocketProvider.\_maxInternalBlockNumber
 
 #### Defined in
 
@@ -316,7 +319,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_network
+WebSocketProvider.\_network
 
 #### Defined in
 
@@ -330,7 +333,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_networkPromise
+WebSocketProvider.\_networkPromise
 
 #### Defined in
 
@@ -344,7 +347,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_nextId
+WebSocketProvider.\_nextId
 
 #### Defined in
 
@@ -358,7 +361,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_pendingFilter
+WebSocketProvider.\_pendingFilter
 
 #### Defined in
 
@@ -372,7 +375,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_poller
+WebSocketProvider.\_poller
 
 #### Defined in
 
@@ -386,7 +389,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_pollingInterval
+WebSocketProvider.\_pollingInterval
 
 #### Defined in
 
@@ -404,7 +407,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_requests
+WebSocketProvider.\_requests
 
 #### Defined in
 
@@ -422,7 +425,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_subIds
+WebSocketProvider.\_subIds
 
 #### Defined in
 
@@ -440,7 +443,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_subs
+WebSocketProvider.\_subs
 
 #### Defined in
 
@@ -454,7 +457,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_websocket
+WebSocketProvider.\_websocket
 
 #### Defined in
 
@@ -468,7 +471,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_wsReady
+WebSocketProvider.\_wsReady
 
 #### Defined in
 
@@ -482,7 +485,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.anyNetwork
+WebSocketProvider.anyNetwork
 
 #### Defined in
 
@@ -496,7 +499,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:53](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy-websocket-provider.ts#L53)
+[src/api/alchemy-websocket-provider.ts:61](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L61)
 
 ___
 
@@ -506,7 +509,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.connection
+WebSocketProvider.connection
 
 #### Defined in
 
@@ -520,7 +523,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.disableCcipRead
+WebSocketProvider.disableCcipRead
 
 #### Defined in
 
@@ -534,7 +537,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.formatter
+WebSocketProvider.formatter
 
 #### Defined in
 
@@ -552,7 +555,7 @@ node_modules/@ethersproject/providers/lib/base-provider.d.ts:60
 
 #### Inherited from
 
-providers.WebSocketProvider.\_cache
+WebSocketProvider.\_cache
 
 #### Defined in
 
@@ -570,7 +573,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.blockNumber
+WebSocketProvider.blockNumber
 
 #### Defined in
 
@@ -588,7 +591,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.network
+WebSocketProvider.network
 
 #### Defined in
 
@@ -612,7 +615,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.polling
+WebSocketProvider.polling
 
 #### Defined in
 
@@ -630,7 +633,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.pollingInterval
+WebSocketProvider.pollingInterval
 
 #### Defined in
 
@@ -650,7 +653,7 @@ node_modules/@ethersproject/providers/lib/websocket-provider.d.ts:36
 
 #### Inherited from
 
-providers.WebSocketProvider.pollingInterval
+WebSocketProvider.pollingInterval
 
 #### Defined in
 
@@ -668,7 +671,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.ready
+WebSocketProvider.ready
 
 #### Defined in
 
@@ -686,7 +689,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.websocket
+WebSocketProvider.websocket
 
 #### Defined in
 
@@ -712,7 +715,7 @@ node_modules/@ethersproject/providers/lib/websocket-provider.d.ts:34
 
 #### Inherited from
 
-providers.WebSocketProvider.\_call
+WebSocketProvider.\_call
 
 #### Defined in
 
@@ -736,7 +739,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_getAddress
+WebSocketProvider.\_getAddress
 
 #### Defined in
 
@@ -761,7 +764,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_getBlock
+WebSocketProvider.\_getBlock
 
 #### Defined in
 
@@ -785,7 +788,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_getBlockTag
+WebSocketProvider.\_getBlockTag
 
 #### Defined in
 
@@ -803,7 +806,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_getFastBlockNumber
+WebSocketProvider.\_getFastBlockNumber
 
 #### Defined in
 
@@ -827,7 +830,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_getFilter
+WebSocketProvider.\_getFilter
 
 #### Defined in
 
@@ -851,7 +854,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_getInternalBlockNumber
+WebSocketProvider.\_getInternalBlockNumber
 
 #### Defined in
 
@@ -876,7 +879,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_getResolver
+WebSocketProvider.\_getResolver
 
 #### Defined in
 
@@ -900,11 +903,99 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_getTransactionRequest
+WebSocketProvider.\_getTransactionRequest
 
 #### Defined in
 
 node_modules/@ethersproject/providers/lib/base-provider.d.ts:125
+
+___
+
+### \_listenerCount
+
+▸ `Private` **_listenerCount**(`eventName?`): `number`
+
+DO NOT MODIFY.
+
+Original code copied over from ether.js's `BaseProvider.listenerCount()`.
+
+This method is copied over directly in order to implement Alchemy's unique
+subscription types. The only difference is that this method calls
+{@link getAlchemyEventTag} instead of the original `getEventTag()` method in
+order to parse the Alchemy subscription event.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `eventName?` | [`AlchemyEventType`](../modules.md#alchemyeventtype) |
+
+#### Returns
+
+`number`
+
+#### Defined in
+
+[src/api/alchemy-websocket-provider.ts:894](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L894)
+
+___
+
+### \_listeners
+
+▸ `Private` **_listeners**(`eventName?`): `Listener`[]
+
+DO NOT MODIFY.
+
+Original code copied over from ether.js's `BaseProvider.listeners()`.
+
+This method is copied over directly in order to implement Alchemy's unique
+subscription types. The only difference is that this method calls
+{@link getAlchemyEventTag} instead of the original `getEventTag()` method in
+order to parse the Alchemy subscription event.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `eventName?` | [`AlchemyEventType`](../modules.md#alchemyeventtype) |
+
+#### Returns
+
+`Listener`[]
+
+#### Defined in
+
+[src/api/alchemy-websocket-provider.ts:917](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L917)
+
+___
+
+### \_off
+
+▸ `Private` **_off**(`eventName`, `listener?`): [`AlchemyWebSocketProvider`](AlchemyWebSocketProvider.md)
+
+DO NOT MODIFY.
+
+Original code copied over from ether.js's `BaseProvider.off()`.
+
+This method is copied over directly in order to implement Alchemy's unique
+subscription types. The only difference is that this method calls
+{@link getAlchemyEventTag} instead of the original `getEventTag()` method in
+order to parse the Alchemy subscription event.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `eventName` | [`AlchemyEventType`](../modules.md#alchemyeventtype) |
+| `listener?` | `Listener` |
+
+#### Returns
+
+[`AlchemyWebSocketProvider`](AlchemyWebSocketProvider.md)
+
+#### Defined in
+
+[src/api/alchemy-websocket-provider.ts:818](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L818)
 
 ___
 
@@ -918,11 +1009,40 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_ready
+WebSocketProvider.\_ready
 
 #### Defined in
 
 node_modules/@ethersproject/providers/lib/base-provider.d.ts:90
+
+___
+
+### \_removeAllListeners
+
+▸ `Private` **_removeAllListeners**(`eventName`): [`AlchemyWebSocketProvider`](AlchemyWebSocketProvider.md)
+
+DO NOT MODIFY.
+
+Original code copied over from ether.js's `BaseProvider.removeAllListeners()`.
+
+This method is copied over directly in order to implement Alchemy's unique
+subscription types. The only difference is that this method calls
+{@link getAlchemyEventTag} instead of the original `getEventTag()` method in
+order to parse the Alchemy subscription event.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `eventName` | [`AlchemyEventType`](../modules.md#alchemyeventtype) |
+
+#### Returns
+
+[`AlchemyWebSocketProvider`](AlchemyWebSocketProvider.md)
+
+#### Defined in
+
+[src/api/alchemy-websocket-provider.ts:858](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L858)
 
 ___
 
@@ -942,7 +1062,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_setFastBlockNumber
+WebSocketProvider.\_setFastBlockNumber
 
 #### Defined in
 
@@ -960,35 +1080,11 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_startPending
+WebSocketProvider.\_startPending
 
 #### Defined in
 
 node_modules/@ethersproject/providers/lib/json-rpc-provider.d.ts:45
-
-___
-
-### \_stopEvent
-
-▸ **_stopEvent**(`event`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `event` | `Event` |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-providers.WebSocketProvider.\_stopEvent
-
-#### Defined in
-
-node_modules/@ethersproject/providers/lib/websocket-provider.d.ts:45
 
 ___
 
@@ -1002,7 +1098,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_uncachedDetectNetwork
+WebSocketProvider.\_uncachedDetectNetwork
 
 #### Defined in
 
@@ -1035,7 +1131,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_waitForTransaction
+WebSocketProvider.\_waitForTransaction
 
 #### Defined in
 
@@ -1061,7 +1157,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.\_wrapTransaction
+WebSocketProvider.\_wrapTransaction
 
 #### Defined in
 
@@ -1086,7 +1182,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.addListener
+WebSocketProvider.addListener
 
 #### Defined in
 
@@ -1111,7 +1207,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.call
+WebSocketProvider.call
 
 #### Defined in
 
@@ -1137,7 +1233,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.ccipReadFetch
+WebSocketProvider.ccipReadFetch
 
 #### Defined in
 
@@ -1157,11 +1253,11 @@ ___
 
 #### Overrides
 
-providers.WebSocketProvider.destroy
+WebSocketProvider.destroy
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:293](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy-websocket-provider.ts#L293)
+[src/api/alchemy-websocket-provider.ts:385](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L385)
 
 ___
 
@@ -1175,7 +1271,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.detectNetwork
+WebSocketProvider.detectNetwork
 
 #### Defined in
 
@@ -1199,7 +1295,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.estimateGas
+WebSocketProvider.estimateGas
 
 #### Defined in
 
@@ -1223,7 +1319,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getAvatar
+WebSocketProvider.getAvatar
 
 #### Defined in
 
@@ -1248,7 +1344,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getBalance
+WebSocketProvider.getBalance
 
 #### Defined in
 
@@ -1272,7 +1368,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getBlock
+WebSocketProvider.getBlock
 
 #### Defined in
 
@@ -1290,7 +1386,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getBlockNumber
+WebSocketProvider.getBlockNumber
 
 #### Defined in
 
@@ -1314,7 +1410,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getBlockWithTransactions
+WebSocketProvider.getBlockWithTransactions
 
 #### Defined in
 
@@ -1339,7 +1435,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getCode
+WebSocketProvider.getCode
 
 #### Defined in
 
@@ -1357,7 +1453,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getEtherPrice
+WebSocketProvider.getEtherPrice
 
 #### Defined in
 
@@ -1375,7 +1471,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getFeeData
+WebSocketProvider.getFeeData
 
 #### Defined in
 
@@ -1393,7 +1489,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getGasPrice
+WebSocketProvider.getGasPrice
 
 #### Defined in
 
@@ -1417,7 +1513,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getLogs
+WebSocketProvider.getLogs
 
 #### Defined in
 
@@ -1435,7 +1531,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getNetwork
+WebSocketProvider.getNetwork
 
 #### Defined in
 
@@ -1459,7 +1555,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getResolver
+WebSocketProvider.getResolver
 
 #### Defined in
 
@@ -1483,7 +1579,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getSigner
+WebSocketProvider.getSigner
 
 #### Defined in
 
@@ -1509,7 +1605,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getStorageAt
+WebSocketProvider.getStorageAt
 
 #### Defined in
 
@@ -1533,7 +1629,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getTransaction
+WebSocketProvider.getTransaction
 
 #### Defined in
 
@@ -1558,7 +1654,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getTransactionCount
+WebSocketProvider.getTransactionCount
 
 #### Defined in
 
@@ -1582,7 +1678,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getTransactionReceipt
+WebSocketProvider.getTransactionReceipt
 
 #### Defined in
 
@@ -1606,7 +1702,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getUncheckedSigner
+WebSocketProvider.getUncheckedSigner
 
 #### Defined in
 
@@ -1629,11 +1725,11 @@ current api key is the default key.
 
 #### Implementation of
 
-providers.CommunityResourcable.isCommunityResource
+CommunityResourcable.isCommunityResource
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:305](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy-websocket-provider.ts#L305)
+[src/api/alchemy-websocket-provider.ts:397](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L397)
 
 ___
 
@@ -1647,7 +1743,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.listAccounts
+WebSocketProvider.listAccounts
 
 #### Defined in
 
@@ -1659,23 +1755,28 @@ ___
 
 ▸ **listenerCount**(`eventName?`): `number`
 
+Returns the number of listeners for the provided {@link eventName} event. If
+no event is provided, the total number of listeners for all events is returned.
+
+**`override`**
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `eventName?` | `EventType` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `eventName?` | [`AlchemyEventType`](../modules.md#alchemyeventtype) | The event to get the number of listeners for. |
 
 #### Returns
 
 `number`
 
-#### Inherited from
+#### Overrides
 
-providers.WebSocketProvider.listenerCount
+WebSocketProvider.listenerCount
 
 #### Defined in
 
-node_modules/@ethersproject/providers/lib/base-provider.d.ts:151
+[src/api/alchemy-websocket-provider.ts:190](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L190)
 
 ___
 
@@ -1683,23 +1784,28 @@ ___
 
 ▸ **listeners**(`eventName?`): `Listener`[]
 
+Returns an array of listeners for the provided {@link eventName} event. If
+no event is provided, all listeners will be included.
+
+**`override`**
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `eventName?` | `EventType` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `eventName?` | [`AlchemyEventType`](../modules.md#alchemyeventtype) | The event to get the listeners for. |
 
 #### Returns
 
 `Listener`[]
 
-#### Inherited from
+#### Overrides
 
-providers.WebSocketProvider.listeners
+WebSocketProvider.listeners
 
 #### Defined in
 
-node_modules/@ethersproject/providers/lib/base-provider.d.ts:152
+[src/api/alchemy-websocket-provider.ts:206](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L206)
 
 ___
 
@@ -1719,7 +1825,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.lookupAddress
+WebSocketProvider.lookupAddress
 
 #### Defined in
 
@@ -1731,24 +1837,29 @@ ___
 
 ▸ **off**(`eventName`, `listener?`): [`AlchemyWebSocketProvider`](AlchemyWebSocketProvider.md)
 
+Removes the provided {@link listener} for the {@link eventName} event. If no
+listener is provided, all listeners for the event will be removed.
+
+**`override`**
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `eventName` | `EventType` |
-| `listener?` | `Listener` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `eventName` | [`AlchemyEventType`](../modules.md#alchemyeventtype) | Event to unlisten to. |
+| `listener?` | `Listener` | The listener function to remove. |
 
 #### Returns
 
 [`AlchemyWebSocketProvider`](AlchemyWebSocketProvider.md)
 
-#### Inherited from
+#### Overrides
 
-providers.WebSocketProvider.off
+WebSocketProvider.off
 
 #### Defined in
 
-node_modules/@ethersproject/providers/lib/base-provider.d.ts:153
+[src/api/alchemy-websocket-provider.ts:158](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L158)
 
 ___
 
@@ -1756,7 +1867,7 @@ ___
 
 ▸ **on**(`eventName`, `listener`): [`AlchemyWebSocketProvider`](AlchemyWebSocketProvider.md)
 
-Overridden implementation of ethers' that includes Alchemy based subscriptions.
+Overridden implementation of ethers that includes Alchemy based subscriptions.
 
 **`override`**
 
@@ -1773,11 +1884,11 @@ Overridden implementation of ethers' that includes Alchemy based subscriptions.
 
 #### Overrides
 
-providers.WebSocketProvider.on
+WebSocketProvider.on
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:122](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/api/alchemy-websocket-provider.ts#L122)
+[src/api/alchemy-websocket-provider.ts:130](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L130)
 
 ___
 
@@ -1785,24 +1896,30 @@ ___
 
 ▸ **once**(`eventName`, `listener`): [`AlchemyWebSocketProvider`](AlchemyWebSocketProvider.md)
 
+Overridden implementation of ethers that includes Alchemy based
+subscriptions. Adds a listener to the triggered for only the next
+{@link eventName} event, after which it will be removed.
+
+**`override`**
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `eventName` | `EventType` |
-| `listener` | `Listener` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `eventName` | [`AlchemyEventType`](../modules.md#alchemyeventtype) | Event to subscribe to |
+| `listener` | `Listener` | The listener function to call when the event is triggered. |
 
 #### Returns
 
 [`AlchemyWebSocketProvider`](AlchemyWebSocketProvider.md)
 
-#### Inherited from
+#### Overrides
 
-providers.WebSocketProvider.once
+WebSocketProvider.once
 
 #### Defined in
 
-node_modules/@ethersproject/providers/lib/base-provider.d.ts:149
+[src/api/alchemy-websocket-provider.ts:145](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L145)
 
 ___
 
@@ -1823,7 +1940,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.perform
+WebSocketProvider.perform
 
 #### Defined in
 
@@ -1841,7 +1958,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.poll
+WebSocketProvider.poll
 
 #### Defined in
 
@@ -1866,7 +1983,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.prepareRequest
+WebSocketProvider.prepareRequest
 
 #### Defined in
 
@@ -1878,23 +1995,28 @@ ___
 
 ▸ **removeAllListeners**(`eventName?`): [`AlchemyWebSocketProvider`](AlchemyWebSocketProvider.md)
 
+Remove all listeners for the provided {@link eventName} event. If no event
+is provided, all events and their listeners are removed.
+
+**`override`**
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `eventName?` | `EventType` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `eventName?` | [`AlchemyEventType`](../modules.md#alchemyeventtype) | The event to remove all listeners for. |
 
 #### Returns
 
 [`AlchemyWebSocketProvider`](AlchemyWebSocketProvider.md)
 
-#### Inherited from
+#### Overrides
 
-providers.WebSocketProvider.removeAllListeners
+WebSocketProvider.removeAllListeners
 
 #### Defined in
 
-node_modules/@ethersproject/providers/lib/base-provider.d.ts:154
+[src/api/alchemy-websocket-provider.ts:174](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L174)
 
 ___
 
@@ -1915,7 +2037,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.removeListener
+WebSocketProvider.removeListener
 
 #### Defined in
 
@@ -1939,7 +2061,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.resetEventsBlock
+WebSocketProvider.resetEventsBlock
 
 #### Defined in
 
@@ -1963,7 +2085,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.resolveName
+WebSocketProvider.resolveName
 
 #### Defined in
 
@@ -1988,7 +2110,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.send
+WebSocketProvider.send
 
 #### Defined in
 
@@ -2012,7 +2134,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.sendTransaction
+WebSocketProvider.sendTransaction
 
 #### Defined in
 
@@ -2038,7 +2160,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.waitForTransaction
+WebSocketProvider.waitForTransaction
 
 #### Defined in
 
@@ -2056,7 +2178,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.defaultUrl
+WebSocketProvider.defaultUrl
 
 #### Defined in
 
@@ -2074,7 +2196,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getFormatter
+WebSocketProvider.getFormatter
 
 #### Defined in
 
@@ -2098,7 +2220,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.getNetwork
+WebSocketProvider.getNetwork
 
 #### Defined in
 
@@ -2123,7 +2245,7 @@ ___
 
 #### Inherited from
 
-providers.WebSocketProvider.hexlifyTransaction
+WebSocketProvider.hexlifyTransaction
 
 #### Defined in
 
@@ -2147,7 +2269,7 @@ value is Provider
 
 #### Inherited from
 
-providers.WebSocketProvider.isProvider
+WebSocketProvider.isProvider
 
 #### Defined in
 

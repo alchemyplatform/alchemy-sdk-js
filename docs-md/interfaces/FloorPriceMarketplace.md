@@ -2,7 +2,7 @@
 
 # Interface: FloorPriceMarketplace
 
-The successful object returned by the [getNftFloorPrice](../modules.md#getnftfloorprice) call for each
+The successful object returned by the [getFloorPrice](../classes/NftNamespace.md#getfloorprice) call for each
 marketplace (e.g. looksRare).
 
 ## Table of contents
@@ -24,7 +24,7 @@ The link to the collection on the given marketplace
 
 #### Defined in
 
-[src/types/types.ts:343](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L343)
+[src/types/types.ts:379](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L379)
 
 ___
 
@@ -36,7 +36,7 @@ The floor price of the collection on the given marketplace
 
 #### Defined in
 
-[src/types/types.ts:339](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L339)
+[src/types/types.ts:375](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L375)
 
 ___
 
@@ -48,7 +48,7 @@ The currency in which the floor price is denominated
 
 #### Defined in
 
-[src/types/types.ts:341](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L341)
+[src/types/types.ts:377](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L377)
 
 ___
 
@@ -60,4 +60,4 @@ UTC timestamp of when the floor price was retrieved from the marketplace
 
 #### Defined in
 
-[src/types/types.ts:345](https://github.com/alchemyplatform/alchemy-sdk-js/blob/9fe1224/src/types/types.ts#L345)
+[src/types/types.ts:381](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L381)
