@@ -4,7 +4,7 @@
 
 ## 2.0.0
 
-### Feature: 
+### Features
 * Top level package has moved from `@alch/alchemy-sdk` to `alchemy-sdk` for convenience. New command to install is `npm install alchemy-sdk`
 * Updated instantiation syntax: `initializeAlchemy(settings)` is now `new Alchemy(settings)`
 * Added three namespaces under the Alchemy object: `core`, `nft`, and `ws`. All Ethers.js provider methods and Alchemy Enhanced APIs (other than NFT) are under `core`.
