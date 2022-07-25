@@ -17,6 +17,7 @@ import {
 import { Network } from '../types/types';
 import { logWarn } from '../util/logger';
 import { VERSION } from '../version';
+import { IS_BROWSER } from '../util/util';
 
 /**
  * SDK's custom implementation of ethers.js's 'AlchemyProvider'.
@@ -113,10 +114,14 @@ export class AlchemyProvider
         ? getAlchemyHttpUrl(network, apiKey)
         : getAlchemyWsUrl(network, apiKey);
     return {
-      headers: {
-        'Alchemy-Ethers-Sdk-Version': VERSION,
-        'Accept-Encoding': 'gzip'
-      },
+      headers: IS_BROWSER
+        ? {
+            'Alchemy-Ethers-Sdk-Version': VERSION
+          }
+        : {
+            'Alchemy-Ethers-Sdk-Version': VERSION,
+            'Accept-Encoding': 'gzip'
+          },
       allowGzip: true,
       url
     };
