@@ -100,6 +100,8 @@ export class AlchemyWebSocketProvider
     );
 
     const protocol = `alchemy-sdk-${VERSION}`;
+
+    // Use the provided config URL override if it exists, otherwise use the created one.
     const ws = new SturdyWebSocket(config.url ?? connection.url, protocol, {
       wsConstructor: wsConstructor ?? getWebsocketConstructor()
     });
