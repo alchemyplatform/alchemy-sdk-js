@@ -1,5 +1,4 @@
 import { BigNumber } from '@ethersproject/bignumber';
-import { Networkish } from '@ethersproject/networks';
 import { DEFAULT_ALCHEMY_API_KEY, EthersNetwork, noop } from '../util/const';
 import { AlchemyProvider } from './alchemy-provider';
 import { Listener } from '@ethersproject/abstract-provider';
@@ -36,6 +35,7 @@ import {
   CommunityResourcable,
   WebSocketProvider
 } from '@ethersproject/providers';
+import { AlchemyConfig } from './alchemy-config';
 
 const HEARTBEAT_INTERVAL = 30000;
 const HEARTBEAT_WAIT_TIME = 10000;
@@ -53,6 +53,14 @@ const BACKFILL_RETRIES = 5;
  */
 const RETAINED_EVENT_BLOCK_COUNT = 10;
 
+/**
+ * SDK's custom implementation fo the ethers.js's 'AlchemyWebSocketProvider'.
+ *
+ * Do not call this constructor directly. Instead, instantiate an instance of
+ * {@link Alchemy} and call {@link Alchemy.config.getWebSocketProvider()}.
+ *
+ * @public
+ */
 export class AlchemyWebSocketProvider
   extends WebSocketProvider
   implements CommunityResourcable
@@ -78,21 +86,13 @@ export class AlchemyWebSocketProvider
   /** @internal */
   private cancelBackfill: () => void;
 
-  /**
-   * DO NOT CALL THIS CONSTRUCTOR DIRECTLY. Instead, use `Alchemy.getWebsocketProvider()`.
-   *
-   * @param network Requires one of the Alchemy `Network` enums
-   * @param apiKey The api key, or defaults to `demo`.
-   * @param wsConstructor Optional WebSocket constructor. Currently, used only
-   *   for testing purposes.
-   * @internal
-   */
-  constructor(network?: Networkish, apiKey?: any, wsConstructor?: any) {
+  /** @internal */
+  constructor(config: AlchemyConfig, wsConstructor?: any) {
     // Normalize the API Key to a string.
-    apiKey = AlchemyProvider.getApiKey(apiKey);
+    const apiKey = AlchemyProvider.getApiKey(config.apiKey);
 
     // Generate our own connection info with the correct endpoint URLs.
-    const alchemyNetwork = AlchemyProvider.getAlchemyNetwork(network);
+    const alchemyNetwork = AlchemyProvider.getAlchemyNetwork(config.network);
     const connection = AlchemyProvider.getAlchemyConnectionInfo(
       alchemyNetwork,
       apiKey,
@@ -100,7 +100,7 @@ export class AlchemyWebSocketProvider
     );
 
     const protocol = `alchemy-sdk-${VERSION}`;
-    const ws = new SturdyWebSocket(connection.url, protocol, {
+    const ws = new SturdyWebSocket(config.url ?? connection.url, protocol, {
       wsConstructor: wsConstructor ?? getWebsocketConstructor()
     });
 
@@ -631,6 +631,7 @@ export class AlchemyWebSocketProvider
       backfillBuffer.length = 0;
     }
   }
+
   /**
    * Cancels the heartbeat and any pending backfills being performed. This is
    * called when the websocket connection goes down or is disconnected.
@@ -955,6 +956,7 @@ function makeCancelToken(): CancelToken {
 const MIN_RETRY_DELAY = 1000;
 const RETRY_BACKOFF_FACTOR = 2;
 const MAX_RETRY_DELAY = 30000;
+
 async function withBackoffRetries<T>(
   f: () => Promise<T>,
   retryCount: number,

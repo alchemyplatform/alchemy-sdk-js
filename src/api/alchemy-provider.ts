@@ -17,9 +17,13 @@ import {
 import { Network } from '../types/types';
 import { logWarn } from '../util/logger';
 import { VERSION } from '../version';
+import { AlchemyConfig } from './alchemy-config';
 
 /**
  * SDK's custom implementation of ethers.js's 'AlchemyProvider'.
+ *
+ * Do not call this constructor directly. Instead, instantiate an instance of
+ * {@link Alchemy} and call {@link Alchemy.config.getProvider()}.
  *
  * @public
  */
@@ -30,25 +34,33 @@ export class AlchemyProvider
   readonly apiKey: string;
   readonly maxRetries: number;
 
-  constructor(network: Networkish, apiKey: string, maxRetries: number) {
-    // Normalize the API Key to a string.
-    apiKey = AlchemyProvider.getApiKey(apiKey);
+  /** @internal */
+  constructor(config: AlchemyConfig) {
+    // If a hardcoded url was specified in the config, use that instead of the
+    // provided apiKey or network.
+    if (config.url !== undefined) {
+      super(config.url);
+    } else {
+      // Normalize the API Key to a string.
+      const apiKey = AlchemyProvider.getApiKey(config.apiKey);
 
-    // Generate our own connection info with the correct endpoint URLs.
-    const alchemyNetwork = AlchemyProvider.getAlchemyNetwork(network);
-    const connection = AlchemyProvider.getAlchemyConnectionInfo(
-      alchemyNetwork,
-      apiKey,
-      'http'
-    );
+      // Generate our own connection info with the correct endpoint URLs.
+      const alchemyNetwork = AlchemyProvider.getAlchemyNetwork(config.network);
+      const connection = AlchemyProvider.getAlchemyConnectionInfo(
+        alchemyNetwork,
+        apiKey,
+        'http'
+      );
 
-    // Normalize the Alchemy named network input to the network names used by
-    // ethers. This allows the parent super constructor in JsonRpcProvider to
-    // correctly set the network.
-    const ethersNetwork = EthersNetwork[alchemyNetwork];
-    super(connection, ethersNetwork);
-    this.apiKey = apiKey;
-    this.maxRetries = maxRetries;
+      // Normalize the Alchemy named network input to the network names used by
+      // ethers. This allows the parent super constructor in JsonRpcProvider to
+      // correctly set the network.
+      const ethersNetwork = EthersNetwork[alchemyNetwork];
+      super(connection, ethersNetwork);
+    }
+
+    this.apiKey = config.apiKey;
+    this.maxRetries = config.maxRetries;
   }
 
   /**
