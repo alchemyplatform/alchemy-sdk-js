@@ -14,7 +14,8 @@ import { AlchemyConfig } from '../api/alchemy-config';
 export async function requestHttpWithBackoff<Req, Res>(
   config: AlchemyConfig,
   apiType: AlchemyApiType,
-  method: string,
+  restApiName: string,
+  methodName: string,
   params: Req
 ): Promise<Res> {
   let lastError: Error | undefined = undefined;
@@ -35,17 +36,18 @@ export async function requestHttpWithBackoff<Req, Res>(
 
       const response = await sendAxiosRequest<Req, Res>(
         config._getRequestUrl(apiType),
-        method,
+        restApiName,
+        methodName,
         params
       );
 
       if (response.status === 200) {
-        logDebug(method, `Successful request: ${method}`);
+        logDebug(restApiName, `Successful request: ${restApiName}`);
         return response.data;
       } else {
         logInfo(
-          method,
-          `Request failed: ${method}, ${response.status}, ${response.data}`
+          restApiName,
+          `Request failed: ${restApiName}, ${response.status}, ${response.data}`
         );
         lastError = new Error(response.status + ': ' + response.data);
       }
@@ -84,6 +86,7 @@ export async function* paginateEndpoint<
 >(
   config: AlchemyConfig,
   apiType: AlchemyApiType,
+  restApiName: string,
   methodName: string,
   reqPageKey: ReqPageKey,
   resPageKey: ResPageKey,
@@ -95,6 +98,7 @@ export async function* paginateEndpoint<
     const response = await requestHttpWithBackoff<Req, Res>(
       config,
       apiType,
+      restApiName,
       methodName,
       requestParams
     );
