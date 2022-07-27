@@ -1,4 +1,6 @@
 import {
+  Alchemy,
+  AlchemyConfig,
   AlchemyPendingTransactionsEventFilter,
   Network,
   toHex
@@ -21,13 +23,13 @@ import {
   WebsocketBackfiller
 } from '../../src/internal/websocket-backfiller';
 import { Formatter } from '@ethersproject/providers/lib/formatter';
-import SpyInstance = jest.SpyInstance;
 import { AlchemyProvider } from '../../src/api/alchemy-provider';
 import { noop } from '../../src/util/const';
 import {
   ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE,
   EthersEvent
 } from '../../src/internal/internal-types';
+import SpyInstance = jest.SpyInstance;
 
 describe('AlchemyWebSocketProvider', () => {
   let wsProvider: Mocked<AlchemyWebSocketProvider>;
@@ -108,8 +110,11 @@ describe('AlchemyWebSocketProvider', () => {
       url: 'ws://localhost:1234'
     } as any);
     wsProvider = new AlchemyWebSocketProvider(
-      Network.ETH_MAINNET,
-      'demo',
+      {
+        network: Network.ETH_MAINNET,
+        apiKey: 'demo',
+        maxRetries: 5
+      } as AlchemyConfig,
       WebSocket
     ) as Mocked<AlchemyWebSocketProvider>;
   }
@@ -178,6 +183,18 @@ describe('AlchemyWebSocketProvider', () => {
     expect(
       Object.values(wsProvider._websocket.listeners).flat().length
     ).toEqual(0);
+  });
+
+  it('accepts a hard URL override', async () => {
+    setupMockServer();
+    initializeWebSocketProvider();
+    const alchemy = new Alchemy({
+      apiKey: 'demo-key',
+      url: 'wss://hardcoded-url.com'
+    });
+    const provider = await alchemy.config.getWebSocketProvider();
+    expect(provider._websocket.url).toEqual('wss://hardcoded-url.com');
+    expect(provider.apiKey).toEqual('demo-key');
   });
 
   describe('newHeads/on(block)', () => {

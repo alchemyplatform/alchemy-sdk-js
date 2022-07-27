@@ -2,6 +2,7 @@ import { AlchemySettings, Network } from '../types/types';
 import type { AlchemyProvider } from './alchemy-provider';
 import type { AlchemyWebSocketProvider } from './alchemy-websocket-provider';
 import {
+  AlchemyApiType,
   DEFAULT_ALCHEMY_API_KEY,
   DEFAULT_MAX_RETRIES,
   DEFAULT_NETWORK,
@@ -26,6 +27,12 @@ export class AlchemyConfig {
   readonly maxRetries: number;
 
   /**
+   * The optional hardcoded URL to send requests to instead of using the network
+   * and apiKey.
+   */
+  readonly url?: string;
+
+  /**
    * Dynamically imported provider instance.
    *
    * @internal
@@ -45,16 +52,25 @@ export class AlchemyConfig {
     this.apiKey = config?.apiKey || DEFAULT_ALCHEMY_API_KEY;
     this.network = config?.network || DEFAULT_NETWORK;
     this.maxRetries = config?.maxRetries || DEFAULT_MAX_RETRIES;
+    this.url = config?.url;
   }
 
-  /** @internal */
-  _getBaseUrl(): string {
-    return getAlchemyHttpUrl(this.network, this.apiKey);
-  }
-
-  /** @internal */
-  _getNftUrl(): string {
-    return getAlchemyNftHttpUrl(this.network, this.apiKey);
+  /**
+   * Returns the URL endpoint to send the HTTP request to. If a custom URL was
+   * provided in the config, that URL is returned. Otherwise, the default URL is
+   * from the network and API key.
+   *
+   * @param apiType - The type of API to get the URL for.
+   * @internal
+   */
+  _getRequestUrl(apiType: AlchemyApiType): string {
+    if (this.url !== undefined) {
+      return this.url;
+    } else if (apiType === AlchemyApiType.NFT) {
+      return getAlchemyNftHttpUrl(this.network, this.apiKey);
+    } else {
+      return getAlchemyHttpUrl(this.network, this.apiKey);
+    }
   }
 
   /**
@@ -74,7 +90,7 @@ export class AlchemyConfig {
     if (!this._baseAlchemyProvider) {
       this._baseAlchemyProvider = (async () => {
         const { AlchemyProvider } = await import('./alchemy-provider');
-        return new AlchemyProvider(this.network, this.apiKey, this.maxRetries);
+        return new AlchemyProvider(this);
       })();
     }
     return this._baseAlchemyProvider;
@@ -100,7 +116,7 @@ export class AlchemyConfig {
         const { AlchemyWebSocketProvider } = await import(
           './alchemy-websocket-provider'
         );
-        return new AlchemyWebSocketProvider(this.network, this.apiKey);
+        return new AlchemyWebSocketProvider(this);
       })();
     }
     return this._baseAlchemyWssProvider;
