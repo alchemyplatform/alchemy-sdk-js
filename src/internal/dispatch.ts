@@ -33,24 +33,11 @@ export async function requestHttpWithBackoff<Req, Res>(
         break;
       }
 
-      let response;
-      switch (apiType) {
-        case AlchemyApiType.NFT:
-          response = await sendAxiosRequest<Req, Res>(
-            config._getNftUrl(),
-            method,
-            params
-          );
-          break;
-        default:
-        case AlchemyApiType.BASE:
-          response = await sendAxiosRequest<Req, Res>(
-            config._getBaseUrl(),
-            method,
-            params
-          );
-          break;
-      }
+      const response = await sendAxiosRequest<Req, Res>(
+        config._getRequestUrl(apiType),
+        method,
+        params
+      );
 
       if (response.status === 200) {
         logDebug(method, `Successful request: ${method}`);

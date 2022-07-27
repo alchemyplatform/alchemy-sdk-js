@@ -1,8 +1,14 @@
 # Changelog for Alchemy SDK for JavaScript
 
+## Unreleased
+
+### Minor Changes
+- Added an optional `url` setting to `AlchemySettings` to allow specifying a custom hardcoded URL to send all requests to.
+
+
 ## 2.0.0
 
-### Features
+### Major Changes
 
 - Top level package has moved from `@alch/alchemy-sdk` to `alchemy-sdk` for convenience. New command to install is `npm install alchemy-sdk`
 - Updated instantiation syntax: `initializeAlchemy(settings)` is now `new Alchemy(settings)`
