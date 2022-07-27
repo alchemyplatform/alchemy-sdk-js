@@ -14,21 +14,24 @@ import { IS_BROWSER } from './util';
 // TODO: Support other methods besides GET + other http options.
 export function sendAxiosRequest<Req, Res>(
   baseUrl: string,
+  restApiName: string,
   methodName: string,
   params: Req
 ): Promise<AxiosResponse<Res>> {
-  const methodUrl = baseUrl + '/' + methodName;
+  const requestUrl = baseUrl + '/' + restApiName;
   const config: AxiosRequestConfig = {
     headers: IS_BROWSER
       ? {
-          'Alchemy-Ethers-Sdk-Version': VERSION
+          'Alchemy-Ethers-Sdk-Version': VERSION,
+          'Alchemy-Ethers-Sdk-Method': methodName
         }
       : {
           'Alchemy-Ethers-Sdk-Version': VERSION,
+          'Alchemy-Ethers-Sdk-Method': methodName,
           'Accept-Encoding': 'gzip'
         },
     method: 'get',
-    url: methodUrl,
+    url: requestUrl,
     params
   };
   return axios(config);
