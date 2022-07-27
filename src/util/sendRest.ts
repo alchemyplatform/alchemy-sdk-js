@@ -4,8 +4,7 @@
  */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { VERSION } from '../version';
-
-const IS_BROWSER = typeof window !== 'undefined' && window !== null;
+import { IS_BROWSER } from './util';
 
 /**
  * Helper function to send http requests using Axis.

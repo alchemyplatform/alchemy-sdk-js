@@ -101,3 +101,5 @@ function parseNftTokenUriArray(arr: TokenUri[] | undefined): TokenUri[] {
   }
   return arr.filter(uri => parseNftTokenUri(uri) !== undefined);
 }
+
+export const IS_BROWSER = typeof window !== 'undefined' && window !== null;
