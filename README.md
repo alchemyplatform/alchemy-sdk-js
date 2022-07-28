@@ -6,14 +6,14 @@ It also provides access to Alchemy's hardened node infrastructure, guaranteeing 
 
 > :warning: **WARNING:** The `@alch/alchemy-sdk` package is now deprecated as of the v2.0.0 release. Please use the `alchemy-sdk` package instead. Note that upgrading from v1 to v2 will be a breaking change. See the changelog for full details.
 
-To upgrade to v2.0.0 from v1.X.X, simply run one of the following:
+To upgrade to v2.0.0 from v1.X.X, simply run the following in your project root:
 
 ```
 npm uninstall @alch/alchemy-sdk
 npm install alchemy-sdk@latest
 ```
 
-> 🙋‍♀️ **FEATURE REQUESTS:** We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want at our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback) and we'd love to build it for you:
+> 🙋‍♀️ **FEATURE REQUESTS:** We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want at our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback), and we'd love to build it for you:
 
 ## Getting started
 
@@ -86,7 +86,7 @@ It also includes the majority of Alchemy Enhanced APIs, including:
 
 ### Accessing the full Ethers.js provider
 
-To keep the package clean, we don't support certain uncommonly-used Ethers.js methods as top-level methods the Alchemy object - for example, `provider.formatter`. If you'd like to access these methods, simply use the `alchemy.config.getProvider()` function to configure the
+To keep the package clean, we don't support certain uncommonly-used Ethers.js methods as top-level methods in the Alchemy `core` namespace - for example, `provider.formatter`. If you'd like to access these methods, simply use the `alchemy.config.getProvider()` function to configure the
 Ethers.js [AlchemyProvider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) and return it.
 
 ```ts
