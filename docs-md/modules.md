@@ -19,6 +19,7 @@
 - [AlchemyConfig](classes/AlchemyConfig.md)
 - [AlchemyProvider](classes/AlchemyProvider.md)
 - [AlchemyWebSocketProvider](classes/AlchemyWebSocketProvider.md)
+- [CoreNamespace](classes/CoreNamespace.md)
 - [NftNamespace](classes/NftNamespace.md)
 - [WebSocketNamespace](classes/WebSocketNamespace.md)
 
@@ -88,7 +89,7 @@ also include Alchemy's Subscription API.
 
 #### Defined in
 
-[src/types/types.ts:615](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L615)
+[src/types/types.ts:615](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L615)
 
 ___
 
@@ -118,7 +119,7 @@ information for ALL pending transactions that are added to the mempool.
 
 #### Defined in
 
-[src/types/types.ts:590](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L590)
+[src/types/types.ts:590](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L590)
 
 ___
 
@@ -130,7 +131,7 @@ The level of verbosity for the logger.
 
 #### Defined in
 
-[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/util/logger.ts#L22)
+[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/util/logger.ts#L22)
 
 ___
 
@@ -140,7 +141,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:66](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L66)
+[src/types/types.ts:66](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L66)
 
 ___
 
@@ -150,7 +151,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:467](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L467)
+[src/types/types.ts:467](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L467)
 
 ## Functions
 
@@ -172,7 +173,7 @@ Converts a hex string to a decimal number.
 
 #### Defined in
 
-[src/api/util.ts:11](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/util.ts#L11)
+[src/api/util.ts:11](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/util.ts#L11)
 
 ___
 
@@ -194,7 +195,7 @@ Checks if a value is a hex string.
 
 #### Defined in
 
-[src/api/util.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/util.ts#L31)
+[src/api/util.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/util.ts#L31)
 
 ___
 
@@ -216,7 +217,7 @@ Configures the verbosity of logging. The default log level is `info`.
 
 #### Defined in
 
-[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/util/logger.ts#L56)
+[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/util/logger.ts#L56)
 
 ___
 
@@ -238,4 +239,4 @@ Converts a number to a hex string.
 
 #### Defined in
 
-[src/api/util.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/util.ts#L21)
+[src/api/util.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/util.ts#L21)

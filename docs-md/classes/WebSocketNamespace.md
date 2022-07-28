@@ -31,7 +31,7 @@
 
 #### Defined in
 
-[src/api/websocket-namespace.ts:6](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/websocket-namespace.ts#L6)
+[src/api/websocket-namespace.ts:6](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/websocket-namespace.ts#L6)
 
 ## Methods
 
@@ -54,7 +54,7 @@ no event is provided, the total number of listeners for all events is returned.
 
 #### Defined in
 
-[src/api/websocket-namespace.ts:80](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/websocket-namespace.ts#L80)
+[src/api/websocket-namespace.ts:80](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/websocket-namespace.ts#L80)
 
 ___
 
@@ -77,7 +77,7 @@ no event is provided, all listeners will be included.
 
 #### Defined in
 
-[src/api/websocket-namespace.ts:91](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/websocket-namespace.ts#L91)
+[src/api/websocket-namespace.ts:91](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/websocket-namespace.ts#L91)
 
 ___
 
@@ -101,7 +101,7 @@ listener is provided, all listeners for the event will be removed.
 
 #### Defined in
 
-[src/api/websocket-namespace.ts:50](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/websocket-namespace.ts#L50)
+[src/api/websocket-namespace.ts:50](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/websocket-namespace.ts#L50)
 
 ___
 
@@ -126,7 +126,7 @@ how to use them.
 
 #### Defined in
 
-[src/api/websocket-namespace.ts:17](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/websocket-namespace.ts#L17)
+[src/api/websocket-namespace.ts:17](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/websocket-namespace.ts#L17)
 
 ___
 
@@ -151,7 +151,7 @@ events. See [AlchemyEventType](../modules.md#alchemyeventtype) for how to use th
 
 #### Defined in
 
-[src/api/websocket-namespace.ts:34](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/websocket-namespace.ts#L34)
+[src/api/websocket-namespace.ts:34](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/websocket-namespace.ts#L34)
 
 ___
 
@@ -174,4 +174,4 @@ is provided, all events and their listeners are removed.
 
 #### Defined in
 
-[src/api/websocket-namespace.ts:65](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/websocket-namespace.ts#L65)
+[src/api/websocket-namespace.ts:65](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/websocket-namespace.ts#L65)

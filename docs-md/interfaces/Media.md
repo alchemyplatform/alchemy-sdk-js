@@ -24,7 +24,7 @@ The media format (ex: jpg, gif, png) of the [gateway](Media.md#gateway) and
 
 #### Defined in
 
-[src/types/types.ts:222](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L222)
+[src/types/types.ts:222](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L222)
 
 ___
 
@@ -36,7 +36,7 @@ Public gateway URI for the raw URI. Generally offers better performance.
 
 #### Defined in
 
-[src/types/types.ts:213](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L213)
+[src/types/types.ts:213](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L213)
 
 ___
 
@@ -49,7 +49,7 @@ original IPFS link).
 
 #### Defined in
 
-[src/types/types.ts:210](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L210)
+[src/types/types.ts:210](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L210)
 
 ___
 
@@ -61,4 +61,4 @@ URL for a resized thumbnail of the NFT media asset.
 
 #### Defined in
 
-[src/types/types.ts:216](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L216)
+[src/types/types.ts:216](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L216)

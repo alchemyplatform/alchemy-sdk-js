@@ -35,7 +35,7 @@ different network or API key, create a new instance of [Alchemy](Alchemy.md).
 
 #### Defined in
 
-[src/api/alchemy.ts:41](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy.ts#L41)
+[src/api/alchemy.ts:41](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/alchemy.ts#L41)
 
 ## Properties
 
@@ -48,20 +48,20 @@ and allows access to the underlying providers.
 
 #### Defined in
 
-[src/api/alchemy.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy.ts#L33)
+[src/api/alchemy.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/alchemy.ts#L33)
 
 ___
 
 ### core
 
-• `Readonly` **core**: `CoreNamespace`
+• `Readonly` **core**: [`CoreNamespace`](CoreNamespace.md)
 
 The `core` namespace contains the core eth json-rpc calls and Alchemy's
 Enhanced APIs.
 
 #### Defined in
 
-[src/api/alchemy.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy.ts#L21)
+[src/api/alchemy.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/alchemy.ts#L21)
 
 ___
 
@@ -73,7 +73,7 @@ The `nft` namespace contains methods for Alchemy's NFT API.
 
 #### Defined in
 
-[src/api/alchemy.ts:24](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy.ts#L24)
+[src/api/alchemy.ts:24](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/alchemy.ts#L24)
 
 ___
 
@@ -85,4 +85,4 @@ The `ws` namespace contains methods for using WebSockets and creating subscripti
 
 #### Defined in
 
-[src/api/alchemy.ts:27](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy.ts#L27)
+[src/api/alchemy.ts:27](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/alchemy.ts#L27)
