@@ -1,4 +1,4 @@
-@alch/alchemy-sdk / [Exports](modules.md)
+alchemy-sdk / [Exports](modules.md)
 
 # Alchemy SDK for Javascript
 
@@ -6,23 +6,32 @@ Alchemy SDK helps developers use Alchemy's APIs and endpoints more efficiently. 
 
 It also provides access to Alchemy's hardened node infrastructure, guaranteeing reliability, scalability, and quality-of-life improvements such as automatic exponential backoff retries.
 
-Note that the SDK is still in public beta. Alchemy reserves the right to (and almost certainly will) make breaking API changes in subsequent releases (don't write production code around it just yet).
+> :warning: **WARNING:** The `@alch/alchemy-sdk` package is now deprecated as of the v2.0.0 release. Please use the `alchemy-sdk` package instead. Note that upgrading from v1 to v2 will be a breaking change. See the changelog for full details.
+
+To upgrade to v2.0.0 from v1.X.X, simply run one of the following:
+
+```
+npm uninstall @alch/alchemy-sdk
+npm install alchemy-sdk@latest
+```
+
+> 🙋‍♀️ **FEATURE REQUESTS:** We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want at our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback) and we'd love to build it for you:
 
 ## Getting started
 
 ```
-npm install @alch/alchemy-sdk
+npm install alchemy-sdk
 ```
 
 After installing the app, you can then import and use the SDK:
 
 ```ts
-import { Network, Alchemy } from '@alch/alchemy-sdk';
+import { Network, Alchemy } from 'alchemy-sdk';
 
 // Optional Config object, but defaults to demo api-key and eth-mainnet.
 const settings = {
   apiKey: 'demo', // Replace with your Alchemy API Key.
-  network: Network.ETH_MAINNET, // Replace with your network.
+  network: Network.ETH_MAINNET // Replace with your network.
 };
 
 const alchemy = new Alchemy(settings);
@@ -30,9 +39,10 @@ const alchemy = new Alchemy(settings);
 
 The `Alchemy` object returned by `new Alchemy()` provides access to the Alchemy API. An optional config object can be passed in when initializing to set your API key, change the network, or specify the max number of retries.
 
-## Alchemy SDK Namespaces
+## Using the Alchemy SDK
 
-The Alchemy SDK currently supports three different namespaces, including: 
+The Alchemy SDK currently supports three different namespaces, including:
+
 - `core`: All commonly-used Ethers.js methods and Alchemy Enhanced API methods
 - `nft`: All Alchemy NFT API methods
 - `ws`: All WebSockets methods
@@ -40,7 +50,7 @@ The Alchemy SDK currently supports three different namespaces, including:
 If you are already using Ethers.js, you should be simply able to replace the Ethers.js object with `alchemy.core` and it should just work.
 
 ```ts
-import { Alchemy } from '@alch/alchemy-sdk';
+import { Alchemy } from 'alchemy-sdk';
 
 // Using default settings - pass in a settings object to specify your API key and network
 const alchemy = new Alchemy();
@@ -49,7 +59,9 @@ const alchemy = new Alchemy();
 alchemy.core.getBlockNumber().then(console.log);
 
 // Access Alchemy Enhanced API requests
-alchemy.core.getTokenBalances("0x3f5CE5FBFe3E9af3971dD833D26bA9b5C936f0bE").then(console.log);
+alchemy.core
+  .getTokenBalances('0x3f5CE5FBFe3E9af3971dD833D26bA9b5C936f0bE')
+  .then(console.log);
 
 // Access the Alchemy NFT API
 alchemy.nft.getNftsForOwner('vitalik.eth').then(console.log);
@@ -62,26 +74,12 @@ alchemy.ws.on(
   res => console.log(res)
 );
 ```
-### Preventing Breaking Changes
-
-The SDK is currently in public beta, and will undergo breaking changes before its official release. To protect your
-project from breaking changes, make sure to pin the version of the SDK you are using in your `package.json` file. Please check the release notes to see if any breaking changes have been made. While the SDK in the public beta, minor versions may contain breaking changes, but patch versions under the same minor version should be safe to use interchangeably.
-
-For example, to pin to a specific version of the SDK in your `package.json` file:
-
-```
-{
-  "dependencies": {
-    "@alch/alchemy-sdk": "1.1.0"
-  }
-}
-```
 
 ## Alchemy Core
 
 The core package contains all commonly-used [Ethers.js](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) methods. If you are already using Ethers.js, you should be simply able to replace the Ethers.js object with `alchemy.core` and it should just work.
 
-It also includes the majority of Alchemy Enhanced APIs, including: 
+It also includes the majority of Alchemy Enhanced APIs, including:
 
 - `getTokenMetadata()`: Get the metadata for a token contract address.
 - `getTokenBalances()`: Gets the token balances for an owner given a list of contracts.
@@ -94,7 +92,7 @@ To keep the package clean, we don't support certain uncommonly-used Ethers.js me
 Ethers.js [AlchemyProvider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) and return it.
 
 ```ts
-import { Alchemy } from '@alch/alchemy-sdk';
+import { Alchemy } from 'alchemy-sdk';
 const alchemy = new Alchemy();
 
 async function runAlchemy() {
@@ -106,12 +104,12 @@ runAlchemy();
 
 ## Alchemy WebSockets
 
-In addition to the built-in Ethers.js listeners, the Alchemy SDK includes support for [Alchemy's Subscription API](https://docs.alchemy.com/alchemy/enhanced-apis/subscription-api-websockets). This allows you to subscribe to events and receive updates as they occur. 
+In addition to the built-in Ethers.js listeners, the Alchemy SDK includes support for [Alchemy's Subscription API](https://docs.alchemy.com/alchemy/enhanced-apis/subscription-api-websockets). This allows you to subscribe to events and receive updates as they occur.
 
 The `alchemy.ws` instance can be used can be used like the standard Ethers.js [WebSocketProvider](https://docs.ethers.io/v5/api/providers/other/#WebSocketProvider) to add listeners for Alchemy events:
 
 ```ts
-import { Alchemy } from '@alch/alchemy-sdk';
+import { Alchemy } from 'alchemy-sdk';
 
 const alchemy = new Alchemy();
 
@@ -169,7 +167,7 @@ under the `alchemy.nft` namespace:
 - `getSpamContracts()`: Returns a list of all spam contracts marked by Alchemy.
 - `findContractDeployer()`: Find the contract deployer and block number for a given NFT contract address.
 - `refreshNftMetadata()`: Refresh the cached NFT metadata for a contract address and a single tokenId.
-- `refreshContract()`: Enqueues the specified contract address to have all token ids' metadata refreshed. 
+- `refreshContract()`: Enqueues the specified contract address to have all token ids' metadata refreshed.
 - `getFloorPrice()`: Return the floor prices of a NFT contract by marketplace.
 
 ### Comparing `BaseNft` and `Nft`
@@ -194,7 +192,7 @@ an `AsyncIterable`.
 Here's an example of how to paginate through all the NFTs in Vitalik's ENS address:
 
 ```ts
-import { Alchemy } from '@alch/alchemy-sdk';
+import { Alchemy } from 'alchemy-sdk';
 
 const alchemy = new Alchemy();
 
@@ -239,10 +237,10 @@ There's a long list, but here are the main ones:
 
 ## Usage Examples
 
-### Getting the NFTs owned by an address 
+### Getting the NFTs owned by an address
 
 ```ts
-import { NftExcludeFilters, Alchemy } from '@alch/alchemy-sdk';
+import { NftExcludeFilters, Alchemy } from 'alchemy-sdk';
 
 const alchemy = new Alchemy();
 
@@ -261,15 +259,17 @@ async function main() {
 main();
 
 // Filter out spam NFTs.
-alchemy.nft.getNftsForOwner('vitalik.eth', {
-  excludeFilters: [NftExcludeFilters.SPAM]
-}).then(console.log);
+alchemy.nft
+  .getNftsForOwner('vitalik.eth', {
+    excludeFilters: [NftExcludeFilters.SPAM]
+  })
+  .then(console.log);
 ```
 
 ### Getting all the owners of the BAYC NFT
 
 ```ts
-import { Alchemy } from '@alch/alchemy-sdk';
+import { Alchemy } from 'alchemy-sdk';
 
 const alchemy = new Alchemy();
 
@@ -279,12 +279,12 @@ const baycAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D';
 async function main() {
   for await (const nft of alchemy.nft.getNftsForContractIterator(baycAddress, {
     // Omit the NFT metadata for smaller payloads.
-    omitMetadata: true,
+    omitMetadata: true
   })) {
     await alchemy.nft
       .getOwnersForNft(nft.contract.address, nft.tokenId)
-      .then((response) =>
-        console.log("owners:", response.owners, "tokenId:", nft.tokenId)
+      .then(response =>
+        console.log('owners:', response.owners, 'tokenId:', nft.tokenId)
       );
   }
 }
@@ -295,13 +295,13 @@ main();
 ### Get all outbound transfers for a provided address
 
 ```ts
-import { Alchemy } from '@alch/alchemy-sdk';
+import { Alchemy } from 'alchemy-sdk';
 
 const alchemy = new Alchemy();
 
-alchemy.core.getTokenBalances('0x994b342dd87fc825f66e51ffa3ef71ad818b6893').then(
-  console.log
-);
+alchemy.core
+  .getTokenBalances('0x994b342dd87fc825f66e51ffa3ef71ad818b6893')
+  .then(console.log);
 ```
 
 ## Questions and Feedback

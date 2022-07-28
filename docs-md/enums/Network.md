@@ -1,9 +1,11 @@
-[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / Network
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / Network
 
 # Enumeration: Network
 
 The supported networks by Alchemy. Note that some functions are not available
-on all networks. Please refer to the Alchemy documentation for more details.
+on all networks. Please refer to the Alchemy documentation for which APIs are
+available on which networks
+[https://docs.alchemy.com/alchemy/apis/feature-support-by-chain](https://docs.alchemy.com/alchemy/apis/feature-support-by-chain)
 
 ## Table of contents
 
@@ -29,7 +31,7 @@ on all networks. Please refer to the Alchemy documentation for more details.
 
 #### Defined in
 
-[src/types/types.ts:42](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L42)
+[src/types/types.ts:53](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L53)
 
 ___
 
@@ -39,7 +41,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L43)
+[src/types/types.ts:54](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L54)
 
 ___
 
@@ -49,7 +51,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:37](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L37)
+[src/types/types.ts:48](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L48)
 
 ___
 
@@ -59,7 +61,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:38](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L38)
+[src/types/types.ts:49](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L49)
 
 ___
 
@@ -69,7 +71,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:35](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L35)
+[src/types/types.ts:46](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L46)
 
 ___
 
@@ -79,7 +81,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L39)
+[src/types/types.ts:50](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L50)
 
 ___
 
@@ -89,7 +91,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:36](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L36)
+[src/types/types.ts:47](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L47)
 
 ___
 
@@ -99,7 +101,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:44](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L44)
+[src/types/types.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L55)
 
 ___
 
@@ -109,7 +111,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:45](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L45)
+[src/types/types.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L56)
 
 ___
 
@@ -119,7 +121,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:41](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L41)
+[src/types/types.ts:52](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L52)
 
 ___
 
@@ -129,4 +131,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:40](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L40)
+[src/types/types.ts:51](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L51)

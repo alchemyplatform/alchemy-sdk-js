@@ -1,4 +1,4 @@
-[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / AssetTransfersResult
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / AssetTransfersResult
 
 # Interface: AssetTransfersResult
 
@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[src/types/types.ts:139](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L139)
+[src/types/types.ts:150](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L150)
 
 ___
 
@@ -36,7 +36,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:132](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L132)
+[src/types/types.ts:143](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L143)
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:131](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L131)
+[src/types/types.ts:142](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L142)
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:137](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L137)
+[src/types/types.ts:148](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L148)
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:136](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L136)
+[src/types/types.ts:147](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L147)
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:133](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L133)
+[src/types/types.ts:144](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L144)
 
 ___
 
@@ -86,7 +86,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:140](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L140)
+[src/types/types.ts:151](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L151)
 
 ___
 
@@ -96,7 +96,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:141](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L141)
+[src/types/types.ts:152](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L152)
 
 ___
 
@@ -106,7 +106,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:134](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L134)
+[src/types/types.ts:145](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L145)
 
 ___
 
@@ -116,7 +116,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:138](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L138)
+[src/types/types.ts:149](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L149)
 
 ___
 
@@ -126,4 +126,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:135](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L135)
+[src/types/types.ts:146](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L146)

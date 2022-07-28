@@ -1,4 +1,4 @@
-[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / AssetTransfersOrder
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / AssetTransfersOrder
 
 # Enumeration: AssetTransfersOrder
 
@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[src/types/types.ts:112](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L112)
+[src/types/types.ts:123](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L123)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:113](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L113)
+[src/types/types.ts:124](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L124)

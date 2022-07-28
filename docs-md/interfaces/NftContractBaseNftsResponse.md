@@ -1,4 +1,4 @@
-[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / NftContractBaseNftsResponse
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / NftContractBaseNftsResponse
 
 # Interface: NftContractBaseNftsResponse
 
@@ -22,7 +22,7 @@ An array of NFTs without metadata.
 
 #### Defined in
 
-[src/types/types.ts:526](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L526)
+[src/types/types.ts:537](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L537)
 
 ___
 
@@ -35,4 +35,4 @@ NFTs. If there is no page key, then there are no more NFTs to fetch.
 
 #### Defined in
 
-[src/types/types.ts:532](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L532)
+[src/types/types.ts:543](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L543)

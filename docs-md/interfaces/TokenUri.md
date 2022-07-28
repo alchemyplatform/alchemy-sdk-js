@@ -1,4 +1,4 @@
-[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / TokenUri
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / TokenUri
 
 # Interface: TokenUri
 
@@ -21,7 +21,7 @@ Public gateway URI for the raw URI. Generally offers better performance.
 
 #### Defined in
 
-[src/types/types.ts:186](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L186)
+[src/types/types.ts:197](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L197)
 
 ___
 
@@ -34,4 +34,4 @@ IPFS link).
 
 #### Defined in
 
-[src/types/types.ts:183](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L183)
+[src/types/types.ts:194](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L194)

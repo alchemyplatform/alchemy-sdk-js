@@ -1,4 +1,4 @@
-[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / RefreshState
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / RefreshState
 
 # Enumeration: RefreshState
 
@@ -25,7 +25,7 @@ The contract has already been queued for refresh.
 
 #### Defined in
 
-[src/types/types.ts:430](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L430)
+[src/types/types.ts:441](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L441)
 
 ___
 
@@ -37,7 +37,7 @@ The provided contract is not an NFT or does not contain metadata.
 
 #### Defined in
 
-[src/types/types.ts:427](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L427)
+[src/types/types.ts:438](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L438)
 
 ___
 
@@ -49,7 +49,7 @@ The contract refresh is complete.
 
 #### Defined in
 
-[src/types/types.ts:436](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L436)
+[src/types/types.ts:447](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L447)
 
 ___
 
@@ -61,7 +61,7 @@ The contract is currently being refreshed.
 
 #### Defined in
 
-[src/types/types.ts:433](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L433)
+[src/types/types.ts:444](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L444)
 
 ___
 
@@ -73,7 +73,7 @@ The contract refresh has been queued and await execution.
 
 #### Defined in
 
-[src/types/types.ts:439](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L439)
+[src/types/types.ts:450](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L450)
 
 ___
 
@@ -85,4 +85,4 @@ The contract was unable to be queued due to an internal error.
 
 #### Defined in
 
-[src/types/types.ts:442](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L442)
+[src/types/types.ts:453](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L453)

@@ -1,6 +1,11 @@
-[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / AlchemyWebSocketProvider
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / AlchemyWebSocketProvider
 
 # Class: AlchemyWebSocketProvider
+
+SDK's custom implementation fo the ethers.js's 'AlchemyWebSocketProvider'.
+
+Do not call this constructor directly. Instead, instantiate an instance of
+[Alchemy](Alchemy.md) and call {@link Alchemy.config.getWebSocketProvider()}.
 
 ## Hierarchy
 
@@ -197,7 +202,7 @@ WebSocketProvider.\_events
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:60](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L60)
+[src/api/alchemy-websocket-provider.ts:68](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-websocket-provider.ts#L68)
 
 ___
 
@@ -499,7 +504,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:61](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L61)
+[src/api/alchemy-websocket-provider.ts:69](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-websocket-provider.ts#L69)
 
 ___
 
@@ -936,7 +941,7 @@ order to parse the Alchemy subscription event.
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:894](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L894)
+[src/api/alchemy-websocket-provider.ts:897](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-websocket-provider.ts#L897)
 
 ___
 
@@ -965,7 +970,7 @@ order to parse the Alchemy subscription event.
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:917](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L917)
+[src/api/alchemy-websocket-provider.ts:920](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-websocket-provider.ts#L920)
 
 ___
 
@@ -995,7 +1000,7 @@ order to parse the Alchemy subscription event.
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:818](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L818)
+[src/api/alchemy-websocket-provider.ts:821](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-websocket-provider.ts#L821)
 
 ___
 
@@ -1042,7 +1047,7 @@ order to parse the Alchemy subscription event.
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:858](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L858)
+[src/api/alchemy-websocket-provider.ts:861](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-websocket-provider.ts#L861)
 
 ___
 
@@ -1257,7 +1262,7 @@ WebSocketProvider.destroy
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:385](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L385)
+[src/api/alchemy-websocket-provider.ts:387](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-websocket-provider.ts#L387)
 
 ___
 
@@ -1729,7 +1734,7 @@ CommunityResourcable.isCommunityResource
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:397](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L397)
+[src/api/alchemy-websocket-provider.ts:399](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-websocket-provider.ts#L399)
 
 ___
 
@@ -1776,7 +1781,7 @@ WebSocketProvider.listenerCount
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:190](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L190)
+[src/api/alchemy-websocket-provider.ts:192](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-websocket-provider.ts#L192)
 
 ___
 
@@ -1805,7 +1810,7 @@ WebSocketProvider.listeners
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:206](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L206)
+[src/api/alchemy-websocket-provider.ts:208](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-websocket-provider.ts#L208)
 
 ___
 
@@ -1859,7 +1864,7 @@ WebSocketProvider.off
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:158](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L158)
+[src/api/alchemy-websocket-provider.ts:160](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-websocket-provider.ts#L160)
 
 ___
 
@@ -1888,7 +1893,7 @@ WebSocketProvider.on
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:130](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L130)
+[src/api/alchemy-websocket-provider.ts:132](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-websocket-provider.ts#L132)
 
 ___
 
@@ -1919,7 +1924,7 @@ WebSocketProvider.once
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:145](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L145)
+[src/api/alchemy-websocket-provider.ts:147](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-websocket-provider.ts#L147)
 
 ___
 
@@ -2016,7 +2021,7 @@ WebSocketProvider.removeAllListeners
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:174](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-websocket-provider.ts#L174)
+[src/api/alchemy-websocket-provider.ts:176](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-websocket-provider.ts#L176)
 
 ___
 

@@ -1,4 +1,4 @@
-[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / TokenBalanceSuccess
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / TokenBalanceSuccess
 
 # Interface: TokenBalanceSuccess
 
@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[src/types/types.ts:59](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L59)
+[src/types/types.ts:70](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L70)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:61](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L61)
+[src/types/types.ts:72](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L72)
 
 ___
 
@@ -38,4 +38,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:60](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L60)
+[src/types/types.ts:71](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L71)

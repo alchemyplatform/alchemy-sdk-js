@@ -1,4 +1,4 @@
-[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / TransactionReceiptsBlockNumber
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / TransactionReceiptsBlockNumber
 
 # Interface: TransactionReceiptsBlockNumber
 
@@ -16,4 +16,4 @@
 
 #### Defined in
 
-[src/types/types.ts:447](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L447)
+[src/types/types.ts:458](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L458)

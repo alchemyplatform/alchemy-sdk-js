@@ -1,4 +1,4 @@
-[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / OwnedNftsResponse
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / OwnedNftsResponse
 
 # Interface: OwnedNftsResponse
 
@@ -25,7 +25,7 @@ The NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/types.ts:293](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L293)
+[src/types/types.ts:304](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L304)
 
 ___
 
@@ -38,7 +38,7 @@ NFTs. If there is no page key, then there are no more NFTs to fetch.
 
 #### Defined in
 
-[src/types/types.ts:299](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L299)
+[src/types/types.ts:310](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L310)
 
 ___
 
@@ -50,4 +50,4 @@ The total count of NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/types.ts:302](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L302)
+[src/types/types.ts:313](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L313)

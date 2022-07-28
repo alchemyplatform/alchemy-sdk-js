@@ -1,4 +1,4 @@
-[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / FloorPriceError
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / FloorPriceError
 
 # Interface: FloorPriceError
 
@@ -21,4 +21,4 @@ Error fetching floor prices from the given marketplace
 
 #### Defined in
 
-[src/types/types.ts:392](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L392)
+[src/types/types.ts:403](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L403)

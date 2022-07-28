@@ -1,4 +1,4 @@
-[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / GetOwnersForContractResponse
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / GetOwnersForContractResponse
 
 # Interface: GetOwnersForContractResponse
 
@@ -20,4 +20,4 @@ An array of owner addresses for the provided contract address
 
 #### Defined in
 
-[src/types/types.ts:364](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L364)
+[src/types/types.ts:375](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L375)

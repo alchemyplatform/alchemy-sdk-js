@@ -1,4 +1,4 @@
-[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / AlchemyConfig
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / AlchemyConfig
 
 # Class: AlchemyConfig
 
@@ -16,6 +16,7 @@ exposes the underlying providers for more advanced use cases.
 - [apiKey](AlchemyConfig.md#apikey)
 - [maxRetries](AlchemyConfig.md#maxretries)
 - [network](AlchemyConfig.md#network)
+- [url](AlchemyConfig.md#url)
 
 ### Methods
 
@@ -35,7 +36,7 @@ exposes the underlying providers for more advanced use cases.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:44](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-config.ts#L44)
+[src/api/alchemy-config.ts:51](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-config.ts#L51)
 
 ## Properties
 
@@ -47,7 +48,7 @@ The Alchemy API key.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:20](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-config.ts#L20)
+[src/api/alchemy-config.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-config.ts#L21)
 
 ___
 
@@ -59,7 +60,7 @@ The maximum number of retries to perform.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:26](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-config.ts#L26)
+[src/api/alchemy-config.ts:27](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-config.ts#L27)
 
 ___
 
@@ -71,7 +72,20 @@ The Network that this SDK is associated with.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:23](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-config.ts#L23)
+[src/api/alchemy-config.ts:24](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-config.ts#L24)
+
+___
+
+### url
+
+• `Optional` `Readonly` **url**: `string`
+
+The optional hardcoded URL to send requests to instead of using the network
+and apiKey.
+
+#### Defined in
+
+[src/api/alchemy-config.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-config.ts#L33)
 
 ## Methods
 
@@ -95,4 +109,4 @@ other less-common methods.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:73](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/api/alchemy-config.ts#L73)
+[src/api/alchemy-config.ts:89](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/api/alchemy-config.ts#L89)

@@ -1,4 +1,4 @@
-[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / AssetTransfersResponse
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / AssetTransfersResponse
 
 # Interface: AssetTransfersResponse
 
@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[src/types/types.ts:126](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L126)
+[src/types/types.ts:137](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L137)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:125](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L125)
+[src/types/types.ts:136](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L136)

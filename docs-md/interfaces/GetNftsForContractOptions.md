@@ -1,4 +1,4 @@
-[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / GetNftsForContractOptions
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / GetNftsForContractOptions
 
 # Interface: GetNftsForContractOptions
 
@@ -25,7 +25,7 @@ Optional boolean flag to omit NFT metadata. Defaults to `false`.
 
 #### Defined in
 
-[src/types/types.ts:495](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L495)
+[src/types/types.ts:506](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L506)
 
 ___
 
@@ -38,4 +38,4 @@ Optional page key from an existing [NftContractBaseNftsResponse](NftContractBase
 
 #### Defined in
 
-[src/types/types.ts:492](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L492)
+[src/types/types.ts:503](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L503)

@@ -1,4 +1,4 @@
-[@alch/alchemy-sdk](../README.md) / [Exports](../modules.md) / GetNftsForOwnerOptions
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / GetNftsForOwnerOptions
 
 # Interface: GetNftsForOwnerOptions
 
@@ -27,7 +27,7 @@ Optional list of contract addresses to filter the results by. Limit is 20.
 
 #### Defined in
 
-[src/types/types.ts:231](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L231)
+[src/types/types.ts:242](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L242)
 
 ___
 
@@ -40,7 +40,7 @@ of these filters are excluded from the response.
 
 #### Defined in
 
-[src/types/types.ts:237](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L237)
+[src/types/types.ts:248](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L248)
 
 ___
 
@@ -52,7 +52,7 @@ Optional boolean flag to omit NFT metadata. Defaults to `false`.
 
 #### Defined in
 
-[src/types/types.ts:240](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L240)
+[src/types/types.ts:251](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L251)
 
 ___
 
@@ -65,4 +65,4 @@ Optional page key from an existing [OwnedBaseNftsResponse](OwnedBaseNftsResponse
 
 #### Defined in
 
-[src/types/types.ts:228](https://github.com/alchemyplatform/alchemy-sdk-js/blob/598aca2/src/types/types.ts#L228)
+[src/types/types.ts:239](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6507682/src/types/types.ts#L239)
