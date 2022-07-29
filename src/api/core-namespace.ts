@@ -383,10 +383,11 @@ export class CoreNamespace {
       );
     }
     const provider = await this.config.getProvider();
-    return provider.send('alchemy_getTokenBalances', [
-      address,
-      contractAddresses || DEFAULT_CONTRACT_ADDRESSES
-    ]);
+    return provider._send(
+      'alchemy_getTokenBalances',
+      [address, contractAddresses || DEFAULT_CONTRACT_ADDRESSES],
+      'getTokenBalances'
+    );
   }
 
   /**
@@ -397,7 +398,11 @@ export class CoreNamespace {
    */
   async getTokenMetadata(address: string): Promise<TokenMetadataResponse> {
     const provider = await this.config.getProvider();
-    return provider.send('alchemy_getTokenMetadata', [address]);
+    return provider._send(
+      'alchemy_getTokenMetadata',
+      [address],
+      'getTokenMetadata'
+    );
   }
 
   /**
@@ -412,16 +417,22 @@ export class CoreNamespace {
     params: AssetTransfersParams
   ): Promise<AssetTransfersResponse> {
     const provider = await this.config.getProvider();
-    return provider.send('alchemy_getAssetTransfers', [
-      {
-        ...params,
-        fromBlock:
-          params.fromBlock != null ? formatBlock(params.fromBlock) : undefined,
-        toBlock:
-          params.toBlock != null ? formatBlock(params.toBlock) : undefined,
-        maxCount: params.maxCount != null ? toHex(params.maxCount) : undefined
-      }
-    ]);
+    return provider._send(
+      'alchemy_getAssetTransfers',
+      [
+        {
+          ...params,
+          fromBlock:
+            params.fromBlock != null
+              ? formatBlock(params.fromBlock)
+              : undefined,
+          toBlock:
+            params.toBlock != null ? formatBlock(params.toBlock) : undefined,
+          maxCount: params.maxCount != null ? toHex(params.maxCount) : undefined
+        }
+      ],
+      'getAssetTransfers'
+    );
   }
 
   /**
@@ -434,7 +445,11 @@ export class CoreNamespace {
     params: TransactionReceiptsParams
   ): Promise<TransactionReceiptsResponse> {
     const provider = await this.config.getProvider();
-    return provider.send('alchemy_getTransactionReceipts', [params]);
+    return provider._send(
+      'alchemy_getTransactionReceipts',
+      [params],
+      'getTransactionReceipts'
+    );
   }
 }
 

@@ -226,7 +226,8 @@ describe('E2E integration tests', () => {
     });
 
     it('Example 3: Token balances', async () => {
-      await alchemy.core.getTokenBalances(ownerAddress).then(console.log);
+      // await alchemy.core.getTokenBalances(ownerAddress).then(console.log);
+      await alchemy.core.getBalance('0xshah.eth').then(console.log);
     });
   });
 });

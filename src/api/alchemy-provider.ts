@@ -6,7 +6,8 @@ import {
   Network as NetworkFromEthers,
   Networkish
 } from '@ethersproject/networks';
-import { ConnectionInfo } from '@ethersproject/web';
+import { ConnectionInfo, fetchJson } from '@ethersproject/web';
+import { deepCopy } from '@ethersproject/properties';
 import {
   DEFAULT_ALCHEMY_API_KEY,
   DEFAULT_NETWORK,
@@ -37,28 +38,30 @@ export class AlchemyProvider
 
   /** @internal */
   constructor(config: AlchemyConfig) {
+    // Normalize the API Key to a string.
+    const apiKey = AlchemyProvider.getApiKey(config.apiKey);
+
+    // Generate our own connection info with the correct endpoint URLs.
+    const alchemyNetwork = AlchemyProvider.getAlchemyNetwork(config.network);
+    const connection = AlchemyProvider.getAlchemyConnectionInfo(
+      alchemyNetwork,
+      apiKey,
+      'http'
+    );
+
     // If a hardcoded url was specified in the config, use that instead of the
     // provided apiKey or network.
     if (config.url !== undefined) {
-      super(config.url);
-    } else {
-      // Normalize the API Key to a string.
-      const apiKey = AlchemyProvider.getApiKey(config.apiKey);
-
-      // Generate our own connection info with the correct endpoint URLs.
-      const alchemyNetwork = AlchemyProvider.getAlchemyNetwork(config.network);
-      const connection = AlchemyProvider.getAlchemyConnectionInfo(
-        alchemyNetwork,
-        apiKey,
-        'http'
-      );
-
-      // Normalize the Alchemy named network input to the network names used by
-      // ethers. This allows the parent super constructor in JsonRpcProvider to
-      // correctly set the network.
-      const ethersNetwork = EthersNetwork[alchemyNetwork];
-      super(connection, ethersNetwork);
+      connection.url = config.url;
     }
+
+    connection.throttleLimit = config.maxRetries;
+
+    // Normalize the Alchemy named network input to the network names used by
+    // ethers. This allows the parent super constructor in JsonRpcProvider to
+    // correctly set the network.
+    const ethersNetwork = EthersNetwork[alchemyNetwork];
+    super(connection, ethersNetwork);
 
     this.apiKey = config.apiKey;
     this.maxRetries = config.maxRetries;
@@ -180,8 +183,103 @@ export class AlchemyProvider
    * @override
    * @public
    */
-  // TODO: Implement sender logic to override retries and backoff.
+  // TODO: Add headers for `perform()` override.
   send(method: string, params: Array<any>): Promise<any> {
-    return super.send(method, params);
+    return this._send(method, params, 'send');
   }
+
+  /**
+   * DO NOT MODIFY.
+   *
+   * Original code copied over from ether.js's `JsonRpcProvider.send()`.
+   *
+   * This method is copied over directly in order to implement custom headers
+   *
+   * @internal
+   */
+  _send(method: string, params: Array<any>, methodName: string): Promise<any> {
+    const request = {
+      method,
+      params,
+      id: this._nextId++,
+      jsonrpc: '2.0'
+    };
+
+    this.emit('debug', {
+      action: 'request',
+      request: deepCopy(request),
+      provider: this
+    });
+
+    // We can expand this in the future to any call, but for now these
+    // are the biggest wins and do not require any serializing parameters.
+    const cache = ['eth_chainId', 'eth_blockNumber'].indexOf(method) >= 0;
+    if (cache && this._cache[method]) {
+      return this._cache[method];
+    }
+
+    // START MODIFIED CODE
+    const connection = { ...this.connection };
+    connection.headers!['Alchemy-Ethers-Sdk-Method'] = methodName;
+    // END MODIFIED CODE
+
+    const result = fetchJson(
+      this.connection,
+      JSON.stringify(request),
+      getResult
+    ).then(
+      result => {
+        this.emit('debug', {
+          action: 'response',
+          request,
+          response: result,
+          provider: this
+        });
+
+        return result;
+      },
+      error => {
+        this.emit('debug', {
+          action: 'response',
+          error,
+          request,
+          provider: this
+        });
+
+        throw error;
+      }
+    );
+
+    // Cache the fetch, but clear it on the next event loop
+    if (cache) {
+      this._cache[method] = result;
+      setTimeout(() => {
+        // @ts-ignore - This is done by ethers.
+        this._cache[method] = null;
+      }, 0);
+    }
+
+    return result;
+  }
+}
+
+/**
+ * DO NOT MODIFY.
+ *
+ * Original code copied over from ether.js's
+ * `@ethersproject/web/src.ts/index.ts`. Used to support
+ * {@link AlchemyProvider._send}, which is also copied over.
+ */
+function getResult(payload: {
+  error?: { code?: number; data?: any; message?: string };
+  result?: any;
+}): any {
+  if (payload.error) {
+    const error: any = new Error(payload.error.message);
+    error.code = payload.error.code;
+    error.data = payload.error.data;
+    throw error;
+  }
+
+  return payload.result;
 }
