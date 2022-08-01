@@ -84,7 +84,7 @@ It also includes the majority of Alchemy Enhanced APIs, including:
 - `getAssetTransfers()`: Get transactions for specific addresses.
 - `getTransactionReceipts()`: Gets all transaction receipts for a given block.
 
-### Accessing the full Ethers.js provider
+### Accessing the full Ethers.js Provider
 
 To keep the package clean, we don't support certain uncommonly-used Ethers.js Provider methods as top-level methods in the Alchemy `core` namespace - for example, `provider.formatter`. If you'd like to access these methods, simply use the `alchemy.config.getProvider()` function to configure the
 Ethers.js Provider [AlchemyProvider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) and return it.
@@ -104,7 +104,7 @@ runAlchemy();
 
 In addition to the built-in Ethers.js listeners, the Alchemy SDK includes support for [Alchemy's Subscription API](https://docs.alchemy.com/alchemy/enhanced-apis/subscription-api-websockets). This allows you to subscribe to events and receive updates as they occur.
 
-The `alchemy.ws` instance can be used can be used like the standard Ethers.js WebSocket Provider [WebSocketProvider](https://docs.ethers.io/v5/api/providers/other/#WebSocketProvider) to add listeners for Alchemy events:
+The `alchemy.ws` instance can be used can be used like the standard Ethers.js [WebSocketProvider](https://docs.ethers.io/v5/api/providers/other/#WebSocketProvider) to add listeners for Alchemy events:
 
 ```ts
 import { Alchemy } from 'alchemy-sdk';
