@@ -65,12 +65,7 @@ alchemy.core
 alchemy.nft.getNftsForOwner('vitalik.eth').then(console.log);
 
 // Access WebSockets and Alchemy-specific WS methods
-alchemy.ws.on(
-  {
-    method: 'alchemy_pendingTransactions'
-  },
-  res => console.log(res)
-);
+alchemy.ws.on("block", res => console.log(res));
 ```
 
 ## Alchemy Core
