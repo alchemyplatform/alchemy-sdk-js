@@ -41,7 +41,7 @@ The `Alchemy` object returned by `new Alchemy()` provides access to the Alchemy 
 
 The Alchemy SDK currently supports three different namespaces, including:
 
-- `core`: All commonly-used Ethers.js methods and Alchemy Enhanced API methods
+- `core`: All commonly-used Ethers.js Provider methods and Alchemy Enhanced API methods
 - `nft`: All Alchemy NFT API methods
 - `ws`: All WebSockets methods
 
@@ -75,7 +75,7 @@ alchemy.ws.on(
 
 ## Alchemy Core
 
-The core package contains all commonly-used [Ethers.js](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) Provider methods. If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should just work.
+The core package contains all commonly-used [Ethers.js Provider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) methods. If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should just work.
 
 It also includes the majority of Alchemy Enhanced APIs, including:
 
