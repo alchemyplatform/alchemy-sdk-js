@@ -65,7 +65,12 @@ alchemy.core
 alchemy.nft.getNftsForOwner('vitalik.eth').then(console.log);
 
 // Access WebSockets and Alchemy-specific WS methods
-alchemy.ws.on("block", res => console.log(res));
+alchemy.ws.on(
+  {
+    method: 'alchemy_pendingTransactions'
+  },
+  res => console.log(res)
+);
 ```
 
 ## Alchemy Core
@@ -107,12 +112,7 @@ import { Alchemy } from 'alchemy-sdk';
 const alchemy = new Alchemy();
 
 // Listen to all new pending transactions.
-alchemy.ws.on(
-  {
-    method: 'alchemy_pendingTransactions'
-  },
-  res => console.log(res)
-);
+alchemy.ws.on("block", res => console.log(res));
 
 // Listen to only the next transaction on the USDC contract.
 alchemy.ws.once(
