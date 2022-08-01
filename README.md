@@ -1,6 +1,6 @@
 # Alchemy SDK for Javascript
 
-Alchemy SDK helps developers use Alchemy's APIs and endpoints more efficiently. This is a lightweight, modular SDK built as a drop-in replacement of Ethers.js that provides a superset of functionality - enabling access to the Alchemy NFT API, Websockets, and Enhanced API methods.
+Alchemy SDK helps developers use Alchemy's APIs and endpoints more efficiently. This is a lightweight, modular SDK built as a drop-in replacement of Ethers.js's Provider that provides a superset of functionality - enabling access to the Alchemy NFT API, Websockets, and Enhanced API methods.
 
 It also provides access to Alchemy's hardened node infrastructure, guaranteeing reliability, scalability, and quality-of-life improvements such as automatic exponential backoff retries.
 
@@ -45,7 +45,7 @@ The Alchemy SDK currently supports three different namespaces, including:
 - `nft`: All Alchemy NFT API methods
 - `ws`: All WebSockets methods
 
-If you are already using Ethers.js, you should be simply able to replace the Ethers.js object with `alchemy.core` and it should just work.
+If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should just work.
 
 ```ts
 import { Alchemy } from 'alchemy-sdk';
@@ -75,7 +75,7 @@ alchemy.ws.on(
 
 ## Alchemy Core
 
-The core package contains all commonly-used [Ethers.js](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) methods. If you are already using Ethers.js, you should be simply able to replace the Ethers.js object with `alchemy.core` and it should just work.
+The core package contains all commonly-used [Ethers.js](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) Provider methods. If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should just work.
 
 It also includes the majority of Alchemy Enhanced APIs, including:
 
@@ -86,8 +86,8 @@ It also includes the majority of Alchemy Enhanced APIs, including:
 
 ### Accessing the full Ethers.js provider
 
-To keep the package clean, we don't support certain uncommonly-used Ethers.js methods as top-level methods in the Alchemy `core` namespace - for example, `provider.formatter`. If you'd like to access these methods, simply use the `alchemy.config.getProvider()` function to configure the
-Ethers.js [AlchemyProvider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) and return it.
+To keep the package clean, we don't support certain uncommonly-used Ethers.js Provider methods as top-level methods in the Alchemy `core` namespace - for example, `provider.formatter`. If you'd like to access these methods, simply use the `alchemy.config.getProvider()` function to configure the
+Ethers.js Provider [AlchemyProvider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) and return it.
 
 ```ts
 import { Alchemy } from 'alchemy-sdk';
@@ -104,7 +104,7 @@ runAlchemy();
 
 In addition to the built-in Ethers.js listeners, the Alchemy SDK includes support for [Alchemy's Subscription API](https://docs.alchemy.com/alchemy/enhanced-apis/subscription-api-websockets). This allows you to subscribe to events and receive updates as they occur.
 
-The `alchemy.ws` instance can be used can be used like the standard Ethers.js [WebSocketProvider](https://docs.ethers.io/v5/api/providers/other/#WebSocketProvider) to add listeners for Alchemy events:
+The `alchemy.ws` instance can be used can be used like the standard Ethers.js WebSocket Provider [WebSocketProvider](https://docs.ethers.io/v5/api/providers/other/#WebSocketProvider) to add listeners for Alchemy events:
 
 ```ts
 import { Alchemy } from 'alchemy-sdk';
