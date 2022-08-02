@@ -130,14 +130,14 @@ alchemy.ws.removeAllListeners();
 The SDK brings multiple improvements to ensure correct WebSocket behavior in cases of temporary network failure or
 dropped connections. As with any network connection, you should not assume that a WebSocket will remain open forever
 without interruption, but correctly handling dropped connections and reconnection by hand can be challenging to get
-right. `alchemy-sdk` automatically handles these failures with no configuration necessary. The main benefits are:
+right. The Alchemy SDK automatically handles these failures with no configuration necessary. The main benefits are:
 
 - Resilient event delivery: Unlike standard Web3.js or Ethers.js, you will not permanently miss events which arrive
   while the backing WebSocket is temporarily down. Instead, you will receive these events as soon as the connection
   is reopened. Note that if the connection is down for more than 120 blocks (approximately 20 minutes), you may
   still miss some events that were not part of the most recent 120 blocks.
 - Lowered rate of failure: Compared to standard Web3.js or Ethers.js, there are fewer failures when sending requests
-  over the WebSocket while the connection is down. Alchemy Web3 will attempt to send the requests once the connection
+  over the WebSocket while the connection is down. The Alchemy SDK will attempt to send the requests once the connection
   is reopened. Note that it is still possible, with a lower likelihood, for outgoing requests to be lost,
   so you should still have error handling as with any network request.
 
