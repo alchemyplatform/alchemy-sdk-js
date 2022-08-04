@@ -3,6 +3,7 @@ import { NftNamespace } from './nft-namespace';
 import { WebSocketNamespace } from './websocket-namespace';
 import { AlchemyConfig } from './alchemy-config';
 import { CoreNamespace } from './core-namespace';
+import { TransactNamespace } from './transact-namespace';
 
 /**
  * The Alchemy SDK client. This class is the main entry point into Alchemy's
@@ -26,6 +27,8 @@ export class Alchemy {
   /** The `ws` namespace contains methods for using WebSockets and creating subscriptions. */
   readonly ws: WebSocketNamespace;
 
+  readonly transact: TransactNamespace;
+
   /**
    * Holds the setting information for the instance of the Alchemy SDK client
    * and allows access to the underlying providers.
@@ -44,5 +47,6 @@ export class Alchemy {
     this.core = new CoreNamespace(this.config);
     this.nft = new NftNamespace(this.config);
     this.ws = new WebSocketNamespace(this.config);
+    this.transact = new TransactNamespace(this.config);
   }
 }
