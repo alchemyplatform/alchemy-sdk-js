@@ -163,7 +163,7 @@ under the `alchemy.nft` namespace:
 - `refreshContract()`: Enqueues the specified contract address to have all token ids' metadata refreshed.
 - `getFloorPrice()`: Return the floor prices of a NFT contract by marketplace.
 
-### Comparing `BaseNft` and `Nft`
+### Using `BaseNft` and `Nft`
 
 The SDK currently uses the `BaseNft` and `Nft` classes to represent NFTs returned by the Alchemy. The `BaseNft` object
 does
