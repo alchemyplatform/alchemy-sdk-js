@@ -1,10 +1,10 @@
 # Alchemy SDK for Javascript
 
-The Alchemy SDK is the most comprehensive, stable, and powerful Javascript SDK available today to interact with the blockchain. It supports the exact same syntax and functionality of the Ethers.js `AlchemyProvider` and `WebSocketProvider`, making it a 1:1 mapping for anyone using the Ethers.js `Provider` to access the blockchain.
+The Alchemy SDK is the most comprehensive, stable, and powerful Javascript SDK available today to interact with the blockchain. It supports the exact same syntax and functionality of the Ethers.js `AlchemyProvider` and `WebSocketProvider`, making it a 1:1 mapping for anyone using the Ethers.js `Provider`.
 
-However, it adds a significant amount of improved functionality on top of Ethers.js, such as easy access to Alchemy’s Enhanced and NFT APIs, robust WebSockets, and quality-of life improvements such as automated retries. 
+However, it adds a significant amount of improved functionality on top of Ethers, such as easy access to Alchemy’s Enhanced and NFT APIs, robust WebSockets, and quality-of life improvements such as automated retries. 
 
-Finally, it leverages Alchemy's hardened node infrastructure, guaranteeing best-in-class reliability, scalability, and data correctness, and is undergoing active development by Alchmy's engineers.
+The SDK leverages Alchemy's hardened node infrastructure, guaranteeing best-in-class reliability, scalability, and data correctness, and is undergoing active development by Alchmy's engineers.
 
 > :warning: **WARNING:** The `@alch/alchemy-sdk` package is now deprecated as of the v2.0.0 release. Please use the `alchemy-sdk` package instead. Note that upgrading from v1 to v2 will be a breaking change. To upgrade to v2.0.0 from v1.X.X, simply run the following in your project root:
 
@@ -26,9 +26,9 @@ After installing the app, you can then import and use the SDK:
 ```ts
 import { Network, Alchemy } from 'alchemy-sdk';
 
-// Optional Config object, but defaults to demo api-key and eth-mainnet.
+// Optional config object, but defaults to the API key 'demo' and Network 'eth-mainnet'.
 const settings = {
-  apiKey: 'demo', // Replace with your Alchemy API Key.
+  apiKey: 'demo', // Replace with your Alchemy API key.
   network: Network.ETH_MAINNET // Replace with your network.
 };
 
@@ -45,7 +45,7 @@ The Alchemy SDK currently supports three different namespaces, including:
 - `nft`: All Alchemy NFT API methods
 - `ws`: All WebSockets methods
 
-If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should just work.
+If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should work properly.
 
 ```ts
 import { Alchemy } from 'alchemy-sdk';
