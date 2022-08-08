@@ -50,6 +50,7 @@ export enum Network {
   ETH_RINKEBY = 'eth-rinkeby',
   OPT_MAINNET = 'opt-mainnet',
   OPT_KOVAN = 'opt-kovan',
+  OPT_GOERLI = 'opt-goerli',
   ARB_MAINNET = 'arb-mainnet',
   ARB_RINKEBY = 'arb-rinkeby',
   MATIC_MAINNET = 'polygon-mainnet',
