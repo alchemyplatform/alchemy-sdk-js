@@ -39,11 +39,12 @@ The `Alchemy` object returned by `new Alchemy()` provides access to the Alchemy 
 
 ## Using the Alchemy SDK
 
-The Alchemy SDK currently supports three different namespaces, including:
+The Alchemy SDK currently supports four different namespaces, including:
 
 - `core`: All commonly-used Ethers.js Provider methods and Alchemy Enhanced API methods
 - `nft`: All Alchemy NFT API methods
 - `ws`: All WebSockets methods
+- `transact`: All Alchemy Transaction API methods
 
 If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should work properly.
 
@@ -198,6 +199,17 @@ async function main() {
 
 main();
 ```
+
+## Alchemy Transact
+
+The `transact` namespace contains methods used for sending transactions. The unique methods to the `transact` namespace are:
+- `sendPrivateTransaction()`: Send a private transaction through Flashbots.
+- `cancelPrivateTransaction()`: Cancel a private transaction sent with Flashbots.
+
+The `transact` namespace also aliases over several commonly used methods from the `core` namespace for convenience:
+- `getTransaction()`: Returns the transaction for the given transaction hash.
+- `sendTransaction()`: Sends a standard transaction to the network to be mined.
+- `waitForTransaction()`: Waits for a transaction to be mined and returns the transaction receipt.
 
 ### SDK vs API Differences
 

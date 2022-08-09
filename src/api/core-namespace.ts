@@ -233,6 +233,8 @@ export class CoreNamespace {
    * pool access (e.g. if the gas price is too low or the transaction was only
    * recently sent and not yet indexed) in which case this method may also return null.
    *
+   * NOTE: This is an alias for {@link TransactNamespace.getTransaction}.
+   *
    * @param transactionHash The hash of the transaction to get.
    * @public
    */
@@ -265,6 +267,8 @@ export class CoreNamespace {
    * signed, and be valid (i.e. the nonce is correct and the account has
    * sufficient balance to pay for the transaction).
    *
+   * NOTE: This is an alias for {@link TransactNamespace.getTransaction}.
+   *
    * @param signedTransaction The signed transaction to send.
    * @public
    */
@@ -282,6 +286,8 @@ export class CoreNamespace {
    * transaction has not been mined returns null. Otherwise, this method will
    * block until the transaction has confirmed blocks mined on top of the block
    * in which it was mined.
+   *
+   * NOTE: This is an alias for {@link TransactNamespace.getTransaction}.
    *
    * @param transactionHash The hash of the transaction to wait for.
    * @param confirmations The number of blocks to wait for.

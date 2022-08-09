@@ -622,3 +622,16 @@ export type AlchemyPendingTransactionsEventFilter = {
 export type AlchemyEventType =
   | EventType
   | AlchemyPendingTransactionsEventFilter;
+
+/** Options for the {@link TransactNamespace.sendPrivateTransaction} method. */
+export interface SendPrivateTransactionOptions {
+  /**
+   * Whether to use fast-mode. Defaults to false. Please note that fast mode
+   * transactions cannot be cancelled using
+   * {@link TransactNamespace.cancelPrivateTransaction}. method.
+   *
+   * See {@link https://docs.flashbots.net/flashbots-protect/rpc/fast-mode} for
+   * more details.
+   */
+  fast: boolean;
+}
