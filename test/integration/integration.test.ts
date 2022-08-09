@@ -70,9 +70,9 @@ describe('E2E integration tests', () => {
     expect(firstTransfer.rawContract.address).toEqual(baycContract);
 
     // First transfer specific checks
-    expect(firstTransfer.blockNum).toEqual('0xe99958');
+    expect(firstTransfer.blockNum).toEqual('0xbb933a');
     expect(firstTransfer.metadata?.blockTimestamp).toEqual(
-      '2022-08-09T16:52:43.000Z'
+      '2021-04-22T23:13:40.000Z'
     );
   });
 
