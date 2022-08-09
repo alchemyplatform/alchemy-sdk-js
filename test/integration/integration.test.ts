@@ -1,4 +1,9 @@
-import { Alchemy, NftExcludeFilters, NftTokenType } from '../../src';
+import {
+  Alchemy,
+  AssetTransfersCategory,
+  NftExcludeFilters,
+  NftTokenType
+} from '../../src';
 
 /** Temporary test */
 // TODO: REMOVE these tests once we have more comprehensive unit testing.
@@ -44,6 +49,31 @@ describe('E2E integration tests', () => {
     );
     expect(contractDeployer.blockNumber).toEqual(9380410);
     console.log(contractDeployer);
+  });
+
+  it('getAssetTransfers', async () => {
+    // Replace with contract of your choosing
+    const baycContract = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
+
+    const allTransfers = await alchemy.core.getAssetTransfers({
+      fromBlock: '0x0',
+      contractAddresses: [baycContract],
+      excludeZeroValue: true,
+      category: [AssetTransfersCategory.ERC721],
+      withMetadata: true
+    });
+    const firstTransfer = allTransfers.transfers[0];
+    console.log('firstTransfer', firstTransfer);
+
+    // General checks
+    expect(firstTransfer.category).toEqual(AssetTransfersCategory.ERC721);
+    expect(firstTransfer.rawContract.address).toEqual(baycContract);
+
+    // First transfer specific checks
+    expect(firstTransfer.blockNum).toEqual('0xe99958');
+    expect(firstTransfer.metadata?.blockTimestamp).toEqual(
+      '2022-08-09T16:52:43.000Z'
+    );
   });
 
   it('getNftMetadata', async () => {
