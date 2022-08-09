@@ -2,6 +2,7 @@ import { Alchemy, AlchemyWebSocketProvider, AlchemyProvider } from '../../src';
 import { EthersNetwork } from '../../src/util/const';
 import { AlchemyProvider as EthersAlchemyProvider } from '@ethersproject/providers';
 
+jest.setTimeout(50000);
 /**
  * These integrations are sanity checks to ensure that the SDK's overriden
  * implementation of {@link AlchemyProvider} is working as expected.
@@ -21,6 +22,10 @@ describe('AlchemyProvider', () => {
     );
     wsProvider = await alchemy.config.getWebSocketProvider();
     provider = await alchemy.config.getProvider();
+  });
+
+  afterEach(async () => {
+    await wsProvider.destroy();
   });
 
   // TODO(ethers): Extract into helper method to verify all inputs.
@@ -46,10 +51,9 @@ describe('AlchemyProvider', () => {
         toAddress: address,
         hashesOnly: true
       },
-      res => {
-        expect(res.to).toEqual(address.toLowerCase());
-        console.log(res);
-        if (eventCount === 10) {
+      (res: string) => {
+        expect(res.substring(0, 2)).toEqual('0x');
+        if (eventCount === 5) {
           done();
         }
         eventCount++;
@@ -66,8 +70,7 @@ describe('AlchemyProvider', () => {
         toAddress: address,
         hashesOnly: true
       },
-      res => {
-        console.log('1', res);
+      () => {
         eventCount++;
         if (eventCount > 1) {
           done();
@@ -81,8 +84,7 @@ describe('AlchemyProvider', () => {
         toAddress: address,
         hashesOnly: true
       },
-      res => {
-        console.log('2', res);
+      () => {
         eventCount++;
         if (eventCount > 1) {
           done();
@@ -102,8 +104,7 @@ describe('AlchemyProvider', () => {
       {
         method: 'alchemy_pendingTransactions'
       },
-      msg => {
-        console.log('message', msg);
+      () => {
         if (eventCount === 10) {
           done();
         }
@@ -111,22 +112,15 @@ describe('AlchemyProvider', () => {
       }
     );
   });
-
+  //
   it('handles blocks', done => {
-    let eventCount = 0;
-    ethersProvider.on('block', res => {
-      console.log('block from ethers', res);
-    });
     wsProvider.on('block', res => {
-      console.log('block from provider', res);
-      if (eventCount == 10) {
-        done();
-      }
-      eventCount++;
+      expect(typeof res).toEqual('number');
+      done();
     });
   });
 
-  // TODO(ethers): Write tests to make sure that the SDK's provider instance
-  // has the correct network mappings compared to Ethers.
-  it('network mappings should be correct', () => {});
+  // // TODO(ethers): Write tests to make sure that the SDK's provider instance
+  // // has the correct network mappings compared to Ethers.
+  // it('network mappings should be correct', () => {});
 });
