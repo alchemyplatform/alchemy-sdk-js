@@ -50,6 +50,7 @@ export enum Network {
   ETH_RINKEBY = 'eth-rinkeby',
   OPT_MAINNET = 'opt-mainnet',
   OPT_KOVAN = 'opt-kovan',
+  OPT_GOERLI = 'opt-goerli',
   ARB_MAINNET = 'arb-mainnet',
   ARB_RINKEBY = 'arb-rinkeby',
   MATIC_MAINNET = 'polygon-mainnet',
@@ -105,7 +106,6 @@ export interface AssetTransfersParams {
 export enum AssetTransfersCategory {
   EXTERNAL = 'external',
   INTERNAL = 'internal',
-  TOKEN = 'token',
   ERC20 = 'erc20',
   ERC721 = 'erc721',
   ERC1155 = 'erc1155',

@@ -1,10 +1,14 @@
 # Changelog for Alchemy SDK for JavaScript
 
 ## Unreleased
+- Removed the deprecated `TOKEN` enum from `AssetTransfersCategory`.
+
+
+## 2.0.1
 
 ### Minor Changes
 - Added an optional `url` setting to `AlchemySettings` to allow specifying a custom hardcoded URL to send all requests to.
-
+- Fixed a bug where the SDK would incorrectly include a gzip header in browser environments
 
 ## 2.0.0
 
