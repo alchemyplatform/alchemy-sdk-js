@@ -142,6 +142,17 @@ right. The Alchemy SDK automatically handles these failures with no configuratio
   is reopened. Note that it is still possible, with a lower likelihood, for outgoing requests to be lost,
   so you should still have error handling as with any network request.
 
+## Alchemy Transact
+
+The `transact` namespace contains methods used for sending transactions. The unique methods to the `transact` namespace are:
+- `sendPrivateTransaction()`: Send a private transaction through Flashbots.
+- `cancelPrivateTransaction()`: Cancel a private transaction sent with Flashbots.
+
+The `transact` namespace also aliases over several commonly used methods from the `core` namespace for convenience:
+- `getTransaction()`: Returns the transaction for the given transaction hash.
+- `sendTransaction()`: Sends a standard transaction to the network to be mined.
+- `waitForTransaction()`: Waits for a transaction to be mined and returns the transaction receipt.
+
 ## Alchemy NFT API
 
 The SDK currently supports the following [NFT API](https://docs.alchemy.com/alchemy/enhanced-apis/nft-api) endpoints
@@ -199,17 +210,6 @@ async function main() {
 
 main();
 ```
-
-## Alchemy Transact
-
-The `transact` namespace contains methods used for sending transactions. The unique methods to the `transact` namespace are:
-- `sendPrivateTransaction()`: Send a private transaction through Flashbots.
-- `cancelPrivateTransaction()`: Cancel a private transaction sent with Flashbots.
-
-The `transact` namespace also aliases over several commonly used methods from the `core` namespace for convenience:
-- `getTransaction()`: Returns the transaction for the given transaction hash.
-- `sendTransaction()`: Sends a standard transaction to the network to be mined.
-- `waitForTransaction()`: Waits for a transaction to be mined and returns the transaction receipt.
 
 ### SDK vs API Differences
 
