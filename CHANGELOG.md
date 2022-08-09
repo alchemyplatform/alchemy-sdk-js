@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added correct `withMetadata` typing to `AssetTransfersResponse`.
+
 ### Minor Changes
 - Added an optional `url` setting to `AlchemySettings` to allow specifying a custom hardcoded URL to send all requests to.
 
