@@ -99,6 +99,7 @@ export interface AssetTransfersParams {
   maxCount?: number;
   category: AssetTransfersCategory[];
   pageKey?: string;
+  withMetadata?: boolean;
 }
 
 /** @public */
@@ -150,6 +151,12 @@ export interface AssetTransfersResult {
   asset: string | null;
   hash: string;
   rawContract: RawContract;
+  metadata?: AssetTransfersMetadata;
+}
+
+/** @public */
+export interface AssetTransfersMetadata {
+  blockTimestamp: string;
 }
 
 /**
