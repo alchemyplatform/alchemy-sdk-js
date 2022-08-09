@@ -40,6 +40,7 @@ export const EthersNetwork = {
   [Network.ETH_RINKEBY]: 'rinkeby',
   [Network.OPT_MAINNET]: 'optimism',
   [Network.OPT_KOVAN]: 'optimism-kovan',
+  [Network.OPT_GOERLI]: 'optimism-goerli',
   [Network.ARB_MAINNET]: 'arbitrum',
   [Network.ARB_RINKEBY]: 'arbitrum-rinkeby',
   [Network.MATIC_MAINNET]: 'matic',
