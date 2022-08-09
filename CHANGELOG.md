@@ -4,6 +4,7 @@
 - Removed the deprecated `TOKEN` enum from `AssetTransfersCategory`.
 - Added support for Optimism Goerli network via the `Network.OPT_GOERLI` enum.
 - Added the `transact` namespace for functionality relating to sending transactions. This includes the Flashbots methods `sendPrivateTransaction` and `cancelPrivateTransaction`.
+- Added the `limit` parameter in `GetNftsForContractOption` for use with `alchemy.nft.getNftsForContract`.
 
 
 ## 2.0.1

@@ -424,7 +424,7 @@ export interface GetFloorPriceResponse {
   readonly looksRare: FloorPriceMarketplace | FloorPriceError;
 }
 
-/** The refresh result response object returned by {@link refreshNftContract}. */
+/** The refresh result response object returned by {@link refreshContract}. */
 export interface RefreshContractResult {
   /** The NFT contract address that was passed in to be refreshed. */
   contractAddress: string;
@@ -495,7 +495,7 @@ export interface RawContract {
 
 /**
  * Optional parameters object for the {@link getNftsForContract} and
- * {@link getNftsForNftContractIterator} functions.
+ * {@link getNftsForContractIterator} functions.
  *
  * This interface is used to fetch NFTs with their associated metadata. To get
  * Nfts without their associated metadata, use {@link GetBaseNftsForContractOptions}.
@@ -511,11 +511,14 @@ export interface GetNftsForContractOptions {
 
   /** Optional boolean flag to omit NFT metadata. Defaults to `false`. */
   omitMetadata?: boolean;
+
+  /** Sets the total number of NFTs to return in the response. Defaults to 100. */
+  limit?: number;
 }
 
 /**
  * Optional parameters object for the {@link getNftsForContract} and
- * {@link getNftsForNftContractIterator} functions.
+ * {@link getNftsForContractIterator} functions.
  *
  * This interface is used to fetch NFTs without their associated metadata. To
  * get Nfts with their associated metadata, use {@link GetNftsForContractOptions}.
@@ -531,6 +534,9 @@ export interface GetBaseNftsForContractOptions {
 
   /** Optional boolean flag to omit NFT metadata. Defaults to `false`. */
   omitMetadata: false;
+
+  /** Sets the total number of NFTs to return in the response. Defaults to 100. */
+  limit?: number;
 }
 
 /**
