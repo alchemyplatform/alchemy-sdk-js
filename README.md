@@ -1,8 +1,8 @@
 # Alchemy SDK for Javascript
 
-The Alchemy SDK is the most comprehensive, stable, and powerful Javascript SDK available today to interact with the blockchain. 
+The Alchemy SDK is the most comprehensive, stable, and powerful Javascript SDK available today to interact with the blockchain.
 
-It supports the exact same syntax and functionality of the Ethers.js `AlchemyProvider` and `WebSocketProvider`, making it a 1:1 mapping for anyone using the Ethers.js `Provider`. However, it adds a significant amount of improved functionality on top of Ethers, such as easy access to Alchemy’s Enhanced and NFT APIs, robust WebSockets, and quality-of life improvements such as automated retries. 
+It supports the exact same syntax and functionality of the Ethers.js `AlchemyProvider` and `WebSocketProvider`, making it a 1:1 mapping for anyone using the Ethers.js `Provider`. However, it adds a significant amount of improved functionality on top of Ethers, such as easy access to Alchemy’s Enhanced and NFT APIs, robust WebSockets, and quality-of life improvements such as automated retries.
 
 The SDK leverages Alchemy's hardened node infrastructure, guaranteeing best-in-class node reliability, scalability, and data correctness, and is undergoing active development by Alchemy's engineers.
 
@@ -113,7 +113,7 @@ import { Alchemy } from 'alchemy-sdk';
 const alchemy = new Alchemy();
 
 // Listen to all new pending transactions.
-alchemy.ws.on("block", res => console.log(res));
+alchemy.ws.on('block', res => console.log(res));
 
 // Listen to only the next transaction on the USDC contract.
 alchemy.ws.once(
@@ -145,10 +145,12 @@ right. The Alchemy SDK automatically handles these failures with no configuratio
 ## Alchemy Transact
 
 The `transact` namespace contains methods used for sending transactions. The unique methods to the `transact` namespace are:
+
 - `sendPrivateTransaction()`: Send a private transaction through Flashbots.
 - `cancelPrivateTransaction()`: Cancel a private transaction sent with Flashbots.
 
 The `transact` namespace also aliases over several commonly used methods from the `core` namespace for convenience:
+
 - `getTransaction()`: Returns the transaction for the given transaction hash.
 - `sendTransaction()`: Sends a standard transaction to the network to be mined.
 - `waitForTransaction()`: Waits for a transaction to be mined and returns the transaction receipt.
