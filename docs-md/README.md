@@ -2,20 +2,20 @@ alchemy-sdk / [Exports](modules.md)
 
 # Alchemy SDK for Javascript
 
-Alchemy SDK helps developers use Alchemy's APIs and endpoints more efficiently. This is a lightweight, modular SDK built as a drop-in replacement of Ethers.js that provides a superset of functionality - enabling access to the Alchemy NFT API, Websockets, and Enhanced API methods.
+The Alchemy SDK is the most comprehensive, stable, and powerful Javascript SDK available today to interact with the blockchain.
 
-It also provides access to Alchemy's hardened node infrastructure, guaranteeing reliability, scalability, and quality-of-life improvements such as automatic exponential backoff retries.
+It supports the exact same syntax and functionality of the Ethers.js `AlchemyProvider` and `WebSocketProvider`, making it a 1:1 mapping for anyone using the Ethers.js `Provider`. However, it adds a significant amount of improved functionality on top of Ethers, such as easy access to Alchemy’s Enhanced and NFT APIs, robust WebSockets, and quality-of life improvements such as automated retries.
 
-> :warning: **WARNING:** The `@alch/alchemy-sdk` package is now deprecated as of the v2.0.0 release. Please use the `alchemy-sdk` package instead. Note that upgrading from v1 to v2 will be a breaking change. See the changelog for full details.
+The SDK leverages Alchemy's hardened node infrastructure, guaranteeing best-in-class node reliability, scalability, and data correctness, and is undergoing active development by Alchemy's engineers.
 
-To upgrade to v2.0.0 from v1.X.X, simply run one of the following:
+> :warning: **WARNING:** The `@alch/alchemy-sdk` package is now deprecated as of the v2.0.0 release. Please use the `alchemy-sdk` package instead. Note that upgrading from v1 to v2 will be a breaking change. To upgrade to v2.0.0 from v1.X.X, simply run the following in your project root:
 
 ```
 npm uninstall @alch/alchemy-sdk
 npm install alchemy-sdk@latest
 ```
 
-> 🙋‍♀️ **FEATURE REQUESTS:** We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want at our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback) and we'd love to build it for you:
+> 🙋‍♀️ **FEATURE REQUESTS:** We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want at our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback), and we'd love to build it for you:
 
 ## Getting started
 
@@ -28,9 +28,9 @@ After installing the app, you can then import and use the SDK:
 ```ts
 import { Network, Alchemy } from 'alchemy-sdk';
 
-// Optional Config object, but defaults to demo api-key and eth-mainnet.
+// Optional config object, but defaults to the API key 'demo' and Network 'eth-mainnet'.
 const settings = {
-  apiKey: 'demo', // Replace with your Alchemy API Key.
+  apiKey: 'demo', // Replace with your Alchemy API key.
   network: Network.ETH_MAINNET // Replace with your network.
 };
 
@@ -41,13 +41,14 @@ The `Alchemy` object returned by `new Alchemy()` provides access to the Alchemy 
 
 ## Using the Alchemy SDK
 
-The Alchemy SDK currently supports three different namespaces, including:
+The Alchemy SDK currently supports four different namespaces, including:
 
-- `core`: All commonly-used Ethers.js methods and Alchemy Enhanced API methods
+- `core`: All commonly-used Ethers.js Provider methods and Alchemy Enhanced API methods
 - `nft`: All Alchemy NFT API methods
 - `ws`: All WebSockets methods
+- `transact`: All Alchemy Transaction API methods
 
-If you are already using Ethers.js, you should be simply able to replace the Ethers.js object with `alchemy.core` and it should just work.
+If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should work properly.
 
 ```ts
 import { Alchemy } from 'alchemy-sdk';
@@ -77,7 +78,7 @@ alchemy.ws.on(
 
 ## Alchemy Core
 
-The core package contains all commonly-used [Ethers.js](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) methods. If you are already using Ethers.js, you should be simply able to replace the Ethers.js object with `alchemy.core` and it should just work.
+The core package contains all commonly-used [Ethers.js Provider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) methods. If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should just work.
 
 It also includes the majority of Alchemy Enhanced APIs, including:
 
@@ -86,10 +87,10 @@ It also includes the majority of Alchemy Enhanced APIs, including:
 - `getAssetTransfers()`: Get transactions for specific addresses.
 - `getTransactionReceipts()`: Gets all transaction receipts for a given block.
 
-### Accessing the full Ethers.js provider
+### Accessing the full Ethers.js Provider
 
-To keep the package clean, we don't support certain uncommonly-used Ethers.js methods as top-level methods the Alchemy object - for example, `provider.formatter`. If you'd like to access these methods, simply use the `alchemy.config.getProvider()` function to configure the
-Ethers.js [AlchemyProvider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) and return it.
+To keep the package clean, we don't support certain uncommonly-used Ethers.js Provider methods as top-level methods in the Alchemy `core` namespace - for example, `provider.formatter`. If you'd like to access these methods, simply use the `alchemy.config.getProvider()` function to configure the
+Ethers.js Provider [AlchemyProvider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) and return it.
 
 ```ts
 import { Alchemy } from 'alchemy-sdk';
@@ -114,12 +115,7 @@ import { Alchemy } from 'alchemy-sdk';
 const alchemy = new Alchemy();
 
 // Listen to all new pending transactions.
-alchemy.ws.on(
-  {
-    method: 'alchemy_pendingTransactions'
-  },
-  res => console.log(res)
-);
+alchemy.ws.on('block', res => console.log(res));
 
 // Listen to only the next transaction on the USDC contract.
 alchemy.ws.once(
@@ -137,16 +133,29 @@ alchemy.ws.removeAllListeners();
 The SDK brings multiple improvements to ensure correct WebSocket behavior in cases of temporary network failure or
 dropped connections. As with any network connection, you should not assume that a WebSocket will remain open forever
 without interruption, but correctly handling dropped connections and reconnection by hand can be challenging to get
-right. `alchemy-sdk` automatically handles these failures with no configuration necessary. The main benefits are:
+right. The Alchemy SDK automatically handles these failures with no configuration necessary. The main benefits are:
 
 - Resilient event delivery: Unlike standard Web3.js or Ethers.js, you will not permanently miss events which arrive
   while the backing WebSocket is temporarily down. Instead, you will receive these events as soon as the connection
   is reopened. Note that if the connection is down for more than 120 blocks (approximately 20 minutes), you may
   still miss some events that were not part of the most recent 120 blocks.
 - Lowered rate of failure: Compared to standard Web3.js or Ethers.js, there are fewer failures when sending requests
-  over the WebSocket while the connection is down. Alchemy Web3 will attempt to send the requests once the connection
+  over the WebSocket while the connection is down. The Alchemy SDK will attempt to send the requests once the connection
   is reopened. Note that it is still possible, with a lower likelihood, for outgoing requests to be lost,
   so you should still have error handling as with any network request.
+
+## Alchemy Transact
+
+The `transact` namespace contains methods used for sending transactions. The unique methods to the `transact` namespace are:
+
+- `sendPrivateTransaction()`: Send a private transaction through Flashbots.
+- `cancelPrivateTransaction()`: Cancel a private transaction sent with Flashbots.
+
+The `transact` namespace also aliases over several commonly used methods from the `core` namespace for convenience:
+
+- `getTransaction()`: Returns the transaction for the given transaction hash.
+- `sendTransaction()`: Sends a standard transaction to the network to be mined.
+- `waitForTransaction()`: Waits for a transaction to be mined and returns the transaction receipt.
 
 ## Alchemy NFT API
 
@@ -170,7 +179,7 @@ under the `alchemy.nft` namespace:
 - `refreshContract()`: Enqueues the specified contract address to have all token ids' metadata refreshed.
 - `getFloorPrice()`: Return the floor prices of a NFT contract by marketplace.
 
-### Comparing `BaseNft` and `Nft`
+### Using `BaseNft` and `Nft`
 
 The SDK currently uses the `BaseNft` and `Nft` classes to represent NFTs returned by the Alchemy. The `BaseNft` object
 does

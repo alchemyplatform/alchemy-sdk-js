@@ -12,7 +12,6 @@
 - [EXTERNAL](AssetTransfersCategory.md#external)
 - [INTERNAL](AssetTransfersCategory.md#internal)
 - [SPECIALNFT](AssetTransfersCategory.md#specialnft)
-- [TOKEN](AssetTransfersCategory.md#token)
 
 ## Enumeration members
 
@@ -22,7 +21,7 @@
 
 #### Defined in
 
-[src/types/types.ts:111](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L111)
+[src/types/types.ts:112](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L112)
 
 ___
 
@@ -32,7 +31,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:109](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L109)
+[src/types/types.ts:110](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L110)
 
 ___
 
@@ -42,7 +41,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:110](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L110)
+[src/types/types.ts:111](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L111)
 
 ___
 
@@ -52,7 +51,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:106](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L106)
+[src/types/types.ts:108](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L108)
 
 ___
 
@@ -62,7 +61,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:107](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L107)
+[src/types/types.ts:109](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L109)
 
 ___
 
@@ -76,14 +75,4 @@ Special contracts that don't follow ERC 721/1155, (ex: CryptoKitties).
 
 #### Defined in
 
-[src/types/types.ts:118](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L118)
-
-___
-
-### TOKEN
-
-• **TOKEN** = `"token"`
-
-#### Defined in
-
-[src/types/types.ts:108](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L108)
+[src/types/types.ts:119](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L119)

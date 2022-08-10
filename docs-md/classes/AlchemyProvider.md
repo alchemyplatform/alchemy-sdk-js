@@ -68,7 +68,6 @@ Do not call this constructor directly. Instead, instantiate an instance of
 - [\_getResolver](AlchemyProvider.md#_getresolver)
 - [\_getTransactionRequest](AlchemyProvider.md#_gettransactionrequest)
 - [\_ready](AlchemyProvider.md#_ready)
-- [\_send](AlchemyProvider.md#_send)
 - [\_setFastBlockNumber](AlchemyProvider.md#_setfastblocknumber)
 - [\_startEvent](AlchemyProvider.md#_startevent)
 - [\_startPending](AlchemyProvider.md#_startpending)
@@ -402,7 +401,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/alchemy-provider.ts#L43)
+[src/api/alchemy-provider.ts:36](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-provider.ts#L36)
 
 ___
 
@@ -454,7 +453,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:44](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/alchemy-provider.ts#L44)
+[src/api/alchemy-provider.ts:37](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-provider.ts#L37)
 
 ## Accessors
 
@@ -864,28 +863,6 @@ node_modules/@ethersproject/providers/lib/base-provider.d.ts:90
 
 ___
 
-### \_send
-
-▸ **_send**(`method`, `params`, `methodName`): `Promise`<`any`\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `method` | `string` |
-| `params` | `any`[] |
-| `methodName` | `string` |
-
-#### Returns
-
-`Promise`<`any`\>
-
-#### Defined in
-
-[src/api/alchemy-provider.ts:196](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/alchemy-provider.ts#L196)
-
-___
-
 ### \_setFastBlockNumber
 
 ▸ **_setFastBlockNumber**(`blockNumber`): `void`
@@ -948,7 +925,7 @@ JsonRpcProvider.\_startPending
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:168](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/alchemy-provider.ts#L168)
+[src/api/alchemy-provider.ts:163](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-provider.ts#L163)
 
 ___
 
@@ -1148,7 +1125,7 @@ JsonRpcProvider.detectNetwork
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:156](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/alchemy-provider.ts#L156)
+[src/api/alchemy-provider.ts:151](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-provider.ts#L151)
 
 ___
 
@@ -1627,7 +1604,7 @@ CommunityResourcable.isCommunityResource
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:178](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/alchemy-provider.ts#L178)
+[src/api/alchemy-provider.ts:173](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-provider.ts#L173)
 
 ___
 
@@ -1987,7 +1964,7 @@ JsonRpcProvider.send
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:192](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/alchemy-provider.ts#L192)
+[src/api/alchemy-provider.ts:187](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-provider.ts#L187)
 
 ___
 

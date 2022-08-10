@@ -39,7 +39,7 @@
 
 #### Defined in
 
-[src/api/nft-namespace.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L39)
+[src/api/nft-namespace.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L39)
 
 ## Methods
 
@@ -64,7 +64,7 @@ Checks that the provided owner address owns one of more of the provided NFTs.
 
 #### Defined in
 
-[src/api/nft-namespace.ts:244](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L244)
+[src/api/nft-namespace.ts:244](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L244)
 
 ___
 
@@ -86,7 +86,7 @@ Get the NFT collection metadata associated with the provided parameters.
 
 #### Defined in
 
-[src/api/nft-namespace.ts:63](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L63)
+[src/api/nft-namespace.ts:63](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L63)
 
 ___
 
@@ -110,7 +110,7 @@ Returns the floor prices of a NFT contract by marketplace.
 
 #### Defined in
 
-[src/api/nft-namespace.ts:280](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L280)
+[src/api/nft-namespace.ts:280](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L280)
 
 ___
 
@@ -134,7 +134,7 @@ Get the NFT metadata associated with the provided parameters.
 
 #### Defined in
 
-[src/api/nft-namespace.ts:49](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L49)
+[src/api/nft-namespace.ts:49](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L49)
 
 ___
 
@@ -162,7 +162,7 @@ their associated metadata, use [GetBaseNftsForContractOptions](../interfaces/Get
 
 #### Defined in
 
-[src/api/nft-namespace.ts:148](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L148)
+[src/api/nft-namespace.ts:148](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L148)
 
 ▸ **getNftsForContract**(`contractAddress`, `options?`): `Promise`<[`NftContractBaseNftsResponse`](../interfaces/NftContractBaseNftsResponse.md)\>
 
@@ -186,7 +186,7 @@ all NFTs with their associated metadata, use [GetNftsForContractOptions](../inte
 
 #### Defined in
 
-[src/api/nft-namespace.ts:162](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L162)
+[src/api/nft-namespace.ts:162](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L162)
 
 ___
 
@@ -215,7 +215,7 @@ associated metadata, use [GetBaseNftsForContractOptions](../interfaces/GetBaseNf
 
 #### Defined in
 
-[src/api/nft-namespace.ts:184](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L184)
+[src/api/nft-namespace.ts:184](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L184)
 
 ▸ **getNftsForContractIterator**(`contractAddress`, `options?`): `AsyncIterable`<[`BaseNft`](../interfaces/BaseNft.md)\>
 
@@ -241,7 +241,7 @@ NFTs with their associated metadata, use [GetNftsForContractOptions](../interfac
 
 #### Defined in
 
-[src/api/nft-namespace.ts:200](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L200)
+[src/api/nft-namespace.ts:200](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L200)
 
 ___
 
@@ -267,7 +267,7 @@ their associated metadata, use [GetBaseNftsForOwnerOptions](../interfaces/GetBas
 
 #### Defined in
 
-[src/api/nft-namespace.ts:112](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L112)
+[src/api/nft-namespace.ts:112](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L112)
 
 ▸ **getNftsForOwner**(`owner`, `options?`): `Promise`<[`OwnedBaseNftsResponse`](../interfaces/OwnedBaseNftsResponse.md)\>
 
@@ -289,7 +289,7 @@ all NFTs with their associated metadata, use [GetNftsForOwnerOptions](../interfa
 
 #### Defined in
 
-[src/api/nft-namespace.ts:126](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L126)
+[src/api/nft-namespace.ts:126](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L126)
 
 ___
 
@@ -315,7 +315,7 @@ keys until all NFTs have been fetched.
 
 #### Defined in
 
-[src/api/nft-namespace.ts:77](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L77)
+[src/api/nft-namespace.ts:77](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L77)
 
 ▸ **getNftsForOwnerIterator**(`owner`, `options?`): `AsyncIterable`<[`OwnedBaseNft`](../interfaces/OwnedBaseNft.md)\>
 
@@ -337,7 +337,7 @@ pages through all page keys until all NFTs have been fetched.
 
 #### Defined in
 
-[src/api/nft-namespace.ts:91](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L91)
+[src/api/nft-namespace.ts:91](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L91)
 
 ___
 
@@ -361,7 +361,7 @@ Gets all the owners for a given NFT contract.
 
 #### Defined in
 
-[src/api/nft-namespace.ts:217](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L217)
+[src/api/nft-namespace.ts:217](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L217)
 
 ___
 
@@ -386,7 +386,7 @@ Gets all the owners for a given NFT contract address and token ID.
 
 #### Defined in
 
-[src/api/nft-namespace.ts:230](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L230)
+[src/api/nft-namespace.ts:230](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L230)
 
 ___
 
@@ -406,7 +406,7 @@ https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-clas
 
 #### Defined in
 
-[src/api/nft-namespace.ts:270](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L270)
+[src/api/nft-namespace.ts:270](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L270)
 
 ___
 
@@ -432,7 +432,7 @@ https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-clas
 
 #### Defined in
 
-[src/api/nft-namespace.ts:259](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L259)
+[src/api/nft-namespace.ts:259](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L259)
 
 ___
 
@@ -461,7 +461,7 @@ process. To refresh the metadata for a specific token, use the
 
 #### Defined in
 
-[src/api/nft-namespace.ts:317](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L317)
+[src/api/nft-namespace.ts:317](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L317)
 
 ___
 
@@ -493,4 +493,4 @@ To trigger a refresh for all NFTs in a contract, use [refreshContract](NftNamesp
 
 #### Defined in
 
-[src/api/nft-namespace.ts:299](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/nft-namespace.ts#L299)
+[src/api/nft-namespace.ts:299](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft-namespace.ts#L299)

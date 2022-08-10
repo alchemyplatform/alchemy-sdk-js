@@ -36,7 +36,7 @@ exposes the underlying providers for more advanced use cases.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:51](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/alchemy-config.ts#L51)
+[src/api/alchemy-config.ts:51](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-config.ts#L51)
 
 ## Properties
 
@@ -48,7 +48,7 @@ The Alchemy API key.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/alchemy-config.ts#L21)
+[src/api/alchemy-config.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-config.ts#L21)
 
 ___
 
@@ -60,7 +60,7 @@ The maximum number of retries to perform.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:27](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/alchemy-config.ts#L27)
+[src/api/alchemy-config.ts:27](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-config.ts#L27)
 
 ___
 
@@ -72,7 +72,7 @@ The Network that this SDK is associated with.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:24](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/alchemy-config.ts#L24)
+[src/api/alchemy-config.ts:24](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-config.ts#L24)
 
 ___
 
@@ -85,7 +85,7 @@ and apiKey.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/alchemy-config.ts#L33)
+[src/api/alchemy-config.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-config.ts#L33)
 
 ## Methods
 
@@ -109,4 +109,4 @@ other less-common methods.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:89](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/api/alchemy-config.ts#L89)
+[src/api/alchemy-config.ts:89](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-config.ts#L89)

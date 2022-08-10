@@ -21,7 +21,7 @@ Public gateway URI for the raw URI. Generally offers better performance.
 
 #### Defined in
 
-[src/types/types.ts:197](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L197)
+[src/types/types.ts:204](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L204)
 
 ___
 
@@ -34,4 +34,4 @@ IPFS link).
 
 #### Defined in
 
-[src/types/types.ts:194](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L194)
+[src/types/types.ts:201](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L201)

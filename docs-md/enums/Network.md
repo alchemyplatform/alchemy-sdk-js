@@ -20,6 +20,7 @@ available on which networks
 - [ETH\_ROPSTEN](Network.md#eth_ropsten)
 - [MATIC\_MAINNET](Network.md#matic_mainnet)
 - [MATIC\_MUMBAI](Network.md#matic_mumbai)
+- [OPT\_GOERLI](Network.md#opt_goerli)
 - [OPT\_KOVAN](Network.md#opt_kovan)
 - [OPT\_MAINNET](Network.md#opt_mainnet)
 
@@ -31,7 +32,7 @@ available on which networks
 
 #### Defined in
 
-[src/types/types.ts:53](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L53)
+[src/types/types.ts:54](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L54)
 
 ___
 
@@ -41,7 +42,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:54](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L54)
+[src/types/types.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L55)
 
 ___
 
@@ -51,7 +52,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:48](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L48)
+[src/types/types.ts:48](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L48)
 
 ___
 
@@ -61,7 +62,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:49](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L49)
+[src/types/types.ts:49](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L49)
 
 ___
 
@@ -71,7 +72,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:46](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L46)
+[src/types/types.ts:46](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L46)
 
 ___
 
@@ -81,7 +82,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:50](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L50)
+[src/types/types.ts:50](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L50)
 
 ___
 
@@ -91,7 +92,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:47](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L47)
+[src/types/types.ts:47](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L47)
 
 ___
 
@@ -101,7 +102,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L55)
+[src/types/types.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L56)
 
 ___
 
@@ -111,7 +112,17 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L56)
+[src/types/types.ts:57](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L57)
+
+___
+
+### OPT\_GOERLI
+
+• **OPT\_GOERLI** = `"opt-goerli"`
+
+#### Defined in
+
+[src/types/types.ts:53](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L53)
 
 ___
 
@@ -121,7 +132,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:52](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L52)
+[src/types/types.ts:52](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L52)
 
 ___
 
@@ -131,4 +142,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:51](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L51)
+[src/types/types.ts:51](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L51)

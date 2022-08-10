@@ -3,7 +3,7 @@
 # Interface: GetBaseNftsForContractOptions
 
 Optional parameters object for the [getNftsForContract](../classes/NftNamespace.md#getnftsforcontract) and
-{@link getNftsForNftContractIterator} functions.
+[getNftsForContractIterator](../classes/NftNamespace.md#getnftsforcontractiterator) functions.
 
 This interface is used to fetch NFTs without their associated metadata. To
 get Nfts with their associated metadata, use [GetNftsForContractOptions](GetNftsForContractOptions.md).
@@ -14,6 +14,7 @@ get Nfts with their associated metadata, use [GetNftsForContractOptions](GetNfts
 
 - [omitMetadata](GetBaseNftsForContractOptions.md#omitmetadata)
 - [pageKey](GetBaseNftsForContractOptions.md#pagekey)
+- [pageSize](GetBaseNftsForContractOptions.md#pagesize)
 
 ## Properties
 
@@ -25,7 +26,7 @@ Optional boolean flag to omit NFT metadata. Defaults to `false`.
 
 #### Defined in
 
-[src/types/types.ts:526](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L526)
+[src/types/types.ts:536](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L536)
 
 ___
 
@@ -38,4 +39,16 @@ Optional page key from an existing [NftContractBaseNftsResponse](NftContractBase
 
 #### Defined in
 
-[src/types/types.ts:523](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae75103/src/types/types.ts#L523)
+[src/types/types.ts:533](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L533)
+
+___
+
+### pageSize
+
+• `Optional` **pageSize**: `number`
+
+Sets the total number of NFTs to return in the response. Defaults to 100.
+
+#### Defined in
+
+[src/types/types.ts:539](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L539)
