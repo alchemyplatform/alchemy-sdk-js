@@ -254,6 +254,12 @@ export interface GetNftsForOwnerOptions {
    */
   excludeFilters?: NftExcludeFilters[];
 
+  /**
+   * Sets the total number of NFTs to return in the response. Defaults to 100.
+   * Maximum page size is 100.
+   */
+  pageSize?: number;
+
   /** Optional boolean flag to omit NFT metadata. Defaults to `false`. */
   omitMetadata?: boolean;
 }
@@ -282,6 +288,12 @@ export interface GetBaseNftsForOwnerOptions {
    * of these filters are excluded from the response.
    */
   excludeFilters?: NftExcludeFilters[];
+
+  /**
+   * Sets the total number of NFTs to return in the response. Defaults to 100.
+   * Maximum page size is 100.
+   */
+  pageSize?: number;
 
   /** Optional boolean flag to include NFT metadata. Defaults to `false`. */
   omitMetadata: true;
@@ -512,7 +524,10 @@ export interface GetNftsForContractOptions {
   /** Optional boolean flag to omit NFT metadata. Defaults to `false`. */
   omitMetadata?: boolean;
 
-  /** Sets the total number of NFTs to return in the response. Defaults to 100. */
+  /**
+   * Sets the total number of NFTs to return in the response. Defaults to 100.
+   * Maximum page size is 100.
+   */
   pageSize?: number;
 }
 
@@ -535,7 +550,10 @@ export interface GetBaseNftsForContractOptions {
   /** Optional boolean flag to omit NFT metadata. Defaults to `false`. */
   omitMetadata: false;
 
-  /** Sets the total number of NFTs to return in the response. Defaults to 100. */
+  /**
+   * Sets the total number of NFTs to return in the response. Defaults to 100.
+   * Maximum page size is 100.
+   */
   pageSize?: number;
 }
 
