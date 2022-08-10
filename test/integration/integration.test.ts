@@ -134,6 +134,14 @@ describe('E2E integration tests', () => {
     expect(nftsForNftContract.nfts).not.toEqual(nextPage.nfts);
   });
 
+  it('getNftsForContract with limit', async () => {
+    const nftsForNftContract = await alchemy.nft.getNftsForContract(
+      contractAddress,
+      { pageSize: 10 }
+    );
+    expect(nftsForNftContract.nfts.length).toEqual(10);
+  });
+
   it('getIterator', async () => {
     jest.setTimeout(15000);
     let allNfts = [];

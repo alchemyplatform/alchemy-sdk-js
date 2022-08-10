@@ -151,7 +151,8 @@ export async function getNftsForContract(
   >(config, AlchemyApiType.NFT, 'getNFTsForCollection', srcMethod, {
     contractAddress,
     startToken: options?.pageKey,
-    withMetadata
+    withMetadata,
+    limit: options?.pageSize ?? undefined
   });
 
   return {
@@ -435,6 +436,7 @@ interface GetNftsForNftContractAlchemyParams {
   contractAddress: string;
   startToken?: string;
   withMetadata: boolean;
+  limit?: number;
 }
 
 /**

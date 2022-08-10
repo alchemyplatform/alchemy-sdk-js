@@ -537,7 +537,7 @@ describe('NFT module', () => {
     });
   });
 
-  describe('getNftsForNftContract()', () => {
+  describe('getNftsForContract()', () => {
     const contractAddress = '0xCA1';
     const pageKey = 'page-key0';
     const baseResponse: RawGetBaseNftsForContractResponse = {
@@ -577,7 +577,8 @@ describe('NFT module', () => {
         mock.onGet().reply(200, mockResponse);
         await alchemy.nft.getNftsForContract(contractAddress, {
           pageKey,
-          omitMetadata
+          omitMetadata,
+          pageSize: 90
         });
         expect(mock.history.get.length).toEqual(1);
         expect(mock.history.get[0].params).toHaveProperty(
@@ -592,6 +593,7 @@ describe('NFT module', () => {
           'withMetadata',
           expectedWithMetadata
         );
+        expect(mock.history.get[0].params).toHaveProperty('limit', 90);
       }
     );
 
