@@ -260,7 +260,7 @@ describe('NFT module', () => {
           expectedFilters
         );
         expect(mock.history.get[0].params).toHaveProperty('pageKey', pageKey);
-        expect(mock.history.get[0].params).toHaveProperty('pageSize', 10);
+        expect(mock.history.get[0].params).toHaveProperty('pageSize', 3);
         expect(mock.history.get[0].params).toHaveProperty(
           'withMetadata',
           expectedWithMetadata
