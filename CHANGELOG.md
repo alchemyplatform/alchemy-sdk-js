@@ -1,17 +1,24 @@
 # Changelog for Alchemy SDK for JavaScript
 
 ## Unreleased
+
+## 2.0.2
+
+### Major Changes
+
+- Added the `transact` namespace for functionality relating to sending transactions. This includes the Flashbots methods `sendPrivateTransaction` and `cancelPrivateTransaction`.
+
+### Minor Changes
+
 - Removed the deprecated `TOKEN` enum from `AssetTransfersCategory`.
 - Added support for Optimism Goerli network via the `Network.OPT_GOERLI` enum.
-- Added the `transact` namespace for functionality relating to sending transactions. This includes the Flashbots methods `sendPrivateTransaction` and `cancelPrivateTransaction`.
 - Added the `pageSize` parameter in `GetNftsForContractOption` to specify the number of NFTs fetched when using `alchemy.nft.getNftsForContract`.
-
+- Added correct `withMetadata` typing to `AssetTransfersResponse`.
 
 ## 2.0.1
 
-- Added correct `withMetadata` typing to `AssetTransfersResponse`.
-
 ### Minor Changes
+
 - Added an optional `url` setting to `AlchemySettings` to allow specifying a custom hardcoded URL to send all requests to.
 - Fixed a bug where the SDK would incorrectly include a gzip header in browser environments
 
