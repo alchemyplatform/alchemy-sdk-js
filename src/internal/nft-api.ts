@@ -152,7 +152,7 @@ export async function getNftsForContract(
     contractAddress,
     startToken: options?.pageKey,
     withMetadata,
-    limit: options?.limit ?? undefined
+    limit: options?.pageSize ?? undefined
   });
 
   return {

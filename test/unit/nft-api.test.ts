@@ -578,7 +578,7 @@ describe('NFT module', () => {
         await alchemy.nft.getNftsForContract(contractAddress, {
           pageKey,
           omitMetadata,
-          limit: 90
+          pageSize: 90
         });
         expect(mock.history.get.length).toEqual(1);
         expect(mock.history.get[0].params).toHaveProperty(

@@ -513,7 +513,7 @@ export interface GetNftsForContractOptions {
   omitMetadata?: boolean;
 
   /** Sets the total number of NFTs to return in the response. Defaults to 100. */
-  limit?: number;
+  pageSize?: number;
 }
 
 /**
@@ -536,7 +536,7 @@ export interface GetBaseNftsForContractOptions {
   omitMetadata: false;
 
   /** Sets the total number of NFTs to return in the response. Defaults to 100. */
-  limit?: number;
+  pageSize?: number;
 }
 
 /**

@@ -154,7 +154,7 @@ describe('E2E integration tests', () => {
   it('getNftsForContract with limit', async () => {
     const nftsForNftContract = await alchemy.nft.getNftsForContract(
       contractAddress,
-      { limit: 10 }
+      { pageSize: 10 }
     );
     expect(nftsForNftContract.nfts.length).toEqual(10);
   });
