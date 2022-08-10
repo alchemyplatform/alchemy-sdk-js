@@ -15,6 +15,8 @@ export type { WebSocketNamespace } from './api/websocket-namespace';
 
 export type { CoreNamespace } from './api/core-namespace';
 
+export type { TransactNamespace } from './api/transact-namespace';
+
 export type { BaseNftContract, NftContract, Nft, BaseNft } from './api/nft';
 
 export { fromHex, toHex, isHex } from './api/util';
