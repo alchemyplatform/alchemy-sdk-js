@@ -141,6 +141,7 @@ The `transact` namespace contains methods used for sending transactions. The uni
 
 - `sendPrivateTransaction()`: Send a private transaction through Flashbots.
 - `cancelPrivateTransaction()`: Cancel a private transaction sent with Flashbots.
+- `ethGasStationPrice()`: Get the current gas price from the [ETH Gas Station API](https://ethgasstation.info/).
 
 The `transact` namespace also aliases over several commonly used methods from the `core` namespace for convenience:
 
