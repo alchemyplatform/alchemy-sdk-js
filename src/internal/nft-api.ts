@@ -126,6 +126,7 @@ export async function getNftsForOwner(
     pageKey: options?.pageKey,
     filters: options?.excludeFilters,
     owner,
+    pageSize: options?.pageSize,
     withMetadata
   });
   return {
@@ -451,6 +452,7 @@ interface GetNftsAlchemyParams {
   pageKey?: string;
   contractAddresses?: string[];
   filters?: string[];
+  pageSize?: number;
   withMetadata: boolean;
 }
 

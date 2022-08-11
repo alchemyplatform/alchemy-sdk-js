@@ -212,7 +212,8 @@ describe('NFT module', () => {
     const getNftsParams: GetNftsForOwnerOptions = {
       pageKey,
       contractAddresses,
-      excludeFilters
+      excludeFilters,
+      pageSize: 3
     };
     const baseNftResponse: RawGetBaseNftsResponse = {
       ownedNfts: [
@@ -259,6 +260,7 @@ describe('NFT module', () => {
           expectedFilters
         );
         expect(mock.history.get[0].params).toHaveProperty('pageKey', pageKey);
+        expect(mock.history.get[0].params).toHaveProperty('pageSize', 3);
         expect(mock.history.get[0].params).toHaveProperty(
           'withMetadata',
           expectedWithMetadata
