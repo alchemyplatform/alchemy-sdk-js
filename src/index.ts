@@ -3,6 +3,8 @@ export * from './types/types';
 
 export { Alchemy } from './api/alchemy';
 
+export { Wallet } from './api/alchemy-wallet';
+
 export type { AlchemyConfig } from './api/alchemy-config';
 
 export type { AlchemyProvider } from './api/alchemy-provider';
