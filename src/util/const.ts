@@ -43,6 +43,7 @@ export const EthersNetwork = {
   [Network.OPT_GOERLI]: 'optimism-goerli',
   [Network.ARB_MAINNET]: 'arbitrum',
   [Network.ARB_RINKEBY]: 'arbitrum-rinkeby',
+  [Network.ARB_GOERLI]: 'arbitrum-goerli',
   [Network.MATIC_MAINNET]: 'matic',
   [Network.MATIC_MUMBAI]: 'maticmum'
 };

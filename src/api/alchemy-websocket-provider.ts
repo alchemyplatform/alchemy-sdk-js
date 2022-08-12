@@ -4,7 +4,8 @@ import { AlchemyProvider } from './alchemy-provider';
 import { Listener } from '@ethersproject/abstract-provider';
 import {
   AlchemyEventType,
-  AlchemyPendingTransactionsEventFilter
+  AlchemyPendingTransactionsEventFilter,
+  Network
 } from '../types/types';
 import {
   BatchPart,
@@ -36,6 +37,11 @@ import {
   WebSocketProvider
 } from '@ethersproject/providers';
 import { AlchemyConfig } from './alchemy-config';
+import {
+  getNetwork as getNetworkFromEthers,
+  Networkish
+} from '@ethersproject/networks';
+import { Network as NetworkFromEthers } from '@ethersproject/networks/lib/types';
 
 const HEARTBEAT_INTERVAL = 30000;
 const HEARTBEAT_WAIT_TIME = 10000;
@@ -118,6 +124,28 @@ export class AlchemyWebSocketProvider
     this.addSocketListeners();
     this.startHeartbeat();
     this.cancelBackfill = noop;
+  }
+
+  /**
+   * Overrides the `BaseProvider.getNetwork` method as implemented by ethers.js.
+   *
+   * This override allows the SDK to set the provider's network to values not
+   * yet supported by ethers.js.
+   *
+   * @internal
+   * @override
+   */
+  static getNetwork(network: Networkish): NetworkFromEthers {
+    // TODO: Remove this override when ethers.js supports ARB_GOERLI.
+    if (network === EthersNetwork[Network.ARB_GOERLI]) {
+      return {
+        chainId: 421613,
+        name: 'arbitrum-goerli'
+      };
+    }
+
+    // Call the standard ethers.js getNetwork method for other networks.
+    return getNetworkFromEthers(network);
   }
 
   /**

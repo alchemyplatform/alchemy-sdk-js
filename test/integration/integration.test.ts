@@ -1,9 +1,11 @@
 import {
   Alchemy,
   AssetTransfersCategory,
+  Network,
   NftExcludeFilters,
   NftTokenType
 } from '../../src';
+import { Deferred } from '../test-util';
 
 /** Temporary test */
 // TODO: REMOVE these tests once we have more comprehensive unit testing.
@@ -21,8 +23,6 @@ describe('E2E integration tests', () => {
 
     // Skip all timeouts for testing.
     jest.setTimeout(50000);
-    jest.useFakeTimers();
-    jest.spyOn(global, 'setTimeout').mockImplementation((f: any) => f());
   });
 
   it('test', async () => {
@@ -101,7 +101,7 @@ describe('E2E integration tests', () => {
     const response = await alchemy.nft.getNftsForOwner('0xshah.eth', {
       pageSize: 51
     });
-    expect(response.ownedNfts.length).toEqual(10);
+    expect(response.ownedNfts.length).toEqual(51);
   });
 
   it('getOwnersForNft from NFT', async () => {
@@ -279,6 +279,42 @@ describe('E2E integration tests', () => {
     it('Example 3: Token balances', async () => {
       await alchemy.core.getTokenBalances(ownerAddress);
       await alchemy.core.getBalance('0xshah.eth');
+    });
+  });
+
+  describe('handles networks', () => {
+    describe('AlchemyProvider', () => {
+      function testNetwork(network: Network) {
+        it(`block subscription for ${network}`, async () => {
+          const alchemy = new Alchemy({
+            network
+          });
+          const block = await alchemy.core.getBlockNumber();
+          expect(block).toBeDefined();
+        });
+      }
+      for (const network of Object.values(Network)) {
+        testNetwork(network);
+      }
+    });
+
+    describe('AlchemyWebSocketProvider', () => {
+      function testNetwork(network: Network) {
+        it(`block subscription for ${network}`, () => {
+          const alchemy = new Alchemy({
+            network
+          });
+          const done = new Deferred<void>();
+          alchemy.ws.once('block', () => {
+            alchemy.ws.removeAllListeners();
+            done.resolve();
+          });
+          return done.promise;
+        });
+      }
+      for (const network of Object.values(Network)) {
+        testNetwork(network);
+      }
     });
   });
 });

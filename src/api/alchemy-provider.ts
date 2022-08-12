@@ -4,7 +4,8 @@ import {
 } from '@ethersproject/providers';
 import {
   Network as NetworkFromEthers,
-  Networkish
+  Networkish,
+  getNetwork as getNetworkFromEthers
 } from '@ethersproject/networks';
 import { ConnectionInfo, fetchJson } from '@ethersproject/web';
 import { deepCopy } from '@ethersproject/properties';
@@ -84,6 +85,28 @@ export class AlchemyProvider
       );
     }
     return apiKey;
+  }
+
+  /**
+   * Overrides the `BaseProvider.getNetwork` method as implemented by ethers.js.
+   *
+   * This override allows the SDK to set the provider's network to values not
+   * yet supported by ethers.js.
+   *
+   * @internal
+   * @override
+   */
+  static getNetwork(network: Networkish): NetworkFromEthers {
+    // TODO: Remove this override when ethers.js supports ARB_GOERLI.
+    if (network === EthersNetwork[Network.ARB_GOERLI]) {
+      return {
+        chainId: 421613,
+        name: 'arbitrum-goerli'
+      };
+    }
+
+    // Call the standard ethers.js getNetwork method for other networks.
+    return getNetworkFromEthers(network);
   }
 
   /**

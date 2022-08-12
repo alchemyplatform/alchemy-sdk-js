@@ -16,7 +16,6 @@ describe('Alchemy class', () => {
         await alchemy.config.getProvider();
       });
     }
-
     for (const network of Object.values(Network)) {
       testNetwork(network);
     }
