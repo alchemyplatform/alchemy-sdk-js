@@ -5,6 +5,7 @@
 ### Minor Changes
 - Added support for the `pageSize` parameter in `GetNftsForOwnerOptions` to specify the number of NFTs fetched when using `alchemy.nft.getNftsForOwner()`.
 - Added the `alchemy.transact.ethGasStationPrice()` convenience method to get the current gas price from ETH Gas Station API.
+- Added support for Arbitrum Goerli network via the `Network.ARB_GOERLI` enum.
 
 ## 2.0.2
 
