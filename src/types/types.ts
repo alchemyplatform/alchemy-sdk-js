@@ -659,3 +659,57 @@ export interface SendPrivateTransactionOptions {
    */
   fast: boolean;
 }
+
+/**
+ * The response object for the {@link TransactNamespace.ethGasStationPrice}
+ * method. The gas price estimates are provided by EthGasStation. See more at
+ * {@link https://docs.ethgasstation.info/gas-price#gas-price}.
+ */
+export interface GasStationPrice {
+  /**
+   * Recommended fast (expected to be mined in < 2 minutes) gas price in x10
+   * Gwei (divide by 10 to convert it to gwei)
+   */
+  fast: number;
+
+  /**
+   * Fastest: Recommended fastest (expected to be mined in < 30 seconds) gas
+   * price in x10 Gwei(divide by 10 to convert it to gwei)
+   */
+  fastest: number;
+
+  /**
+   * Recommended safe (expected to be mined in < 30 minutes) gas price in x10
+   * Gwei(divide by 10 to convert it to gwei)
+   */
+  safeLow: number;
+
+  /**
+   * Recommended average (expected to be mined in < 5 minutes) gas price in x10
+   * Gwei(divide by 10 to convert it to gwei)
+   */
+  average: number;
+
+  /** Average time(in seconds) to mine one single block */
+  block_time: number;
+
+  /** Latest block number */
+  blockNum: number;
+
+  /** Smallest value of (gasUsed / gaslimit) from last 10 blocks */
+  speed: number;
+
+  /** Waiting time(in minutes) for safeLow gas price */
+  safeLowWait: number;
+
+  /** Waiting time(in minutes) for average gas price */
+  avgWait: number;
+
+  /** Waiting time(in minutes) for fast gas price */
+  fastWait: number;
+
+  /** Waiting time(in minutes) for fastest gas price */
+  fastestWait: number;
+
+  gasPriceRange: { [key: string]: number };
+}

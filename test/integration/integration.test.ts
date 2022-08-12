@@ -210,6 +210,12 @@ describe('E2E integration tests', () => {
     expect(result.contractAddress).toBeDefined();
   });
 
+  it('ethGasStationPrice()', async () => {
+    const response = await alchemy.transact.ethGasStationPrice();
+    expect(response.fast).toBeDefined();
+    expect(typeof response.fast).toEqual('number');
+  });
+
   describe('README examples', () => {
     it('Example 1: Getting the Nfts owned by an address', async () => {
       void alchemy.nft.getNftsForOwner('0xshah.eth').then(nfts => {
