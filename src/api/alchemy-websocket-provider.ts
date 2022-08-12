@@ -1,11 +1,15 @@
 import { BigNumber } from '@ethersproject/bignumber';
-import { DEFAULT_ALCHEMY_API_KEY, EthersNetwork, noop } from '../util/const';
+import {
+  CustomNetworks,
+  DEFAULT_ALCHEMY_API_KEY,
+  EthersNetwork,
+  noop
+} from '../util/const';
 import { AlchemyProvider } from './alchemy-provider';
 import { Listener } from '@ethersproject/abstract-provider';
 import {
   AlchemyEventType,
-  AlchemyPendingTransactionsEventFilter,
-  Network
+  AlchemyPendingTransactionsEventFilter
 } from '../types/types';
 import {
   BatchPart,
@@ -136,12 +140,8 @@ export class AlchemyWebSocketProvider
    * @override
    */
   static getNetwork(network: Networkish): NetworkFromEthers {
-    // TODO: Remove this override when ethers.js supports ARB_GOERLI.
-    if (network === EthersNetwork[Network.ARB_GOERLI]) {
-      return {
-        chainId: 421613,
-        name: 'arbitrum-goerli'
-      };
+    if (typeof network === 'string' && network in CustomNetworks) {
+      return CustomNetworks[network];
     }
 
     // Call the standard ethers.js getNetwork method for other networks.

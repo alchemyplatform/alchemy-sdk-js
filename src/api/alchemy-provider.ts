@@ -10,6 +10,7 @@ import {
 import { ConnectionInfo, fetchJson } from '@ethersproject/web';
 import { deepCopy } from '@ethersproject/properties';
 import {
+  CustomNetworks,
   DEFAULT_ALCHEMY_API_KEY,
   DEFAULT_NETWORK,
   EthersNetwork,
@@ -97,12 +98,8 @@ export class AlchemyProvider
    * @override
    */
   static getNetwork(network: Networkish): NetworkFromEthers {
-    // TODO: Remove this override when ethers.js supports ARB_GOERLI.
-    if (network === EthersNetwork[Network.ARB_GOERLI]) {
-      return {
-        chainId: 421613,
-        name: 'arbitrum-goerli'
-      };
+    if (typeof network === 'string' && network in CustomNetworks) {
+      return CustomNetworks[network];
     }
 
     // Call the standard ethers.js getNetwork method for other networks.

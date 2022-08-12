@@ -55,7 +55,8 @@ export enum Network {
   ARB_RINKEBY = 'arb-rinkeby',
   ARB_GOERLI = 'arb-goerli',
   MATIC_MAINNET = 'polygon-mainnet',
-  MATIC_MUMBAI = 'polygon-mumbai'
+  MATIC_MUMBAI = 'polygon-mumbai',
+  ASTAR_MAINNET = 'astar-mainnet'
 }
 
 /** @public */
