@@ -3,7 +3,9 @@
 ## Unreleased
 
 ### Minor Changes
+
 - Added support for the `pageSize` parameter in `GetNftsForOwnerOptions` to specify the number of NFTs fetched when using `alchemy.nft.getNftsForOwner()`.
+- Added support for a Wallet object. This object is identical to the Ethers `Wallet` class.
 - Added the `alchemy.transact.ethGasStationPrice()` convenience method to get the current gas price from ETH Gas Station API.
 
 ## 2.0.2
