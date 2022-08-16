@@ -9,6 +9,7 @@
 - Added the `alchemy.transact.ethGasStationPrice()` convenience method to get the current gas price from ETH Gas Station API.
 - Added support for Arbitrum Goerli network via the `Network.ARB_GOERLI` enum.
 - Added support for the AStar Mainnet network via the `Network.ASTAR_MAINNET` enum.
+- Added support the `tokenUriTimeoutInMs` parameter on `getNftsForOwner()`, `getNftMetadata()`, and `getNftsForContract()`.
 
 ## 2.0.2
 
