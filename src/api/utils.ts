@@ -1,4 +1,4 @@
-export {
+import {
   dnsEncode,
   hashMessage,
   id,
@@ -6,7 +6,7 @@ export {
   namehash
 } from '@ethersproject/hash';
 
-export {
+import {
   arrayify,
   concat,
   hexConcat,
@@ -25,9 +25,32 @@ export {
   stripZeros
 } from '@ethersproject/bytes';
 
-export {
+import {
   formatEther,
   parseEther,
   parseUnits,
   formatUnits
 } from '@ethersproject/units';
+
+export { dnsEncode, hashMessage, id, isValidName, namehash };
+
+export {
+  arrayify,
+  concat,
+  hexConcat,
+  hexDataSlice,
+  hexDataLength,
+  hexlify,
+  hexStripZeros,
+  hexValue,
+  hexZeroPad,
+  isBytes,
+  isBytesLike,
+  isHexString,
+  joinSignature,
+  zeroPad,
+  splitSignature,
+  stripZeros
+};
+
+export { formatEther, parseEther, parseUnits, formatUnits };
