@@ -1,11 +1,10 @@
 import { AlchemyConfig } from './alchemy-config';
-import { GasStationPrice, SendPrivateTransactionOptions } from '../types/types';
+import { SendPrivateTransactionOptions } from '../types/types';
 import { toHex } from './util';
 import {
   TransactionReceipt,
   TransactionResponse
 } from '@ethersproject/abstract-provider';
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export class TransactNamespace {
   constructor(private readonly config: AlchemyConfig) {}
@@ -125,27 +124,5 @@ export class TransactNamespace {
   ): Promise<TransactionReceipt | null> {
     const provider = await this.config.getProvider();
     return provider.waitForTransaction(transactionHash, confirmations, timeout);
-  }
-
-  /**
-   * Returns the current recommended fast, standard and safe low gas prices on
-   * the Ethereum network, along with the current block and wait times for each "speed".
-   *
-   * This endpoint is powered by the .EthGasStation API. See
-   * {@link https://docs.ethgasstation.info/gas-price)} for more information.
-   *
-   * @param apiKey Optional API key to use for the request. An API key is not
-   *   required, but you may get rate limited at higher request volumes. To
-   *   obtain an api key, visit EthGasStation.
-   */
-  async ethGasStationPrice(apiKey?: string): Promise<GasStationPrice> {
-    let gasUrl = 'https://ethgasstation.info/api/ethgasAPI.json';
-    gasUrl = apiKey ? `${gasUrl}?api-key=${apiKey}` : gasUrl;
-    const config: AxiosRequestConfig = {
-      method: 'get',
-      url: gasUrl
-    };
-    const response: AxiosResponse<GasStationPrice> = await axios(config);
-    return response.data;
   }
 }

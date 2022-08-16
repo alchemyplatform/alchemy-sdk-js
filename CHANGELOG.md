@@ -6,7 +6,6 @@
 
 - Added support for the `pageSize` parameter in `GetNftsForOwnerOptions` to specify the number of NFTs fetched when using `alchemy.nft.getNftsForOwner()`.
 - Added support for a Wallet object. This object is identical to the Ethers `Wallet` class.
-- Added the `alchemy.transact.ethGasStationPrice()` convenience method to get the current gas price from ETH Gas Station API.
 - Added support for Arbitrum Goerli network via the `Network.ARB_GOERLI` enum.
 - Added support for the AStar Mainnet network via the `Network.ASTAR_MAINNET` enum.
 
