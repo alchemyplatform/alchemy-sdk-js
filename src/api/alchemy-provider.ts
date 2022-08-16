@@ -4,11 +4,13 @@ import {
 } from '@ethersproject/providers';
 import {
   Network as NetworkFromEthers,
-  Networkish
+  Networkish,
+  getNetwork as getNetworkFromEthers
 } from '@ethersproject/networks';
 import { ConnectionInfo, fetchJson } from '@ethersproject/web';
 import { deepCopy } from '@ethersproject/properties';
 import {
+  CustomNetworks,
   DEFAULT_ALCHEMY_API_KEY,
   DEFAULT_NETWORK,
   EthersNetwork,
@@ -84,6 +86,24 @@ export class AlchemyProvider
       );
     }
     return apiKey;
+  }
+
+  /**
+   * Overrides the `BaseProvider.getNetwork` method as implemented by ethers.js.
+   *
+   * This override allows the SDK to set the provider's network to values not
+   * yet supported by ethers.js.
+   *
+   * @internal
+   * @override
+   */
+  static getNetwork(network: Networkish): NetworkFromEthers {
+    if (typeof network === 'string' && network in CustomNetworks) {
+      return CustomNetworks[network];
+    }
+
+    // Call the standard ethers.js getNetwork method for other networks.
+    return getNetworkFromEthers(network);
   }
 
   /**

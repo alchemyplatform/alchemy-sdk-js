@@ -53,8 +53,10 @@ export enum Network {
   OPT_GOERLI = 'opt-goerli',
   ARB_MAINNET = 'arb-mainnet',
   ARB_RINKEBY = 'arb-rinkeby',
+  ARB_GOERLI = 'arb-goerli',
   MATIC_MAINNET = 'polygon-mainnet',
-  MATIC_MUMBAI = 'polygon-mumbai'
+  MATIC_MUMBAI = 'polygon-mumbai',
+  ASTAR_MAINNET = 'astar-mainnet'
 }
 
 /** @public */
