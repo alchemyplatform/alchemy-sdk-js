@@ -661,3 +661,13 @@ export interface SendPrivateTransactionOptions {
    */
   fast: boolean;
 }
+
+/** Response object for the {@link TransactNamespace.sendMultiPayloadTransaction} method. */
+export interface TransactionJobResponse {
+  /** The job id. This is used to ..... */
+  // TODO: fill in the comment once the API to check job status is available.
+  transactionJobId: number;
+
+  /* An array of the transaction hashes from the different options */
+  transactionHashes: string[];
+}

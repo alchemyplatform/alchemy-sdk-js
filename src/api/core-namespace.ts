@@ -215,6 +215,8 @@ export class CoreNamespace {
    * the network that was not accounted for, but after being mined affects the
    * relevant state.
    *
+   * This is an alias for {@link TransactNamespace.estimateGas}.
+   *
    * @param transaction The transaction to estimate gas for.
    * @public
    */

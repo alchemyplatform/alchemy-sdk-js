@@ -1,25 +1,22 @@
 import { Alchemy, Wallet } from '../../src';
 import { parseEther, parseUnits } from '@ethersproject/units';
-
-const privateKey =
-  'dd5bdf09397b1fdf98e4f72c66047d5104b1511fa7dc1b8fdddd61a150f732c9';
-const publicAddress = '0x4b9007B0BcE78cfB634032ec31Ed56adB464287b';
+import { TESTING_PRIVATE_KEY, TESTING_PUBLIC_ADDRESS } from '../test-util';
 
 describe('Alchemy-Ethers Wallet', () => {
   it('returns a public address', async () => {
-    const wallet = new Wallet(privateKey);
+    const wallet = new Wallet(TESTING_PRIVATE_KEY);
     const address = await wallet.getAddress();
-    expect(address).toEqual(publicAddress);
+    expect(address).toEqual(TESTING_PUBLIC_ADDRESS);
   });
 
   it('connects to an Alchemy Provider', async () => {
     const alchemy = new Alchemy();
-    const wallet = new Wallet(privateKey);
+    const wallet = new Wallet(TESTING_PRIVATE_KEY);
     const address = await wallet.getAddress();
     const provider = await alchemy.config.getProvider();
 
     const connectedWallet = wallet.connect(await alchemy.config.getProvider());
-    expect(address).toEqual(publicAddress);
+    expect(address).toEqual(TESTING_PUBLIC_ADDRESS);
     expect(connectedWallet.provider).toEqual(provider);
   });
 
@@ -37,7 +34,7 @@ describe('Alchemy-Ethers Wallet', () => {
       chainId: 5
     };
 
-    const wallet = new Wallet(privateKey);
+    const wallet = new Wallet(TESTING_PRIVATE_KEY);
     const rawTx = await wallet.signTransaction(transaction);
     expect(rawTx).toEqual(expectedRawTx);
   });
