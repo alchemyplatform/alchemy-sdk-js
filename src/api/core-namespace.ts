@@ -17,6 +17,8 @@ import type { Deferrable } from '@ethersproject/properties';
 import {
   AssetTransfersParams,
   AssetTransfersResponse,
+  AssetTransfersWithMetadataParams,
+  AssetTransfersWithMetadataResponse,
   DeployResult,
   TokenBalancesResponse,
   TokenMetadataResponse,
@@ -27,7 +29,19 @@ import { DEFAULT_CONTRACT_ADDRESSES, ETH_NULL_VALUE } from '../util/const';
 import { toHex } from './util';
 import { formatBlock } from '../util/util';
 
+/**
+ * The core namespace contains all commonly-used [Ethers.js
+ * Provider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider)
+ * methods. If you are already using Ethers.js, you should be simply able to
+ * replace the Ethers.js Provider object with `alchemy.core` when accessing
+ * provider methods and it should just work.
+ *
+ * Do not call this constructor directly. Instead, instantiate an Alchemy object
+ * with `const alchemy = new Alchemy(config)` and then access the core namespace
+ * via `alchemy.core`.
+ */
 export class CoreNamespace {
+  /** @internal */
   constructor(private readonly config: AlchemyConfig) {}
 
   /**
@@ -416,12 +430,31 @@ export class CoreNamespace {
    * full details:
    * https://docs.alchemy.com/alchemy/enhanced-apis/transfers-api#alchemy_getassettransfers
    *
+   * This overload requires {@link AssetTransfersWithMetadataParams.withMetadata}
+   * to be set to `true`, which results in additional metadata returned in the
+   * response object.
+   *
+   * @param params An object containing fields for the asset transfer query
+   * @public
+   */
+  async getAssetTransfers(
+    params: AssetTransfersWithMetadataParams
+  ): Promise<AssetTransfersWithMetadataResponse>;
+
+  /**
+   * Get transactions for specific addresses. See the web documentation for the
+   * full details:
+   * https://docs.alchemy.com/alchemy/enhanced-apis/transfers-api#alchemy_getassettransfers
+   *
    * @param params An object containing fields for the asset transfer query.
    * @public
    */
   async getAssetTransfers(
     params: AssetTransfersParams
-  ): Promise<AssetTransfersResponse> {
+  ): Promise<AssetTransfersResponse>;
+  async getAssetTransfers(
+    params: AssetTransfersWithMetadataParams | AssetTransfersParams
+  ): Promise<AssetTransfersResponse | AssetTransfersWithMetadataResponse> {
     const provider = await this.config.getProvider();
     return provider._send(
       'alchemy_getAssetTransfers',

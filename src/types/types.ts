@@ -82,82 +82,260 @@ export interface TokenBalanceFailure {
   error: string;
 }
 
-/** @public */
+/**
+ * Response object for the {@link CoreNamespace.getTokenMetadata} method.
+ *
+ * @public
+ */
 export interface TokenMetadataResponse {
-  decimals: number | null;
-  logo: string | null;
+  /**
+   * The token's name. Is `null` if the name is not defined in the contract and
+   * not available from other sources.
+   */
   name: string | null;
+
+  /**
+   * The token's symbol. Is `null` if the symbol is not defined in the contract
+   * and not available from other sources.
+   */
   symbol: string | null;
+
+  /**
+   * The number of decimals of the token. Returns `null` if not defined in the
+   * contract and not available from other sources.
+   */
+  decimals: number | null;
+
+  /** URL link to the token's logo. Is `null` if the logo is not available. */
+  logo: string | null;
 }
 
-/** @public */
+/**
+ * Parameters for the {@link CoreNamespace.getAssetTransfers} method.
+ *
+ * @public
+ */
 export interface AssetTransfersParams {
+  /**
+   * The starting block to check for transfers. This value is inclusive and
+   * defaults to `0x0` if omitted.
+   */
   fromBlock?: string;
+
+  /**
+   * The ending block to check for transfers. This value is inclusive and
+   * defaults to the latest block if omitted.
+   */
   toBlock?: string;
+
+  /**
+   * Whether to return results in ascending or descending order by block number.
+   * Defaults to ascending if omitted.
+   */
   order?: AssetTransfersOrder;
+
+  /**
+   * The from address to filter transfers by. This value defaults to a wildcard
+   * for all addresses if omitted.
+   */
   fromAddress?: string;
+
+  /**
+   * The to address to filter transfers by. This value defaults to a wildcard
+   * for all address if omitted.
+   */
   toAddress?: string;
+
+  /**
+   * List of contract addresses to filter for - only applies to "erc20",
+   * "erc721", "erc1155" transfers. Defaults to all address if omitted.
+   */
   contractAddresses?: string[];
+
+  /**
+   * Whether to exclude transfers with zero value. Note that zero value is
+   * different than null value. Defaults to `false` if omitted.
+   */
   excludeZeroValue?: boolean;
-  maxCount?: number;
+
+  /** REQUIRED field. An array of categories to get transfers for. */
   category: AssetTransfersCategory[];
+
+  /** The maximum number of results to return per page. Defaults to 1000 if omitted. */
+  maxCount?: number;
+
+  /**
+   * Optional page key from an existing {@link OwnedBaseNftsResponse}
+   * {@link AssetTransfersResult}to use for pagination.
+   */
   pageKey?: string;
+
+  /**
+   * Whether to include additional metadata about each transfer event. Defaults
+   * to `false` if omitted.
+   */
   withMetadata?: boolean;
 }
 
-/** @public */
+/**
+ * Parameters for the {@link CoreNamespace.getAssetTransfers} method that
+ * includes metadata.
+ *
+ * @public
+ */
+export interface AssetTransfersWithMetadataParams extends AssetTransfersParams {
+  withMetadata: true;
+}
+
+/**
+ * Categories of transfers to use with the {@link AssetTransfersParams} request
+ * object when using {@link CoreNamespace.getAssetTransfers}.
+ *
+ * @public
+ */
 export enum AssetTransfersCategory {
+  /**
+   * Top level ETH transactions that occur where the `fromAddress` is an
+   * external user-created address. External addresses have private keys and are
+   * accessed by users.
+   */
   EXTERNAL = 'external',
-  INTERNAL = 'internal',
-  ERC20 = 'erc20',
-  ERC721 = 'erc721',
-  ERC1155 = 'erc1155',
 
   /**
-   * Special contracts that don't follow ERC 721/1155, (ex: CryptoKitties).
-   *
-   * @beta
+   * Top level ETH transactions that occur where the `fromAddress` is an
+   * internal, smart contract address. For example, a smart contract calling
+   * another smart contract or sending
    */
+  INTERNAL = 'internal',
+
+  /** ERC20 transfers. */
+  ERC20 = 'erc20',
+
+  /** ERC721 transfers. */
+  ERC721 = 'erc721',
+
+  /** ERC1155 transfers. */
+  ERC1155 = 'erc1155',
+
+  /** Special contracts that don't follow ERC 721/1155, (ex: CryptoKitties). */
   SPECIALNFT = 'specialnft'
 }
 
-/** @public */
+/**
+ * Enum for the order of the {@link AssetTransfersParams} request object when
+ * using {@link CoreNamespace.getAssetTransfers}.
+ *
+ * @public
+ */
 export enum AssetTransfersOrder {
   ASCENDING = 'asc',
   DESCENDING = 'desc'
 }
 
-/** @public */
+/**
+ * An enum for specifying the token type on NFTs.
+ *
+ * @public
+ */
 export enum NftTokenType {
   ERC721 = 'ERC721',
   ERC1155 = 'ERC1155',
   UNKNOWN = 'UNKNOWN'
 }
 
-/** @public */
+/**
+ * Response object for the {@link CoreNamespace.getAssetTransfers} method.
+ *
+ * @public
+ */
 export interface AssetTransfersResponse {
   transfers: AssetTransfersResult[];
+  /** Page key for the next page of results, if one exists. */
   pageKey?: string;
 }
 
-/** @public */
-export interface AssetTransfersResult {
-  category: AssetTransfersCategory;
-  blockNum: string;
-  from: string;
-  to: string | null;
-  value: number | null;
-  erc721TokenId: string | null;
-  erc1155Metadata: ERC1155Metadata[] | null;
-  tokenId: string | null;
-  asset: string | null;
-  hash: string;
-  rawContract: RawContract;
-  metadata?: AssetTransfersMetadata;
+/**
+ * Response object for the {@link CoreNamespace.getAssetTransfers} method when
+ * the {@link AssetTransfersWithMetadataParams} are used.
+ *
+ * @public
+ */
+export interface AssetTransfersWithMetadataResponse {
+  transfers: AssetTransfersWithMetadataResult[];
+  pageKey?: string;
 }
 
-/** @public */
+/**
+ * Represents a transfer event that is returned in a {@link AssetTransfersResponse}.
+ *
+ * @public
+ */
+export interface AssetTransfersResult {
+  /** The category of the transfer. */
+  category: AssetTransfersCategory;
+
+  /** The block number where the transfer occurred. */
+  blockNum: string;
+
+  /** The from address of the transfer. */
+  from: string;
+
+  /** The to address of the transfer. */
+  to: string | null;
+
+  /**
+   * Converted asset transfer value as a number (raw value divided by contract
+   * decimal). `null` if ERC721 transfer or contract decimal not available.
+   */
+  value: number | null;
+
+  /**
+   * The raw ERC721 token id of the transfer as a hex string. `null` if not an
+   * ERC721 transfer.
+   */
+  erc721TokenId: string | null;
+
+  /**
+   * A list of ERC1155 metadata objects if the asset transferred is an ERC1155
+   * token. `null` if not an ERC1155 transfer.
+   */
+  erc1155Metadata: ERC1155Metadata[] | null;
+
+  /** The token id of the token transferred. */
+  tokenId: string | null;
+
+  /**
+   * Returns the token's symbol or ETH for other transfers. `null` if the
+   * information was not available.
+   */
+  asset: string | null;
+
+  /** The transaction hash of the transfer transaction. */
+  hash: string;
+
+  /** Information about the raw contract of the asset transferred. */
+  rawContract: RawContract;
+}
+
+/**
+ * Represents a transfer event that is returned in a
+ * {@link AssetTransfersResponse} when {@link AssetTransfersWithMetadataParams} are used.
+ *
+ * @public
+ */
+export interface AssetTransfersWithMetadataResult extends AssetTransfersResult {
+  /** Additional metadata about the transfer event. */
+  metadata: AssetTransfersMetadata;
+}
+
+/**
+ * The metadata object for a {@link AssetTransfersResult} when the
+ * {@link AssetTransfersParams.withMetadata} field is set to true.
+ *
+ * @public
+ */
 export interface AssetTransfersMetadata {
+  /** Timestamp of the block from which the transaction event originated. */
   blockTimestamp: string;
 }
 
@@ -474,36 +652,76 @@ export enum RefreshState {
   QUEUE_FAILED = 'queue_failed'
 }
 
-/** @public */
+/**
+ * The parameter field of {@link TransactionReceiptsParams}.
+ *
+ * @public
+ */
 export interface TransactionReceiptsBlockNumber {
+  /** The block number to get transaction receipts for. */
   blockNumber: string;
 }
 
-/** @public */
+/**
+ * The parameter field of {@link TransactionReceiptsParams}.
+ *
+ * @public
+ */
 export interface TransactionReceiptsBlockHash {
+  /** The block hash to get transaction receipts for. */
   blockHash: string;
 }
 
-/** @public */
+/**
+ * The parameters to use with the {@link CoreNamespace.getTransactionReceipts} method.
+ *
+ * @public
+ */
 export type TransactionReceiptsParams =
   | TransactionReceiptsBlockNumber
   | TransactionReceiptsBlockHash;
 
-/** @public */
+/**
+ * Response object for a {@link CoreNamespace.getTransactionReceipts} call.
+ *
+ * @public
+ */
 export interface TransactionReceiptsResponse {
+  /** A list of transaction receipts for the queried block. */
   receipts: TransactionReceipt[] | null;
 }
 
-/** @public */
+/**
+ * Metadata object returned in a {@link AssetTransfersResult} object if the asset
+ * transferred is an ERC1155.
+ *
+ * @public
+ */
 export interface ERC1155Metadata {
   tokenId: string;
   value: string;
 }
 
-/** @public */
+/**
+ * Information about the underlying contract for the asset that was transferred
+ * in a {@link AssetTransfersResult} object.
+ *
+ * @public
+ */
 export interface RawContract {
+  /**
+   * The raw transfer value as a hex string. `null` if the transfer was for an
+   * ERC721 or ERC1155 token.
+   */
   value: string | null;
+
+  /** The contract address. `null` if it was an internal or external transfer. */
   address: string | null;
+
+  /**
+   * The number of decimals in the contract as a hex string. `null` if the value
+   * is not in the contract and not available from other sources.
+   */
   decimal: string | null;
 }
 
