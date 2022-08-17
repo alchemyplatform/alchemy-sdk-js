@@ -1,3 +1,4 @@
+'use strict';
 /** This is the main entry point for the library and exports user-facing API. */
 export * from './types/types';
 
@@ -5,7 +6,7 @@ export { Alchemy } from './api/alchemy';
 
 export { Wallet } from './api/alchemy-wallet';
 
-export * as Utils from './api/utils';
+// export { Utils } from './api/exported-utils';
 
 export type { AlchemyConfig } from './api/alchemy-config';
 
@@ -27,36 +28,36 @@ export { fromHex, toHex, isHex } from './api/util';
 
 export { setLogLevel, LogLevelString as LogLevel } from './util/logger';
 
-// export {
-//   dnsEncode,
-//   hashMessage,
-//   id,
-//   isValidName,
-//   namehash
-// } from '@ethersproject/hash';
-//
-// export {
-//   arrayify,
-//   concat,
-//   hexConcat,
-//   hexDataSlice,
-//   hexDataLength,
-//   hexlify,
-//   hexStripZeros,
-//   hexValue,
-//   hexZeroPad,
-//   isBytes,
-//   isBytesLike,
-//   isHexString,
-//   joinSignature,
-//   zeroPad,
-//   splitSignature,
-//   stripZeros
-// } from '@ethersproject/bytes';
-//
-// export {
-//   formatEther,
-//   parseEther,
-//   parseUnits,
-//   formatUnits
-// } from '@ethersproject/units';
+export {
+  dnsEncode,
+  hashMessage,
+  id,
+  isValidName,
+  namehash
+} from '@ethersproject/hash';
+
+export {
+  arrayify,
+  concat,
+  hexConcat,
+  hexDataSlice,
+  hexDataLength,
+  hexlify,
+  hexStripZeros,
+  hexValue,
+  hexZeroPad,
+  isBytes,
+  isBytesLike,
+  isHexString,
+  joinSignature,
+  zeroPad,
+  splitSignature,
+  stripZeros
+} from '@ethersproject/bytes';
+
+export {
+  formatEther,
+  parseEther,
+  parseUnits,
+  formatUnits
+} from '@ethersproject/units';

@@ -1,3 +1,4 @@
+'use strict';
 import {
   dnsEncode,
   hashMessage,
@@ -32,9 +33,12 @@ import {
   formatUnits
 } from '@ethersproject/units';
 
-export { dnsEncode, hashMessage, id, isValidName, namehash };
-
 export {
+  dnsEncode,
+  hashMessage,
+  id,
+  isValidName,
+  namehash,
   arrayify,
   concat,
   hexConcat,
@@ -50,7 +54,9 @@ export {
   joinSignature,
   zeroPad,
   splitSignature,
-  stripZeros
+  stripZeros,
+  formatEther,
+  parseEther,
+  parseUnits,
+  formatUnits
 };
-
-export { formatEther, parseEther, parseUnits, formatUnits };
