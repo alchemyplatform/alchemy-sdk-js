@@ -8,6 +8,7 @@
 - Added support for a Wallet object. This object is identical to the Ethers `Wallet` class.
 - Added support for Arbitrum Goerli network via the `Network.ARB_GOERLI` enum.
 - Added support for the AStar Mainnet network via the `Network.ASTAR_MAINNET` enum.
+- Added a `size` field to the `Media` object in the NFT metadata responses to indicate the size of the media in bytes.
 
 ## 2.0.2
 
