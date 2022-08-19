@@ -264,6 +264,14 @@ export interface GetNftsForOwnerOptions {
 
   /** Optional boolean flag to omit NFT metadata. Defaults to `false`. */
   omitMetadata?: boolean;
+
+  /**
+   * No set timeout by default - When metadata is requested, this parameter is
+   * the timeout (in milliseconds) for the website hosting the metadata to
+   * respond. If you want to only access the cache and not live fetch any
+   * metadata for cache misses then set this value to 0.
+   */
+  tokenUriTimeoutInMs?: number;
 }
 
 /**
@@ -299,6 +307,14 @@ export interface GetBaseNftsForOwnerOptions {
 
   /** Optional boolean flag to include NFT metadata. Defaults to `false`. */
   omitMetadata: true;
+
+  /**
+   * No set timeout by default - When metadata is requested, this parameter is
+   * the timeout (in milliseconds) for the website hosting the metadata to
+   * respond. If you want to only access the cache and not live fetch any
+   * metadata for cache misses then set this value to 0.
+   */
+  tokenUriTimeoutInMs?: number;
 }
 
 /**
@@ -531,6 +547,14 @@ export interface GetNftsForContractOptions {
    * Maximum page size is 100.
    */
   pageSize?: number;
+
+  /**
+   * No set timeout by default - When metadata is requested, this parameter is
+   * the timeout (in milliseconds) for the website hosting the metadata to
+   * respond. If you want to only access the cache and not live fetch any
+   * metadata for cache misses then set this value to 0.
+   */
+  tokenUriTimeoutInMs?: number;
 }
 
 /**
