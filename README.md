@@ -228,13 +228,6 @@ using an IDE. To browse the documentation separately, you can view the generated
 in `etc/alchemy-sdk.api.md`. You can view generated Markdown files for each endpoint in the `docs-md` directory,
 or as a webpage by opening `docs/index.html` in your browser.
 
-## Future Work
-
-There's a long list, but here are the main ones:
-
-- Retry count support for json-rpc calls (currently only for NFT API calls).
-- More config options for the base ethers.js AlchemyProvider.
-
 ## Usage Examples
 
 ### Getting the NFTs owned by an address
