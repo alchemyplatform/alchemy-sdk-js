@@ -35,7 +35,15 @@ import {
   refreshNftMetadata
 } from '../internal/nft-api';
 
+/**
+ * The NFT namespace contains all the functionality related to NFTs.
+ *
+ * Do not call this constructor directly. Instead, instantiate an Alchemy object
+ * with `const alchemy = new Alchemy(config)` and then access the core namespace
+ * via `alchemy.nft`.
+ */
 export class NftNamespace {
+  /** @internal */
   constructor(private readonly config: AlchemyConfig) {}
 
   /**

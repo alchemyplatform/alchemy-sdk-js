@@ -6,7 +6,16 @@ import {
   TransactionResponse
 } from '@ethersproject/abstract-provider';
 
+/**
+ * The Transact namespace contains methods used for sending transactions and
+ * checking on the state of submitted transactions.
+ *
+ * Do not call this constructor directly. Instead, instantiate an Alchemy object
+ * with `const alchemy = new Alchemy(config)` and then access the core namespace
+ * via `alchemy.transact`.
+ */
 export class TransactNamespace {
+  /** @internal */
   constructor(private readonly config: AlchemyConfig) {}
 
   /**

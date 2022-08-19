@@ -71,7 +71,7 @@ describe('E2E integration tests', () => {
 
     // First transfer specific checks
     expect(firstTransfer.blockNum).toEqual('0xbb933a');
-    expect(firstTransfer.metadata?.blockTimestamp).toEqual(
+    expect(firstTransfer.metadata.blockTimestamp).toEqual(
       '2021-04-22T23:13:40.000Z'
     );
   });
