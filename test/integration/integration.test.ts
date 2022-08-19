@@ -219,6 +219,12 @@ describe('E2E integration tests', () => {
       response.transactionHashes[0]
     );
     expect(tx).toBeDefined();
+    console.log(response);
+  });
+
+  it('get tx job status', async () => {
+    const resp = await alchemy.transact.getTransactionJobStatus('0xe1471c');
+    console.log(resp);
   });
 
   it('figure out raw tx', async () => {

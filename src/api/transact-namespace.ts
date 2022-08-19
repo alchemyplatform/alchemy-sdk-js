@@ -31,8 +31,8 @@ export class TransactNamespace {
    * Returns the transaction hash of the submitted transaction.
    *
    * @param signedTransaction The raw, signed transaction as a hash.
-   * @param maxBlockNumber Optional hex-encoded number string. Highest block
-   *   number in which the transaction should be included.
+   * @param maxBlockNumber Optional highest block number in which the
+   *   transaction should be included.
    * @param options Options to configure the request.
    */
   async sendPrivateTransaction(
@@ -242,6 +242,14 @@ export class TransactNamespace {
     );
   }
 
+  async getTransactionJobStatus(transactionJobId: string): Promise<any> {
+    const provider = await this.config.getProvider();
+    return provider._send(
+      'alchemy_getTransactionStatus',
+      [transactionJobId],
+      'getTransactionJobStatus'
+    );
+  }
   /**
    * Returns a promise which will not resolve until specified transaction hash is mined.
    *
