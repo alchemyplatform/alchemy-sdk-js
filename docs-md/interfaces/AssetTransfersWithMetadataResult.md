@@ -1,30 +1,32 @@
-[alchemy-sdk](../README.md) / [Exports](../modules.md) / AssetTransfersResult
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / AssetTransfersWithMetadataResult
 
-# Interface: AssetTransfersResult
+# Interface: AssetTransfersWithMetadataResult
 
-Represents a transfer event that is returned in a [AssetTransfersResponse](AssetTransfersResponse.md).
+Represents a transfer event that is returned in a
+[AssetTransfersResponse](AssetTransfersResponse.md) when [AssetTransfersWithMetadataParams](AssetTransfersWithMetadataParams.md) are used.
 
 ## Hierarchy
 
-- **`AssetTransfersResult`**
+- [`AssetTransfersResult`](AssetTransfersResult.md)
 
-  ↳ [`AssetTransfersWithMetadataResult`](AssetTransfersWithMetadataResult.md)
+  ↳ **`AssetTransfersWithMetadataResult`**
 
 ## Table of contents
 
 ### Properties
 
-- [asset](AssetTransfersResult.md#asset)
-- [blockNum](AssetTransfersResult.md#blocknum)
-- [category](AssetTransfersResult.md#category)
-- [erc1155Metadata](AssetTransfersResult.md#erc1155metadata)
-- [erc721TokenId](AssetTransfersResult.md#erc721tokenid)
-- [from](AssetTransfersResult.md#from)
-- [hash](AssetTransfersResult.md#hash)
-- [rawContract](AssetTransfersResult.md#rawcontract)
-- [to](AssetTransfersResult.md#to)
-- [tokenId](AssetTransfersResult.md#tokenid)
-- [value](AssetTransfersResult.md#value)
+- [asset](AssetTransfersWithMetadataResult.md#asset)
+- [blockNum](AssetTransfersWithMetadataResult.md#blocknum)
+- [category](AssetTransfersWithMetadataResult.md#category)
+- [erc1155Metadata](AssetTransfersWithMetadataResult.md#erc1155metadata)
+- [erc721TokenId](AssetTransfersWithMetadataResult.md#erc721tokenid)
+- [from](AssetTransfersWithMetadataResult.md#from)
+- [hash](AssetTransfersWithMetadataResult.md#hash)
+- [metadata](AssetTransfersWithMetadataResult.md#metadata)
+- [rawContract](AssetTransfersWithMetadataResult.md#rawcontract)
+- [to](AssetTransfersWithMetadataResult.md#to)
+- [tokenId](AssetTransfersWithMetadataResult.md#tokenid)
+- [value](AssetTransfersWithMetadataResult.md#value)
 
 ## Properties
 
@@ -34,6 +36,10 @@ Represents a transfer event that is returned in a [AssetTransfersResponse](Asset
 
 Returns the token's symbol or ETH for other transfers. `null` if the
 information was not available.
+
+#### Inherited from
+
+[AssetTransfersResult](AssetTransfersResult.md).[asset](AssetTransfersResult.md#asset)
 
 #### Defined in
 
@@ -47,6 +53,10 @@ ___
 
 The block number where the transfer occurred.
 
+#### Inherited from
+
+[AssetTransfersResult](AssetTransfersResult.md).[blockNum](AssetTransfersResult.md#blocknum)
+
 #### Defined in
 
 [src/types/types.ts:278](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L278)
@@ -58,6 +68,10 @@ ___
 • **category**: [`AssetTransfersCategory`](../enums/AssetTransfersCategory.md)
 
 The category of the transfer.
+
+#### Inherited from
+
+[AssetTransfersResult](AssetTransfersResult.md).[category](AssetTransfersResult.md#category)
 
 #### Defined in
 
@@ -72,6 +86,10 @@ ___
 A list of ERC1155 metadata objects if the asset transferred is an ERC1155
 token. `null` if not an ERC1155 transfer.
 
+#### Inherited from
+
+[AssetTransfersResult](AssetTransfersResult.md).[erc1155Metadata](AssetTransfersResult.md#erc1155metadata)
+
 #### Defined in
 
 [src/types/types.ts:302](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L302)
@@ -85,6 +103,10 @@ ___
 The raw ERC721 token id of the transfer as a hex string. `null` if not an
 ERC721 transfer.
 
+#### Inherited from
+
+[AssetTransfersResult](AssetTransfersResult.md).[erc721TokenId](AssetTransfersResult.md#erc721tokenid)
+
 #### Defined in
 
 [src/types/types.ts:296](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L296)
@@ -96,6 +118,10 @@ ___
 • **from**: `string`
 
 The from address of the transfer.
+
+#### Inherited from
+
+[AssetTransfersResult](AssetTransfersResult.md).[from](AssetTransfersResult.md#from)
 
 #### Defined in
 
@@ -109,9 +135,25 @@ ___
 
 The transaction hash of the transfer transaction.
 
+#### Inherited from
+
+[AssetTransfersResult](AssetTransfersResult.md).[hash](AssetTransfersResult.md#hash)
+
 #### Defined in
 
 [src/types/types.ts:314](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L314)
+
+___
+
+### metadata
+
+• **metadata**: [`AssetTransfersMetadata`](AssetTransfersMetadata.md)
+
+Additional metadata about the transfer event.
+
+#### Defined in
+
+[src/types/types.ts:328](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L328)
 
 ___
 
@@ -120,6 +162,10 @@ ___
 • **rawContract**: [`RawContract`](RawContract.md)
 
 Information about the raw contract of the asset transferred.
+
+#### Inherited from
+
+[AssetTransfersResult](AssetTransfersResult.md).[rawContract](AssetTransfersResult.md#rawcontract)
 
 #### Defined in
 
@@ -133,6 +179,10 @@ ___
 
 The to address of the transfer.
 
+#### Inherited from
+
+[AssetTransfersResult](AssetTransfersResult.md).[to](AssetTransfersResult.md#to)
+
 #### Defined in
 
 [src/types/types.ts:284](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L284)
@@ -144,6 +194,10 @@ ___
 • **tokenId**: ``null`` \| `string`
 
 The token id of the token transferred.
+
+#### Inherited from
+
+[AssetTransfersResult](AssetTransfersResult.md).[tokenId](AssetTransfersResult.md#tokenid)
 
 #### Defined in
 
@@ -157,6 +211,10 @@ ___
 
 Converted asset transfer value as a number (raw value divided by contract
 decimal). `null` if ERC721 transfer or contract decimal not available.
+
+#### Inherited from
+
+[AssetTransfersResult](AssetTransfersResult.md).[value](AssetTransfersResult.md#value)
 
 #### Defined in
 

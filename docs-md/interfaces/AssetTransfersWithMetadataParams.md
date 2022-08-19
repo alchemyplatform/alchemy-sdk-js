@@ -1,30 +1,31 @@
-[alchemy-sdk](../README.md) / [Exports](../modules.md) / AssetTransfersParams
+[alchemy-sdk](../README.md) / [Exports](../modules.md) / AssetTransfersWithMetadataParams
 
-# Interface: AssetTransfersParams
+# Interface: AssetTransfersWithMetadataParams
 
-Parameters for the [CoreNamespace.getAssetTransfers](../classes/CoreNamespace.md#getassettransfers) method.
+Parameters for the [CoreNamespace.getAssetTransfers](../classes/CoreNamespace.md#getassettransfers) method that
+includes metadata.
 
 ## Hierarchy
 
-- **`AssetTransfersParams`**
+- [`AssetTransfersParams`](AssetTransfersParams.md)
 
-  ↳ [`AssetTransfersWithMetadataParams`](AssetTransfersWithMetadataParams.md)
+  ↳ **`AssetTransfersWithMetadataParams`**
 
 ## Table of contents
 
 ### Properties
 
-- [category](AssetTransfersParams.md#category)
-- [contractAddresses](AssetTransfersParams.md#contractaddresses)
-- [excludeZeroValue](AssetTransfersParams.md#excludezerovalue)
-- [fromAddress](AssetTransfersParams.md#fromaddress)
-- [fromBlock](AssetTransfersParams.md#fromblock)
-- [maxCount](AssetTransfersParams.md#maxcount)
-- [order](AssetTransfersParams.md#order)
-- [pageKey](AssetTransfersParams.md#pagekey)
-- [toAddress](AssetTransfersParams.md#toaddress)
-- [toBlock](AssetTransfersParams.md#toblock)
-- [withMetadata](AssetTransfersParams.md#withmetadata)
+- [category](AssetTransfersWithMetadataParams.md#category)
+- [contractAddresses](AssetTransfersWithMetadataParams.md#contractaddresses)
+- [excludeZeroValue](AssetTransfersWithMetadataParams.md#excludezerovalue)
+- [fromAddress](AssetTransfersWithMetadataParams.md#fromaddress)
+- [fromBlock](AssetTransfersWithMetadataParams.md#fromblock)
+- [maxCount](AssetTransfersWithMetadataParams.md#maxcount)
+- [order](AssetTransfersWithMetadataParams.md#order)
+- [pageKey](AssetTransfersWithMetadataParams.md#pagekey)
+- [toAddress](AssetTransfersWithMetadataParams.md#toaddress)
+- [toBlock](AssetTransfersWithMetadataParams.md#toblock)
+- [withMetadata](AssetTransfersWithMetadataParams.md#withmetadata)
 
 ## Properties
 
@@ -33,6 +34,10 @@ Parameters for the [CoreNamespace.getAssetTransfers](../classes/CoreNamespace.md
 • **category**: [`AssetTransfersCategory`](../enums/AssetTransfersCategory.md)[]
 
 REQUIRED field. An array of categories to get transfers for.
+
+#### Inherited from
+
+[AssetTransfersParams](AssetTransfersParams.md).[category](AssetTransfersParams.md#category)
 
 #### Defined in
 
@@ -47,6 +52,10 @@ ___
 List of contract addresses to filter for - only applies to "erc20",
 "erc721", "erc1155" transfers. Defaults to all address if omitted.
 
+#### Inherited from
+
+[AssetTransfersParams](AssetTransfersParams.md).[contractAddresses](AssetTransfersParams.md#contractaddresses)
+
 #### Defined in
 
 [src/types/types.ts:153](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L153)
@@ -59,6 +68,10 @@ ___
 
 Whether to exclude transfers with zero value. Note that zero value is
 different than null value. Defaults to `false` if omitted.
+
+#### Inherited from
+
+[AssetTransfersParams](AssetTransfersParams.md).[excludeZeroValue](AssetTransfersParams.md#excludezerovalue)
 
 #### Defined in
 
@@ -73,6 +86,10 @@ ___
 The from address to filter transfers by. This value defaults to a wildcard
 for all addresses if omitted.
 
+#### Inherited from
+
+[AssetTransfersParams](AssetTransfersParams.md).[fromAddress](AssetTransfersParams.md#fromaddress)
+
 #### Defined in
 
 [src/types/types.ts:141](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L141)
@@ -86,6 +103,10 @@ ___
 The starting block to check for transfers. This value is inclusive and
 defaults to `0x0` if omitted.
 
+#### Inherited from
+
+[AssetTransfersParams](AssetTransfersParams.md).[fromBlock](AssetTransfersParams.md#fromblock)
+
 #### Defined in
 
 [src/types/types.ts:123](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L123)
@@ -97,6 +118,10 @@ ___
 • `Optional` **maxCount**: `number`
 
 The maximum number of results to return per page. Defaults to 1000 if omitted.
+
+#### Inherited from
+
+[AssetTransfersParams](AssetTransfersParams.md).[maxCount](AssetTransfersParams.md#maxcount)
 
 #### Defined in
 
@@ -111,6 +136,10 @@ ___
 Whether to return results in ascending or descending order by block number.
 Defaults to ascending if omitted.
 
+#### Inherited from
+
+[AssetTransfersParams](AssetTransfersParams.md).[order](AssetTransfersParams.md#order)
+
 #### Defined in
 
 [src/types/types.ts:135](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L135)
@@ -123,6 +152,10 @@ ___
 
 Optional page key from an existing [OwnedBaseNftsResponse](OwnedBaseNftsResponse.md)
 [AssetTransfersResult](AssetTransfersResult.md)to use for pagination.
+
+#### Inherited from
+
+[AssetTransfersParams](AssetTransfersParams.md).[pageKey](AssetTransfersParams.md#pagekey)
 
 #### Defined in
 
@@ -137,6 +170,10 @@ ___
 The to address to filter transfers by. This value defaults to a wildcard
 for all address if omitted.
 
+#### Inherited from
+
+[AssetTransfersParams](AssetTransfersParams.md).[toAddress](AssetTransfersParams.md#toaddress)
+
 #### Defined in
 
 [src/types/types.ts:147](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L147)
@@ -150,6 +187,10 @@ ___
 The ending block to check for transfers. This value is inclusive and
 defaults to the latest block if omitted.
 
+#### Inherited from
+
+[AssetTransfersParams](AssetTransfersParams.md).[toBlock](AssetTransfersParams.md#toblock)
+
 #### Defined in
 
 [src/types/types.ts:129](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L129)
@@ -158,11 +199,15 @@ ___
 
 ### withMetadata
 
-• `Optional` **withMetadata**: `boolean`
+• **withMetadata**: ``true``
 
 Whether to include additional metadata about each transfer event. Defaults
 to `false` if omitted.
 
+#### Overrides
+
+[AssetTransfersParams](AssetTransfersParams.md).[withMetadata](AssetTransfersParams.md#withmetadata)
+
 #### Defined in
 
-[src/types/types.ts:177](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L177)
+[src/types/types.ts:187](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L187)

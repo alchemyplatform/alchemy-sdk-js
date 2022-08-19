@@ -35,7 +35,15 @@ import {
   refreshNftMetadata
 } from '../internal/nft-api';
 
+/**
+ * The NFT namespace contains all the functionality related to NFTs.
+ *
+ * Do not call this constructor directly. Instead, instantiate an Alchemy object
+ * with `const alchemy = new Alchemy(config)` and then access the core namespace
+ * via `alchemy.nft`.
+ */
 export class NftNamespace {
+  /** @internal */
   constructor(private readonly config: AlchemyConfig) {}
 
   /**
@@ -44,14 +52,25 @@ export class NftNamespace {
    * @param contractAddress - The contract address of the NFT.
    * @param tokenId - Token id of the NFT.
    * @param tokenType - Optionally specify the type of token to speed up the query.
+   * @param tokenUriTimeoutInMs - No set timeout by default - When metadata is
+   *   requested, this parameter is the timeout (in milliseconds) for the
+   *   website hosting the metadata to respond. If you want to only access the
+   *   cache and not live fetch any metadata for cache misses then set this value to 0.
    * @public
    */
   getNftMetadata(
     contractAddress: string,
     tokenId: BigNumberish,
-    tokenType?: NftTokenType
+    tokenType?: NftTokenType,
+    tokenUriTimeoutInMs?: number
   ): Promise<Nft> {
-    return getNftMetadata(this.config, contractAddress, tokenId, tokenType);
+    return getNftMetadata(
+      this.config,
+      contractAddress,
+      tokenId,
+      tokenType,
+      tokenUriTimeoutInMs
+    );
   }
 
   /**

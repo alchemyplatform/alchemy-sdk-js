@@ -47,6 +47,7 @@ export async function getNftMetadata(
   contractAddress: string,
   tokenId: BigNumberish,
   tokenType?: NftTokenType,
+  tokenUriTimeoutInMs?: number,
   srcMethod = 'getNftMetadata'
 ): Promise<Nft> {
   const response = await requestHttpWithBackoff<GetNftMetadataParams, RawNft>(
@@ -57,7 +58,8 @@ export async function getNftMetadata(
     {
       contractAddress,
       tokenId: BigNumber.from(tokenId!).toString(),
-      tokenType: tokenType !== NftTokenType.UNKNOWN ? tokenType : undefined
+      tokenType: tokenType !== NftTokenType.UNKNOWN ? tokenType : undefined,
+      tokenUriTimeoutInMs
     }
   );
   return getNftFromRaw(response, contractAddress);
@@ -127,7 +129,8 @@ export async function getNftsForOwner(
     filters: options?.excludeFilters,
     owner,
     pageSize: options?.pageSize,
-    withMetadata
+    withMetadata,
+    tokenUriTimeoutInMs: options?.tokenUriTimeoutInMs
   });
   return {
     ownedNfts: response.ownedNfts.map(res => ({
@@ -147,13 +150,14 @@ export async function getNftsForContract(
 ): Promise<NftContractNftsResponse | NftContractBaseNftsResponse> {
   const withMetadata = omitMetadataToWithMetadata(options?.omitMetadata);
   const response = await requestHttpWithBackoff<
-    GetNftsForNftContractAlchemyParams,
+    GetNftsForContractAlchemyParams,
     RawGetBaseNftsForContractResponse | RawGetNftsForContractResponse
   >(config, AlchemyApiType.NFT, 'getNFTsForCollection', srcMethod, {
     contractAddress,
     startToken: options?.pageKey,
     withMetadata,
-    limit: options?.pageSize ?? undefined
+    limit: options?.pageSize ?? undefined,
+    tokenUriTimeoutInMs: 50
   });
 
   return {
@@ -305,6 +309,7 @@ export async function refreshNftMetadata(
     contractAddress,
     tokenIdString,
     undefined,
+    undefined,
     srcMethod
   );
   const second = await refresh(
@@ -433,11 +438,12 @@ function parseReingestionState(reingestionState: string): RefreshState {
  *
  * @internal
  */
-interface GetNftsForNftContractAlchemyParams {
+interface GetNftsForContractAlchemyParams {
   contractAddress: string;
   startToken?: string;
   withMetadata: boolean;
   limit?: number;
+  tokenUriTimeoutInMs?: number;
 }
 
 /**
@@ -454,6 +460,7 @@ interface GetNftsAlchemyParams {
   filters?: string[];
   pageSize?: number;
   withMetadata: boolean;
+  tokenUriTimeoutInMs?: number;
 }
 
 /**
@@ -466,6 +473,7 @@ interface GetNftMetadataParams {
   tokenId: string;
   tokenType?: NftTokenType;
   refreshCache?: boolean;
+  tokenUriTimeoutInMs?: number;
 }
 
 /**

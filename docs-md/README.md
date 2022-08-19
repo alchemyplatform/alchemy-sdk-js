@@ -8,13 +8,6 @@ It supports the exact same syntax and functionality of the Ethers.js `AlchemyPro
 
 The SDK leverages Alchemy's hardened node infrastructure, guaranteeing best-in-class node reliability, scalability, and data correctness, and is undergoing active development by Alchemy's engineers.
 
-> :warning: **WARNING:** The `@alch/alchemy-sdk` package is now deprecated as of the v2.0.0 release. Please use the `alchemy-sdk` package instead. Note that upgrading from v1 to v2 will be a breaking change. To upgrade to v2.0.0 from v1.X.X, simply run the following in your project root:
-
-```
-npm uninstall @alch/alchemy-sdk
-npm install alchemy-sdk@latest
-```
-
 > 🙋‍♀️ **FEATURE REQUESTS:** We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want at our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback), and we'd love to build it for you:
 
 ## Getting started
@@ -78,7 +71,7 @@ alchemy.ws.on(
 
 ## Alchemy Core
 
-The core package contains all commonly-used [Ethers.js Provider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) methods. If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should just work.
+The core namespace contains all commonly-used [Ethers.js Provider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) methods. If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` when accessing provider methods and it should just work.
 
 It also includes the majority of Alchemy Enhanced APIs, including:
 
