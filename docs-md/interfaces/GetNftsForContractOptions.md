@@ -15,6 +15,7 @@ Nfts without their associated metadata, use [GetBaseNftsForContractOptions](GetB
 - [omitMetadata](GetNftsForContractOptions.md#omitmetadata)
 - [pageKey](GetNftsForContractOptions.md#pagekey)
 - [pageSize](GetNftsForContractOptions.md#pagesize)
+- [tokenUriTimeoutInMs](GetNftsForContractOptions.md#tokenuritimeoutinms)
 
 ## Properties
 
@@ -26,7 +27,7 @@ Optional boolean flag to omit NFT metadata. Defaults to `false`.
 
 #### Defined in
 
-[src/types/types.ts:513](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L513)
+[src/types/types.ts:761](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L761)
 
 ___
 
@@ -39,7 +40,7 @@ Optional page key from an existing [NftContractBaseNftsResponse](NftContractBase
 
 #### Defined in
 
-[src/types/types.ts:510](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L510)
+[src/types/types.ts:758](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L758)
 
 ___
 
@@ -48,7 +49,23 @@ ___
 • `Optional` **pageSize**: `number`
 
 Sets the total number of NFTs to return in the response. Defaults to 100.
+Maximum page size is 100.
 
 #### Defined in
 
-[src/types/types.ts:516](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L516)
+[src/types/types.ts:767](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L767)
+
+___
+
+### tokenUriTimeoutInMs
+
+• `Optional` **tokenUriTimeoutInMs**: `number`
+
+No set timeout by default - When metadata is requested, this parameter is
+the timeout (in milliseconds) for the website hosting the metadata to
+respond. If you want to only access the cache and not live fetch any
+metadata for cache misses then set this value to 0.
+
+#### Defined in
+
+[src/types/types.ts:775](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L775)

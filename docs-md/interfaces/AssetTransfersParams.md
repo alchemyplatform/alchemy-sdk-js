@@ -2,6 +2,14 @@
 
 # Interface: AssetTransfersParams
 
+Parameters for the [CoreNamespace.getAssetTransfers](../classes/CoreNamespace.md#getassettransfers) method.
+
+## Hierarchy
+
+- **`AssetTransfersParams`**
+
+  ↳ [`AssetTransfersWithMetadataParams`](AssetTransfersWithMetadataParams.md)
+
 ## Table of contents
 
 ### Properties
@@ -24,9 +32,11 @@
 
 • **category**: [`AssetTransfersCategory`](../enums/AssetTransfersCategory.md)[]
 
+REQUIRED field. An array of categories to get transfers for.
+
 #### Defined in
 
-[src/types/types.ts:101](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L101)
+[src/types/types.ts:162](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L162)
 
 ___
 
@@ -34,9 +44,12 @@ ___
 
 • `Optional` **contractAddresses**: `string`[]
 
+List of contract addresses to filter for - only applies to "erc20",
+"erc721", "erc1155" transfers. Defaults to all address if omitted.
+
 #### Defined in
 
-[src/types/types.ts:98](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L98)
+[src/types/types.ts:153](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L153)
 
 ___
 
@@ -44,9 +57,12 @@ ___
 
 • `Optional` **excludeZeroValue**: `boolean`
 
+Whether to exclude transfers with zero value. Note that zero value is
+different than null value. Defaults to `false` if omitted.
+
 #### Defined in
 
-[src/types/types.ts:99](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L99)
+[src/types/types.ts:159](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L159)
 
 ___
 
@@ -54,9 +70,12 @@ ___
 
 • `Optional` **fromAddress**: `string`
 
+The from address to filter transfers by. This value defaults to a wildcard
+for all addresses if omitted.
+
 #### Defined in
 
-[src/types/types.ts:96](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L96)
+[src/types/types.ts:141](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L141)
 
 ___
 
@@ -64,9 +83,12 @@ ___
 
 • `Optional` **fromBlock**: `string`
 
+The starting block to check for transfers. This value is inclusive and
+defaults to `0x0` if omitted.
+
 #### Defined in
 
-[src/types/types.ts:93](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L93)
+[src/types/types.ts:123](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L123)
 
 ___
 
@@ -74,9 +96,11 @@ ___
 
 • `Optional` **maxCount**: `number`
 
+The maximum number of results to return per page. Defaults to 1000 if omitted.
+
 #### Defined in
 
-[src/types/types.ts:100](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L100)
+[src/types/types.ts:165](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L165)
 
 ___
 
@@ -84,9 +108,12 @@ ___
 
 • `Optional` **order**: [`AssetTransfersOrder`](../enums/AssetTransfersOrder.md)
 
+Whether to return results in ascending or descending order by block number.
+Defaults to ascending if omitted.
+
 #### Defined in
 
-[src/types/types.ts:95](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L95)
+[src/types/types.ts:135](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L135)
 
 ___
 
@@ -94,9 +121,12 @@ ___
 
 • `Optional` **pageKey**: `string`
 
+Optional page key from an existing [OwnedBaseNftsResponse](OwnedBaseNftsResponse.md)
+[AssetTransfersResult](AssetTransfersResult.md)to use for pagination.
+
 #### Defined in
 
-[src/types/types.ts:102](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L102)
+[src/types/types.ts:171](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L171)
 
 ___
 
@@ -104,9 +134,12 @@ ___
 
 • `Optional` **toAddress**: `string`
 
+The to address to filter transfers by. This value defaults to a wildcard
+for all address if omitted.
+
 #### Defined in
 
-[src/types/types.ts:97](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L97)
+[src/types/types.ts:147](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L147)
 
 ___
 
@@ -114,9 +147,12 @@ ___
 
 • `Optional` **toBlock**: `string`
 
+The ending block to check for transfers. This value is inclusive and
+defaults to the latest block if omitted.
+
 #### Defined in
 
-[src/types/types.ts:94](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L94)
+[src/types/types.ts:129](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L129)
 
 ___
 
@@ -124,6 +160,9 @@ ___
 
 • `Optional` **withMetadata**: `boolean`
 
+Whether to include additional metadata about each transfer event. Defaults
+to `false` if omitted.
+
 #### Defined in
 
-[src/types/types.ts:103](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L103)
+[src/types/types.ts:177](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L177)

@@ -32,7 +32,7 @@ Alchemy representation of an NFT contract.
 
 #### Defined in
 
-[src/api/nft.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft.ts#L9)
+[src/api/nft.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L9)
 
 ___
 
@@ -44,7 +44,7 @@ The name of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft.ts#L21)
+[src/api/nft.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L21)
 
 ___
 
@@ -56,7 +56,7 @@ The symbol of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:23](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft.ts#L23)
+[src/api/nft.ts:23](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L23)
 
 ___
 
@@ -68,7 +68,7 @@ The type of the token in the contract.
 
 #### Defined in
 
-[src/api/nft.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft.ts#L19)
+[src/api/nft.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L19)
 
 ___
 
@@ -80,4 +80,4 @@ The number of NFTs in the contract.
 
 #### Defined in
 
-[src/api/nft.ts:25](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft.ts#L25)
+[src/api/nft.ts:25](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L25)

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.3
+
 ### Minor Changes
 
 - Added support for the `pageSize` parameter in `GetNftsForOwnerOptions` to specify the number of NFTs fetched when using `alchemy.nft.getNftsForOwner()`.
