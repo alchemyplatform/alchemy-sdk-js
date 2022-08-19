@@ -2,6 +2,9 @@
 
 # Interface: ERC1155Metadata
 
+Metadata object returned in a [AssetTransfersResult](AssetTransfersResult.md) object if the asset
+transferred is an ERC1155.
+
 ## Table of contents
 
 ### Properties
@@ -17,7 +20,7 @@
 
 #### Defined in
 
-[src/types/types.ts:485](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L485)
+[src/types/types.ts:717](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L717)
 
 ___
 
@@ -27,4 +30,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:486](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L486)
+[src/types/types.ts:718](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L718)
