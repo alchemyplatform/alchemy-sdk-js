@@ -407,6 +407,9 @@ export interface Media {
    * {@link thumbnail} assets.
    */
   format?: string;
+
+  /** The size of the media asset in bytes. */
+  size?: number;
 }
 
 /**

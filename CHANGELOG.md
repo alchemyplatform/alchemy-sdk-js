@@ -1,6 +1,7 @@
 # Changelog for Alchemy SDK for JavaScript
 
 ## Unreleased
+- Added a `size` field to the `Media` object in the NFT metadata responses to indicate the size of the media in bytes.
 
 ## 2.0.3
 
