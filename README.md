@@ -8,6 +8,14 @@ The SDK leverages Alchemy's hardened node infrastructure, guaranteeing best-in-c
 
 > 🙋‍♀️ **FEATURE REQUESTS:** We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want at our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback), and we'd love to build it for you:
 
+The SDK currently supports the following chains: 
+- Ethereum: Mainnet, Goerli
+- Polygon: Mainnet, Mumbai
+- Optimism: Mainnet, Goerli, Kovan
+- Arbitrum: Mainnet, Goerli, Rinkeby
+- Astar: Mainnet
+
+
 ## Getting started
 
 ```
