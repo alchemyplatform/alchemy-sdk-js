@@ -6,7 +6,8 @@ export { Alchemy } from './api/alchemy';
 
 export { Wallet } from './api/alchemy-wallet';
 
-// export { Utils } from './api/exported-utils';
+import * as Utils from './api/utils';
+export { Utils };
 
 export type { AlchemyConfig } from './api/alchemy-config';
 
