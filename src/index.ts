@@ -5,7 +5,7 @@ export { Alchemy } from './api/alchemy';
 
 export { Wallet } from './api/alchemy-wallet';
 
-export { Contract } from './api/alchemy-contract';
+export { Contract, ContractFactory } from './api/alchemy-contract';
 
 export type { AlchemyConfig } from './api/alchemy-config';
 
