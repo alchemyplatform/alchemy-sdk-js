@@ -78,4 +78,31 @@ describe('Alchemy-Ethers Wallet', () => {
       await ethersWallet.resolveName('rickmoo.eth')
     );
   });
+
+  it('Works with Alchemy object and Provider object', async () => {
+    const alchProvider = await alchemy.config.getProvider();
+
+    const alchWallet = new Wallet(privateKey, alchemy);
+    const providerWallet = new Wallet(privateKey, alchProvider);
+    const blockTag = 15000000;
+
+    expect(await alchWallet.getBalance(blockTag)).toEqual(
+      await providerWallet.getBalance(blockTag)
+    );
+    expect(await alchWallet.getTransactionCount(blockTag)).toEqual(
+      await providerWallet.getTransactionCount(blockTag)
+    );
+    expect(await alchWallet.getChainId()).toEqual(
+      await providerWallet.getChainId()
+    );
+    expect(await alchWallet.getGasPrice()).toEqual(
+      await providerWallet.getGasPrice()
+    );
+    expect(await alchWallet.getFeeData()).toEqual(
+      await providerWallet.getFeeData()
+    );
+    expect(await alchWallet.resolveName('rickmoo.eth')).toEqual(
+      await providerWallet.resolveName('rickmoo.eth')
+    );
+  });
 });
