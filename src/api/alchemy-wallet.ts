@@ -13,15 +13,26 @@ import { Deferrable } from '@ethersproject/properties';
 import { Alchemy } from './alchemy';
 import { BigNumber } from '@ethersproject/bignumber';
 export class Wallet extends EthersWallet {
+  readonly hasAlchemyObject: boolean = false;
   readonly alchemy?: Alchemy;
   alchemyProvider?: Provider;
 
   constructor(
     privateKey: BytesLike | ExternallyOwnedAccount | SigningKey,
-    alchemy?: Alchemy
+    alchemyOrProvider?: Alchemy | Provider
   ) {
-    super(privateKey);
-    this.alchemy = alchemy;
+    // If object passed in is a provider, send to super
+    let superProvider: Provider | undefined;
+    if (alchemyOrProvider && Provider.isProvider(alchemyOrProvider)) {
+      superProvider = alchemyOrProvider;
+    }
+    super(privateKey, superProvider);
+
+    // If object passed in is an Alchemy object, just set Alchemy
+    if (alchemyOrProvider && !Provider.isProvider(alchemyOrProvider)) {
+      this.hasAlchemyObject = true;
+      this.alchemy = alchemyOrProvider;
+    }
   }
 
   //////////////////////////////////////////////////////////////////
@@ -77,6 +88,9 @@ export class Wallet extends EthersWallet {
   }
 
   private async getWallet() {
+    if (!this.hasAlchemyObject) {
+      return this.connect(this.provider);
+    }
     if (!this.alchemy) {
       throw new Error('No Alchemy object passed into the wallet.');
     }
