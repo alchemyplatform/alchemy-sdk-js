@@ -2,9 +2,11 @@
 
 ## Unreleased
 
+## Major Changes
+- POTENTIALLY BREAKING: Fixed a typing bug where the `totalSupply` field in an `NftContract` should have type `string` instead of `number`.
+
 ### Minor Changes
 - Added a `size` field to the `Media` object in the NFT metadata responses to indicate the size of the media in bytes.
-- Fixed a typing bug where the `totalSupply` field in an `NftContract` should have type `string` instead of `number`.
 
 ## 2.0.3
 
