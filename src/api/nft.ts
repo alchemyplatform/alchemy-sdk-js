@@ -21,8 +21,8 @@ export interface NftContract extends BaseNftContract {
   name?: string;
   /** The symbol of the contract. */
   symbol?: string;
-  /** The number of NFTs in the contract. */
-  totalSupply?: number;
+  /** The number of NFTs in the contract as an integer string. */
+  totalSupply?: string;
 }
 
 /**
