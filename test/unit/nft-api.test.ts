@@ -58,7 +58,7 @@ describe('NFT module', () => {
     const address = '0xABC';
     const name = 'NFT Contract Name';
     const symbol = 'NCN';
-    const totalSupply = 9999;
+    const totalSupply = '9999';
     const tokenType = NftTokenType.ERC721;
 
     const rawNftContractResponse = createRawNftContract(
@@ -80,7 +80,7 @@ describe('NFT module', () => {
       address: string,
       name: string,
       symbol: string,
-      totalSupply: number,
+      totalSupply: string,
       tokenType?: NftTokenType
     ) {
       expect(actualNftContract).toEqual(expectedNftContract);
