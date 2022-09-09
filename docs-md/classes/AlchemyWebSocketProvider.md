@@ -126,7 +126,6 @@ Do not call this constructor directly. Instead, instantiate an instance of
 - [waitForTransaction](AlchemyWebSocketProvider.md#waitfortransaction)
 - [defaultUrl](AlchemyWebSocketProvider.md#defaulturl)
 - [getFormatter](AlchemyWebSocketProvider.md#getformatter)
-- [getNetwork](AlchemyWebSocketProvider.md#getnetwork-1)
 - [hexlifyTransaction](AlchemyWebSocketProvider.md#hexlifytransaction)
 - [isProvider](AlchemyWebSocketProvider.md#isprovider)
 
@@ -202,7 +201,7 @@ WebSocketProvider.\_events
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:68](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-websocket-provider.ts#L68)
+[src/api/alchemy-websocket-provider.ts:78](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-websocket-provider.ts#L78)
 
 ___
 
@@ -504,7 +503,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:69](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-websocket-provider.ts#L69)
+[src/api/alchemy-websocket-provider.ts:79](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-websocket-provider.ts#L79)
 
 ___
 
@@ -941,7 +940,7 @@ order to parse the Alchemy subscription event.
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:897](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-websocket-provider.ts#L897)
+[src/api/alchemy-websocket-provider.ts:925](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-websocket-provider.ts#L925)
 
 ___
 
@@ -970,7 +969,7 @@ order to parse the Alchemy subscription event.
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:920](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-websocket-provider.ts#L920)
+[src/api/alchemy-websocket-provider.ts:948](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-websocket-provider.ts#L948)
 
 ___
 
@@ -1000,7 +999,7 @@ order to parse the Alchemy subscription event.
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:821](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-websocket-provider.ts#L821)
+[src/api/alchemy-websocket-provider.ts:849](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-websocket-provider.ts#L849)
 
 ___
 
@@ -1047,7 +1046,7 @@ order to parse the Alchemy subscription event.
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:861](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-websocket-provider.ts#L861)
+[src/api/alchemy-websocket-provider.ts:889](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-websocket-provider.ts#L889)
 
 ___
 
@@ -1262,7 +1261,7 @@ WebSocketProvider.destroy
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:387](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-websocket-provider.ts#L387)
+[src/api/alchemy-websocket-provider.ts:415](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-websocket-provider.ts#L415)
 
 ___
 
@@ -1734,7 +1733,7 @@ CommunityResourcable.isCommunityResource
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:399](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-websocket-provider.ts#L399)
+[src/api/alchemy-websocket-provider.ts:427](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-websocket-provider.ts#L427)
 
 ___
 
@@ -1781,7 +1780,7 @@ WebSocketProvider.listenerCount
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:192](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-websocket-provider.ts#L192)
+[src/api/alchemy-websocket-provider.ts:220](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-websocket-provider.ts#L220)
 
 ___
 
@@ -1810,7 +1809,7 @@ WebSocketProvider.listeners
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:208](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-websocket-provider.ts#L208)
+[src/api/alchemy-websocket-provider.ts:236](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-websocket-provider.ts#L236)
 
 ___
 
@@ -1864,7 +1863,7 @@ WebSocketProvider.off
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:160](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-websocket-provider.ts#L160)
+[src/api/alchemy-websocket-provider.ts:188](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-websocket-provider.ts#L188)
 
 ___
 
@@ -1893,7 +1892,7 @@ WebSocketProvider.on
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:132](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-websocket-provider.ts#L132)
+[src/api/alchemy-websocket-provider.ts:160](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-websocket-provider.ts#L160)
 
 ___
 
@@ -1924,7 +1923,7 @@ WebSocketProvider.once
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:147](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-websocket-provider.ts#L147)
+[src/api/alchemy-websocket-provider.ts:175](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-websocket-provider.ts#L175)
 
 ___
 
@@ -2021,7 +2020,7 @@ WebSocketProvider.removeAllListeners
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:176](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy-websocket-provider.ts#L176)
+[src/api/alchemy-websocket-provider.ts:204](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-websocket-provider.ts#L204)
 
 ___
 
@@ -2206,30 +2205,6 @@ WebSocketProvider.getFormatter
 #### Defined in
 
 node_modules/@ethersproject/providers/lib/base-provider.d.ts:92
-
-___
-
-### getNetwork
-
-▸ `Static` **getNetwork**(`network`): `Network`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `network` | `Networkish` |
-
-#### Returns
-
-`Network`
-
-#### Inherited from
-
-WebSocketProvider.getNetwork
-
-#### Defined in
-
-node_modules/@ethersproject/providers/lib/base-provider.d.ts:93
 
 ___
 

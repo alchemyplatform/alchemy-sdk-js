@@ -22,6 +22,7 @@
 - [CoreNamespace](classes/CoreNamespace.md)
 - [NftNamespace](classes/NftNamespace.md)
 - [TransactNamespace](classes/TransactNamespace.md)
+- [Wallet](classes/Wallet.md)
 - [WebSocketNamespace](classes/WebSocketNamespace.md)
 
 ### Interfaces
@@ -31,6 +32,9 @@
 - [AssetTransfersParams](interfaces/AssetTransfersParams.md)
 - [AssetTransfersResponse](interfaces/AssetTransfersResponse.md)
 - [AssetTransfersResult](interfaces/AssetTransfersResult.md)
+- [AssetTransfersWithMetadataParams](interfaces/AssetTransfersWithMetadataParams.md)
+- [AssetTransfersWithMetadataResponse](interfaces/AssetTransfersWithMetadataResponse.md)
+- [AssetTransfersWithMetadataResult](interfaces/AssetTransfersWithMetadataResult.md)
 - [BaseNft](interfaces/BaseNft.md)
 - [BaseNftContract](interfaces/BaseNftContract.md)
 - [DeployResult](interfaces/DeployResult.md)
@@ -92,7 +96,7 @@ also include Alchemy's Subscription API.
 
 #### Defined in
 
-[src/types/types.ts:628](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L628)
+[src/types/types.ts:890](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L890)
 
 ___
 
@@ -122,7 +126,7 @@ information for ALL pending transactions that are added to the mempool.
 
 #### Defined in
 
-[src/types/types.ts:603](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L603)
+[src/types/types.ts:865](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L865)
 
 ___
 
@@ -134,7 +138,7 @@ The level of verbosity for the logger.
 
 #### Defined in
 
-[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/util/logger.ts#L22)
+[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/util/logger.ts#L22)
 
 ___
 
@@ -144,7 +148,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:67](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L67)
+[src/types/types.ts:69](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L69)
 
 ___
 
@@ -152,9 +156,11 @@ ___
 
 Ƭ **TransactionReceiptsParams**: [`TransactionReceiptsBlockNumber`](interfaces/TransactionReceiptsBlockNumber.md) \| [`TransactionReceiptsBlockHash`](interfaces/TransactionReceiptsBlockHash.md)
 
+The parameters to use with the [CoreNamespace.getTransactionReceipts](classes/CoreNamespace.md#gettransactionreceipts) method.
+
 #### Defined in
 
-[src/types/types.ts:474](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L474)
+[src/types/types.ts:696](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L696)
 
 ## Functions
 
@@ -176,7 +182,7 @@ Converts a hex string to a decimal number.
 
 #### Defined in
 
-[src/api/util.ts:11](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/util.ts#L11)
+[src/api/util.ts:11](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/util.ts#L11)
 
 ___
 
@@ -198,7 +204,7 @@ Checks if a value is a hex string.
 
 #### Defined in
 
-[src/api/util.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/util.ts#L31)
+[src/api/util.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/util.ts#L31)
 
 ___
 
@@ -220,7 +226,7 @@ Configures the verbosity of logging. The default log level is `info`.
 
 #### Defined in
 
-[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/util/logger.ts#L56)
+[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/util/logger.ts#L56)
 
 ___
 
@@ -242,4 +248,4 @@ Converts a number to a hex string.
 
 #### Defined in
 
-[src/api/util.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/util.ts#L21)
+[src/api/util.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/util.ts#L21)

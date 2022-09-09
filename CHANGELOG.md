@@ -2,12 +2,22 @@
 
 ## Unreleased
 
+## Major Changes
+- POTENTIALLY BREAKING: Fixed a typing bug where the `totalSupply` field in an `NftContract` should have type `string` instead of `number`.
+
+### Minor Changes
+- Added a `size` field to the `Media` object in the NFT metadata responses to indicate the size of the media in bytes.
+
+## 2.0.3
+
 ### Minor Changes
 
 - Added support for the `pageSize` parameter in `GetNftsForOwnerOptions` to specify the number of NFTs fetched when using `alchemy.nft.getNftsForOwner()`.
 - Added support for a Wallet object. This object is identical to the Ethers `Wallet` class.
 - Added support for Arbitrum Goerli network via the `Network.ARB_GOERLI` enum.
 - Added support for the AStar Mainnet network via the `Network.ASTAR_MAINNET` enum.
+- Added typed request/response overloads for `CoreNamespace.getAssetTransfers()` for when the `withMetadata` param is true.
+- Added support the `tokenUriTimeoutInMs` parameter on `getNftsForOwner()`, `getNftMetadata()`, and `getNftsForContract()`.
 
 ## 2.0.2
 

@@ -30,7 +30,7 @@ export function createRawNftContract(
   tokenType: NftTokenType,
   name?: string,
   symbol?: string,
-  totalSupply?: number
+  totalSupply?: string
 ): RawNftContract {
   return {
     address,

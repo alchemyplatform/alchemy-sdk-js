@@ -8,6 +8,14 @@ The SDK leverages Alchemy's hardened node infrastructure, guaranteeing best-in-c
 
 > 🙋‍♀️ **FEATURE REQUESTS:** We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want at our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback), and we'd love to build it for you:
 
+The SDK currently supports the following chains: 
+- **Ethereum**: Mainnet, Goerli
+- **Polygon**: Mainnet, Mumbai
+- **Optimism**: Mainnet, Goerli, Kovan
+- **Arbitrum**: Mainnet, Goerli, Rinkeby
+- **Astar**: Mainnet
+
+
 ## Getting started
 
 ```
@@ -69,7 +77,7 @@ alchemy.ws.on(
 
 ## Alchemy Core
 
-The core package contains all commonly-used [Ethers.js Provider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) methods. If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should just work.
+The core namespace contains all commonly-used [Ethers.js Provider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) methods. If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` when accessing provider methods and it should just work.
 
 It also includes the majority of Alchemy Enhanced APIs, including:
 
@@ -227,13 +235,6 @@ The SDK is documented via `tsdoc` comments in the source code. The generated typ
 using an IDE. To browse the documentation separately, you can view the generated API interfaces
 in `etc/alchemy-sdk.api.md`. You can view generated Markdown files for each endpoint in the `docs-md` directory,
 or as a webpage by opening `docs/index.html` in your browser.
-
-## Future Work
-
-There's a long list, but here are the main ones:
-
-- Retry count support for json-rpc calls (currently only for NFT API calls).
-- More config options for the base ethers.js AlchemyProvider.
 
 ## Usage Examples
 

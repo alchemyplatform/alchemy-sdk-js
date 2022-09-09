@@ -1,6 +1,6 @@
 {
   "name": "alchemy-sdk",
-  "version": "2.0.2",
+  "version": "2.0.4",
   "description": "Extended Ethers.js SDK for Alchemy APIs",
   "author": "Alchemy",
   "license": "MIT",
@@ -66,7 +66,7 @@
     "websocket": "^1.0.34"
   },
   "devDependencies": {
-    "@ethersproject/units": "^5.6.1",
+    "@ethersproject/units": "^5.7.0",
     "@microsoft/api-documenter": "^7.16.0",
     "@microsoft/api-extractor": "^7.19.5",
     "@rollup/plugin-commonjs": "^22.0.0",

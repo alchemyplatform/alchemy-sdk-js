@@ -58,7 +58,7 @@ describe('NFT module', () => {
     const address = '0xABC';
     const name = 'NFT Contract Name';
     const symbol = 'NCN';
-    const totalSupply = 9999;
+    const totalSupply = '9999';
     const tokenType = NftTokenType.ERC721;
 
     const rawNftContractResponse = createRawNftContract(
@@ -80,7 +80,7 @@ describe('NFT module', () => {
       address: string,
       name: string,
       symbol: string,
-      totalSupply: number,
+      totalSupply: string,
       tokenType?: NftTokenType
     ) {
       expect(actualNftContract).toEqual(expectedNftContract);
@@ -123,6 +123,7 @@ describe('NFT module', () => {
     const contractAddress = '0xABC';
     const title = 'NFT Title';
     const tokenId = '42';
+    const timeoutInMs = 50;
     // Special case token ID as an integer string, since that's what the NFT
     // API endpoint returns.
     const rawNftResponse = createRawNft(title, tokenId.toString());
@@ -137,7 +138,8 @@ describe('NFT module', () => {
       expectedNft: Nft,
       contractAddress: string,
       tokenId: string,
-      tokenType?: NftTokenType
+      tokenType?: NftTokenType,
+      timeoutInMs?: number
     ) {
       expect(actualNft).toEqual(expectedNft);
       expect(actualNft.tokenId).toEqual(tokenId);
@@ -151,6 +153,10 @@ describe('NFT module', () => {
         'tokenType',
         tokenType ?? undefined
       );
+      expect(mock.history.get[0].params).toHaveProperty(
+        'tokenUriTimeoutInMs',
+        timeoutInMs ?? undefined
+      );
     }
 
     it('can be called with raw parameters', async () => {
@@ -158,12 +164,14 @@ describe('NFT module', () => {
         await alchemy.nft.getNftMetadata(
           contractAddress,
           tokenId,
-          NftTokenType.ERC1155
+          NftTokenType.ERC1155,
+          timeoutInMs
         ),
         expectedNft,
         contractAddress,
         tokenId,
-        NftTokenType.ERC1155
+        NftTokenType.ERC1155,
+        timeoutInMs
       );
     });
 
@@ -213,7 +221,8 @@ describe('NFT module', () => {
       pageKey,
       contractAddresses,
       excludeFilters,
-      pageSize: 3
+      pageSize: 3,
+      tokenUriTimeoutInMs: 50
     };
     const baseNftResponse: RawGetBaseNftsResponse = {
       ownedNfts: [
@@ -264,6 +273,10 @@ describe('NFT module', () => {
         expect(mock.history.get[0].params).toHaveProperty(
           'withMetadata',
           expectedWithMetadata
+        );
+        expect(mock.history.get[0].params).toHaveProperty(
+          'tokenUriTimeoutInMs',
+          50
         );
       }
     );
@@ -580,7 +593,8 @@ describe('NFT module', () => {
         await alchemy.nft.getNftsForContract(contractAddress, {
           pageKey,
           omitMetadata,
-          pageSize: 90
+          pageSize: 90,
+          tokenUriTimeoutInMs: 50
         });
         expect(mock.history.get.length).toEqual(1);
         expect(mock.history.get[0].params).toHaveProperty(
@@ -596,6 +610,10 @@ describe('NFT module', () => {
           expectedWithMetadata
         );
         expect(mock.history.get[0].params).toHaveProperty('limit', 90);
+        expect(mock.history.get[0].params).toHaveProperty(
+          'tokenUriTimeoutInMs',
+          50
+        );
       }
     );
 
