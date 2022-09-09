@@ -74,8 +74,8 @@ describe('Alchemy-Ethers Wallet', () => {
     expect(await alchWallet.getFeeData()).toEqual(
       await ethersWallet.getFeeData()
     );
-    expect(await alchWallet.resolveName('rickmoo.eth')).toEqual(
-      await ethersWallet.resolveName('rickmoo.eth')
+    expect(await alchWallet.resolveName('ricmoo.eth')).toEqual(
+      await ethersWallet.resolveName('ricmoo.eth')
     );
   });
 
@@ -101,8 +101,8 @@ describe('Alchemy-Ethers Wallet', () => {
     expect(await alchWallet.getFeeData()).toEqual(
       await providerWallet.getFeeData()
     );
-    expect(await alchWallet.resolveName('rickmoo.eth')).toEqual(
-      await providerWallet.resolveName('rickmoo.eth')
+    expect(await alchWallet.resolveName('ricmoo.eth')).toEqual(
+      await providerWallet.resolveName('ricmoo.eth')
     );
   });
 });

@@ -12,9 +12,23 @@ import { SigningKey } from '@ethersproject/signing-key';
 import { Deferrable } from '@ethersproject/properties';
 import { Alchemy } from './alchemy';
 import { BigNumber } from '@ethersproject/bignumber';
+
+/**
+ * SDK's custom implementation of Ethers.js's 'Wallet'.
+ *
+ * Primary difference from Ethers.js 'Wallet' is that you can pass in either a
+ * Provider or an Alchemy object. This implementation will intelligently detect
+ * the format and set the provider accordingly.
+ *
+ * @public
+ */
 export class Wallet extends EthersWallet {
   private alchemyProviderPromise?: Promise<Provider>;
 
+  /**
+   * Overload permits users to pass in either a standard Provider or an Alchemy
+   * object. The constructor will detect the object type and handle appropriately.
+   */
   constructor(
     privateKey: BytesLike | ExternallyOwnedAccount | SigningKey,
     alchemyOrProvider?: Alchemy | Provider
@@ -36,51 +50,49 @@ export class Wallet extends EthersWallet {
   // Set of overrides from Signer to handle async provider retrieval.
   //////////////////////////////////////////////////////////////////
 
-  async getBalance(blockTag?: BlockTag): Promise<BigNumber> {
+  getBalance(blockTag?: BlockTag): Promise<BigNumber> {
     return this.getWallet().then(wallet => wallet.getBalance(blockTag));
   }
 
-  async getTransactionCount(blockTag?: BlockTag): Promise<number> {
+  getTransactionCount(blockTag?: BlockTag): Promise<number> {
     return this.getWallet().then(wallet =>
       wallet.getTransactionCount(blockTag)
     );
   }
 
-  // Populates "from" if unspecified, and estimates the gas for the transaction
-  async estimateGas(
-    transaction: Deferrable<TransactionRequest>
-  ): Promise<BigNumber> {
+  /** Populates "from" if unspecified, and estimates the gas for the transaction */
+  estimateGas(transaction: Deferrable<TransactionRequest>): Promise<BigNumber> {
     return this.getWallet().then(wallet => wallet.estimateGas(transaction));
   }
 
-  // Populates "from" if unspecified, and calls with the transaction
-  async call(
+  /** Populates "from" if unspecified, and calls with the transaction */
+  call(
     transaction: Deferrable<TransactionRequest>,
     blockTag?: BlockTag
   ): Promise<string> {
     return this.getWallet().then(wallet => wallet.call(transaction, blockTag));
   }
 
-  // Populates all fields in a transaction, signs it and sends it to the network
-  async sendTransaction(
+  /** Populates all fields in a transaction, signs it and sends it to the network */
+  sendTransaction(
     transaction: Deferrable<TransactionRequest>
   ): Promise<TransactionResponse> {
     return this.getWallet().then(wallet => wallet.sendTransaction(transaction));
   }
 
-  async getChainId(): Promise<number> {
+  getChainId(): Promise<number> {
     return this.getWallet().then(wallet => wallet.getChainId());
   }
 
-  async getGasPrice(): Promise<BigNumber> {
+  getGasPrice(): Promise<BigNumber> {
     return this.getWallet().then(wallet => wallet.getGasPrice());
   }
 
-  async getFeeData(): Promise<FeeData> {
+  getFeeData(): Promise<FeeData> {
     return this.getWallet().then(wallet => wallet.getFeeData());
   }
 
-  async resolveName(name: string): Promise<string> {
+  resolveName(name: string): Promise<string> {
     return this.getWallet().then(wallet => wallet.resolveName(name));
   }
 
