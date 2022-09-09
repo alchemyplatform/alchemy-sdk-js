@@ -28,6 +28,7 @@ export interface RawNft extends RawBaseNft {
   metadata?: NftMetadata;
   timeLastUpdated: string;
   error?: string;
+  contractMetadata?: RawNftContractMetadata;
 }
 
 /**
@@ -52,11 +53,18 @@ export interface RawNftContract {
   contractMetadata: RawNftContractMetadata;
 }
 
-interface RawNftContractMetadata {
+/**
+ * Represents the contract address and metadata of an NFT object received from
+ * Alchemy. This field is separated out since not all NFT API endpoints return a
+ * contract field.
+ *
+ * @internal
+ */
+export interface RawNftContractMetadata {
   name?: string;
   symbol?: string;
   totalSupply?: string;
-  tokenType: NftTokenType;
+  tokenType?: NftTokenType;
 }
 
 /**

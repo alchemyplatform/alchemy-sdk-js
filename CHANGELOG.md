@@ -3,13 +3,16 @@
 ## Unreleased
 
 ## Major Changes
+
 - POTENTIALLY BREAKING: Fixed a typing bug where the `totalSupply` field in an `NftContract` should have type `string` instead of `number`.
+- Updated the `Nft` class to include the contract metadata in the `Nft.contract` field.
 
 ## 2.0.4
 
 ### Minor Changes
+
 - Added a `size` field to the `Media` object in the NFT metadata responses to indicate the size of the media in bytes.
-- Bumped `@ethersproject` dependencies to `v5.7.0` to support `safe` and `finalized` blocks.  
+- Bumped `@ethersproject` dependencies to `v5.7.0` to support `safe` and `finalized` blocks.
 
 ## 2.0.3
 
