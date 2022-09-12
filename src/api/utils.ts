@@ -1,5 +1,5 @@
 'use strict';
-import {
+export {
   dnsEncode,
   hashMessage,
   id,
@@ -7,7 +7,7 @@ import {
   namehash
 } from '@ethersproject/hash';
 
-import {
+export {
   arrayify,
   concat,
   hexConcat,
@@ -26,37 +26,9 @@ import {
   stripZeros
 } from '@ethersproject/bytes';
 
-import {
+export {
   formatEther,
   parseEther,
   parseUnits,
   formatUnits
 } from '@ethersproject/units';
-
-export {
-  dnsEncode,
-  hashMessage,
-  id,
-  isValidName,
-  namehash,
-  arrayify,
-  concat,
-  hexConcat,
-  hexDataSlice,
-  hexDataLength,
-  hexlify,
-  hexStripZeros,
-  hexValue,
-  hexZeroPad,
-  isBytes,
-  isBytesLike,
-  isHexString,
-  joinSignature,
-  zeroPad,
-  splitSignature,
-  stripZeros,
-  formatEther,
-  parseEther,
-  parseUnits,
-  formatUnits
-};
