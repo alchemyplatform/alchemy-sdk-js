@@ -85,11 +85,12 @@ describe('E2E integration tests', () => {
       type: TokenBalanceType.ERC20
     });
     expect(response.pageKey).toBeDefined();
-    response = await alchemy.core.getTokenBalances(address, {
+    const response2 = await alchemy.core.getTokenBalances(address, {
       type: TokenBalanceType.ERC20,
       pageKey: response.pageKey
     });
-    expect(response.tokenBalances.length).toBeGreaterThan(0);
+    expect(response2.tokenBalances.length).toBeGreaterThan(0);
+    expect(response.tokenBalances[0]).not.toEqual(response2.tokenBalances[0]);
 
     response = await alchemy.core.getTokenBalances(address, [contract]);
     expect(response.tokenBalances.length).toEqual(1);

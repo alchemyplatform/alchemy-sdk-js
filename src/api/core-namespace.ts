@@ -473,7 +473,6 @@ export class CoreNamespace {
         contractAddressesOrOptions?.type === TokenBalanceType.ERC20 &&
         contractAddressesOrOptions.pageKey
       ) {
-        console.log(9);
         params.push({ pageKey: contractAddressesOrOptions.pageKey });
       }
       return provider._send(
