@@ -1,7 +1,6 @@
-import { Alchemy, Wallet } from '../../src';
+import { Network, Alchemy, Wallet } from '../../src';
 import { parseEther, parseUnits } from '@ethersproject/units';
 import { Wallet as EthersWallet } from '@ethersproject/wallet';
-import { Network } from '@alch/alchemy-sdk';
 
 const privateKey =
   'dd5bdf09397b1fdf98e4f72c66047d5104b1511fa7dc1b8fdddd61a150f732c9';
