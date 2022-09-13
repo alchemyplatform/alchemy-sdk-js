@@ -3,7 +3,8 @@ import {
   AssetTransfersCategory,
   Network,
   NftExcludeFilters,
-  NftTokenType
+  NftTokenType,
+  TokenBalanceType
 } from '../../src';
 import { Deferred } from '../test-util';
 
@@ -74,6 +75,24 @@ describe('E2E integration tests', () => {
     expect(firstTransfer.metadata.blockTimestamp).toEqual(
       '2021-04-22T23:13:40.000Z'
     );
+  });
+
+  it('getTokenBalances()', async () => {
+    // Supports ERC-20 + pageKey
+    const address = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045';
+    const contract = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
+    let response = await alchemy.core.getTokenBalances(address, {
+      type: TokenBalanceType.ERC20
+    });
+    expect(response.pageKey).toBeDefined();
+    response = await alchemy.core.getTokenBalances(address, {
+      type: TokenBalanceType.ERC20,
+      pageKey: response.pageKey
+    });
+    expect(response.tokenBalances.length).toBeGreaterThan(0);
+
+    response = await alchemy.core.getTokenBalances(address, [contract]);
+    expect(response.tokenBalances.length).toEqual(1);
   });
 
   it('getNftMetadata', async () => {
