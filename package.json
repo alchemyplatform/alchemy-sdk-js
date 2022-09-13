@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "pre-commit": "lint-staged",
+    "prepublishOnly": "yarn build && yarn run lint && yarn run test",
     "prebuild": "yarn clean && tsc --emitDeclarationOnly --declaration -p tsconfig.json",
     "build": "rollup -c",
     "clean": "rm -rf dist",
