@@ -5,7 +5,8 @@
 ## Major Changes
 
 - POTENTIALLY BREAKING: Fixed a typing bug where the `totalSupply` field in an `NftContract` should have type `string` instead of `number`.
-- Added commonly used utility methods from ethers.js into a top-level `Utils` export.  
+- Updated the `Nft` class to include the contract metadata in the `Nft.contract` field.
+- Added commonly used utility methods from ethers.js into a top-level `Utils` export.
 
 ## 2.0.4
 

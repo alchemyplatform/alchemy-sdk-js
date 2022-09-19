@@ -1,19 +1,19 @@
 import {
   Alchemy,
   BaseNft,
-  NftContractBaseNftsResponse,
-  NftContractNftsResponse,
   fromHex,
   GetFloorPriceResponse,
   GetNftsForOwnerOptions,
+  Nft,
   NftContract,
+  NftContractBaseNftsResponse,
+  NftContractNftsResponse,
   NftExcludeFilters,
   NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
-  Nft,
   RefreshState
 } from '../../src';
 import axios from 'axios';
@@ -23,9 +23,9 @@ import {
   createNft,
   createOwnedBaseNft,
   createOwnedNft,
-  createRawNftContractBaseNft,
   createRawNft,
   createRawNftContract,
+  createRawNftContractBaseNft,
   createRawOwnedBaseNft,
   createRawOwnedNft
 } from '../test-util';
@@ -550,6 +550,38 @@ describe('NFT module', () => {
         expect(ownedNft.media).toBeDefined();
       }
     });
+
+    it('includes contract metadata at the top level', async () => {
+      const mockResponse = [
+        {
+          ownedNfts: [
+            createRawOwnedNft('a', '0xCA1', '0x1', '1', NftTokenType.UNKNOWN, {
+              name: 'Super NFT',
+              symbol: 'WOW',
+              totalSupply: '9999'
+            }),
+            createRawOwnedNft('b', '0xCA2', '0x2', '2', NftTokenType.ERC1155)
+          ],
+          pageKey: 'page-key1',
+          totalCount: 2
+        }
+      ];
+      setupMock(mockResponse);
+      const response = await alchemy.nft.getNftsForOwner(ownerAddress);
+      expect(response.ownedNfts.length).toEqual(2);
+      expect(response.ownedNfts[0].contract.tokenType).toEqual(
+        NftTokenType.UNKNOWN
+      );
+      expect(response.ownedNfts[0].contract.name).toEqual('Super NFT');
+      expect(response.ownedNfts[0].contract.symbol).toEqual('WOW');
+      expect(response.ownedNfts[0].contract.totalSupply).toEqual('9999');
+      expect(response.ownedNfts[1].contract.tokenType).toEqual(
+        NftTokenType.ERC1155
+      );
+      expect(response.ownedNfts[1].contract.name).toBeUndefined();
+      expect(response.ownedNfts[1].contract.symbol).toBeUndefined();
+      expect(response.ownedNfts[1].contract.totalSupply).toBeUndefined();
+    });
   });
 
   describe('getNftsForContract()', () => {
@@ -664,6 +696,33 @@ describe('NFT module', () => {
       mock.onGet().reply(200, nftResponse);
       const response = await alchemy.nft.getNftsForContract(contractAddress);
       response.nfts.forEach(nft => expect(nft.media).toBeDefined());
+    });
+
+    it('includes contract metadata at the top level', async () => {
+      const mockResponse = {
+        nfts: [
+          createRawNft('a', '0x1', NftTokenType.UNKNOWN, {
+            contractMetadata: {
+              name: 'Super NFT',
+              symbol: 'WOW',
+              totalSupply: '9999'
+            }
+          }),
+          createRawNft('b', '0x2', NftTokenType.ERC1155)
+        ]
+      };
+      mock.reset();
+      mock.onGet().reply(200, mockResponse);
+      const response = await alchemy.nft.getNftsForContract(contractAddress);
+      expect(response.nfts.length).toEqual(2);
+      expect(response.nfts[0].contract.tokenType).toEqual(NftTokenType.UNKNOWN);
+      expect(response.nfts[0].contract.name).toEqual('Super NFT');
+      expect(response.nfts[0].contract.symbol).toEqual('WOW');
+      expect(response.nfts[0].contract.totalSupply).toEqual('9999');
+      expect(response.nfts[1].contract.tokenType).toEqual(NftTokenType.ERC1155);
+      expect(response.nfts[1].contract.name).toBeUndefined();
+      expect(response.nfts[1].contract.symbol).toBeUndefined();
+      expect(response.nfts[1].contract.totalSupply).toBeUndefined();
     });
   });
 
@@ -1063,17 +1122,13 @@ describe('NFT module', () => {
       'title',
       tokenIdHex,
       NftTokenType.UNKNOWN,
-      undefined,
-      [],
-      originalTimestamp
+      { timeLastUpdated: originalTimestamp }
     );
     const rawNftResponseRefreshed = createRawNft(
       'title',
       tokenIdHex,
       NftTokenType.UNKNOWN,
-      undefined,
-      [],
-      updatedTimestamp
+      { timeLastUpdated: updatedTimestamp }
     );
 
     function verifyCorrectParams(): void {

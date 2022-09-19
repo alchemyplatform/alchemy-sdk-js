@@ -125,6 +125,17 @@ describe('E2E integration tests', () => {
     expect(withSpam.totalCount).not.toEqual(noSpam.totalCount);
   });
 
+  it('getNftsForOwner() contract metadata check', async () => {
+    const nfts = await alchemy.nft.getNftsForOwner('0xshah.eth');
+    expect(
+      nfts.ownedNfts.filter(
+        nft =>
+          nft.contract.symbol !== undefined &&
+          nft.contract.totalSupply !== undefined
+      ).length
+    ).toBeGreaterThan(0);
+  });
+
   it('getOwnersForNftContract', async () => {
     const response = await alchemy.nft.getOwnersForContract(contractAddress);
     expect(response.owners.length).toBeGreaterThan(0);
@@ -147,6 +158,20 @@ describe('E2E integration tests', () => {
       { pageSize: 10 }
     );
     expect(nftsForNftContract.nfts.length).toEqual(10);
+  });
+
+  it('getNftsForContract() contract metadata check', async () => {
+    const response = await alchemy.nft.getNftsForContract(
+      '0x246e29ef6987637e48e7509f91521ce64eb8c831',
+      { omitMetadata: false }
+    );
+    expect(
+      response.nfts.filter(
+        nft =>
+          nft.contract.symbol !== undefined &&
+          nft.contract.totalSupply !== undefined
+      ).length
+    ).toBeGreaterThan(0);
   });
 
   it('getIterator', async () => {
@@ -287,6 +312,7 @@ describe('E2E integration tests', () => {
           expect(block).toBeDefined();
         });
       }
+
       for (const network of Object.values(Network)) {
         testNetwork(network);
       }
@@ -306,6 +332,7 @@ describe('E2E integration tests', () => {
           return done.promise;
         });
       }
+
       for (const network of Object.values(Network)) {
         testNetwork(network);
       }
