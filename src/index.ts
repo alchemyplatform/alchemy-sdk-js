@@ -1,4 +1,17 @@
+'use strict';
 /** This is the main entry point for the library and exports user-facing API. */
+
+// IMPORTANT: when adding namespace imports (imports of the form
+// `import * as X from "./y"`), be sure to also update rollup.config.js so they
+// will be treeshaken correctly.
+
+// Namespace imports here:
+
+import * as Utils from './api/utils';
+export { Utils };
+
+// End namespace imports
+
 export * from './types/types';
 
 export { Alchemy } from './api/alchemy';
