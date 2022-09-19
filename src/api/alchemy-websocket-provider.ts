@@ -25,6 +25,7 @@ import { fromHex } from './util';
 import SturdyWebSocket from 'sturdy-websocket';
 import { VERSION } from '../version';
 import {
+  ALCHEMY_PENDING_TRANSACTIONS_EVENT_METHOD,
   ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE,
   EthersEvent,
   JsonRpcRequest,
@@ -254,6 +255,7 @@ export class AlchemyWebSocketProvider
     once: boolean
   ): this {
     if (isAlchemyEvent(eventName)) {
+      verifyAlchemyEventName(eventName);
       const event = new EthersEvent(
         getAlchemyEventTag(eventName),
         listener,
@@ -780,7 +782,10 @@ export class AlchemyWebSocketProvider
       const { fromAddress, toAddress, hashesOnly } = event;
       void this._subscribe(
         event.tag,
-        ['alchemy_pendingTransactions', { fromAddress, toAddress, hashesOnly }],
+        [
+          ALCHEMY_PENDING_TRANSACTIONS_EVENT_METHOD,
+          { fromAddress, toAddress, hashesOnly }
+        ],
         this.emitProcessFn(event),
         event
       );
@@ -809,7 +814,7 @@ export class AlchemyWebSocketProvider
         return result =>
           this.emit(
             {
-              method: 'alchemy_pendingTransactions',
+              method: ALCHEMY_PENDING_TRANSACTIONS_EVENT_METHOD,
               fromAddress,
               toAddress,
               hashesOnly
@@ -1151,5 +1156,15 @@ function serializeBooleanField(field: boolean | undefined): string | undefined {
     return '*';
   } else {
     return field.toString();
+  }
+}
+
+function verifyAlchemyEventName(
+  eventName: AlchemyPendingTransactionsEventFilter
+): void {
+  if (eventName.method !== ALCHEMY_PENDING_TRANSACTIONS_EVENT_METHOD) {
+    throw new Error(
+      `Invalid method name ${eventName.method}. Accepted method names: ${ALCHEMY_PENDING_TRANSACTIONS_EVENT_METHOD}`
+    );
   }
 }

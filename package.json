@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "pre-commit": "lint-staged",
+    "prepublishOnly": "yarn build && yarn run lint && yarn run test",
     "prebuild": "yarn clean && tsc --emitDeclarationOnly --declaration -p tsconfig.json",
     "build": "rollup -c",
     "clean": "rm -rf dist",
@@ -60,12 +61,14 @@
     "@ethersproject/providers": "^5.7.0",
     "@ethersproject/wallet": "^5.7.0",
     "@ethersproject/web": "^5.7.0",
+    "@ethersproject/bytes": "^5.7.0",
+    "@ethersproject/hash": "^5.7.0",
+    "@ethersproject/units": "^5.7.0",
     "axios": "^0.26.1",
     "sturdy-websocket": "^0.2.1",
     "websocket": "^1.0.34"
   },
   "devDependencies": {
-    "@ethersproject/units": "^5.7.0",
     "@microsoft/api-documenter": "^7.16.0",
     "@microsoft/api-extractor": "^7.19.5",
     "@rollup/plugin-commonjs": "^22.0.0",
