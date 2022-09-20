@@ -23,6 +23,7 @@ via `alchemy.nft`.
 - [getOwnersForContract](NftNamespace.md#getownersforcontract)
 - [getOwnersForNft](NftNamespace.md#getownersfornft)
 - [getSpamContracts](NftNamespace.md#getspamcontracts)
+- [isHolderOfCollection](NftNamespace.md#isholderofcollection)
 - [isSpamContract](NftNamespace.md#isspamcontract)
 - [refreshContract](NftNamespace.md#refreshcontract)
 - [refreshNftMetadata](NftNamespace.md#refreshnftmetadata)
@@ -394,6 +395,27 @@ https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-clas
 #### Defined in
 
 [src/api/nft-namespace.ts:289](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft-namespace.ts#L289)
+
+___
+
+### isHolderOfCollection
+
+▸ ** isHolderOfCollection**(`wallet`, `contractAddress`): `Promise`<`boolean`\>
+
+Returns 'true' if the input 'wallet' holds any NFTs for the input NFT contract, otherwise 'false'.
+
+**`beta`**
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `contractAddress` | `string` | The wallet address to check. |
+| `contractAddress` | `string` | The contract address to check. |
+
+#### Returns
+
+`Promise`<`boolean`\>
 
 ___
 
