@@ -14,9 +14,12 @@ The response object for the [getOwnersForContract](../classes/NftNamespace.md#ge
 
 ### owners
 
-• `Readonly` **owners**: `string`[]
+• `Readonly` **owners**: `string`[] \| [`OwnerWithTokenBalances`](OwnerWithTokenBalances.md)[]
 
-An array of owner addresses for the provided contract address
+An array of owner addresses for the provided contract address. If
+`withTokenBalances` was set to 'true' in the request, then the elements of the
+response array will be objects that include both the owner address and an array
+of owned tokenIDs with associated balances.
 
 #### Defined in
 
