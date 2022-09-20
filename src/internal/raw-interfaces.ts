@@ -186,6 +186,16 @@ export interface RawOwnerWithTokenBalances {
   ownerAddress: string;
   tokenBalances: RawOwnerTokenBalance[];
 }
+
+/**
+ * Represents Alchemy's HTTP response for `isHolderOfCollection`.
+ *
+ * @internal
+ */
+export interface RawIsHolderOfCollectionResponse {
+  isHolderOfCollection: boolean;
+}
+
 /**
  * Represents Alchemy's HTTP response for `getOwnersForCollections`.
  *

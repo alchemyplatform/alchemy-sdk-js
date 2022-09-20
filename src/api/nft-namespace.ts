@@ -31,6 +31,7 @@ import {
   getOwnersForContract,
   getOwnersForNft,
   getSpamContracts,
+  isHolderOfCollection,
   isSpamContract,
   refreshContract,
   refreshNftMetadata
@@ -337,5 +338,21 @@ export class NftNamespace {
    */
   refreshContract(contractAddress: string): Promise<RefreshContractResult> {
     return refreshContract(this.config, contractAddress);
+  }
+
+  /**
+   * Returns 'true' if the input wallet address holds a token from the input NFT
+   * contract, and otherwise returns 'false'. This API is useful for simple
+   * token-gating use cases.
+   *
+   * @param wallet - The wallet address to check.
+   * @param contractAddress - The contract address of the NFT collection.
+   * @beta
+   */
+  isHolderOfCollection(
+    wallet: string,
+    contractAddress: string
+  ): Promise<boolean> {
+    return isHolderOfCollection(this.config, wallet, contractAddress);
   }
 }

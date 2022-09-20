@@ -29,6 +29,7 @@ import {
   RawGetNftsForContractResponse,
   RawGetNftsResponse,
   RawGetOwnersForContractResponse,
+  RawIsHolderOfCollectionResponse,
   RawNft,
   RawNftContract,
   RawOwnedBaseNft,
@@ -273,6 +274,22 @@ export async function isSpamContract(
   );
 }
 
+export async function isHolderOfCollection(
+  config: AlchemyConfig,
+  wallet: string,
+  contractAddress: string,
+  srcMethod = 'isHolderOfCollection'
+): Promise<boolean> {
+  const { isHolderOfCollection } = await requestHttpWithBackoff<
+    IsHolderOfCollectionParams,
+    RawIsHolderOfCollectionResponse
+  >(config, AlchemyApiType.NFT, 'isHolderOfCollection', srcMethod, {
+    wallet,
+    contractAddress
+  });
+  return isHolderOfCollection;
+}
+
 export async function getSpamContracts(
   config: AlchemyConfig,
   srcMethod = 'getSpamContracts'
@@ -487,6 +504,17 @@ interface GetNftMetadataParams {
  * @internal
  */
 interface IsSpamContractParams {
+  contractAddress: string;
+}
+/**
+ * Interface for the `IsHolderOfCollectionParams` endpoint. For an input wallet
+ * address and NFT contract address, the API will return 'true' if the wallet
+ * holds a token from the NFT contract, and 'false' if not.
+ *
+ * @internal
+ */
+interface IsHolderOfCollectionParams {
+  wallet: string;
   contractAddress: string;
 }
 
