@@ -5,6 +5,7 @@ import {
   GetFloorPriceResponse,
   GetNftsForContractOptions,
   GetNftsForOwnerOptions,
+  GetOwnersForContractOptions,
   GetOwnersForContractResponse,
   GetOwnersForNftResponse,
   NftContractBaseNftsResponse,
@@ -199,17 +200,21 @@ export async function* getNftsForContractIterator(
 export async function getOwnersForContract(
   config: AlchemyConfig,
   contractAddress: string,
+  options?: GetOwnersForContractOptions,
   srcMethod = 'getOwnersForContract'
 ): Promise<GetOwnersForContractResponse> {
   const response = await requestHttpWithBackoff<
     GetOwnersForNftContractAlchemyParams,
     RawGetOwnersForContractResponse
   >(config, AlchemyApiType.NFT, 'getOwnersForCollection', srcMethod, {
-    contractAddress
+    contractAddress,
+    pageKey: options?.pageKey,
+    withTokenBalances: options?.withTokenBalances
   });
 
   return {
-    owners: response.ownerAddresses
+    owners: response.ownerAddresses,
+    pageKey: response.pageKey
   };
 }
 
@@ -501,6 +506,8 @@ interface GetContractMetadataParams {
  */
 interface GetOwnersForNftContractAlchemyParams {
   contractAddress: string;
+  pageKey?: string;
+  withTokenBalances?: boolean;
 }
 
 /**

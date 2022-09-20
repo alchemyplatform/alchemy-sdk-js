@@ -5,6 +5,7 @@ import {
   GetFloorPriceResponse,
   GetNftsForContractOptions,
   GetNftsForOwnerOptions,
+  GetOwnersForContractOptions,
   GetOwnersForContractResponse,
   GetOwnersForNftResponse,
   NftContractBaseNftsResponse,
@@ -234,9 +235,10 @@ export class NftNamespace {
    * @beta
    */
   getOwnersForContract(
-    contractAddress: string
+    contractAddress: string,
+    options?: GetOwnersForContractOptions
   ): Promise<GetOwnersForContractResponse> {
-    return getOwnersForContract(this.config, contractAddress);
+    return getOwnersForContract(this.config, contractAddress, options);
   }
 
   /**

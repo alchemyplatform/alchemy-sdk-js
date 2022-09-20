@@ -166,12 +166,34 @@ export interface RawContractBaseNft {
 export interface RawContractNft extends RawNft, RawContractBaseNft {}
 
 /**
- * Represents Alchemy's HTTP response for `getOwnersForNftContract`.
+ * Represents a single owned token and associated balance in the Alchemy HTTP
+ * response for the `getOwnersForCollection` endpoint with token balances.
+ *
+ * @internal
+ */
+export interface RawOwnerTokenBalance {
+  tokenId: string;
+  balance: number;
+}
+
+/**
+ * Represents the objects in the `ownerAddresses` array field from the Alchemy
+ * HTTP response when calling the `getOwnersForCollection` endpoint with token balances.
+ *
+ * @internal
+ */
+export interface RawOwnerWithTokenBalances {
+  ownerAddress: string;
+  tokenBalances: RawOwnerTokenBalance[];
+}
+/**
+ * Represents Alchemy's HTTP response for `getOwnersForCollections`.
  *
  * @internal
  */
 export interface RawGetOwnersForContractResponse {
-  ownerAddresses: string[];
+  ownerAddresses: string[] | RawOwnerWithTokenBalances[];
+  pageKey?: string;
 }
 
 export interface RawReingestContractResponse {

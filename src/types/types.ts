@@ -533,7 +533,7 @@ export interface OwnedNftsResponse {
 
 /**
  * The response object for the {@link getNftsForOwner} and
- * {@link getNftsForOwnerIterator)} functions. The object contains the NFTs
+ * {@link getNftsForOwnerIterator} functions. The object contains the NFTs
  * without metadata owned by the provided address, along with pagination
  * information and the total count.
  *
@@ -584,13 +584,46 @@ export interface GetOwnersForNftResponse {
 }
 
 /**
+ * Represents a single owned token and associated balance in the response for
+ * {@link getOwnersForContract}.
+ *
+ * @public
+ */
+export interface OwnerTokenBalance {
+  readonly tokenId: string;
+  readonly balance: number;
+}
+
+/**
+ * Represents a single owner and their token balances for a given contract in
+ * the response for {@link getOwnersForContract}.
+ *
+ * @public
+ */
+export interface OwnerWithTokenBalances {
+  readonly ownerAddress: string;
+  readonly tokenBalances: OwnerTokenBalance[];
+}
+
+/**
  * The response object for the {@link getOwnersForContract}.
  *
  * @public
  */
 export interface GetOwnersForContractResponse {
-  /** An array of owner addresses for the provided contract address */
-  readonly owners: string[];
+  /**
+   * An array of owner addresses for the provided contract address. If
+   * `withTokenBalances` was set to true in the request, the elements in the
+   * array will be objects that include both the owner address and a list of
+   * owned tokenIDs with their associated balances.
+   */
+  readonly owners: string[] | OwnerWithTokenBalances[];
+
+  /**
+   * Pagination token that can be passed into another request to fetch the next
+   * owners. If there is no page key, then there are no more owners to fetch.
+   */
+  readonly pageKey?: string;
 }
 
 /**
@@ -802,6 +835,20 @@ export interface GetBaseNftsForContractOptions {
    * Maximum page size is 100.
    */
   pageSize?: number;
+}
+
+export interface GetOwnersForContractOptions {
+  /**
+   * Optional page key from an existing {@link GetOwnersForContractResponse} to
+   * use for pagination.
+   */
+  pageKey?: string;
+
+  /**
+   * Optional boolean flag to include token IDs and balances for each owner in
+   * the response.
+   */
+  withTokenBalances?: boolean;
 }
 
 /**
