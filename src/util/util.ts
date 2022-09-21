@@ -65,7 +65,8 @@ export function getNftFromRaw(rawNft: RawNft, contractAddress: string): Nft {
     metadataError: rawNft.error,
     rawMetadata: rawNft.metadata,
     tokenUri: parseNftTokenUri(rawNft.tokenUri),
-    media: parseNftTokenUriArray(rawNft.media)
+    media: parseNftTokenUriArray(rawNft.media),
+    spamInfo: rawNft.spamInfo
   };
 }
 

@@ -412,6 +412,14 @@ export interface Media {
   size?: number;
 }
 
+/** Detailed information on whether and why an NFT contract was classified as spam. */
+export interface SpamInfo {
+  isSpam: boolean;
+
+  /** A list of reasons why an NFT contract was marked as spam. */
+  classifications: string[];
+}
+
 /**
  * Optional parameters object for the {@link getNftsForOwner} and
  * {@link getNftsForOwnerIterator} functions.

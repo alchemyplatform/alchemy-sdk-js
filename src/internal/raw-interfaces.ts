@@ -1,4 +1,10 @@
-import { Media, NftMetadata, NftTokenType, TokenUri } from '../types/types';
+import {
+  Media,
+  NftMetadata,
+  NftTokenType,
+  SpamInfo,
+  TokenUri
+} from '../types/types';
 
 /**
  * This file contains the raw HTTP responses returned by the Alchemy endpoints.
@@ -29,6 +35,7 @@ export interface RawNft extends RawBaseNft {
   timeLastUpdated: string;
   error?: string;
   contractMetadata?: RawNftContractMetadata;
+  spamInfo?: SpamInfo;
 }
 
 /**
