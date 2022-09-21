@@ -21,6 +21,7 @@ Alchemy representation of an NFT.
 - [media](Nft.md#media)
 - [metadataError](Nft.md#metadataerror)
 - [rawMetadata](Nft.md#rawmetadata)
+- [spaminfo](Nft.md#spaminfo)
 - [timeLastUpdated](Nft.md#timelastupdated)
 - [title](Nft.md#title)
 - [tokenId](Nft.md#tokenid)
@@ -41,7 +42,7 @@ Alchemy representation of an NFT.
 
 [src/api/nft.ts:34](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L34)
 
-___
+---
 
 ### description
 
@@ -53,7 +54,7 @@ The NFT description.
 
 [src/api/nft.ts:51](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L51)
 
-___
+---
 
 ### media
 
@@ -65,7 +66,7 @@ URIs for accessing the NFT's media assets.
 
 [src/api/nft.ts:69](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L69)
 
-___
+---
 
 ### metadataError
 
@@ -77,7 +78,7 @@ Holds an error message if there was an issue fetching metadata.
 
 [src/api/nft.ts:57](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L57)
 
-___
+---
 
 ### rawMetadata
 
@@ -90,7 +91,19 @@ field is undefined if Alchemy was unable to fetch metadata.
 
 [src/api/nft.ts:63](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L63)
 
-___
+---
+
+### spamInfo
+
+• **spamInfo**: [`SpamInfo`](SpamInfo.md)
+
+Whether and why the NFT contract that issued this token is considered spam.
+
+#### Defined in
+
+[src/api/nft.ts:82](https://github.com/alchemyplatform/alchemy-sdk-js/blob/560b3e2/src/api/nft.ts#L82)
+
+---
 
 ### timeLastUpdated
 
@@ -102,7 +115,7 @@ When the NFT was last updated in the blockchain. Represented in ISO-8601 format.
 
 [src/api/nft.ts:54](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L54)
 
-___
+---
 
 ### title
 
@@ -114,7 +127,7 @@ The NFT title.
 
 [src/api/nft.ts:48](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L48)
 
-___
+---
 
 ### tokenId
 
@@ -130,7 +143,7 @@ The NFT token ID as an integer string.
 
 [src/api/nft.ts:36](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L36)
 
-___
+---
 
 ### tokenType
 
@@ -146,7 +159,7 @@ The type of ERC token, if known.
 
 [src/api/nft.ts:38](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L38)
 
-___
+---
 
 ### tokenUri
 
