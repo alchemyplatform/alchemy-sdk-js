@@ -136,12 +136,25 @@ describe('E2E integration tests', () => {
     ).toBeGreaterThan(0);
   });
 
-  it('getOwnersForNftContract', async () => {
+  it('getOwnersForContract', async () => {
     const response = await alchemy.nft.getOwnersForContract(contractAddress);
     expect(response.owners.length).toBeGreaterThan(0);
   });
 
-  it('getNftsForNftContract with pageKey', async () => {
+  it('getOwnersForContract', async () => {
+    const address = '0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85';
+    const response = await alchemy.nft.getOwnersForContract(address, {
+      withTokenBalances: true
+    });
+
+    expect(response.owners.length).toBeGreaterThan(0);
+    expect(response.owners[0].tokenBalances.length).toBeGreaterThan(0);
+    expect(typeof response.owners[0].tokenBalances[0].balance).toEqual(
+      'string'
+    );
+  });
+
+  it('getNftsForContract with pageKey', async () => {
     const nftsForNftContract = await alchemy.nft.getNftsForContract(
       contractAddress
     );

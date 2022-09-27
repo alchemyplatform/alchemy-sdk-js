@@ -5,7 +5,10 @@ import {
   GetFloorPriceResponse,
   GetNftsForContractOptions,
   GetNftsForOwnerOptions,
+  GetOwnersForContractOptions,
   GetOwnersForContractResponse,
+  GetOwnersForContractWithTokenBalancesOptions,
+  GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
@@ -32,6 +35,7 @@ import {
   RawNftContract,
   RawOwnedBaseNft,
   RawOwnedNft,
+  RawOwnerAddress,
   RawReingestContractResponse
 } from './raw-interfaces';
 import { AlchemyApiType } from '../util/const';
@@ -199,14 +203,39 @@ export async function* getNftsForContractIterator(
 export async function getOwnersForContract(
   config: AlchemyConfig,
   contractAddress: string,
+  options?:
+    | GetOwnersForContractWithTokenBalancesOptions
+    | GetOwnersForContractOptions,
   srcMethod = 'getOwnersForContract'
-): Promise<GetOwnersForContractResponse> {
-  const response = await requestHttpWithBackoff<
+): Promise<
+  GetOwnersForContractResponse | GetOwnersForContractWithTokenBalancesResponse
+> {
+  // TODO: remove `any` cast after backend is updated
+  const response: any = await requestHttpWithBackoff<
     GetOwnersForNftContractAlchemyParams,
     RawGetOwnersForContractResponse
   >(config, AlchemyApiType.NFT, 'getOwnersForCollection', srcMethod, {
+    ...options,
     contractAddress
   });
+
+  // HACK: cast `balance` field to string until NFT API makes the change
+  if (options?.withTokenBalances === true) {
+    response.ownerAddresses = (
+      response.ownerAddresses as any as RawOwnerAddress[]
+    ).map((address: RawOwnerAddress) => {
+      const updatedTokenBalances = address.tokenBalances.map(tokenBalance => {
+        return {
+          tokenId: tokenBalance.tokenId,
+          balance: tokenBalance.balance.toString()
+        };
+      });
+      return {
+        ownerAddress: address.ownerAddress,
+        tokenBalances: updatedTokenBalances
+      };
+    });
+  }
 
   return {
     owners: response.ownerAddresses

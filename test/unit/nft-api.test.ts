@@ -4,6 +4,7 @@ import {
   fromHex,
   GetFloorPriceResponse,
   GetNftsForOwnerOptions,
+  GetOwnersForContractWithTokenBalancesResponse,
   Nft,
   NftContract,
   NftContractBaseNftsResponse,
@@ -33,7 +34,8 @@ import {
   RawGetBaseNftsForContractResponse,
   RawGetBaseNftsResponse,
   RawGetNftsForContractResponse,
-  RawGetNftsResponse
+  RawGetNftsResponse,
+  RawGetOwnersForContractWithTokenBalancesResponse
 } from '../../src/internal/raw-interfaces';
 import { getNftContractFromRaw, getNftFromRaw } from '../../src/util/util';
 
@@ -977,6 +979,73 @@ describe('NFT module', () => {
         contractAddress
       );
       expect(response).toEqual({ owners });
+    });
+
+    it('handles withTokenBalances=true', async () => {
+      const mockResponse: RawGetOwnersForContractWithTokenBalancesResponse = {
+        ownerAddresses: [
+          {
+            ownerAddress: '0xABC',
+            tokenBalances: [
+              {
+                tokenId: '0x1',
+                balance: 1
+              }
+            ]
+          },
+          {
+            ownerAddress: '0xDEF',
+            tokenBalances: [
+              {
+                tokenId: '0x2',
+                balance: 2
+              }
+            ]
+          }
+        ],
+        pageKey: 'page-key2'
+      };
+      const expected: GetOwnersForContractWithTokenBalancesResponse = {
+        owners: [
+          {
+            ownerAddress: '0xABC',
+            tokenBalances: [
+              {
+                tokenId: '0x1',
+                balance: '1'
+              }
+            ]
+          },
+          {
+            ownerAddress: '0xDEF',
+            tokenBalances: [
+              {
+                tokenId: '0x2',
+                balance: '2'
+              }
+            ]
+          }
+        ],
+        pageKey: 'page-key2'
+      };
+      mock.reset();
+      mock.onGet().reply(200, mockResponse);
+      const response = await alchemy.nft.getOwnersForContract(contractAddress, {
+        withTokenBalances: true,
+        block: '0x0',
+        pageKey: 'page-key1'
+      });
+
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        contractAddress
+      );
+      expect(mock.history.get[0].params).toHaveProperty(
+        'withTokenBalances',
+        true
+      );
+      expect(response).toEqual(expected);
     });
 
     it('retries with maxAttempts', async () => {
