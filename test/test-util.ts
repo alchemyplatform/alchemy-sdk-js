@@ -26,6 +26,11 @@ import {
 } from '../src/util/util';
 import { BaseNftContract } from '../src/api/nft';
 
+export const TEST_WALLET_PRIVATE_KEY =
+  'dd5bdf09397b1fdf98e4f72c66047d5104b1511fa7dc1b8fdddd61a150f732c9';
+export const TEST_WALLET_PUBLIC_ADDRESS =
+  '0x4b9007B0BcE78cfB634032ec31Ed56adB464287b';
+
 /** Creates a dummy response for the `getContractMetadata` endpoint. */
 export function createRawNftContract(
   address: string,
