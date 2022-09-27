@@ -238,7 +238,10 @@ export async function getOwnersForContract(
   }
 
   return {
-    owners: response.ownerAddresses
+    owners: response.ownerAddresses,
+
+    // Only include the pageKey in the final response if it's defined
+    ...(response.pageKey !== undefined && { pageKey: response.pageKey })
   };
 }
 
