@@ -8,6 +8,10 @@
 - Updated the `Nft` class to include the contract metadata in the `Nft.contract` field.
 - Added commonly used utility methods from ethers.js into a top-level `Utils` export.
 
+### Minor Changes
+
+- Added support for the `erc20` token type and pagination for `CoreNamespace.getTokenBalances()`.
+
 ## 2.0.4
 
 ### Minor Changes
