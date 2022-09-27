@@ -11,6 +11,7 @@
 ## Minor Changes
 
 - Added support for `withTokenBalances` in `NftNamespace.getOwnersForContract()`.
+- Added support for the `erc20` token type and pagination for `CoreNamespace.getTokenBalances()`.
 
 ## 2.0.4
 

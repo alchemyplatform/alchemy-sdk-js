@@ -59,6 +59,55 @@ export enum Network {
   ASTAR_MAINNET = 'astar-mainnet'
 }
 
+/** Token Types for the `getTokenBalances()` endpoint. */
+export enum TokenBalanceType {
+  /**
+   * Option to fetch the top 100 tokens by 24-hour volume. This option is only
+   * available on Mainnet in Ethereum, Polygon, and Arbitrum.
+   */
+  DEFAULT_TOKENS = 'DEFAULT_TOKENS',
+
+  /**
+   * Option to fetch the set of ERC-20 tokens that the address as ever held. his
+   * list is produced by an address's historical transfer activity and includes
+   * all tokens that the address has ever received.
+   */
+  ERC20 = 'erc20'
+}
+
+/**
+ * Optional params to pass into `getTokenBalances()` to fetch all ERC-20 tokens
+ * instead of passing in an array of contract addresses to fetch balances for.
+ */
+export interface TokenBalancesOptionsErc20 {
+  /** The ERC-20 token type. */
+  type: TokenBalanceType.ERC20;
+
+  /** Optional page key for pagination (only applicable to TokenBalanceType.ERC20) */
+  pageKey?: string;
+}
+
+/**
+ * Optional params to pass into `getTokenBalances()` to fetch the top 100 tokens
+ * instead of passing in an array of contract addresses to fetch balances for.
+ */
+export interface TokenBalancesOptionsDefaultTokens {
+  /** The top 100 token type. */
+  type: TokenBalanceType.DEFAULT_TOKENS;
+}
+
+/**
+ * Response object for when the {@link TokenBalancesOptionsErc20} options are
+ * used. A page key may be returned if the provided address has many transfers.
+ */
+export interface TokenBalancesResponseErc20 extends TokenBalancesResponse {
+  /**
+   * An optional page key to passed into the next request to fetch the next page
+   * of token balances.
+   */
+  pageKey?: string;
+}
+
 /** @public */
 export interface TokenBalancesResponse {
   address: string;
@@ -947,8 +996,7 @@ export interface DeployResult {
  * @public
  */
 export type AlchemyPendingTransactionsEventFilter = {
-  method: 'alchemy_pendingTransactions';
-  /** Filter pending transactions sent FROM the provided address or array of addresses. */
+  method: 'alchemy_pendingTransactions' /** Filter pending transactions sent FROM the provided address or array of addresses. */;
   fromAddress?: string | string[];
 
   /** Filter pending transactions sent TO the provided address or array of addresses. */
