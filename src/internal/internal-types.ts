@@ -16,6 +16,10 @@ type JsonRpcId = string | number | null;
 export const ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE =
   'alchemy-pending-transactions';
 
+/** Method name for Alchemy pending transaction subscriptions when using Websockets. */
+export const ALCHEMY_PENDING_TRANSACTIONS_EVENT_METHOD =
+  'alchemy_pendingTransactions';
+
 export interface JsonRpcRequest {
   jsonrpc: '2.0';
   method: string;

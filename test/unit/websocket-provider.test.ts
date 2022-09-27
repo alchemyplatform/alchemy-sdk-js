@@ -587,6 +587,21 @@ describe('AlchemyWebSocketProvider', () => {
         ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE + ':*:*:*'
       );
     });
+
+    it('throws error for non-recognized method fields', async () => {
+      setupMockServer();
+      initializeWebSocketProvider();
+      const contractAddress = '0x65d25E3F2696B73b850daA07Dd1E267dCfa67F2D';
+      expect(() =>
+        wsProvider.on(
+          {
+            method: 'alchemy_invalidMethod',
+            toAddress: contractAddress
+          },
+          noop
+        )
+      ).toThrow('Invalid method name');
+    });
   });
 
   describe('methods', () => {
