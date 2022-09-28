@@ -412,12 +412,20 @@ export interface Media {
   size?: number;
 }
 
+enum Classification {
+  Erc721TooManyOwners = 'Erc721TooManyOwners',
+  Erc721TooManyTokens = 'Erc721TooManyTokens',
+  Erc721DishonestTotalSupply = 'Erc721DishonestTotalSupply',
+  MostlyHoneyPotOwners = 'MostlyHoneyPotOwners',
+  OwnedByMostHoneyPots = 'OwnedByMostHoneyPots'
+}
+
 /** Detailed information on whether and why an NFT contract was classified as spam. */
 export interface SpamInfo {
   isSpam: boolean;
 
   /** A list of reasons why an NFT contract was marked as spam. */
-  classifications: string[];
+  classifications: Classification[];
 }
 
 /**
