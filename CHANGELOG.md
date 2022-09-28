@@ -8,6 +8,7 @@
 - Updated the `Nft` class to include the contract metadata in the `Nft.contract` field.
 - Added commonly used utility methods from ethers.js into a top-level `Utils` export.
 - Added the `NftNamespace.verifyNftOwnership()` method to replace the deprecated `checkNftOwnership()` method. 
+- Added `Contract` and `ContractFactory` exports from ethers into the top-level exports.  
 
 ### Minor Changes
 
