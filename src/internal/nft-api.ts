@@ -340,6 +340,16 @@ export async function refreshContract(
   };
 }
 
+export async function uploadNFTMetadata(config: AlchemyConfig): Promise<void> {
+  const jwt = await requestHttpWithBackoff<any, string>(
+    config,
+    AlchemyApiType.UPLOAD,
+    'createFile',
+    'createFile',
+    {}
+  );
+}
+
 async function refresh(
   config: AlchemyConfig,
   contractAddress: string,

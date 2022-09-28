@@ -7,7 +7,8 @@ import {
   DEFAULT_MAX_RETRIES,
   DEFAULT_NETWORK,
   getAlchemyHttpUrl,
-  getAlchemyNftHttpUrl
+  getAlchemyNftHttpUrl,
+  getAlchemyResourceHttpUrl
 } from '../util/const';
 
 /**
@@ -66,10 +67,16 @@ export class AlchemyConfig {
   _getRequestUrl(apiType: AlchemyApiType): string {
     if (this.url !== undefined) {
       return this.url;
-    } else if (apiType === AlchemyApiType.NFT) {
-      return getAlchemyNftHttpUrl(this.network, this.apiKey);
-    } else {
-      return getAlchemyHttpUrl(this.network, this.apiKey);
+    }
+    switch (apiType) {
+      case AlchemyApiType.NFT:
+        return getAlchemyNftHttpUrl(this.network, this.apiKey);
+      case AlchemyApiType.UPLOAD:
+        return getAlchemyResourceHttpUrl('upload', this.apiKey);
+      case AlchemyApiType.UPLOAD2:
+        return getAlchemyResourceHttpUrl('upload2', this.apiKey);
+      default:
+        return getAlchemyHttpUrl(this.network, this.apiKey);
     }
   }
 
