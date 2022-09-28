@@ -1,8 +1,8 @@
 import {
+  Classification,
   Media,
   NftMetadata,
   NftTokenType,
-  SpamInfo,
   TokenUri
 } from '../types/types';
 
@@ -21,6 +21,13 @@ export interface RawBaseNft {
   id: RawNftId;
 }
 
+export interface RawSpamInfo {
+  isSpam: string;
+
+  /** A list of reasons why an NFT contract was marked as spam. */
+  classifications: Classification[];
+}
+
 /**
  * Represents an NFT object along with its metadata received from Alchemy.
  *
@@ -35,7 +42,7 @@ export interface RawNft extends RawBaseNft {
   timeLastUpdated: string;
   error?: string;
   contractMetadata?: RawNftContractMetadata;
-  spamInfo?: SpamInfo;
+  spamInfo?: RawSpamInfo;
 }
 
 /**

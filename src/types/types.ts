@@ -412,7 +412,7 @@ export interface Media {
   size?: number;
 }
 
-enum Classification {
+export enum Classification {
   Erc721TooManyOwners = 'Erc721TooManyOwners',
   Erc721TooManyTokens = 'Erc721TooManyTokens',
   Erc721DishonestTotalSupply = 'Erc721DishonestTotalSupply',
