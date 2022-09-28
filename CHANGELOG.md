@@ -12,6 +12,7 @@
 ### Minor Changes
 
 - Added support for the `erc20` token type and pagination for `CoreNamespace.getTokenBalances()`.
+- Added `bytes` field to the `Media` object in the NFT metadata responses to indicate the size of the media in bytes. Note that the `size` field is not supported by the backend and will be removed in the next version.  
 
 ## 2.0.4
 
