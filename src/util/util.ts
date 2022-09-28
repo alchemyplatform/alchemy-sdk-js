@@ -91,7 +91,12 @@ function parseNftTokenType(tokenType: string | undefined): NftTokenType {
   }
 }
 
-function parseSpamInfo(spamInfo: RawSpamInfo): SpamInfo {
+function parseSpamInfo(
+  spamInfo: RawSpamInfo | undefined
+): SpamInfo | undefined {
+  if (!spamInfo) {
+    return undefined;
+  }
   const { isSpam, classifications } = spamInfo;
   return {
     isSpam: isSpam === 'true',
