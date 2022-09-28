@@ -457,8 +457,16 @@ export interface Media {
    */
   format?: string;
 
-  /** The size of the media asset in bytes. */
+  /**
+   * DEPRECATED - The size of the media asset in bytes
+   *
+   * @deprecated - Please use {@link bytes} instead. This field will be removed
+   *   in a subsequent release.
+   */
   size?: number;
+
+  /** The size of the media asset in bytes. */
+  bytes?: number;
 }
 
 /**
