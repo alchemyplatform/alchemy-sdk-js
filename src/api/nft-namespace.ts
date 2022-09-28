@@ -32,7 +32,8 @@ import {
   getSpamContracts,
   isSpamContract,
   refreshContract,
-  refreshNftMetadata
+  refreshNftMetadata,
+  verifyNftOwnership
 } from '../internal/nft-api';
 
 /**
@@ -254,17 +255,46 @@ export class NftNamespace {
   }
 
   /**
-   * Checks that the provided owner address owns one of more of the provided NFTs.
+   * DEPRECATED - Checks that the provided owner address owns one of more of the
+   * provided NFTs.
    *
+   * @deprecated - Use {@link verifyNftOwnership} instead. This method will be
+   *   removed in a future release.
    * @param owner - The owner address to check.
    * @param contractAddresses - An array of NFT contract addresses to check ownership for.
-   * @beta
    */
   checkNftOwnership(
     owner: string,
     contractAddresses: string[]
   ): Promise<boolean> {
     return checkNftOwnership(this.config, owner, contractAddresses);
+  }
+
+  /**
+   * Checks that the provided owner address owns one of more of the provided
+   * NFT. Returns a boolean indicating whether the owner address owns the provided NFT.
+   *
+   * @param owner - The owner address to check.
+   * @param contractAddress - An NFT contract address to check ownership for.
+   */
+  verifyNftOwnership(owner: string, contractAddress: string): Promise<boolean>;
+
+  /**
+   * Checks which of the provided NFTs the owner address owns. Returns a map of
+   * contract address to a boolean indicating whether the owner address owns the NFT.
+   *
+   * @param owner - The owner address to check.
+   * @param contractAddresses - An array NFT contract address to check ownership for.
+   */
+  verifyNftOwnership(
+    owner: string,
+    contractAddresses: string[]
+  ): Promise<{ [contractAddress: string]: boolean }>;
+  verifyNftOwnership(
+    owner: string,
+    contractAddress: string | string[]
+  ): Promise<boolean | { [contractAddress: string]: boolean }> {
+    return verifyNftOwnership(this.config, owner, contractAddress);
   }
 
   /**
