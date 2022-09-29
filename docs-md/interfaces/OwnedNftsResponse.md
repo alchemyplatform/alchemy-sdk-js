@@ -25,7 +25,7 @@ The NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/types.ts:519](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L519)
+[src/types/types.ts:579](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L579)
 
 ___
 
@@ -38,7 +38,7 @@ NFTs. If there is no page key, then there are no more NFTs to fetch.
 
 #### Defined in
 
-[src/types/types.ts:525](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L525)
+[src/types/types.ts:585](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L585)
 
 ___
 
@@ -50,4 +50,4 @@ The total count of NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/types.ts:528](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L528)
+[src/types/types.ts:588](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L588)

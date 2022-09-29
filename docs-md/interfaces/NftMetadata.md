@@ -32,7 +32,7 @@ The traits, attributes, and characteristics for the NFT asset.
 
 #### Defined in
 
-[src/types/types.ts:368](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L368)
+[src/types/types.ts:417](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L417)
 
 ___
 
@@ -44,7 +44,7 @@ Background color of the NFT item. Usually defined as a 6 character hex string.
 
 #### Defined in
 
-[src/types/types.ts:365](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L365)
+[src/types/types.ts:414](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L414)
 
 ___
 
@@ -56,7 +56,7 @@ A human-readable description of the NFT asset.
 
 #### Defined in
 
-[src/types/types.ts:353](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L353)
+[src/types/types.ts:402](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L402)
 
 ___
 
@@ -69,7 +69,7 @@ to be the highest resolution image.
 
 #### Defined in
 
-[src/types/types.ts:362](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L362)
+[src/types/types.ts:411](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L411)
 
 ___
 
@@ -81,7 +81,7 @@ URL to the NFT asset image.
 
 #### Defined in
 
-[src/types/types.ts:356](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L356)
+[src/types/types.ts:405](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L405)
 
 ___
 
@@ -93,4 +93,4 @@ Name of the NFT asset.
 
 #### Defined in
 
-[src/types/types.ts:350](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L350)
+[src/types/types.ts:399](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L399)

@@ -2,7 +2,9 @@
 
 ## Unreleased
 
-## Major Changes
+## 2.1.0
+
+### Major Changes
 
 - POTENTIALLY BREAKING: Fixed a typing bug where the `totalSupply` field in an `NftContract` should have type `string` instead of `number`.
 - Updated the `Nft` class to include the contract metadata in the `Nft.contract` field.

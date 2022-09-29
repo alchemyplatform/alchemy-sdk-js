@@ -250,7 +250,7 @@ JsonRpcProvider.\_isProvider
 
 #### Defined in
 
-node_modules/@ethersproject/abstract-provider/lib/index.d.ts:151
+node_modules/@ethersproject/abstract-provider/lib/index.d.ts:152
 
 ___
 
@@ -400,7 +400,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:38](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-provider.ts#L38)
+[src/api/alchemy-provider.ts:38](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy-provider.ts#L38)
 
 ___
 
@@ -452,7 +452,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-provider.ts#L39)
+[src/api/alchemy-provider.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy-provider.ts#L39)
 
 ## Accessors
 
@@ -924,7 +924,7 @@ JsonRpcProvider.\_startPending
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:183](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-provider.ts#L183)
+[src/api/alchemy-provider.ts:183](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy-provider.ts#L183)
 
 ___
 
@@ -1050,7 +1050,7 @@ JsonRpcProvider.addListener
 
 #### Defined in
 
-node_modules/@ethersproject/abstract-provider/lib/index.d.ts:148
+node_modules/@ethersproject/abstract-provider/lib/index.d.ts:149
 
 ___
 
@@ -1124,7 +1124,7 @@ JsonRpcProvider.detectNetwork
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:171](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-provider.ts#L171)
+[src/api/alchemy-provider.ts:171](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy-provider.ts#L171)
 
 ___
 
@@ -1349,7 +1349,7 @@ JsonRpcProvider.getFeeData
 
 #### Defined in
 
-node_modules/@ethersproject/abstract-provider/lib/index.d.ts:126
+node_modules/@ethersproject/abstract-provider/lib/index.d.ts:127
 
 ___
 
@@ -1603,7 +1603,7 @@ CommunityResourcable.isCommunityResource
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:193](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-provider.ts#L193)
+[src/api/alchemy-provider.ts:193](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy-provider.ts#L193)
 
 ___
 
@@ -1885,7 +1885,7 @@ JsonRpcProvider.removeListener
 
 #### Defined in
 
-node_modules/@ethersproject/abstract-provider/lib/index.d.ts:149
+node_modules/@ethersproject/abstract-provider/lib/index.d.ts:150
 
 ___
 
@@ -1963,7 +1963,7 @@ JsonRpcProvider.send
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:207](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/alchemy-provider.ts#L207)
+[src/api/alchemy-provider.ts:207](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy-provider.ts#L207)
 
 ___
 
@@ -2098,4 +2098,4 @@ JsonRpcProvider.isProvider
 
 #### Defined in
 
-node_modules/@ethersproject/abstract-provider/lib/index.d.ts:153
+node_modules/@ethersproject/abstract-provider/lib/index.d.ts:154

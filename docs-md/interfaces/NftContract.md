@@ -26,13 +26,15 @@ Alchemy representation of an NFT contract.
 
 • **address**: `string`
 
+The address of the contract.
+
 #### Inherited from
 
 [BaseNftContract](BaseNftContract.md).[address](BaseNftContract.md#address)
 
 #### Defined in
 
-[src/api/nft.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L9)
+[src/api/nft.ts:10](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/nft.ts#L10)
 
 ___
 
@@ -44,7 +46,7 @@ The name of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L21)
+[src/api/nft.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/nft.ts#L22)
 
 ___
 
@@ -56,7 +58,7 @@ The symbol of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:23](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L23)
+[src/api/nft.ts:24](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/nft.ts#L24)
 
 ___
 
@@ -68,16 +70,16 @@ The type of the token in the contract.
 
 #### Defined in
 
-[src/api/nft.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L19)
+[src/api/nft.ts:20](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/nft.ts#L20)
 
 ___
 
 ### totalSupply
 
-• `Optional` **totalSupply**: `number`
+• `Optional` **totalSupply**: `string`
 
-The number of NFTs in the contract.
+The number of NFTs in the contract as an integer string.
 
 #### Defined in
 
-[src/api/nft.ts:25](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/api/nft.ts#L25)
+[src/api/nft.ts:26](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/nft.ts#L26)
