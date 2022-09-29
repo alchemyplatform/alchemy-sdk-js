@@ -647,7 +647,44 @@ export interface GetOwnersForNftResponse {
  */
 export interface GetOwnersForContractResponse {
   /** An array of owner addresses for the provided contract address */
-  readonly owners: string[];
+  owners: string[];
+}
+
+/**
+ * The response object for the {@link getOwnersForContract}.
+ *
+ * @public
+ */
+export interface GetOwnersForContractWithTokenBalancesResponse {
+  /** An array of owner addresses for the provided contract address */
+  owners: NftContractOwner[];
+
+  /** Optional page key that is returned when a collection has more than 50,000 owners. */
+  pageKey?: string;
+}
+
+/**
+ * An object representing the owner of an NFT and its corresponding token
+ * balances in a {@link GetOwnersForContractWithTokenBalancesResponse} object.
+ */
+export interface NftContractOwner {
+  /** The NFT's owner address. */
+  ownerAddress: string;
+
+  /** A list of objects containing token balances for the provided NFT contract. */
+  tokenBalances: NftContractTokenBalance[];
+}
+
+/**
+ * An object representing the owned token and balance values in a
+ * {@link GetOwnersForContractWithTokenBalancesResponse} object.
+ */
+export interface NftContractTokenBalance {
+  /** The token id owned in the NFT contract. */
+  tokenId: string;
+
+  /** The token Id balance for the provided owner. */
+  balance: number;
 }
 
 /**
@@ -859,6 +896,50 @@ export interface GetBaseNftsForContractOptions {
    * Maximum page size is 100.
    */
   pageSize?: number;
+}
+
+/**
+ * Optional parameters object for the {@link getNftsForContract} method.
+ *
+ * This interface configures options when fetching the owner addresses of the
+ * provided contract.
+ *
+ * @public
+ */
+export interface GetOwnersForContractOptions {
+  /**
+   * Whether to include the token balances per token id for each owner. Defaults
+   * to false when omitted.
+   */
+  withTokenBalances?: boolean;
+
+  /** The block number in hex or decimal to fetch owners for. */
+  block?: string;
+
+  /** Optional page key to paginate the next page for large requests. */
+  pageKey?: string;
+}
+
+/**
+ * Optional parameters object for the {@link getNftsForContract} method.
+ *
+ * This interface configures options when fetching the owner addresses of the
+ * provided contract.
+ *
+ * @public
+ */
+export interface GetOwnersForContractWithTokenBalancesOptions {
+  /**
+   * Whether to include the token balances per token id for each owner. Defaults
+   * to false when omitted.
+   */
+  withTokenBalances: true;
+
+  /** The block number in hex or decimal to fetch owners for. */
+  block?: string;
+
+  /** Optional page key to paginate the next page for large requests. */
+  pageKey?: string;
 }
 
 /**

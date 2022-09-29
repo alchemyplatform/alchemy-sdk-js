@@ -174,6 +174,21 @@ export interface RawGetOwnersForContractResponse {
   ownerAddresses: string[];
 }
 
+export interface RawGetOwnersForContractWithTokenBalancesResponse {
+  ownerAddresses: RawOwnerAddress[];
+  pageKey?: string;
+}
+
+export interface RawOwnerAddress {
+  ownerAddress: string;
+  tokenBalances: RawTokenBalances[];
+}
+
+export interface RawTokenBalances {
+  tokenId: string;
+  balance: number;
+}
+
 export interface RawReingestContractResponse {
   contractAddress: string;
   reingestionState: string;

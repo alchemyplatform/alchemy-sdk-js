@@ -5,7 +5,10 @@ import {
   GetFloorPriceResponse,
   GetNftsForContractOptions,
   GetNftsForOwnerOptions,
+  GetOwnersForContractOptions,
   GetOwnersForContractResponse,
+  GetOwnersForContractWithTokenBalancesOptions,
+  GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
@@ -229,15 +232,41 @@ export class NftNamespace {
   }
 
   /**
-   * Gets all the owners for a given NFT contract.
+   * Gets all the owners for a given NFT contract along with the token balance.
    *
    * @param contractAddress - The NFT contract to get the owners for.
-   * @beta
+   * @param options Optional parameters to use for the request.
+   * @public
    */
   getOwnersForContract(
-    contractAddress: string
-  ): Promise<GetOwnersForContractResponse> {
-    return getOwnersForContract(this.config, contractAddress);
+    contractAddress: string,
+    options: GetOwnersForContractWithTokenBalancesOptions
+  ): Promise<GetOwnersForContractWithTokenBalancesResponse>;
+
+  /**
+   * Gets all the owners for a given NFT contract.
+   *
+   * Note that token balances are omitted by default. To include token balances
+   * for each owner, use {@link GetOwnersForContractWithTokenBalancesOptions},
+   * which has the `withTokenBalances` field set to `true`.
+   *
+   * @param contractAddress - The NFT contract to get the owners for.
+   * @param options Optional parameters to use for the request.
+   * @public
+   */
+  getOwnersForContract(
+    contractAddress: string,
+    options?: GetOwnersForContractOptions
+  ): Promise<GetOwnersForContractResponse>;
+  getOwnersForContract(
+    contractAddress: string,
+    options?:
+      | GetOwnersForContractOptions
+      | GetOwnersForContractWithTokenBalancesOptions
+  ): Promise<
+    GetOwnersForContractResponse | GetOwnersForContractWithTokenBalancesResponse
+  > {
+    return getOwnersForContract(this.config, contractAddress, options);
   }
 
   /**

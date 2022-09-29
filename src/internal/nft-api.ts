@@ -5,7 +5,10 @@ import {
   GetFloorPriceResponse,
   GetNftsForContractOptions,
   GetNftsForOwnerOptions,
+  GetOwnersForContractOptions,
   GetOwnersForContractResponse,
+  GetOwnersForContractWithTokenBalancesOptions,
+  GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
@@ -199,17 +202,27 @@ export async function* getNftsForContractIterator(
 export async function getOwnersForContract(
   config: AlchemyConfig,
   contractAddress: string,
+  options?:
+    | GetOwnersForContractWithTokenBalancesOptions
+    | GetOwnersForContractOptions,
   srcMethod = 'getOwnersForContract'
-): Promise<GetOwnersForContractResponse> {
-  const response = await requestHttpWithBackoff<
+): Promise<
+  GetOwnersForContractResponse | GetOwnersForContractWithTokenBalancesResponse
+> {
+  // Cast to `any` to avoid more type wrangling.
+  const response: any = await requestHttpWithBackoff<
     GetOwnersForNftContractAlchemyParams,
     RawGetOwnersForContractResponse
   >(config, AlchemyApiType.NFT, 'getOwnersForCollection', srcMethod, {
+    ...options,
     contractAddress
   });
 
   return {
-    owners: response.ownerAddresses
+    owners: response.ownerAddresses,
+
+    // Only include the pageKey in the final response if it's defined
+    ...(response.pageKey !== undefined && { pageKey: response.pageKey })
   };
 }
 
