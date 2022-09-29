@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Minor Changes
+
+- Added the `spamInfo` field to the response for `getNftsForOwner()` and `getNftsForContract()`.
+
 ## Major Changes
 
 - POTENTIALLY BREAKING: Fixed a typing bug where the `totalSupply` field in an `NftContract` should have type `string` instead of `number`.
