@@ -252,6 +252,53 @@ export async function checkNftOwnership(
   return response.ownedNfts.length > 0;
 }
 
+export async function verifyNftOwnership(
+  config: AlchemyConfig,
+  owner: string,
+  contractAddresses: string | string[],
+  srcMethod = 'verifyNftOwnership'
+): Promise<boolean | { [contractAddress: string]: boolean }> {
+  if (typeof contractAddresses === 'string') {
+    const response = await getNftsForOwner(
+      config,
+      owner,
+      {
+        contractAddresses: [contractAddresses],
+        omitMetadata: true
+      },
+      srcMethod
+    );
+    return response.ownedNfts.length > 0;
+  } else {
+    if (contractAddresses.length === 0) {
+      throw new Error('Must provide at least one contract address');
+    }
+    const response = await getNftsForOwner(
+      config,
+      owner,
+      {
+        contractAddresses,
+        omitMetadata: true
+      },
+      srcMethod
+    );
+
+    // Create map where all input contract addresses are set to false, then flip
+    // owned nfts to true.
+    const result = contractAddresses.reduce(
+      (acc: { [contractAddress: string]: boolean }, curr) => {
+        acc[curr] = false;
+        return acc;
+      },
+      {}
+    );
+    for (const nft of response.ownedNfts) {
+      result[nft.contract.address] = true;
+    }
+    return result;
+  }
+}
+
 export async function isSpamContract(
   config: AlchemyConfig,
   contractAddress: string,

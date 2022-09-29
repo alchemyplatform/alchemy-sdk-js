@@ -170,7 +170,7 @@ under the `alchemy.nft` namespace:
   automatically).
 - `getOwnersForNft()`: Get all the owners for a given NFT contract address and a particular token ID.
 - `getOwnersForContract()`: Get all the owners for a given NFT contract address.
-- `checkNftOwnership()`: Check that the provided owner address owns one or more of the provided NFT contract addresses.
+- `verifyNftOwnership()`: Check whether the provided owner address owns the provided NFT contract addresses.
 - `isSpamContract()`: Check whether the given NFT contract address is a spam contract as defined by Alchemy (see the [NFT API FAQ](https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification))
 - `getSpamContracts()`: Returns a list of all spam contracts marked by Alchemy.
 - `findContractDeployer()`: Find the contract deployer and block number for a given NFT contract address.
