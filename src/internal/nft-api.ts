@@ -35,7 +35,6 @@ import {
   RawNftContract,
   RawOwnedBaseNft,
   RawOwnedNft,
-  RawOwnerAddress,
   RawReingestContractResponse
 } from './raw-interfaces';
 import { AlchemyApiType } from '../util/const';
@@ -210,7 +209,7 @@ export async function getOwnersForContract(
 ): Promise<
   GetOwnersForContractResponse | GetOwnersForContractWithTokenBalancesResponse
 > {
-  // TODO: remove `any` cast after backend is updated
+  // Cast to `any` to avoid more type wrangling.
   const response: any = await requestHttpWithBackoff<
     GetOwnersForNftContractAlchemyParams,
     RawGetOwnersForContractResponse
@@ -218,24 +217,6 @@ export async function getOwnersForContract(
     ...options,
     contractAddress
   });
-
-  // HACK: cast `balance` field to string until NFT API makes the change
-  if (options?.withTokenBalances === true) {
-    response.ownerAddresses = (
-      response.ownerAddresses as any as RawOwnerAddress[]
-    ).map((address: RawOwnerAddress) => {
-      const updatedTokenBalances = address.tokenBalances.map(tokenBalance => {
-        return {
-          tokenId: tokenBalance.tokenId,
-          balance: tokenBalance.balance.toString()
-        };
-      });
-      return {
-        ownerAddress: address.ownerAddress,
-        tokenBalances: updatedTokenBalances
-      };
-    });
-  }
 
   return {
     owners: response.ownerAddresses,

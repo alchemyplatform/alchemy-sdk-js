@@ -960,7 +960,7 @@ describe('NFT module', () => {
     });
   });
 
-  describe('getOwnersForNftContract()', () => {
+  describe('getOwnersForContract()', () => {
     const contractAddress = '0xCA1';
     const tokenIdHex = '0x1b7';
     const owners = ['0x1', '0x2', '0x3'];
@@ -1012,7 +1012,7 @@ describe('NFT module', () => {
             tokenBalances: [
               {
                 tokenId: '0x1',
-                balance: '1'
+                balance: 1
               }
             ]
           },
@@ -1021,7 +1021,7 @@ describe('NFT module', () => {
             tokenBalances: [
               {
                 tokenId: '0x2',
-                balance: '2'
+                balance: 2
               }
             ]
           }

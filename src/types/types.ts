@@ -684,7 +684,7 @@ export interface NftContractTokenBalance {
   tokenId: string;
 
   /** The token Id balance for the provided owner. */
-  balance: string;
+  balance: number;
 }
 
 /**
