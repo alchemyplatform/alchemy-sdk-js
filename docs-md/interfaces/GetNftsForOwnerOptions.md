@@ -29,7 +29,7 @@ Optional list of contract addresses to filter the results by. Limit is 20.
 
 #### Defined in
 
-[src/types/types.ts:429](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L429)
+[src/types/types.ts:489](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L489)
 
 ___
 
@@ -42,7 +42,7 @@ of these filters are excluded from the response.
 
 #### Defined in
 
-[src/types/types.ts:435](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L435)
+[src/types/types.ts:495](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L495)
 
 ___
 
@@ -54,7 +54,7 @@ Optional boolean flag to omit NFT metadata. Defaults to `false`.
 
 #### Defined in
 
-[src/types/types.ts:444](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L444)
+[src/types/types.ts:504](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L504)
 
 ___
 
@@ -67,7 +67,7 @@ Optional page key from an existing [OwnedBaseNftsResponse](OwnedBaseNftsResponse
 
 #### Defined in
 
-[src/types/types.ts:426](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L426)
+[src/types/types.ts:486](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L486)
 
 ___
 
@@ -80,7 +80,7 @@ Maximum page size is 100.
 
 #### Defined in
 
-[src/types/types.ts:441](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L441)
+[src/types/types.ts:501](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L501)
 
 ___
 
@@ -95,4 +95,4 @@ metadata for cache misses then set this value to 0.
 
 #### Defined in
 
-[src/types/types.ts:452](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L452)
+[src/types/types.ts:512](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L512)

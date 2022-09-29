@@ -2,6 +2,17 @@
 
 # Class: Wallet
 
+The Wallet class inherits Signer and can sign transactions and messages using
+a private key as a standard Externally Owned Account (EOA).
+
+SDK's custom implementation of Ethers.js's 'Wallet'.
+
+Primary difference from Ethers.js 'Wallet' is that you can pass in either a
+Provider or an Alchemy object. This implementation will intelligently detect
+the format and set the provider accordingly.
+
+**`override`**
+
 ## Hierarchy
 
 - `Wallet`
@@ -20,6 +31,7 @@
 - [\_mnemonic](Wallet.md#_mnemonic)
 - [\_signingKey](Wallet.md#_signingkey)
 - [address](Wallet.md#address)
+- [alchemyProviderPromise](Wallet.md#alchemyproviderpromise)
 - [provider](Wallet.md#provider)
 
 ### Accessors
@@ -43,6 +55,7 @@
 - [getFeeData](Wallet.md#getfeedata)
 - [getGasPrice](Wallet.md#getgasprice)
 - [getTransactionCount](Wallet.md#gettransactioncount)
+- [getWallet](Wallet.md#getwallet)
 - [populateTransaction](Wallet.md#populatetransaction)
 - [resolveName](Wallet.md#resolvename)
 - [sendTransaction](Wallet.md#sendtransaction)
@@ -58,22 +71,27 @@
 
 ### constructor
 
-• **new Wallet**(`privateKey`, `provider?`)
+• **new Wallet**(`privateKey`, `alchemyOrProvider?`)
+
+Overload permits users to pass in either a standard Provider or an Alchemy
+object. The constructor will detect the object type and handle appropriately.
+
+**`override`**
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `privateKey` | `BytesLike` \| `ExternallyOwnedAccount` \| `SigningKey` |
-| `provider?` | `Provider` |
+| `alchemyOrProvider?` | [`Alchemy`](Alchemy.md) \| `Provider` |
 
-#### Inherited from
+#### Overrides
 
 EthersWallet.constructor
 
 #### Defined in
 
-node_modules/@ethersproject/wallet/lib/index.d.ts:13
+[src/api/alchemy-wallet.ts:38](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy-wallet.ts#L38)
 
 ## Properties
 
@@ -146,6 +164,16 @@ EthersWallet.address
 #### Defined in
 
 node_modules/@ethersproject/wallet/lib/index.d.ts:9
+
+___
+
+### alchemyProviderPromise
+
+• `Private` `Optional` **alchemyProviderPromise**: `Promise`<`Provider`\>
+
+#### Defined in
+
+[src/api/alchemy-wallet.ts:30](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy-wallet.ts#L30)
 
 ___
 
@@ -271,24 +299,29 @@ ___
 
 ▸ **call**(`transaction`, `blockTag?`): `Promise`<`string`\>
 
+Returns the result of calling using the transactionRequest, with this
+account address being used as the from field.
+
+**`override`**
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `transaction` | `Deferrable`<`TransactionRequest`\> |
-| `blockTag?` | `BlockTag` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `transaction` | `Deferrable`<`TransactionRequest`\> | To make a call on |
+| `blockTag?` | `BlockTag` | The block to make the call on |
 
 #### Returns
 
 `Promise`<`string`\>
 
-#### Inherited from
+#### Overrides
 
 EthersWallet.call
 
 #### Defined in
 
-node_modules/@ethersproject/abstract-signer/lib/index.d.ts:34
+[src/api/alchemy-wallet.ts:101](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy-wallet.ts#L101)
 
 ___
 
@@ -370,23 +403,28 @@ ___
 
 ▸ **estimateGas**(`transaction`): `Promise`<`BigNumber`\>
 
+Returns the result of estimating the cost to send the transactionRequest,
+with this account address being used as the from field.
+
+**`override`**
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `transaction` | `Deferrable`<`TransactionRequest`\> |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `transaction` | `Deferrable`<`TransactionRequest`\> | Transaction to estimate the gas on |
 
 #### Returns
 
 `Promise`<`BigNumber`\>
 
-#### Inherited from
+#### Overrides
 
 EthersWallet.estimateGas
 
 #### Defined in
 
-node_modules/@ethersproject/abstract-signer/lib/index.d.ts:33
+[src/api/alchemy-wallet.ts:89](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy-wallet.ts#L89)
 
 ___
 
@@ -412,23 +450,27 @@ ___
 
 ▸ **getBalance**(`blockTag?`): `Promise`<`BigNumber`\>
 
+Returns the balance of this wallet at blockTag.
+
+**`override`**
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `blockTag?` | `BlockTag` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `blockTag?` | `BlockTag` | The block to check the balance of |
 
 #### Returns
 
 `Promise`<`BigNumber`\>
 
-#### Inherited from
+#### Overrides
 
 EthersWallet.getBalance
 
 #### Defined in
 
-node_modules/@ethersproject/abstract-signer/lib/index.d.ts:31
+[src/api/alchemy-wallet.ts:65](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy-wallet.ts#L65)
 
 ___
 
@@ -436,17 +478,21 @@ ___
 
 ▸ **getChainId**(): `Promise`<`number`\>
 
+Returns the chain ID this wallet is connected to.
+
+**`override`**
+
 #### Returns
 
 `Promise`<`number`\>
 
-#### Inherited from
+#### Overrides
 
 EthersWallet.getChainId
 
 #### Defined in
 
-node_modules/@ethersproject/abstract-signer/lib/index.d.ts:36
+[src/api/alchemy-wallet.ts:124](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy-wallet.ts#L124)
 
 ___
 
@@ -454,17 +500,27 @@ ___
 
 ▸ **getFeeData**(): `Promise`<`FeeData`\>
 
+Returns the current recommended FeeData to use in a transaction.
+
+For an EIP-1559 transaction, the maxFeePerGas and maxPriorityFeePerGas
+should be used.
+
+For legacy transactions and networks which do not support EIP-1559, the
+gasPrice should be used.
+
+**`override`**
+
 #### Returns
 
 `Promise`<`FeeData`\>
 
-#### Inherited from
+#### Overrides
 
 EthersWallet.getFeeData
 
 #### Defined in
 
-node_modules/@ethersproject/abstract-signer/lib/index.d.ts:38
+[src/api/alchemy-wallet.ts:148](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy-wallet.ts#L148)
 
 ___
 
@@ -472,17 +528,21 @@ ___
 
 ▸ **getGasPrice**(): `Promise`<`BigNumber`\>
 
+Returns the current gas price.
+
+**`override`**
+
 #### Returns
 
 `Promise`<`BigNumber`\>
 
-#### Inherited from
+#### Overrides
 
 EthersWallet.getGasPrice
 
 #### Defined in
 
-node_modules/@ethersproject/abstract-signer/lib/index.d.ts:37
+[src/api/alchemy-wallet.ts:133](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy-wallet.ts#L133)
 
 ___
 
@@ -490,23 +550,42 @@ ___
 
 ▸ **getTransactionCount**(`blockTag?`): `Promise`<`number`\>
 
+Returns the number of transactions this account has ever sent. This is the
+value required to be included in transactions as the nonce.
+
+**`override`**
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `blockTag?` | `BlockTag` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `blockTag?` | `BlockTag` | The block to check the transaction count on |
 
 #### Returns
 
 `Promise`<`number`\>
 
-#### Inherited from
+#### Overrides
 
 EthersWallet.getTransactionCount
 
 #### Defined in
 
-node_modules/@ethersproject/abstract-signer/lib/index.d.ts:32
+[src/api/alchemy-wallet.ts:76](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy-wallet.ts#L76)
+
+___
+
+### getWallet
+
+▸ `Private` **getWallet**(): `Promise`<`Wallet`\>
+
+#### Returns
+
+`Promise`<`Wallet`\>
+
+#### Defined in
+
+[src/api/alchemy-wallet.ts:164](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy-wallet.ts#L164)
 
 ___
 
@@ -538,29 +617,39 @@ ___
 
 ▸ **resolveName**(`name`): `Promise`<`string`\>
 
+Looks up the address of name. If the name is not owned, or does not have a
+Resolver configured, or the Resolver does not have an address configured,
+null is returned.
+
+**`override`**
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `string` | Name of the ENS address |
 
 #### Returns
 
 `Promise`<`string`\>
 
-#### Inherited from
+#### Overrides
 
 EthersWallet.resolveName
 
 #### Defined in
 
-node_modules/@ethersproject/abstract-signer/lib/index.d.ts:39
+[src/api/alchemy-wallet.ts:160](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy-wallet.ts#L160)
 
 ___
 
 ### sendTransaction
 
 ▸ **sendTransaction**(`transaction`): `Promise`<`TransactionResponse`\>
+
+Populates all fields in a transaction, signs it and sends it to the network
+
+**`override`**
 
 #### Parameters
 
@@ -572,13 +661,13 @@ ___
 
 `Promise`<`TransactionResponse`\>
 
-#### Inherited from
+#### Overrides
 
 EthersWallet.sendTransaction
 
 #### Defined in
 
-node_modules/@ethersproject/abstract-signer/lib/index.d.ts:35
+[src/api/alchemy-wallet.ts:113](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy-wallet.ts#L113)
 
 ___
 
