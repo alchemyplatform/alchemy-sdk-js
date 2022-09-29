@@ -86,6 +86,9 @@ It also includes the majority of Alchemy Enhanced APIs, including:
 - `getAssetTransfers()`: Get transactions for specific addresses.
 - `getTransactionReceipts()`: Gets all transaction receipts for a given block.
 
+You will also find the following utility methods:
+- `findContractDeployer()`: Find the contract deployer and block number for a given contract address.
+
 ### Accessing the full Ethers.js Provider
 
 To keep the package clean, we don't support certain uncommonly-used Ethers.js Provider methods as top-level methods in the Alchemy `core` namespace - for example, `provider.formatter`. If you'd like to access these methods, simply use the `alchemy.config.getProvider()` function to configure the
@@ -173,7 +176,6 @@ under the `alchemy.nft` namespace:
 - `verifyNftOwnership()`: Check whether the provided owner address owns the provided NFT contract addresses.
 - `isSpamContract()`: Check whether the given NFT contract address is a spam contract as defined by Alchemy (see the [NFT API FAQ](https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification))
 - `getSpamContracts()`: Returns a list of all spam contracts marked by Alchemy.
-- `findContractDeployer()`: Find the contract deployer and block number for a given NFT contract address.
 - `refreshNftMetadata()`: Refresh the cached NFT metadata for a contract address and a single tokenId.
 - `refreshContract()`: Enqueues the specified contract address to have all token ids' metadata refreshed.
 - `getFloorPrice()`: Return the floor prices of a NFT contract by marketplace.
