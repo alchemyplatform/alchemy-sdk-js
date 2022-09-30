@@ -2,6 +2,8 @@
 
 # Interface: AssetTransfersResponse
 
+Response object for the [CoreNamespace.getAssetTransfers](../classes/CoreNamespace.md#getassettransfers) method.
+
 ## Table of contents
 
 ### Properties
@@ -15,9 +17,11 @@
 
 • `Optional` **pageKey**: `string`
 
+Page key for the next page of results, if one exists.
+
 #### Defined in
 
-[src/types/types.ts:138](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L138)
+[src/types/types.ts:303](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L303)
 
 ___
 
@@ -27,4 +31,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:137](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L137)
+[src/types/types.ts:301](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L301)

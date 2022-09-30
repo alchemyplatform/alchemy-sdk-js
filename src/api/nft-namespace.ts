@@ -5,7 +5,10 @@ import {
   GetFloorPriceResponse,
   GetNftsForContractOptions,
   GetNftsForOwnerOptions,
+  GetOwnersForContractOptions,
   GetOwnersForContractResponse,
+  GetOwnersForContractWithTokenBalancesOptions,
+  GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
@@ -32,10 +35,19 @@ import {
   getSpamContracts,
   isSpamContract,
   refreshContract,
-  refreshNftMetadata
+  refreshNftMetadata,
+  verifyNftOwnership
 } from '../internal/nft-api';
 
+/**
+ * The NFT namespace contains all the functionality related to NFTs.
+ *
+ * Do not call this constructor directly. Instead, instantiate an Alchemy object
+ * with `const alchemy = new Alchemy(config)` and then access the core namespace
+ * via `alchemy.nft`.
+ */
 export class NftNamespace {
+  /** @internal */
   constructor(private readonly config: AlchemyConfig) {}
 
   /**
@@ -44,14 +56,25 @@ export class NftNamespace {
    * @param contractAddress - The contract address of the NFT.
    * @param tokenId - Token id of the NFT.
    * @param tokenType - Optionally specify the type of token to speed up the query.
+   * @param tokenUriTimeoutInMs - No set timeout by default - When metadata is
+   *   requested, this parameter is the timeout (in milliseconds) for the
+   *   website hosting the metadata to respond. If you want to only access the
+   *   cache and not live fetch any metadata for cache misses then set this value to 0.
    * @public
    */
   getNftMetadata(
     contractAddress: string,
     tokenId: BigNumberish,
-    tokenType?: NftTokenType
+    tokenType?: NftTokenType,
+    tokenUriTimeoutInMs?: number
   ): Promise<Nft> {
-    return getNftMetadata(this.config, contractAddress, tokenId, tokenType);
+    return getNftMetadata(
+      this.config,
+      contractAddress,
+      tokenId,
+      tokenType,
+      tokenUriTimeoutInMs
+    );
   }
 
   /**
@@ -209,15 +232,41 @@ export class NftNamespace {
   }
 
   /**
-   * Gets all the owners for a given NFT contract.
+   * Gets all the owners for a given NFT contract along with the token balance.
    *
    * @param contractAddress - The NFT contract to get the owners for.
-   * @beta
+   * @param options Optional parameters to use for the request.
+   * @public
    */
   getOwnersForContract(
-    contractAddress: string
-  ): Promise<GetOwnersForContractResponse> {
-    return getOwnersForContract(this.config, contractAddress);
+    contractAddress: string,
+    options: GetOwnersForContractWithTokenBalancesOptions
+  ): Promise<GetOwnersForContractWithTokenBalancesResponse>;
+
+  /**
+   * Gets all the owners for a given NFT contract.
+   *
+   * Note that token balances are omitted by default. To include token balances
+   * for each owner, use {@link GetOwnersForContractWithTokenBalancesOptions},
+   * which has the `withTokenBalances` field set to `true`.
+   *
+   * @param contractAddress - The NFT contract to get the owners for.
+   * @param options Optional parameters to use for the request.
+   * @public
+   */
+  getOwnersForContract(
+    contractAddress: string,
+    options?: GetOwnersForContractOptions
+  ): Promise<GetOwnersForContractResponse>;
+  getOwnersForContract(
+    contractAddress: string,
+    options?:
+      | GetOwnersForContractOptions
+      | GetOwnersForContractWithTokenBalancesOptions
+  ): Promise<
+    GetOwnersForContractResponse | GetOwnersForContractWithTokenBalancesResponse
+  > {
+    return getOwnersForContract(this.config, contractAddress, options);
   }
 
   /**
@@ -235,17 +284,46 @@ export class NftNamespace {
   }
 
   /**
-   * Checks that the provided owner address owns one of more of the provided NFTs.
+   * DEPRECATED - Checks that the provided owner address owns one of more of the
+   * provided NFTs.
    *
+   * @deprecated - Use {@link verifyNftOwnership} instead. This method will be
+   *   removed in a future release.
    * @param owner - The owner address to check.
    * @param contractAddresses - An array of NFT contract addresses to check ownership for.
-   * @beta
    */
   checkNftOwnership(
     owner: string,
     contractAddresses: string[]
   ): Promise<boolean> {
     return checkNftOwnership(this.config, owner, contractAddresses);
+  }
+
+  /**
+   * Checks that the provided owner address owns one of more of the provided
+   * NFT. Returns a boolean indicating whether the owner address owns the provided NFT.
+   *
+   * @param owner - The owner address to check.
+   * @param contractAddress - An NFT contract address to check ownership for.
+   */
+  verifyNftOwnership(owner: string, contractAddress: string): Promise<boolean>;
+
+  /**
+   * Checks which of the provided NFTs the owner address owns. Returns a map of
+   * contract address to a boolean indicating whether the owner address owns the NFT.
+   *
+   * @param owner - The owner address to check.
+   * @param contractAddresses - An array NFT contract address to check ownership for.
+   */
+  verifyNftOwnership(
+    owner: string,
+    contractAddresses: string[]
+  ): Promise<{ [contractAddress: string]: boolean }>;
+  verifyNftOwnership(
+    owner: string,
+    contractAddress: string | string[]
+  ): Promise<boolean | { [contractAddress: string]: boolean }> {
+    return verifyNftOwnership(this.config, owner, contractAddress);
   }
 
   /**

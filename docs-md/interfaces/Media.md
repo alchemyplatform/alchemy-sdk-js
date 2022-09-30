@@ -8,12 +8,26 @@ Represents the URI information for the NFT's media assets.
 
 ### Properties
 
+- [bytes](Media.md#bytes)
 - [format](Media.md#format)
 - [gateway](Media.md#gateway)
 - [raw](Media.md#raw)
+- [size](Media.md#size)
 - [thumbnail](Media.md#thumbnail)
 
 ## Properties
+
+### bytes
+
+• `Optional` **bytes**: `number`
+
+The size of the media asset in bytes.
+
+#### Defined in
+
+[src/types/types.ts:469](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L469)
+
+___
 
 ### format
 
@@ -24,7 +38,7 @@ The media format (ex: jpg, gif, png) of the [gateway](Media.md#gateway) and
 
 #### Defined in
 
-[src/types/types.ts:229](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L229)
+[src/types/types.ts:458](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L458)
 
 ___
 
@@ -36,7 +50,7 @@ Public gateway URI for the raw URI. Generally offers better performance.
 
 #### Defined in
 
-[src/types/types.ts:220](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L220)
+[src/types/types.ts:449](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L449)
 
 ___
 
@@ -49,7 +63,22 @@ original IPFS link).
 
 #### Defined in
 
-[src/types/types.ts:217](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L217)
+[src/types/types.ts:446](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L446)
+
+___
+
+### size
+
+• `Optional` **size**: `number`
+
+DEPRECATED - The size of the media asset in bytes
+
+**`deprecated`** - Please use [bytes](Media.md#bytes) instead. This field will be removed
+  in a subsequent release.
+
+#### Defined in
+
+[src/types/types.ts:466](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L466)
 
 ___
 
@@ -61,4 +90,4 @@ URL for a resized thumbnail of the NFT media asset.
 
 #### Defined in
 
-[src/types/types.ts:223](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L223)
+[src/types/types.ts:452](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L452)

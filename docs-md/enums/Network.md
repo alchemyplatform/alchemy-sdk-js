@@ -11,8 +11,10 @@ available on which networks
 
 ### Enumeration members
 
+- [ARB\_GOERLI](Network.md#arb_goerli)
 - [ARB\_MAINNET](Network.md#arb_mainnet)
 - [ARB\_RINKEBY](Network.md#arb_rinkeby)
+- [ASTAR\_MAINNET](Network.md#astar_mainnet)
 - [ETH\_GOERLI](Network.md#eth_goerli)
 - [ETH\_KOVAN](Network.md#eth_kovan)
 - [ETH\_MAINNET](Network.md#eth_mainnet)
@@ -26,13 +28,23 @@ available on which networks
 
 ## Enumeration members
 
+### ARB\_GOERLI
+
+• **ARB\_GOERLI** = `"arb-goerli"`
+
+#### Defined in
+
+[src/types/types.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L56)
+
+___
+
 ### ARB\_MAINNET
 
 • **ARB\_MAINNET** = `"arb-mainnet"`
 
 #### Defined in
 
-[src/types/types.ts:54](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L54)
+[src/types/types.ts:54](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L54)
 
 ___
 
@@ -42,7 +54,17 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L55)
+[src/types/types.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L55)
+
+___
+
+### ASTAR\_MAINNET
+
+• **ASTAR\_MAINNET** = `"astar-mainnet"`
+
+#### Defined in
+
+[src/types/types.ts:59](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L59)
 
 ___
 
@@ -52,7 +74,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:48](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L48)
+[src/types/types.ts:48](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L48)
 
 ___
 
@@ -62,7 +84,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:49](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L49)
+[src/types/types.ts:49](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L49)
 
 ___
 
@@ -72,7 +94,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:46](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L46)
+[src/types/types.ts:46](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L46)
 
 ___
 
@@ -82,7 +104,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:50](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L50)
+[src/types/types.ts:50](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L50)
 
 ___
 
@@ -92,7 +114,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:47](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L47)
+[src/types/types.ts:47](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L47)
 
 ___
 
@@ -102,7 +124,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L56)
+[src/types/types.ts:57](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L57)
 
 ___
 
@@ -112,7 +134,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:57](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L57)
+[src/types/types.ts:58](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L58)
 
 ___
 
@@ -122,7 +144,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:53](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L53)
+[src/types/types.ts:53](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L53)
 
 ___
 
@@ -132,7 +154,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:52](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L52)
+[src/types/types.ts:52](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L52)
 
 ___
 
@@ -142,4 +164,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:51](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L51)
+[src/types/types.ts:51](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L51)

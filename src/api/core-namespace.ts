@@ -17,17 +17,35 @@ import type { Deferrable } from '@ethersproject/properties';
 import {
   AssetTransfersParams,
   AssetTransfersResponse,
+  AssetTransfersWithMetadataParams,
+  AssetTransfersWithMetadataResponse,
   DeployResult,
+  TokenBalancesOptionsDefaultTokens,
+  TokenBalancesOptionsErc20,
   TokenBalancesResponse,
+  TokenBalancesResponseErc20,
+  TokenBalanceType,
   TokenMetadataResponse,
   TransactionReceiptsParams,
   TransactionReceiptsResponse
 } from '../types/types';
-import { DEFAULT_CONTRACT_ADDRESSES, ETH_NULL_VALUE } from '../util/const';
+import { ETH_NULL_VALUE } from '../util/const';
 import { toHex } from './util';
 import { formatBlock } from '../util/util';
 
+/**
+ * The core namespace contains all commonly-used [Ethers.js
+ * Provider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider)
+ * methods. If you are already using Ethers.js, you should be simply able to
+ * replace the Ethers.js Provider object with `alchemy.core` when accessing
+ * provider methods and it should just work.
+ *
+ * Do not call this constructor directly. Instead, instantiate an Alchemy object
+ * with `const alchemy = new Alchemy(config)` and then access the core namespace
+ * via `alchemy.core`.
+ */
 export class CoreNamespace {
+  /** @internal */
   constructor(private readonly config: AlchemyConfig) {}
 
   /**
@@ -374,28 +392,97 @@ export class CoreNamespace {
   }
 
   /**
+   * Returns the ERC-20 token balances for a specific owner address.
+   *
+   * @param address The owner address to get the token balances for.
+   * @public
+   */
+  async getTokenBalances(address: string): Promise<TokenBalancesResponseErc20>;
+
+  /**
    * Returns the token balances for a specific owner address given a list of contracts.
    *
    * @param address The owner address to get the token balances for.
    * @param contractAddresses A list of contract addresses to check. If omitted,
-   *   the top 100 tokens by 24 hour volume will be checked.
+   *   all ERC-20 tokens will be checked.
    * @public
    */
   async getTokenBalances(
     address: string,
     contractAddresses?: string[]
-  ): Promise<TokenBalancesResponse> {
-    if (contractAddresses && contractAddresses.length > 1500) {
-      throw new Error(
-        'You cannot pass in more than 1500 contract addresses to getTokenBalances()'
+  ): Promise<TokenBalancesResponse>;
+
+  /**
+   * Returns the ERC-20 token balances for a specific owner.
+   *
+   * This overload covers the erc-20 token type which includes a page key in the response.
+   *
+   * @param address The owner address to get the token balances for.
+   * @param options Token type options set to ERC-20 with optional page key.
+   * @public
+   */
+  async getTokenBalances(
+    address: string,
+    options: TokenBalancesOptionsErc20
+  ): Promise<TokenBalancesResponseErc20>;
+
+  /**
+   * Returns the token balances for a specific owner, fetching from the top 100
+   * tokens by 24 hour volume.
+   *
+   * This overload covers the default token type which includes a page key in
+   * the response.
+   *
+   * @param address The owner address to get the token balances for.
+   * @param options Token type options set to ERC-20 with optional page key.
+   * @public
+   */
+  async getTokenBalances(
+    address: string,
+    options: TokenBalancesOptionsDefaultTokens
+  ): Promise<TokenBalancesResponse>;
+  async getTokenBalances(
+    address: string,
+    contractAddressesOrOptions?:
+      | string[]
+      | TokenBalancesOptionsDefaultTokens
+      | TokenBalancesOptionsErc20
+  ) {
+    const provider = await this.config.getProvider();
+    if (Array.isArray(contractAddressesOrOptions)) {
+      if (contractAddressesOrOptions.length > 1500) {
+        throw new Error(
+          'You cannot pass in more than 1500 contract addresses to getTokenBalances()'
+        );
+      }
+      if (contractAddressesOrOptions.length === 0) {
+        throw new Error(
+          'getTokenBalances() requires at least one contractAddress when using an array'
+        );
+      }
+      return provider._send(
+        'alchemy_getTokenBalances',
+        [address, contractAddressesOrOptions],
+        'getTokenBalances'
+      );
+    } else {
+      const tokenType =
+        contractAddressesOrOptions === undefined
+          ? TokenBalanceType.ERC20
+          : contractAddressesOrOptions.type;
+      const params: Array<string | { pageKey: string }> = [address, tokenType];
+      if (
+        contractAddressesOrOptions?.type === TokenBalanceType.ERC20 &&
+        contractAddressesOrOptions.pageKey
+      ) {
+        params.push({ pageKey: contractAddressesOrOptions.pageKey });
+      }
+      return provider._send(
+        'alchemy_getTokenBalances',
+        params,
+        'getTokenBalances'
       );
     }
-    const provider = await this.config.getProvider();
-    return provider._send(
-      'alchemy_getTokenBalances',
-      [address, contractAddresses || DEFAULT_CONTRACT_ADDRESSES],
-      'getTokenBalances'
-    );
   }
 
   /**
@@ -418,12 +505,31 @@ export class CoreNamespace {
    * full details:
    * https://docs.alchemy.com/alchemy/enhanced-apis/transfers-api#alchemy_getassettransfers
    *
+   * This overload requires {@link AssetTransfersWithMetadataParams.withMetadata}
+   * to be set to `true`, which results in additional metadata returned in the
+   * response object.
+   *
+   * @param params An object containing fields for the asset transfer query
+   * @public
+   */
+  async getAssetTransfers(
+    params: AssetTransfersWithMetadataParams
+  ): Promise<AssetTransfersWithMetadataResponse>;
+
+  /**
+   * Get transactions for specific addresses. See the web documentation for the
+   * full details:
+   * https://docs.alchemy.com/alchemy/enhanced-apis/transfers-api#alchemy_getassettransfers
+   *
    * @param params An object containing fields for the asset transfer query.
    * @public
    */
   async getAssetTransfers(
     params: AssetTransfersParams
-  ): Promise<AssetTransfersResponse> {
+  ): Promise<AssetTransfersResponse>;
+  async getAssetTransfers(
+    params: AssetTransfersWithMetadataParams | AssetTransfersParams
+  ): Promise<AssetTransfersResponse | AssetTransfersWithMetadataResponse> {
     const provider = await this.config.getProvider();
     return provider._send(
       'alchemy_getAssetTransfers',

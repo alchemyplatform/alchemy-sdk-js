@@ -22,7 +22,7 @@ The NFT contract address that was passed in to be refreshed.
 
 #### Defined in
 
-[src/types/types.ts:430](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L430)
+[src/types/types.ts:735](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L735)
 
 ___
 
@@ -35,7 +35,7 @@ Field can be null if the refresh has not occurred.
 
 #### Defined in
 
-[src/types/types.ts:439](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L439)
+[src/types/types.ts:744](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L744)
 
 ___
 
@@ -47,4 +47,4 @@ The current state of the refresh request.
 
 #### Defined in
 
-[src/types/types.ts:433](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L433)
+[src/types/types.ts:738](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L738)

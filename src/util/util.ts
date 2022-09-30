@@ -48,10 +48,17 @@ export function getBaseNftFromRaw(
 }
 
 export function getNftFromRaw(rawNft: RawNft, contractAddress: string): Nft {
+  const tokenType = parseNftTokenType(rawNft.id.tokenMetadata?.tokenType);
   return {
-    contract: { address: contractAddress },
+    contract: {
+      address: contractAddress,
+      name: rawNft.contractMetadata?.name,
+      symbol: rawNft.contractMetadata?.symbol,
+      totalSupply: rawNft.contractMetadata?.totalSupply,
+      tokenType
+    },
     tokenId: parseNftTokenId(rawNft.id.tokenId),
-    tokenType: parseNftTokenType(rawNft.id.tokenMetadata?.tokenType),
+    tokenType,
     title: rawNft.title,
     description: parseNftDescription(rawNft.description),
     timeLastUpdated: rawNft.timeLastUpdated,
@@ -85,6 +92,12 @@ function parseNftDescription(description?: string | string[]): string {
   if (description === undefined) {
     return '';
   }
+
+  // TODO: Remove after backend adds JSON stringification.
+  if (!Array.isArray(description) && typeof description === 'object') {
+    return JSON.stringify(description);
+  }
+
   return typeof description === 'string' ? description : description.join(' ');
 }
 

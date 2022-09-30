@@ -2,7 +2,18 @@ import { AlchemyEventType } from '../types/types';
 import type { Listener } from '@ethersproject/abstract-provider';
 import { AlchemyConfig } from './alchemy-config';
 
+/**
+ * The Websocket namespace contains all subscription related functions that
+ * allow you to subscribe to events and receive updates as they occur. The
+ * underlying WebSocket provider has additional logic to handle reconnections
+ * and automatically backfills missed events.
+ *
+ * Do not call this constructor directly. Instead, instantiate an Alchemy object
+ * with `const alchemy = new Alchemy(config)` and then access the core namespace
+ * via `alchemy.ws`.
+ */
 export class WebSocketNamespace {
+  /** @internal */
   constructor(private readonly config: AlchemyConfig) {}
 
   /**

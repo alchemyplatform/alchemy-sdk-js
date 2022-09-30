@@ -36,7 +36,7 @@ different network or API key, create a new instance of [Alchemy](Alchemy.md).
 
 #### Defined in
 
-[src/api/alchemy.ts:44](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy.ts#L44)
+[src/api/alchemy.ts:44](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy.ts#L44)
 
 ## Properties
 
@@ -49,7 +49,7 @@ and allows access to the underlying providers.
 
 #### Defined in
 
-[src/api/alchemy.ts:36](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy.ts#L36)
+[src/api/alchemy.ts:36](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy.ts#L36)
 
 ___
 
@@ -62,7 +62,7 @@ Enhanced APIs.
 
 #### Defined in
 
-[src/api/alchemy.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy.ts#L22)
+[src/api/alchemy.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy.ts#L22)
 
 ___
 
@@ -74,7 +74,7 @@ The `nft` namespace contains methods for Alchemy's NFT API.
 
 #### Defined in
 
-[src/api/alchemy.ts:25](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy.ts#L25)
+[src/api/alchemy.ts:25](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy.ts#L25)
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy.ts:30](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy.ts#L30)
+[src/api/alchemy.ts:30](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy.ts#L30)
 
 ___
 
@@ -96,4 +96,4 @@ The `ws` namespace contains methods for using WebSockets and creating subscripti
 
 #### Defined in
 
-[src/api/alchemy.ts:28](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/alchemy.ts#L28)
+[src/api/alchemy.ts:28](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/alchemy.ts#L28)

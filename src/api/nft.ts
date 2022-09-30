@@ -6,6 +6,7 @@ import { Media, NftMetadata, NftTokenType, TokenUri } from '../types/types';
  * @public
  */
 export interface BaseNftContract {
+  /** The address of the contract. */
   address: string;
 }
 
@@ -21,8 +22,8 @@ export interface NftContract extends BaseNftContract {
   name?: string;
   /** The symbol of the contract. */
   symbol?: string;
-  /** The number of NFTs in the contract. */
-  totalSupply?: number;
+  /** The number of NFTs in the contract as an integer string. */
+  totalSupply?: string;
 }
 
 /**
@@ -44,6 +45,9 @@ export interface BaseNft {
  * @public
  */
 export interface Nft extends BaseNft {
+  /** The NFT's underlying contract and relevant contract metadata. */
+  contract: NftContract;
+
   /** The NFT title. */
   title: string;
 

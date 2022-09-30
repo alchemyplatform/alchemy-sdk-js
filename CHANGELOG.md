@@ -2,12 +2,39 @@
 
 ## Unreleased
 
+## 2.1.0
+
+### Major Changes
+
+- POTENTIALLY BREAKING: Fixed a typing bug where the `totalSupply` field in an `NftContract` should have type `string` instead of `number`.
+- Updated the `Nft` class to include the contract metadata in the `Nft.contract` field.
+- Added commonly used utility methods from ethers.js into a top-level `Utils` export.
+- Added the `NftNamespace.verifyNftOwnership()` method to replace the deprecated `checkNftOwnership()` method. 
+- Added `Contract` and `ContractFactory` exports from ethers into the top-level exports.  
+
+### Minor Changes
+
+- Added support for `withTokenBalances` in `NftNamespace.getOwnersForContract()`.
+- Added support for the `erc20` token type and pagination for `CoreNamespace.getTokenBalances()`.
+- Added `bytes` field to the `Media` object in the NFT metadata responses to indicate the size of the media in bytes. Note that the `size` field is not supported by the backend and will be removed in the next version.  
+
+## 2.0.4
+
+### Minor Changes
+
+- Added a `size` field to the `Media` object in the NFT metadata responses to indicate the size of the media in bytes.
+- Bumped `@ethersproject` dependencies to `v5.7.0` to support `safe` and `finalized` blocks.
+
+## 2.0.3
+
 ### Minor Changes
 
 - Added support for the `pageSize` parameter in `GetNftsForOwnerOptions` to specify the number of NFTs fetched when using `alchemy.nft.getNftsForOwner()`.
 - Added support for a Wallet object. This object is identical to the Ethers `Wallet` class.
 - Added support for Arbitrum Goerli network via the `Network.ARB_GOERLI` enum.
 - Added support for the AStar Mainnet network via the `Network.ASTAR_MAINNET` enum.
+- Added typed request/response overloads for `CoreNamespace.getAssetTransfers()` for when the `withMetadata` param is true.
+- Added support the `tokenUriTimeoutInMs` parameter on `getNftsForOwner()`, `getNftMetadata()`, and `getNftsForContract()`.
 
 ## 2.0.2
 

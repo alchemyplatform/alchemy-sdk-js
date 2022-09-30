@@ -2,11 +2,14 @@
 
 # Class: TransactNamespace
 
+The Transact namespace contains methods used for sending transactions and
+checking on the state of submitted transactions.
+
+Do not call this constructor directly. Instead, instantiate an Alchemy object
+with `const alchemy = new Alchemy(config)` and then access the core namespace
+via `alchemy.transact`.
+
 ## Table of contents
-
-### Constructors
-
-- [constructor](TransactNamespace.md#constructor)
 
 ### Methods
 
@@ -15,22 +18,6 @@
 - [sendPrivateTransaction](TransactNamespace.md#sendprivatetransaction)
 - [sendTransaction](TransactNamespace.md#sendtransaction)
 - [waitForTransaction](TransactNamespace.md#waitfortransaction)
-
-## Constructors
-
-### constructor
-
-• **new TransactNamespace**(`config`)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `config` | [`AlchemyConfig`](AlchemyConfig.md) |
-
-#### Defined in
-
-[src/api/transact-namespace.ts:10](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/transact-namespace.ts#L10)
 
 ## Methods
 
@@ -59,7 +46,7 @@ Returns a boolean indicating whether the cancellation was successful.
 
 #### Defined in
 
-[src/api/transact-namespace.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/transact-namespace.ts#L55)
+[src/api/transact-namespace.ts:64](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/transact-namespace.ts#L64)
 
 ___
 
@@ -88,7 +75,7 @@ NOTE: This is an alias for [CoreNamespace.getTransaction](CoreNamespace.md#gettr
 
 #### Defined in
 
-[src/api/transact-namespace.ts:81](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/transact-namespace.ts#L81)
+[src/api/transact-namespace.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/transact-namespace.ts#L90)
 
 ___
 
@@ -106,7 +93,7 @@ Returns the transaction hash of the submitted transaction.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `signedTransaction` | `string` | The raw, signed transaction as a hash. |
-| `maxBlockNumber?` | `number` | Optional hex-encoded number string. Highest block   number in which the transaction should be included. |
+| `maxBlockNumber?` | `number` | Optional highest block number in which the   transaction should be included. |
 | `options?` | [`SendPrivateTransactionOptions`](../interfaces/SendPrivateTransactionOptions.md) | Options to configure the request. |
 
 #### Returns
@@ -115,7 +102,7 @@ Returns the transaction hash of the submitted transaction.
 
 #### Defined in
 
-[src/api/transact-namespace.ts:23](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/transact-namespace.ts#L23)
+[src/api/transact-namespace.ts:32](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/transact-namespace.ts#L32)
 
 ___
 
@@ -141,7 +128,7 @@ NOTE: This is an alias for [CoreNamespace.sendTransaction](CoreNamespace.md#send
 
 #### Defined in
 
-[src/api/transact-namespace.ts:98](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/transact-namespace.ts#L98)
+[src/api/transact-namespace.ts:107](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/transact-namespace.ts#L107)
 
 ___
 
@@ -172,4 +159,4 @@ NOTE: This is an alias for [CoreNamespace.waitForTransaction](CoreNamespace.md#w
 
 #### Defined in
 
-[src/api/transact-namespace.ts:120](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/transact-namespace.ts#L120)
+[src/api/transact-namespace.ts:129](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/transact-namespace.ts#L129)

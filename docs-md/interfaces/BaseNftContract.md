@@ -22,6 +22,8 @@ Alchemy representation of a base NFT contract that doesn't contain metadata.
 
 • **address**: `string`
 
+The address of the contract.
+
 #### Defined in
 
-[src/api/nft.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/api/nft.ts#L9)
+[src/api/nft.ts:10](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/nft.ts#L10)

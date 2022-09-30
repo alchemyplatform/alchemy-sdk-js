@@ -2,6 +2,12 @@
 
 # Interface: TokenBalancesResponse
 
+## Hierarchy
+
+- **`TokenBalancesResponse`**
+
+  ↳ [`TokenBalancesResponseErc20`](TokenBalancesResponseErc20.md)
+
 ## Table of contents
 
 ### Properties
@@ -17,7 +23,7 @@
 
 #### Defined in
 
-[src/types/types.ts:62](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L62)
+[src/types/types.ts:113](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L113)
 
 ___
 
@@ -27,4 +33,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:63](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L63)
+[src/types/types.ts:114](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L114)

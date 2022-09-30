@@ -2,6 +2,8 @@
 
 # Interface: TransactionReceiptsResponse
 
+Response object for a [CoreNamespace.getTransactionReceipts](../classes/CoreNamespace.md#gettransactionreceipts) call.
+
 ## Table of contents
 
 ### Properties
@@ -14,6 +16,8 @@
 
 • **receipts**: ``null`` \| `TransactionReceipt`[]
 
+A list of transaction receipts for the queried block.
+
 #### Defined in
 
-[src/types/types.ts:480](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L480)
+[src/types/types.ts:804](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L804)

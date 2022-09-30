@@ -1,7 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber';
 
-// TODO: Remove ethers package dependency for smaller bundle size.
-
 /**
  * Converts a hex string to a decimal number.
  *

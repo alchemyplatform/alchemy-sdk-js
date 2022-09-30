@@ -5,7 +5,8 @@ import {
   RawNft,
   RawNftContract,
   RawOwnedBaseNft,
-  RawOwnedNft
+  RawOwnedNft,
+  RawNftContractMetadata
 } from '../src/internal/raw-interfaces';
 import {
   BaseNft,
@@ -25,12 +26,18 @@ import {
 } from '../src/util/util';
 import { BaseNftContract } from '../src/api/nft';
 
+export const TEST_WALLET_PRIVATE_KEY =
+  'dd5bdf09397b1fdf98e4f72c66047d5104b1511fa7dc1b8fdddd61a150f732c9';
+export const TEST_WALLET_PUBLIC_ADDRESS =
+  '0x4b9007B0BcE78cfB634032ec31Ed56adB464287b';
+
+/** Creates a dummy response for the `getContractMetadata` endpoint. */
 export function createRawNftContract(
   address: string,
   tokenType: NftTokenType,
   name?: string,
   symbol?: string,
-  totalSupply?: number
+  totalSupply?: string
 ): RawNftContract {
   return {
     address,
@@ -113,32 +120,38 @@ export function createNft(
   media?: TokenUri[] | undefined
 ): Nft {
   return getNftFromRaw(
-    createRawNft(title, tokenId, tokenType, tokenUri, media),
+    createRawNft(title, tokenId, tokenType, { tokenUri, media }),
     address
   );
+}
+
+interface RawNftOptions {
+  tokenUri?: TokenUri;
+  media?: TokenUri[] | undefined;
+  timeLastUpdated?: string;
+  description?: string | Array<string>;
+  contractMetadata?: RawNftContractMetadata;
 }
 
 export function createRawNft(
   title: string,
   tokenId: string,
   tokenType = NftTokenType.UNKNOWN,
-  tokenUri?: TokenUri,
-  media?: TokenUri[] | undefined,
-  timeLastUpdated?: string,
-  description?: string | Array<string>
+  options?: RawNftOptions
 ): RawNft {
   return {
     title,
-    description: description ?? `a truly unique NFT: ${title}`,
-    timeLastUpdated: timeLastUpdated ?? '2022-02-16T17:12:00.280Z',
+    description: options?.description ?? `a truly unique NFT: ${title}`,
+    timeLastUpdated: options?.timeLastUpdated ?? '2022-02-16T17:12:00.280Z',
     id: {
       tokenId,
       tokenMetadata: {
         tokenType
       }
     },
-    tokenUri,
-    media
+    tokenUri: options?.tokenUri,
+    media: options?.media,
+    contractMetadata: options?.contractMetadata
   };
 }
 
@@ -147,7 +160,8 @@ export function createRawOwnedNft(
   address: string,
   tokenId: string,
   balance: string,
-  tokenType = NftTokenType.UNKNOWN
+  tokenType = NftTokenType.UNKNOWN,
+  contractMetadata?: RawNftContractMetadata
 ): RawOwnedNft {
   return {
     ...createRawNft(title, tokenId, tokenType),
@@ -160,6 +174,7 @@ export function createRawOwnedNft(
         tokenType
       }
     },
+    contractMetadata,
     balance
   };
 }

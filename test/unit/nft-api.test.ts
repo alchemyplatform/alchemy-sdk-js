@@ -1,19 +1,20 @@
 import {
   Alchemy,
   BaseNft,
-  NftContractBaseNftsResponse,
-  NftContractNftsResponse,
   fromHex,
   GetFloorPriceResponse,
   GetNftsForOwnerOptions,
+  GetOwnersForContractWithTokenBalancesResponse,
+  Nft,
   NftContract,
+  NftContractBaseNftsResponse,
+  NftContractNftsResponse,
   NftExcludeFilters,
   NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
-  Nft,
   RefreshState
 } from '../../src';
 import axios from 'axios';
@@ -23,9 +24,9 @@ import {
   createNft,
   createOwnedBaseNft,
   createOwnedNft,
-  createRawNftContractBaseNft,
   createRawNft,
   createRawNftContract,
+  createRawNftContractBaseNft,
   createRawOwnedBaseNft,
   createRawOwnedNft
 } from '../test-util';
@@ -33,7 +34,8 @@ import {
   RawGetBaseNftsForContractResponse,
   RawGetBaseNftsResponse,
   RawGetNftsForContractResponse,
-  RawGetNftsResponse
+  RawGetNftsResponse,
+  RawGetOwnersForContractWithTokenBalancesResponse
 } from '../../src/internal/raw-interfaces';
 import { getNftContractFromRaw, getNftFromRaw } from '../../src/util/util';
 
@@ -58,7 +60,7 @@ describe('NFT module', () => {
     const address = '0xABC';
     const name = 'NFT Contract Name';
     const symbol = 'NCN';
-    const totalSupply = 9999;
+    const totalSupply = '9999';
     const tokenType = NftTokenType.ERC721;
 
     const rawNftContractResponse = createRawNftContract(
@@ -80,7 +82,7 @@ describe('NFT module', () => {
       address: string,
       name: string,
       symbol: string,
-      totalSupply: number,
+      totalSupply: string,
       tokenType?: NftTokenType
     ) {
       expect(actualNftContract).toEqual(expectedNftContract);
@@ -123,6 +125,7 @@ describe('NFT module', () => {
     const contractAddress = '0xABC';
     const title = 'NFT Title';
     const tokenId = '42';
+    const timeoutInMs = 50;
     // Special case token ID as an integer string, since that's what the NFT
     // API endpoint returns.
     const rawNftResponse = createRawNft(title, tokenId.toString());
@@ -137,7 +140,8 @@ describe('NFT module', () => {
       expectedNft: Nft,
       contractAddress: string,
       tokenId: string,
-      tokenType?: NftTokenType
+      tokenType?: NftTokenType,
+      timeoutInMs?: number
     ) {
       expect(actualNft).toEqual(expectedNft);
       expect(actualNft.tokenId).toEqual(tokenId);
@@ -151,6 +155,10 @@ describe('NFT module', () => {
         'tokenType',
         tokenType ?? undefined
       );
+      expect(mock.history.get[0].params).toHaveProperty(
+        'tokenUriTimeoutInMs',
+        timeoutInMs ?? undefined
+      );
     }
 
     it('can be called with raw parameters', async () => {
@@ -158,12 +166,14 @@ describe('NFT module', () => {
         await alchemy.nft.getNftMetadata(
           contractAddress,
           tokenId,
-          NftTokenType.ERC1155
+          NftTokenType.ERC1155,
+          timeoutInMs
         ),
         expectedNft,
         contractAddress,
         tokenId,
-        NftTokenType.ERC1155
+        NftTokenType.ERC1155,
+        timeoutInMs
       );
     });
 
@@ -213,7 +223,8 @@ describe('NFT module', () => {
       pageKey,
       contractAddresses,
       excludeFilters,
-      pageSize: 3
+      pageSize: 3,
+      tokenUriTimeoutInMs: 50
     };
     const baseNftResponse: RawGetBaseNftsResponse = {
       ownedNfts: [
@@ -264,6 +275,10 @@ describe('NFT module', () => {
         expect(mock.history.get[0].params).toHaveProperty(
           'withMetadata',
           expectedWithMetadata
+        );
+        expect(mock.history.get[0].params).toHaveProperty(
+          'tokenUriTimeoutInMs',
+          50
         );
       }
     );
@@ -537,6 +552,38 @@ describe('NFT module', () => {
         expect(ownedNft.media).toBeDefined();
       }
     });
+
+    it('includes contract metadata at the top level', async () => {
+      const mockResponse = [
+        {
+          ownedNfts: [
+            createRawOwnedNft('a', '0xCA1', '0x1', '1', NftTokenType.UNKNOWN, {
+              name: 'Super NFT',
+              symbol: 'WOW',
+              totalSupply: '9999'
+            }),
+            createRawOwnedNft('b', '0xCA2', '0x2', '2', NftTokenType.ERC1155)
+          ],
+          pageKey: 'page-key1',
+          totalCount: 2
+        }
+      ];
+      setupMock(mockResponse);
+      const response = await alchemy.nft.getNftsForOwner(ownerAddress);
+      expect(response.ownedNfts.length).toEqual(2);
+      expect(response.ownedNfts[0].contract.tokenType).toEqual(
+        NftTokenType.UNKNOWN
+      );
+      expect(response.ownedNfts[0].contract.name).toEqual('Super NFT');
+      expect(response.ownedNfts[0].contract.symbol).toEqual('WOW');
+      expect(response.ownedNfts[0].contract.totalSupply).toEqual('9999');
+      expect(response.ownedNfts[1].contract.tokenType).toEqual(
+        NftTokenType.ERC1155
+      );
+      expect(response.ownedNfts[1].contract.name).toBeUndefined();
+      expect(response.ownedNfts[1].contract.symbol).toBeUndefined();
+      expect(response.ownedNfts[1].contract.totalSupply).toBeUndefined();
+    });
   });
 
   describe('getNftsForContract()', () => {
@@ -580,7 +627,8 @@ describe('NFT module', () => {
         await alchemy.nft.getNftsForContract(contractAddress, {
           pageKey,
           omitMetadata,
-          pageSize: 90
+          pageSize: 90,
+          tokenUriTimeoutInMs: 50
         });
         expect(mock.history.get.length).toEqual(1);
         expect(mock.history.get[0].params).toHaveProperty(
@@ -596,6 +644,10 @@ describe('NFT module', () => {
           expectedWithMetadata
         );
         expect(mock.history.get[0].params).toHaveProperty('limit', 90);
+        expect(mock.history.get[0].params).toHaveProperty(
+          'tokenUriTimeoutInMs',
+          50
+        );
       }
     );
 
@@ -646,6 +698,33 @@ describe('NFT module', () => {
       mock.onGet().reply(200, nftResponse);
       const response = await alchemy.nft.getNftsForContract(contractAddress);
       response.nfts.forEach(nft => expect(nft.media).toBeDefined());
+    });
+
+    it('includes contract metadata at the top level', async () => {
+      const mockResponse = {
+        nfts: [
+          createRawNft('a', '0x1', NftTokenType.UNKNOWN, {
+            contractMetadata: {
+              name: 'Super NFT',
+              symbol: 'WOW',
+              totalSupply: '9999'
+            }
+          }),
+          createRawNft('b', '0x2', NftTokenType.ERC1155)
+        ]
+      };
+      mock.reset();
+      mock.onGet().reply(200, mockResponse);
+      const response = await alchemy.nft.getNftsForContract(contractAddress);
+      expect(response.nfts.length).toEqual(2);
+      expect(response.nfts[0].contract.tokenType).toEqual(NftTokenType.UNKNOWN);
+      expect(response.nfts[0].contract.name).toEqual('Super NFT');
+      expect(response.nfts[0].contract.symbol).toEqual('WOW');
+      expect(response.nfts[0].contract.totalSupply).toEqual('9999');
+      expect(response.nfts[1].contract.tokenType).toEqual(NftTokenType.ERC1155);
+      expect(response.nfts[1].contract.name).toBeUndefined();
+      expect(response.nfts[1].contract.symbol).toBeUndefined();
+      expect(response.nfts[1].contract.totalSupply).toBeUndefined();
     });
   });
 
@@ -881,7 +960,7 @@ describe('NFT module', () => {
     });
   });
 
-  describe('getOwnersForNftContract()', () => {
+  describe('getOwnersForContract()', () => {
     const contractAddress = '0xCA1';
     const tokenIdHex = '0x1b7';
     const owners = ['0x1', '0x2', '0x3'];
@@ -902,6 +981,73 @@ describe('NFT module', () => {
       expect(response).toEqual({ owners });
     });
 
+    it('handles withTokenBalances=true', async () => {
+      const mockResponse: RawGetOwnersForContractWithTokenBalancesResponse = {
+        ownerAddresses: [
+          {
+            ownerAddress: '0xABC',
+            tokenBalances: [
+              {
+                tokenId: '0x1',
+                balance: 1
+              }
+            ]
+          },
+          {
+            ownerAddress: '0xDEF',
+            tokenBalances: [
+              {
+                tokenId: '0x2',
+                balance: 2
+              }
+            ]
+          }
+        ],
+        pageKey: 'page-key2'
+      };
+      const expected: GetOwnersForContractWithTokenBalancesResponse = {
+        owners: [
+          {
+            ownerAddress: '0xABC',
+            tokenBalances: [
+              {
+                tokenId: '0x1',
+                balance: 1
+              }
+            ]
+          },
+          {
+            ownerAddress: '0xDEF',
+            tokenBalances: [
+              {
+                tokenId: '0x2',
+                balance: 2
+              }
+            ]
+          }
+        ],
+        pageKey: 'page-key2'
+      };
+      mock.reset();
+      mock.onGet().reply(200, mockResponse);
+      const response = await alchemy.nft.getOwnersForContract(contractAddress, {
+        withTokenBalances: true,
+        block: '0x0',
+        pageKey: 'page-key1'
+      });
+
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        contractAddress
+      );
+      expect(mock.history.get[0].params).toHaveProperty(
+        'withTokenBalances',
+        true
+      );
+      expect(response).toEqual(expected);
+    });
+
     it('retries with maxAttempts', async () => {
       mock.reset();
       mock.onGet().reply(429, 'Too many requests');
@@ -912,12 +1058,18 @@ describe('NFT module', () => {
     });
   });
 
-  describe('checkNftOwnership', () => {
+  describe('verifyNftOwnership()', () => {
     const owner = '0xABC';
     const addresses = ['0xCA1', '0xCA2'];
     const emptyResponse: RawGetNftsResponse = {
       ownedNfts: [],
       totalCount: 0
+    };
+    const partialResponse: RawGetNftsResponse = {
+      ownedNfts: [
+        createRawOwnedNft('b', '0xCA2', '0x2', '2', NftTokenType.ERC1155)
+      ],
+      totalCount: 1
     };
     const nftResponse: RawGetNftsResponse = {
       ownedNfts: [
@@ -929,7 +1081,7 @@ describe('NFT module', () => {
 
     it('calls with the correct parameters', async () => {
       mock.onGet().reply(200, emptyResponse);
-      await alchemy.nft.checkNftOwnership(owner, addresses);
+      await alchemy.nft.verifyNftOwnership(owner, addresses);
       expect(mock.history.get.length).toEqual(1);
       expect(mock.history.get[0].params).toHaveProperty('owner', owner);
       expect(mock.history.get[0].params).toHaveProperty(
@@ -940,27 +1092,43 @@ describe('NFT module', () => {
     });
 
     it('throws if no contract address is passed in', async () => {
-      await expect(alchemy.nft.checkNftOwnership(owner, [])).rejects.toThrow(
+      await expect(alchemy.nft.verifyNftOwnership(owner, [])).rejects.toThrow(
         'Must provide at least one contract address'
       );
     });
 
     const cases = [
-      [emptyResponse, false],
-      [nftResponse, true]
+      [emptyResponse, { '0xCA1': false, '0xCA2': false }],
+      [partialResponse, { '0xCA1': false, '0xCA2': true }],
+      [nftResponse, { '0xCA1': true, '0xCA2': true }]
     ];
     it.each(cases)(
-      'returns the correct response',
+      'returns the correct response for arrayinputs',
       async (response, expected) => {
         mock.onGet().reply(200, response);
-        const result = await alchemy.nft.checkNftOwnership(owner, addresses);
+        const result = await alchemy.nft.verifyNftOwnership(owner, addresses);
         expect(result).toEqual(expected);
       }
     );
+
+    const cases2 = [
+      [emptyResponse, false],
+      [partialResponse, true]
+    ];
+    it.each(cases2)(
+      'returns the correct response for inputs',
+      async (response, expected) => {
+        const address = '0xCA2';
+        mock.onGet().reply(200, response);
+        const result = await alchemy.nft.verifyNftOwnership(owner, address);
+        expect(result).toEqual(expected);
+      }
+    );
+
     it('surfaces errors', async () => {
       mock.onGet().reply(500, 'Internal Server Error');
       await expect(
-        alchemy.nft.checkNftOwnership(owner, addresses)
+        alchemy.nft.verifyNftOwnership(owner, addresses)
       ).rejects.toThrow('Internal Server Error');
     });
   });
@@ -1045,17 +1213,13 @@ describe('NFT module', () => {
       'title',
       tokenIdHex,
       NftTokenType.UNKNOWN,
-      undefined,
-      [],
-      originalTimestamp
+      { timeLastUpdated: originalTimestamp }
     );
     const rawNftResponseRefreshed = createRawNft(
       'title',
       tokenIdHex,
       NftTokenType.UNKNOWN,
-      undefined,
-      [],
-      updatedTimestamp
+      { timeLastUpdated: updatedTimestamp }
     );
 
     function verifyCorrectParams(): void {

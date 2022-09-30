@@ -2,11 +2,19 @@
 
 The Alchemy SDK is the most comprehensive, stable, and powerful Javascript SDK available today to interact with the blockchain.
 
-It supports the exact same syntax and functionality of the Ethers.js `AlchemyProvider` and `WebSocketProvider`, making it a 1:1 mapping for anyone using the Ethers.js `Provider`. However, it adds a significant amount of improved functionality on top of Ethers, such as easy access to Alchemy’s Enhanced and NFT APIs, robust WebSockets, and quality-of life improvements such as automated retries.
+It supports the exact same syntax and functionality of the Ethers.js `AlchemyProvider` and `WebSocketProvider`, making it a 1:1 mapping for anyone using the Ethers.js `Provider`. However, it adds a significant amount of improved functionality on top of Ethers, such as easy access to Alchemy’s Enhanced and NFT APIs, robust WebSockets, and quality-of-life improvements such as automated retries.
 
 The SDK leverages Alchemy's hardened node infrastructure, guaranteeing best-in-class node reliability, scalability, and data correctness, and is undergoing active development by Alchemy's engineers.
 
-> 🙋‍♀️ **FEATURE REQUESTS:** We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want at our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback), and we'd love to build it for you:
+> 🙋‍♀️ **FEATURE REQUESTS:** We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want on our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback), and we'd love to build it for you:
+
+The SDK currently supports the following chains:
+
+- **Ethereum**: Mainnet, Goerli
+- **Polygon**: Mainnet, Mumbai
+- **Optimism**: Mainnet, Goerli, Kovan
+- **Arbitrum**: Mainnet, Goerli, Rinkeby
+- **Astar**: Mainnet
 
 ## Getting started
 
@@ -69,7 +77,7 @@ alchemy.ws.on(
 
 ## Alchemy Core
 
-The core package contains all commonly-used [Ethers.js Provider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) methods. If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should just work.
+The core namespace contains all commonly-used [Ethers.js Provider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) methods. If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` when accessing provider methods and it should just work.
 
 It also includes the majority of Alchemy Enhanced APIs, including:
 
@@ -77,6 +85,9 @@ It also includes the majority of Alchemy Enhanced APIs, including:
 - `getTokenBalances()`: Gets the token balances for an owner given a list of contracts.
 - `getAssetTransfers()`: Get transactions for specific addresses.
 - `getTransactionReceipts()`: Gets all transaction receipts for a given block.
+
+You will also find the following utility methods:
+- `findContractDeployer()`: Find the contract deployer and block number for a given contract address.
 
 ### Accessing the full Ethers.js Provider
 
@@ -98,7 +109,7 @@ runAlchemy();
 
 In addition to the built-in Ethers.js listeners, the Alchemy SDK includes support for [Alchemy's Subscription API](https://docs.alchemy.com/alchemy/enhanced-apis/subscription-api-websockets). This allows you to subscribe to events and receive updates as they occur.
 
-The `alchemy.ws` instance can be used can be used like the standard Ethers.js [WebSocketProvider](https://docs.ethers.io/v5/api/providers/other/#WebSocketProvider) to add listeners for Alchemy events:
+The `alchemy.ws` instance can be used like the standard Ethers.js [WebSocketProvider](https://docs.ethers.io/v5/api/providers/other/#WebSocketProvider) to add listeners for Alchemy events:
 
 ```ts
 import { Alchemy } from 'alchemy-sdk';
@@ -162,10 +173,9 @@ under the `alchemy.nft` namespace:
   automatically).
 - `getOwnersForNft()`: Get all the owners for a given NFT contract address and a particular token ID.
 - `getOwnersForContract()`: Get all the owners for a given NFT contract address.
-- `checkNftOwnership()`: Check that the provided owner address owns one or more of the provided NFT contract addresses.
+- `verifyNftOwnership()`: Check whether the provided owner address owns the provided NFT contract addresses.
 - `isSpamContract()`: Check whether the given NFT contract address is a spam contract as defined by Alchemy (see the [NFT API FAQ](https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification))
 - `getSpamContracts()`: Returns a list of all spam contracts marked by Alchemy.
-- `findContractDeployer()`: Find the contract deployer and block number for a given NFT contract address.
 - `refreshNftMetadata()`: Refresh the cached NFT metadata for a contract address and a single tokenId.
 - `refreshContract()`: Enqueues the specified contract address to have all token ids' metadata refreshed.
 - `getFloorPrice()`: Return the floor prices of a NFT contract by marketplace.
@@ -227,13 +237,6 @@ The SDK is documented via `tsdoc` comments in the source code. The generated typ
 using an IDE. To browse the documentation separately, you can view the generated API interfaces
 in `etc/alchemy-sdk.api.md`. You can view generated Markdown files for each endpoint in the `docs-md` directory,
 or as a webpage by opening `docs/index.html` in your browser.
-
-## Future Work
-
-There's a long list, but here are the main ones:
-
-- Retry count support for json-rpc calls (currently only for NFT API calls).
-- More config options for the base ethers.js AlchemyProvider.
 
 ## Usage Examples
 

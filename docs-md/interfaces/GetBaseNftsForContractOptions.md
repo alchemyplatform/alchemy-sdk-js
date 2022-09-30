@@ -26,7 +26,7 @@ Optional boolean flag to omit NFT metadata. Defaults to `false`.
 
 #### Defined in
 
-[src/types/types.ts:536](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L536)
+[src/types/types.ts:892](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L892)
 
 ___
 
@@ -39,7 +39,7 @@ Optional page key from an existing [NftContractBaseNftsResponse](NftContractBase
 
 #### Defined in
 
-[src/types/types.ts:533](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L533)
+[src/types/types.ts:889](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L889)
 
 ___
 
@@ -48,7 +48,8 @@ ___
 • `Optional` **pageSize**: `number`
 
 Sets the total number of NFTs to return in the response. Defaults to 100.
+Maximum page size is 100.
 
 #### Defined in
 
-[src/types/types.ts:539](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L539)
+[src/types/types.ts:898](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L898)

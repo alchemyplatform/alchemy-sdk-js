@@ -3,7 +3,8 @@ import {
   AssetTransfersCategory,
   Network,
   NftExcludeFilters,
-  NftTokenType
+  NftTokenType,
+  TokenBalanceType
 } from '../../src';
 import { Deferred, TESTING_PRIVATE_KEY } from '../test-util';
 import { Wallet } from '@ethersproject/wallet';
@@ -72,9 +73,28 @@ describe('E2E integration tests', () => {
 
     // First transfer specific checks
     expect(firstTransfer.blockNum).toEqual('0xbb933a');
-    expect(firstTransfer.metadata?.blockTimestamp).toEqual(
+    expect(firstTransfer.metadata.blockTimestamp).toEqual(
       '2021-04-22T23:13:40.000Z'
     );
+  });
+
+  it('getTokenBalances()', async () => {
+    // Supports ERC-20 + pageKey
+    const address = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045';
+    const contract = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
+    let response = await alchemy.core.getTokenBalances(address, {
+      type: TokenBalanceType.ERC20
+    });
+    expect(response.pageKey).toBeDefined();
+    const response2 = await alchemy.core.getTokenBalances(address, {
+      type: TokenBalanceType.ERC20,
+      pageKey: response.pageKey
+    });
+    expect(response2.tokenBalances.length).toBeGreaterThan(0);
+    expect(response.tokenBalances[0]).not.toEqual(response2.tokenBalances[0]);
+
+    response = await alchemy.core.getTokenBalances(address, [contract]);
+    expect(response.tokenBalances.length).toEqual(1);
   });
 
   it('getNftMetadata', async () => {
@@ -126,12 +146,36 @@ describe('E2E integration tests', () => {
     expect(withSpam.totalCount).not.toEqual(noSpam.totalCount);
   });
 
-  it('getOwnersForNftContract', async () => {
+  it('getNftsForOwner() contract metadata check', async () => {
+    const nfts = await alchemy.nft.getNftsForOwner('0xshah.eth');
+    expect(
+      nfts.ownedNfts.filter(
+        nft =>
+          nft.contract.symbol !== undefined &&
+          nft.contract.totalSupply !== undefined
+      ).length
+    ).toBeGreaterThan(0);
+  });
+
+  it('getOwnersForContract', async () => {
     const response = await alchemy.nft.getOwnersForContract(contractAddress);
     expect(response.owners.length).toBeGreaterThan(0);
   });
 
-  it('getNftsForNftContract with pageKey', async () => {
+  it('getOwnersForContract', async () => {
+    const address = '0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85';
+    const response = await alchemy.nft.getOwnersForContract(address, {
+      withTokenBalances: true
+    });
+
+    expect(response.owners.length).toBeGreaterThan(0);
+    expect(response.owners[0].tokenBalances.length).toBeGreaterThan(0);
+    expect(typeof response.owners[0].tokenBalances[0].balance).toEqual(
+      'string'
+    );
+  });
+
+  it('getNftsForContract with pageKey', async () => {
     const nftsForNftContract = await alchemy.nft.getNftsForContract(
       contractAddress
     );
@@ -148,6 +192,20 @@ describe('E2E integration tests', () => {
       { pageSize: 10 }
     );
     expect(nftsForNftContract.nfts.length).toEqual(10);
+  });
+
+  it('getNftsForContract() contract metadata check', async () => {
+    const response = await alchemy.nft.getNftsForContract(
+      '0x246e29ef6987637e48e7509f91521ce64eb8c831',
+      { omitMetadata: false }
+    );
+    expect(
+      response.nfts.filter(
+        nft =>
+          nft.contract.symbol !== undefined &&
+          nft.contract.totalSupply !== undefined
+      ).length
+    ).toBeGreaterThan(0);
   });
 
   it('getIterator', async () => {
@@ -321,6 +379,7 @@ describe('E2E integration tests', () => {
           expect(block).toBeDefined();
         });
       }
+
       for (const network of Object.values(Network)) {
         testNetwork(network);
       }
@@ -340,6 +399,7 @@ describe('E2E integration tests', () => {
           return done.promise;
         });
       }
+
       for (const network of Object.values(Network)) {
         testNetwork(network);
       }

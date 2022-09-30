@@ -2,6 +2,9 @@
 
 # Enumeration: AssetTransfersOrder
 
+Enum for the order of the [AssetTransfersParams](../interfaces/AssetTransfersParams.md) request object when
+using [CoreNamespace.getAssetTransfers](../classes/CoreNamespace.md#getassettransfers).
+
 ## Table of contents
 
 ### Enumeration members
@@ -17,7 +20,7 @@
 
 #### Defined in
 
-[src/types/types.ts:124](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L124)
+[src/types/types.ts:280](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L280)
 
 ___
 
@@ -27,4 +30,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:125](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L125)
+[src/types/types.ts:281](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L281)

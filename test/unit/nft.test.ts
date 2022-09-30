@@ -107,15 +107,11 @@ describe('Nft class', () => {
   it('constructor merges descriptions when it is an array', () => {
     const description = ['very', 'special', 'and unique', 'description'];
 
-    const rawNft = createRawNft(
-      'title',
-      tokenIdString,
-      NftTokenType.ERC721,
-      { raw: '', gateway: '' },
-      [],
-      '2022-02-16T17:12:00.280Z',
+    const rawNft = createRawNft('title', tokenIdString, NftTokenType.ERC721, {
+      tokenUri: { raw: '', gateway: '' },
+      timeLastUpdated: '2022-02-16T17:12:00.280Z',
       description
-    );
+    });
     const nft = getNftFromRaw(rawNft, '0xCA1');
     expect(nft.description).toEqual('very special and unique description');
   });

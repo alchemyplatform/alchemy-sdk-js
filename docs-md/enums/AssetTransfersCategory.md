@@ -2,6 +2,9 @@
 
 # Enumeration: AssetTransfersCategory
 
+Categories of transfers to use with the [AssetTransfersParams](../interfaces/AssetTransfersParams.md) request
+object when using [CoreNamespace.getAssetTransfers](../classes/CoreNamespace.md#getassettransfers).
+
 ## Table of contents
 
 ### Enumeration members
@@ -19,9 +22,11 @@
 
 • **ERC1155** = `"erc1155"`
 
+ERC1155 transfers.
+
 #### Defined in
 
-[src/types/types.ts:112](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L112)
+[src/types/types.ts:267](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L267)
 
 ___
 
@@ -29,9 +34,11 @@ ___
 
 • **ERC20** = `"erc20"`
 
+ERC20 transfers.
+
 #### Defined in
 
-[src/types/types.ts:110](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L110)
+[src/types/types.ts:261](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L261)
 
 ___
 
@@ -39,9 +46,11 @@ ___
 
 • **ERC721** = `"erc721"`
 
+ERC721 transfers.
+
 #### Defined in
 
-[src/types/types.ts:111](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L111)
+[src/types/types.ts:264](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L264)
 
 ___
 
@@ -49,9 +58,13 @@ ___
 
 • **EXTERNAL** = `"external"`
 
+Top level ETH transactions that occur where the `fromAddress` is an
+external user-created address. External addresses have private keys and are
+accessed by users.
+
 #### Defined in
 
-[src/types/types.ts:108](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L108)
+[src/types/types.ts:251](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L251)
 
 ___
 
@@ -59,9 +72,13 @@ ___
 
 • **INTERNAL** = `"internal"`
 
+Top level ETH transactions that occur where the `fromAddress` is an
+internal, smart contract address. For example, a smart contract calling
+another smart contract or sending
+
 #### Defined in
 
-[src/types/types.ts:109](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L109)
+[src/types/types.ts:258](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L258)
 
 ___
 
@@ -71,8 +88,6 @@ ___
 
 Special contracts that don't follow ERC 721/1155, (ex: CryptoKitties).
 
-**`beta`**
-
 #### Defined in
 
-[src/types/types.ts:119](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L119)
+[src/types/types.ts:270](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L270)

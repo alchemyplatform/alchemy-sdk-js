@@ -2,6 +2,9 @@
 
 # Interface: AssetTransfersMetadata
 
+The metadata object for a [AssetTransfersResult](AssetTransfersResult.md) when the
+[AssetTransfersParams.withMetadata](AssetTransfersParams.md#withmetadata) field is set to true.
+
 ## Table of contents
 
 ### Properties
@@ -14,6 +17,8 @@
 
 • **blockTimestamp**: `string`
 
+Timestamp of the block from which the transaction event originated.
+
 #### Defined in
 
-[src/types/types.ts:159](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fd39d10/src/types/types.ts#L159)
+[src/types/types.ts:388](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L388)
