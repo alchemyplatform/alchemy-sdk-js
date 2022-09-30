@@ -1,5 +1,5 @@
 import {
-  Classification,
+  NftSpamClassification,
   Media,
   NftMetadata,
   NftTokenType,
@@ -25,7 +25,7 @@ export interface RawSpamInfo {
   isSpam: string;
 
   /** A list of reasons why an NFT contract was marked as spam. */
-  classifications: Classification[];
+  classifications: NftSpamClassification[];
 }
 
 /**

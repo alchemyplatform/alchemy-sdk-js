@@ -469,7 +469,8 @@ export interface Media {
   bytes?: number;
 }
 
-export enum Classification {
+/** Potential reasons why an NFT contract was classified as spam. */
+export enum NftSpamClassification {
   Erc721TooManyOwners = 'Erc721TooManyOwners',
   Erc721TooManyTokens = 'Erc721TooManyTokens',
   Erc721DishonestTotalSupply = 'Erc721DishonestTotalSupply',
@@ -482,7 +483,7 @@ export interface SpamInfo {
   isSpam: boolean;
 
   /** A list of reasons why an NFT contract was marked as spam. */
-  classifications: Classification[];
+  classifications: NftSpamClassification[];
 }
 
 /**
