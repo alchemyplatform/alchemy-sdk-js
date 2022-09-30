@@ -11,3 +11,5 @@ dist
 
 # api-extractor temp files
 temp
+
+.npmrc

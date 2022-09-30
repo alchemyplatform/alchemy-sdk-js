@@ -1,4 +1,10 @@
-import { Media, NftMetadata, NftTokenType, TokenUri } from '../types/types';
+import {
+  Media,
+  NftMetadata,
+  NftTokenType,
+  SpamInfo,
+  TokenUri
+} from '../types/types';
 
 /**
  * Alchemy representation of a base NFT contract that doesn't contain metadata.
@@ -71,4 +77,7 @@ export interface Nft extends BaseNft {
 
   /** URIs for accessing the NFT's media assets. */
   media: Media[];
+
+  /** Detailed information on why an NFT was classified as spam. */
+  spamInfo?: SpamInfo;
 }

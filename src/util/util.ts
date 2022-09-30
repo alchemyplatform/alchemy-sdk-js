@@ -5,9 +5,10 @@ import {
   RawBaseNft,
   RawBaseNftContract,
   RawNft,
-  RawNftContract
+  RawNftContract,
+  RawSpamInfo
 } from '../internal/raw-interfaces';
-import { NftTokenType, TokenUri } from '../types/types';
+import { NftTokenType, SpamInfo, TokenUri } from '../types/types';
 
 export function formatBlock(block: string | number): string {
   if (typeof block === 'string') {
@@ -49,6 +50,7 @@ export function getBaseNftFromRaw(
 
 export function getNftFromRaw(rawNft: RawNft, contractAddress: string): Nft {
   const tokenType = parseNftTokenType(rawNft.id.tokenMetadata?.tokenType);
+  const spamInfo = parseSpamInfo(rawNft.spamInfo);
   return {
     contract: {
       address: contractAddress,
@@ -65,7 +67,8 @@ export function getNftFromRaw(rawNft: RawNft, contractAddress: string): Nft {
     metadataError: rawNft.error,
     rawMetadata: rawNft.metadata,
     tokenUri: parseNftTokenUri(rawNft.tokenUri),
-    media: parseNftTokenUriArray(rawNft.media)
+    media: parseNftTokenUriArray(rawNft.media),
+    spamInfo
   };
 }
 
@@ -86,6 +89,19 @@ function parseNftTokenType(tokenType: string | undefined): NftTokenType {
     default:
       return NftTokenType.UNKNOWN;
   }
+}
+
+function parseSpamInfo(
+  spamInfo: RawSpamInfo | undefined
+): SpamInfo | undefined {
+  if (!spamInfo) {
+    return undefined;
+  }
+  const { isSpam, classifications } = spamInfo;
+  return {
+    isSpam: isSpam === 'true',
+    classifications
+  };
 }
 
 function parseNftDescription(description?: string | string[]): string {
