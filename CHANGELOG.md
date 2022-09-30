@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Major Changes
+
+### Minor Changes
+
+- Added the `AIDROPS` enum to `NftNamespace.getNftsForOwner()`.
+
 ## 2.1.0
 
 ### Major Changes
