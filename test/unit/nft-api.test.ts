@@ -4,6 +4,7 @@ import {
   fromHex,
   GetFloorPriceResponse,
   GetNftsForOwnerOptions,
+  GetOwnersForContractWithTokenBalancesResponse,
   Nft,
   NftContract,
   NftContractBaseNftsResponse,
@@ -33,7 +34,8 @@ import {
   RawGetBaseNftsForContractResponse,
   RawGetBaseNftsResponse,
   RawGetNftsForContractResponse,
-  RawGetNftsResponse
+  RawGetNftsResponse,
+  RawGetOwnersForContractWithTokenBalancesResponse
 } from '../../src/internal/raw-interfaces';
 import { getNftContractFromRaw, getNftFromRaw } from '../../src/util/util';
 
@@ -958,7 +960,7 @@ describe('NFT module', () => {
     });
   });
 
-  describe('getOwnersForNftContract()', () => {
+  describe('getOwnersForContract()', () => {
     const contractAddress = '0xCA1';
     const tokenIdHex = '0x1b7';
     const owners = ['0x1', '0x2', '0x3'];
@@ -979,6 +981,73 @@ describe('NFT module', () => {
       expect(response).toEqual({ owners });
     });
 
+    it('handles withTokenBalances=true', async () => {
+      const mockResponse: RawGetOwnersForContractWithTokenBalancesResponse = {
+        ownerAddresses: [
+          {
+            ownerAddress: '0xABC',
+            tokenBalances: [
+              {
+                tokenId: '0x1',
+                balance: 1
+              }
+            ]
+          },
+          {
+            ownerAddress: '0xDEF',
+            tokenBalances: [
+              {
+                tokenId: '0x2',
+                balance: 2
+              }
+            ]
+          }
+        ],
+        pageKey: 'page-key2'
+      };
+      const expected: GetOwnersForContractWithTokenBalancesResponse = {
+        owners: [
+          {
+            ownerAddress: '0xABC',
+            tokenBalances: [
+              {
+                tokenId: '0x1',
+                balance: 1
+              }
+            ]
+          },
+          {
+            ownerAddress: '0xDEF',
+            tokenBalances: [
+              {
+                tokenId: '0x2',
+                balance: 2
+              }
+            ]
+          }
+        ],
+        pageKey: 'page-key2'
+      };
+      mock.reset();
+      mock.onGet().reply(200, mockResponse);
+      const response = await alchemy.nft.getOwnersForContract(contractAddress, {
+        withTokenBalances: true,
+        block: '0x0',
+        pageKey: 'page-key1'
+      });
+
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        contractAddress
+      );
+      expect(mock.history.get[0].params).toHaveProperty(
+        'withTokenBalances',
+        true
+      );
+      expect(response).toEqual(expected);
+    });
+
     it('retries with maxAttempts', async () => {
       mock.reset();
       mock.onGet().reply(429, 'Too many requests');
@@ -989,12 +1058,18 @@ describe('NFT module', () => {
     });
   });
 
-  describe('checkNftOwnership', () => {
+  describe('verifyNftOwnership()', () => {
     const owner = '0xABC';
     const addresses = ['0xCA1', '0xCA2'];
     const emptyResponse: RawGetNftsResponse = {
       ownedNfts: [],
       totalCount: 0
+    };
+    const partialResponse: RawGetNftsResponse = {
+      ownedNfts: [
+        createRawOwnedNft('b', '0xCA2', '0x2', '2', NftTokenType.ERC1155)
+      ],
+      totalCount: 1
     };
     const nftResponse: RawGetNftsResponse = {
       ownedNfts: [
@@ -1006,7 +1081,7 @@ describe('NFT module', () => {
 
     it('calls with the correct parameters', async () => {
       mock.onGet().reply(200, emptyResponse);
-      await alchemy.nft.checkNftOwnership(owner, addresses);
+      await alchemy.nft.verifyNftOwnership(owner, addresses);
       expect(mock.history.get.length).toEqual(1);
       expect(mock.history.get[0].params).toHaveProperty('owner', owner);
       expect(mock.history.get[0].params).toHaveProperty(
@@ -1017,27 +1092,43 @@ describe('NFT module', () => {
     });
 
     it('throws if no contract address is passed in', async () => {
-      await expect(alchemy.nft.checkNftOwnership(owner, [])).rejects.toThrow(
+      await expect(alchemy.nft.verifyNftOwnership(owner, [])).rejects.toThrow(
         'Must provide at least one contract address'
       );
     });
 
     const cases = [
-      [emptyResponse, false],
-      [nftResponse, true]
+      [emptyResponse, { '0xCA1': false, '0xCA2': false }],
+      [partialResponse, { '0xCA1': false, '0xCA2': true }],
+      [nftResponse, { '0xCA1': true, '0xCA2': true }]
     ];
     it.each(cases)(
-      'returns the correct response',
+      'returns the correct response for arrayinputs',
       async (response, expected) => {
         mock.onGet().reply(200, response);
-        const result = await alchemy.nft.checkNftOwnership(owner, addresses);
+        const result = await alchemy.nft.verifyNftOwnership(owner, addresses);
         expect(result).toEqual(expected);
       }
     );
+
+    const cases2 = [
+      [emptyResponse, false],
+      [partialResponse, true]
+    ];
+    it.each(cases2)(
+      'returns the correct response for inputs',
+      async (response, expected) => {
+        const address = '0xCA2';
+        mock.onGet().reply(200, response);
+        const result = await alchemy.nft.verifyNftOwnership(owner, address);
+        expect(result).toEqual(expected);
+      }
+    );
+
     it('surfaces errors', async () => {
       mock.onGet().reply(500, 'Internal Server Error');
       await expect(
-        alchemy.nft.checkNftOwnership(owner, addresses)
+        alchemy.nft.verifyNftOwnership(owner, addresses)
       ).rejects.toThrow('Internal Server Error');
     });
   });

@@ -20,7 +20,7 @@ using [CoreNamespace.getAssetTransfers](../classes/CoreNamespace.md#getassettran
 
 #### Defined in
 
-[src/types/types.ts:231](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L231)
+[src/types/types.ts:280](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L280)
 
 ___
 
@@ -30,4 +30,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:232](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L232)
+[src/types/types.ts:281](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L281)

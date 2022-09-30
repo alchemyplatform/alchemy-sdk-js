@@ -59,6 +59,55 @@ export enum Network {
   ASTAR_MAINNET = 'astar-mainnet'
 }
 
+/** Token Types for the `getTokenBalances()` endpoint. */
+export enum TokenBalanceType {
+  /**
+   * Option to fetch the top 100 tokens by 24-hour volume. This option is only
+   * available on Mainnet in Ethereum, Polygon, and Arbitrum.
+   */
+  DEFAULT_TOKENS = 'DEFAULT_TOKENS',
+
+  /**
+   * Option to fetch the set of ERC-20 tokens that the address as ever held. his
+   * list is produced by an address's historical transfer activity and includes
+   * all tokens that the address has ever received.
+   */
+  ERC20 = 'erc20'
+}
+
+/**
+ * Optional params to pass into `getTokenBalances()` to fetch all ERC-20 tokens
+ * instead of passing in an array of contract addresses to fetch balances for.
+ */
+export interface TokenBalancesOptionsErc20 {
+  /** The ERC-20 token type. */
+  type: TokenBalanceType.ERC20;
+
+  /** Optional page key for pagination (only applicable to TokenBalanceType.ERC20) */
+  pageKey?: string;
+}
+
+/**
+ * Optional params to pass into `getTokenBalances()` to fetch the top 100 tokens
+ * instead of passing in an array of contract addresses to fetch balances for.
+ */
+export interface TokenBalancesOptionsDefaultTokens {
+  /** The top 100 token type. */
+  type: TokenBalanceType.DEFAULT_TOKENS;
+}
+
+/**
+ * Response object for when the {@link TokenBalancesOptionsErc20} options are
+ * used. A page key may be returned if the provided address has many transfers.
+ */
+export interface TokenBalancesResponseErc20 extends TokenBalancesResponse {
+  /**
+   * An optional page key to passed into the next request to fetch the next page
+   * of token balances.
+   */
+  pageKey?: string;
+}
+
 /** @public */
 export interface TokenBalancesResponse {
   address: string;
@@ -408,8 +457,16 @@ export interface Media {
    */
   format?: string;
 
-  /** The size of the media asset in bytes. */
+  /**
+   * DEPRECATED - The size of the media asset in bytes
+   *
+   * @deprecated - Please use {@link bytes} instead. This field will be removed
+   *   in a subsequent release.
+   */
   size?: number;
+
+  /** The size of the media asset in bytes. */
+  bytes?: number;
 }
 
 export enum Classification {
@@ -606,7 +663,44 @@ export interface GetOwnersForNftResponse {
  */
 export interface GetOwnersForContractResponse {
   /** An array of owner addresses for the provided contract address */
-  readonly owners: string[];
+  owners: string[];
+}
+
+/**
+ * The response object for the {@link getOwnersForContract}.
+ *
+ * @public
+ */
+export interface GetOwnersForContractWithTokenBalancesResponse {
+  /** An array of owner addresses for the provided contract address */
+  owners: NftContractOwner[];
+
+  /** Optional page key that is returned when a collection has more than 50,000 owners. */
+  pageKey?: string;
+}
+
+/**
+ * An object representing the owner of an NFT and its corresponding token
+ * balances in a {@link GetOwnersForContractWithTokenBalancesResponse} object.
+ */
+export interface NftContractOwner {
+  /** The NFT's owner address. */
+  ownerAddress: string;
+
+  /** A list of objects containing token balances for the provided NFT contract. */
+  tokenBalances: NftContractTokenBalance[];
+}
+
+/**
+ * An object representing the owned token and balance values in a
+ * {@link GetOwnersForContractWithTokenBalancesResponse} object.
+ */
+export interface NftContractTokenBalance {
+  /** The token id owned in the NFT contract. */
+  tokenId: string;
+
+  /** The token Id balance for the provided owner. */
+  balance: number;
 }
 
 /**
@@ -821,6 +915,50 @@ export interface GetBaseNftsForContractOptions {
 }
 
 /**
+ * Optional parameters object for the {@link getNftsForContract} method.
+ *
+ * This interface configures options when fetching the owner addresses of the
+ * provided contract.
+ *
+ * @public
+ */
+export interface GetOwnersForContractOptions {
+  /**
+   * Whether to include the token balances per token id for each owner. Defaults
+   * to false when omitted.
+   */
+  withTokenBalances?: boolean;
+
+  /** The block number in hex or decimal to fetch owners for. */
+  block?: string;
+
+  /** Optional page key to paginate the next page for large requests. */
+  pageKey?: string;
+}
+
+/**
+ * Optional parameters object for the {@link getNftsForContract} method.
+ *
+ * This interface configures options when fetching the owner addresses of the
+ * provided contract.
+ *
+ * @public
+ */
+export interface GetOwnersForContractWithTokenBalancesOptions {
+  /**
+   * Whether to include the token balances per token id for each owner. Defaults
+   * to false when omitted.
+   */
+  withTokenBalances: true;
+
+  /** The block number in hex or decimal to fetch owners for. */
+  block?: string;
+
+  /** Optional page key to paginate the next page for large requests. */
+  pageKey?: string;
+}
+
+/**
  * The response object for the {@link getNftsForContract} function. The object
  * contains the NFTs without metadata inside the NFT contract.
  *
@@ -882,8 +1020,7 @@ export interface DeployResult {
  * @public
  */
 export type AlchemyPendingTransactionsEventFilter = {
-  method: 'alchemy_pendingTransactions';
-  /** Filter pending transactions sent FROM the provided address or array of addresses. */
+  method: 'alchemy_pendingTransactions' /** Filter pending transactions sent FROM the provided address or array of addresses. */;
   fromAddress?: string | string[];
 
   /** Filter pending transactions sent TO the provided address or array of addresses. */

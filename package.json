@@ -1,6 +1,6 @@
 {
   "name": "alchemy-sdk",
-  "version": "2.0.4",
+  "version": "2.1.0",
   "description": "Extended Ethers.js SDK for Alchemy APIs",
   "author": "Alchemy",
   "license": "MIT",
@@ -59,6 +59,7 @@
     "@ethersproject/bignumber": "^5.7.0",
     "@ethersproject/bytes": "^5.7.0",
     "@ethersproject/hash": "^5.7.0",
+    "@ethersproject/contracts": "^5.7.0",
     "@ethersproject/networks": "^5.7.0",
     "@ethersproject/providers": "^5.7.0",
     "@ethersproject/units": "^5.7.0",

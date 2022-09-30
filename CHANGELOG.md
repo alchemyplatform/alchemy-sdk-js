@@ -6,11 +6,21 @@
 
 - Added the `spamInfo` field to the response for `getNftsForOwner()` and `getNftsForContract()`.
 
-## Major Changes
+## 2.1.0
+
+### Major Changes
 
 - POTENTIALLY BREAKING: Fixed a typing bug where the `totalSupply` field in an `NftContract` should have type `string` instead of `number`.
 - Updated the `Nft` class to include the contract metadata in the `Nft.contract` field.
 - Added commonly used utility methods from ethers.js into a top-level `Utils` export.
+- Added the `NftNamespace.verifyNftOwnership()` method to replace the deprecated `checkNftOwnership()` method. 
+- Added `Contract` and `ContractFactory` exports from ethers into the top-level exports.  
+
+### Minor Changes
+
+- Added support for `withTokenBalances` in `NftNamespace.getOwnersForContract()`.
+- Added support for the `erc20` token type and pagination for `CoreNamespace.getTokenBalances()`.
+- Added `bytes` field to the `Media` object in the NFT metadata responses to indicate the size of the media in bytes. Note that the `size` field is not supported by the backend and will be removed in the next version.  
 
 ## 2.0.4
 

@@ -14,10 +14,10 @@ The response object for the [getOwnersForContract](../classes/NftNamespace.md#ge
 
 ### owners
 
-• `Readonly` **owners**: `string`[]
+• **owners**: `string`[]
 
 An array of owner addresses for the provided contract address
 
 #### Defined in
 
-[src/types/types.ts:590](https://github.com/alchemyplatform/alchemy-sdk-js/blob/145ea50/src/types/types.ts#L590)
+[src/types/types.ts:650](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L650)

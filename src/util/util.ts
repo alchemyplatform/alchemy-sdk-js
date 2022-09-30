@@ -108,6 +108,12 @@ function parseNftDescription(description?: string | string[]): string {
   if (description === undefined) {
     return '';
   }
+
+  // TODO: Remove after backend adds JSON stringification.
+  if (!Array.isArray(description) && typeof description === 'object') {
+    return JSON.stringify(description);
+  }
+
   return typeof description === 'string' ? description : description.join(' ');
 }
 
