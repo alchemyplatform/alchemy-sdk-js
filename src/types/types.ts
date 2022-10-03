@@ -580,7 +580,10 @@ export interface GetBaseNftsForOwnerOptions {
  */
 export enum NftExcludeFilters {
   /** Exclude NFTs that have been classified as spam. */
-  SPAM = 'SPAM'
+  SPAM = 'SPAM',
+
+  /** Exclude NFTs that have been airdropped to a user. */
+  AIRDROPS = 'AIRDROPS'
 }
 
 /**

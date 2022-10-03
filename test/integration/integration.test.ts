@@ -124,12 +124,19 @@ describe('E2E integration tests', () => {
     expect(response.ownedNfts.length).toEqual(51);
   });
 
-  it('getOwnersForNft from NFT', async () => {
+  it('getOwnersForNft() from NFT', async () => {
     const nfts = await alchemy.nft.getNftsForOwner(ownerAddress, {
       excludeFilters: [NftExcludeFilters.SPAM],
       omitMetadata: true
     });
     expect(nfts.ownedNfts.length).toBeGreaterThan(0);
+
+    const nfts2 = await alchemy.nft.getNftsForOwner(ownerAddress, {
+      excludeFilters: [NftExcludeFilters.AIRDROPS],
+      omitMetadata: true
+    });
+
+    expect(nfts.ownedNfts.length).not.toEqual(nfts2.totalCount);
     const response = await alchemy.nft.getOwnersForNft(
       nfts.ownedNfts[0].contract.address,
       nfts.ownedNfts[0].tokenId

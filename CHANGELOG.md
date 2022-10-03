@@ -2,8 +2,11 @@
 
 ## Unreleased
 
+### Major Changes
+
 ### Minor Changes
 
+- Added the `AIDROPS` enum to `NftNamespace.getNftsForOwner()`.
 - Added the `spamInfo` field to the response for `getNftsForOwner()` and `getNftsForContract()`.
 
 ## 2.1.0
