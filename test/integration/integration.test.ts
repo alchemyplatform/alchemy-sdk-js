@@ -152,6 +152,15 @@ describe('E2E integration tests', () => {
     expect(withSpam.totalCount).not.toEqual(noSpam.totalCount);
   });
 
+  it('getNftsForOwner() spam info check', async () => {
+    const response = await alchemy.nft.getNftsForOwner('vitalik.eth');
+    const spamNfts = response.ownedNfts.filter(
+      nft => nft.spamInfo !== undefined
+    );
+    expect(spamNfts[0].spamInfo!.isSpam).toEqual(true);
+    expect(spamNfts[0].spamInfo!.classifications.length).toBeGreaterThan(0);
+  });
+
   it('getNftsForOwner() contract metadata check', async () => {
     const nfts = await alchemy.nft.getNftsForOwner('0xshah.eth');
     expect(

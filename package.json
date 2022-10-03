@@ -57,14 +57,14 @@
   "dependencies": {
     "@ethersproject/abstract-provider": "^5.7.0",
     "@ethersproject/bignumber": "^5.7.0",
+    "@ethersproject/bytes": "^5.7.0",
+    "@ethersproject/hash": "^5.7.0",
     "@ethersproject/contracts": "^5.7.0",
     "@ethersproject/networks": "^5.7.0",
     "@ethersproject/providers": "^5.7.0",
+    "@ethersproject/units": "^5.7.0",
     "@ethersproject/wallet": "^5.7.0",
     "@ethersproject/web": "^5.7.0",
-    "@ethersproject/bytes": "^5.7.0",
-    "@ethersproject/hash": "^5.7.0",
-    "@ethersproject/units": "^5.7.0",
     "axios": "^0.26.1",
     "sturdy-websocket": "^0.2.1",
     "websocket": "^1.0.34"
