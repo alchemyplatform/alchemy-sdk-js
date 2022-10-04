@@ -469,6 +469,23 @@ export interface Media {
   bytes?: number;
 }
 
+/** Potential reasons why an NFT contract was classified as spam. */
+export enum NftSpamClassification {
+  Erc721TooManyOwners = 'Erc721TooManyOwners',
+  Erc721TooManyTokens = 'Erc721TooManyTokens',
+  Erc721DishonestTotalSupply = 'Erc721DishonestTotalSupply',
+  MostlyHoneyPotOwners = 'MostlyHoneyPotOwners',
+  OwnedByMostHoneyPots = 'OwnedByMostHoneyPots'
+}
+
+/** Detailed information on whether and why an NFT contract was classified as spam. */
+export interface SpamInfo {
+  isSpam: boolean;
+
+  /** A list of reasons why an NFT contract was marked as spam. */
+  classifications: NftSpamClassification[];
+}
+
 /**
  * Optional parameters object for the {@link getNftsForOwner} and
  * {@link getNftsForOwnerIterator} functions.
@@ -563,7 +580,10 @@ export interface GetBaseNftsForOwnerOptions {
  */
 export enum NftExcludeFilters {
   /** Exclude NFTs that have been classified as spam. */
-  SPAM = 'SPAM'
+  SPAM = 'SPAM',
+
+  /** Exclude NFTs that have been airdropped to a user. */
+  AIRDROPS = 'AIRDROPS'
 }
 
 /**
