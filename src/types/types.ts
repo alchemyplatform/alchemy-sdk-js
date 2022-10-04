@@ -1064,12 +1064,33 @@ export interface SendPrivateTransactionOptions {
   fast: boolean;
 }
 
-/** Response object for the {@link TransactNamespace.sendMultiPayloadTransaction} method. */
 export interface TransactionJobResponse {
-  /** The job id. This is used to ..... */
-  // TODO: fill in the comment once the API to check job status is available.
-  transactionJobId: number;
+  /**
+   * The job id. This can be used to check the status of the job via
+   * {@link TransactNamespace.getTransactionJobStatus}.
+   */
+  transactionJobId: string;
 
   /* An array of the transaction hashes from the different options */
   transactionHashes: string[];
+}
+
+/** Response object for the {@link TransactNamespace.getTransactionJobStatus} method. */
+export interface TransactionJobStatusResponse {
+  /** The status of the transaction job. */
+  jobStatus: string;
+
+  /** An array of the submitted transactions hashes that have been attempted. */
+  transactionHashesAttempted: string[];
+
+  /** The final mined transaction hash if the job was completed successfully. */
+  minedTransactionHash?: string;
+}
+
+/** Potential transaction job statuses for a {@link TransactionJobResponse} */
+export enum TransactionJobStatus {
+  UNSPECIFIED = 'TRANSACTION_JOB_STATUS_UNSPECIFIED',
+  IN_PROGRESS = 'IN_PROGRESS',
+  COMPLETE = 'COMPLETE',
+  ABANDONED = 'ABANDONED'
 }

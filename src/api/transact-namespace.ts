@@ -1,7 +1,8 @@
 import { AlchemyConfig } from './alchemy-config';
 import {
   SendPrivateTransactionOptions,
-  TransactionJobResponse
+  TransactionJobResponse,
+  TransactionJobStatusResponse
 } from '../types/types';
 import { fromHex, toHex } from './util';
 import {
@@ -15,7 +16,7 @@ import { Wallet } from './alchemy-wallet';
 
 /**
  * Multiples to increment fee per gas when using
- * {@link TransactNamespace.sendAutoGasTransaction}.
+ * {@link TransactNamespace.sendGasOptimizedTransaction}.
  *
  * @internal
  */
@@ -174,8 +175,8 @@ export class TransactNamespace {
    * the next cheapest transaction will be submitted. This process will continue
    * until one of the transactions is mined, or until all transactions are rejected.
    *
-   * To have Alchemy automatically generate a fee and gas spread, use
-   * {@link sendAutoGasTransaction}.
+   * To have Alchemy automatically generate a fee and gas spread, pass in a
+   * {@link TransactionRequest} object and a {@link Wallet} as a signer.
    *
    * This method returns a response object containing the transaction hash for
    * each of the signed transactions and a transaction job id that can be used
@@ -186,14 +187,9 @@ export class TransactNamespace {
    *   gas and fee values.
    * @public
    */
-  async sendMultiPayloadTransaction(
+  async sendGasOptimizedTransaction(
     signedTransactions: string[]
-  ): Promise<TransactionJobResponse> {
-    return this._sendMultiPayloadTransaction(
-      signedTransactions,
-      'sendMultiPayloadTransaction'
-    );
-  }
+  ): Promise<TransactionJobResponse>;
 
   /**
    * Instead of sending a single transaction that might not get mined, this
@@ -210,6 +206,9 @@ export class TransactNamespace {
    * transaction. The five transactions will have 90%, 100%, 110%, 120%, and
    * 130% of the max priority fee per gas.
    *
+   * Note that you can also pass in an array of pre-signed transactions with set
+   * gas levels for more granular control over gas.
+   *
    * This method returns a response object containing the transaction hash for
    * each of the signed transactions and a transaction job id that can be used
    * to track the state of the transaction job.
@@ -218,16 +217,27 @@ export class TransactNamespace {
    * @param wallet A wallet to use to sign the transaction.
    * @public
    */
-  async sendAutoGasTransaction(
+  async sendGasOptimizedTransaction(
     transaction: TransactionRequest,
     wallet: Wallet
+  ): Promise<TransactionJobResponse>;
+  async sendGasOptimizedTransaction(
+    transactionOrSignedTxs: TransactionRequest | string[],
+    wallet?: Wallet
   ): Promise<TransactionJobResponse> {
+    if (Array.isArray(transactionOrSignedTxs)) {
+      return this._sendGasOptimizedTransaction(
+        transactionOrSignedTxs,
+        'sendGasOptimizedTransactionPreSigned'
+      );
+    }
+
     let gasLimit;
     let priorityFee;
     let baseFee;
     const provider = await this.config.getProvider();
     try {
-      gasLimit = await this.estimateGas(transaction);
+      gasLimit = await this.estimateGas(transactionOrSignedTxs);
       priorityFee = await this.getMaxPriorityFeePerGas();
       const currentBlock = await provider.getBlock('latest');
       baseFee = currentBlock.baseFeePerGas!.toNumber();
@@ -236,22 +246,30 @@ export class TransactNamespace {
     }
 
     const gasSpreadTransactions = generateGasSpreadTransactions(
-      transaction,
+      transactionOrSignedTxs,
       gasLimit.toNumber(),
       baseFee,
       priorityFee
     );
     const signedTransactions = await Promise.all(
-      gasSpreadTransactions.map(tx => wallet.signTransaction(tx))
+      gasSpreadTransactions.map(tx => wallet!.signTransaction(tx))
     );
 
-    return this._sendMultiPayloadTransaction(
+    return this._sendGasOptimizedTransaction(
       signedTransactions,
-      'sendAutoGasTransaction'
+      'sendGasOptimizedTransactionGenerated'
     );
   }
 
-  async getTransactionJobStatus(transactionJobId: string): Promise<any> {
+  /**
+   * Returns the state of the transaction job returned by the
+   * {@link sendGasOptimizedTransaction}. *
+   *
+   * @param transactionJobId
+   */
+  async getTransactionJobStatus(
+    transactionJobId: string
+  ): Promise<TransactionJobStatusResponse> {
     const provider = await this.config.getProvider();
     return provider._send(
       'alchemy_getTransactionStatus',
@@ -283,7 +301,7 @@ export class TransactNamespace {
     return provider.waitForTransaction(transactionHash, confirmations, timeout);
   }
 
-  private async _sendMultiPayloadTransaction(
+  private async _sendGasOptimizedTransaction(
     signedTransactions: string[],
     methodName: string
   ): Promise<TransactionJobResponse> {
