@@ -1,10 +1,26 @@
 import { AlchemyConfig } from './alchemy-config';
-import { SendPrivateTransactionOptions } from '../types/types';
-import { toHex } from './util';
+import {
+  SendPrivateTransactionOptions,
+  TransactionJobResponse,
+  TransactionJobStatusResponse
+} from '../types/types';
+import { fromHex, toHex } from './util';
 import {
   TransactionReceipt,
+  TransactionRequest,
   TransactionResponse
 } from '@ethersproject/abstract-provider';
+import { Deferrable } from '@ethersproject/properties';
+import type { BigNumber } from '@ethersproject/bignumber';
+import { Wallet } from './alchemy-wallet';
+
+/**
+ * Multiples to increment fee per gas when using
+ * {@link TransactNamespace.sendGasOptimizedTransaction}.
+ *
+ * @internal
+ */
+export const GAS_OPTIMIZED_TX_FEE_MULTIPLES = [0.9, 1, 1.1, 1.2, 1.3];
 
 /**
  * The Transact namespace contains methods used for sending transactions and
@@ -112,6 +128,156 @@ export class TransactNamespace {
   }
 
   /**
+   * Returns an estimate of the amount of gas that would be required to submit
+   * transaction to the network.
+   *
+   * An estimate may not be accurate since there could be another transaction on
+   * the network that was not accounted for, but after being mined affects the
+   * relevant state.
+   *
+   * This is an alias for {@link CoreNamespace.estimateGas}.
+   *
+   * @param transaction The transaction to estimate gas for.
+   * @public
+   */
+  async estimateGas(
+    transaction: Deferrable<TransactionRequest>
+  ): Promise<BigNumber> {
+    const provider = await this.config.getProvider();
+    return provider.estimateGas(transaction);
+  }
+
+  /**
+   * Returns a fee per gas (in wei) that is an estimate of how much you can pay
+   * as a priority fee, or "tip", to get a transaction included in the current block.
+   *
+   * This number is generally used to set the `maxPriorityFeePerGas` field in a
+   * transaction request.
+   *
+   * @public
+   */
+  async getMaxPriorityFeePerGas(): Promise<number> {
+    const provider = await this.config.getProvider();
+    const feeHex = await provider._send(
+      'eth_maxPriorityFeePerGas',
+      [],
+      'getMaxPriorityFeePerGas'
+    );
+    return fromHex(feeHex);
+  }
+
+  /**
+   * Instead of sending a single transaction that might not get mined, this
+   * method allows you to send the same transaction multiple times, with
+   * different gas prices and gas limits. This should result in lower fees paid.
+   *
+   * Alchemy will submit the cheapest transaction, and if it does not get mined,
+   * the next cheapest transaction will be submitted. This process will continue
+   * until one of the transactions is mined, or until all transactions are rejected.
+   *
+   * To have Alchemy automatically generate a fee and gas spread, pass in a
+   * {@link TransactionRequest} object and a {@link Wallet} as a signer.
+   *
+   * This method returns a response object containing the transaction hash for
+   * each of the signed transactions and a transaction job id that can be used
+   * to track the state of the transaction job.
+   *
+   * @param signedTransactions An array of signed transactions to send. Each
+   *   transaction in the array must have the same values, but with different
+   *   gas and fee values.
+   * @public
+   */
+  async sendGasOptimizedTransaction(
+    signedTransactions: string[]
+  ): Promise<TransactionJobResponse>;
+
+  /**
+   * Instead of sending a single transaction that might not get mined, this
+   * method will generate a series of five EIP-1559 transactions with different
+   * gas prices in order to minimize the final fees paid.
+   *
+   * Alchemy will submit the cheapest transaction, and if it does not get mined,
+   * the next cheapest transaction will be submitted. This process will continue
+   * until one of the transactions is mined, or until all transactions are rejected.
+   *
+   * To calculate the fee, gas, and gas spread for each transaction, this method
+   * first calculates the base fee from the latest block, estimates the gas for
+   * the transaction, and then calculates the fee and gas spread for the
+   * transaction. The five transactions will have 90%, 100%, 110%, 120%, and
+   * 130% of the max priority fee per gas.
+   *
+   * Note that you can also pass in an array of pre-signed transactions with set
+   * gas levels for more granular control over gas.
+   *
+   * This method returns a response object containing the transaction hash for
+   * each of the signed transactions and a transaction job id that can be used
+   * to track the state of the transaction job.
+   *
+   * @param transaction The raw transaction to send.
+   * @param wallet A wallet to use to sign the transaction.
+   * @public
+   */
+  async sendGasOptimizedTransaction(
+    transaction: TransactionRequest,
+    wallet: Wallet
+  ): Promise<TransactionJobResponse>;
+  async sendGasOptimizedTransaction(
+    transactionOrSignedTxs: TransactionRequest | string[],
+    wallet?: Wallet
+  ): Promise<TransactionJobResponse> {
+    if (Array.isArray(transactionOrSignedTxs)) {
+      return this._sendGasOptimizedTransaction(
+        transactionOrSignedTxs,
+        'sendGasOptimizedTransactionPreSigned'
+      );
+    }
+
+    let gasLimit;
+    let priorityFee;
+    let baseFee;
+    const provider = await this.config.getProvider();
+    try {
+      gasLimit = await this.estimateGas(transactionOrSignedTxs);
+      priorityFee = await this.getMaxPriorityFeePerGas();
+      const currentBlock = await provider.getBlock('latest');
+      baseFee = currentBlock.baseFeePerGas!.toNumber();
+    } catch (e) {
+      throw new Error(`Failed to estimate gas for transaction: ${e}`);
+    }
+
+    const gasSpreadTransactions = generateGasSpreadTransactions(
+      transactionOrSignedTxs,
+      gasLimit.toNumber(),
+      baseFee,
+      priorityFee
+    );
+    const signedTransactions = await Promise.all(
+      gasSpreadTransactions.map(tx => wallet!.signTransaction(tx))
+    );
+
+    return this._sendGasOptimizedTransaction(
+      signedTransactions,
+      'sendGasOptimizedTransactionGenerated'
+    );
+  }
+
+  /**
+   * Returns the state of the transaction job returned by the
+   * {@link sendGasOptimizedTransaction}. *
+   *
+   * @param transactionJobId
+   */
+  async getTransactionJobStatus(
+    transactionJobId: string
+  ): Promise<TransactionJobStatusResponse> {
+    const provider = await this.config.getProvider();
+    return provider._send(
+      'alchemy_getTransactionStatus',
+      [transactionJobId],
+      'getTransactionJobStatus'
+    );
+  }
+  /**
    * Returns a promise which will not resolve until specified transaction hash is mined.
    *
    * If {@link confirmations} is 0, this method is non-blocking and if the
@@ -134,4 +300,45 @@ export class TransactNamespace {
     const provider = await this.config.getProvider();
     return provider.waitForTransaction(transactionHash, confirmations, timeout);
   }
+
+  private async _sendGasOptimizedTransaction(
+    signedTransactions: string[],
+    methodName: string
+  ): Promise<TransactionJobResponse> {
+    const provider = await this.config.getProvider();
+    return provider._send(
+      'alchemy_sendRawTransaction',
+      [
+        {
+          serializedTransactions: signedTransactions
+        }
+      ],
+      methodName
+    );
+  }
+}
+
+/**
+ * Helper method to generate the raw transaction with the given gas limit and
+ * priority fee across a spread of different gas prices.
+ *
+ * @internal
+ */
+// Visible for testing
+export function generateGasSpreadTransactions(
+  transaction: TransactionRequest,
+  gasLimit: number,
+  baseFee: number,
+  priorityFee: number
+): TransactionRequest[] {
+  return GAS_OPTIMIZED_TX_FEE_MULTIPLES.map(feeMultiplier => {
+    return {
+      ...transaction,
+      gasLimit,
+      maxFeePerGas: Math.round(
+        baseFee * feeMultiplier + priorityFee * feeMultiplier
+      ),
+      maxPriorityFeePerGas: Math.round(feeMultiplier * priorityFee)
+    };
+  });
 }
