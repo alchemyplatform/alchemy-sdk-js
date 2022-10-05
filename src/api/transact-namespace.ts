@@ -331,9 +331,8 @@ export function generateGasSpreadTransactions(
   baseFee: number,
   priorityFee: number
 ): TransactionRequest[] {
-  const gasTransactions = [];
-  for (const feeMultiplier of GAS_OPTIMIZED_TX_FEE_MULTIPLES) {
-    const txWithGas = {
+  return GAS_OPTIMIZED_TX_FEE_MULTIPLES.map(feeMultiplier => {
+    return {
       ...transaction,
       gasLimit,
       maxFeePerGas: Math.round(
@@ -341,8 +340,5 @@ export function generateGasSpreadTransactions(
       ),
       maxPriorityFeePerGas: Math.round(feeMultiplier * priorityFee)
     };
-    gasTransactions.push(txWithGas);
-  }
-
-  return gasTransactions;
+  });
 }
