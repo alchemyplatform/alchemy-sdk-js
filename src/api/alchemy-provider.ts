@@ -240,6 +240,7 @@ export class AlchemyProvider
 
     // START MODIFIED CODE
     const connection = { ...this.connection };
+    methodName = methodName + ':' + method;
     connection.headers!['Alchemy-Ethers-Sdk-Method'] = methodName;
     // END MODIFIED CODE
 
