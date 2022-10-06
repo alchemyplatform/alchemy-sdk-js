@@ -41,7 +41,6 @@ describe('AlchemyProvider', () => {
     expect(actual).toEqual(expected);
   });
 
-  // TODO(wss): Add unit test coverage for websocket provider.
   it('filtered transactions', done => {
     let eventCount = 0;
     const address = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
