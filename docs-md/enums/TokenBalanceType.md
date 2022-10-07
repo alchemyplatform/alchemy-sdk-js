@@ -22,7 +22,7 @@ available on Mainnet in Ethereum, Polygon, and Arbitrum.
 
 #### Defined in
 
-[src/types/types.ts:68](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L68)
+[src/types/types.ts:73](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L73)
 
 ___
 
@@ -36,4 +36,4 @@ all tokens that the address has ever received.
 
 #### Defined in
 
-[src/types/types.ts:75](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L75)
+[src/types/types.ts:80](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L80)

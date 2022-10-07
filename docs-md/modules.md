@@ -14,9 +14,11 @@
 - [AssetTransfersOrder](enums/AssetTransfersOrder.md)
 - [Network](enums/Network.md)
 - [NftExcludeFilters](enums/NftExcludeFilters.md)
+- [NftSpamClassification](enums/NftSpamClassification.md)
 - [NftTokenType](enums/NftTokenType.md)
 - [RefreshState](enums/RefreshState.md)
 - [TokenBalanceType](enums/TokenBalanceType.md)
+- [TransactionJobStatus](enums/TransactionJobStatus.md)
 
 ### Classes
 
@@ -73,6 +75,7 @@
 - [RawContract](interfaces/RawContract.md)
 - [RefreshContractResult](interfaces/RefreshContractResult.md)
 - [SendPrivateTransactionOptions](interfaces/SendPrivateTransactionOptions.md)
+- [SpamInfo](interfaces/SpamInfo.md)
 - [TokenBalanceFailure](interfaces/TokenBalanceFailure.md)
 - [TokenBalanceSuccess](interfaces/TokenBalanceSuccess.md)
 - [TokenBalancesOptionsDefaultTokens](interfaces/TokenBalancesOptionsDefaultTokens.md)
@@ -81,6 +84,8 @@
 - [TokenBalancesResponseErc20](interfaces/TokenBalancesResponseErc20.md)
 - [TokenMetadataResponse](interfaces/TokenMetadataResponse.md)
 - [TokenUri](interfaces/TokenUri.md)
+- [TransactionJobResponse](interfaces/TransactionJobResponse.md)
+- [TransactionJobStatusResponse](interfaces/TransactionJobStatusResponse.md)
 - [TransactionReceiptsBlockHash](interfaces/TransactionReceiptsBlockHash.md)
 - [TransactionReceiptsBlockNumber](interfaces/TransactionReceiptsBlockNumber.md)
 - [TransactionReceiptsResponse](interfaces/TransactionReceiptsResponse.md)
@@ -111,7 +116,7 @@ also include Alchemy's Subscription API.
 
 #### Defined in
 
-[src/types/types.ts:1030](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L1030)
+[src/types/types.ts:1055](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L1055)
 
 ___
 
@@ -141,7 +146,7 @@ information for ALL pending transactions that are added to the mempool.
 
 #### Defined in
 
-[src/types/types.ts:1006](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L1006)
+[src/types/types.ts:1031](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L1031)
 
 ___
 
@@ -153,7 +158,7 @@ The level of verbosity for the logger.
 
 #### Defined in
 
-[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/util/logger.ts#L22)
+[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/util/logger.ts#L22)
 
 ___
 
@@ -163,7 +168,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:118](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L118)
+[src/types/types.ts:123](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L123)
 
 ___
 
@@ -175,7 +180,7 @@ The parameters to use with the [CoreNamespace.getTransactionReceipts](classes/Co
 
 #### Defined in
 
-[src/types/types.ts:793](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L793)
+[src/types/types.ts:818](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L818)
 
 ## Functions
 
@@ -197,7 +202,7 @@ Converts a hex string to a decimal number.
 
 #### Defined in
 
-[src/api/util.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/util.ts#L9)
+[src/api/util.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/util.ts#L9)
 
 ___
 
@@ -219,7 +224,7 @@ Checks if a value is a hex string.
 
 #### Defined in
 
-[src/api/util.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/util.ts#L29)
+[src/api/util.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/util.ts#L29)
 
 ___
 
@@ -241,7 +246,7 @@ Configures the verbosity of logging. The default log level is `info`.
 
 #### Defined in
 
-[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/util/logger.ts#L56)
+[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/util/logger.ts#L56)
 
 ___
 
@@ -263,4 +268,4 @@ Converts a number to a hex string.
 
 #### Defined in
 
-[src/api/util.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/util.ts#L19)
+[src/api/util.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/util.ts#L19)

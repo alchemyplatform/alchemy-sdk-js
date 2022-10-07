@@ -26,4 +26,4 @@ The address of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:10](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/nft.ts#L10)
+[src/api/nft.ts:16](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/nft.ts#L16)

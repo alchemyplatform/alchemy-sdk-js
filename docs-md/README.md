@@ -89,6 +89,7 @@ It also includes the majority of Alchemy Enhanced APIs, including:
 - `getTransactionReceipts()`: Gets all transaction receipts for a given block.
 
 You will also find the following utility methods:
+
 - `findContractDeployer()`: Find the contract deployer and block number for a given contract address.
 
 ### Accessing the full Ethers.js Provider

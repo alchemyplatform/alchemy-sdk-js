@@ -29,20 +29,20 @@ Optional list of contract addresses to filter the results by. Limit is 20.
 
 #### Defined in
 
-[src/types/types.ts:489](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L489)
+[src/types/types.ts:511](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L511)
 
 ___
 
 ### excludeFilters
 
-• `Optional` **excludeFilters**: [`SPAM`](../enums/NftExcludeFilters.md#spam)[]
+• `Optional` **excludeFilters**: [`NftExcludeFilters`](../enums/NftExcludeFilters.md)[]
 
 Optional list of filters applied to the query. NFTs that match one or more
 of these filters are excluded from the response.
 
 #### Defined in
 
-[src/types/types.ts:495](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L495)
+[src/types/types.ts:517](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L517)
 
 ___
 
@@ -54,7 +54,7 @@ Optional boolean flag to omit NFT metadata. Defaults to `false`.
 
 #### Defined in
 
-[src/types/types.ts:504](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L504)
+[src/types/types.ts:526](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L526)
 
 ___
 
@@ -67,7 +67,7 @@ Optional page key from an existing [OwnedBaseNftsResponse](OwnedBaseNftsResponse
 
 #### Defined in
 
-[src/types/types.ts:486](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L486)
+[src/types/types.ts:508](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L508)
 
 ___
 
@@ -80,7 +80,7 @@ Maximum page size is 100.
 
 #### Defined in
 
-[src/types/types.ts:501](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L501)
+[src/types/types.ts:523](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L523)
 
 ___
 
@@ -95,4 +95,4 @@ metadata for cache misses then set this value to 0.
 
 #### Defined in
 
-[src/types/types.ts:512](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L512)
+[src/types/types.ts:534](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L534)

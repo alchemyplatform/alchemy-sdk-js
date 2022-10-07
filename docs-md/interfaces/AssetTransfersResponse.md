@@ -21,7 +21,7 @@ Page key for the next page of results, if one exists.
 
 #### Defined in
 
-[src/types/types.ts:303](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L303)
+[src/types/types.ts:308](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L308)
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:301](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L301)
+[src/types/types.ts:306](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L306)

@@ -21,7 +21,7 @@ The block number the contract was deployed in.
 
 #### Defined in
 
-[src/types/types.ts:989](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L989)
+[src/types/types.ts:1014](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L1014)
 
 ___
 
@@ -33,4 +33,4 @@ The address of the contract deployer, if it is available.
 
 #### Defined in
 
-[src/types/types.ts:986](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L986)
+[src/types/types.ts:1011](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L1011)

@@ -21,7 +21,7 @@ Alchemy representation of an NFT.
 - [media](Nft.md#media)
 - [metadataError](Nft.md#metadataerror)
 - [rawMetadata](Nft.md#rawmetadata)
-- [spaminfo](Nft.md#spaminfo)
+- [spamInfo](Nft.md#spaminfo)
 - [timeLastUpdated](Nft.md#timelastupdated)
 - [title](Nft.md#title)
 - [tokenId](Nft.md#tokenid)
@@ -42,9 +42,9 @@ The NFT's underlying contract and relevant contract metadata.
 
 #### Defined in
 
-[src/api/nft.ts:49](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/nft.ts#L49)
+[src/api/nft.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/nft.ts#L55)
 
----
+___
 
 ### description
 
@@ -54,9 +54,9 @@ The NFT description.
 
 #### Defined in
 
-[src/api/nft.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/nft.ts#L55)
+[src/api/nft.ts:61](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/nft.ts#L61)
 
----
+___
 
 ### media
 
@@ -66,9 +66,9 @@ URIs for accessing the NFT's media assets.
 
 #### Defined in
 
-[src/api/nft.ts:73](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/nft.ts#L73)
+[src/api/nft.ts:79](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/nft.ts#L79)
 
----
+___
 
 ### metadataError
 
@@ -78,9 +78,9 @@ Holds an error message if there was an issue fetching metadata.
 
 #### Defined in
 
-[src/api/nft.ts:61](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/nft.ts#L61)
+[src/api/nft.ts:67](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/nft.ts#L67)
 
----
+___
 
 ### rawMetadata
 
@@ -91,21 +91,21 @@ field is undefined if Alchemy was unable to fetch metadata.
 
 #### Defined in
 
-[src/api/nft.ts:67](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/nft.ts#L67)
+[src/api/nft.ts:73](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/nft.ts#L73)
 
----
+___
 
 ### spamInfo
 
-• **spamInfo**: [`SpamInfo`](SpamInfo.md)
+• `Optional` **spamInfo**: [`SpamInfo`](SpamInfo.md)
 
-Whether and why the NFT contract that issued this token is considered spam.
+Detailed information on why an NFT was classified as spam.
 
 #### Defined in
 
-[src/api/nft.ts:82](https://github.com/alchemyplatform/alchemy-sdk-js/blob/560b3e2/src/api/nft.ts#L82)
+[src/api/nft.ts:82](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/nft.ts#L82)
 
----
+___
 
 ### timeLastUpdated
 
@@ -115,9 +115,9 @@ When the NFT was last updated in the blockchain. Represented in ISO-8601 format.
 
 #### Defined in
 
-[src/api/nft.ts:58](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/nft.ts#L58)
+[src/api/nft.ts:64](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/nft.ts#L64)
 
----
+___
 
 ### title
 
@@ -127,9 +127,9 @@ The NFT title.
 
 #### Defined in
 
-[src/api/nft.ts:52](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/nft.ts#L52)
+[src/api/nft.ts:58](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/nft.ts#L58)
 
----
+___
 
 ### tokenId
 
@@ -143,9 +143,9 @@ The NFT token ID as an integer string.
 
 #### Defined in
 
-[src/api/nft.ts:37](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/nft.ts#L37)
+[src/api/nft.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/nft.ts#L43)
 
----
+___
 
 ### tokenType
 
@@ -159,9 +159,9 @@ The type of ERC token, if known.
 
 #### Defined in
 
-[src/api/nft.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/nft.ts#L39)
+[src/api/nft.ts:45](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/nft.ts#L45)
 
----
+___
 
 ### tokenUri
 
@@ -171,4 +171,4 @@ URIs for accessing the NFT's metadata blob.
 
 #### Defined in
 
-[src/api/nft.ts:70](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/nft.ts#L70)
+[src/api/nft.ts:76](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/nft.ts#L76)

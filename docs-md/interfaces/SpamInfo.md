@@ -2,35 +2,33 @@
 
 # Interface: SpamInfo
 
-Detailed information about why an NFT contract is considered to be spam.
+Detailed information on whether and why an NFT contract was classified as spam.
 
 ## Table of contents
 
 ### Properties
 
 - [classifications](SpamInfo.md#classifications)
-- [isSpam](SpamInfo.md#isSpam)
+- [isSpam](SpamInfo.md#isspam)
 
 ## Properties
 
 ### classifications
 
-• **classifications**: `string`[]
+• **classifications**: [`NftSpamClassification`](../enums/NftSpamClassification.md)[]
 
-A list of reasons why Alchemy considers an NFT to be spam. For more info, visit [the Alchemy docs](https://docs.alchemy.com/reference/nft-api-quickstart#how-can-i-understand-why-a-particular-nft-collection-is-marked-as-spam)
+A list of reasons why an NFT contract was marked as spam.
 
 #### Defined in
 
-[src/types/types.ts:420](https://github.com/alchemyplatform/alchemy-sdk-js/blob/560b3e2/src/types/types.ts#L420)
+[src/types/types.ts:491](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L491)
 
----
+___
 
 ### isSpam
 
 • **isSpam**: `boolean`
 
-True if Alchemy considers the associated NFT contract to be spam; otherwise false.
-
 #### Defined in
 
-[src/types/types.ts:417](https://github.com/alchemyplatform/alchemy-sdk-js/blob/560b3e2/src/types/types.ts#L417)
+[src/types/types.ts:488](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L488)

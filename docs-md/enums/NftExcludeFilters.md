@@ -11,9 +11,22 @@ NFTs that match one or more of these filters are excluded from the response.
 
 ### Enumeration members
 
+- [AIRDROPS](NftExcludeFilters.md#airdrops)
 - [SPAM](NftExcludeFilters.md#spam)
 
 ## Enumeration members
+
+### AIRDROPS
+
+• **AIRDROPS** = `"AIRDROPS"`
+
+Exclude NFTs that have been airdropped to a user.
+
+#### Defined in
+
+[src/types/types.ts:591](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L591)
+
+___
 
 ### SPAM
 
@@ -23,4 +36,4 @@ Exclude NFTs that have been classified as spam.
 
 #### Defined in
 
-[src/types/types.ts:566](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L566)
+[src/types/types.ts:588](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L588)

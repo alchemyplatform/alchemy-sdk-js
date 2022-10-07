@@ -43,7 +43,7 @@ no event is provided, the total number of listeners for all events is returned.
 
 #### Defined in
 
-[src/api/websocket-namespace.ts:91](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/websocket-namespace.ts#L91)
+[src/api/websocket-namespace.ts:91](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/websocket-namespace.ts#L91)
 
 ___
 
@@ -66,7 +66,7 @@ no event is provided, all listeners will be included.
 
 #### Defined in
 
-[src/api/websocket-namespace.ts:102](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/websocket-namespace.ts#L102)
+[src/api/websocket-namespace.ts:102](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/websocket-namespace.ts#L102)
 
 ___
 
@@ -90,7 +90,7 @@ listener is provided, all listeners for the event will be removed.
 
 #### Defined in
 
-[src/api/websocket-namespace.ts:61](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/websocket-namespace.ts#L61)
+[src/api/websocket-namespace.ts:61](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/websocket-namespace.ts#L61)
 
 ___
 
@@ -115,7 +115,7 @@ how to use them.
 
 #### Defined in
 
-[src/api/websocket-namespace.ts:28](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/websocket-namespace.ts#L28)
+[src/api/websocket-namespace.ts:28](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/websocket-namespace.ts#L28)
 
 ___
 
@@ -140,7 +140,7 @@ events. See [AlchemyEventType](../modules.md#alchemyeventtype) for how to use th
 
 #### Defined in
 
-[src/api/websocket-namespace.ts:45](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/websocket-namespace.ts#L45)
+[src/api/websocket-namespace.ts:45](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/websocket-namespace.ts#L45)
 
 ___
 
@@ -163,4 +163,4 @@ is provided, all events and their listeners are removed.
 
 #### Defined in
 
-[src/api/websocket-namespace.ts:76](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/api/websocket-namespace.ts#L76)
+[src/api/websocket-namespace.ts:76](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/websocket-namespace.ts#L76)

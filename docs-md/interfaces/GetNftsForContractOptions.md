@@ -27,7 +27,7 @@ Optional boolean flag to omit NFT metadata. Defaults to `false`.
 
 #### Defined in
 
-[src/types/types.ts:858](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L858)
+[src/types/types.ts:883](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L883)
 
 ___
 
@@ -40,7 +40,7 @@ Optional page key from an existing [NftContractBaseNftsResponse](NftContractBase
 
 #### Defined in
 
-[src/types/types.ts:855](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L855)
+[src/types/types.ts:880](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L880)
 
 ___
 
@@ -53,7 +53,7 @@ Maximum page size is 100.
 
 #### Defined in
 
-[src/types/types.ts:864](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L864)
+[src/types/types.ts:889](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L889)
 
 ___
 
@@ -68,4 +68,4 @@ metadata for cache misses then set this value to 0.
 
 #### Defined in
 
-[src/types/types.ts:872](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L872)
+[src/types/types.ts:897](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L897)

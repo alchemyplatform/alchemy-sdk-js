@@ -20,7 +20,7 @@ transferred is an ERC1155.
 
 #### Defined in
 
-[src/types/types.ts:814](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L814)
+[src/types/types.ts:839](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L839)
 
 ___
 
@@ -30,4 +30,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:815](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5944626/src/types/types.ts#L815)
+[src/types/types.ts:840](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L840)
