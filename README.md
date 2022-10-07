@@ -154,11 +154,6 @@ The `transact` namespace contains methods used for sending transactions. The uni
 - `sendPrivateTransaction()`: Send a private transaction through Flashbots.
 - `cancelPrivateTransaction()`: Cancel a private transaction sent with Flashbots.
 
-Gas-optimized transactions are also supported. Instead of sending a single transaction that might not get mined, gas-optimized transactions will generate a series of five EIP-1559 transactions with different gas prices in order to minimize the final fees paid. Alchemy will submit the cheapest transaction, and if it does not get mined, the next cheapest transaction will be submitted. This process will continue until one of the transactions is mined, or until all transactions are rejected.
-
-- `sendGasOptimizedTransactions()`: Send a series of pre-signed transactions, or a single raw transaction and signer for Alchemy to generate gas-optimized transactions for.
-- `getTransactionJobStatus()`: Gets the transaction job status of a submitted gas-optimized transaction.
-
 The `transact` namespace also aliases over several commonly used methods from the `core` namespace for convenience:
 
 - `getTransaction()`: Returns the transaction for the given transaction hash.

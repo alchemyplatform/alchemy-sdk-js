@@ -6,7 +6,7 @@ describe('E2E integration tests', () => {
   describe('handles networks', () => {
     describe('AlchemyProvider', () => {
       function testNetwork(network: Network) {
-        it(`block subscription for ${network}`, async () => {
+        it(`get blockNumber on ${network}`, async () => {
           const alchemy = new Alchemy({
             network
           });

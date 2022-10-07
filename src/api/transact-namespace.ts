@@ -167,6 +167,30 @@ export class TransactNamespace {
   }
 
   /**
+   * Returns a promise which will not resolve until specified transaction hash is mined.
+   *
+   * If {@link confirmations} is 0, this method is non-blocking and if the
+   * transaction has not been mined returns null. Otherwise, this method will
+   * block until the transaction has confirmed blocks mined on top of the block
+   * in which it was mined.
+   *
+   * NOTE: This is an alias for {@link CoreNamespace.waitForTransaction}.
+   *
+   * @param transactionHash The hash of the transaction to wait for.
+   * @param confirmations The number of blocks to wait for.
+   * @param timeout The maximum time to wait for the transaction to confirm.
+   * @public
+   */
+  async waitForTransaction(
+    transactionHash: string,
+    confirmations?: number,
+    timeout?: number
+  ): Promise<TransactionReceipt | null> {
+    const provider = await this.config.getProvider();
+    return provider.waitForTransaction(transactionHash, confirmations, timeout);
+  }
+
+  /**
    * Instead of sending a single transaction that might not get mined, this
    * method allows you to send the same transaction multiple times, with
    * different gas prices and gas limits. This should result in lower fees paid.
@@ -187,7 +211,8 @@ export class TransactNamespace {
    *   gas and fee values.
    * @public
    */
-  async sendGasOptimizedTransaction(
+  // @ts-ignore - Temporary private class until next release.
+  private async sendGasOptimizedTransaction(
     signedTransactions: string[]
   ): Promise<TransactionJobResponse>;
 
@@ -217,11 +242,13 @@ export class TransactNamespace {
    * @param wallet A wallet to use to sign the transaction.
    * @public
    */
-  async sendGasOptimizedTransaction(
+  // @ts-ignore - Temporary private class until next release.
+  private async sendGasOptimizedTransaction(
     transaction: TransactionRequest,
     wallet: Wallet
   ): Promise<TransactionJobResponse>;
-  async sendGasOptimizedTransaction(
+  // @ts-ignore - Temporary private class until next release.
+  private async sendGasOptimizedTransaction(
     transactionOrSignedTxs: TransactionRequest | string[],
     wallet?: Wallet
   ): Promise<TransactionJobResponse> {
@@ -267,7 +294,8 @@ export class TransactNamespace {
    *
    * @param transactionJobId
    */
-  async getTransactionJobStatus(
+  // @ts-ignore - Temporary private class until next release.
+  private async getTransactionJobStatus(
     transactionJobId: string
   ): Promise<TransactionJobStatusResponse> {
     const provider = await this.config.getProvider();
@@ -276,29 +304,6 @@ export class TransactNamespace {
       [transactionJobId],
       'getTransactionJobStatus'
     );
-  }
-  /**
-   * Returns a promise which will not resolve until specified transaction hash is mined.
-   *
-   * If {@link confirmations} is 0, this method is non-blocking and if the
-   * transaction has not been mined returns null. Otherwise, this method will
-   * block until the transaction has confirmed blocks mined on top of the block
-   * in which it was mined.
-   *
-   * NOTE: This is an alias for {@link CoreNamespace.waitForTransaction}.
-   *
-   * @param transactionHash The hash of the transaction to wait for.
-   * @param confirmations The number of blocks to wait for.
-   * @param timeout The maximum time to wait for the transaction to confirm.
-   * @public
-   */
-  async waitForTransaction(
-    transactionHash: string,
-    confirmations?: number,
-    timeout?: number
-  ): Promise<TransactionReceipt | null> {
-    const provider = await this.config.getProvider();
-    return provider.waitForTransaction(transactionHash, confirmations, timeout);
   }
 
   private async _sendGasOptimizedTransaction(
