@@ -10,6 +10,7 @@
 
 - Added the `AIDROPS` enum to `NftNamespace.getNftsForOwner()`.
 - Added the `spamInfo` field to the response for `getNftsForOwner()` and `getNftsForContract()`.
+- Marked Ropsten, Rinkeby, and Kovan `Network` enums as deprecated. Please switch over to Goerli.
 
 ## 2.1.0
 

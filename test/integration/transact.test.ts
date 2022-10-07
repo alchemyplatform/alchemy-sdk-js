@@ -15,7 +15,8 @@ describe('E2E integration tests', () => {
   it('sendPrivateTransaction()', async () => {
     const transaction = {
       to: '0xa238b6008Bc2FBd9E386A5d4784511980cE504Cd',
-      value: 10000,
+      // Use random number to allow back to back runs.
+      value: Math.floor(Math.random() * 10000),
       nonce: 2,
       type: 2,
       chainId: 5
