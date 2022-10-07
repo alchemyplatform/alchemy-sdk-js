@@ -8,8 +8,13 @@
 
 ### Minor Changes
 
+## 2.1.1
+
+### Minor Changes
+
 - Added the `AIDROPS` enum to `NftNamespace.getNftsForOwner()`.
 - Added the `spamInfo` field to the response for `getNftsForOwner()` and `getNftsForContract()`.
+- Fixed a bug where type declarations were not available when using `NodeNext` module resolution. Thanks @quentinverlhac!
 - Marked Ropsten, Rinkeby, and Kovan `Network` enums as deprecated. Please switch over to Goerli.
 
 ## 2.1.0
