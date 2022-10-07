@@ -4,12 +4,12 @@ about: Create a report to help us improve
 title: ''
 labels: bug
 assignees: ''
-
 ---
 
 ### [REQUIRED] Environment
-  * Browser version: 
-  * Alchemy SDK version: 
+
+- Browser version:
+- Alchemy SDK version:
 
 ### [REQUIRED] Describe the problem
 

@@ -4,6 +4,13 @@ import { Deferred } from '../test-util';
 jest.setTimeout(50000);
 describe('E2E integration tests', () => {
   describe('handles networks', () => {
+    // TODO(deprecation): Remove after removing deprecated networks.
+    const deprecated = ['ropsten', 'kovan', 'rinkeby'];
+    // Filter out deprecated networks.
+    const supportedNetworks = Object.values(Network).filter(
+      network => !deprecated.some(key => network.includes(key))
+    );
+
     describe('AlchemyProvider', () => {
       function testNetwork(network: Network) {
         it(`get blockNumber on ${network}`, async () => {
@@ -15,7 +22,7 @@ describe('E2E integration tests', () => {
         });
       }
 
-      for (const network of Object.values(Network)) {
+      for (const network of supportedNetworks) {
         testNetwork(network);
       }
     });
@@ -35,7 +42,12 @@ describe('E2E integration tests', () => {
         });
       }
 
-      for (const network of Object.values(Network)) {
+      for (const network of supportedNetworks) {
+        // TODO: Enable after Astar websockets work.
+        if (network === Network.ASTAR_MAINNET) {
+          continue;
+        }
+
         testNetwork(network);
       }
     });
