@@ -32,6 +32,12 @@ export interface AlchemySettings {
    * that not all methods will work with custom URLs.
    */
   url?: string;
+
+  /**
+   * Alchemy auth token required to use the Notify API. This token can be found
+   * in the Alchemy Dashboard on the Notify tab.
+   */
+  notifyAuthToken?: string;
 }
 
 /**
@@ -1099,3 +1105,223 @@ export enum TransactionJobStatus {
   COMPLETE = 'COMPLETE',
   ABANDONED = 'ABANDONED'
 }
+
+/** SDK representation of a Webhook in the Notify API. */
+export interface Webhook {
+  /** The webhook's unique id. */
+  id: string;
+  /** The network the webhook is on. */
+  network: Network;
+  /** The type of webhook. */
+  type: WebhookType;
+  /** The url that the webhook sends its payload to. */
+  url: string;
+  /** Whether the webhook is currently active */
+  isActive: boolean;
+  /** The creation time of the webhook as an ISO string. */
+  timeCreated: string;
+  /** The signing key used to verify payloads for the webhook. */
+  signingKey: string;
+  /** The webhook version. All newly created webhooks default to V2. */
+  version: WebhookVersion;
+  /**
+   * The app id of the app used for the webhook. This field is only present on
+   * {@link MinedTransactionWebhook} and {@link DroppedTransactionWebhook}
+   */
+  appId?: string;
+}
+
+/** The version of the webhook. All newly created webhooks default to V2. */
+export enum WebhookVersion {
+  V1 = 'V1',
+  V2 = 'V2'
+}
+
+/** The type of {@link Webhook}. */
+export enum WebhookType {
+  MINED_TRANSACTION = 'MINED_TRANSACTION',
+  DROPPED_TRANSACTION = 'DROPPED_TRANSACTION',
+  ADDRESS_ACTIVITY = 'ADDRESS_ACTIVITY',
+  NFT_ACTIVITY = 'NFT_ACTIVITY'
+}
+
+/**
+ * A Mined Transaction Webhook is used to notify your app whenever a transaction
+ * sent through your API key gets successfully mined. This is useful if you want
+ * to notify customers that their transaction went through.
+ */
+export interface MinedTransactionWebhook extends Webhook {
+  type: WebhookType.MINED_TRANSACTION;
+}
+
+/**
+ * A Dropped Transaction webhook is used to notify your app whenever a
+ * transaction sent through your API key gets dropped. This can be useful if you
+ * want to notify customers that their transactions were dropped.
+ */
+export interface DroppedTransactionWebhook extends Webhook {
+  type: WebhookType.DROPPED_TRANSACTION;
+}
+
+/**
+ * An Address Activity Webhook tracks ETH, ERC-20, and ERC721 transfers for the
+ * provided addresses. This can be used to notify your app with real-time state
+ * changes when your tracked addresses send or receive tokens.
+ */
+export interface AddressActivityWebhook extends Webhook {
+  type: WebhookType.ADDRESS_ACTIVITY;
+}
+
+/**
+ * The NFT Activity Webhook tracks all ERC821 and ERC1155 activity. This can be
+ * used to notify your app with real time state changes when an NFT is
+ * transferred between addresses.
+ */
+export interface NftActivityWebhook extends Webhook {
+  type: WebhookType.NFT_ACTIVITY;
+}
+
+/** The response for a {@link NotifyNamespace.getAll} method. */
+export interface GetAllWebhooksResponse {
+  /** All webhooks attached to the provided auth token. */
+  webhooks: Webhook[];
+  /** The total number of webhooks. */
+  totalCount: number;
+}
+
+/** Options object for the {@link NotifyNamespace.getAddresses} method. */
+export interface GetAddressesOptions {
+  /** Number of addresses to fetch. */
+  limit?: number;
+
+  /** Page */
+  pageKey?: string;
+}
+
+/** Response object for the {@link NotifyNamespace.getAddresses} method. */
+export interface AddressActivityResponse {
+  /** The addresses for the webhook. */
+  addresses: string[];
+  /** The total number of addresses. */
+  totalCount: number;
+  /** Optional page key used to fetch the remaining addresses. */
+  pageKey?: string;
+}
+
+/**
+ * Params to pass in when calling {@link NotifyNamespace.createWebhook} in order
+ * to create a {@link MinedTransactionWebhook} or {@link DroppedTransactionWebhook}.
+ *
+ * The webhook will be created on the app and network associated with the appId.
+ * To find the app id of a project, go to the Alchemy Dashboard in the Apps tab.
+ * After clicking on an app, the app id is the string in the URL following 'apps/'.
+ *
+ * This is a temporary workaround for now. We're planning on detecting the app
+ * id from the provided api key directly. Stay tuned!
+ */
+export interface TransactionWebhookParams {
+  /** The app id of the project to create the webhook on. */
+  appId: string;
+}
+
+/**
+ * Params to pass in when calling {@link NotifyNamespace.createWebhook} in order
+ * to create a {@link NftActivityWebhook}.
+ */
+export interface NftWebhookParams {
+  /** Array of NFT filters the webhook should track. */
+  filters: NftFilter[];
+  /**
+   * Optional network to create the webhook on. If omitted, the webhook will be
+   * created on network of the app provided in the api key config.
+   */
+  network?: Network;
+}
+
+/**
+ * Params to pass in when calling {@link NotifyNamespace.createWebhook} in order
+ * to create a {@link AddressActivityWebhook}.
+ */
+export interface AddressWebhookParams {
+  /** Array of addresses the webhook should activity for. */
+  addresses: string[];
+  /**
+   * Optional network to create the webhook on. If omitted, the webhook will be
+   * created on network of the app provided in the api key config.
+   */
+  network?: Network;
+}
+
+/** NFT to track on a {@link NftActivityWebhook}. */
+export interface NftFilter {
+  /** The contract address of the NFT. */
+  contractAddress: string;
+  /** The token id of the NFT. */
+  tokenId: string;
+}
+
+/** Response object for the {@link NotifyNamespace.getNftFilters} method. */
+export interface NftFiltersResponse {
+  /** The NFT filters on the provided webhook. */
+  filters: NftFilter[];
+  /** The total number of NFT filters on the webhook. */
+  totalCount: number;
+  /** Optional page key used to fetch the remaining filters. */
+  pageKey?: string;
+}
+
+/**
+ * Params object when calling {@link NotifyNamespace.updateWebhook} to mark a
+ * webhook as active or inactive.
+ */
+export interface WebhookStatusUpdate {
+  /** Whether the webhook is active. */
+  isActive: boolean;
+}
+
+/**
+ * Params object when calling {@link NotifyNamespace.updateWebhook} to add and
+ * remove NFT filters for a {@link NftActivityWebhook}.
+ */
+export interface WebhookNftFilterUpdate {
+  /** The filters to additionally track. */
+  addFilters: NftFilter[];
+  /** Existing filters to remove. */
+  removeFilters: NftFilter[];
+}
+
+/**
+ * Params object when calling {@link NotifyNamespace.updateWebhook} to add and
+ * remove addresses for a {@link AddressActivityWebhook}.
+ */
+export interface WebhookAddressUpdate {
+  /** The addresses to additionally track. */
+  addAddresses: string[];
+  /** Existing addresses to remove. */
+  removeAddresses: string[];
+}
+
+/**
+ * Params object when calling {@link NotifyNamespace.updateWebhook} to replace
+ * all existing addresses for a {@link AddressActivityWebhook}.
+ */
+export interface WebhookAddressOverride {
+  /** The new addresses to track. Existing addresses will be removed. */
+  newAddresses: string[];
+}
+
+/**
+ * Params object when calling {@link NotifyNamespace.updateWebhook} to update a
+ * {@link NftActivityWebhook}.
+ */
+
+export type NftWebhookUpdate = WebhookStatusUpdate | WebhookNftFilterUpdate;
+
+/**
+ * Params object when calling {@link NotifyNamespace.updateWebhook} to update a
+ * {@link AddressActivityWebhook}.
+ */
+export type AddressWebhookUpdate =
+  | WebhookStatusUpdate
+  | WebhookAddressUpdate
+  | WebhookAddressOverride;

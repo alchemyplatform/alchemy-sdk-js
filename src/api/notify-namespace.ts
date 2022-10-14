@@ -1,0 +1,538 @@
+import { AlchemyConfig } from './alchemy-config';
+import {
+  AddressActivityResponse,
+  AddressActivityWebhook,
+  AddressWebhookParams,
+  AddressWebhookUpdate,
+  DroppedTransactionWebhook,
+  GetAddressesOptions,
+  GetAllWebhooksResponse,
+  MinedTransactionWebhook,
+  Network,
+  NftActivityWebhook,
+  NftFilter,
+  NftFiltersResponse,
+  NftWebhookParams,
+  NftWebhookUpdate,
+  TransactionWebhookParams,
+  Webhook,
+  WebhookType,
+  WebhookVersion
+} from '../types/types';
+import { requestHttpWithBackoff } from '../internal/dispatch';
+import { AlchemyApiType } from '../util/const';
+import {
+  RawAddressActivityResponse,
+  RawCreateWebhookResponse,
+  RawGetAllWebhooksResponse,
+  RawNftFilterParam,
+  RawNftFiltersResponse,
+  RawWebHook
+} from '../internal/raw-interfaces';
+import { Method } from 'axios';
+
+/**
+ * The Notify namespace contains methods used for creating, reading, updating,
+ * and deleting webhooks in the Notify API.
+ *
+ * To use the methods in the API, you must provide your team's auth token in the
+ * {@link AlchemySettings.notifyAuthToken} field when configuring
+ * {@link AlchemySettings}. The auth token can be found in the Alchemy Dashboard
+ * on the Notify tab.
+ *
+ * Do not call this constructor directly. Instead, instantiate an Alchemy object
+ * with `const alchemy = new Alchemy(config)` and then access the notify
+ * namespace via `alchemy.notify`.
+ */
+export class NotifyNamespace {
+  constructor(private readonly config: AlchemyConfig) {}
+
+  /** Get all webhooks from every app on your team. */
+  async getAll(): Promise<GetAllWebhooksResponse> {
+    this.verifyConfig();
+    const response = await requestHttpWithBackoff<
+      {},
+      RawGetAllWebhooksResponse
+    >(
+      this.config,
+      AlchemyApiType.WEBHOOK,
+      'team-webhooks',
+      'webhooks:getAll',
+      {},
+      {
+        headers: { 'X-Alchemy-Token': this.config.notifyAuthToken! }
+      }
+    );
+    return {
+      webhooks: parseRawWebhookResponse(response),
+      totalCount: response.data.length
+    };
+  }
+
+  /**
+   * Get all addresses tracked for the provided {@link AddressActivityWebhook}.
+   *
+   * @param addressWebhook The Address Activity webhook.
+   * @param options Pagination options when fetching addresses.
+   */
+  getAddresses(
+    addressWebhook: AddressActivityWebhook,
+    options?: GetAddressesOptions
+  ): Promise<AddressActivityResponse>;
+
+  /**
+   * Get all addresses tracked for the provided {@link AddressActivityWebhook}.
+   *
+   * @param webhookId The id of the address activity webhook. Passing in an
+   *   incorrect id will result in a response object with no addresses.
+   * @param options Pagination options when fetching addresses.
+   */
+  getAddresses(
+    webhookId: string,
+    options?: GetAddressesOptions
+  ): Promise<AddressActivityResponse>;
+  async getAddresses(
+    webhookOrId: AddressActivityWebhook | string,
+    options?: GetAddressesOptions
+  ): Promise<AddressActivityResponse> {
+    this.verifyConfig();
+    const webhookId =
+      typeof webhookOrId === 'string' ? webhookOrId : webhookOrId.id;
+    const response = await requestHttpWithBackoff<
+      {},
+      RawAddressActivityResponse
+    >(
+      this.config,
+      AlchemyApiType.WEBHOOK,
+      'webhook-addresses',
+      'webhooks:getAddresses',
+      {
+        webhook_id: webhookId,
+        limit: options?.limit,
+        after: options?.pageKey
+      },
+      {
+        headers: { 'X-Alchemy-Token': this.config.notifyAuthToken! }
+      }
+    );
+    return parseRawAddressActivityResponse(response);
+  }
+
+  /**
+   * Get all NFTs tracked for the provided {@link NftActivityWebhook}.
+   *
+   * @param nftWebhook The NFT Activity webhook.
+   * @param options Pagination options when fetching NFT filters.
+   */
+  getNftFilters(
+    nftWebhook: NftActivityWebhook,
+    options?: GetAddressesOptions
+  ): Promise<NftFiltersResponse>;
+
+  /**
+   * Get all addresses tracked for the provided {@link NftActivityWebhook}.
+   *
+   * @param webhookId The id of the NFT activity webhook. Passing in an
+   *   incorrect id will result in a response object with no filters.
+   * @param options Pagination options when fetching nft filters.
+   */
+  getNftFilters(
+    webhookId: string,
+    options?: GetAddressesOptions
+  ): Promise<NftFiltersResponse>;
+  async getNftFilters(
+    webhookOrId: NftActivityWebhook | string,
+    options?: GetAddressesOptions
+  ): Promise<NftFiltersResponse> {
+    this.verifyConfig();
+    const webhookId =
+      typeof webhookOrId === 'string' ? webhookOrId : webhookOrId.id;
+    const response = await requestHttpWithBackoff<{}, RawNftFiltersResponse>(
+      this.config,
+      AlchemyApiType.WEBHOOK,
+      'webhook-nft-filters',
+      'webhooks:getNftFilters',
+      {
+        webhook_id: webhookId,
+        limit: options?.limit,
+        after: options?.pageKey
+      },
+      {
+        headers: { 'X-Alchemy-Token': this.config.notifyAuthToken! }
+      }
+    );
+    return parseRawNftFiltersResponse(response);
+  }
+
+  /**
+   * Update a {@link NftActivityWebhook}'s active status or NFT filters.
+   *
+   * @param nftWebhook The NFT activity webhook to update.
+   * @param update Object containing the update.
+   */
+  updateWebhook(
+    nftWebhook: NftActivityWebhook,
+    update: NftWebhookUpdate
+  ): Promise<void>;
+
+  /**
+   * Update a {@link NftActivityWebhook}'s active status or NFT filters.
+   *
+   * @param nftWebhookId The id of the NFT activity webhook.
+   * @param update Object containing the update.
+   */
+  updateWebhook(nftWebhookId: string, update: NftWebhookUpdate): Promise<void>;
+
+  /**
+   * Update a {@link AddressActivityWebhook}'s active status or addresses.
+   *
+   * @param addressWebhook The address activity webhook to update.
+   * @param update Object containing the update.
+   */
+  updateWebhook(
+    addressWebhook: AddressActivityWebhook,
+    update: AddressWebhookUpdate
+  ): Promise<void>;
+
+  /**
+   * Update a {@link AddressActivityWebhook}'s active status or addresses.
+   *
+   * @param addressWebhookId The id of the address activity webhook.
+   * @param update Object containing the update.
+   */
+  updateWebhook(
+    addressWebhookId: string,
+    update: AddressWebhookUpdate
+  ): Promise<void>;
+  async updateWebhook(
+    webhookOrId: NftActivityWebhook | AddressActivityWebhook | string,
+    update: NftWebhookUpdate | AddressWebhookUpdate
+  ): Promise<void> {
+    const webhookId =
+      typeof webhookOrId === 'string' ? webhookOrId : webhookOrId.id;
+    let restApiName;
+    let methodName;
+    let method: Method;
+    let data;
+    if ('isActive' in update) {
+      restApiName = 'update-webhook';
+      methodName = 'webhooks:updateWebhook';
+      method = 'PUT';
+      data = {
+        webhook_id: webhookId,
+        is_active: update.isActive
+      };
+    } else if ('addFilters' in update) {
+      restApiName = 'update-webhook-nft-filters';
+      methodName = 'webhooks:updateWebhookNftFilters';
+      method = 'PATCH';
+      data = {
+        webhook_id: webhookId,
+        nft_filters_to_add: update.addFilters.map(nftFilterToParam),
+        nft_filters_to_remove: update.removeFilters.map(nftFilterToParam)
+      };
+    } else if ('addAddresses' in update) {
+      restApiName = 'update-webhook-addresses';
+      methodName = 'webhook:updateWebhookAddresses';
+      method = 'PATCH';
+      data = {
+        webhook_id: webhookId,
+        addresses_to_add: update.addAddresses,
+        addresses_to_remove: update.removeAddresses
+      };
+    } else if ('newAddresses' in update) {
+      restApiName = 'update-webhook-addresses';
+      methodName = 'webhook:updateWebhookAddress';
+      method = 'PUT';
+      data = {
+        webhook_id: webhookId,
+        addresses: update.newAddresses
+      };
+    } else {
+      throw new Error('Invalid `update` param passed into `updateWebhook`');
+    }
+
+    await requestHttpWithBackoff(
+      this.config,
+      AlchemyApiType.WEBHOOK,
+      restApiName,
+      methodName,
+      {},
+      {
+        headers: {
+          'X-Alchemy-Token': this.config.notifyAuthToken!
+        },
+        method,
+        data
+      }
+    );
+  }
+
+  /**
+   * Create a new {@link MinedTransactionWebhook} to track mined transactions
+   * sent by the app associated with the app id.
+   *
+   * Note that the webhook will be created in the app network of the provided app id.
+   *
+   * @param url The URL that the webhook should send events to.
+   * @param type The type of webhook to create.
+   * @param params Parameters object containing the app id.
+   */
+  createWebhook(
+    url: string,
+    type: WebhookType.MINED_TRANSACTION,
+    params: TransactionWebhookParams
+  ): Promise<MinedTransactionWebhook>;
+
+  /**
+   * Create a new {@link DroppedTransactionWebhook} to track dropped transactions
+   * sent by the app associated with the app id.
+   *
+   * Note that the webhook will be created in the app network of the provided app id.
+   *
+   * @param url The URL that the webhook should send events to.
+   * @param type The type of webhook to create.
+   * @param params Parameters object containing the app id.
+   */
+  createWebhook(
+    url: string,
+    type: WebhookType.DROPPED_TRANSACTION,
+    params: TransactionWebhookParams
+  ): Promise<DroppedTransactionWebhook>;
+
+  /**
+   * Create a new {@link NftActivityWebhook} to track NFT transfers.
+   *
+   * @param url The URL that the webhook should send events to.
+   * @param type The type of webhook to create.
+   * @param params Parameters object containing the NFTs to track and the
+   *   network the webhook should be created on.
+   */
+  createWebhook(
+    url: string,
+    type: WebhookType.NFT_ACTIVITY,
+    params: NftWebhookParams
+  ): Promise<NftActivityWebhook>;
+
+  /**
+   * Create a new {@link AddressActivityWebhook} to track address activity.
+   *
+   * @param url The URL that the webhook should send events to.
+   * @param type The type of webhook to create.
+   * @param params Parameters object containing the addresses to track and the
+   *   network the webhook should be created on.
+   */
+  createWebhook(
+    url: string,
+    type: WebhookType.ADDRESS_ACTIVITY,
+    params: AddressWebhookParams
+  ): Promise<AddressActivityWebhook>;
+  async createWebhook(
+    url: string,
+    type: WebhookType,
+    params: NftWebhookParams | AddressWebhookParams | TransactionWebhookParams
+  ): Promise<
+    | MinedTransactionWebhook
+    | DroppedTransactionWebhook
+    | NftActivityWebhook
+    | AddressActivityWebhook
+  > {
+    let appId;
+    if (
+      type == WebhookType.MINED_TRANSACTION ||
+      type === WebhookType.DROPPED_TRANSACTION
+    ) {
+      if (!('appId' in params)) {
+        throw new Error('Transaction Webhooks require an app id.');
+      }
+      appId = params.appId;
+    }
+
+    let network = NETWORK_TO_WEBHOOK_NETWORK.get(this.config.network);
+    let filters;
+    let addresses;
+    if (type === WebhookType.NFT_ACTIVITY) {
+      if (!('filters' in params) || params.filters.length === 0) {
+        throw new Error(
+          'Nft Activity Webhooks require a non-empty array input.'
+        );
+      }
+      network = params.network
+        ? NETWORK_TO_WEBHOOK_NETWORK.get(params.network)
+        : network;
+      filters = (params.filters as NftFilter[]).map(filter => ({
+        contract_address: filter.contractAddress,
+        token_id: filter.tokenId
+      }));
+    } else if (type === WebhookType.ADDRESS_ACTIVITY) {
+      if (
+        params === undefined ||
+        !('addresses' in params) ||
+        params.addresses.length === 0
+      ) {
+        throw new Error(
+          'Address Activity Webhooks require a non-empty array input.'
+        );
+      }
+      network = params.network
+        ? NETWORK_TO_WEBHOOK_NETWORK.get(params.network)
+        : network;
+      addresses = params.addresses;
+    }
+
+    const data = {
+      network,
+      webhook_type: type,
+      webhook_url: url,
+      ...(appId && { app_id: appId }),
+
+      // Only include the filters/addresses in the final response if it's defined
+      ...(filters && { nft_filters: filters }),
+      ...(addresses && { addresses })
+    };
+
+    const response = await requestHttpWithBackoff<{}, RawCreateWebhookResponse>(
+      this.config,
+      AlchemyApiType.WEBHOOK,
+      'create-webhook',
+      'webhooks:createWebhook',
+      {},
+      {
+        headers: {
+          'X-Alchemy-Token': this.config.notifyAuthToken!
+        },
+        method: 'POST',
+        data
+      }
+    );
+
+    return parseRawWebhook(response.data);
+  }
+
+  /**
+   * Delete the provided webhook.
+   *
+   * @param webhook The webhook to delete.
+   */
+  deleteWebhook(webhook: Webhook): Promise<void>;
+
+  /**
+   * Delete the provided webhook.
+   *
+   * @param webhookId The id of the webhook to delete.
+   */
+  deleteWebhook(webhookId: string): Promise<void>;
+  async deleteWebhook(webhookOrId: Webhook | string): Promise<void> {
+    this.verifyConfig();
+    const webhookId =
+      typeof webhookOrId === 'string' ? webhookOrId : webhookOrId.id;
+    const response = await requestHttpWithBackoff<{}, RawNftFiltersResponse>(
+      this.config,
+      AlchemyApiType.WEBHOOK,
+      'delete-webhook',
+      'webhooks:deleteWebhook',
+      {
+        webhook_id: webhookId
+      },
+      {
+        headers: { 'X-Alchemy-Token': this.config.notifyAuthToken! },
+        method: 'DELETE'
+      }
+    );
+
+    if ('message' in response) {
+      throw new Error(
+        `Webhook not found. Failed to delete webhook: ${webhookId}`
+      );
+    }
+  }
+
+  private verifyConfig() {
+    if (this.config.notifyAuthToken === undefined) {
+      throw new Error(
+        'Using the Notify API requires setting the Alchemy Auth Token in ' +
+          'the settings object when initializing Alchemy.'
+      );
+    }
+  }
+}
+
+/**
+ * Mapping of webhook network representations to the SDK's network representation.
+ *
+ * @internal
+ */
+const WEBHOOK_NETWORK_TO_NETWORK: { [key: string]: Network } = {
+  ETH_MAINNET: Network.ETH_MAINNET,
+  ETH_GOERLI: Network.ETH_GOERLI,
+  ETH_ROPSTEN: Network.ETH_ROPSTEN,
+  ETH_RINKEBY: Network.ETH_RINKEBY,
+  ETH_KOVAN: Network.ETH_KOVAN,
+  MATIC_MAINNET: Network.MATIC_MAINNET,
+  MATIC_MUMBAI: Network.MATIC_MUMBAI,
+  ARB_MAINNET: Network.ARB_MAINNET,
+  ARB_RINKEBY: Network.ARB_RINKEBY,
+  OPT_MAINNET: Network.OPT_MAINNET,
+  OPT_KOVAN: Network.OPT_KOVAN
+};
+
+/** Mapping of the SDK's network representation the webhook API's network representation. */
+const NETWORK_TO_WEBHOOK_NETWORK: Map<Network, string> = Object.keys(
+  Network
+).reduce((map: Map<Network, string>, key) => {
+  if (key in WEBHOOK_NETWORK_TO_NETWORK) {
+    map.set(WEBHOOK_NETWORK_TO_NETWORK[key], key);
+  }
+  return map;
+}, new Map());
+
+function parseRawWebhookResponse(
+  response: RawGetAllWebhooksResponse
+): Webhook[] {
+  return response.data.map(parseRawWebhook);
+}
+
+function parseRawWebhook(rawWebhook: RawWebHook): Webhook {
+  return {
+    id: rawWebhook.id,
+    network: WEBHOOK_NETWORK_TO_NETWORK[rawWebhook.network],
+    type: rawWebhook.webhook_type as WebhookType,
+    url: rawWebhook.webhook_url,
+    isActive: rawWebhook.is_active,
+    timeCreated: new Date(rawWebhook.time_created).toISOString(),
+    signingKey: rawWebhook.signing_key,
+    version: rawWebhook.version as WebhookVersion,
+    // Only include the appId in the final response if it's defined
+    ...(rawWebhook.app_id !== undefined && { appId: rawWebhook.app_id })
+  };
+}
+
+function parseRawAddressActivityResponse(
+  response: RawAddressActivityResponse
+): AddressActivityResponse {
+  return {
+    addresses: response.data,
+    totalCount: response.pagination.total_count,
+    pageKey: response.pagination.cursors.after
+  };
+}
+
+function parseRawNftFiltersResponse(
+  response: RawNftFiltersResponse
+): NftFiltersResponse {
+  return {
+    filters: response.data.map(f => ({
+      contractAddress: f.contract_address,
+      tokenId: f.token_id
+    })),
+    totalCount: response.pagination.total_count,
+    pageKey: response.pagination.cursors.after
+  };
+}
+
+function nftFilterToParam(filter: NftFilter): RawNftFilterParam {
+  return {
+    contract_address: filter.contractAddress,
+    token_id: filter.tokenId
+  };
+}

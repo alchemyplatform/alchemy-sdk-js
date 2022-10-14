@@ -1,6 +1,6 @@
 import { sendAxiosRequest } from '../util/sendRest';
 import { ExponentialBackoff } from './backoff';
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { logDebug, logInfo } from '../util/logger';
 import { AlchemyApiType } from '../util/const';
 import { AlchemyConfig } from '../api/alchemy-config';
@@ -16,7 +16,8 @@ export async function requestHttpWithBackoff<Req, Res>(
   apiType: AlchemyApiType,
   restApiName: string,
   methodName: string,
-  params: Req
+  params: Req,
+  overrides?: AxiosRequestConfig
 ): Promise<Res> {
   let lastError: Error | undefined = undefined;
   const backoff = new ExponentialBackoff(config.maxRetries);
@@ -38,7 +39,8 @@ export async function requestHttpWithBackoff<Req, Res>(
         config._getRequestUrl(apiType),
         restApiName,
         methodName,
-        params
+        params,
+        overrides
       );
 
       if (response.status === 200) {
@@ -66,7 +68,8 @@ export async function requestHttpWithBackoff<Req, Res>(
 }
 
 function isRetryableHttpError(err: AxiosError): boolean {
-  const retryableCodes = [429];
+  // TODO: remove 500s after webhooks are more stable.
+  const retryableCodes = [429, 500];
   return (
     err.response !== undefined && retryableCodes.includes(err.response.status)
   );
