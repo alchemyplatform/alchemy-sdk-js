@@ -59,7 +59,7 @@ export async function requestHttpWithBackoff<Req, Res>(
       }
       // TODO: Standardize all errors into AlchemyError
       lastError = new Error(err.response.status + ': ' + err.response.data);
-      if (!isRetryableHttpError(err)) {
+      if (!isRetryableHttpError(err, apiType)) {
         break;
       }
     }
@@ -67,9 +67,13 @@ export async function requestHttpWithBackoff<Req, Res>(
   return Promise.reject(lastError);
 }
 
-function isRetryableHttpError(err: AxiosError): boolean {
+function isRetryableHttpError(
+  err: AxiosError,
+  apiType: AlchemyApiType
+): boolean {
   // TODO: remove 500s after webhooks are more stable.
-  const retryableCodes = [429, 500];
+  const retryableCodes =
+    apiType === AlchemyApiType.WEBHOOK ? [429, 500] : [429];
   return (
     err.response !== undefined && retryableCodes.includes(err.response.status)
   );
