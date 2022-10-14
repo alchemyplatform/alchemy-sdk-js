@@ -5,11 +5,12 @@ import {
   NftActivityWebhook,
   WebhookType
 } from '../../src';
+import { loadAlchemyEnv } from '../test-util';
 
 jest.setTimeout(50000);
 describe('E2E integration tests', () => {
   let alchemy: Alchemy;
-  const appId = 'yqxmhn2qddzj3414';
+  const appId: string = process.env.ALCHEMY_APP_ID!;
   const activityAddresses = [
     '0x6f8d0c2a2c3a189803f5c6482c88be46a55058c1',
     '0x48ea66f94518534ecbc863fbf521896d52b025d9',
@@ -44,9 +45,11 @@ describe('E2E integration tests', () => {
   }
 
   beforeAll(async () => {
+    await loadAlchemyEnv();
     // TODO: move integration test and auth token into repo + github CI.
     alchemy = new Alchemy({
-      notifyAuthToken: 'auth-token-here'
+      apiKey: process.env.ALCHEMY_API_KEY,
+      notifyAuthToken: process.env.ALCHEMY_AUTH_TOKEN
     });
 
     await createInitialWebhooks();
