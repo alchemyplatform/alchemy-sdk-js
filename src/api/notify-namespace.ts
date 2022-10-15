@@ -29,7 +29,7 @@ import {
   RawNftFiltersResponse,
   RawWebHook
 } from '../internal/raw-interfaces';
-import { Method } from 'axios';
+import { AxiosRequestConfig, Method } from 'axios';
 
 /**
  * The Notify namespace contains methods used for creating, reading, updating,
@@ -39,6 +39,9 @@ import { Method } from 'axios';
  * {@link AlchemySettings.notifyAuthToken} field when configuring
  * {@link AlchemySettings}. The auth token can be found in the Alchemy Dashboard
  * on the Notify tab.
+ *
+ * Note that not all networks are supported in the Notify API. Please consult
+ * the documentation for which networks are supported.
  *
  * Do not call this constructor directly. Instead, instantiate an Alchemy object
  * with `const alchemy = new Alchemy(config)` and then access the notify
@@ -50,18 +53,10 @@ export class NotifyNamespace {
   /** Get all webhooks from every app on your team. */
   async getAll(): Promise<GetAllWebhooksResponse> {
     this.verifyConfig();
-    const response = await requestHttpWithBackoff<
-      {},
-      RawGetAllWebhooksResponse
-    >(
-      this.config,
-      AlchemyApiType.WEBHOOK,
+    const response = await this.sendWebhookRequest<RawGetAllWebhooksResponse>(
       'team-webhooks',
       'webhooks:getAll',
-      {},
-      {
-        headers: { 'X-Alchemy-Token': this.config.notifyAuthToken! }
-      }
+      {}
     );
     return {
       webhooks: parseRawWebhookResponse(response),
@@ -98,21 +93,13 @@ export class NotifyNamespace {
     this.verifyConfig();
     const webhookId =
       typeof webhookOrId === 'string' ? webhookOrId : webhookOrId.id;
-    const response = await requestHttpWithBackoff<
-      {},
-      RawAddressActivityResponse
-    >(
-      this.config,
-      AlchemyApiType.WEBHOOK,
+    const response = await this.sendWebhookRequest<RawAddressActivityResponse>(
       'webhook-addresses',
       'webhooks:getAddresses',
       {
         webhook_id: webhookId,
         limit: options?.limit,
         after: options?.pageKey
-      },
-      {
-        headers: { 'X-Alchemy-Token': this.config.notifyAuthToken! }
       }
     );
     return parseRawAddressActivityResponse(response);
@@ -147,18 +134,13 @@ export class NotifyNamespace {
     this.verifyConfig();
     const webhookId =
       typeof webhookOrId === 'string' ? webhookOrId : webhookOrId.id;
-    const response = await requestHttpWithBackoff<{}, RawNftFiltersResponse>(
-      this.config,
-      AlchemyApiType.WEBHOOK,
+    const response = await this.sendWebhookRequest<RawNftFiltersResponse>(
       'webhook-nft-filters',
       'webhooks:getNftFilters',
       {
         webhook_id: webhookId,
         limit: options?.limit,
         after: options?.pageKey
-      },
-      {
-        headers: { 'X-Alchemy-Token': this.config.notifyAuthToken! }
       }
     );
     return parseRawNftFiltersResponse(response);
@@ -252,16 +234,11 @@ export class NotifyNamespace {
       throw new Error('Invalid `update` param passed into `updateWebhook`');
     }
 
-    await requestHttpWithBackoff(
-      this.config,
-      AlchemyApiType.WEBHOOK,
+    await this.sendWebhookRequest(
       restApiName,
       methodName,
       {},
       {
-        headers: {
-          'X-Alchemy-Token': this.config.notifyAuthToken!
-        },
         method,
         data
       }
@@ -339,7 +316,7 @@ export class NotifyNamespace {
   > {
     let appId;
     if (
-      type == WebhookType.MINED_TRANSACTION ||
+      type === WebhookType.MINED_TRANSACTION ||
       type === WebhookType.DROPPED_TRANSACTION
     ) {
       if (!('appId' in params)) {
@@ -391,16 +368,11 @@ export class NotifyNamespace {
       ...(addresses && { addresses })
     };
 
-    const response = await requestHttpWithBackoff<{}, RawCreateWebhookResponse>(
-      this.config,
-      AlchemyApiType.WEBHOOK,
+    const response = await this.sendWebhookRequest<RawCreateWebhookResponse>(
       'create-webhook',
       'webhooks:createWebhook',
       {},
       {
-        headers: {
-          'X-Alchemy-Token': this.config.notifyAuthToken!
-        },
         method: 'POST',
         data
       }
@@ -426,16 +398,13 @@ export class NotifyNamespace {
     this.verifyConfig();
     const webhookId =
       typeof webhookOrId === 'string' ? webhookOrId : webhookOrId.id;
-    const response = await requestHttpWithBackoff<{}, RawNftFiltersResponse>(
-      this.config,
-      AlchemyApiType.WEBHOOK,
+    const response = await this.sendWebhookRequest<RawNftFiltersResponse>(
       'delete-webhook',
       'webhooks:deleteWebhook',
       {
         webhook_id: webhookId
       },
       {
-        headers: { 'X-Alchemy-Token': this.config.notifyAuthToken! },
         method: 'DELETE'
       }
     );
@@ -454,6 +423,28 @@ export class NotifyNamespace {
           'the settings object when initializing Alchemy.'
       );
     }
+  }
+
+  private sendWebhookRequest<Response>(
+    restApiName: string,
+    methodName: string,
+    params: {},
+    overrides?: AxiosRequestConfig
+  ): Promise<Response> {
+    return requestHttpWithBackoff(
+      this.config,
+      AlchemyApiType.WEBHOOK,
+      restApiName,
+      methodName,
+      params,
+      {
+        ...overrides,
+        headers: {
+          'X-Alchemy-Token': this.config.notifyAuthToken!,
+          ...overrides?.headers
+        }
+      }
+    );
   }
 }
 
