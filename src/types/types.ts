@@ -754,6 +754,22 @@ export interface GetFloorPriceResponse {
   readonly looksRare: FloorPriceMarketplace | FloorPriceError;
 }
 
+/**
+ * Information about the rarity of an NFT's attribute in the specified collection.
+ *
+ * @public
+ */
+export interface NftAttributeRarity {
+  /** Name of the NFT's attribute. */
+  value: string;
+
+  /** The type of NFT attribute. */
+  trait_type: string;
+
+  /** The NFT's attribute frequency in the current collection. */
+  prevalence: number;
+}
+
 /** The refresh result response object returned by {@link refreshContract}. */
 export interface RefreshContractResult {
   /** The NFT contract address that was passed in to be refreshed. */

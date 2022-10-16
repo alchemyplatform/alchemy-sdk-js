@@ -10,6 +10,7 @@ import {
   GetOwnersForContractWithTokenBalancesOptions,
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
+  NftAttributeRarity,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
   NftTokenType,
@@ -23,6 +24,7 @@ import { BaseNft, Nft, NftContract } from './nft';
 import { AlchemyConfig } from './alchemy-config';
 import {
   checkNftOwnership,
+  computeRarity,
   getContractMetadata,
   getFloorPrice,
   getNftMetadata,
@@ -357,6 +359,19 @@ export class NftNamespace {
    */
   getFloorPrice(contractAddress: string): Promise<GetFloorPriceResponse> {
     return getFloorPrice(this.config, contractAddress);
+  }
+
+  /**
+   * Get the rarity of each attribute of an NFT.
+   *
+   * @param contractAddress - Contract address for the NFT collection.
+   * @param tokenId - Token id of the NFT.
+   */
+  computeRarity(
+    contractAddress: string,
+    tokenId: BigNumberish
+  ): Promise<NftAttributeRarity[]> {
+    return computeRarity(this.config, contractAddress, tokenId);
   }
 
   /**
