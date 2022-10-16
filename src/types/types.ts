@@ -615,7 +615,7 @@ export interface OwnedNftsResponse {
 
 /**
  * The response object for the {@link getNftsForOwner} and
- * {@link getNftsForOwnerIterator)} functions. The object contains the NFTs
+ * {@link getNftsForOwnerIterator} functions. The object contains the NFTs
  * without metadata owned by the provided address, along with pagination
  * information and the total count.
  *
