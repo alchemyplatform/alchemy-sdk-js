@@ -48,7 +48,6 @@ describe('E2E integration tests', () => {
     await loadAlchemyEnv();
     appId = process.env.ALCHEMY_APP_ID!;
 
-    // TODO: move integration test and auth token into repo + github CI.
     alchemy = new Alchemy({
       apiKey: process.env.ALCHEMY_API_KEY,
       authToken: process.env.ALCHEMY_AUTH_TOKEN

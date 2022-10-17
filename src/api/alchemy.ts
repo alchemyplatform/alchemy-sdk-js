@@ -35,16 +35,17 @@ export class Alchemy {
   readonly transact: TransactNamespace;
 
   /**
-   * The `notify` namespace contains methods for creating and managing webhooks
-   * as part of the Notify API.
-   */
-  readonly notify: NotifyNamespace;
-
-  /**
    * Holds the setting information for the instance of the Alchemy SDK client
    * and allows access to the underlying providers.
    */
   readonly config: AlchemyConfig;
+
+  /**
+   * The `notify` namespace contains methods for creating and managing webhooks
+   * as part of the Notify API.
+   */
+  // @ts-ignore: Keeping private until official release.
+  private readonly notify: NotifyNamespace;
 
   /**
    * @param {string} [settings.apiKey] - The API key to use for Alchemy

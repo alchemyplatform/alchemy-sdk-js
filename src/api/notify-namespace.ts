@@ -82,8 +82,9 @@ export class NotifyNamespace {
   /**
    * Get all addresses tracked for the provided {@link AddressActivityWebhook}.
    *
-   * @param webhookId The id of the address activity webhook. Passing in an
-   *   incorrect id will result in a response object with no addresses.
+   * @param webhookId The id of the address activity webhook. Passing in an id
+   *   of a non-address-activity webhook will result in a response object with
+   *   no addresses.
    * @param options Pagination options when fetching addresses.
    */
   getAddresses(
@@ -124,7 +125,8 @@ export class NotifyNamespace {
    * Get all addresses tracked for the provided {@link NftActivityWebhook}.
    *
    * @param webhookId The id of the NFT activity webhook. Passing in an
-   *   incorrect id will result in a response object with no filters.
+   *   incorrect id of a non-NFT webhook will result in a response object with
+   *   no filters.
    * @param options Pagination options when fetching nft filters.
    */
   getNftFilters(
@@ -259,6 +261,7 @@ export class NotifyNamespace {
    * @param type The type of webhook to create.
    * @param params Parameters object containing the app id.
    */
+  // TODO(webhook): Automatically populate app id from api key.
   createWebhook(
     url: string,
     type: WebhookType.MINED_TRANSACTION,
@@ -275,6 +278,7 @@ export class NotifyNamespace {
    * @param type The type of webhook to create.
    * @param params Parameters object containing the app id.
    */
+  // TODO(webhook): Automatically populate app id from api key.
   createWebhook(
     url: string,
     type: WebhookType.DROPPED_TRANSACTION,
