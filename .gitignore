@@ -12,4 +12,7 @@ dist
 # api-extractor temp files
 temp
 
+# Alchemy keys and tokens
+alchemy.env
+
 .npmrc

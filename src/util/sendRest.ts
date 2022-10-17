@@ -11,26 +11,23 @@ import { IS_BROWSER } from './util';
  *
  * @private
  */
-// TODO: Support other methods besides GET + other http options.
 export function sendAxiosRequest<Req, Res>(
   baseUrl: string,
   restApiName: string,
   methodName: string,
-  params: Req
+  params: Req,
+  overrides?: AxiosRequestConfig
 ): Promise<AxiosResponse<Res>> {
   const requestUrl = baseUrl + '/' + restApiName;
   const config: AxiosRequestConfig = {
-    headers: IS_BROWSER
-      ? {
-          'Alchemy-Ethers-Sdk-Version': VERSION,
-          'Alchemy-Ethers-Sdk-Method': methodName
-        }
-      : {
-          'Alchemy-Ethers-Sdk-Version': VERSION,
-          'Alchemy-Ethers-Sdk-Method': methodName,
-          'Accept-Encoding': 'gzip'
-        },
-    method: 'get',
+    ...overrides,
+    headers: {
+      ...overrides?.headers,
+      ...(IS_BROWSER && { 'Accept-Encoding': 'gzip' }),
+      'Alchemy-Ethers-Sdk-Version': VERSION,
+      'Alchemy-Ethers-Sdk-Method': methodName
+    },
+    method: overrides?.method ?? 'GET',
     url: requestUrl,
     params
   };
