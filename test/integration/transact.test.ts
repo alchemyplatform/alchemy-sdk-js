@@ -7,9 +7,6 @@ describe('E2E integration tests', () => {
 
   beforeAll(async () => {
     alchemy = await new Alchemy();
-
-    // Skip all timeouts for testing.
-    jest.setTimeout(50000);
   });
 
   it('sendPrivateTransaction()', async () => {

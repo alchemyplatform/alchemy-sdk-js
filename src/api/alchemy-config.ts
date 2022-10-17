@@ -7,7 +7,8 @@ import {
   DEFAULT_MAX_RETRIES,
   DEFAULT_NETWORK,
   getAlchemyHttpUrl,
-  getAlchemyNftHttpUrl
+  getAlchemyNftHttpUrl,
+  getAlchemyWebhookHttpUrl
 } from '../util/const';
 
 /**
@@ -32,6 +33,9 @@ export class AlchemyConfig {
    */
   readonly url?: string;
 
+  /** The optional Alchemy auth token to use when sending requests with the Notify API. */
+  readonly authToken?: string;
+
   /**
    * Dynamically imported provider instance.
    *
@@ -53,6 +57,7 @@ export class AlchemyConfig {
     this.network = config?.network || DEFAULT_NETWORK;
     this.maxRetries = config?.maxRetries || DEFAULT_MAX_RETRIES;
     this.url = config?.url;
+    this.authToken = config?.authToken;
   }
 
   /**
@@ -68,6 +73,8 @@ export class AlchemyConfig {
       return this.url;
     } else if (apiType === AlchemyApiType.NFT) {
       return getAlchemyNftHttpUrl(this.network, this.apiKey);
+    } else if (apiType === AlchemyApiType.WEBHOOK) {
+      return getAlchemyWebhookHttpUrl();
     } else {
       return getAlchemyHttpUrl(this.network, this.apiKey);
     }

@@ -27,8 +27,8 @@ export const GAS_OPTIMIZED_TX_FEE_MULTIPLES = [0.9, 1, 1.1, 1.2, 1.3];
  * checking on the state of submitted transactions.
  *
  * Do not call this constructor directly. Instead, instantiate an Alchemy object
- * with `const alchemy = new Alchemy(config)` and then access the core namespace
- * via `alchemy.transact`.
+ * with `const alchemy = new Alchemy(config)` and then access the transact
+ * namespace via `alchemy.transact`.
  */
 export class TransactNamespace {
   /** @internal */

@@ -23,9 +23,14 @@ export function getAlchemyWsUrl(network: Network, apiKey: string): string {
   return `wss://${network}.g.alchemy.com/v2/${apiKey}`;
 }
 
+export function getAlchemyWebhookHttpUrl(): string {
+  return 'https://dashboard.alchemy.com/api';
+}
+
 export enum AlchemyApiType {
   BASE,
-  NFT
+  NFT,
+  WEBHOOK
 }
 
 /**

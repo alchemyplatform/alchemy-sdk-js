@@ -1,7 +1,7 @@
 import {
-  NftSpamClassification,
   Media,
   NftMetadata,
+  NftSpamClassification,
   NftTokenType,
   TokenUri
 } from '../types/types';
@@ -207,4 +207,51 @@ export interface RawReingestContractResponse {
   contractAddress: string;
   reingestionState: string;
   progress: string | null;
+}
+
+export interface RawWebhook {
+  id: string;
+  network: string;
+  webhook_type: string;
+  webhook_url: string;
+  is_active: boolean;
+  time_created: number;
+  signing_key: string;
+  version: string;
+  app_id?: string;
+}
+
+export interface RawWebhookPagination {
+  cursors: {
+    after?: string;
+  };
+  total_count: number;
+}
+
+export interface RawGetAllWebhooksResponse {
+  data: RawWebhook[];
+}
+
+export interface RawAddressActivityResponse {
+  data: string[];
+  pagination: RawWebhookPagination;
+}
+
+export interface RawNftFilter {
+  contract_address: string;
+  token_id: string;
+}
+
+export interface RawNftFiltersResponse {
+  data: RawNftFilter[];
+  pagination: RawWebhookPagination;
+}
+
+export interface RawCreateWebhookResponse {
+  data: RawWebhook;
+}
+
+export interface RawNftFilterParam {
+  contract_address: string;
+  token_id: string;
 }
