@@ -51,7 +51,7 @@ describe('E2E integration tests', () => {
     // TODO: move integration test and auth token into repo + github CI.
     alchemy = new Alchemy({
       apiKey: process.env.ALCHEMY_API_KEY,
-      notifyAuthToken: process.env.ALCHEMY_AUTH_TOKEN
+      authToken: process.env.ALCHEMY_AUTH_TOKEN
     });
 
     await createInitialWebhooks();
@@ -79,9 +79,10 @@ describe('E2E integration tests', () => {
     expect(response.addresses.length).toEqual(1);
     expect(response.pageKey).toBeDefined();
     const response2 = await alchemy.notify.getAddresses(addressWh, {
+      limit: 1,
       pageKey: response.pageKey
     });
-    expect(response2.addresses.length).toEqual(2);
+    expect(response2.addresses.length).toEqual(1);
     expect(response2).not.toContain(response.addresses[0]);
   });
 
@@ -101,6 +102,7 @@ describe('E2E integration tests', () => {
     expect(response.filters.length).toEqual(1);
     expect(response.pageKey).toBeDefined();
     const response2 = await alchemy.notify.getNftFilters(nftWh, {
+      limit: 1,
       pageKey: response.pageKey
     });
     expect(response2.filters.length).toEqual(1);

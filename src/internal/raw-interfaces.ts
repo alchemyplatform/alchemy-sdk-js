@@ -209,7 +209,7 @@ export interface RawReingestContractResponse {
   progress: string | null;
 }
 
-export interface RawWebHook {
+export interface RawWebhook {
   id: string;
   network: string;
   webhook_type: string;
@@ -229,7 +229,7 @@ export interface RawWebhookPagination {
 }
 
 export interface RawGetAllWebhooksResponse {
-  data: RawWebHook[];
+  data: RawWebhook[];
 }
 
 export interface RawAddressActivityResponse {
@@ -248,7 +248,7 @@ export interface RawNftFiltersResponse {
 }
 
 export interface RawCreateWebhookResponse {
-  data: RawWebHook;
+  data: RawWebhook;
 }
 
 export interface RawNftFilterParam {

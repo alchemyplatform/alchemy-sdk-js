@@ -27,7 +27,7 @@ import {
   RawGetAllWebhooksResponse,
   RawNftFilterParam,
   RawNftFiltersResponse,
-  RawWebHook
+  RawWebhook
 } from '../internal/raw-interfaces';
 import { AxiosRequestConfig, Method } from 'axios';
 
@@ -36,7 +36,7 @@ import { AxiosRequestConfig, Method } from 'axios';
  * and deleting webhooks in the Notify API.
  *
  * To use the methods in the API, you must provide your team's auth token in the
- * {@link AlchemySettings.notifyAuthToken} field when configuring
+ * {@link AlchemySettings.authToken} field when configuring
  * {@link AlchemySettings}. The auth token can be found in the Alchemy Dashboard
  * on the Notify tab.
  *
@@ -50,7 +50,11 @@ import { AxiosRequestConfig, Method } from 'axios';
 export class NotifyNamespace {
   constructor(private readonly config: AlchemyConfig) {}
 
-  /** Get all webhooks from every app on your team. */
+  /**
+   * Get all webhooks on your team.
+   *
+   * This method returns a response object containing all the webhooks
+   */
   async getAll(): Promise<GetAllWebhooksResponse> {
     this.verifyConfig();
     const response = await this.sendWebhookRequest<RawGetAllWebhooksResponse>(
@@ -417,7 +421,7 @@ export class NotifyNamespace {
   }
 
   private verifyConfig() {
-    if (this.config.notifyAuthToken === undefined) {
+    if (this.config.authToken === undefined) {
       throw new Error(
         'Using the Notify API requires setting the Alchemy Auth Token in ' +
           'the settings object when initializing Alchemy.'
@@ -440,7 +444,7 @@ export class NotifyNamespace {
       {
         ...overrides,
         headers: {
-          'X-Alchemy-Token': this.config.notifyAuthToken!,
+          'X-Alchemy-Token': this.config.authToken!,
           ...overrides?.headers
         }
       }
@@ -483,7 +487,7 @@ function parseRawWebhookResponse(
   return response.data.map(parseRawWebhook);
 }
 
-function parseRawWebhook(rawWebhook: RawWebHook): Webhook {
+function parseRawWebhook(rawWebhook: RawWebhook): Webhook {
   return {
     id: rawWebhook.id,
     network: WEBHOOK_NETWORK_TO_NETWORK[rawWebhook.network],

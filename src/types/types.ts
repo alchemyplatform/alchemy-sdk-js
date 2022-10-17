@@ -37,7 +37,7 @@ export interface AlchemySettings {
    * Alchemy auth token required to use the Notify API. This token can be found
    * in the Alchemy Dashboard on the Notify tab.
    */
-  notifyAuthToken?: string;
+  authToken?: string;
 }
 
 /**
@@ -1164,16 +1164,16 @@ export interface DroppedTransactionWebhook extends Webhook {
 }
 
 /**
- * An Address Activity Webhook tracks ETH, ERC-20, and ERC721 transfers for the
- * provided addresses. This can be used to notify your app with real-time state
- * changes when your tracked addresses send or receive tokens.
+ * An Address Activity Webhook tracks ETH, ERC20, ERC721, and ERC1155 transfers
+ * for the provided addresses. This can be used to notify your app with
+ * real-time state changes when your tracked addresses send or receive tokens.
  */
 export interface AddressActivityWebhook extends Webhook {
   type: WebhookType.ADDRESS_ACTIVITY;
 }
 
 /**
- * The NFT Activity Webhook tracks all ERC821 and ERC1155 activity. This can be
+ * The NFT Activity Webhook tracks all ERC721 and ERC1155 activity. This can be
  * used to notify your app with real time state changes when an NFT is
  * transferred between addresses.
  */

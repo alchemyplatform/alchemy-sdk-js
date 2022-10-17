@@ -34,7 +34,7 @@ export class AlchemyConfig {
   readonly url?: string;
 
   /** The optional Alchemy auth token to use when sending requests with the Notify API. */
-  readonly notifyAuthToken?: string;
+  readonly authToken?: string;
 
   /**
    * Dynamically imported provider instance.
@@ -57,7 +57,7 @@ export class AlchemyConfig {
     this.network = config?.network || DEFAULT_NETWORK;
     this.maxRetries = config?.maxRetries || DEFAULT_MAX_RETRIES;
     this.url = config?.url;
-    this.notifyAuthToken = config?.notifyAuthToken;
+    this.authToken = config?.authToken;
   }
 
   /**
