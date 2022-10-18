@@ -2,6 +2,7 @@ import {
   EventType,
   TransactionReceipt
 } from '@ethersproject/abstract-provider';
+import { BigNumberish } from '@ethersproject/bignumber';
 
 import { BaseNft, Nft } from '../api/nft';
 
@@ -1267,7 +1268,7 @@ export interface NftFilter {
   /** The contract address of the NFT. */
   contractAddress: string;
   /** The token id of the NFT. */
-  tokenId: string;
+  tokenId: BigNumberish;
 }
 
 /** Response object for the {@link NotifyNamespace.getNftFilters} method. */
