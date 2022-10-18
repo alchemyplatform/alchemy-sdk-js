@@ -1,5 +1,6 @@
-import { Network, Alchemy, Wallet } from '../../src';
 import { parseEther, parseUnits } from '@ethersproject/units';
+
+import { Alchemy, Network, Wallet } from '../../src';
 import {
   TEST_WALLET_PRIVATE_KEY,
   TEST_WALLET_PUBLIC_ADDRESS

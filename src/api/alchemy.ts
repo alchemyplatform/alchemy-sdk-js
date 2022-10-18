@@ -1,10 +1,10 @@
 import { AlchemySettings } from '../types/types';
-import { NftNamespace } from './nft-namespace';
-import { WebSocketNamespace } from './websocket-namespace';
 import { AlchemyConfig } from './alchemy-config';
 import { CoreNamespace } from './core-namespace';
-import { TransactNamespace } from './transact-namespace';
+import { NftNamespace } from './nft-namespace';
 import { NotifyNamespace } from './notify-namespace';
+import { TransactNamespace } from './transact-namespace';
+import { WebSocketNamespace } from './websocket-namespace';
 
 /**
  * The Alchemy SDK client. This class is the main entry point into Alchemy's

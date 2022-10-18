@@ -1,13 +1,5 @@
-import {
-  RawBaseNft,
-  RawBaseNftContract,
-  RawContractBaseNft,
-  RawNft,
-  RawNftContract,
-  RawOwnedBaseNft,
-  RawOwnedNft,
-  RawNftContractMetadata
-} from '../src/internal/raw-interfaces';
+import { BigNumber } from '@ethersproject/bignumber';
+
 import {
   BaseNft,
   BaseNftContract,
@@ -15,10 +7,19 @@ import {
   NftTokenType,
   OwnedBaseNft,
   OwnedNft,
-  toHex,
-  TokenUri
+  TokenUri,
+  toHex
 } from '../src';
-import { BigNumber } from '@ethersproject/bignumber';
+import {
+  RawBaseNft,
+  RawBaseNftContract,
+  RawContractBaseNft,
+  RawNft,
+  RawNftContract,
+  RawNftContractMetadata,
+  RawOwnedBaseNft,
+  RawOwnedNft
+} from '../src/internal/raw-interfaces';
 import { BlockHead, LogsEvent } from '../src/internal/websocket-backfiller';
 import {
   getBaseNftContractFromRaw,

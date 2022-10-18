@@ -1,4 +1,14 @@
-import { AlchemyConfig } from './alchemy-config';
+import { AxiosRequestConfig, Method } from 'axios';
+
+import { requestHttpWithBackoff } from '../internal/dispatch';
+import {
+  RawAddressActivityResponse,
+  RawCreateWebhookResponse,
+  RawGetAllWebhooksResponse,
+  RawNftFilterParam,
+  RawNftFiltersResponse,
+  RawWebhook
+} from '../internal/raw-interfaces';
 import {
   AddressActivityResponse,
   AddressActivityWebhook,
@@ -19,17 +29,8 @@ import {
   WebhookType,
   WebhookVersion
 } from '../types/types';
-import { requestHttpWithBackoff } from '../internal/dispatch';
 import { AlchemyApiType } from '../util/const';
-import {
-  RawAddressActivityResponse,
-  RawCreateWebhookResponse,
-  RawGetAllWebhooksResponse,
-  RawNftFilterParam,
-  RawNftFiltersResponse,
-  RawWebhook
-} from '../internal/raw-interfaces';
-import { AxiosRequestConfig, Method } from 'axios';
+import { AlchemyConfig } from './alchemy-config';
 
 /**
  * The Notify namespace contains methods used for creating, reading, updating,

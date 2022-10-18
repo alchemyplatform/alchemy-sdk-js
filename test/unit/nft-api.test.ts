@@ -1,7 +1,9 @@
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
+
 import {
   Alchemy,
   BaseNft,
-  fromHex,
   GetFloorPriceResponse,
   GetNftsForOwnerOptions,
   GetOwnersForContractWithTokenBalancesResponse,
@@ -16,10 +18,17 @@ import {
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
-  RefreshState
+  RefreshState,
+  fromHex
 } from '../../src';
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
+import {
+  RawGetBaseNftsForContractResponse,
+  RawGetBaseNftsResponse,
+  RawGetNftsForContractResponse,
+  RawGetNftsResponse,
+  RawGetOwnersForContractWithTokenBalancesResponse
+} from '../../src/internal/raw-interfaces';
+import { getNftContractFromRaw, getNftFromRaw } from '../../src/util/util';
 import {
   createBaseNft,
   createNft,
@@ -31,14 +40,6 @@ import {
   createRawOwnedBaseNft,
   createRawOwnedNft
 } from '../test-util';
-import {
-  RawGetBaseNftsForContractResponse,
-  RawGetBaseNftsResponse,
-  RawGetNftsForContractResponse,
-  RawGetNftsResponse,
-  RawGetOwnersForContractWithTokenBalancesResponse
-} from '../../src/internal/raw-interfaces';
-import { getNftContractFromRaw, getNftFromRaw } from '../../src/util/util';
 
 describe('NFT module', () => {
   let alchemy: Alchemy;

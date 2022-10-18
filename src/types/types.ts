@@ -2,6 +2,7 @@ import {
   EventType,
   TransactionReceipt
 } from '@ethersproject/abstract-provider';
+
 import { BaseNft, Nft } from '../api/nft';
 
 // TODO: separate this file into other files.

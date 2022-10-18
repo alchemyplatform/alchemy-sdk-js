@@ -1,4 +1,4 @@
-import { Wallet, Contract } from '../../src';
+import { Contract, Wallet } from '../../src';
 import {
   TEST_WALLET_PRIVATE_KEY,
   TEST_WALLET_PUBLIC_ADDRESS

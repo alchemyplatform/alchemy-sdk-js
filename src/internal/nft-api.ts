@@ -1,4 +1,7 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
+
+import { AlchemyConfig } from '../api/alchemy-config';
+import { BaseNft, Nft, NftContract } from '../api/nft';
 import {
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
@@ -21,7 +24,12 @@ import {
   RefreshContractResult,
   RefreshState
 } from '../types/types';
-import { BaseNft, Nft, NftContract } from '../api/nft';
+import { AlchemyApiType } from '../util/const';
+import {
+  getBaseNftFromRaw,
+  getNftContractFromRaw,
+  getNftFromRaw
+} from '../util/util';
 import { paginateEndpoint, requestHttpWithBackoff } from './dispatch';
 import {
   RawBaseNft,
@@ -38,13 +46,6 @@ import {
   RawOwnedNft,
   RawReingestContractResponse
 } from './raw-interfaces';
-import { AlchemyApiType } from '../util/const';
-import {
-  getBaseNftFromRaw,
-  getNftContractFromRaw,
-  getNftFromRaw
-} from '../util/util';
-import { AlchemyConfig } from '../api/alchemy-config';
 
 export async function getNftMetadata(
   config: AlchemyConfig,

@@ -1,3 +1,7 @@
+import { Server, WebSocket } from 'mock-socket';
+
+import { Formatter } from '@ethersproject/providers/lib/formatter';
+
 import {
   Alchemy,
   AlchemyConfig,
@@ -5,30 +9,29 @@ import {
   Network,
   toHex
 } from '../../src';
+import { AlchemyProvider } from '../../src/api/alchemy-provider';
 import {
   AlchemyWebSocketProvider,
   getAlchemyEventTag
 } from '../../src/api/alchemy-websocket-provider';
 import {
-  Deferred,
-  makeLogsEvent,
-  makeNewHeadsEvent,
-  Mocked
-} from '../test-util';
-import { Server, WebSocket } from 'mock-socket';
+  ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE,
+  EthersEvent
+} from '../../src/internal/internal-types';
 import {
   LogsEvent,
   LogsSubscriptionFilter,
   NewHeadsEvent,
   WebsocketBackfiller
 } from '../../src/internal/websocket-backfiller';
-import { Formatter } from '@ethersproject/providers/lib/formatter';
-import { AlchemyProvider } from '../../src/api/alchemy-provider';
 import { noop } from '../../src/util/const';
 import {
-  ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE,
-  EthersEvent
-} from '../../src/internal/internal-types';
+  Deferred,
+  Mocked,
+  makeLogsEvent,
+  makeNewHeadsEvent
+} from '../test-util';
+
 import SpyInstance = jest.SpyInstance;
 
 describe('AlchemyWebSocketProvider', () => {

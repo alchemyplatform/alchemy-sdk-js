@@ -1,4 +1,23 @@
 import type { BigNumberish } from '@ethersproject/bignumber';
+
+import {
+  checkNftOwnership,
+  computeRarity,
+  getContractMetadata,
+  getFloorPrice,
+  getNftMetadata,
+  getNftsForContract,
+  getNftsForContractIterator,
+  getNftsForOwner,
+  getNftsForOwnerIterator,
+  getOwnersForContract,
+  getOwnersForNft,
+  getSpamContracts,
+  isSpamContract,
+  refreshContract,
+  refreshNftMetadata,
+  verifyNftOwnership
+} from '../internal/nft-api';
 import {
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
@@ -20,26 +39,8 @@ import {
   OwnedNftsResponse,
   RefreshContractResult
 } from '../types/types';
-import { BaseNft, Nft, NftContract } from './nft';
 import { AlchemyConfig } from './alchemy-config';
-import {
-  checkNftOwnership,
-  computeRarity,
-  getContractMetadata,
-  getFloorPrice,
-  getNftMetadata,
-  getNftsForContract,
-  getNftsForContractIterator,
-  getNftsForOwner,
-  getNftsForOwnerIterator,
-  getOwnersForContract,
-  getOwnersForNft,
-  getSpamContracts,
-  isSpamContract,
-  refreshContract,
-  refreshNftMetadata,
-  verifyNftOwnership
-} from '../internal/nft-api';
+import { BaseNft, Nft, NftContract } from './nft';
 
 /**
  * The NFT namespace contains all the functionality related to NFTs.

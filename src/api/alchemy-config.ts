@@ -1,6 +1,4 @@
 import { AlchemySettings, Network } from '../types/types';
-import type { AlchemyProvider } from './alchemy-provider';
-import type { AlchemyWebSocketProvider } from './alchemy-websocket-provider';
 import {
   AlchemyApiType,
   DEFAULT_ALCHEMY_API_KEY,
@@ -10,6 +8,8 @@ import {
   getAlchemyNftHttpUrl,
   getAlchemyWebhookHttpUrl
 } from '../util/const';
+import type { AlchemyProvider } from './alchemy-provider';
+import type { AlchemyWebSocketProvider } from './alchemy-websocket-provider';
 
 /**
  * This class holds the config information for the SDK client instance and

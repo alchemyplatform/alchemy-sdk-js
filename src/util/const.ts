@@ -1,5 +1,6 @@
-import { Network } from '../types/types';
 import { Network as NetworkFromEthers } from '@ethersproject/networks';
+
+import { Network } from '../types/types';
 
 export const DEFAULT_ALCHEMY_API_KEY = 'demo';
 export const DEFAULT_NETWORK = Network.ETH_MAINNET;

@@ -1,9 +1,10 @@
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+
+import { AlchemyConfig } from '../api/alchemy-config';
+import { AlchemyApiType } from '../util/const';
+import { logDebug, logInfo } from '../util/logger';
 import { sendAxiosRequest } from '../util/sendRest';
 import { ExponentialBackoff } from './backoff';
-import axios, { AxiosError, AxiosRequestConfig } from 'axios';
-import { logDebug, logInfo } from '../util/logger';
-import { AlchemyApiType } from '../util/const';
-import { AlchemyConfig } from '../api/alchemy-config';
 
 /**
  * A wrapper function to make http requests and retry if the request fails.
