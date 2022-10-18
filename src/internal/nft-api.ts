@@ -28,7 +28,8 @@ import { AlchemyApiType } from '../util/const';
 import {
   getBaseNftFromRaw,
   getNftContractFromRaw,
-  getNftFromRaw
+  getNftFromRaw,
+  getNftRarityFromRaw
 } from '../util/util';
 import { paginateEndpoint, requestHttpWithBackoff } from './dispatch';
 import {
@@ -374,11 +375,7 @@ export async function computeRarity(
     tokenId: BigNumber.from(tokenId).toString()
   });
 
-  return response.map(({ prevalence, trait_type, value }) => ({
-    prevalence,
-    traitType: trait_type,
-    value
-  }));
+  return getNftRarityFromRaw(response);
 }
 
 export async function refreshNftMetadata(

@@ -6,10 +6,16 @@ import {
   RawBaseNft,
   RawBaseNftContract,
   RawNft,
+  RawNftAttributeRarity,
   RawNftContract,
   RawSpamInfo
 } from '../internal/raw-interfaces';
-import { NftTokenType, SpamInfo, TokenUri } from '../types/types';
+import {
+  NftAttributeRarity,
+  NftTokenType,
+  SpamInfo,
+  TokenUri
+} from '../types/types';
 
 export function formatBlock(block: string | number): string {
   if (typeof block === 'string') {
@@ -71,6 +77,16 @@ export function getNftFromRaw(rawNft: RawNft, contractAddress: string): Nft {
     media: parseNftTokenUriArray(rawNft.media),
     spamInfo
   };
+}
+
+export function getNftRarityFromRaw(
+  rawNftRarity: RawNftAttributeRarity[]
+): NftAttributeRarity[] {
+  return rawNftRarity.map(({ prevalence, trait_type, value }) => ({
+    prevalence,
+    traitType: trait_type,
+    value
+  }));
 }
 
 function parseNftTokenId(tokenId: string): string {
