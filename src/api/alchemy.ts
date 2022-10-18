@@ -44,9 +44,7 @@ export class Alchemy {
    * The `notify` namespace contains methods for creating and managing webhooks
    * as part of the Notify API.
    */
-  // TODO(webhooks): Make public after official release.
-  // @ts-ignore: Keeping private until official release.
-  private readonly notify: NotifyNamespace;
+  readonly notify: NotifyNamespace;
 
   /**
    * @param {string} [settings.apiKey] - The API key to use for Alchemy

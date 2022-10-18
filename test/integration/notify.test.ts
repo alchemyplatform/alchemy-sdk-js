@@ -3,6 +3,7 @@ import {
   Alchemy,
   Network,
   NftActivityWebhook,
+  NftFilter,
   WebhookType
 } from '../../src';
 import { loadAlchemyEnv } from '../test-util';
@@ -87,10 +88,12 @@ describe('E2E integration tests', () => {
 
   it('getNftFilters()', async () => {
     let response = await alchemy.notify.getNftFilters(nftWh);
-    expect(response.filters.sort()).toEqual(nftFilters.sort());
+    const sortFn = (a: NftFilter, b: NftFilter) =>
+      a.tokenId < b.tokenId ? 1 : -1;
+    expect(response.filters.sort(sortFn)).toEqual(nftFilters.sort(sortFn));
 
     response = await alchemy.notify.getNftFilters(nftWh.id);
-    expect(response.filters.sort()).toEqual(nftFilters.sort());
+    expect(response.filters.sort(sortFn)).toEqual(nftFilters.sort(sortFn));
   });
 
   it('getNftFilters() with limit', async () => {

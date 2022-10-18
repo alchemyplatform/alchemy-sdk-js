@@ -1,5 +1,7 @@
 import { AxiosRequestConfig, Method } from 'axios';
 
+import { BigNumber } from '@ethersproject/bignumber';
+
 import { requestHttpWithBackoff } from '../internal/dispatch';
 import {
   RawAddressActivityResponse,
@@ -53,6 +55,9 @@ export class NotifyNamespace {
 
   /**
    * Get all webhooks on your team.
+   *
+   * The team is determined by the `authToken` provided into the {@link AlchemySettings}
+   * object when creating a new {@link Alchemy} instance.
    *
    * This method returns a response object containing all the webhooks
    */
@@ -123,7 +128,7 @@ export class NotifyNamespace {
   ): Promise<NftFiltersResponse>;
 
   /**
-   * Get all addresses tracked for the provided {@link NftActivityWebhook}.
+   * Get all NFT filters tracked for the provided {@link NftActivityWebhook}.
    *
    * @param webhookId The id of the NFT activity webhook. Passing in an
    *   incorrect id of a non-NFT webhook will result in a response object with
@@ -523,7 +528,7 @@ function parseRawNftFiltersResponse(
   return {
     filters: response.data.map(f => ({
       contractAddress: f.contract_address,
-      tokenId: f.token_id
+      tokenId: BigNumber.from(f.token_id).toString()
     })),
     totalCount: response.pagination.total_count,
     pageKey: response.pagination.cursors.after
