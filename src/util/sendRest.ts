@@ -3,6 +3,7 @@
  * returns the response.
  */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+
 import { VERSION } from '../version';
 import { IS_BROWSER } from './util';
 

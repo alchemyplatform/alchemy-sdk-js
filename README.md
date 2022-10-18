@@ -27,7 +27,7 @@ npm install alchemy-sdk
 After installing the app, you can then import and use the SDK:
 
 ```ts
-import { Network, Alchemy } from 'alchemy-sdk';
+import { Alchemy, Network } from 'alchemy-sdk';
 
 // Optional config object, but defaults to the API key 'demo' and Network 'eth-mainnet'.
 const settings = {
@@ -99,6 +99,7 @@ Ethers.js Provider [AlchemyProvider](https://docs.ethers.io/v5/api/providers/api
 
 ```ts
 import { Alchemy } from 'alchemy-sdk';
+
 const alchemy = new Alchemy();
 
 async function runAlchemy() {
@@ -246,7 +247,7 @@ or as a webpage by opening `docs/index.html` in your browser.
 ### Getting the NFTs owned by an address
 
 ```ts
-import { NftExcludeFilters, Alchemy } from 'alchemy-sdk';
+import { Alchemy, NftExcludeFilters } from 'alchemy-sdk';
 
 const alchemy = new Alchemy();
 

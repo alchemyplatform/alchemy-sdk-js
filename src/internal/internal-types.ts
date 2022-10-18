@@ -1,9 +1,10 @@
+import { EventType, Filter, Listener } from '@ethersproject/abstract-provider';
+
 import {
   LogsEvent,
   LogsSubscriptionFilter,
   NewHeadsEvent
 } from './websocket-backfiller';
-import { EventType, Filter, Listener } from '@ethersproject/abstract-provider';
 
 /** This file contains internal types used by the SDK and are not exposed to the end user. */
 

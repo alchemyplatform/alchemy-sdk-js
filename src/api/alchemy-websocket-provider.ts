@@ -1,29 +1,17 @@
+import SturdyWebSocket from 'sturdy-websocket';
+
+import { Listener } from '@ethersproject/abstract-provider';
 import { BigNumber } from '@ethersproject/bignumber';
 import {
-  CustomNetworks,
-  DEFAULT_ALCHEMY_API_KEY,
-  EthersNetwork,
-  noop
-} from '../util/const';
-import { AlchemyProvider } from './alchemy-provider';
-import { Listener } from '@ethersproject/abstract-provider';
+  Networkish,
+  getNetwork as getNetworkFromEthers
+} from '@ethersproject/networks';
+import { Network as NetworkFromEthers } from '@ethersproject/networks/lib/types';
 import {
-  AlchemyEventType,
-  AlchemyPendingTransactionsEventFilter
-} from '../types/types';
-import {
-  BatchPart,
-  dedupeLogs,
-  dedupeNewHeads,
-  LogsEvent,
-  LogsSubscriptionFilter,
-  NewHeadsEvent,
-  throwIfCancelled,
-  WebsocketBackfiller
-} from '../internal/websocket-backfiller';
-import { fromHex } from './util';
-import SturdyWebSocket from 'sturdy-websocket';
-import { VERSION } from '../version';
+  CommunityResourcable,
+  WebSocketProvider
+} from '@ethersproject/providers';
+
 import {
   ALCHEMY_PENDING_TRANSACTIONS_EVENT_METHOD,
   ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE,
@@ -38,15 +26,29 @@ import {
   WebSocketMessage
 } from '../internal/internal-types';
 import {
-  CommunityResourcable,
-  WebSocketProvider
-} from '@ethersproject/providers';
-import { AlchemyConfig } from './alchemy-config';
+  BatchPart,
+  LogsEvent,
+  LogsSubscriptionFilter,
+  NewHeadsEvent,
+  WebsocketBackfiller,
+  dedupeLogs,
+  dedupeNewHeads,
+  throwIfCancelled
+} from '../internal/websocket-backfiller';
 import {
-  getNetwork as getNetworkFromEthers,
-  Networkish
-} from '@ethersproject/networks';
-import { Network as NetworkFromEthers } from '@ethersproject/networks/lib/types';
+  AlchemyEventType,
+  AlchemyPendingTransactionsEventFilter
+} from '../types/types';
+import {
+  CustomNetworks,
+  DEFAULT_ALCHEMY_API_KEY,
+  EthersNetwork,
+  noop
+} from '../util/const';
+import { VERSION } from '../version';
+import { AlchemyConfig } from './alchemy-config';
+import { AlchemyProvider } from './alchemy-provider';
+import { fromHex } from './util';
 
 const HEARTBEAT_INTERVAL = 30000;
 const HEARTBEAT_WAIT_TIME = 10000;

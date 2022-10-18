@@ -1,4 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber';
+
 import { BaseNft, BaseNftContract, Nft, NftContract } from '../api/nft';
 import { toHex } from '../api/util';
 import {
