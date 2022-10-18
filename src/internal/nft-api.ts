@@ -13,6 +13,7 @@ import {
   GetOwnersForContractWithTokenBalancesOptions,
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
+  NftAttributeRarity,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
   NftTokenType,
@@ -27,7 +28,8 @@ import { AlchemyApiType } from '../util/const';
 import {
   getBaseNftFromRaw,
   getNftContractFromRaw,
-  getNftFromRaw
+  getNftFromRaw,
+  getNftRarityFromRaw
 } from '../util/util';
 import { paginateEndpoint, requestHttpWithBackoff } from './dispatch';
 import {
@@ -40,6 +42,7 @@ import {
   RawGetNftsResponse,
   RawGetOwnersForContractResponse,
   RawNft,
+  RawNftAttributeRarity,
   RawNftContract,
   RawOwnedBaseNft,
   RawOwnedNft,
@@ -358,6 +361,23 @@ export async function getFloorPrice(
   );
 }
 
+export async function computeRarity(
+  config: AlchemyConfig,
+  contractAddress: string,
+  tokenId: BigNumberish,
+  srcMethod = 'computeRarity'
+): Promise<NftAttributeRarity[]> {
+  const response = await requestHttpWithBackoff<
+    ComputeRarityParams,
+    RawNftAttributeRarity[]
+  >(config, AlchemyApiType.NFT, 'computeRarity', srcMethod, {
+    contractAddress,
+    tokenId: BigNumber.from(tokenId).toString()
+  });
+
+  return getNftRarityFromRaw(response);
+}
+
 export async function refreshNftMetadata(
   config: AlchemyConfig,
   contractAddress: string,
@@ -571,6 +591,16 @@ interface GetOwnersForNftContractAlchemyParams {
  */
 interface GetFloorPriceParams {
   contractAddress: string;
+}
+
+/**
+ * Interface for the `computeRarity` endpoint.
+ *
+ * @internal
+ */
+interface ComputeRarityParams {
+  contractAddress: string;
+  tokenId: string;
 }
 
 interface ReingestContractParams {
