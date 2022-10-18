@@ -208,7 +208,7 @@ describe('E2E integration tests', () => {
     const removeFilters = [
       {
         contractAddress: '0x17dc95f9052f86ed576af55b018360f853e19ac2',
-        tokenId: '345'
+        tokenId: 345
       }
     ];
 

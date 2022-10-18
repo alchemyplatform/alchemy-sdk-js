@@ -538,6 +538,6 @@ function parseRawNftFiltersResponse(
 function nftFilterToParam(filter: NftFilter): RawNftFilterParam {
   return {
     contract_address: filter.contractAddress,
-    token_id: filter.tokenId
+    token_id: BigNumber.from(filter.tokenId).toString()
   };
 }
