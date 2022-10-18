@@ -7,9 +7,9 @@ import type { BigNumber } from '@ethersproject/bignumber';
 import { Deferrable } from '@ethersproject/properties';
 
 import {
-  SendPrivateTransactionOptions,
-  TransactionJobResponse,
-  TransactionJobStatusResponse
+  GasOptimizedTransactionResponse,
+  GasOptimizedTransactionStatusResponse,
+  SendPrivateTransactionOptions
 } from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
 import { Wallet } from './alchemy-wallet';
@@ -211,11 +211,12 @@ export class TransactNamespace {
    *   transaction in the array must have the same values, but with different
    *   gas and fee values.
    * @public
+   * @internal
    */
-  // @ts-ignore - Temporary private class until next release.
-  private async sendGasOptimizedTransaction(
+  // TODO(txjob): Remove internal tag once this feature is released.
+  async sendGasOptimizedTransaction(
     signedTransactions: string[]
-  ): Promise<TransactionJobResponse>;
+  ): Promise<GasOptimizedTransactionResponse>;
 
   /**
    * Instead of sending a single transaction that might not get mined, this
@@ -242,17 +243,17 @@ export class TransactNamespace {
    * @param transaction The raw transaction to send.
    * @param wallet A wallet to use to sign the transaction.
    * @public
+   * @internal
    */
-  // @ts-ignore - Temporary private class until next release.
-  private async sendGasOptimizedTransaction(
+  // TODO(txjob): Remove internal tag once this feature is released.
+  async sendGasOptimizedTransaction(
     transaction: TransactionRequest,
     wallet: Wallet
-  ): Promise<TransactionJobResponse>;
-  // @ts-ignore - Temporary private class until next release.
-  private async sendGasOptimizedTransaction(
+  ): Promise<GasOptimizedTransactionResponse>;
+  async sendGasOptimizedTransaction(
     transactionOrSignedTxs: TransactionRequest | string[],
     wallet?: Wallet
-  ): Promise<TransactionJobResponse> {
+  ): Promise<GasOptimizedTransactionResponse> {
     if (Array.isArray(transactionOrSignedTxs)) {
       return this._sendGasOptimizedTransaction(
         transactionOrSignedTxs,
@@ -291,32 +292,33 @@ export class TransactNamespace {
 
   /**
    * Returns the state of the transaction job returned by the
-   * {@link sendGasOptimizedTransaction}. *
+   * {@link sendGasOptimizedTransaction}.
    *
-   * @param transactionJobId
+   * @param trackingId The tracking id from the response of the sent gas optimized transaction.
+   * @internal
    */
-  // @ts-ignore - Temporary private class until next release.
-  private async getTransactionJobStatus(
-    transactionJobId: string
-  ): Promise<TransactionJobStatusResponse> {
+  // TODO(txjob): Remove internal tag once this feature is released.
+  async getGasOptimizedTransactionStatus(
+    trackingId: string
+  ): Promise<GasOptimizedTransactionStatusResponse> {
     const provider = await this.config.getProvider();
     return provider._send(
-      'alchemy_getTransactionStatus',
-      [transactionJobId],
-      'getTransactionJobStatus'
+      'alchemy_getGasOptimizedTransactionStatus',
+      [trackingId],
+      'getGasOptimizedTransactionStatus'
     );
   }
 
   private async _sendGasOptimizedTransaction(
     signedTransactions: string[],
     methodName: string
-  ): Promise<TransactionJobResponse> {
+  ): Promise<GasOptimizedTransactionResponse> {
     const provider = await this.config.getProvider();
     return provider._send(
-      'alchemy_sendRawTransaction',
+      'alchemy_sendGasOptimizedTransaction',
       [
         {
-          serializedTransactions: signedTransactions
+          rawTransactions: signedTransactions
         }
       ],
       methodName
