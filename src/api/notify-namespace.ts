@@ -51,6 +51,7 @@ import { AlchemyConfig } from './alchemy-config';
  * namespace via `alchemy.notify`.
  */
 export class NotifyNamespace {
+  /** @internal */
   constructor(private readonly config: AlchemyConfig) {}
 
   /**
