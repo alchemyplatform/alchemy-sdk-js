@@ -1211,7 +1211,7 @@ describe('NFT module', () => {
 
   describe('computeRarity()', () => {
     const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
-    const tokenId = '7495';
+    const tokenId = 7495;
     const templateResponse: RawNftAttributeRarity[] = [
       {
         value: 'Aquamarine',
@@ -1238,7 +1238,10 @@ describe('NFT module', () => {
         'contractAddress',
         contractAddress
       );
-      expect(mock.history.get[0].params).toHaveProperty('tokenId', tokenId);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'tokenId',
+        tokenId.toString()
+      );
     });
 
     it('returns the api response in the expected format', async () => {
