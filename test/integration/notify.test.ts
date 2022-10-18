@@ -3,6 +3,7 @@ import {
   Alchemy,
   Network,
   NftActivityWebhook,
+  NftFilter,
   WebhookType
 } from '../../src';
 import { loadAlchemyEnv } from '../test-util';
@@ -87,10 +88,12 @@ describe('E2E integration tests', () => {
 
   it('getNftFilters()', async () => {
     let response = await alchemy.notify.getNftFilters(nftWh);
-    expect(response.filters.sort()).toEqual(nftFilters.sort());
+    const sortFn = (a: NftFilter, b: NftFilter) =>
+      a.tokenId < b.tokenId ? 1 : -1;
+    expect(response.filters.sort(sortFn)).toEqual(nftFilters.sort(sortFn));
 
     response = await alchemy.notify.getNftFilters(nftWh.id);
-    expect(response.filters.sort()).toEqual(nftFilters.sort());
+    expect(response.filters.sort(sortFn)).toEqual(nftFilters.sort(sortFn));
   });
 
   it('getNftFilters() with limit', async () => {
@@ -205,7 +208,7 @@ describe('E2E integration tests', () => {
     const removeFilters = [
       {
         contractAddress: '0x17dc95f9052f86ed576af55b018360f853e19ac2',
-        tokenId: '345'
+        tokenId: 345
       }
     ];
 
