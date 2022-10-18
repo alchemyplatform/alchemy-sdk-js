@@ -771,9 +771,12 @@ export interface NftAttributeRarity {
   value: string;
 
   /** The type of NFT attribute. */
-  trait_type: string;
+  traitType: string;
 
-  /** The NFT's attribute frequency in the current collection. */
+  /**
+   * A number from 0 to 1 representing the prevalence of this value for this
+   * trait type in the current collection.
+   */
   prevalence: number;
 }
 

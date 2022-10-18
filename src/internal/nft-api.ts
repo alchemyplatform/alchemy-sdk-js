@@ -366,16 +366,19 @@ export async function computeRarity(
   tokenId: BigNumberish,
   srcMethod = 'computeRarity'
 ): Promise<NftAttributeRarity[]> {
-  return requestHttpWithBackoff<ComputeRarityParams, RawNftAttributeRarity[]>(
-    config,
-    AlchemyApiType.NFT,
-    'computeRarity',
-    srcMethod,
-    {
-      contractAddress,
-      tokenId: BigNumber.from(tokenId).toString()
-    }
-  );
+  const response = await requestHttpWithBackoff<
+    ComputeRarityParams,
+    RawNftAttributeRarity[]
+  >(config, AlchemyApiType.NFT, 'computeRarity', srcMethod, {
+    contractAddress,
+    tokenId: BigNumber.from(tokenId).toString()
+  });
+
+  return response.map(({ prevalence, trait_type, value }) => ({
+    prevalence,
+    traitType: trait_type,
+    value
+  }));
 }
 
 export async function refreshNftMetadata(
