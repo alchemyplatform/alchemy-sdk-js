@@ -248,6 +248,9 @@ describe('E2E integration tests', () => {
 
     expect(response).toBeDefined();
     expect(response.length).toBeGreaterThan(0);
+    expect(response[0].prevalence).toBeDefined();
+    expect(response[0].traitType).toBeDefined();
+    expect(response[0].value).toBeDefined();
   });
 
   it('refreshNftContract()', async () => {

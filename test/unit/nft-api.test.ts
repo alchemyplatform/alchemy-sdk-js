@@ -4,11 +4,11 @@ import MockAdapter from 'axios-mock-adapter';
 import {
   Alchemy,
   BaseNft,
+  fromHex,
   GetFloorPriceResponse,
   GetNftsForOwnerOptions,
   GetOwnersForContractWithTokenBalancesResponse,
   Nft,
-  NftAttributeRarity,
   NftContract,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
@@ -18,17 +18,21 @@ import {
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
-  RefreshState,
-  fromHex
+  RefreshState
 } from '../../src';
 import {
   RawGetBaseNftsForContractResponse,
   RawGetBaseNftsResponse,
   RawGetNftsForContractResponse,
   RawGetNftsResponse,
-  RawGetOwnersForContractWithTokenBalancesResponse
+  RawGetOwnersForContractWithTokenBalancesResponse,
+  RawNftAttributeRarity
 } from '../../src/internal/raw-interfaces';
-import { getNftContractFromRaw, getNftFromRaw } from '../../src/util/util';
+import {
+  getNftContractFromRaw,
+  getNftFromRaw,
+  getNftRarityFromRaw
+} from '../../src/util/util';
 import {
   createBaseNft,
   createNft,
@@ -1208,7 +1212,7 @@ describe('NFT module', () => {
   describe('computeRarity()', () => {
     const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
     const tokenId = '7495';
-    const nftRarityResult: NftAttributeRarity[] = [
+    const templateResponse: RawNftAttributeRarity[] = [
       {
         value: 'Aquamarine',
         trait_type: 'Background',
@@ -1220,9 +1224,10 @@ describe('NFT module', () => {
         prevalence: 0.0108
       }
     ];
+    const expectedResult = getNftRarityFromRaw(templateResponse);
 
     beforeEach(() => {
-      mock.onGet().reply(200, nftRarityResult);
+      mock.onGet().reply(200, templateResponse);
     });
 
     it('calls with the correct parameters', async () => {
@@ -1234,6 +1239,12 @@ describe('NFT module', () => {
         contractAddress
       );
       expect(mock.history.get[0].params).toHaveProperty('tokenId', tokenId);
+    });
+
+    it('returns the api response in the expected format', async () => {
+      const result = await alchemy.nft.computeRarity(contractAddress, tokenId);
+
+      expect(result).toEqual(expectedResult);
     });
 
     it('surfaces errors', async () => {
