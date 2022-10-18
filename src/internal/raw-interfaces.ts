@@ -255,3 +255,9 @@ export interface RawNftFilterParam {
   contract_address: string;
   token_id: string;
 }
+
+export interface RawNftAttributeRarity {
+  value: string;
+  trait_type: string;
+  prevalence: number;
+}

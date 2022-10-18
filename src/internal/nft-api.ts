@@ -41,6 +41,7 @@ import {
   RawGetNftsResponse,
   RawGetOwnersForContractResponse,
   RawNft,
+  RawNftAttributeRarity,
   RawNftContract,
   RawOwnedBaseNft,
   RawOwnedNft,
@@ -365,7 +366,7 @@ export async function computeRarity(
   tokenId: BigNumberish,
   srcMethod = 'computeRarity'
 ): Promise<NftAttributeRarity[]> {
-  return requestHttpWithBackoff<ComputeRarityParams, NftAttributeRarity[]>(
+  return requestHttpWithBackoff<ComputeRarityParams, RawNftAttributeRarity[]>(
     config,
     AlchemyApiType.NFT,
     'computeRarity',
