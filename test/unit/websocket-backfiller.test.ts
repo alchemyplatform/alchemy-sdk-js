@@ -1,10 +1,10 @@
 import { Alchemy, AlchemyWebSocketProvider, fromHex, toHex } from '../../src';
+import { JsonRpcRequest } from '../../src/internal/internal-types';
 import {
   GetLogsOptions,
   WebsocketBackfiller
 } from '../../src/internal/websocket-backfiller';
-import { makeLogsEvent, makeNewHeadsEvent, Mocked } from '../test-util';
-import { JsonRpcRequest } from '../../src/internal/internal-types';
+import { Mocked, makeLogsEvent, makeNewHeadsEvent } from '../test-util';
 
 describe('Backfill tests', () => {
   const sdk = new Alchemy();

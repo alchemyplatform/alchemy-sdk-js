@@ -1,7 +1,8 @@
-import pkg from './package.json';
-import typescriptPlugin from 'rollup-plugin-typescript2';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import typescriptPlugin from 'rollup-plugin-typescript2';
+
+import pkg from './package.json';
 
 const TRUE_ROOT = 'index';
 const roots = [TRUE_ROOT, 'api/utils'];

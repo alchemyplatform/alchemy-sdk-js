@@ -1,6 +1,7 @@
-import { Alchemy, AlchemyWebSocketProvider, AlchemyProvider } from '../../src';
-import { EthersNetwork } from '../../src/util/const';
 import { AlchemyProvider as EthersAlchemyProvider } from '@ethersproject/providers';
+
+import { Alchemy, AlchemyProvider, AlchemyWebSocketProvider } from '../../src';
+import { EthersNetwork } from '../../src/util/const';
 
 jest.setTimeout(50000);
 /**

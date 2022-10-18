@@ -1,14 +1,16 @@
 import {
-  JsonRpcProvider,
-  CommunityResourcable
-} from '@ethersproject/providers';
-import {
   Network as NetworkFromEthers,
   Networkish,
   getNetwork as getNetworkFromEthers
 } from '@ethersproject/networks';
-import { ConnectionInfo, fetchJson } from '@ethersproject/web';
 import { deepCopy } from '@ethersproject/properties';
+import {
+  CommunityResourcable,
+  JsonRpcProvider
+} from '@ethersproject/providers';
+import { ConnectionInfo, fetchJson } from '@ethersproject/web';
+
+import { Network } from '../types/types';
 import {
   CustomNetworks,
   DEFAULT_ALCHEMY_API_KEY,
@@ -17,10 +19,9 @@ import {
   getAlchemyHttpUrl,
   getAlchemyWsUrl
 } from '../util/const';
-import { Network } from '../types/types';
 import { logWarn } from '../util/logger';
-import { VERSION } from '../version';
 import { IS_BROWSER } from '../util/util';
+import { VERSION } from '../version';
 import { AlchemyConfig } from './alchemy-config';
 
 /**

@@ -5,13 +5,14 @@ import {
   TransactionRequest,
   TransactionResponse
 } from '@ethersproject/abstract-provider';
-import { Wallet as EthersWallet } from '@ethersproject/wallet';
-import { BytesLike } from '@ethersproject/bytes';
 import { ExternallyOwnedAccount } from '@ethersproject/abstract-signer';
-import { SigningKey } from '@ethersproject/signing-key';
-import { Deferrable } from '@ethersproject/properties';
-import { Alchemy } from './alchemy';
 import { BigNumber } from '@ethersproject/bignumber';
+import { BytesLike } from '@ethersproject/bytes';
+import { Deferrable } from '@ethersproject/properties';
+import { SigningKey } from '@ethersproject/signing-key';
+import { Wallet as EthersWallet } from '@ethersproject/wallet';
+
+import { Alchemy } from './alchemy';
 
 /**
  * The Wallet class inherits Signer and can sign transactions and messages using

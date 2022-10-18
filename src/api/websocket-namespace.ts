@@ -1,5 +1,6 @@
-import { AlchemyEventType } from '../types/types';
 import type { Listener } from '@ethersproject/abstract-provider';
+
+import { AlchemyEventType } from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
 
 /**

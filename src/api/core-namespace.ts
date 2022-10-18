@@ -1,4 +1,3 @@
-import { AlchemyConfig } from './alchemy-config';
 import type {
   Block,
   BlockTag,
@@ -14,24 +13,26 @@ import type {
 import type { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import type { Network as EthersNetworkAlias } from '@ethersproject/networks/lib/types';
 import type { Deferrable } from '@ethersproject/properties';
+
 import {
   AssetTransfersParams,
   AssetTransfersResponse,
   AssetTransfersWithMetadataParams,
   AssetTransfersWithMetadataResponse,
   DeployResult,
+  TokenBalanceType,
   TokenBalancesOptionsDefaultTokens,
   TokenBalancesOptionsErc20,
   TokenBalancesResponse,
   TokenBalancesResponseErc20,
-  TokenBalanceType,
   TokenMetadataResponse,
   TransactionReceiptsParams,
   TransactionReceiptsResponse
 } from '../types/types';
 import { ETH_NULL_VALUE } from '../util/const';
-import { toHex } from './util';
 import { formatBlock } from '../util/util';
+import { AlchemyConfig } from './alchemy-config';
+import { toHex } from './util';
 
 /**
  * The core namespace contains all commonly-used [Ethers.js

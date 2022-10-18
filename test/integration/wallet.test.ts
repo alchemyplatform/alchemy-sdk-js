@@ -1,5 +1,6 @@
-import { Network, Alchemy, Wallet } from '../../src';
 import { Wallet as EthersWallet } from '@ethersproject/wallet';
+
+import { Alchemy, Network, Wallet } from '../../src';
 import { TEST_WALLET_PRIVATE_KEY } from '../test-util';
 
 describe('Alchemy-Ethers Wallet', () => {

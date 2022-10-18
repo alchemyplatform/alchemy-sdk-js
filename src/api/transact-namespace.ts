@@ -1,18 +1,19 @@
-import { AlchemyConfig } from './alchemy-config';
-import {
-  SendPrivateTransactionOptions,
-  TransactionJobResponse,
-  TransactionJobStatusResponse
-} from '../types/types';
-import { fromHex, toHex } from './util';
 import {
   TransactionReceipt,
   TransactionRequest,
   TransactionResponse
 } from '@ethersproject/abstract-provider';
-import { Deferrable } from '@ethersproject/properties';
 import type { BigNumber } from '@ethersproject/bignumber';
+import { Deferrable } from '@ethersproject/properties';
+
+import {
+  SendPrivateTransactionOptions,
+  TransactionJobResponse,
+  TransactionJobStatusResponse
+} from '../types/types';
+import { AlchemyConfig } from './alchemy-config';
 import { Wallet } from './alchemy-wallet';
+import { fromHex, toHex } from './util';
 
 /**
  * Multiples to increment fee per gas when using

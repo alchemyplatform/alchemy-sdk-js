@@ -1,7 +1,12 @@
 {
   "singleQuote": true,
   "printWidth": 80,
+  "tabWidth": 2,
   "trailingComma": "none",
+  "semi": true,
   "arrowParens": "avoid",
-  "plugins": ["prettier-plugin-jsdoc"]
+  "plugins": ["prettier-plugin-jsdoc"],
+  "importOrder": ["^@ethersproject/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }
