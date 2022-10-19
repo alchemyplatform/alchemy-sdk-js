@@ -4,7 +4,6 @@ import MockAdapter from 'axios-mock-adapter';
 import {
   Alchemy,
   BaseNft,
-  fromHex,
   GetFloorPriceResponse,
   GetNftsForOwnerOptions,
   GetOwnersForContractWithTokenBalancesResponse,
@@ -18,7 +17,8 @@ import {
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
-  RefreshState
+  RefreshState,
+  fromHex
 } from '../../src';
 import {
   RawGetBaseNftsForContractResponse,
