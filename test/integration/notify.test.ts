@@ -27,6 +27,7 @@ describe('E2E integration tests', () => {
       tokenId: '345'
     }
   ];
+
   const webhookUrl = 'https://temp-site.ngrok.io';
 
   let addressWh: AddressActivityWebhook;
@@ -87,13 +88,28 @@ describe('E2E integration tests', () => {
   });
 
   it('getNftFilters()', async () => {
+    const expectedNftFilters = [
+      {
+        contractAddress: '0x88b48f654c30e99bc2e4a1559b4dcf1ad93fa656',
+        tokenId: '234'
+      },
+      {
+        contractAddress: '0x17dc95f9052f86ed576af55b018360f853e19ac2',
+        tokenId: '345'
+      }
+    ];
+
     let response = await alchemy.notify.getNftFilters(nftWh);
     const sortFn = (a: NftFilter, b: NftFilter) =>
       a.tokenId < b.tokenId ? 1 : -1;
-    expect(response.filters.sort(sortFn)).toEqual(nftFilters.sort(sortFn));
+    expect(response.filters.sort(sortFn)).toEqual(
+      expectedNftFilters.sort(sortFn)
+    );
 
     response = await alchemy.notify.getNftFilters(nftWh.id);
-    expect(response.filters.sort(sortFn)).toEqual(nftFilters.sort(sortFn));
+    expect(response.filters.sort(sortFn)).toEqual(
+      expectedNftFilters.sort(sortFn)
+    );
   });
 
   it('getNftFilters() with limit', async () => {
@@ -219,6 +235,14 @@ describe('E2E integration tests', () => {
 
     const response = await alchemy.notify.getNftFilters(nftWh);
     expect(response.filters.length).toEqual(2);
+
+    await alchemy.notify.updateWebhook(nftWh, {
+      removeFilters
+    });
+
+    await alchemy.notify.updateWebhook(nftWh, {
+      addFilters
+    });
   });
 
   it('update NftActivityWebhook status', async () => {
@@ -242,6 +266,14 @@ describe('E2E integration tests', () => {
     expect(response.addresses.length).toEqual(3);
     expect(response.addresses).toContain(addAddress);
     expect(response.addresses).not.toContain(removeAddress);
+
+    await alchemy.notify.updateWebhook(addressWh, {
+      removeAddresses: [removeAddress]
+    });
+
+    await alchemy.notify.updateWebhook(addressWh, {
+      addAddresses: [addAddress]
+    });
   });
 
   it('override AddressActivityWebhook address', async () => {

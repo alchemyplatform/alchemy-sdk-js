@@ -217,23 +217,27 @@ export class NotifyNamespace {
         webhook_id: webhookId,
         is_active: update.isActive
       };
-    } else if ('addFilters' in update) {
+    } else if ('addFilters' in update || 'removeFilters' in update) {
       restApiName = 'update-webhook-nft-filters';
       methodName = 'webhooks:updateWebhookNftFilters';
       method = 'PATCH';
       data = {
         webhook_id: webhookId,
-        nft_filters_to_add: update.addFilters.map(nftFilterToParam),
-        nft_filters_to_remove: update.removeFilters.map(nftFilterToParam)
+        nft_filters_to_add: update.addFilters
+          ? update.addFilters.map(nftFilterToParam)
+          : [],
+        nft_filters_to_remove: update.removeFilters
+          ? update.removeFilters.map(nftFilterToParam)
+          : []
       };
-    } else if ('addAddresses' in update) {
+    } else if ('addAddresses' in update || 'removeAddresses' in update) {
       restApiName = 'update-webhook-addresses';
       methodName = 'webhook:updateWebhookAddresses';
       method = 'PATCH';
       data = {
         webhook_id: webhookId,
-        addresses_to_add: update.addAddresses,
-        addresses_to_remove: update.removeAddresses
+        addresses_to_add: update.addAddresses ?? [],
+        addresses_to_remove: update.removeAddresses ?? []
       };
     } else if ('newAddresses' in update) {
       restApiName = 'update-webhook-addresses';
