@@ -240,6 +240,19 @@ describe('E2E integration tests', () => {
     expect(response.looksRare).toBeDefined();
   });
 
+  it('computeRarity()', async () => {
+    const contractAddress = '0x0510745d2ca36729bed35c818527c4485912d99e';
+    const tokenId = '403';
+
+    const response = await alchemy.nft.computeRarity(contractAddress, tokenId);
+
+    expect(response).toBeDefined();
+    expect(response.length).toBeGreaterThan(0);
+    expect(response[0].prevalence).toBeDefined();
+    expect(response[0].traitType).toBeDefined();
+    expect(response[0].value).toBeDefined();
+  });
+
   it('refreshNftContract()', async () => {
     const contractAddress = '0x0510745d2ca36729bed35c818527c4485912d99e';
     const result = await alchemy.nft.refreshContract(contractAddress);

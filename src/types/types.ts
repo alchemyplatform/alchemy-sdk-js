@@ -623,7 +623,7 @@ export interface OwnedNftsResponse {
 
 /**
  * The response object for the {@link getNftsForOwner} and
- * {@link getNftsForOwnerIterator)} functions. The object contains the NFTs
+ * {@link getNftsForOwnerIterator} functions. The object contains the NFTs
  * without metadata owned by the provided address, along with pagination
  * information and the total count.
  *
@@ -760,6 +760,25 @@ export interface GetFloorPriceResponse {
    */
   readonly openSea: FloorPriceMarketplace | FloorPriceError;
   readonly looksRare: FloorPriceMarketplace | FloorPriceError;
+}
+
+/**
+ * Information about the rarity of an NFT's attribute in the specified collection.
+ *
+ * @public
+ */
+export interface NftAttributeRarity {
+  /** Name of the NFT's attribute. */
+  value: string;
+
+  /** The type of NFT attribute. */
+  traitType: string;
+
+  /**
+   * A number from 0 to 1 representing the prevalence of this value for this
+   * trait type in the current collection.
+   */
+  prevalence: number;
 }
 
 /** The refresh result response object returned by {@link refreshContract}. */

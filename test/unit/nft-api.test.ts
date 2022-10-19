@@ -4,6 +4,7 @@ import MockAdapter from 'axios-mock-adapter';
 import {
   Alchemy,
   BaseNft,
+  fromHex,
   GetFloorPriceResponse,
   GetNftsForOwnerOptions,
   GetOwnersForContractWithTokenBalancesResponse,
@@ -17,17 +18,21 @@ import {
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
-  RefreshState,
-  fromHex
+  RefreshState
 } from '../../src';
 import {
   RawGetBaseNftsForContractResponse,
   RawGetBaseNftsResponse,
   RawGetNftsForContractResponse,
   RawGetNftsResponse,
-  RawGetOwnersForContractWithTokenBalancesResponse
+  RawGetOwnersForContractWithTokenBalancesResponse,
+  RawNftAttributeRarity
 } from '../../src/internal/raw-interfaces';
-import { getNftContractFromRaw, getNftFromRaw } from '../../src/util/util';
+import {
+  getNftContractFromRaw,
+  getNftFromRaw,
+  getNftRarityFromRaw
+} from '../../src/util/util';
 import {
   createBaseNft,
   createNft,
@@ -1201,6 +1206,57 @@ describe('NFT module', () => {
       await expect(alchemy.nft.getFloorPrice(contractAddress)).rejects.toThrow(
         'Internal Server Error'
       );
+    });
+  });
+
+  describe('computeRarity()', () => {
+    const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
+    const tokenId = 7495;
+    const templateResponse: RawNftAttributeRarity[] = [
+      {
+        value: 'Aquamarine',
+        trait_type: 'Background',
+        prevalence: 0.1266
+      },
+      {
+        value: 'Cyborg',
+        trait_type: 'Eyes',
+        prevalence: 0.0108
+      }
+    ];
+    const expectedResult = getNftRarityFromRaw(templateResponse);
+
+    beforeEach(() => {
+      mock.onGet().reply(200, templateResponse);
+    });
+
+    it('calls with the correct parameters', async () => {
+      await alchemy.nft.computeRarity(contractAddress, tokenId);
+
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        contractAddress
+      );
+      expect(mock.history.get[0].params).toHaveProperty(
+        'tokenId',
+        tokenId.toString()
+      );
+    });
+
+    it('returns the api response in the expected format', async () => {
+      const result = await alchemy.nft.computeRarity(contractAddress, tokenId);
+
+      expect(result).toEqual(expectedResult);
+    });
+
+    it('surfaces errors', async () => {
+      mock.reset();
+      mock.onGet().reply(400, 'Could not fetch metadata for that NFT');
+
+      await expect(
+        alchemy.nft.computeRarity(contractAddress, tokenId)
+      ).rejects.toThrow('Could not fetch metadata for that NFT');
     });
   });
 
