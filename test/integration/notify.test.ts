@@ -20,7 +20,7 @@ describe('E2E integration tests', () => {
   const nftFilters = [
     {
       contractAddress: '0x88b48f654c30e99bc2e4a1559b4dcf1ad93fa656',
-      tokenId: '234'
+      tokenId: 234
     },
     {
       contractAddress: '0x17dc95f9052f86ed576af55b018360f853e19ac2',

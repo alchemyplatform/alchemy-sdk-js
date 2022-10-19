@@ -354,7 +354,7 @@ export class NotifyNamespace {
         : network;
       filters = (params.filters as NftFilter[]).map(filter => ({
         contract_address: filter.contractAddress,
-        token_id: filter.tokenId
+        token_id: BigNumber.from(filter.tokenId).toString()
       }));
     } else if (type === WebhookType.ADDRESS_ACTIVITY) {
       if (
