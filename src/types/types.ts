@@ -1336,7 +1336,9 @@ export interface WebhookAddressOverride {
  * {@link NftActivityWebhook}.
  */
 
-export type NftWebhookUpdate = WebhookStatusUpdate | WebhookNftFilterUpdate;
+export type NftWebhookUpdate =
+  | WebhookStatusUpdate
+  | RequireAtLeastOne<WebhookNftFilterUpdate>;
 
 /**
  * Params object when calling {@link NotifyNamespace.updateWebhook} to update a
@@ -1344,5 +1346,14 @@ export type NftWebhookUpdate = WebhookStatusUpdate | WebhookNftFilterUpdate;
  */
 export type AddressWebhookUpdate =
   | WebhookStatusUpdate
-  | WebhookAddressUpdate
+  | RequireAtLeastOne<WebhookAddressUpdate>
   | WebhookAddressOverride;
+
+/**
+ * Requires at least one of the properties to be set. Implementation copied over
+ * from {@link https://learn.microsoft.com/en-us/javascript/api/@azure/keyvault-certificates/requireatleastone?view=azure-node-latest}
+ */
+export type RequireAtLeastOne<T> = {
+  [K in keyof T]-?: Required<Pick<T, K>> &
+    Partial<Pick<T, Exclude<keyof T, K>>>;
+}[keyof T];
