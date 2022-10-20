@@ -385,7 +385,7 @@ export async function summarizeNftAttributes(
   srcMethod = 'summarizeNFTAttributes'
 ): Promise<NftAttributesSummary> {
   return requestHttpWithBackoff<
-    SummarizeNFTAttributesParams,
+    SummarizeNftAttributesParams,
     NftAttributesSummary
   >(config, AlchemyApiType.NFT, 'summarizeNFTAttributes', srcMethod, {
     contractAddress
@@ -622,7 +622,7 @@ interface ComputeRarityParams {
  *
  * @internal
  */
-interface SummarizeNFTAttributesParams {
+interface SummarizeNftAttributesParams {
   contractAddress: string;
 }
 
