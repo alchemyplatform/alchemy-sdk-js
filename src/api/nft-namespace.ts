@@ -382,7 +382,7 @@ export class NftNamespace {
    *
    * @param contractAddress - Contract address for the NFT collection.
    */
-  summarizeNFTAttributes(
+  summarizeNftAttributes(
     contractAddress: string
   ): Promise<NftAttributesSummary> {
     return summarizeNftAttributes(this.config, contractAddress);

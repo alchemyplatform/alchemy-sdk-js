@@ -1281,7 +1281,7 @@ describe('NFT module', () => {
     it('calls with the correct parameters', async () => {
       mock.onGet().reply(200, templateResponse);
 
-      await alchemy.nft.summarizeNFTAttributes(contractAddress);
+      await alchemy.nft.summarizeNftAttributes(contractAddress);
 
       expect(mock.history.get.length).toEqual(1);
       expect(mock.history.get[0].params).toHaveProperty(
@@ -1295,7 +1295,7 @@ describe('NFT module', () => {
       mock.onGet().reply(400, 'No NFTs found for that contract!');
 
       await expect(
-        alchemy.nft.summarizeNFTAttributes(contractAddress)
+        alchemy.nft.summarizeNftAttributes(contractAddress)
       ).rejects.toThrow('No NFTs found for that contract!');
     });
   });

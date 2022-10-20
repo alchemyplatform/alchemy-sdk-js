@@ -256,7 +256,7 @@ describe('E2E integration tests', () => {
   it('summarizeNFTAttributes()', async () => {
     const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
 
-    const response = await alchemy.nft.summarizeNFTAttributes(contractAddress);
+    const response = await alchemy.nft.summarizeNftAttributes(contractAddress);
 
     expect(response).toBeDefined();
     expect(response.contractAddress).toBeDefined();
