@@ -62,11 +62,11 @@ export class NotifyNamespace {
    *
    * This method returns a response object containing all the webhooks
    */
-  async getAll(): Promise<GetAllWebhooksResponse> {
+  async getAllWebhooks(): Promise<GetAllWebhooksResponse> {
     this.verifyConfig();
     const response = await this.sendWebhookRequest<RawGetAllWebhooksResponse>(
       'team-webhooks',
-      'webhooks:getAll',
+      'getAllWebhooks',
       {}
     );
     return {
@@ -107,7 +107,7 @@ export class NotifyNamespace {
       typeof webhookOrId === 'string' ? webhookOrId : webhookOrId.id;
     const response = await this.sendWebhookRequest<RawAddressActivityResponse>(
       'webhook-addresses',
-      'webhooks:getAddresses',
+      'getAddresses',
       {
         webhook_id: webhookId,
         limit: options?.limit,
@@ -149,7 +149,7 @@ export class NotifyNamespace {
       typeof webhookOrId === 'string' ? webhookOrId : webhookOrId.id;
     const response = await this.sendWebhookRequest<RawNftFiltersResponse>(
       'webhook-nft-filters',
-      'webhooks:getNftFilters',
+      'getNftFilters',
       {
         webhook_id: webhookId,
         limit: options?.limit,
@@ -211,7 +211,7 @@ export class NotifyNamespace {
     let data;
     if ('isActive' in update) {
       restApiName = 'update-webhook';
-      methodName = 'webhooks:updateWebhook';
+      methodName = 'updateWebhook';
       method = 'PUT';
       data = {
         webhook_id: webhookId,
@@ -219,7 +219,7 @@ export class NotifyNamespace {
       };
     } else if ('addFilters' in update || 'removeFilters' in update) {
       restApiName = 'update-webhook-nft-filters';
-      methodName = 'webhooks:updateWebhookNftFilters';
+      methodName = 'updateWebhookNftFilters';
       method = 'PATCH';
       data = {
         webhook_id: webhookId,
@@ -389,7 +389,7 @@ export class NotifyNamespace {
 
     const response = await this.sendWebhookRequest<RawCreateWebhookResponse>(
       'create-webhook',
-      'webhooks:createWebhook',
+      'createWebhook',
       {},
       {
         method: 'POST',
@@ -419,7 +419,7 @@ export class NotifyNamespace {
       typeof webhookOrId === 'string' ? webhookOrId : webhookOrId.id;
     const response = await this.sendWebhookRequest<RawNftFiltersResponse>(
       'delete-webhook',
-      'webhooks:deleteWebhook',
+      'deleteWebhook',
       {
         webhook_id: webhookId
       },

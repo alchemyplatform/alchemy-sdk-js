@@ -1202,7 +1202,7 @@ export interface NftActivityWebhook extends Webhook {
   type: WebhookType.NFT_ACTIVITY;
 }
 
-/** The response for a {@link NotifyNamespace.getAll} method. */
+/** The response for a {@link NotifyNamespace.getAllWebhooks} method. */
 export interface GetAllWebhooksResponse {
   /** All webhooks attached to the provided auth token. */
   webhooks: Webhook[];
