@@ -603,6 +603,15 @@ interface ComputeRarityParams {
   tokenId: string;
 }
 
+/**
+ * Interface for the `summarizeNFTAttributes` endpoint.
+ *
+ * @internal
+ */
+interface SummarizeNFTAttributesParams {
+  contractAddress: string;
+}
+
 interface ReingestContractParams {
   contractAddress: string;
 }

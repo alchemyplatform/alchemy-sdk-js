@@ -781,6 +781,22 @@ export interface NftAttributeRarity {
   prevalence: number;
 }
 
+/**
+ * Summary of the attribute prevalence for the specified NFT collection.
+ *
+ * @public
+ */
+export interface NftAttributesSummary {
+  /** The current NFT collection address. */
+  contractAddress: string;
+
+  /** The current NFT collection total supply. */
+  totalSupply: number;
+
+  /** The current NFT collection attribute prevalence summary grouped by trait type. */
+  summary: Record<string, Record<string, number>>;
+}
+
 /** The refresh result response object returned by {@link refreshContract}. */
 export interface RefreshContractResult {
   /** The NFT contract address that was passed in to be refreshed. */
@@ -1351,7 +1367,8 @@ export type AddressWebhookUpdate =
 
 /**
  * Requires at least one of the properties to be set. Implementation copied over
- * from {@link https://learn.microsoft.com/en-us/javascript/api/@azure/keyvault-certificates/requireatleastone?view=azure-node-latest}
+ * from
+ * {@link https://learn.microsoft.com/en-us/javascript/api/@azure/keyvault-certificates/requireatleastone?view=azure-node-latest}
  */
 export type RequireAtLeastOne<T> = {
   [K in keyof T]-?: Required<Pick<T, K>> &
