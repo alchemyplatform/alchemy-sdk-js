@@ -16,6 +16,7 @@ import {
   isSpamContract,
   refreshContract,
   refreshNftMetadata,
+  summarizeNftAttributes,
   verifyNftOwnership
 } from '../internal/nft-api';
 import {
@@ -30,6 +31,7 @@ import {
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
   NftAttributeRarity,
+  NftAttributesSummary,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
   NftTokenType,
@@ -373,6 +375,17 @@ export class NftNamespace {
     tokenId: BigNumberish
   ): Promise<NftAttributeRarity[]> {
     return computeRarity(this.config, contractAddress, tokenId);
+  }
+
+  /**
+   * Get a summary of attribute prevalence for an NFT collection.
+   *
+   * @param contractAddress - Contract address for the NFT collection.
+   */
+  summarizeNFTAttributes(
+    contractAddress: string
+  ): Promise<NftAttributesSummary> {
+    return summarizeNftAttributes(this.config, contractAddress);
   }
 
   /**

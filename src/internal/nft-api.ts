@@ -14,6 +14,7 @@ import {
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
   NftAttributeRarity,
+  NftAttributesSummary,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
   NftTokenType,
@@ -376,6 +377,19 @@ export async function computeRarity(
   });
 
   return getNftRarityFromRaw(response);
+}
+
+export async function summarizeNftAttributes(
+  config: AlchemyConfig,
+  contractAddress: string,
+  srcMethod = 'summarizeNFTAttributes'
+): Promise<NftAttributesSummary> {
+  return requestHttpWithBackoff<
+    SummarizeNFTAttributesParams,
+    NftAttributesSummary
+  >(config, AlchemyApiType.NFT, 'summarizeNFTAttributes', srcMethod, {
+    contractAddress
+  });
 }
 
 export async function refreshNftMetadata(
