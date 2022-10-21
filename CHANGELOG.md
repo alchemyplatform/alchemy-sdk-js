@@ -6,6 +6,8 @@
 
 - Added `TransactNamespace.sendGasOptimizedTransaction()`. Instead of sending a single transaction that might not get mined, this method allows you to send the same transaction multiple times, with different gas prices and gas limits. This should result in lower fees paid.
 - Added the `NotifyNamespace` to the top-level `Alchemy` object. The `NotifyNamespace` is used to perform CRUD operations on webhooks in the Notify API.
+- Added the `alchemy_minedTransactions` subscription event to the `WebsocketNamespace`. This subscription emits full transaction objects or hashes that are mined on the network based on provided filters. 
+- Added the `NftNamespace.computeRarity()` method to get the rarity attributes of the provided NFT. Thanks @xeno097!
 
 ### Minor Changes
 
