@@ -229,7 +229,7 @@ Methods on the `NotifyNamespace` can be accessed via `alchemy.notify`. To use th
 
 Methods include:
 
-- `getAll()`: Get all webhooks on your team.
+- `getAllWebhooks()`: Get all webhooks on your team.
 - `getAddresses()`: Get all addresses tracked for the provided Address Activity Webhook.
 - `getNftFilters()`: Get all NFT filters tracked for the provided NFT Activity Webhook.
 - `createWebhook()`: Create a new webhook.
