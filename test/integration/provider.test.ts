@@ -1,6 +1,11 @@
 import { AlchemyProvider as EthersAlchemyProvider } from '@ethersproject/providers';
 
-import { Alchemy, AlchemyProvider, AlchemyWebSocketProvider } from '../../src';
+import {
+  Alchemy,
+  AlchemyProvider,
+  AlchemySubscription,
+  AlchemyWebSocketProvider
+} from '../../src';
 import { EthersNetwork } from '../../src/util/const';
 
 jest.setTimeout(50000);
@@ -42,12 +47,12 @@ describe('AlchemyProvider', () => {
     expect(actual).toEqual(expected);
   });
 
-  it('filtered transactions', done => {
+  it('alchemy_pendingTransactions', done => {
     let eventCount = 0;
     const address = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
     wsProvider.on(
       {
-        method: 'alchemy_pendingTransactions',
+        method: AlchemySubscription.PENDING_TRANSACTIONS,
         toAddress: address,
         hashesOnly: true
       },
@@ -61,12 +66,31 @@ describe('AlchemyProvider', () => {
     );
   });
 
+  it('alchemy_minedTransactions', done => {
+    let eventCount = 0;
+    wsProvider.on(
+      {
+        method: AlchemySubscription.MINED_TRANSACTIONS,
+        hashesOnly: true
+      },
+      (res: any) => {
+        console.log(res);
+        expect(res.transaction).toBeDefined();
+        expect(typeof res.transaction.hash).toEqual('string');
+        if (eventCount === 5) {
+          done();
+        }
+        eventCount++;
+      }
+    );
+  });
+
   it('once', done => {
     const address = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
     let eventCount = 0;
     wsProvider.once(
       {
-        method: 'alchemy_pendingTransactions',
+        method: AlchemySubscription.PENDING_TRANSACTIONS,
         toAddress: address,
         hashesOnly: true
       },
@@ -80,7 +104,7 @@ describe('AlchemyProvider', () => {
 
     wsProvider.once(
       {
-        method: 'alchemy_pendingTransactions',
+        method: AlchemySubscription.PENDING_TRANSACTIONS,
         toAddress: address,
         hashesOnly: true
       },
@@ -102,7 +126,7 @@ describe('AlchemyProvider', () => {
     let eventCount = 0;
     wsProvider.on(
       {
-        method: 'alchemy_pendingTransactions'
+        method: AlchemySubscription.PENDING_TRANSACTIONS
       },
       () => {
         if (eventCount === 10) {

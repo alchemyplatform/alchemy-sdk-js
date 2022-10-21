@@ -1042,21 +1042,34 @@ export interface DeployResult {
 }
 
 /**
+ * Method names for Alchemy's custom Subscription API endpoints.
+ *
+ * This value is provided in the `method` field when creating an event filter on
+ * the Websocket Namespace.
+ */
+export enum AlchemySubscription {
+  PENDING_TRANSACTIONS = 'alchemy_pendingTransactions',
+  MINED_TRANSACTIONS = 'alchemy_minedTransactions'
+}
+
+/**
  * Event filter for the {@link AlchemyWebSocketProvider.on} and
  * {@link AlchemyWebSocketProvider.once} methods to use Alchemy's custom
  * `alchemy_pendingTransactions` endpoint.
  *
  * Returns the transaction information for all pending transactions that match a
  * given filter. For full documentation, see:
- * https://docs.alchemy.com/alchemy/enhanced-apis/subscription-api-websockets#alchemy_pendingtransactions
+ * {@link https://docs.alchemy.com/reference/alchemy-pendingtransactions}
  *
  * Note that excluding all optional parameters will return transaction
  * information for ALL pending transactions that are added to the mempool.
  *
  * @public
  */
-export type AlchemyPendingTransactionsEventFilter = {
-  method: 'alchemy_pendingTransactions' /** Filter pending transactions sent FROM the provided address or array of addresses. */;
+export interface AlchemyPendingTransactionsEventFilter {
+  method: AlchemySubscription.PENDING_TRANSACTIONS;
+
+  /** Filter pending transactions sent FROM the provided address or array of addresses. */
   fromAddress?: string | string[];
 
   /** Filter pending transactions sent TO the provided address or array of addresses. */
@@ -1071,16 +1084,66 @@ export type AlchemyPendingTransactionsEventFilter = {
    * response as subscribing to `newPendingTransactions`.
    */
   hashesOnly?: boolean;
-};
+}
 
 /**
- * Alchemy's event filter that extends the default {@link EventType} interface to
+ * Event filter for the {@link AlchemyWebSocketProvider.on} and
+ * {@link AlchemyWebSocketProvider.once} methods to use Alchemy's custom
+ * `alchemy_minedTransactions` endpoint.
+ *
+ * Returns the transaction information for all mined transactions that match the
+ * provided filter. For full documentation, see:
+ * {@link https://docs.alchemy.com/reference/alchemy-minedtransactions}
+ *
+ * Note that excluding all optional parameters will return transaction
+ * information for ALL mined transactions.
+ *
+ * @public
+ */
+export interface AlchemyMinedTransactionsEventFilter {
+  method: AlchemySubscription.MINED_TRANSACTIONS;
+
+  /**
+   * Address filters to subscribe to. Defaults to all transactions if omitted.
+   * Limit 100 address filters. Requires a non-empty array.
+   */
+  addresses?: NonEmptyArray<AlchemyMinedTransactionsAddress>;
+
+  /**
+   * Whether to include transactions that were removed from the mempool.
+   * Defaults to false.
+   */
+  includeRemoved?: boolean;
+
+  /**
+   * Whether to only include transaction hashes and exclude the rest of the
+   * transaction response for a smaller payload. Defaults to false (by default,
+   * the entire transaction response is included).
+   */
+  hashesOnly?: boolean;
+}
+
+/**
+ * Address filters for {@link AlchemyMinedTransactionsEventFilter}. Requires
+ * at least one of the fields to be set.
+ */
+export type AlchemyMinedTransactionsAddress = RequireAtLeastOne<{
+  to?: string;
+  from?: string;
+}>;
+
+/**
+ * Alchemy's event type that extends the default {@link EventType} interface to
  * also include Alchemy's Subscription API.
  *
  * @public
  */
-export type AlchemyEventType =
-  | EventType
+export type AlchemyEventType = EventType | AlchemyEventFilter;
+
+/** This type represents the Alchemy's Subscription API endpoints as event filters
+ * compatible with other ethers events. */
+export type AlchemyEventFilter =
+  | AlchemyMinedTransactionsEventFilter
   | AlchemyPendingTransactionsEventFilter;
 
 /** Options for the {@link TransactNamespace.sendPrivateTransaction} method. */
@@ -1359,10 +1422,17 @@ export type AddressWebhookUpdate =
   | WebhookAddressOverride;
 
 /**
- * Requires at least one of the properties to be set. Implementation copied over
+ * Requires at least one of the properties to be set.
+ *
+ * Implementation copied over
  * from {@link https://learn.microsoft.com/en-us/javascript/api/@azure/keyvault-certificates/requireatleastone?view=azure-node-latest}
  */
 export type RequireAtLeastOne<T> = {
   [K in keyof T]-?: Required<Pick<T, K>> &
     Partial<Pick<T, Exclude<keyof T, K>>>;
 }[keyof T];
+
+/**
+ * Requires an array with at least one value.
+ */
+export type NonEmptyArray<T> = [T, ...T[]];
