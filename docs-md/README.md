@@ -18,6 +18,8 @@ The SDK currently supports the following chains:
 - **Arbitrum**: Mainnet, Goerli, Rinkeby
 - **Astar**: Mainnet
 
+You can find per-method documentation of the Alchemy SDK endpoints at the [Alchemy Docs linked in the sidebar](https://docs.alchemy.com/reference/alchemy-sdk-quickstart).
+
 ## Getting started
 
 ```
@@ -27,7 +29,7 @@ npm install alchemy-sdk
 After installing the app, you can then import and use the SDK:
 
 ```ts
-import { Network, Alchemy } from 'alchemy-sdk';
+import { Alchemy, Network } from 'alchemy-sdk';
 
 // Optional config object, but defaults to the API key 'demo' and Network 'eth-mainnet'.
 const settings = {
@@ -99,6 +101,7 @@ Ethers.js Provider [AlchemyProvider](https://docs.ethers.io/v5/api/providers/api
 
 ```ts
 import { Alchemy } from 'alchemy-sdk';
+
 const alchemy = new Alchemy();
 
 async function runAlchemy() {
@@ -182,6 +185,7 @@ under the `alchemy.nft` namespace:
 - `refreshNftMetadata()`: Refresh the cached NFT metadata for a contract address and a single tokenId.
 - `refreshContract()`: Enqueues the specified contract address to have all token ids' metadata refreshed.
 - `getFloorPrice()`: Return the floor prices of a NFT contract by marketplace.
+- `computeRarity()`: Get the rarity of each attribute of an NFT.
 
 ### Using `BaseNft` and `Nft`
 
@@ -219,6 +223,21 @@ async function main() {
 main();
 ```
 
+## Alchemy Notify
+
+The [Alchemy Notify API](https://docs.alchemy.com/reference/notify-api-quickstart) helps developers set up webhooks in their apps. The namespace provides methods to programmatically create, read, update, and delete your webhooks along with typings for the different webhooks. To learn more about Webhooks, please refer to the [Alchemy documentation](https://docs.alchemy.com/reference/notify-api-quickstart#what-are-webhooks).
+
+Methods on the `NotifyNamespace` can be accessed via `alchemy.notify`. To use the methods, you must include your team's auth token in the `authToken` field of `AlchemySettings` when instantiating the SDK. The auth token can be found on the Alchemy Dashboard in the Notify Tab.
+
+Methods include:
+
+- `getAllWebhooks()`: Get all webhooks on your team.
+- `getAddresses()`: Get all addresses tracked for the provided Address Activity Webhook.
+- `getNftFilters()`: Get all NFT filters tracked for the provided NFT Activity Webhook.
+- `createWebhook()`: Create a new webhook.
+- `updateWebhook()`: Update an existing webhook's active status or tracked addresses and NFT filters.
+- `deleteWebhook()`: Delete the provided webhook.
+
 ### SDK vs API Differences
 
 The NFT API in the SDK standardizes response types to reduce developer friction, but note this results in some
@@ -246,7 +265,7 @@ or as a webpage by opening `docs/index.html` in your browser.
 ### Getting the NFTs owned by an address
 
 ```ts
-import { NftExcludeFilters, Alchemy } from 'alchemy-sdk';
+import { Alchemy, NftExcludeFilters } from 'alchemy-sdk';
 
 const alchemy = new Alchemy();
 

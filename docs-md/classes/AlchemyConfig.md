@@ -14,6 +14,7 @@ exposes the underlying providers for more advanced use cases.
 ### Properties
 
 - [apiKey](AlchemyConfig.md#apikey)
+- [authToken](AlchemyConfig.md#authtoken)
 - [maxRetries](AlchemyConfig.md#maxretries)
 - [network](AlchemyConfig.md#network)
 - [url](AlchemyConfig.md#url)
@@ -36,7 +37,7 @@ exposes the underlying providers for more advanced use cases.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:51](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/alchemy-config.ts#L51)
+[src/api/alchemy-config.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-config.ts#L55)
 
 ## Properties
 
@@ -48,7 +49,19 @@ The Alchemy API key.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/alchemy-config.ts#L21)
+[src/api/alchemy-config.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-config.ts#L22)
+
+___
+
+### authToken
+
+• `Optional` `Readonly` **authToken**: `string`
+
+The optional Alchemy auth token to use when sending requests with the Notify API.
+
+#### Defined in
+
+[src/api/alchemy-config.ts:37](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-config.ts#L37)
 
 ___
 
@@ -60,7 +73,7 @@ The maximum number of retries to perform.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:27](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/alchemy-config.ts#L27)
+[src/api/alchemy-config.ts:28](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-config.ts#L28)
 
 ___
 
@@ -72,7 +85,7 @@ The Network that this SDK is associated with.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:24](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/alchemy-config.ts#L24)
+[src/api/alchemy-config.ts:25](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-config.ts#L25)
 
 ___
 
@@ -85,7 +98,7 @@ and apiKey.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/alchemy-config.ts#L33)
+[src/api/alchemy-config.ts:34](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-config.ts#L34)
 
 ## Methods
 
@@ -109,4 +122,4 @@ other less-common methods.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:89](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/alchemy-config.ts#L89)
+[src/api/alchemy-config.ts:96](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-config.ts#L96)

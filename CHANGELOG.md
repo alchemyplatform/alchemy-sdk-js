@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Major Changes
+
 ### Minor Changes
 
 ## 2.2.0

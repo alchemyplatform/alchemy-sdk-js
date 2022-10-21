@@ -20,7 +20,7 @@ An enum for specifying the token type on NFTs.
 
 #### Defined in
 
-[src/types/types.ts:296](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L296)
+[src/types/types.ts:304](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L304)
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:295](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L295)
+[src/types/types.ts:303](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L303)
 
 ___
 
@@ -40,4 +40,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:297](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L297)
+[src/types/types.ts:305](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L305)
