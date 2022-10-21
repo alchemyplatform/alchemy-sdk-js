@@ -10,6 +10,7 @@
 
 ### Enumerations
 
+- [AlchemySubscription](enums/AlchemySubscription.md)
 - [AssetTransfersCategory](enums/AssetTransfersCategory.md)
 - [AssetTransfersOrder](enums/AssetTransfersOrder.md)
 - [Network](enums/Network.md)
@@ -18,7 +19,8 @@
 - [NftTokenType](enums/NftTokenType.md)
 - [RefreshState](enums/RefreshState.md)
 - [TokenBalanceType](enums/TokenBalanceType.md)
-- [TransactionJobStatus](enums/TransactionJobStatus.md)
+- [WebhookType](enums/WebhookType.md)
+- [WebhookVersion](enums/WebhookVersion.md)
 
 ### Classes
 
@@ -30,12 +32,18 @@
 - [ContractFactory](classes/ContractFactory.md)
 - [CoreNamespace](classes/CoreNamespace.md)
 - [NftNamespace](classes/NftNamespace.md)
+- [NotifyNamespace](classes/NotifyNamespace.md)
 - [TransactNamespace](classes/TransactNamespace.md)
 - [Wallet](classes/Wallet.md)
 - [WebSocketNamespace](classes/WebSocketNamespace.md)
 
 ### Interfaces
 
+- [AddressActivityResponse](interfaces/AddressActivityResponse.md)
+- [AddressActivityWebhook](interfaces/AddressActivityWebhook.md)
+- [AddressWebhookParams](interfaces/AddressWebhookParams.md)
+- [AlchemyMinedTransactionsEventFilter](interfaces/AlchemyMinedTransactionsEventFilter.md)
+- [AlchemyPendingTransactionsEventFilter](interfaces/AlchemyPendingTransactionsEventFilter.md)
 - [AlchemySettings](interfaces/AlchemySettings.md)
 - [AssetTransfersMetadata](interfaces/AssetTransfersMetadata.md)
 - [AssetTransfersParams](interfaces/AssetTransfersParams.md)
@@ -47,9 +55,12 @@
 - [BaseNft](interfaces/BaseNft.md)
 - [BaseNftContract](interfaces/BaseNftContract.md)
 - [DeployResult](interfaces/DeployResult.md)
+- [DroppedTransactionWebhook](interfaces/DroppedTransactionWebhook.md)
 - [ERC1155Metadata](interfaces/ERC1155Metadata.md)
 - [FloorPriceError](interfaces/FloorPriceError.md)
 - [FloorPriceMarketplace](interfaces/FloorPriceMarketplace.md)
+- [GetAddressesOptions](interfaces/GetAddressesOptions.md)
+- [GetAllWebhooksResponse](interfaces/GetAllWebhooksResponse.md)
 - [GetBaseNftsForContractOptions](interfaces/GetBaseNftsForContractOptions.md)
 - [GetBaseNftsForOwnerOptions](interfaces/GetBaseNftsForOwnerOptions.md)
 - [GetFloorPriceResponse](interfaces/GetFloorPriceResponse.md)
@@ -61,13 +72,19 @@
 - [GetOwnersForContractWithTokenBalancesResponse](interfaces/GetOwnersForContractWithTokenBalancesResponse.md)
 - [GetOwnersForNftResponse](interfaces/GetOwnersForNftResponse.md)
 - [Media](interfaces/Media.md)
+- [MinedTransactionWebhook](interfaces/MinedTransactionWebhook.md)
 - [Nft](interfaces/Nft.md)
+- [NftActivityWebhook](interfaces/NftActivityWebhook.md)
+- [NftAttributeRarity](interfaces/NftAttributeRarity.md)
 - [NftContract](interfaces/NftContract.md)
 - [NftContractBaseNftsResponse](interfaces/NftContractBaseNftsResponse.md)
 - [NftContractNftsResponse](interfaces/NftContractNftsResponse.md)
 - [NftContractOwner](interfaces/NftContractOwner.md)
 - [NftContractTokenBalance](interfaces/NftContractTokenBalance.md)
+- [NftFilter](interfaces/NftFilter.md)
+- [NftFiltersResponse](interfaces/NftFiltersResponse.md)
 - [NftMetadata](interfaces/NftMetadata.md)
+- [NftWebhookParams](interfaces/NftWebhookParams.md)
 - [OwnedBaseNft](interfaces/OwnedBaseNft.md)
 - [OwnedBaseNftsResponse](interfaces/OwnedBaseNftsResponse.md)
 - [OwnedNft](interfaces/OwnedNft.md)
@@ -84,17 +101,26 @@
 - [TokenBalancesResponseErc20](interfaces/TokenBalancesResponseErc20.md)
 - [TokenMetadataResponse](interfaces/TokenMetadataResponse.md)
 - [TokenUri](interfaces/TokenUri.md)
-- [TransactionJobResponse](interfaces/TransactionJobResponse.md)
-- [TransactionJobStatusResponse](interfaces/TransactionJobStatusResponse.md)
 - [TransactionReceiptsBlockHash](interfaces/TransactionReceiptsBlockHash.md)
 - [TransactionReceiptsBlockNumber](interfaces/TransactionReceiptsBlockNumber.md)
 - [TransactionReceiptsResponse](interfaces/TransactionReceiptsResponse.md)
+- [TransactionWebhookParams](interfaces/TransactionWebhookParams.md)
+- [Webhook](interfaces/Webhook.md)
+- [WebhookAddressOverride](interfaces/WebhookAddressOverride.md)
+- [WebhookAddressUpdate](interfaces/WebhookAddressUpdate.md)
+- [WebhookNftFilterUpdate](interfaces/WebhookNftFilterUpdate.md)
+- [WebhookStatusUpdate](interfaces/WebhookStatusUpdate.md)
 
 ### Type aliases
 
+- [AddressWebhookUpdate](modules.md#addresswebhookupdate)
+- [AlchemyEventFilter](modules.md#alchemyeventfilter)
 - [AlchemyEventType](modules.md#alchemyeventtype)
-- [AlchemyPendingTransactionsEventFilter](modules.md#alchemypendingtransactionseventfilter)
+- [AlchemyMinedTransactionsAddress](modules.md#alchemyminedtransactionsaddress)
 - [LogLevel](modules.md#loglevel)
+- [NftWebhookUpdate](modules.md#nftwebhookupdate)
+- [NonEmptyArray](modules.md#nonemptyarray)
+- [RequireAtLeastOne](modules.md#requireatleastone)
 - [TokenBalance](modules.md#tokenbalance)
 - [TransactionReceiptsParams](modules.md#transactionreceiptsparams)
 
@@ -107,46 +133,55 @@
 
 ## Type aliases
 
+### AddressWebhookUpdate
+
+Ƭ **AddressWebhookUpdate**: [`WebhookStatusUpdate`](interfaces/WebhookStatusUpdate.md) \| [`RequireAtLeastOne`](modules.md#requireatleastone)<[`WebhookAddressUpdate`](interfaces/WebhookAddressUpdate.md)\> \| [`WebhookAddressOverride`](interfaces/WebhookAddressOverride.md)
+
+Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespace.md#updatewebhook) to update a
+[AddressActivityWebhook](interfaces/AddressActivityWebhook.md).
+
+#### Defined in
+
+[src/types/types.ts:1419](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L1419)
+
+___
+
+### AlchemyEventFilter
+
+Ƭ **AlchemyEventFilter**: [`AlchemyMinedTransactionsEventFilter`](interfaces/AlchemyMinedTransactionsEventFilter.md) \| [`AlchemyPendingTransactionsEventFilter`](interfaces/AlchemyPendingTransactionsEventFilter.md)
+
+This type represents the Alchemy's Subscription API endpoints as event filters
+compatible with other ethers events.
+
+#### Defined in
+
+[src/types/types.ts:1145](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L1145)
+
+___
+
 ### AlchemyEventType
 
-Ƭ **AlchemyEventType**: `EventType` \| [`AlchemyPendingTransactionsEventFilter`](modules.md#alchemypendingtransactionseventfilter)
+Ƭ **AlchemyEventType**: `EventType` \| [`AlchemyEventFilter`](modules.md#alchemyeventfilter)
 
-Alchemy's event filter that extends the default {@link EventType} interface to
+Alchemy's event type that extends the default {@link EventType} interface to
 also include Alchemy's Subscription API.
 
 #### Defined in
 
-[src/types/types.ts:1055](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L1055)
+[src/types/types.ts:1141](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L1141)
 
 ___
 
-### AlchemyPendingTransactionsEventFilter
+### AlchemyMinedTransactionsAddress
 
-Ƭ **AlchemyPendingTransactionsEventFilter**: `Object`
+Ƭ **AlchemyMinedTransactionsAddress**: [`RequireAtLeastOne`](modules.md#requireatleastone)<{ `from?`: `string` ; `to?`: `string`  }\>
 
-Event filter for the [AlchemyWebSocketProvider.on](classes/AlchemyWebSocketProvider.md#on) and
-[AlchemyWebSocketProvider.once](classes/AlchemyWebSocketProvider.md#once) methods to use Alchemy's custom
-`alchemy_pendingTransactions` endpoint.
-
-Returns the transaction information for all pending transactions that match a
-given filter. For full documentation, see:
-https://docs.alchemy.com/alchemy/enhanced-apis/subscription-api-websockets#alchemy_pendingtransactions
-
-Note that excluding all optional parameters will return transaction
-information for ALL pending transactions that are added to the mempool.
-
-#### Type declaration
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `fromAddress?` | `string` \| `string`[] | - |
-| `hashesOnly?` | `boolean` | Whether to only include transaction hashes and exclude the rest of the transaction response for a smaller payload. Defaults to false (by default, the entire transaction response is included).  Note that setting only [hashesOnly](modules.md#hashesonly) to true will return the same response as subscribing to `newPendingTransactions`. |
-| `method` | ``"alchemy_pendingTransactions"`` | - |
-| `toAddress?` | `string` \| `string`[] | Filter pending transactions sent TO the provided address or array of addresses. |
+Address filters for [AlchemyMinedTransactionsEventFilter](interfaces/AlchemyMinedTransactionsEventFilter.md). Requires
+at least one of the fields to be set.
 
 #### Defined in
 
-[src/types/types.ts:1031](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L1031)
+[src/types/types.ts:1130](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L1130)
 
 ___
 
@@ -158,7 +193,59 @@ The level of verbosity for the logger.
 
 #### Defined in
 
-[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/util/logger.ts#L22)
+[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/util/logger.ts#L22)
+
+___
+
+### NftWebhookUpdate
+
+Ƭ **NftWebhookUpdate**: [`WebhookStatusUpdate`](interfaces/WebhookStatusUpdate.md) \| [`RequireAtLeastOne`](modules.md#requireatleastone)<[`WebhookNftFilterUpdate`](interfaces/WebhookNftFilterUpdate.md)\>
+
+Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespace.md#updatewebhook) to update a
+[NftActivityWebhook](interfaces/NftActivityWebhook.md).
+
+#### Defined in
+
+[src/types/types.ts:1411](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L1411)
+
+___
+
+### NonEmptyArray
+
+Ƭ **NonEmptyArray**<`T`\>: [`T`, ...T[]]
+
+Requires an array with at least one value.
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Defined in
+
+[src/types/types.ts:1438](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L1438)
+
+___
+
+### RequireAtLeastOne
+
+Ƭ **RequireAtLeastOne**<`T`\>: { [K in keyof T]-?: Required<Pick<T, K\>\> & Partial<Pick<T, Exclude<keyof T, K\>\>\> }[keyof `T`]
+
+Requires at least one of the properties to be set.
+
+Implementation copied over
+from [https://learn.microsoft.com/en-us/javascript/api/@azure/keyvault-certificates/requireatleastone?view=azure-node-latest](https://learn.microsoft.com/en-us/javascript/api/@azure/keyvault-certificates/requireatleastone?view=azure-node-latest)
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Defined in
+
+[src/types/types.ts:1430](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L1430)
 
 ___
 
@@ -168,7 +255,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:123](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L123)
+[src/types/types.ts:131](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L131)
 
 ___
 
@@ -180,7 +267,7 @@ The parameters to use with the [CoreNamespace.getTransactionReceipts](classes/Co
 
 #### Defined in
 
-[src/types/types.ts:818](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L818)
+[src/types/types.ts:845](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L845)
 
 ## Functions
 
@@ -202,7 +289,7 @@ Converts a hex string to a decimal number.
 
 #### Defined in
 
-[src/api/util.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/util.ts#L9)
+[src/api/util.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/util.ts#L9)
 
 ___
 
@@ -224,7 +311,7 @@ Checks if a value is a hex string.
 
 #### Defined in
 
-[src/api/util.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/util.ts#L29)
+[src/api/util.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/util.ts#L29)
 
 ___
 
@@ -246,7 +333,7 @@ Configures the verbosity of logging. The default log level is `info`.
 
 #### Defined in
 
-[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/util/logger.ts#L56)
+[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/util/logger.ts#L56)
 
 ___
 
@@ -268,4 +355,4 @@ Converts a number to a hex string.
 
 #### Defined in
 
-[src/api/util.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/util.ts#L19)
+[src/api/util.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/util.ts#L19)
