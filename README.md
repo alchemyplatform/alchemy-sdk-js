@@ -261,6 +261,8 @@ or as a webpage by opening `docs/index.html` in your browser.
 
 ## Usage Examples
 
+Below are a few usage examples. You can also find examples at the following page: [Examples Using the Alchemy SDK](https://docs.alchemy.com/reference/using-the-alchemy-sdk).
+
 ### Getting the NFTs owned by an address
 
 ```ts
