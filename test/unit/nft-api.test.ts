@@ -1281,13 +1281,19 @@ describe('NFT module', () => {
     it('calls with the correct parameters', async () => {
       mock.onGet().reply(200, templateResponse);
 
-      await alchemy.nft.summarizeNftAttributes(contractAddress);
+      const response = await alchemy.nft.summarizeNftAttributes(
+        contractAddress
+      );
 
       expect(mock.history.get.length).toEqual(1);
       expect(mock.history.get[0].params).toHaveProperty(
         'contractAddress',
         contractAddress
       );
+      expect(response.contractAddress).toBeDefined();
+      expect(response.contractAddress).toEqual(contractAddress);
+      expect(response.totalSupply).toEqual(templateResponse.totalSupply);
+      expect(response.summary).toEqual(templateResponse.summary);
     });
 
     it('surfaces errors', async () => {
