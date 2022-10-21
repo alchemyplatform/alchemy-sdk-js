@@ -53,7 +53,7 @@ The Alchemy SDK currently supports five different namespaces, including:
 If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should work properly.
 
 ```ts
-import { Alchemy } from 'alchemy-sdk';
+import { Alchemy, AlchemySubscription } from 'alchemy-sdk';
 
 // Using default settings - pass in a settings object to specify your API key and network
 const alchemy = new Alchemy();
@@ -72,7 +72,7 @@ alchemy.nft.getNftsForOwner('vitalik.eth').then(console.log);
 // Access WebSockets and Alchemy-specific WS methods
 alchemy.ws.on(
   {
-    method: 'alchemy_pendingTransactions'
+    method: AlchemySubscription.PENDING_TRANSACTIONS
   },
   res => console.log(res)
 );
@@ -117,7 +117,7 @@ In addition to the built-in Ethers.js listeners, the Alchemy SDK includes suppor
 The `alchemy.ws` instance can be used like the standard Ethers.js [WebSocketProvider](https://docs.ethers.io/v5/api/providers/other/#WebSocketProvider) to add listeners for Alchemy events:
 
 ```ts
-import { Alchemy } from 'alchemy-sdk';
+import { Alchemy, AlchemySubscription } from 'alchemy-sdk';
 
 const alchemy = new Alchemy();
 
@@ -127,7 +127,7 @@ alchemy.ws.on('block', res => console.log(res));
 // Listen to only the next transaction on the USDC contract.
 alchemy.ws.once(
   {
-    method: 'alchemy_pendingTransactions',
+    method: AlchemySubscription.PENDING_TRANSACTIONS,
     toAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
   },
   res => console.log(res)
