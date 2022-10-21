@@ -1159,21 +1159,28 @@ export interface SendPrivateTransactionOptions {
   fast: boolean;
 }
 
-export interface TransactionJobResponse {
+/**
+ * Response object for the {@link TransactNamespace.sendGasOptimizedTransaction} method.
+ * @internal
+ */
+// TODO(txjob): Remove internal tag once this feature is released.
+export interface GasOptimizedTransactionResponse {
   /**
-   * The job id. This can be used to check the status of the job via
-   * {@link TransactNamespace.getTransactionJobStatus}.
+   * The tracking id. This can be used to check the status of the transaction via
+   * {@link TransactNamespace.getGasOptimizedTransactionStatus}.
    */
-  transactionJobId: string;
+  trackingId: string;
 
-  /* An array of the transaction hashes from the different options */
+  /* An array of the transaction hashes from submitted transactions. */
   transactionHashes: string[];
 }
 
-/** Response object for the {@link TransactNamespace.getTransactionJobStatus} method. */
-export interface TransactionJobStatusResponse {
-  /** The status of the transaction job. */
-  jobStatus: string;
+/** Response object for the {@link TransactNamespace.getGasOptimizedTransactionStatus} method.
+ * @internal*/
+// TODO(txjob): Remove internal tag once this feature is released.
+export interface GasOptimizedTransactionStatusResponse {
+  /** The status of the submitted transaction job. */
+  jobStatus: GasOptimizedTransactionStatus;
 
   /** An array of the submitted transactions hashes that have been attempted. */
   transactionHashesAttempted: string[];
@@ -1182,8 +1189,10 @@ export interface TransactionJobStatusResponse {
   minedTransactionHash?: string;
 }
 
-/** Potential transaction job statuses for a {@link TransactionJobResponse} */
-export enum TransactionJobStatus {
+/** Potential transaction job statuses for a {@link GasOptimizedTransactionResponse}
+ * @internal */
+// TODO(txjob): Remove internal tag once this feature is released.
+export enum GasOptimizedTransactionStatus {
   UNSPECIFIED = 'TRANSACTION_JOB_STATUS_UNSPECIFIED',
   IN_PROGRESS = 'IN_PROGRESS',
   COMPLETE = 'COMPLETE',
