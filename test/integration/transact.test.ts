@@ -1,4 +1,9 @@
-import { Alchemy, GasOptimizedTransactionStatus, Wallet } from '../../src';
+import {
+  Alchemy,
+  GasOptimizedTransactionStatus,
+  Network,
+  Wallet
+} from '../../src';
 import { TESTING_PRIVATE_KEY } from '../test-util';
 
 jest.setTimeout(50000);
@@ -6,7 +11,9 @@ describe('E2E integration tests', () => {
   let alchemy: Alchemy;
 
   beforeAll(async () => {
-    alchemy = await new Alchemy();
+    alchemy = await new Alchemy({
+      network: Network.ETH_MAINNET
+    });
   });
 
   it('sendPrivateTransaction()', async () => {
