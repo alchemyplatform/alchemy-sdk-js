@@ -3,6 +3,11 @@
 ## Unreleased
 
 ### Major Changes
+### Minor Changes
+
+## 2.2.0
+
+### Major Changes
 
 - Added `TransactNamespace.sendGasOptimizedTransaction()`. Instead of sending a single transaction that might not get mined, this method allows you to send the same transaction multiple times, with different gas prices and gas limits. This should result in lower fees paid.
 - Added the `NotifyNamespace` to the top-level `Alchemy` object. The `NotifyNamespace` is used to perform CRUD operations on webhooks in the Notify API.
