@@ -210,7 +210,6 @@ export class TransactNamespace {
    * @param signedTransactions An array of signed transactions to send. Each
    *   transaction in the array must have the same values, but with different
    *   gas and fee values.
-   * @public
    * @internal
    */
   // TODO(txjob): Remove internal tag once this feature is released.
@@ -242,7 +241,6 @@ export class TransactNamespace {
    *
    * @param transaction The raw transaction to send.
    * @param wallet A wallet to use to sign the transaction.
-   * @public
    * @internal
    */
   // TODO(txjob): Remove internal tag once this feature is released.
@@ -309,6 +307,7 @@ export class TransactNamespace {
     );
   }
 
+  /** @internal */
   private async _sendGasOptimizedTransaction(
     signedTransactions: string[],
     methodName: string
