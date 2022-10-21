@@ -31,7 +31,7 @@ import {
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
   NftAttributeRarity,
-  NftAttributesSummary,
+  NftAttributesResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
   NftTokenType,
@@ -384,7 +384,7 @@ export class NftNamespace {
    */
   summarizeNftAttributes(
     contractAddress: string
-  ): Promise<NftAttributesSummary> {
+  ): Promise<NftAttributesResponse> {
     return summarizeNftAttributes(this.config, contractAddress);
   }
 

@@ -14,7 +14,7 @@ import {
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
   NftAttributeRarity,
-  NftAttributesSummary,
+  NftAttributesResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
   NftTokenType,
@@ -382,12 +382,12 @@ export async function computeRarity(
 export async function summarizeNftAttributes(
   config: AlchemyConfig,
   contractAddress: string,
-  srcMethod = 'summarizeNFTAttributes'
-): Promise<NftAttributesSummary> {
+  srcMethod = 'summarizeNftAttributes'
+): Promise<NftAttributesResponse> {
   return requestHttpWithBackoff<
     SummarizeNftAttributesParams,
-    NftAttributesSummary
-  >(config, AlchemyApiType.NFT, 'summarizeNFTAttributes', srcMethod, {
+    NftAttributesResponse
+  >(config, AlchemyApiType.NFT, 'summarizeNftAttributes', srcMethod, {
     contractAddress
   });
 }

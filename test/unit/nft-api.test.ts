@@ -8,7 +8,7 @@ import {
   GetNftsForOwnerOptions,
   GetOwnersForContractWithTokenBalancesResponse,
   Nft,
-  NftAttributesSummary,
+  NftAttributesResponse,
   NftContract,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
@@ -1263,7 +1263,7 @@ describe('NFT module', () => {
 
   describe('summarizeNftAttributes()', () => {
     const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
-    const templateResponse: NftAttributesSummary = {
+    const templateResponse: NftAttributesResponse = {
       contractAddress,
       totalSupply: 1000,
       summary: {
