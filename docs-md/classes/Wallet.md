@@ -91,7 +91,7 @@ EthersWallet.constructor
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:38](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/alchemy-wallet.ts#L38)
+[src/api/alchemy-wallet.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-wallet.ts#L39)
 
 ## Properties
 
@@ -173,7 +173,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:30](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/alchemy-wallet.ts#L30)
+[src/api/alchemy-wallet.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-wallet.ts#L31)
 
 ___
 
@@ -321,7 +321,7 @@ EthersWallet.call
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:101](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/alchemy-wallet.ts#L101)
+[src/api/alchemy-wallet.ts:102](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-wallet.ts#L102)
 
 ___
 
@@ -424,7 +424,7 @@ EthersWallet.estimateGas
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:89](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/alchemy-wallet.ts#L89)
+[src/api/alchemy-wallet.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-wallet.ts#L90)
 
 ___
 
@@ -470,7 +470,7 @@ EthersWallet.getBalance
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:65](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/alchemy-wallet.ts#L65)
+[src/api/alchemy-wallet.ts:66](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-wallet.ts#L66)
 
 ___
 
@@ -492,7 +492,7 @@ EthersWallet.getChainId
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:124](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/alchemy-wallet.ts#L124)
+[src/api/alchemy-wallet.ts:125](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-wallet.ts#L125)
 
 ___
 
@@ -520,7 +520,7 @@ EthersWallet.getFeeData
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:148](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/alchemy-wallet.ts#L148)
+[src/api/alchemy-wallet.ts:149](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-wallet.ts#L149)
 
 ___
 
@@ -542,7 +542,7 @@ EthersWallet.getGasPrice
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:133](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/alchemy-wallet.ts#L133)
+[src/api/alchemy-wallet.ts:134](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-wallet.ts#L134)
 
 ___
 
@@ -571,7 +571,7 @@ EthersWallet.getTransactionCount
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:76](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/alchemy-wallet.ts#L76)
+[src/api/alchemy-wallet.ts:77](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-wallet.ts#L77)
 
 ___
 
@@ -585,7 +585,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:164](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/alchemy-wallet.ts#L164)
+[src/api/alchemy-wallet.ts:165](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-wallet.ts#L165)
 
 ___
 
@@ -639,7 +639,7 @@ EthersWallet.resolveName
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:160](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/alchemy-wallet.ts#L160)
+[src/api/alchemy-wallet.ts:161](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-wallet.ts#L161)
 
 ___
 
@@ -667,7 +667,7 @@ EthersWallet.sendTransaction
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:113](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/api/alchemy-wallet.ts#L113)
+[src/api/alchemy-wallet.ts:114](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/alchemy-wallet.ts#L114)
 
 ___
 

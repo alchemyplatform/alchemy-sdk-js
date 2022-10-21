@@ -183,6 +183,7 @@ under the `alchemy.nft` namespace:
 - `refreshNftMetadata()`: Refresh the cached NFT metadata for a contract address and a single tokenId.
 - `refreshContract()`: Enqueues the specified contract address to have all token ids' metadata refreshed.
 - `getFloorPrice()`: Return the floor prices of a NFT contract by marketplace.
+- `computeRarity()`: Get the rarity of each attribute of an NFT.
 
 ### Using `BaseNft` and `Nft`
 
@@ -228,7 +229,7 @@ Methods on the `NotifyNamespace` can be accessed via `alchemy.notify`. To use th
 
 Methods include:
 
-- `getAll()`: Get all webhooks on your team.
+- `getAllWebhooks()`: Get all webhooks on your team.
 - `getAddresses()`: Get all addresses tracked for the provided Address Activity Webhook.
 - `getNftFilters()`: Get all NFT filters tracked for the provided NFT Activity Webhook.
 - `createWebhook()`: Create a new webhook.

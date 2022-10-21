@@ -36,7 +36,7 @@ REQUIRED field. An array of categories to get transfers for.
 
 #### Defined in
 
-[src/types/types.ts:216](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L216)
+[src/types/types.ts:224](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L224)
 
 ___
 
@@ -49,7 +49,7 @@ List of contract addresses to filter for - only applies to "erc20",
 
 #### Defined in
 
-[src/types/types.ts:207](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L207)
+[src/types/types.ts:215](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L215)
 
 ___
 
@@ -62,7 +62,7 @@ different than null value. Defaults to `false` if omitted.
 
 #### Defined in
 
-[src/types/types.ts:213](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L213)
+[src/types/types.ts:221](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L221)
 
 ___
 
@@ -75,7 +75,7 @@ for all addresses if omitted.
 
 #### Defined in
 
-[src/types/types.ts:195](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L195)
+[src/types/types.ts:203](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L203)
 
 ___
 
@@ -88,7 +88,7 @@ defaults to `0x0` if omitted.
 
 #### Defined in
 
-[src/types/types.ts:177](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L177)
+[src/types/types.ts:185](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L185)
 
 ___
 
@@ -100,7 +100,7 @@ The maximum number of results to return per page. Defaults to 1000 if omitted.
 
 #### Defined in
 
-[src/types/types.ts:219](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L219)
+[src/types/types.ts:227](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L227)
 
 ___
 
@@ -113,7 +113,7 @@ Defaults to ascending if omitted.
 
 #### Defined in
 
-[src/types/types.ts:189](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L189)
+[src/types/types.ts:197](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L197)
 
 ___
 
@@ -126,7 +126,7 @@ Optional page key from an existing [OwnedBaseNftsResponse](OwnedBaseNftsResponse
 
 #### Defined in
 
-[src/types/types.ts:225](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L225)
+[src/types/types.ts:233](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L233)
 
 ___
 
@@ -139,7 +139,7 @@ for all address if omitted.
 
 #### Defined in
 
-[src/types/types.ts:201](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L201)
+[src/types/types.ts:209](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L209)
 
 ___
 
@@ -152,7 +152,7 @@ defaults to the latest block if omitted.
 
 #### Defined in
 
-[src/types/types.ts:183](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L183)
+[src/types/types.ts:191](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L191)
 
 ___
 
@@ -165,4 +165,4 @@ to `false` if omitted.
 
 #### Defined in
 
-[src/types/types.ts:231](https://github.com/alchemyplatform/alchemy-sdk-js/blob/53be393/src/types/types.ts#L231)
+[src/types/types.ts:239](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L239)

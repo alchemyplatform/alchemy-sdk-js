@@ -58,8 +58,8 @@ describe('E2E integration tests', () => {
     await createInitialWebhooks();
   });
 
-  it('getAll()', async () => {
-    const all = await alchemy.notify.getAll();
+  it('getAllWebhooks()', async () => {
+    const all = await alchemy.notify.getAllWebhooks();
     expect(all.totalCount).toBeGreaterThan(0);
     expect(all.webhooks.length).toEqual(all.totalCount);
   });
@@ -135,13 +135,13 @@ describe('E2E integration tests', () => {
     );
     expect(minedTxWebhook.url).toEqual(webhookUrl);
     expect(minedTxWebhook.type).toEqual(WebhookType.MINED_TRANSACTION);
-    let response = await alchemy.notify.getAll();
+    let response = await alchemy.notify.getAllWebhooks();
     expect(
       response.webhooks.filter(wh => wh.id === minedTxWebhook.id).length
     ).toEqual(1);
 
     await alchemy.notify.deleteWebhook(minedTxWebhook);
-    response = await alchemy.notify.getAll();
+    response = await alchemy.notify.getAllWebhooks();
     expect(
       response.webhooks.filter(wh => wh.id === minedTxWebhook.id).length
     ).toEqual(0);
@@ -155,13 +155,13 @@ describe('E2E integration tests', () => {
     );
     expect(droppedTxWebhook.url).toEqual(webhookUrl);
     expect(droppedTxWebhook.type).toEqual(WebhookType.DROPPED_TRANSACTION);
-    let response = await alchemy.notify.getAll();
+    let response = await alchemy.notify.getAllWebhooks();
     expect(
       response.webhooks.filter(wh => wh.id === droppedTxWebhook.id).length
     ).toEqual(1);
 
     await alchemy.notify.deleteWebhook(droppedTxWebhook);
-    response = await alchemy.notify.getAll();
+    response = await alchemy.notify.getAllWebhooks();
     expect(
       response.webhooks.filter(wh => wh.id === droppedTxWebhook.id).length
     ).toEqual(0);
@@ -176,13 +176,13 @@ describe('E2E integration tests', () => {
     expect(addressWebhook.url).toEqual(webhookUrl);
     expect(addressWebhook.type).toEqual(WebhookType.ADDRESS_ACTIVITY);
     expect(addressWebhook.network).toEqual(Network.OPT_MAINNET);
-    let response = await alchemy.notify.getAll();
+    let response = await alchemy.notify.getAllWebhooks();
     expect(
       response.webhooks.filter(wh => wh.id === addressWebhook.id).length
     ).toEqual(1);
 
     await alchemy.notify.deleteWebhook(addressWebhook);
-    response = await alchemy.notify.getAll();
+    response = await alchemy.notify.getAllWebhooks();
     expect(
       response.webhooks.filter(wh => wh.id === addressWebhook.id).length
     ).toEqual(0);
@@ -197,13 +197,13 @@ describe('E2E integration tests', () => {
     expect(nftActivityWebhook.url).toEqual(webhookUrl);
     expect(nftActivityWebhook.type).toEqual(WebhookType.NFT_ACTIVITY);
     expect(nftActivityWebhook.network).toEqual(Network.ETH_GOERLI);
-    let response = await alchemy.notify.getAll();
+    let response = await alchemy.notify.getAllWebhooks();
     expect(
       response.webhooks.filter(wh => wh.id === nftActivityWebhook.id).length
     ).toEqual(1);
 
     await alchemy.notify.deleteWebhook(nftActivityWebhook.id);
-    response = await alchemy.notify.getAll();
+    response = await alchemy.notify.getAllWebhooks();
     expect(
       response.webhooks.filter(wh => wh.id === nftActivityWebhook.id).length
     ).toEqual(0);
@@ -249,7 +249,7 @@ describe('E2E integration tests', () => {
     await alchemy.notify.updateWebhook(nftWh.id, {
       isActive: false
     });
-    const response = await alchemy.notify.getAll();
+    const response = await alchemy.notify.getAllWebhooks();
     const updated = response.webhooks.filter(wh => wh.id === nftWh.id);
     expect(updated.length).toEqual(1);
     expect(updated[0].isActive).toEqual(false);
@@ -290,18 +290,18 @@ describe('E2E integration tests', () => {
     await alchemy.notify.updateWebhook(addressWh, {
       isActive: false
     });
-    const response = await alchemy.notify.getAll();
+    const response = await alchemy.notify.getAllWebhooks();
     const updated = response.webhooks.filter(wh => wh.id === addressWh.id);
     expect(updated.length).toEqual(1);
     expect(updated[0].isActive).toEqual(false);
   });
 
   it('cleans up', async () => {
-    const response = await alchemy.notify.getAll();
+    const response = await alchemy.notify.getAllWebhooks();
     const tests = response.webhooks.filter(wh => wh.url === webhookUrl);
 
     await Promise.allSettled(tests.map(wh => alchemy.notify.deleteWebhook(wh)));
-    const response2 = await alchemy.notify.getAll();
+    const response2 = await alchemy.notify.getAllWebhooks();
     const remaining = response2.webhooks.filter(wh => wh.url === webhookUrl);
     expect(remaining.length).toEqual(0);
   });
