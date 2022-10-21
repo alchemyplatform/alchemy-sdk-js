@@ -5,18 +5,21 @@ import { Formatter } from '@ethersproject/providers/lib/formatter';
 import {
   Alchemy,
   AlchemyConfig,
+  AlchemyMinedTransactionsEventFilter,
   AlchemyPendingTransactionsEventFilter,
+  AlchemySubscription,
   Network,
   toHex
 } from '../../src';
 import { AlchemyProvider } from '../../src/api/alchemy-provider';
+import { AlchemyWebSocketProvider } from '../../src/api/alchemy-websocket-provider';
 import {
-  AlchemyWebSocketProvider,
+  EthersEvent,
   getAlchemyEventTag
-} from '../../src/api/alchemy-websocket-provider';
+} from '../../src/internal/ethers-event';
 import {
-  ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE,
-  EthersEvent
+  ALCHEMY_MINED_TRANSACTIONS_EVENT_TYPE,
+  ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE
 } from '../../src/internal/internal-types';
 import {
   LogsEvent,
@@ -500,6 +503,7 @@ describe('AlchemyWebSocketProvider', () => {
       const sendSpy = jest.spyOn(AlchemyWebSocketProvider.prototype, 'send');
       setupMockServer({
         ethSubscribeIds: ['0xabc'],
+        // Can send dummy responses since we're only checking request params.
         ethSubscribeMessages: [[{ blockNumber: 10 }, { blockNumber: 11 }]]
       });
       initializeWebSocketProvider();
@@ -508,13 +512,16 @@ describe('AlchemyWebSocketProvider', () => {
       const expected = [{ blockNumber: 10 }, { blockNumber: 11 }];
       wsProvider.on(
         {
-          method: 'alchemy_pendingTransactions'
+          method: AlchemySubscription.PENDING_TRANSACTIONS
         },
         res => {
           expect(res).toEqual(expected[eventCount]);
           eventCount++;
           if (eventCount === 2) {
-            expectSubscribeCalled(sendSpy, ['alchemy_pendingTransactions', {}]);
+            expectSubscribeCalled(sendSpy, [
+              AlchemySubscription.PENDING_TRANSACTIONS,
+              {}
+            ]);
             done();
           }
         }
@@ -526,6 +533,7 @@ describe('AlchemyWebSocketProvider', () => {
       const sendSpy = jest.spyOn(AlchemyWebSocketProvider.prototype, 'send');
       setupMockServer({
         ethSubscribeIds: ['0xabc'],
+        // Can send dummy responses since we're only checking request params.
         ethSubscribeMessages: [[{ blockNumber: 10 }, { blockNumber: 11 }]]
       });
       initializeWebSocketProvider();
@@ -534,7 +542,7 @@ describe('AlchemyWebSocketProvider', () => {
       const expected = [{ blockNumber: 10 }, { blockNumber: 11 }];
       wsProvider.on(
         {
-          method: 'alchemy_pendingTransactions',
+          method: AlchemySubscription.PENDING_TRANSACTIONS,
           toAddress: contractAddress,
           hashesOnly: true
         },
@@ -543,7 +551,7 @@ describe('AlchemyWebSocketProvider', () => {
           eventCount++;
           if (eventCount === 2) {
             expectSubscribeCalled(sendSpy, [
-              'alchemy_pendingTransactions',
+              AlchemySubscription.PENDING_TRANSACTIONS,
               { toAddress: contractAddress, hashesOnly: true }
             ]);
             done();
@@ -569,7 +577,7 @@ describe('AlchemyWebSocketProvider', () => {
       initializeWebSocketProvider();
       verifyRoundTrip(
         {
-          method: 'alchemy_pendingTransactions',
+          method: AlchemySubscription.PENDING_TRANSACTIONS,
           fromAddress: '0xABC',
           hashesOnly: true
         },
@@ -578,7 +586,7 @@ describe('AlchemyWebSocketProvider', () => {
 
       verifyRoundTrip(
         {
-          method: 'alchemy_pendingTransactions',
+          method: AlchemySubscription.PENDING_TRANSACTIONS,
           toAddress: ['0xABC', '0xDEF'],
           hashesOnly: false
         },
@@ -586,7 +594,7 @@ describe('AlchemyWebSocketProvider', () => {
       );
 
       verifyRoundTrip(
-        { method: 'alchemy_pendingTransactions' },
+        { method: AlchemySubscription.PENDING_TRANSACTIONS },
         ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE + ':*:*:*'
       );
     });
@@ -624,7 +632,7 @@ describe('AlchemyWebSocketProvider', () => {
 
       wsProvider.once(
         {
-          method: 'alchemy_pendingTransactions',
+          method: AlchemySubscription.PENDING_TRANSACTIONS,
           fromAddress: '0xABC',
           hashesOnly: true
         },
@@ -644,7 +652,7 @@ describe('AlchemyWebSocketProvider', () => {
       setupMockServer();
       initializeWebSocketProvider();
       const event = {
-        method: 'alchemy_pendingTransactions',
+        method: AlchemySubscription.PENDING_TRANSACTIONS,
         fromAddress: '0xABC'
       };
       const fn1 = (res: any) => {
@@ -671,11 +679,11 @@ describe('AlchemyWebSocketProvider', () => {
       setupMockServer();
       initializeWebSocketProvider();
       const event1 = {
-        method: 'alchemy_pendingTransactions',
+        method: AlchemySubscription.PENDING_TRANSACTIONS,
         fromAddress: '0xABC'
       };
       const event2 = {
-        method: 'alchemy_pendingTransactions',
+        method: AlchemySubscription.PENDING_TRANSACTIONS,
         fromAddress: '0xDEF'
       };
       const fn1 = (res: any) => {
@@ -699,11 +707,11 @@ describe('AlchemyWebSocketProvider', () => {
       setupMockServer();
       initializeWebSocketProvider();
       const event1 = {
-        method: 'alchemy_pendingTransactions',
+        method: AlchemySubscription.PENDING_TRANSACTIONS,
         fromAddress: '0xABC'
       };
       const event2 = {
-        method: 'alchemy_pendingTransactions',
+        method: AlchemySubscription.PENDING_TRANSACTIONS,
         fromAddress: '0xDEF'
       };
       const fn1 = (res: any) => {
@@ -719,6 +727,104 @@ describe('AlchemyWebSocketProvider', () => {
       expect(await wsProvider.listenerCount()).toEqual(3);
       expect(await wsProvider.listenerCount(event1)).toEqual(2);
       expect(await wsProvider.listenerCount(event2)).toEqual(1);
+    });
+  });
+
+  describe('alchemy_minedTransactions', () => {
+    function verifyRoundTrip(
+      event: AlchemyMinedTransactionsEventFilter,
+      expected: string
+    ) {
+      const serialized = getAlchemyEventTag(event);
+      expect(serialized).toEqual(expected);
+      const deserialized = new EthersEvent(expected, noop, true);
+      expect(deserialized.addresses).toEqual(event.addresses);
+      expect(deserialized.includeRemoved).toEqual(event.includeRemoved);
+      expect(deserialized.hashesOnly).toEqual(event.hashesOnly);
+    }
+
+    it('handles subscriptions with params', done => {
+      const contractAddress = '0x65d25E3F2696B73b850daA07Dd1E267dCfa67F2D';
+      const sendSpy = jest.spyOn(AlchemyWebSocketProvider.prototype, 'send');
+      setupMockServer({
+        ethSubscribeIds: ['0xabc'],
+        // Can send dummy responses since we're only checking request params.
+        ethSubscribeMessages: [[{ blockNumber: 10 }, { blockNumber: 11 }]]
+      });
+      initializeWebSocketProvider();
+
+      let eventCount = 0;
+      const expected = [{ blockNumber: 10 }, { blockNumber: 11 }];
+      const addresses = [{ to: contractAddress }, { from: contractAddress }];
+      wsProvider.on(
+        {
+          method: AlchemySubscription.MINED_TRANSACTIONS,
+          addresses,
+          hashesOnly: true
+        },
+        (res: any) => {
+          expect(res).toEqual(expected[eventCount]);
+          eventCount++;
+          if (eventCount === 2) {
+            expectSubscribeCalled(sendSpy, [
+              AlchemySubscription.MINED_TRANSACTIONS,
+              { addresses, hashesOnly: true }
+            ]);
+            done();
+          }
+        }
+      );
+    });
+
+    it('serializes and deserializes event tag properly', () => {
+      setupMockServer();
+      initializeWebSocketProvider();
+      verifyRoundTrip(
+        {
+          method: AlchemySubscription.MINED_TRANSACTIONS
+        },
+        ALCHEMY_MINED_TRANSACTIONS_EVENT_TYPE + ':*:*:*'
+      );
+
+      verifyRoundTrip(
+        {
+          method: AlchemySubscription.MINED_TRANSACTIONS,
+          includeRemoved: false
+        },
+        ALCHEMY_MINED_TRANSACTIONS_EVENT_TYPE + ':*:false:*'
+      );
+
+      verifyRoundTrip(
+        {
+          method: AlchemySubscription.MINED_TRANSACTIONS,
+          hashesOnly: true
+        },
+        ALCHEMY_MINED_TRANSACTIONS_EVENT_TYPE + ':*:*:true'
+      );
+
+      verifyRoundTrip(
+        {
+          method: AlchemySubscription.MINED_TRANSACTIONS
+        },
+        ALCHEMY_MINED_TRANSACTIONS_EVENT_TYPE + ':*:*:*'
+      );
+
+      verifyRoundTrip(
+        {
+          method: AlchemySubscription.MINED_TRANSACTIONS,
+          addresses: [
+            {
+              to: '0xABC'
+            },
+            {
+              from: '0xDEF'
+            },
+            { to: '0x123', from: '0x456' }
+          ]
+        },
+        ALCHEMY_MINED_TRANSACTIONS_EVENT_TYPE +
+          ':0xABC,*|*,0xDEF|0x123,0x456:*:*'
+      );
     });
   });
 });

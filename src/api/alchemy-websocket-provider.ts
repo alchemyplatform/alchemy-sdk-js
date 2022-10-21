@@ -13,9 +13,15 @@ import {
 } from '@ethersproject/providers';
 
 import {
-  ALCHEMY_PENDING_TRANSACTIONS_EVENT_METHOD,
-  ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE,
   EthersEvent,
+  getAlchemyEventTag,
+  isAlchemyEvent,
+  verifyAlchemyEventName
+} from '../internal/ethers-event';
+import {
+  ALCHEMY_EVENT_TYPES,
+  ALCHEMY_MINED_TRANSACTIONS_EVENT_TYPE,
+  ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE,
   JsonRpcRequest,
   JsonRpcResponse,
   LogsSubscription,
@@ -35,10 +41,7 @@ import {
   dedupeNewHeads,
   throwIfCancelled
 } from '../internal/websocket-backfiller';
-import {
-  AlchemyEventType,
-  AlchemyPendingTransactionsEventFilter
-} from '../types/types';
+import { AlchemyEventType, AlchemySubscription } from '../types/types';
 import {
   CustomNetworks,
   DEFAULT_ALCHEMY_API_KEY,
@@ -281,11 +284,7 @@ export class AlchemyWebSocketProvider
    */
   _startEvent(event: EthersEvent): void {
     // Check if the event type is a custom Alchemy subscription.
-    const customLogicTypes = [
-      ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE,
-      'block',
-      'filter'
-    ];
+    const customLogicTypes = [...ALCHEMY_EVENT_TYPES, 'block', 'filter'];
     if (customLogicTypes.includes(event.type)) {
       this.customStartEvent(event);
     } else {
@@ -447,12 +446,10 @@ export class AlchemyWebSocketProvider
     let tag = event.tag;
 
     // START MODIFIED CODE
-    if (event.type === ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE) {
+    if (ALCHEMY_EVENT_TYPES.includes(event.type)) {
       // There are remaining pending transaction listeners.
       if (
-        this._events.filter(
-          e => e.type === ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE
-        ).length
+        this._events.filter(e => ALCHEMY_EVENT_TYPES.includes(e.type)).length
       ) {
         return;
       }
@@ -785,8 +782,19 @@ export class AlchemyWebSocketProvider
       void this._subscribe(
         event.tag,
         [
-          ALCHEMY_PENDING_TRANSACTIONS_EVENT_METHOD,
+          AlchemySubscription.PENDING_TRANSACTIONS,
           { fromAddress, toAddress, hashesOnly }
+        ],
+        this.emitProcessFn(event),
+        event
+      );
+    } else if (event.type === ALCHEMY_MINED_TRANSACTIONS_EVENT_TYPE) {
+      const { addresses, includeRemoved, hashesOnly } = event;
+      void this._subscribe(
+        event.tag,
+        [
+          AlchemySubscription.MINED_TRANSACTIONS,
+          { addresses, includeRemoved, hashesOnly }
         ],
         this.emitProcessFn(event),
         event
@@ -812,14 +820,24 @@ export class AlchemyWebSocketProvider
   private emitProcessFn(event: EthersEvent): (result: any) => void {
     switch (event.type) {
       case ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE:
-        const { fromAddress, toAddress, hashesOnly } = event;
         return result =>
           this.emit(
             {
-              method: ALCHEMY_PENDING_TRANSACTIONS_EVENT_METHOD,
-              fromAddress,
-              toAddress,
-              hashesOnly
+              method: AlchemySubscription.PENDING_TRANSACTIONS,
+              fromAddress: event.fromAddress,
+              toAddress: event.toAddress,
+              hashesOnly: event.hashesOnly
+            },
+            result
+          );
+      case ALCHEMY_MINED_TRANSACTIONS_EVENT_TYPE:
+        return result =>
+          this.emit(
+            {
+              method: AlchemySubscription.MINED_TRANSACTIONS,
+              addresses: event.addresses,
+              includeRemoved: event.includeRemoved,
+              hashesOnly: event.hashesOnly
             },
             result
           );
@@ -1092,81 +1110,4 @@ function addToPastEventsBuffer<T>(
     pastEvents.splice(0, firstGoodIndex);
   }
   pastEvents.push(event);
-}
-
-function isAlchemyEvent(
-  event: AlchemyEventType
-): event is AlchemyPendingTransactionsEventFilter {
-  return typeof event === 'object' && 'method' in event;
-}
-
-/**
- * Creates a string representation of an `alchemy_pendingTransaction`
- * subscription filter that is compatible with the ethers implementation of
- * `getEventTag()`. The method is not an exported function in ethers, which is
- * why the SDK has its own implementation.
- *
- * The event tag is then deserialized by the SDK's {@link EthersEvent} getters.
- *
- * @example
- *   ```js
- *   // Returns 'alchemy-pending-transactions:0xABC:0xDEF|0xGHI:true'
- *   const eventTag =  getAlchemyEventTag(
- *   {
- *     "method": "alchemy_pendingTransaction",
- *     "fromAddress": "0xABC",
- *     "toAddress": ["0xDEF", "0xGHI"],
- *     "hashesOnly: true
- *   });
- *   ```;
- *
- * @param event
- * @internal
- */
-export function getAlchemyEventTag(event: AlchemyEventType): string {
-  if (!isAlchemyEvent(event)) {
-    throw new Error('Event tag requires AlchemyEventType');
-  }
-  const fromAddress = serializeAddressField(event.fromAddress);
-  const toAddress = serializeAddressField(event.toAddress);
-  const hashesOnly = serializeBooleanField(event.hashesOnly);
-  return (
-    ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE +
-    ':' +
-    fromAddress +
-    ':' +
-    toAddress +
-    ':' +
-    hashesOnly
-  );
-}
-
-function serializeAddressField(
-  field: string | Array<string> | undefined
-): string {
-  if (field === undefined) {
-    return '*';
-  } else if (Array.isArray(field)) {
-    return field.join('|');
-  } else {
-    return field;
-  }
-}
-
-function serializeBooleanField(field: boolean | undefined): string | undefined {
-  if (field === undefined) {
-    return '*';
-  } else {
-    return field.toString();
-  }
-}
-
-function verifyAlchemyEventName(
-  eventName: AlchemyPendingTransactionsEventFilter
-): void {
-  if (eventName.method !== ALCHEMY_PENDING_TRANSACTIONS_EVENT_METHOD) {
-    throw new Error(
-      `Invalid method name ${eventName.method}. Accepted method names: ${ALCHEMY_PENDING_TRANSACTIONS_EVENT_METHOD}`
-    );
-  }
 }
