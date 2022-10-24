@@ -8,6 +8,8 @@
 
 ### Minor Changes
 
+- Fixed a bug where `AlchemyConfig.getWebsocketProvider()` was not exported as a public method. This method allows you get the underlying `WebsocketProvider` that is implemented by ethers.
+
 ## 2.2.0
 
 ### Major Changes
