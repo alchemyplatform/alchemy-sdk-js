@@ -8,6 +8,8 @@
 
 ### Minor Changes
 
+- Added the `NftNamespace.summarizeNftAttributes()` method to get the summary of attribute prevalence for all NFTs in a contract.
+
 ## 2.2.0
 
 ### Major Changes

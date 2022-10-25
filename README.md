@@ -185,6 +185,7 @@ under the `alchemy.nft` namespace:
 - `refreshContract()`: Enqueues the specified contract address to have all token ids' metadata refreshed.
 - `getFloorPrice()`: Return the floor prices of a NFT contract by marketplace.
 - `computeRarity()`: Get the rarity of each attribute of an NFT.
+- `summarizeNftAttributes()`: Get the summary of attribute prevalence for all NFTs in a contract.
 
 ### Using `BaseNft` and `Nft`
 
