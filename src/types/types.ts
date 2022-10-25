@@ -782,15 +782,15 @@ export interface NftAttributeRarity {
 }
 
 /**
- * Summary of the attribute prevalence for the specified NFT collection.
+ * Summary of the attribute prevalence for the specified NFT contract.
  *
  * @public
  */
 export interface NftAttributesResponse {
-  /** The current NFT collection address. */
+  /** The specified NFT contract's address. */
   contractAddress: string;
 
-  /** The current NFT collection total supply. */
+  /** The specified NFT contract's total supply. */
   totalSupply: number;
 
   /**
