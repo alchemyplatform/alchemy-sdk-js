@@ -781,6 +781,25 @@ export interface NftAttributeRarity {
   prevalence: number;
 }
 
+/**
+ * Summary of the attribute prevalence for the specified NFT contract.
+ *
+ * @public
+ */
+export interface NftAttributesResponse {
+  /** The specified NFT contract's address. */
+  contractAddress: string;
+
+  /** The specified NFT contract's total supply. */
+  totalSupply: number;
+
+  /**
+   * The attribute prevalence of each trait grouped by the trait type for the
+   * provided NFT.
+   */
+  summary: Record<string, Record<string, number>>;
+}
+
 /** The refresh result response object returned by {@link refreshContract}. */
 export interface RefreshContractResult {
   /** The NFT contract address that was passed in to be refreshed. */
@@ -1124,8 +1143,8 @@ export interface AlchemyMinedTransactionsEventFilter {
 }
 
 /**
- * Address filters for {@link AlchemyMinedTransactionsEventFilter}. Requires
- * at least one of the fields to be set.
+ * Address filters for {@link AlchemyMinedTransactionsEventFilter}. Requires at
+ * least one of the fields to be set.
  */
 export type AlchemyMinedTransactionsAddress = RequireAtLeastOne<{
   to?: string;
@@ -1140,8 +1159,10 @@ export type AlchemyMinedTransactionsAddress = RequireAtLeastOne<{
  */
 export type AlchemyEventType = EventType | AlchemyEventFilter;
 
-/** This type represents the Alchemy's Subscription API endpoints as event filters
- * compatible with other ethers events. */
+/**
+ * This type represents the Alchemy's Subscription API endpoints as event
+ * filters compatible with other ethers events.
+ */
 export type AlchemyEventFilter =
   | AlchemyMinedTransactionsEventFilter
   | AlchemyPendingTransactionsEventFilter;
@@ -1161,13 +1182,14 @@ export interface SendPrivateTransactionOptions {
 
 /**
  * Response object for the {@link TransactNamespace.sendGasOptimizedTransaction} method.
+ *
  * @internal
  */
 // TODO(txjob): Remove internal tag once this feature is released.
 export interface GasOptimizedTransactionResponse {
   /**
-   * The tracking id. This can be used to check the status of the transaction via
-   * {@link TransactNamespace.getGasOptimizedTransactionStatus}.
+   * The tracking id. This can be used to check the status of the transaction
+   * via {@link TransactNamespace.getGasOptimizedTransactionStatus}.
    */
   trackingId: string;
 
@@ -1175,8 +1197,12 @@ export interface GasOptimizedTransactionResponse {
   transactionHashes: string[];
 }
 
-/** Response object for the {@link TransactNamespace.getGasOptimizedTransactionStatus} method.
- * @internal*/
+/**
+ * Response object for the
+ * {@link TransactNamespace.getGasOptimizedTransactionStatus} method.
+ *
+ * @internal
+ */
 // TODO(txjob): Remove internal tag once this feature is released.
 export interface GasOptimizedTransactionStatusResponse {
   /** The status of the submitted transaction job. */
@@ -1189,8 +1215,11 @@ export interface GasOptimizedTransactionStatusResponse {
   minedTransactionHash?: string;
 }
 
-/** Potential transaction job statuses for a {@link GasOptimizedTransactionResponse}
- * @internal */
+/**
+ * Potential transaction job statuses for a {@link GasOptimizedTransactionResponse}
+ *
+ * @internal
+ */
 // TODO(txjob): Remove internal tag once this feature is released.
 export enum GasOptimizedTransactionStatus {
   UNSPECIFIED = 'TRANSACTION_JOB_STATUS_UNSPECIFIED',
@@ -1424,15 +1453,13 @@ export type AddressWebhookUpdate =
 /**
  * Requires at least one of the properties to be set.
  *
- * Implementation copied over
- * from {@link https://learn.microsoft.com/en-us/javascript/api/@azure/keyvault-certificates/requireatleastone?view=azure-node-latest}
+ * Implementation copied over from
+ * {@link https://learn.microsoft.com/en-us/javascript/api/@azure/keyvault-certificates/requireatleastone?view=azure-node-latest}
  */
 export type RequireAtLeastOne<T> = {
   [K in keyof T]-?: Required<Pick<T, K>> &
     Partial<Pick<T, Exclude<keyof T, K>>>;
 }[keyof T];
 
-/**
- * Requires an array with at least one value.
- */
+/** Requires an array with at least one value. */
 export type NonEmptyArray<T> = [T, ...T[]];

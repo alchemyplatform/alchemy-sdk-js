@@ -14,6 +14,7 @@ import {
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
   NftAttributeRarity,
+  NftAttributesResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
   NftTokenType,
@@ -378,6 +379,19 @@ export async function computeRarity(
   return getNftRarityFromRaw(response);
 }
 
+export async function summarizeNftAttributes(
+  config: AlchemyConfig,
+  contractAddress: string,
+  srcMethod = 'summarizeNftAttributes'
+): Promise<NftAttributesResponse> {
+  return requestHttpWithBackoff<
+    SummarizeNftAttributesParams,
+    NftAttributesResponse
+  >(config, AlchemyApiType.NFT, 'summarizeNftAttributes', srcMethod, {
+    contractAddress
+  });
+}
+
 export async function refreshNftMetadata(
   config: AlchemyConfig,
   contractAddress: string,
@@ -601,6 +615,15 @@ interface GetFloorPriceParams {
 interface ComputeRarityParams {
   contractAddress: string;
   tokenId: string;
+}
+
+/**
+ * Interface for the `summarizeNFTAttributes` endpoint.
+ *
+ * @internal
+ */
+interface SummarizeNftAttributesParams {
+  contractAddress: string;
 }
 
 interface ReingestContractParams {

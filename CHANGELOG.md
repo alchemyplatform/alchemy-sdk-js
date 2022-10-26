@@ -9,6 +9,7 @@
 ### Minor Changes
 
 - Fixed a bug where `AlchemyConfig.getWebsocketProvider()` was not exported as a public method. This method allows you get the underlying `WebsocketProvider` that is implemented by ethers.
+- Added the `NftNamespace.summarizeNftAttributes()` method to get the summary of attribute prevalence for all NFTs in a contract.
 
 ## 2.2.0
 

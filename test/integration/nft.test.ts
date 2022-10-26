@@ -253,6 +253,19 @@ describe('E2E integration tests', () => {
     expect(response[0].value).toBeDefined();
   });
 
+  it('summarizeNftAttributes()', async () => {
+    const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
+
+    const response = await alchemy.nft.summarizeNftAttributes(contractAddress);
+
+    expect(response).toBeDefined();
+    expect(response.contractAddress).toBeDefined();
+    expect(response.contractAddress).toEqual(contractAddress);
+    expect(response.totalSupply).toBeDefined();
+    expect(typeof response.totalSupply).toEqual('number');
+    expect(response.summary).toBeDefined();
+  });
+
   it('refreshNftContract()', async () => {
     const contractAddress = '0x0510745d2ca36729bed35c818527c4485912d99e';
     const result = await alchemy.nft.refreshContract(contractAddress);

@@ -8,6 +8,7 @@ import {
   GetNftsForOwnerOptions,
   GetOwnersForContractWithTokenBalancesResponse,
   Nft,
+  NftAttributesResponse,
   NftContract,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
@@ -1257,6 +1258,51 @@ describe('NFT module', () => {
       await expect(
         alchemy.nft.computeRarity(contractAddress, tokenId)
       ).rejects.toThrow('Could not fetch metadata for that NFT');
+    });
+  });
+
+  describe('summarizeNftAttributes()', () => {
+    const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
+    const templateResponse: NftAttributesResponse = {
+      contractAddress,
+      totalSupply: 1000,
+      summary: {
+        Background: {
+          Aquamarine: 3,
+          'New Punk Blue': 5
+        },
+        Eyes: {
+          Cyborg: 1,
+          Zombie: 7
+        }
+      }
+    };
+
+    it('calls with the correct parameters', async () => {
+      mock.onGet().reply(200, templateResponse);
+
+      const response = await alchemy.nft.summarizeNftAttributes(
+        contractAddress
+      );
+
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        contractAddress
+      );
+      expect(response.contractAddress).toBeDefined();
+      expect(response.contractAddress).toEqual(contractAddress);
+      expect(response.totalSupply).toEqual(templateResponse.totalSupply);
+      expect(response.summary).toEqual(templateResponse.summary);
+    });
+
+    it('surfaces errors', async () => {
+      mock.reset();
+      mock.onGet().reply(400, 'No NFTs found for that contract!');
+
+      await expect(
+        alchemy.nft.summarizeNftAttributes(contractAddress)
+      ).rejects.toThrow('No NFTs found for that contract!');
     });
   });
 
