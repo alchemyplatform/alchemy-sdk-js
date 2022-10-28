@@ -30,6 +30,23 @@ export interface NftContract extends BaseNftContract {
   symbol?: string;
   /** The number of NFTs in the contract as an integer string. */
   totalSupply?: string;
+  /** OpenSea's metadata for the contract. */
+  openSea?: OpenSeaCollectionMetadata;
+}
+
+/**
+ * OpenSea's metadata for an NFT collection.
+ */
+export interface OpenSeaCollectionMetadata {
+  floorPrice: number;
+  collectionName: string;
+  safelistRequestStatus?: 'verified';
+  imageUrl: string;
+  description: string;
+  externalUrl: string;
+  twitterUsername: string;
+  discordUrl: string;
+  lastIngestedAt: string;
 }
 
 /**

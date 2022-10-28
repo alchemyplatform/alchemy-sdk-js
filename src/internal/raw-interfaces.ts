@@ -79,6 +79,22 @@ export interface RawNftContractMetadata {
   symbol?: string;
   totalSupply?: string;
   tokenType?: NftTokenType;
+  openSea?: RawOpenSeaCollectionMetadata;
+}
+
+/**
+ * OpenSea's metadata for an NFT collection.
+ */
+export interface RawOpenSeaCollectionMetadata {
+  floorPrice: number;
+  collectionName: string;
+  safelistRequestStatus?: 'verified';
+  imageUrl: string;
+  description: string;
+  externalUrl: string;
+  twitterUsername: string;
+  discordUrl: string;
+  lastIngestedAt: string;
 }
 
 /**

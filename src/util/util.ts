@@ -35,13 +35,29 @@ export function getBaseNftContractFromRaw(
 export function getNftContractFromRaw(
   rawNftContract: RawNftContract
 ): NftContract {
-  return {
+  const contract: NftContract = {
     address: rawNftContract.address,
     name: rawNftContract.contractMetadata.name,
     symbol: rawNftContract.contractMetadata.symbol,
     totalSupply: rawNftContract.contractMetadata.totalSupply,
     tokenType: parseNftTokenType(rawNftContract.contractMetadata.tokenType)
   };
+  if (rawNftContract.contractMetadata.openSea) {
+    contract.openSea = {
+      floorPrice: rawNftContract.contractMetadata.openSea.floorPrice,
+      collectionName: rawNftContract.contractMetadata.openSea.collectionName,
+      safelistRequestStatus:
+        rawNftContract.contractMetadata.openSea.safelistRequestStatus,
+      imageUrl: rawNftContract.contractMetadata.openSea.imageUrl,
+      description: rawNftContract.contractMetadata.openSea.description,
+      externalUrl: rawNftContract.contractMetadata.openSea.externalUrl,
+      twitterUsername: rawNftContract.contractMetadata.openSea.twitterUsername,
+      discordUrl: rawNftContract.contractMetadata.openSea.discordUrl,
+      lastIngestedAt: rawNftContract.contractMetadata.openSea.lastIngestedAt
+    };
+  }
+
+  return contract;
 }
 
 export function getBaseNftFromRaw(

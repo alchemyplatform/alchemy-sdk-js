@@ -27,7 +27,8 @@ import {
   RawGetNftsForContractResponse,
   RawGetNftsResponse,
   RawGetOwnersForContractWithTokenBalancesResponse,
-  RawNftAttributeRarity
+  RawNftAttributeRarity,
+  RawOpenSeaCollectionMetadata
 } from '../../src/internal/raw-interfaces';
 import {
   getNftContractFromRaw,
@@ -69,13 +70,27 @@ describe('NFT module', () => {
     const symbol = 'NCN';
     const totalSupply = '9999';
     const tokenType = NftTokenType.ERC721;
+    const openSea: RawOpenSeaCollectionMetadata = {
+      floorPrice: 2.2998,
+      collectionName: 'World of Women',
+      safelistRequestStatus: 'verified',
+      imageUrl:
+        'https://i.seadn.io/gae/EFAQpIktMBU5SU0TqSdPWZ4byHr3hFirL_mATsR8KWhM5z-GJljX8E73V933lkyKgv2SAFlfRRjGsWvWbQQmJAwu3F2FDXVa1C9F?w=500&auto=format',
+      description:
+        'A community celebrating representation, inclusivity, and equal opportunities for all.\r\nUnited by a first-of-its-kind collection, featuring 10,000 artworks of diverse and powerful women.\r\n\r\nCreated and Illustrated by Yam Karkai (@ykarkai)\r\n\r\nNew official collection World of Women Galaxy available here:\r\nhttps://opensea.io/collection/world-of-women-galaxy',
+      externalUrl: 'http://worldofwomen.art',
+      twitterUsername: 'worldofwomennft',
+      discordUrl: 'https://discord.gg/worldofwomen',
+      lastIngestedAt: '2022-10-26T22:24:49.000Z'
+    };
 
     const rawNftContractResponse = createRawNftContract(
       address,
       tokenType,
       name,
       symbol,
-      totalSupply
+      totalSupply,
+      openSea
     );
     const expectedNftContract = getNftContractFromRaw(rawNftContractResponse);
 
@@ -90,7 +105,8 @@ describe('NFT module', () => {
       name: string,
       symbol: string,
       totalSupply: string,
-      tokenType?: NftTokenType
+      tokenType?: NftTokenType,
+      openSea?: RawOpenSeaCollectionMetadata
     ) {
       expect(actualNftContract).toEqual(expectedNftContract);
 
@@ -99,6 +115,33 @@ describe('NFT module', () => {
       expect(actualNftContract.symbol).toEqual(symbol);
       expect(actualNftContract.totalSupply).toEqual(totalSupply);
       expect(actualNftContract.tokenType).toEqual(tokenType);
+      if (openSea) {
+        expect(actualNftContract.openSea?.floorPrice).toEqual(
+          openSea.floorPrice
+        );
+        expect(actualNftContract.openSea?.collectionName).toEqual(
+          openSea.collectionName
+        );
+        expect(actualNftContract.openSea?.safelistRequestStatus).toEqual(
+          openSea.safelistRequestStatus
+        );
+        expect(actualNftContract.openSea?.imageUrl).toEqual(openSea.imageUrl);
+        expect(actualNftContract.openSea?.description).toEqual(
+          openSea.description
+        );
+        expect(actualNftContract.openSea?.externalUrl).toEqual(
+          openSea.externalUrl
+        );
+        expect(actualNftContract.openSea?.twitterUsername).toEqual(
+          openSea.twitterUsername
+        );
+        expect(actualNftContract.openSea?.discordUrl).toEqual(
+          openSea.discordUrl
+        );
+        expect(actualNftContract.openSea?.lastIngestedAt).toEqual(
+          openSea.lastIngestedAt
+        );
+      }
 
       expect(mock.history.get.length).toEqual(1);
       expect(mock.history.get[0].params).toHaveProperty(
