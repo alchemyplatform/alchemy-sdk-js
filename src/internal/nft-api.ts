@@ -618,6 +618,15 @@ interface ComputeRarityParams {
 }
 
 /**
+ * Interface for the `searchContractMetadata` endpoint.
+ *
+ * @internal
+ */
+interface SearchContractMetadataParams {
+  query: string;
+}
+
+/**
  * Interface for the `summarizeNFTAttributes` endpoint.
  *
  * @internal
