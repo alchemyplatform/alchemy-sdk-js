@@ -4,12 +4,12 @@ import MockAdapter from 'axios-mock-adapter';
 import {
   Alchemy,
   BaseNft,
+  fromHex,
   GetFloorPriceResponse,
   GetNftsForOwnerOptions,
   GetOwnersForContractWithTokenBalancesResponse,
   Nft,
   NftAttributesResponse,
-  NftContract,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
   NftExcludeFilters,
@@ -18,8 +18,7 @@ import {
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
-  RefreshState,
-  fromHex
+  RefreshState
 } from '../../src';
 import {
   RawGetBaseNftsForContractResponse,
@@ -43,7 +42,8 @@ import {
   createRawNftContract,
   createRawNftContractBaseNft,
   createRawOwnedBaseNft,
-  createRawOwnedNft
+  createRawOwnedNft,
+  verifyNftContractMetadata
 } from '../test-util';
 
 describe('NFT module', () => {
@@ -83,33 +83,21 @@ describe('NFT module', () => {
       mock.onGet().reply(200, rawNftContractResponse);
     });
 
-    function verifyNftContractMetadata(
-      actualNftContract: NftContract,
-      expectedNftContract: NftContract,
-      address: string,
-      name: string,
-      symbol: string,
-      totalSupply: string,
-      tokenType?: NftTokenType
-    ) {
-      expect(actualNftContract).toEqual(expectedNftContract);
-
-      expect(actualNftContract.address).toEqual(address);
-      expect(actualNftContract.name).toEqual(name);
-      expect(actualNftContract.symbol).toEqual(symbol);
-      expect(actualNftContract.totalSupply).toEqual(totalSupply);
-      expect(actualNftContract.tokenType).toEqual(tokenType);
+    it('can be called with raw parameters', async () => {
+      await alchemy.nft.getContractMetadata(address);
 
       expect(mock.history.get.length).toEqual(1);
       expect(mock.history.get[0].params).toHaveProperty(
         'contractAddress',
         address
       );
-    }
+    });
 
-    it('can be called with raw parameters', async () => {
+    it('returns the api response in the expected format', async () => {
+      const response = await alchemy.nft.getContractMetadata(address);
+
       verifyNftContractMetadata(
-        await alchemy.nft.getContractMetadata(address),
+        response,
         expectedNftContract,
         address,
         name,
