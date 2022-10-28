@@ -61,6 +61,33 @@ export class AlchemyConfig {
   }
 
   /**
+   * Returns the settings provided upon construction with defaults.
+   *
+   * @internal
+   */
+  _getSettings(): AlchemySettings {
+    return {
+      apiKey: this.apiKey,
+      network: this.network,
+      maxRetries: this.maxRetries,
+      url: this.url,
+      authToken: this.authToken
+    };
+  }
+
+  /**
+   * Returns a new config object merged with the provided settings.
+   *
+   * @internal
+   */
+  _clone(mergeConfig?: AlchemySettings): AlchemyConfig {
+    return new AlchemyConfig({
+      ...this._getSettings(),
+      ...mergeConfig
+    });
+  }
+
+  /**
    * Returns the URL endpoint to send the HTTP request to. If a custom URL was
    * provided in the config, that URL is returned. Otherwise, the default URL is
    * from the network and API key.

@@ -8,6 +8,10 @@ import { BaseNft, Nft } from '../api/nft';
 
 // TODO: separate this file into other files.
 
+type OptionalRecord<K extends keyof any, T> = {
+  [P in K]?: T;
+};
+
 /**
  * Options object used to configure the Alchemy SDK.
  *
@@ -542,6 +546,13 @@ export interface GetNftsForOwnerOptions {
   tokenUriTimeoutInMs?: number;
 }
 
+export interface GetNftsForOwnerUnichainOptions extends GetNftsForOwnerOptions {
+  /**
+   * Function to call to get an owner's nfts for a single network.
+   */
+  getNftsForOwnerFn?: Function;
+}
+
 /**
  * Optional parameters object for the {@link getNftsForOwner} and
  * {@link getNftsForOwnerIterator} functions.
@@ -583,6 +594,14 @@ export interface GetBaseNftsForOwnerOptions {
    * metadata for cache misses then set this value to 0.
    */
   tokenUriTimeoutInMs?: number;
+}
+
+export interface GetBaseNftsForOwnerUnichainOptions
+  extends GetBaseNftsForOwnerOptions {
+  /**
+   * Function to call to get an owner's nfts for a single network.
+   */
+  getNftsForOwnerFn?: Function;
 }
 
 /**
@@ -642,6 +661,20 @@ export interface OwnedBaseNftsResponse {
   /** The total count of NFTs owned by the provided address. */
   readonly totalCount: number;
 }
+
+/**
+ * The response object for the {@link getNftsForOwnerUnichain} function.
+ *
+ * @public
+ */
+export type OwnedNftsResponseUnichain = OptionalRecord<
+  Network,
+  OwnedNftsResponse
+>;
+export type OwnedBaseNftsResponseUnichain = OptionalRecord<
+  Network,
+  OwnedBaseNftsResponse
+>;
 
 /**
  * Represents an NFT with metadata owned by an address.

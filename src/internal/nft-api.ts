@@ -5,14 +5,17 @@ import { BaseNft, Nft, NftContract } from '../api/nft';
 import {
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
+  GetBaseNftsForOwnerUnichainOptions,
   GetFloorPriceResponse,
   GetNftsForContractOptions,
   GetNftsForOwnerOptions,
+  GetNftsForOwnerUnichainOptions,
   GetOwnersForContractOptions,
   GetOwnersForContractResponse,
   GetOwnersForContractWithTokenBalancesOptions,
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
+  Network,
   NftAttributeRarity,
   NftAttributesResponse,
   NftContractBaseNftsResponse,
@@ -20,8 +23,10 @@ import {
   NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
+  OwnedBaseNftsResponseUnichain,
   OwnedNft,
   OwnedNftsResponse,
+  OwnedNftsResponseUnichain,
   RefreshContractResult,
   RefreshState
 } from '../types/types';
@@ -49,6 +54,36 @@ import {
   RawOwnedNft,
   RawReingestContractResponse
 } from './raw-interfaces';
+
+export async function getNftsForOwnerUnichain(
+  config: AlchemyConfig,
+  owner: string,
+  networks: Network[],
+  options:
+    | GetNftsForOwnerUnichainOptions
+    | GetBaseNftsForOwnerUnichainOptions = {}
+): Promise<OwnedNftsResponseUnichain | OwnedBaseNftsResponseUnichain> {
+  const { getNftsForOwnerFn = getNftsForOwner, ...baseOptions } = options;
+
+  const networkResults = await Promise.all(
+    networks.map(network => {
+      const networkConfig = config._clone({
+        network
+      });
+
+      return getNftsForOwnerFn(networkConfig, owner, baseOptions);
+    })
+  );
+
+  const response: OwnedNftsResponseUnichain = {};
+  for (let i = 0; i < networks.length; i++) {
+    const network = networks[i];
+    const results = networkResults[i];
+    response[network] = results;
+  }
+
+  return response;
+}
 
 export async function getNftMetadata(
   config: AlchemyConfig,

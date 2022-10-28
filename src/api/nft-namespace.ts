@@ -10,6 +10,7 @@ import {
   getNftsForContractIterator,
   getNftsForOwner,
   getNftsForOwnerIterator,
+  getNftsForOwnerUnichain,
   getOwnersForContract,
   getOwnersForNft,
   getSpamContracts,
@@ -22,14 +23,17 @@ import {
 import {
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
+  GetBaseNftsForOwnerUnichainOptions,
   GetFloorPriceResponse,
   GetNftsForContractOptions,
   GetNftsForOwnerOptions,
+  GetNftsForOwnerUnichainOptions,
   GetOwnersForContractOptions,
   GetOwnersForContractResponse,
   GetOwnersForContractWithTokenBalancesOptions,
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
+  Network,
   NftAttributeRarity,
   NftAttributesResponse,
   NftContractBaseNftsResponse,
@@ -37,8 +41,10 @@ import {
   NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
+  OwnedBaseNftsResponseUnichain,
   OwnedNft,
   OwnedNftsResponse,
+  OwnedNftsResponseUnichain,
   RefreshContractResult
 } from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
@@ -90,6 +96,46 @@ export class NftNamespace {
    */
   getContractMetadata(contractAddress: string): Promise<NftContract> {
     return getContractMetadata(this.config, contractAddress);
+  }
+
+  /**
+   * Get all NFTs for an owner across a given set of networks.
+   *
+   * This method returns the full NFT. To get all NFTs without
+   * their associated metadata, use {@link GetBaseNftsForOwnerUnichainOptions}.
+   *
+   * @param owner - The address of the owner.
+   * @param options - The optional parameters to use for the request.
+   * @public
+   */
+  getNftsForOwnerUnichain(
+    owner: string,
+    networks: Network[],
+    options?: GetNftsForOwnerUnichainOptions
+  ): Promise<OwnedNftsResponseUnichain>;
+  /**
+   * Get all base NFTs for an owner across a given set of networks.
+   *
+   * This method returns the base NFTs that omit the associated metadata. To get
+   * all NFTs with their associated metadata, use {@link GetNftsForOwnerUnichainOptions}.
+   *
+   * @param owner - The address of the owner.
+   * @param options - The optional parameters to use for the request.
+   * @public
+   */
+  getNftsForOwnerUnichain(
+    owner: string,
+    networks: Network[],
+    options?: GetBaseNftsForOwnerUnichainOptions
+  ): Promise<OwnedBaseNftsResponseUnichain>;
+  getNftsForOwnerUnichain(
+    owner: string,
+    networks: Network[],
+    options:
+      | GetNftsForOwnerUnichainOptions
+      | GetBaseNftsForOwnerUnichainOptions = {}
+  ): Promise<OwnedNftsResponseUnichain | OwnedBaseNftsResponseUnichain> {
+    return getNftsForOwnerUnichain(this.config, owner, networks, options);
   }
 
   /**

@@ -3,10 +3,12 @@ import MockAdapter from 'axios-mock-adapter';
 
 import {
   Alchemy,
+  AlchemyConfig,
   BaseNft,
   GetFloorPriceResponse,
   GetNftsForOwnerOptions,
   GetOwnersForContractWithTokenBalancesResponse,
+  Network,
   Nft,
   NftAttributesResponse,
   NftContract,
@@ -343,6 +345,88 @@ describe('NFT module', () => {
       mock.onGet().reply(200, nftResponse);
       const response = await alchemy.nft.getNftsForOwner(ownerAddress);
       response.ownedNfts.forEach(nft => expect(nft.media).toBeDefined());
+    });
+  });
+
+  describe('getNftsForOwnerUnichain()', () => {
+    it('calls getNftsForOwner with each provided network', async () => {
+      const getNftsForOwner = jest.fn();
+
+      await alchemy.nft.getNftsForOwnerUnichain(
+        'owner_address',
+        [Network.ETH_MAINNET, Network.MATIC_MAINNET],
+        {
+          getNftsForOwnerFn: getNftsForOwner
+        }
+      );
+
+      expect(getNftsForOwner).toHaveBeenCalledTimes(2);
+      expect(getNftsForOwner).toHaveBeenCalledWith(
+        expect.objectContaining({
+          network: Network.ETH_MAINNET
+        }),
+        expect.anything(),
+        expect.anything()
+      );
+      expect(getNftsForOwner).toHaveBeenCalledWith(
+        expect.objectContaining({
+          network: Network.MATIC_MAINNET
+        }),
+        expect.anything(),
+        expect.anything()
+      );
+    });
+
+    it('passes through options to each network call', async () => {
+      const getNftsForOwner = jest.fn();
+      const contractAddresses = ['contract_address_1', 'contract_address_2'];
+
+      await alchemy.nft.getNftsForOwnerUnichain(
+        'owner_address',
+        [Network.ETH_MAINNET, Network.MATIC_MAINNET],
+        {
+          getNftsForOwnerFn: getNftsForOwner,
+          contractAddresses
+        }
+      );
+
+      expect(getNftsForOwner).toHaveBeenCalledWith(
+        expect.anything(),
+        expect.anything(),
+        {
+          contractAddresses
+        }
+      );
+      expect(getNftsForOwner).toHaveBeenCalledWith(
+        expect.anything(),
+        expect.anything(),
+        {
+          contractAddresses
+        }
+      );
+    });
+
+    it('surfaces an error if any one of the networks surfaces an error', async () => {
+      const getNftsForOwner = jest
+        .fn()
+        .mockImplementation((config: AlchemyConfig) => {
+          if (config.network === Network.MATIC_MAINNET) {
+            throw new Error('This is an error!');
+          }
+        });
+
+      async function call(): Promise<void> {
+        await alchemy.nft.getNftsForOwnerUnichain(
+          'owner_address',
+          [Network.ETH_MAINNET, Network.MATIC_MAINNET],
+          {
+            getNftsForOwnerFn: getNftsForOwner
+          }
+        );
+      }
+
+      // eslint-disable-next-line
+      expect(call).rejects.toThrow();
     });
   });
 
