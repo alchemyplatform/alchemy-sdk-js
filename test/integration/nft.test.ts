@@ -258,8 +258,6 @@ describe('E2E integration tests', () => {
 
     const response = await alchemy.nft.searchContractMetadata(query);
 
-    console.log(response);
-
     expect(response).toBeDefined();
     expect(response.length).toBeGreaterThan(0);
     expect(response[0].address).toBeDefined();
