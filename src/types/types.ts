@@ -5,12 +5,9 @@ import {
 import { BigNumberish } from '@ethersproject/bignumber';
 
 import { BaseNft, Nft } from '../api/nft';
+import { UnichainPageKeyCache } from '../internal/page-key';
 
 // TODO: separate this file into other files.
-
-type OptionalRecord<K extends keyof any, T> = {
-  [P in K]?: T;
-};
 
 /**
  * Options object used to configure the Alchemy SDK.
@@ -548,9 +545,20 @@ export interface GetNftsForOwnerOptions {
 
 export interface GetNftsForOwnerUnichainOptions extends GetNftsForOwnerOptions {
   /**
+   * A local cache with a map of unichain pageKey to network pageKeys.
+   */
+  unichainPageKeyCache?: UnichainPageKeyCache;
+
+  /**
    * Function to call to get an owner's nfts for a single network.
    */
   getNftsForOwnerFn?: Function;
+
+  /**
+   * Optional page key from an existing {@link OwnedBaseNftsResponseUnichain} or
+   * {@link OwnedNftsResponseUnichain}to use for pagination.
+   */
+  pageKey?: string;
 }
 
 /**
@@ -599,9 +607,20 @@ export interface GetBaseNftsForOwnerOptions {
 export interface GetBaseNftsForOwnerUnichainOptions
   extends GetBaseNftsForOwnerOptions {
   /**
+   * A local cache with a map of unichain pageKey to network pageKeys.
+   */
+  unichainPageKeyCache?: UnichainPageKeyCache;
+
+  /**
    * Function to call to get an owner's nfts for a single network.
    */
   getNftsForOwnerFn?: Function;
+
+  /**
+   * Optional page key from an existing {@link OwnedBaseNftsResponseUnichain} or
+   * {@link OwnedNftsResponseUnichain}to use for pagination.
+   */
+  pageKey?: string;
 }
 
 /**
@@ -663,18 +682,22 @@ export interface OwnedBaseNftsResponse {
 }
 
 /**
- * The response object for the {@link getNftsForOwnerUnichain} function.
+ * The response objects for the {@link getNftsForOwnerUnichain} function.
  *
  * @public
  */
-export type OwnedNftsResponseUnichain = OptionalRecord<
-  Network,
-  OwnedNftsResponse
->;
-export type OwnedBaseNftsResponseUnichain = OptionalRecord<
-  Network,
-  OwnedBaseNftsResponse
->;
+export interface OwnedNftsResponseUnichain {
+  nftsByNetwork: Map<Network, OwnedNftsResponse>;
+
+  /** Optional page key that is returned when any network has a next page. */
+  pageKey?: string;
+}
+export interface OwnedBaseNftsResponseUnichain {
+  nftsByNetwork: Map<Network, OwnedNftsResponse>;
+
+  /** Optional page key that is returned when any network has a next page. */
+  pageKey?: string;
+}
 
 /**
  * Represents an NFT with metadata owned by an address.

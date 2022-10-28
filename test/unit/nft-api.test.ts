@@ -24,6 +24,10 @@ import {
   fromHex
 } from '../../src';
 import {
+  NetworkPageKey,
+  UnichainPageKeyCache
+} from '../../src/internal/page-key';
+import {
   RawGetBaseNftsForContractResponse,
   RawGetBaseNftsResponse,
   RawGetNftsForContractResponse,
@@ -47,6 +51,11 @@ import {
   createRawOwnedBaseNft,
   createRawOwnedNft
 } from '../test-util';
+
+const EMPTY_GET_NFTS_RESPONSE = {
+  ownedNfts: [],
+  totalCount: 0
+};
 
 describe('NFT module', () => {
   let alchemy: Alchemy;
@@ -348,14 +357,18 @@ describe('NFT module', () => {
     });
   });
 
-  describe('getNftsForOwnerUnichain()', () => {
+  describe.only('getNftsForOwnerUnichain()', () => {
     it('calls getNftsForOwner with each provided network', async () => {
-      const getNftsForOwner = jest.fn();
+      const getNftsForOwner = jest
+        .fn()
+        .mockResolvedValue(EMPTY_GET_NFTS_RESPONSE);
+      const pageKeyCache = new UnichainPageKeyCache();
 
       await alchemy.nft.getNftsForOwnerUnichain(
         'owner_address',
         [Network.ETH_MAINNET, Network.MATIC_MAINNET],
         {
+          unichainPageKeyCache: pageKeyCache,
           getNftsForOwnerFn: getNftsForOwner
         }
       );
@@ -378,13 +391,17 @@ describe('NFT module', () => {
     });
 
     it('passes through options to each network call', async () => {
-      const getNftsForOwner = jest.fn();
+      const getNftsForOwner = jest
+        .fn()
+        .mockResolvedValue(EMPTY_GET_NFTS_RESPONSE);
+      const pageKeyCache = new UnichainPageKeyCache();
       const contractAddresses = ['contract_address_1', 'contract_address_2'];
 
       await alchemy.nft.getNftsForOwnerUnichain(
         'owner_address',
         [Network.ETH_MAINNET, Network.MATIC_MAINNET],
         {
+          unichainPageKeyCache: pageKeyCache,
           getNftsForOwnerFn: getNftsForOwner,
           contractAddresses
         }
@@ -413,13 +430,16 @@ describe('NFT module', () => {
           if (config.network === Network.MATIC_MAINNET) {
             throw new Error('This is an error!');
           }
+          return EMPTY_GET_NFTS_RESPONSE;
         });
+      const pageKeyCache = new UnichainPageKeyCache();
 
       async function call(): Promise<void> {
         await alchemy.nft.getNftsForOwnerUnichain(
           'owner_address',
-          [Network.ETH_MAINNET, Network.MATIC_MAINNET],
+          [Network.ETH_MAINNET, Network.MATIC_MAINNET, Network.OPT_MAINNET],
           {
+            unichainPageKeyCache: pageKeyCache,
             getNftsForOwnerFn: getNftsForOwner
           }
         );
@@ -427,6 +447,137 @@ describe('NFT module', () => {
 
       // eslint-disable-next-line
       expect(call).rejects.toThrow();
+    });
+
+    it('returns no page key if no network has a page key', async () => {
+      const getNftsForOwner = jest
+        .fn()
+        .mockResolvedValue(EMPTY_GET_NFTS_RESPONSE);
+      const pageKeyCache = new UnichainPageKeyCache();
+
+      const response = await alchemy.nft.getNftsForOwnerUnichain(
+        'owner_address',
+        [Network.ETH_MAINNET, Network.MATIC_MAINNET, Network.OPT_MAINNET],
+        {
+          unichainPageKeyCache: pageKeyCache,
+          getNftsForOwnerFn: getNftsForOwner
+        }
+      );
+
+      expect(response.pageKey).toBeUndefined();
+    });
+
+    it('returns a page key if any network has a page key', async () => {
+      const getNftsForOwner = jest
+        .fn()
+        .mockImplementation((config: AlchemyConfig) => {
+          if (config.network === Network.MATIC_MAINNET) {
+            return {
+              ...EMPTY_GET_NFTS_RESPONSE,
+              pageKey: 'matic_mainnet_page_key'
+            };
+          }
+          return EMPTY_GET_NFTS_RESPONSE;
+        });
+      const pageKeyCache = new UnichainPageKeyCache();
+
+      const response = await alchemy.nft.getNftsForOwnerUnichain(
+        'owner_address',
+        [Network.ETH_MAINNET, Network.MATIC_MAINNET, Network.OPT_MAINNET],
+        {
+          unichainPageKeyCache: pageKeyCache,
+          getNftsForOwnerFn: getNftsForOwner
+        }
+      );
+
+      expect(response.pageKey).toBeDefined();
+    });
+
+    it('saves page keys to the cache', async () => {
+      const getNftsForOwner = jest
+        .fn()
+        .mockImplementation((config: AlchemyConfig) => {
+          if (config.network === Network.MATIC_MAINNET) {
+            return {
+              ...EMPTY_GET_NFTS_RESPONSE,
+              pageKey: 'matic_mainnet_page_key'
+            };
+          }
+          return EMPTY_GET_NFTS_RESPONSE;
+        });
+      const pageKeyCache = new UnichainPageKeyCache();
+
+      const response = await alchemy.nft.getNftsForOwnerUnichain(
+        'owner_address',
+        [Network.ETH_MAINNET, Network.MATIC_MAINNET, Network.OPT_MAINNET],
+        {
+          unichainPageKeyCache: pageKeyCache,
+          getNftsForOwnerFn: getNftsForOwner
+        }
+      );
+
+      const networkPageKeys = pageKeyCache.getNetworkPageKeys(
+        response.pageKey || null
+      );
+      expect(networkPageKeys.get(Network.MATIC_MAINNET)?.value()).toEqual(
+        'matic_mainnet_page_key'
+      );
+    });
+
+    it('sends network page keys to each network', async () => {
+      const getNftsForOwner = jest
+        .fn()
+        .mockResolvedValue(EMPTY_GET_NFTS_RESPONSE);
+      const pageKeyCache = new UnichainPageKeyCache();
+      pageKeyCache.set(
+        'some_unichain_cache_key',
+        new Map([
+          [Network.ETH_MAINNET, new NetworkPageKey('an_eth_mainnet_page_key')],
+          [Network.OPT_MAINNET, new NetworkPageKey('an_opt_mainnet_page_key')]
+        ])
+      );
+
+      await alchemy.nft.getNftsForOwnerUnichain(
+        'owner_address',
+        [Network.ETH_MAINNET, Network.MATIC_MAINNET, Network.OPT_MAINNET],
+        {
+          unichainPageKeyCache: pageKeyCache,
+          getNftsForOwnerFn: getNftsForOwner,
+          pageKey: 'some_unichain_cache_key'
+        }
+      );
+
+      expect(getNftsForOwner).toHaveBeenCalledWith(
+        expect.objectContaining({
+          network: Network.ETH_MAINNET
+        }),
+        expect.anything(),
+        expect.objectContaining({
+          pageKey: 'an_eth_mainnet_page_key'
+        })
+      );
+      expect(getNftsForOwner).toHaveBeenCalledWith(
+        expect.objectContaining({
+          network: Network.MATIC_MAINNET
+        }),
+        expect.anything(),
+        expect.objectContaining({
+          pageKey: undefined
+        })
+      );
+      expect(getNftsForOwner).toHaveBeenCalledWith(
+        expect.objectContaining({
+          network: Network.OPT_MAINNET
+        }),
+        expect.anything(),
+        expect.objectContaining({
+          pageKey: 'an_opt_mainnet_page_key'
+        })
+      );
+    });
+
+    describe('for a network that has no next page', () => {
+      it.todo('preserves the totalCount');
     });
   });
 

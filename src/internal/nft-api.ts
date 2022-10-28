@@ -38,6 +38,7 @@ import {
   getNftRarityFromRaw
 } from '../util/util';
 import { paginateEndpoint, requestHttpWithBackoff } from './dispatch';
+import { NetworkPageKey, UnichainPageKeyCache } from './page-key';
 import {
   RawBaseNft,
   RawContractBaseNft,
@@ -69,7 +70,18 @@ export async function getNftsForOwnerUnichain(
     );
   }
 
-  const { getNftsForOwnerFn = getNftsForOwner, ...baseOptions } = options;
+  const {
+    unichainPageKeyCache,
+    getNftsForOwnerFn = getNftsForOwner,
+    pageKey = null,
+    ...baseOptions
+  } = options;
+
+  if (!unichainPageKeyCache) {
+    throw new Error('No page key cache was provided.');
+  }
+
+  const networkPageKeys = unichainPageKeyCache.getNetworkPageKeys(pageKey);
 
   const networkResults = await Promise.all(
     networks.map(network => {
@@ -77,15 +89,44 @@ export async function getNftsForOwnerUnichain(
         network
       });
 
-      return getNftsForOwnerFn(networkConfig, owner, baseOptions);
+      const networkPageKey = networkPageKeys.get(network);
+      if (networkPageKey && !networkPageKey.hasNextPage()) {
+        return {
+          ownedNfts: [],
+          // Todo: Return the previous total count
+          totalCount: 0
+        };
+      }
+
+      const pageKeyOption = networkPageKey && networkPageKey.value();
+
+      return getNftsForOwnerFn(networkConfig, owner, {
+        ...baseOptions,
+        pageKey: pageKeyOption
+      });
     })
   );
 
-  const response: OwnedNftsResponseUnichain = {};
+  const response: OwnedNftsResponseUnichain = {
+    nftsByNetwork: new Map()
+  };
+  const newPageKeys = new Map();
+
   for (let i = 0; i < networks.length; i++) {
     const network = networks[i];
-    const results = networkResults[i];
-    response[network] = results;
+    const resultsForNetwork = networkResults[i];
+
+    response.nftsByNetwork.set(network, resultsForNetwork);
+    newPageKeys.set(network, new NetworkPageKey(resultsForNetwork.pageKey));
+  }
+
+  const unichainPageKey = UnichainPageKeyCache.generateKey(newPageKeys);
+  if (unichainPageKey) {
+    unichainPageKeyCache.set(unichainPageKey, newPageKeys);
+    return {
+      ...response,
+      pageKey: unichainPageKey
+    };
   }
 
   return response;

@@ -20,6 +20,7 @@ import {
   summarizeNftAttributes,
   verifyNftOwnership
 } from '../internal/nft-api';
+import { UnichainPageKeyCache } from '../internal/page-key';
 import {
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
@@ -58,8 +59,12 @@ import { BaseNft, Nft, NftContract } from './nft';
  * via `alchemy.nft`.
  */
 export class NftNamespace {
+  private unichainPageKeyCache: UnichainPageKeyCache;
+
   /** @internal */
-  constructor(private readonly config: AlchemyConfig) {}
+  constructor(private readonly config: AlchemyConfig) {
+    this.unichainPageKeyCache = new UnichainPageKeyCache();
+  }
 
   /**
    * Get the NFT metadata associated with the provided parameters.
@@ -135,7 +140,10 @@ export class NftNamespace {
       | GetNftsForOwnerUnichainOptions
       | GetBaseNftsForOwnerUnichainOptions = {}
   ): Promise<OwnedNftsResponseUnichain | OwnedBaseNftsResponseUnichain> {
-    return getNftsForOwnerUnichain(this.config, owner, networks, options);
+    return getNftsForOwnerUnichain(this.config, owner, networks, {
+      unichainPageKeyCache: this.unichainPageKeyCache,
+      ...options
+    });
   }
 
   /**
