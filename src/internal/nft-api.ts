@@ -63,6 +63,12 @@ export async function getNftsForOwnerUnichain(
     | GetNftsForOwnerUnichainOptions
     | GetBaseNftsForOwnerUnichainOptions = {}
 ): Promise<OwnedNftsResponseUnichain | OwnedBaseNftsResponseUnichain> {
+  if (!networks || networks.length === 0) {
+    throw new Error(
+      'Must provide a `networks` parameter for unichain requests.'
+    );
+  }
+
   const { getNftsForOwnerFn = getNftsForOwner, ...baseOptions } = options;
 
   const networkResults = await Promise.all(
