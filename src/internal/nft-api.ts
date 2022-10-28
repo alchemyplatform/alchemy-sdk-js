@@ -379,6 +379,21 @@ export async function computeRarity(
   return getNftRarityFromRaw(response);
 }
 
+export async function searchContractMetadata(
+  config: AlchemyConfig,
+  query: string,
+  srcMethod = 'searchContractMetadata'
+): Promise<NftContract[]> {
+  const response = await requestHttpWithBackoff<
+    SearchContractMetadataParams,
+    RawNftContract[]
+  >(config, AlchemyApiType.NFT, 'searchContractMetadata', srcMethod, {
+    query
+  });
+
+  return response.map(nftContract => getNftContractFromRaw(nftContract));
+}
+
 export async function summarizeNftAttributes(
   config: AlchemyConfig,
   contractAddress: string,
