@@ -12,7 +12,7 @@ import { getNftsForOwner } from './nft-api';
 import { NetworkPageKey, UnichainPageKeyCache } from './page-key';
 
 function networksAreEqual(a: Network[], b: Network[]): boolean {
-  return JSON.stringify(a) === JSON.stringify(b);
+  return JSON.stringify(a.sort()) === JSON.stringify(b.sort());
 }
 
 function validateParams(
