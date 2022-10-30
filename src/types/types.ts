@@ -687,13 +687,13 @@ export interface OwnedBaseNftsResponse {
  * @public
  */
 export interface OwnedNftsResponseUnichain {
-  nftsByNetwork: Map<Network, OwnedNftsResponse>;
+  nftsByNetwork: Map<Network, OwnedNftsResponse | OwnedBaseNftsResponse>;
 
   /** Optional page key that is returned when any network has a next page. */
   pageKey?: string;
 }
 export interface OwnedBaseNftsResponseUnichain {
-  nftsByNetwork: Map<Network, OwnedNftsResponse>;
+  nftsByNetwork: Map<Network, OwnedNftsResponse | OwnedBaseNftsResponse>;
 
   /** Optional page key that is returned when any network has a next page. */
   pageKey?: string;

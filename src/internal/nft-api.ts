@@ -5,17 +5,14 @@ import { BaseNft, Nft, NftContract } from '../api/nft';
 import {
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
-  GetBaseNftsForOwnerUnichainOptions,
   GetFloorPriceResponse,
   GetNftsForContractOptions,
   GetNftsForOwnerOptions,
-  GetNftsForOwnerUnichainOptions,
   GetOwnersForContractOptions,
   GetOwnersForContractResponse,
   GetOwnersForContractWithTokenBalancesOptions,
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
-  Network,
   NftAttributeRarity,
   NftAttributesResponse,
   NftContractBaseNftsResponse,
@@ -23,10 +20,8 @@ import {
   NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
-  OwnedBaseNftsResponseUnichain,
   OwnedNft,
   OwnedNftsResponse,
-  OwnedNftsResponseUnichain,
   RefreshContractResult,
   RefreshState
 } from '../types/types';
@@ -38,7 +33,6 @@ import {
   getNftRarityFromRaw
 } from '../util/util';
 import { paginateEndpoint, requestHttpWithBackoff } from './dispatch';
-import { NetworkPageKey, UnichainPageKeyCache } from './page-key';
 import {
   RawBaseNft,
   RawContractBaseNft,
@@ -56,81 +50,7 @@ import {
   RawReingestContractResponse
 } from './raw-interfaces';
 
-export async function getNftsForOwnerUnichain(
-  config: AlchemyConfig,
-  owner: string,
-  networks: Network[],
-  options:
-    | GetNftsForOwnerUnichainOptions
-    | GetBaseNftsForOwnerUnichainOptions = {}
-): Promise<OwnedNftsResponseUnichain | OwnedBaseNftsResponseUnichain> {
-  if (!networks || networks.length === 0) {
-    throw new Error(
-      'Must provide a `networks` parameter for unichain requests.'
-    );
-  }
-
-  const {
-    unichainPageKeyCache,
-    getNftsForOwnerFn = getNftsForOwner,
-    pageKey = null,
-    ...baseOptions
-  } = options;
-
-  if (!unichainPageKeyCache) {
-    throw new Error('No page key cache was provided.');
-  }
-
-  const networkPageKeys = unichainPageKeyCache.getNetworkPageKeys(pageKey);
-
-  const networkResults = await Promise.all(
-    networks.map(network => {
-      const networkConfig = config._clone({
-        network
-      });
-
-      const networkPageKey = networkPageKeys.get(network);
-      if (networkPageKey && !networkPageKey.hasNextPage()) {
-        return {
-          ownedNfts: [],
-          // Todo: Return the previous total count
-          totalCount: 0
-        };
-      }
-
-      const pageKeyOption = networkPageKey && networkPageKey.value();
-
-      return getNftsForOwnerFn(networkConfig, owner, {
-        ...baseOptions,
-        pageKey: pageKeyOption
-      });
-    })
-  );
-
-  const response: OwnedNftsResponseUnichain = {
-    nftsByNetwork: new Map()
-  };
-  const newPageKeys = new Map();
-
-  for (let i = 0; i < networks.length; i++) {
-    const network = networks[i];
-    const resultsForNetwork = networkResults[i];
-
-    response.nftsByNetwork.set(network, resultsForNetwork);
-    newPageKeys.set(network, new NetworkPageKey(resultsForNetwork.pageKey));
-  }
-
-  const unichainPageKey = UnichainPageKeyCache.generateKey(newPageKeys);
-  if (unichainPageKey) {
-    unichainPageKeyCache.set(unichainPageKey, newPageKeys);
-    return {
-      ...response,
-      pageKey: unichainPageKey
-    };
-  }
-
-  return response;
-}
+export { getNftsForOwnerUnichain } from './nft-api-unichain';
 
 export async function getNftMetadata(
   config: AlchemyConfig,

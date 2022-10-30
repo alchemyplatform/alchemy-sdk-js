@@ -357,7 +357,7 @@ describe('NFT module', () => {
     });
   });
 
-  describe.only('getNftsForOwnerUnichain()', () => {
+  describe('getNftsForOwnerUnichain()', () => {
     it('calls getNftsForOwner with each provided network', async () => {
       const getNftsForOwner = jest
         .fn()
@@ -533,6 +533,7 @@ describe('NFT module', () => {
         'some_unichain_cache_key',
         new Map([
           [Network.ETH_MAINNET, new NetworkPageKey('an_eth_mainnet_page_key')],
+          [Network.MATIC_MAINNET, new NetworkPageKey()],
           [Network.OPT_MAINNET, new NetworkPageKey('an_opt_mainnet_page_key')]
         ])
       );
@@ -556,14 +557,12 @@ describe('NFT module', () => {
           pageKey: 'an_eth_mainnet_page_key'
         })
       );
-      expect(getNftsForOwner).toHaveBeenCalledWith(
+      expect(getNftsForOwner).not.toHaveBeenCalledWith(
         expect.objectContaining({
           network: Network.MATIC_MAINNET
         }),
         expect.anything(),
-        expect.objectContaining({
-          pageKey: undefined
-        })
+        expect.anything()
       );
       expect(getNftsForOwner).toHaveBeenCalledWith(
         expect.objectContaining({
