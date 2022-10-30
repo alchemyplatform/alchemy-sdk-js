@@ -112,6 +112,7 @@ export class NftNamespace {
    * @param owner - The address of the owner.
    * @param options - The optional parameters to use for the request.
    * @public
+   * @beta
    */
   getNftsForOwnerUnichain(
     owner: string,
@@ -127,6 +128,7 @@ export class NftNamespace {
    * @param owner - The address of the owner.
    * @param options - The optional parameters to use for the request.
    * @public
+   * @beta
    */
   getNftsForOwnerUnichain(
     owner: string,
