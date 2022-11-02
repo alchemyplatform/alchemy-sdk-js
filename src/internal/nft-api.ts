@@ -29,6 +29,7 @@ import { AlchemyApiType } from '../util/const';
 import {
   getBaseNftFromRaw,
   getNftContractFromRaw,
+  getNftContractsFromRaw,
   getNftFromRaw,
   getNftRarityFromRaw
 } from '../util/util';
@@ -381,6 +382,21 @@ export async function computeRarity(
   return getNftRarityFromRaw(response);
 }
 
+export async function searchContractMetadata(
+  config: AlchemyConfig,
+  query: string,
+  srcMethod = 'searchContractMetadata'
+): Promise<NftContract[]> {
+  const response = await requestHttpWithBackoff<
+    SearchContractMetadataParams,
+    RawNftContract[]
+  >(config, AlchemyApiType.NFT, 'searchContractMetadata', srcMethod, {
+    query
+  });
+
+  return getNftContractsFromRaw(response);
+}
+
 export async function summarizeNftAttributes(
   config: AlchemyConfig,
   contractAddress: string,
@@ -617,6 +633,15 @@ interface GetFloorPriceParams {
 interface ComputeRarityParams {
   contractAddress: string;
   tokenId: string;
+}
+
+/**
+ * Interface for the `searchContractMetadata` endpoint.
+ *
+ * @internal
+ */
+interface SearchContractMetadataParams {
+  query: string;
 }
 
 /**

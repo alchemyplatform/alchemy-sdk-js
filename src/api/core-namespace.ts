@@ -566,6 +566,29 @@ export class CoreNamespace {
       'getTransactionReceipts'
     );
   }
+
+  /**
+   * Returns the underlying owner address for the provided ENS address, or `null`
+   * if the ENS name does not have an underlying address.
+   *
+   * @param name The ENS address name to resolve.
+   */
+  async resolveName(name: string): Promise<string | null> {
+    const provider = await this.config.getProvider();
+    return provider.resolveName(name);
+  }
+
+  /**
+   * Performs a reverse lookup of the address in ENS using the Reverse Registrar. If the name does not exist, or the forward lookup does not match, null is returned.
+   *
+   * An ENS name requires additional configuration to setup a reverse record, so not all ENS addresses will map back to the original ENS domain.
+   *
+   * @param address The address to look up the ENS domain name for.
+   */
+  async lookupAddress(address: string): Promise<string | null> {
+    const provider = await this.config.getProvider();
+    return provider.lookupAddress(address);
+  }
 }
 
 /**

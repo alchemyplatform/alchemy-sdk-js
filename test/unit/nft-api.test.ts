@@ -5,13 +5,13 @@ import {
   Alchemy,
   AlchemyConfig,
   BaseNft,
+  fromHex,
   GetFloorPriceResponse,
   GetNftsForOwnerOptions,
   GetOwnersForContractWithTokenBalancesResponse,
   Network,
   Nft,
   NftAttributesResponse,
-  NftContract,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
   NftExcludeFilters,
@@ -20,8 +20,7 @@ import {
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
-  RefreshState,
-  fromHex
+  RefreshState
 } from '../../src';
 import {
   NetworkPageKey,
@@ -49,7 +48,8 @@ import {
   createRawNftContract,
   createRawNftContractBaseNft,
   createRawOwnedBaseNft,
-  createRawOwnedNft
+  createRawOwnedNft,
+  verifyNftContractMetadata
 } from '../test-util';
 
 const EMPTY_GET_NFTS_RESPONSE = {
@@ -94,33 +94,21 @@ describe('NFT module', () => {
       mock.onGet().reply(200, rawNftContractResponse);
     });
 
-    function verifyNftContractMetadata(
-      actualNftContract: NftContract,
-      expectedNftContract: NftContract,
-      address: string,
-      name: string,
-      symbol: string,
-      totalSupply: string,
-      tokenType?: NftTokenType
-    ) {
-      expect(actualNftContract).toEqual(expectedNftContract);
-
-      expect(actualNftContract.address).toEqual(address);
-      expect(actualNftContract.name).toEqual(name);
-      expect(actualNftContract.symbol).toEqual(symbol);
-      expect(actualNftContract.totalSupply).toEqual(totalSupply);
-      expect(actualNftContract.tokenType).toEqual(tokenType);
+    it('can be called with raw parameters', async () => {
+      await alchemy.nft.getContractMetadata(address);
 
       expect(mock.history.get.length).toEqual(1);
       expect(mock.history.get[0].params).toHaveProperty(
         'contractAddress',
         address
       );
-    }
+    });
 
-    it('can be called with raw parameters', async () => {
+    it('returns the api response in the expected format', async () => {
+      const response = await alchemy.nft.getContractMetadata(address);
+
       verifyNftContractMetadata(
-        await alchemy.nft.getContractMetadata(address),
+        response,
         expectedNftContract,
         address,
         name,
@@ -1494,6 +1482,62 @@ describe('NFT module', () => {
       await expect(
         alchemy.nft.computeRarity(contractAddress, tokenId)
       ).rejects.toThrow('Could not fetch metadata for that NFT');
+    });
+  });
+
+  describe('searchContractMetadata()', () => {
+    const query = 'alchemy';
+    const address = '0xf6e12a3b482c8d51a0f66e6d80c496c310833389';
+    const name = 'NFT Contract Name';
+    const symbol = 'AXN';
+    const totalSupply = '1155';
+    const tokenType = NftTokenType.ERC721;
+
+    const rawNftContractResponse = createRawNftContract(
+      address,
+      tokenType,
+      name,
+      symbol,
+      totalSupply
+    );
+    const templateResponse = [rawNftContractResponse];
+    const expectedNftContract = getNftContractFromRaw(rawNftContractResponse);
+
+    beforeEach(() => {
+      mock.onGet().reply(200, templateResponse);
+    });
+
+    it('calls with the correct parameters', async () => {
+      await alchemy.nft.searchContractMetadata(query);
+
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty('query', query);
+    });
+
+    it('returns the api response in the expected format', async () => {
+      const response = await alchemy.nft.searchContractMetadata(query);
+
+      expect(response.length).toEqual(1);
+      verifyNftContractMetadata(
+        response[0],
+        expectedNftContract,
+        address,
+        name,
+        symbol,
+        totalSupply,
+        tokenType
+      );
+    });
+
+    it('surfaces errors', async () => {
+      mock.reset();
+      mock
+        .onGet()
+        .reply(429, 'Your app has exceeded its concurrent requests capacity.');
+
+      await expect(alchemy.nft.searchContractMetadata(query)).rejects.toThrow(
+        'Your app has exceeded its concurrent requests capacity.'
+      );
     });
   });
 

@@ -44,6 +44,14 @@ export function getNftContractFromRaw(
   };
 }
 
+export function getNftContractsFromRaw(
+  rawNftContracts: RawNftContract[]
+): NftContract[] {
+  return rawNftContracts.map(rawNftContract =>
+    getNftContractFromRaw(rawNftContract)
+  );
+}
+
 export function getBaseNftFromRaw(
   rawBaseNft: RawBaseNft,
   contractAddress: string
