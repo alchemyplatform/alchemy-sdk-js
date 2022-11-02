@@ -379,7 +379,7 @@ export class NftNamespace {
   }
 
   /**
-   * Get NFT high-level collection/contract level information.
+   * Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts.
    *
    * @param query - The search string that you want to search for in contract metadata.
    */
