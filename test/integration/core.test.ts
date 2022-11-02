@@ -86,4 +86,12 @@ describe('E2E integration tests', () => {
       Utils.hexlify(blockNumber)
     );
   });
+
+  it('resolveName() / lookupAddress()', async () => {
+    const name = 'vitalik.eth';
+    const address = await alchemy.core.resolveName(name);
+    expect(address).not.toBeNull();
+    const finalName = await alchemy.core.lookupAddress(address!);
+    expect(finalName).toEqual(name);
+  });
 });
