@@ -253,6 +253,19 @@ describe('E2E integration tests', () => {
     expect(response[0].value).toBeDefined();
   });
 
+  it('searchContractMetadata()', async () => {
+    const query = 'meta alchemy';
+
+    const response = await alchemy.nft.searchContractMetadata(query);
+
+    expect(response).toBeDefined();
+    expect(response.length).toBeGreaterThan(0);
+    expect(response[0].address).toBeDefined();
+    expect(typeof response[0].address).toEqual('string');
+    expect(response[0].tokenType).toBeDefined();
+    expect(response[0].tokenType).toEqual(NftTokenType.ERC721);
+  });
+
   it('summarizeNftAttributes()', async () => {
     const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
 
