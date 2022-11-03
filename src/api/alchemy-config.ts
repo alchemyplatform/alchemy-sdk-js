@@ -114,8 +114,6 @@ export class AlchemyConfig {
    * Most common methods on the provider are available as top-level methods on
    * the {@link Alchemy} instance, but the provider is exposed here to access
    * other less-common methods.
-   *
-   * @internal
    */
   getWebSocketProvider(): Promise<AlchemyWebSocketProvider> {
     if (!this._baseAlchemyWssProvider) {
