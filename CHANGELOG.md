@@ -9,6 +9,7 @@
 ### Minor Changes
 
 - Added the `NftNamespace.summarizeNftAttributes()` method to get the summary of attribute prevalence for all NFTs in a contract.
+- Added support for ENS resolution on several methods. You should now be able to pass in an ENS domain into any param that requires an owner address. 
 
 ## 2.2.0
 
