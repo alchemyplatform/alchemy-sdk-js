@@ -333,6 +333,9 @@ export interface AssetTransfersWithMetadataResponse {
  * @public
  */
 export interface AssetTransfersResult {
+  /** The unique ID of the transfer. */
+  uniqueId: string;
+
   /** The category of the transfer. */
   category: AssetTransfersCategory;
 
