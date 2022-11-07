@@ -40,6 +40,7 @@ describe('E2E integration tests', () => {
     const allTransfers = await alchemy.core.getAssetTransfers({
       fromBlock: '0x0',
       contractAddresses: [baycContract],
+      toAddress: '0xshah.eth',
       excludeZeroValue: true,
       category: [AssetTransfersCategory.ERC721],
       withMetadata: true
@@ -51,15 +52,15 @@ describe('E2E integration tests', () => {
     expect(firstTransfer.rawContract.address).toEqual(baycContract);
 
     // First transfer specific checks
-    expect(firstTransfer.blockNum).toEqual('0xbb933a');
+    expect(firstTransfer.blockNum).toEqual('0xc8f41b');
     expect(firstTransfer.metadata.blockTimestamp).toEqual(
-      '2021-04-22T23:13:40.000Z'
+      '2021-09-06T03:04:53.000Z'
     );
   });
 
   it('getTokenBalances()', async () => {
     // Supports ERC-20 + pageKey
-    const address = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045';
+    const address = 'vitalik.eth';
     const contract = '0xdAC17F958D2ee523a2206206994597C13D831ec7';
     let response = await alchemy.core.getTokenBalances(address, {
       type: TokenBalanceType.ERC20
