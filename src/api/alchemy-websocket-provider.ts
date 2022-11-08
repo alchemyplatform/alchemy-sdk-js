@@ -24,11 +24,8 @@ import {
   ALCHEMY_PENDING_TRANSACTIONS_EVENT_TYPE,
   JsonRpcRequest,
   JsonRpcResponse,
-  LogsSubscription,
-  NewHeadsSubscription,
   SingleOrBatchResponse,
   SubscriptionEvent,
-  VirtualSubscription,
   WebSocketMessage
 } from '../internal/internal-types';
 import {
@@ -999,6 +996,34 @@ function isNodeEnvironment(): boolean {
 interface CancelToken {
   cancel(): void;
   isCancelled(): boolean;
+}
+
+interface VirtualSubscription {
+  event: EthersEvent;
+  virtualId: string;
+  physicalId: string;
+  method: string;
+  params: any[];
+  isBackfilling: boolean;
+  startingBlockNumber: number;
+  sentEvents: any[];
+  backfillBuffer: any[];
+}
+
+interface NewHeadsSubscription extends VirtualSubscription {
+  method: 'eth_subscribe';
+  params: ['newHeads'];
+  isBackfilling: boolean;
+  sentEvents: NewHeadsEvent[];
+  backfillBuffer: NewHeadsEvent[];
+}
+
+interface LogsSubscription extends VirtualSubscription {
+  method: 'eth_subscribe';
+  params: ['logs', LogsSubscriptionFilter?];
+  isBackfilling: boolean;
+  sentEvents: LogsEvent[];
+  backfillBuffer: LogsEvent[];
 }
 
 // TODO(cleanup): Use class variable rather than passing `isCancelled` everywhere.
