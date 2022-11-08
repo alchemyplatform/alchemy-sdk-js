@@ -20,7 +20,7 @@ the [AssetTransfersWithMetadataParams](AssetTransfersWithMetadataParams.md) are 
 
 #### Defined in
 
-[src/types/types.ts:327](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L327)
+[src/types/types.ts:327](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L327)
 
 ___
 
@@ -30,4 +30,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:326](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L326)
+[src/types/types.ts:326](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L326)

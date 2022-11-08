@@ -6,14 +6,18 @@
 
 - Added `TransactNamespace.sendGasOptimizedTransaction()`. Instead of sending a single transaction that might not get mined, this method allows you to send the same transaction multiple times, with different gas prices and gas limits. This should result in lower fees paid.
 
+## 2.2.1
+
+### Major Changes
+
 ### Minor Changes
 
 - Fixed a bug where `AlchemyConfig.getWebsocketProvider()` was not exported as a public method. This method allows you get the underlying `WebsocketProvider` that is implemented by ethers.
 - Added the `NftNamespace.summarizeNftAttributes()` method to get the summary of attribute prevalence for all NFTs in a contract.
-- Added support for ENS resolution on several methods. You should now be able to pass in an ENS domain into any param that requires an owner address. 
+- Added support for ENS resolution on several `CoreNamespace` methods. You should now be able to pass in an ENS domain into any param that requires an owner address. 
 - Added the `CoreNamespace.resolveName()` and `CoreNamespace.lookupAddress()` methods to resolve and lookup ENS domains and their owner addresses.
-- Fixed an issue where the `Accept-Encoding` header was incorrectly included in requests that originated from the browser (#174).
-- Added the `openSea` response to `NftNamespace.getContractMetadata()` (#162). 
+- Fixed a bug where the `Accept-Encoding` header was incorrectly included in requests that originated from the browser (#174).
+- Added the `openSea` response to `NftNamespace.getContractMetadata()`to match the REST endpoint (#162). 
 
 ## 2.2.0
 

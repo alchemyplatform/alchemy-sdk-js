@@ -28,7 +28,7 @@ Alchemy representation of a base NFT that doesn't contain metadata.
 
 #### Defined in
 
-[src/api/nft.ts:41](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/nft.ts#L41)
+[src/api/nft.ts:44](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/nft.ts#L44)
 
 ___
 
@@ -40,7 +40,7 @@ The NFT token ID as an integer string.
 
 #### Defined in
 
-[src/api/nft.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/nft.ts#L43)
+[src/api/nft.ts:46](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/nft.ts#L46)
 
 ___
 
@@ -52,4 +52,4 @@ The type of ERC token, if known.
 
 #### Defined in
 
-[src/api/nft.ts:45](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/nft.ts#L45)
+[src/api/nft.ts:48](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/nft.ts#L48)

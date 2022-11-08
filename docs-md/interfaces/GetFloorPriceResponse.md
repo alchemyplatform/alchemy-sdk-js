@@ -19,7 +19,7 @@ The response object for the [getFloorPrice](../classes/NftNamespace.md#getfloorp
 
 #### Defined in
 
-[src/types/types.ts:762](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L762)
+[src/types/types.ts:765](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L765)
 
 ___
 
@@ -32,4 +32,4 @@ marketplaces supported: OpenSea, LooksRare
 
 #### Defined in
 
-[src/types/types.ts:761](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L761)
+[src/types/types.ts:764](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L764)
