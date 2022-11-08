@@ -24,7 +24,7 @@ The Alchemy API key that can be found in the Alchemy dashboard.
 
 #### Defined in
 
-[src/types/types.ts:18](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L18)
+[src/types/types.ts:18](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L18)
 
 ___
 
@@ -37,7 +37,7 @@ in the Alchemy Dashboard on the Notify tab.
 
 #### Defined in
 
-[src/types/types.ts:42](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L42)
+[src/types/types.ts:42](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L42)
 
 ___
 
@@ -49,7 +49,7 @@ The maximum number of retries to attempt if a request fails. Defaults to 5.
 
 #### Defined in
 
-[src/types/types.ts:27](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L27)
+[src/types/types.ts:27](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L27)
 
 ___
 
@@ -62,7 +62,7 @@ use a different network, instantiate a new `Alchemy` instance
 
 #### Defined in
 
-[src/types/types.ts:24](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L24)
+[src/types/types.ts:24](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L24)
 
 ___
 
@@ -78,4 +78,4 @@ that not all methods will work with custom URLs.
 
 #### Defined in
 
-[src/types/types.ts:36](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L36)
+[src/types/types.ts:36](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L36)

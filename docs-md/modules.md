@@ -17,6 +17,7 @@
 - [NftExcludeFilters](enums/NftExcludeFilters.md)
 - [NftSpamClassification](enums/NftSpamClassification.md)
 - [NftTokenType](enums/NftTokenType.md)
+- [OpenSeaSafelistRequestStatus](enums/OpenSeaSafelistRequestStatus.md)
 - [RefreshState](enums/RefreshState.md)
 - [TokenBalanceType](enums/TokenBalanceType.md)
 - [WebhookType](enums/WebhookType.md)
@@ -76,6 +77,7 @@
 - [Nft](interfaces/Nft.md)
 - [NftActivityWebhook](interfaces/NftActivityWebhook.md)
 - [NftAttributeRarity](interfaces/NftAttributeRarity.md)
+- [NftAttributesResponse](interfaces/NftAttributesResponse.md)
 - [NftContract](interfaces/NftContract.md)
 - [NftContractBaseNftsResponse](interfaces/NftContractBaseNftsResponse.md)
 - [NftContractNftsResponse](interfaces/NftContractNftsResponse.md)
@@ -85,6 +87,7 @@
 - [NftFiltersResponse](interfaces/NftFiltersResponse.md)
 - [NftMetadata](interfaces/NftMetadata.md)
 - [NftWebhookParams](interfaces/NftWebhookParams.md)
+- [OpenSeaCollectionMetadata](interfaces/OpenSeaCollectionMetadata.md)
 - [OwnedBaseNft](interfaces/OwnedBaseNft.md)
 - [OwnedBaseNftsResponse](interfaces/OwnedBaseNftsResponse.md)
 - [OwnedNft](interfaces/OwnedNft.md)
@@ -142,7 +145,7 @@ Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespa
 
 #### Defined in
 
-[src/types/types.ts:1419](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L1419)
+[src/types/types.ts:1487](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L1487)
 
 ___
 
@@ -150,12 +153,12 @@ ___
 
 Ƭ **AlchemyEventFilter**: [`AlchemyMinedTransactionsEventFilter`](interfaces/AlchemyMinedTransactionsEventFilter.md) \| [`AlchemyPendingTransactionsEventFilter`](interfaces/AlchemyPendingTransactionsEventFilter.md)
 
-This type represents the Alchemy's Subscription API endpoints as event filters
-compatible with other ethers events.
+This type represents the Alchemy's Subscription API endpoints as event
+filters compatible with other ethers events.
 
 #### Defined in
 
-[src/types/types.ts:1145](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L1145)
+[src/types/types.ts:1205](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L1205)
 
 ___
 
@@ -168,7 +171,7 @@ also include Alchemy's Subscription API.
 
 #### Defined in
 
-[src/types/types.ts:1141](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L1141)
+[src/types/types.ts:1199](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L1199)
 
 ___
 
@@ -176,12 +179,12 @@ ___
 
 Ƭ **AlchemyMinedTransactionsAddress**: [`RequireAtLeastOne`](modules.md#requireatleastone)<{ `from?`: `string` ; `to?`: `string`  }\>
 
-Address filters for [AlchemyMinedTransactionsEventFilter](interfaces/AlchemyMinedTransactionsEventFilter.md). Requires
-at least one of the fields to be set.
+Address filters for [AlchemyMinedTransactionsEventFilter](interfaces/AlchemyMinedTransactionsEventFilter.md). Requires at
+least one of the fields to be set.
 
 #### Defined in
 
-[src/types/types.ts:1130](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L1130)
+[src/types/types.ts:1188](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L1188)
 
 ___
 
@@ -193,7 +196,7 @@ The level of verbosity for the logger.
 
 #### Defined in
 
-[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/util/logger.ts#L22)
+[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/util/logger.ts#L22)
 
 ___
 
@@ -206,7 +209,7 @@ Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespa
 
 #### Defined in
 
-[src/types/types.ts:1411](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L1411)
+[src/types/types.ts:1479](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L1479)
 
 ___
 
@@ -224,7 +227,7 @@ Requires an array with at least one value.
 
 #### Defined in
 
-[src/types/types.ts:1438](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L1438)
+[src/types/types.ts:1504](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L1504)
 
 ___
 
@@ -234,8 +237,8 @@ ___
 
 Requires at least one of the properties to be set.
 
-Implementation copied over
-from [https://learn.microsoft.com/en-us/javascript/api/@azure/keyvault-certificates/requireatleastone?view=azure-node-latest](https://learn.microsoft.com/en-us/javascript/api/@azure/keyvault-certificates/requireatleastone?view=azure-node-latest)
+Implementation copied over from
+[https://learn.microsoft.com/en-us/javascript/api/@azure/keyvault-certificates/requireatleastone?view=azure-node-latest](https://learn.microsoft.com/en-us/javascript/api/@azure/keyvault-certificates/requireatleastone?view=azure-node-latest)
 
 #### Type parameters
 
@@ -245,7 +248,7 @@ from [https://learn.microsoft.com/en-us/javascript/api/@azure/keyvault-certifica
 
 #### Defined in
 
-[src/types/types.ts:1430](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L1430)
+[src/types/types.ts:1498](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L1498)
 
 ___
 
@@ -255,7 +258,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:131](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L131)
+[src/types/types.ts:131](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L131)
 
 ___
 
@@ -267,7 +270,7 @@ The parameters to use with the [CoreNamespace.getTransactionReceipts](classes/Co
 
 #### Defined in
 
-[src/types/types.ts:845](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/types/types.ts#L845)
+[src/types/types.ts:867](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L867)
 
 ## Functions
 
@@ -289,7 +292,7 @@ Converts a hex string to a decimal number.
 
 #### Defined in
 
-[src/api/util.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/util.ts#L9)
+[src/api/util.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/util.ts#L9)
 
 ___
 
@@ -311,7 +314,7 @@ Checks if a value is a hex string.
 
 #### Defined in
 
-[src/api/util.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/util.ts#L29)
+[src/api/util.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/util.ts#L29)
 
 ___
 
@@ -333,7 +336,7 @@ Configures the verbosity of logging. The default log level is `info`.
 
 #### Defined in
 
-[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/util/logger.ts#L56)
+[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/util/logger.ts#L56)
 
 ___
 
@@ -355,4 +358,4 @@ Converts a number to a hex string.
 
 #### Defined in
 
-[src/api/util.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/3091a11/src/api/util.ts#L19)
+[src/api/util.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/util.ts#L19)
