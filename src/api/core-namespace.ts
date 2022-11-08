@@ -395,21 +395,23 @@ export class CoreNamespace {
   /**
    * Returns the ERC-20 token balances for a specific owner address.
    *
-   * @param address The owner address to get the token balances for.
+   * @param addressOrName The owner address to get the token balances for.
    * @public
    */
-  async getTokenBalances(address: string): Promise<TokenBalancesResponseErc20>;
+  async getTokenBalances(
+    addressOrName: string
+  ): Promise<TokenBalancesResponseErc20>;
 
   /**
    * Returns the token balances for a specific owner address given a list of contracts.
    *
-   * @param address The owner address to get the token balances for.
+   * @param addressOrName The owner address to get the token balances for.
    * @param contractAddresses A list of contract addresses to check. If omitted,
    *   all ERC-20 tokens will be checked.
    * @public
    */
   async getTokenBalances(
-    address: string,
+    addressOrName: string,
     contractAddresses?: string[]
   ): Promise<TokenBalancesResponse>;
 
@@ -418,12 +420,12 @@ export class CoreNamespace {
    *
    * This overload covers the erc-20 token type which includes a page key in the response.
    *
-   * @param address The owner address to get the token balances for.
+   * @param addressOrName The owner address to get the token balances for.
    * @param options Token type options set to ERC-20 with optional page key.
    * @public
    */
   async getTokenBalances(
-    address: string,
+    addressOrName: string,
     options: TokenBalancesOptionsErc20
   ): Promise<TokenBalancesResponseErc20>;
 
@@ -434,22 +436,23 @@ export class CoreNamespace {
    * This overload covers the default token type which includes a page key in
    * the response.
    *
-   * @param address The owner address to get the token balances for.
+   * @param addressOrName The owner address to get the token balances for.
    * @param options Token type options set to ERC-20 with optional page key.
    * @public
    */
   async getTokenBalances(
-    address: string,
+    addressOrName: string,
     options: TokenBalancesOptionsDefaultTokens
   ): Promise<TokenBalancesResponse>;
   async getTokenBalances(
-    address: string,
+    addressOrName: string,
     contractAddressesOrOptions?:
       | string[]
       | TokenBalancesOptionsDefaultTokens
       | TokenBalancesOptionsErc20
   ) {
     const provider = await this.config.getProvider();
+    const address = await provider._getAddress(addressOrName);
     if (Array.isArray(contractAddressesOrOptions)) {
       if (contractAddressesOrOptions.length > 1500) {
         throw new Error(
@@ -532,6 +535,12 @@ export class CoreNamespace {
     params: AssetTransfersWithMetadataParams | AssetTransfersParams
   ): Promise<AssetTransfersResponse | AssetTransfersWithMetadataResponse> {
     const provider = await this.config.getProvider();
+    if (params.fromAddress) {
+      params.fromAddress = await provider._getAddress(params.fromAddress);
+    }
+    if (params.toAddress) {
+      params.toAddress = await provider._getAddress(params.toAddress);
+    }
     return provider._send(
       'alchemy_getAssetTransfers',
       [
@@ -565,6 +574,29 @@ export class CoreNamespace {
       [params],
       'getTransactionReceipts'
     );
+  }
+
+  /**
+   * Returns the underlying owner address for the provided ENS address, or `null`
+   * if the ENS name does not have an underlying address.
+   *
+   * @param name The ENS address name to resolve.
+   */
+  async resolveName(name: string): Promise<string | null> {
+    const provider = await this.config.getProvider();
+    return provider.resolveName(name);
+  }
+
+  /**
+   * Performs a reverse lookup of the address in ENS using the Reverse Registrar. If the name does not exist, or the forward lookup does not match, null is returned.
+   *
+   * An ENS name requires additional configuration to setup a reverse record, so not all ENS addresses will map back to the original ENS domain.
+   *
+   * @param address The address to look up the ENS domain name for.
+   */
+  async lookupAddress(address: string): Promise<string | null> {
+    const provider = await this.config.getProvider();
+    return provider.lookupAddress(address);
   }
 }
 

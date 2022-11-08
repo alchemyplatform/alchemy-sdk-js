@@ -16,6 +16,7 @@ import {
   isSpamContract,
   refreshContract,
   refreshNftMetadata,
+  searchContractMetadata,
   summarizeNftAttributes,
   verifyNftOwnership
 } from '../internal/nft-api';
@@ -375,6 +376,15 @@ export class NftNamespace {
     tokenId: BigNumberish
   ): Promise<NftAttributeRarity[]> {
     return computeRarity(this.config, contractAddress, tokenId);
+  }
+
+  /**
+   * Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts.
+   *
+   * @param query - The search string that you want to search for in contract metadata.
+   */
+  searchContractMetadata(query: string): Promise<NftContract[]> {
+    return searchContractMetadata(this.config, query);
   }
 
   /**

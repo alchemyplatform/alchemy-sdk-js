@@ -4,6 +4,7 @@ import {
   BaseNft,
   BaseNftContract,
   Nft,
+  NftContract,
   NftTokenType,
   OwnedBaseNft,
   OwnedNft,
@@ -204,6 +205,23 @@ export function createRawNftContractBaseNft(
       tokenId
     }
   };
+}
+
+export function verifyNftContractMetadata(
+  actualNftContract: NftContract,
+  expectedNftContract: NftContract,
+  address: string,
+  name: string,
+  symbol: string,
+  totalSupply: string,
+  tokenType?: NftTokenType
+) {
+  expect(actualNftContract).toEqual(expectedNftContract);
+  expect(actualNftContract.address).toEqual(address);
+  expect(actualNftContract.name).toEqual(name);
+  expect(actualNftContract.symbol).toEqual(symbol);
+  expect(actualNftContract.totalSupply).toEqual(totalSupply);
+  expect(actualNftContract.tokenType).toEqual(tokenType);
 }
 
 export type Mocked<T> = T & {
