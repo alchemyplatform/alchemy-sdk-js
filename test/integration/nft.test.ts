@@ -1,4 +1,9 @@
-import { Alchemy, NftExcludeFilters, NftTokenType } from '../../src';
+import {
+  Alchemy,
+  NftExcludeFilters,
+  NftTokenType,
+  OpenSeaSafelistRequestStatus
+} from '../../src';
 
 jest.setTimeout(50000);
 
@@ -34,6 +39,13 @@ describe('E2E integration tests', () => {
     expect(response.tokenType).toEqual(NftTokenType.ERC721);
     expect(response.address).toEqual(contractAddress);
     expect(typeof response.name).toEqual('string');
+    expect(response.openSea).toBeDefined();
+    expect(response.openSea?.safelistRequestStatus).toBeDefined();
+    expect(
+      Object.values(OpenSeaSafelistRequestStatus).includes(
+        response.openSea?.safelistRequestStatus!
+      )
+    ).toEqual(true);
   });
 
   it('getOwnersForNft()', async () => {

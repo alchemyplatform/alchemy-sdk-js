@@ -13,6 +13,7 @@ import {
 import {
   NftAttributeRarity,
   NftTokenType,
+  OpenSeaSafelistRequestStatus,
   SpamInfo,
   TokenUri
 } from '../types/types';
@@ -26,6 +27,13 @@ export function formatBlock(block: string | number): string {
   return block.toString();
 }
 
+function stringToEnum<T extends string>(
+  x: string,
+  enumb: Record<string, T>
+): T | undefined {
+  return Object.values(enumb).includes(x as T) ? (x as T) : undefined;
+}
+
 export function getBaseNftContractFromRaw(
   rawBaseNftContract: RawBaseNftContract
 ): BaseNftContract {
@@ -35,13 +43,33 @@ export function getBaseNftContractFromRaw(
 export function getNftContractFromRaw(
   rawNftContract: RawNftContract
 ): NftContract {
-  return {
+  const contract: NftContract = {
     address: rawNftContract.address,
     name: rawNftContract.contractMetadata.name,
     symbol: rawNftContract.contractMetadata.symbol,
     totalSupply: rawNftContract.contractMetadata.totalSupply,
     tokenType: parseNftTokenType(rawNftContract.contractMetadata.tokenType)
   };
+  if (rawNftContract.contractMetadata.openSea) {
+    const safeListStatus =
+      rawNftContract.contractMetadata.openSea?.safelistRequestStatus;
+    contract.openSea = {
+      floorPrice: rawNftContract.contractMetadata.openSea?.floorPrice,
+      collectionName: rawNftContract.contractMetadata.openSea?.collectionName,
+      safelistRequestStatus:
+        safeListStatus !== undefined
+          ? stringToEnum(safeListStatus, OpenSeaSafelistRequestStatus)
+          : undefined,
+      imageUrl: rawNftContract.contractMetadata.openSea?.imageUrl,
+      description: rawNftContract.contractMetadata.openSea?.description,
+      externalUrl: rawNftContract.contractMetadata.openSea?.externalUrl,
+      twitterUsername: rawNftContract.contractMetadata.openSea?.twitterUsername,
+      discordUrl: rawNftContract.contractMetadata.openSea?.discordUrl,
+      lastIngestedAt: rawNftContract.contractMetadata.openSea?.lastIngestedAt
+    };
+  }
+
+  return contract;
 }
 
 export function getNftContractsFromRaw(

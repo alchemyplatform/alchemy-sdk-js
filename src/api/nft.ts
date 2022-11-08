@@ -2,6 +2,7 @@ import {
   Media,
   NftMetadata,
   NftTokenType,
+  OpenSeaCollectionMetadata,
   SpamInfo,
   TokenUri
 } from '../types/types';
@@ -30,6 +31,8 @@ export interface NftContract extends BaseNftContract {
   symbol?: string;
   /** The number of NFTs in the contract as an integer string. */
   totalSupply?: string;
+  /** OpenSea's metadata for the contract. */
+  openSea?: OpenSeaCollectionMetadata;
 }
 
 /**

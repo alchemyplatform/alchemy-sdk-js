@@ -4,12 +4,12 @@ import {
   BaseNft,
   BaseNftContract,
   Nft,
+  NftContract,
   NftTokenType,
   OwnedBaseNft,
   OwnedNft,
   TokenUri,
-  toHex,
-  NftContract
+  toHex
 } from '../src';
 import {
   RawBaseNft,
@@ -18,6 +18,7 @@ import {
   RawNft,
   RawNftContract,
   RawNftContractMetadata,
+  RawOpenSeaCollectionMetadata,
   RawOwnedBaseNft,
   RawOwnedNft
 } from '../src/internal/raw-interfaces';
@@ -39,7 +40,8 @@ export function createRawNftContract(
   tokenType: NftTokenType,
   name?: string,
   symbol?: string,
-  totalSupply?: string
+  totalSupply?: string,
+  openSea?: RawOpenSeaCollectionMetadata
 ): RawNftContract {
   return {
     address,
@@ -47,7 +49,8 @@ export function createRawNftContract(
       name,
       symbol,
       totalSupply,
-      tokenType
+      tokenType,
+      openSea
     }
   };
 }
