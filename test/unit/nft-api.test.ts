@@ -73,15 +73,13 @@ describe('NFT module', () => {
     const tokenType = NftTokenType.ERC721;
     const openSea: RawOpenSeaCollectionMetadata = {
       floorPrice: 2.2998,
-      collectionName: 'World of Women',
+      collectionName: 'Collection Name',
       safelistRequestStatus: 'verified',
-      imageUrl:
-        'https://i.seadn.io/gae/EFAQpIktMBU5SU0TqSdPWZ4byHr3hFirL_mATsR8KWhM5z-GJljX8E73V933lkyKgv2SAFlfRRjGsWvWbQQmJAwu3F2FDXVa1C9F?w=500&auto=format',
-      description:
-        'A community celebrating representation, inclusivity, and equal opportunities for all.\r\nUnited by a first-of-its-kind collection, featuring 10,000 artworks of diverse and powerful women.\r\n\r\nCreated and Illustrated by Yam Karkai (@ykarkai)\r\n\r\nNew official collection World of Women Galaxy available here:\r\nhttps://opensea.io/collection/world-of-women-galaxy',
-      externalUrl: 'http://worldofwomen.art',
-      twitterUsername: 'worldofwomennft',
-      discordUrl: 'https://discord.gg/worldofwomen',
+      imageUrl: 'http://image.url',
+      description: 'A sample description',
+      externalUrl: 'http://external.url',
+      twitterUsername: 'twitter-handle',
+      discordUrl: 'https://discord.gg/example',
       lastIngestedAt: '2022-10-26T22:24:49.000Z'
     };
 

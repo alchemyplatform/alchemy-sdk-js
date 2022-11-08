@@ -13,6 +13,7 @@ import {
 import {
   NftAttributeRarity,
   NftTokenType,
+  OpenSeaSafelistRequestStatus,
   SpamInfo,
   TokenUri
 } from '../types/types';
@@ -24,6 +25,13 @@ export function formatBlock(block: string | number): string {
     return toHex(block);
   }
   return block.toString();
+}
+
+function stringToEnum<T extends string>(
+  x: string,
+  enumb: Record<string, T>
+): T | undefined {
+  return Object.values(enumb).includes(x as T) ? (x as T) : undefined;
 }
 
 export function getBaseNftContractFromRaw(
@@ -43,17 +51,21 @@ export function getNftContractFromRaw(
     tokenType: parseNftTokenType(rawNftContract.contractMetadata.tokenType)
   };
   if (rawNftContract.contractMetadata.openSea) {
+    const safeListStatus =
+      rawNftContract.contractMetadata.openSea?.safelistRequestStatus;
     contract.openSea = {
-      floorPrice: rawNftContract.contractMetadata.openSea.floorPrice,
-      collectionName: rawNftContract.contractMetadata.openSea.collectionName,
+      floorPrice: rawNftContract.contractMetadata.openSea?.floorPrice,
+      collectionName: rawNftContract.contractMetadata.openSea?.collectionName,
       safelistRequestStatus:
-        rawNftContract.contractMetadata.openSea.safelistRequestStatus,
-      imageUrl: rawNftContract.contractMetadata.openSea.imageUrl,
-      description: rawNftContract.contractMetadata.openSea.description,
-      externalUrl: rawNftContract.contractMetadata.openSea.externalUrl,
-      twitterUsername: rawNftContract.contractMetadata.openSea.twitterUsername,
-      discordUrl: rawNftContract.contractMetadata.openSea.discordUrl,
-      lastIngestedAt: rawNftContract.contractMetadata.openSea.lastIngestedAt
+        safeListStatus !== undefined
+          ? stringToEnum(safeListStatus, OpenSeaSafelistRequestStatus)
+          : undefined,
+      imageUrl: rawNftContract.contractMetadata.openSea?.imageUrl,
+      description: rawNftContract.contractMetadata.openSea?.description,
+      externalUrl: rawNftContract.contractMetadata.openSea?.externalUrl,
+      twitterUsername: rawNftContract.contractMetadata.openSea?.twitterUsername,
+      discordUrl: rawNftContract.contractMetadata.openSea?.discordUrl,
+      lastIngestedAt: rawNftContract.contractMetadata.openSea?.lastIngestedAt
     };
   }
 
