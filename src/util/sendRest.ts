@@ -24,7 +24,7 @@ export function sendAxiosRequest<Req, Res>(
     ...overrides,
     headers: {
       ...overrides?.headers,
-      ...(IS_BROWSER && { 'Accept-Encoding': 'gzip' }),
+      ...(!IS_BROWSER && { 'Accept-Encoding': 'gzip' }),
       'Alchemy-Ethers-Sdk-Version': VERSION,
       'Alchemy-Ethers-Sdk-Method': methodName
     },
