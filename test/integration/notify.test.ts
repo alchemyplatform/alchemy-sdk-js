@@ -66,10 +66,15 @@ describe('E2E integration tests', () => {
 
   it('getAddresses()', async () => {
     let response = await alchemy.notify.getAddresses(addressWh);
-    expect(response.addresses.sort()).toEqual(activityAddresses.sort());
+    // Convert to lowercase since ENS resolution capitalizes hex string.
+    expect(response.addresses.map(x => x.toLowerCase()).sort()).toEqual(
+      activityAddresses.sort()
+    );
 
     response = await alchemy.notify.getAddresses(addressWh.id);
-    expect(response.addresses.sort()).toEqual(activityAddresses.sort());
+    expect(response.addresses.map(x => x.toLowerCase()).sort()).toEqual(
+      activityAddresses.sort()
+    );
   });
 
   it('getAddresses() with limit', async () => {
@@ -188,6 +193,18 @@ describe('E2E integration tests', () => {
     ).toEqual(0);
   });
 
+  it('create AddressActivityWebhook with ENS', async () => {
+    const rawAddress = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045';
+    const addressWebhook = await alchemy.notify.createWebhook(
+      webhookUrl,
+      WebhookType.ADDRESS_ACTIVITY,
+      { addresses: ['vitalik.eth'], network: Network.OPT_MAINNET }
+    );
+
+    const response = await alchemy.notify.getAddresses(addressWebhook);
+    expect(response.addresses).toContain(rawAddress);
+  });
+
   it('create and delete NftActivityWebhook', async () => {
     const nftActivityWebhook = await alchemy.notify.createWebhook(
       webhookUrl,
@@ -274,6 +291,16 @@ describe('E2E integration tests', () => {
     await alchemy.notify.updateWebhook(addressWh, {
       addAddresses: [addAddress]
     });
+  });
+
+  it('update AddressActivityWebhook address with ENS', async () => {
+    const addAddress = 'vitalik.eth';
+    const rawAddAddress = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045';
+    await alchemy.notify.updateWebhook(addressWh, {
+      addAddresses: [addAddress]
+    });
+    const response = await alchemy.notify.getAddresses(addressWh);
+    expect(response.addresses).toContain(rawAddAddress);
   });
 
   it('override AddressActivityWebhook address', async () => {

@@ -236,8 +236,8 @@ export class NotifyNamespace {
       method = 'PATCH';
       data = {
         webhook_id: webhookId,
-        addresses_to_add: update.addAddresses ?? [],
-        addresses_to_remove: update.removeAddresses ?? []
+        addresses_to_add: await this.resolveAddresses(update.addAddresses),
+        addresses_to_remove: await this.resolveAddresses(update.removeAddresses)
       };
     } else if ('newAddresses' in update) {
       restApiName = 'update-webhook-addresses';
@@ -245,7 +245,7 @@ export class NotifyNamespace {
       method = 'PUT';
       data = {
         webhook_id: webhookId,
-        addresses: update.newAddresses
+        addresses: await this.resolveAddresses(update.newAddresses)
       };
     } else {
       throw new Error('Invalid `update` param passed into `updateWebhook`');
@@ -373,7 +373,7 @@ export class NotifyNamespace {
       network = params.network
         ? NETWORK_TO_WEBHOOK_NETWORK.get(params.network)
         : network;
-      addresses = params.addresses;
+      addresses = await this.resolveAddresses(params.addresses);
     }
 
     const data = {
@@ -464,6 +464,27 @@ export class NotifyNamespace {
         }
       }
     );
+  }
+
+  /** Resolves ENS addresses to the raw address.
+   * @internal */
+  private async resolveAddresses(
+    addresses: string[] | undefined
+  ): Promise<string[]> {
+    if (addresses === undefined) {
+      return [];
+    }
+    const resolvedAddresses: string[] = [];
+    const provider = await this.config.getProvider();
+    for (const address of addresses) {
+      const rawAddress = await provider.resolveName(address);
+      if (rawAddress === null) {
+        throw new Error(`Unable to resolve the address: ${address}`);
+      }
+      resolvedAddresses.push(rawAddress);
+    }
+
+    return resolvedAddresses;
   }
 }
 

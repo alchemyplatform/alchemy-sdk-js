@@ -6,6 +6,10 @@
 
 - Added `TransactNamespace.sendGasOptimizedTransaction()`. Instead of sending a single transaction that might not get mined, this method allows you to send the same transaction multiple times, with different gas prices and gas limits. This should result in lower fees paid.
 
+### Minor Changes
+
+- Added support for ENS resolution to the `NotifyNamespace` and `WebsocketNamespace` methods.
+
 ## 2.2.1
 
 ### Major Changes
