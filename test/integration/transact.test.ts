@@ -4,14 +4,16 @@ import {
   Network,
   Wallet
 } from '../../src';
-import { TESTING_PRIVATE_KEY } from '../test-util';
+import { TESTING_PRIVATE_KEY, loadAlchemyEnv } from '../test-util';
 
 jest.setTimeout(50000);
 describe('E2E integration tests', () => {
   let alchemy: Alchemy;
 
   beforeAll(async () => {
+    await loadAlchemyEnv();
     alchemy = await new Alchemy({
+      apiKey: process.env.ALCHEMY_API_KEY,
       network: Network.ETH_MAINNET
     });
   });

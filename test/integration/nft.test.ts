@@ -4,6 +4,7 @@ import {
   NftTokenType,
   OpenSeaSafelistRequestStatus
 } from '../../src';
+import { loadAlchemyEnv } from '../test-util';
 
 jest.setTimeout(50000);
 
@@ -15,7 +16,10 @@ describe('E2E integration tests', () => {
   const contractAddress = '0x01234567bac6ff94d7e4f0ee23119cf848f93245';
 
   beforeAll(async () => {
-    alchemy = await new Alchemy();
+    await loadAlchemyEnv();
+    alchemy = await new Alchemy({
+      apiKey: process.env.ALCHEMY_API_KEY
+    });
 
     // Skip all timeouts for testing.
     jest.setTimeout(50000);
