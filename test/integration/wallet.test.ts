@@ -1,13 +1,15 @@
 import { Wallet as EthersWallet } from '@ethersproject/wallet';
 
 import { Alchemy, Network, Wallet } from '../../src';
-import { TEST_WALLET_PRIVATE_KEY } from '../test-util';
+import { TEST_WALLET_PRIVATE_KEY, loadAlchemyEnv } from '../test-util';
 
 describe('Alchemy-Ethers Wallet', () => {
   let alchemy: Alchemy;
 
   beforeAll(async () => {
+    await loadAlchemyEnv();
     const settings = {
+      apiKey: process.env.ALCHEMY_API_KEY,
       network: Network.ETH_MAINNET
     };
     alchemy = new Alchemy(settings);

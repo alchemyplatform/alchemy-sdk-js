@@ -1,5 +1,6 @@
 import { Alchemy, AssetTransfersCategory, TokenBalanceType } from '../../src';
 import { Utils } from '../../src/index';
+import { loadAlchemyEnv } from '../test-util';
 
 jest.setTimeout(50000);
 // Integration tests for Alchemy's custom methods on top the core ethers' offerings.
@@ -7,7 +8,10 @@ describe('E2E integration tests', () => {
   let alchemy: Alchemy;
 
   beforeAll(async () => {
-    alchemy = await new Alchemy();
+    await loadAlchemyEnv();
+    alchemy = await new Alchemy({
+      apiKey: process.env.ALCHEMY_API_KEY
+    });
 
     // Skip all timeouts for testing.
     jest.setTimeout(50000);

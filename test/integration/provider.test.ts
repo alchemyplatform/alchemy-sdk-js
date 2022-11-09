@@ -7,6 +7,7 @@ import {
   AlchemyWebSocketProvider
 } from '../../src';
 import { EthersNetwork } from '../../src/util/const';
+import { loadAlchemyEnv } from '../test-util';
 
 jest.setTimeout(50000);
 /**
@@ -21,7 +22,10 @@ describe('AlchemyProvider', () => {
   let ethersProvider: EthersAlchemyProvider;
 
   beforeEach(async () => {
-    alchemy = new Alchemy();
+    await loadAlchemyEnv();
+    alchemy = new Alchemy({
+      apiKey: process.env.ALCHEMY_API_KEY
+    });
     ethersProvider = new EthersAlchemyProvider(
       EthersNetwork[alchemy.config.network],
       alchemy.config.apiKey

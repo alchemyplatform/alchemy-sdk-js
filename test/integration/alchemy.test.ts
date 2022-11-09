@@ -1,8 +1,11 @@
 import { Alchemy, Network } from '../../src';
-import { Deferred } from '../test-util';
+import { Deferred, loadAlchemyEnv } from '../test-util';
 
 jest.setTimeout(50000);
 describe('E2E integration tests', () => {
+  beforeAll(async () => {
+    await loadAlchemyEnv();
+  });
   describe('handles networks', () => {
     // TODO(deprecation): Remove after removing deprecated networks.
     const deprecated = ['ropsten', 'kovan', 'rinkeby'];
@@ -15,6 +18,7 @@ describe('E2E integration tests', () => {
       function testNetwork(network: Network) {
         it(`get blockNumber on ${network}`, async () => {
           const alchemy = new Alchemy({
+            apiKey: process.env.ALCHEMY_API_KEY,
             network
           });
           const block = await alchemy.core.getBlockNumber();
@@ -31,6 +35,7 @@ describe('E2E integration tests', () => {
       function testNetwork(network: Network) {
         it(`block subscription for ${network}`, () => {
           const alchemy = new Alchemy({
+            apiKey: process.env.ALCHEMY_API_KEY,
             network
           });
           const done = new Deferred<void>();
