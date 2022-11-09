@@ -19,10 +19,10 @@
 - Fixed a bug where `AlchemyConfig.getWebsocketProvider()` was not exported as a public method. This method allows you get the underlying `WebsocketProvider` that is implemented by ethers.
 - Added the `NftNamespace.summarizeNftAttributes()` method to get the summary of attribute prevalence for all NFTs in a contract.
 - Added the `NftNamespace.searchContractMetadata()` method to search for a keyword across ERC721 and ERC1155 contract metadata.
-- Added support for ENS resolution on several `CoreNamespace` methods. You should now be able to pass in an ENS domain into any param that requires an owner address. 
+- Added support for ENS resolution on several `CoreNamespace` methods. You should now be able to pass in an ENS domain into any param that requires an owner address.
 - Added the `CoreNamespace.resolveName()` and `CoreNamespace.lookupAddress()` methods to resolve and lookup ENS domains and their owner addresses.
 - Fixed a bug where the `Accept-Encoding` header was incorrectly included in requests that originated from the browser (#174).
-- Added the `openSea` response to `NftNamespace.getContractMetadata()`to match the REST endpoint (#162). 
+- Added the `openSea` response to `NftNamespace.getContractMetadata()`to match the REST endpoint (#162).
 
 ## 2.2.0
 
