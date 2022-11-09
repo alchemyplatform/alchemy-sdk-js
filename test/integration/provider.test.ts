@@ -148,6 +148,18 @@ describe('AlchemyProvider', () => {
     });
   });
 
+  it('batching mode resolves promises', async () => {
+    alchemy = new Alchemy({
+      apiKey: process.env.ALCHEMY_API_KEY,
+      optimizedBatching: true
+    });
+
+    const p1 = alchemy.core.getGasPrice();
+    const p2 = alchemy.core.getBlockNumber();
+    await p1;
+    await p2;
+  });
+
   // // TODO(ethers): Write tests to make sure that the SDK's provider instance
   // // has the correct network mappings compared to Ethers.
   // it('network mappings should be correct', () => {});

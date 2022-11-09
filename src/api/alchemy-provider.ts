@@ -10,6 +10,8 @@ import {
 } from '@ethersproject/providers';
 import { ConnectionInfo, fetchJson } from '@ethersproject/web';
 
+import { JsonRpcRequest } from '../internal/internal-types';
+import { RequestBatcher } from '../internal/request-batcher';
 import { Network } from '../types/types';
 import {
   CustomNetworks,
@@ -38,6 +40,11 @@ export class AlchemyProvider
 {
   readonly apiKey: string;
   readonly maxRetries: number;
+  readonly optimizedBatching: boolean;
+
+  /** VISIBLE ONLY FOR TESTING
+   *@internal */
+  readonly batcher: RequestBatcher;
 
   /** @internal */
   constructor(config: AlchemyConfig) {
@@ -62,12 +69,18 @@ export class AlchemyProvider
 
     // Normalize the Alchemy named network input to the network names used by
     // ethers. This allows the parent super constructor in JsonRpcProvider to
-    // correctly set the network.
+    // correctly set the network.ƒ
     const ethersNetwork = EthersNetwork[alchemyNetwork];
     super(connection, ethersNetwork);
 
     this.apiKey = config.apiKey;
     this.maxRetries = config.maxRetries;
+    this.optimizedBatching = config.optimizedBatching;
+
+    // TODO: support individual headers when calling batch
+    const batcherConnection = { ...this.connection };
+    batcherConnection.headers!['Alchemy-Ethers-Sdk-Method'] = 'batchSend';
+    this.batcher = new RequestBatcher(fetchJson, batcherConnection);
   }
 
   /**
@@ -218,13 +231,27 @@ export class AlchemyProvider
    *
    * @internal
    */
-  _send(method: string, params: Array<any>, methodName: string): Promise<any> {
+  _send(
+    method: string,
+    params: Array<any>,
+    methodName: string,
+    forceBatch = false
+  ): Promise<any> {
     const request = {
       method,
       params,
       id: this._nextId++,
       jsonrpc: '2.0'
     };
+
+    // START MODIFIED CODE
+    const connection = { ...this.connection };
+    connection.headers!['Alchemy-Ethers-Sdk-Method'] = methodName;
+
+    if (this.optimizedBatching || forceBatch) {
+      return this.batcher.enqueueRequest(request as JsonRpcRequest);
+    }
+    // END MODIFIED CODE
 
     this.emit('debug', {
       action: 'request',
@@ -238,11 +265,6 @@ export class AlchemyProvider
     if (cache && this._cache[method]) {
       return this._cache[method];
     }
-
-    // START MODIFIED CODE
-    const connection = { ...this.connection };
-    connection.headers!['Alchemy-Ethers-Sdk-Method'] = methodName;
-    // END MODIFIED CODE
 
     const result = fetchJson(
       this.connection,
@@ -303,4 +325,11 @@ function getResult(payload: {
   }
 
   return payload.result;
+}
+
+/** Internal interface to represent a request on a batch along with the promises to resolve it.*/
+export interface BatchRequest {
+  request: JsonRpcRequest;
+  resolve?: (result: any) => void;
+  reject?: (error: Error) => void;
 }

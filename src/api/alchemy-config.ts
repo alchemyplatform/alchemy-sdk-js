@@ -27,6 +27,9 @@ export class AlchemyConfig {
   /** The maximum number of retries to perform. */
   readonly maxRetries: number;
 
+  /** User-provided setting to enable automatic batching. */
+  readonly optimizedBatching: boolean;
+
   /**
    * The optional hardcoded URL to send requests to instead of using the network
    * and apiKey.
@@ -58,6 +61,7 @@ export class AlchemyConfig {
     this.maxRetries = config?.maxRetries || DEFAULT_MAX_RETRIES;
     this.url = config?.url;
     this.authToken = config?.authToken;
+    this.optimizedBatching = config?.optimizedBatching || false;
   }
 
   /**
