@@ -1,6 +1,6 @@
 import { ConnectionInfo, FetchJsonResponse } from '@ethersproject/web';
 
-import { MAX_BATCH_SIZE } from '../util/const';
+import { DEFAULT_MAX_REQUEST_BATCH_SIZE } from '../util/const';
 import { JsonRpcRequest } from './internal-types';
 
 /**
@@ -24,7 +24,7 @@ export class RequestBatcher {
   constructor(
     private readonly sendBatchFn: SendBatchFn,
     private readonly connection: ConnectionInfo,
-    private readonly maxBatchSize = MAX_BATCH_SIZE
+    private readonly maxBatchSize = DEFAULT_MAX_REQUEST_BATCH_SIZE
   ) {}
 
   /**
@@ -68,6 +68,13 @@ export class RequestBatcher {
    * the batched response results back to the original promises.
    */
   private async sendBatchRequest(): Promise<void> {
+    // This if-statement handles the case where the maximum batch size triggers
+    // the batch send, so the scheduled timeout send is called with an empty
+    // batch (or vice-versa).
+    if (this.pendingBatch === undefined) {
+      return;
+    }
+
     // Get the current batch and clear it, so new requests
     // go into the next batch
     const batch = this.pendingBatch!;

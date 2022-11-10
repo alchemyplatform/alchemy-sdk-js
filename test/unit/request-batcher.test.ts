@@ -6,11 +6,12 @@ import { RequestBatcher } from '../../src/internal/request-batcher';
 
 describe('RequestBatcher', () => {
   let batcher: RequestBatcher;
-  const fetchJsonMock = jest.fn();
+  let fetchJsonMock: jest.Mock;
   const connectionInfo = {
     url: 'http://mock.url'
   };
   beforeEach(() => {
+    fetchJsonMock = jest.fn();
     batcher = new RequestBatcher(fetchJsonMock, connectionInfo);
   });
 
