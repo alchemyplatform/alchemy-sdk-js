@@ -52,6 +52,8 @@ The Alchemy SDK currently supports five different namespaces, including:
 
 If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should work properly.
 
+Note: The Alchemy SDK now supports ENS names ('vitalik.eth') for every parameter where you can pass in a EOA (Externally Owned Address, or user address).
+
 ```ts
 import { Alchemy, AlchemySubscription } from 'alchemy-sdk';
 
