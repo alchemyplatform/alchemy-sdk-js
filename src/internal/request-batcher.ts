@@ -1,11 +1,24 @@
-import { ConnectionInfo, FetchJsonResponse } from '@ethersproject/web/src.ts';
+import { ConnectionInfo, FetchJsonResponse } from '@ethersproject/web';
 
-import { BatchRequest } from '../api/alchemy-provider';
 import { MAX_BATCH_SIZE } from '../util/const';
 import { JsonRpcRequest } from './internal-types';
 
+/**
+ * Internal class to enqueue requests and automatically send/process batches.
+ *
+ * The underlying batching mechanism is loosely based on ethers.js's
+ * `JsonRpcBatchProvider`.
+ *
+ * @internal
+ */
 export class RequestBatcher {
-  private pendingBatchAggregator: NodeJS.Timer | undefined;
+  /** Timeout timer that periodically sends the pending batch. */
+  private pendingBatchTimer: NodeJS.Timer | undefined;
+
+  /**
+   * Array of enqueued requests along with the constructed promise handlers for
+   * each request.
+   */
   private pendingBatch: Array<BatchRequest> | undefined;
 
   constructor(
@@ -14,6 +27,13 @@ export class RequestBatcher {
     private readonly maxBatchSize = MAX_BATCH_SIZE
   ) {}
 
+  /**
+   * Enqueues the provided request. The batch is immediately sent if the maximum
+   * batch size is reached. Otherwise, the request is enqueued onto a batch that
+   * is sent after 10ms.
+   *
+   * Returns a promise that resolves with the result of the request.
+   */
   async enqueueRequest(request: JsonRpcRequest): Promise<any> {
     if (this.pendingBatch === undefined) {
       this.pendingBatch = [];
@@ -35,23 +55,24 @@ export class RequestBatcher {
     if (this.pendingBatch.length === this.maxBatchSize) {
       // Send batch immediately if we are at the maximum batch size.
       void this.sendBatchRequest();
-    } else if (!this.pendingBatchAggregator) {
+    } else if (!this.pendingBatchTimer) {
       // Schedule batch for next event loop + short duration
-      this.pendingBatchAggregator = setTimeout(
-        () => this.sendBatchRequest(),
-        10
-      );
+      this.pendingBatchTimer = setTimeout(() => this.sendBatchRequest(), 10);
     }
 
     return promise;
   }
 
-  async sendBatchRequest(): Promise<void> {
+  /**
+   * Sends the currently queued batches and resets the batch and timer. Processes
+   * the batched response results back to the original promises.
+   */
+  private async sendBatchRequest(): Promise<void> {
     // Get the current batch and clear it, so new requests
     // go into the next batch
     const batch = this.pendingBatch!;
     this.pendingBatch = undefined;
-    this.pendingBatchAggregator = undefined;
+    this.pendingBatchTimer = undefined;
 
     // Get the request as an array of requests
     const request = batch.map(inflight => inflight.request);
@@ -87,3 +108,12 @@ type SendBatchFn = (
   json?: string,
   processFunc?: (value: any, response: FetchJsonResponse) => any
 ) => Promise<any>;
+
+/**
+ * Internal interface to represent a request on a batch along with the promises to resolve it.
+ */
+interface BatchRequest {
+  request: JsonRpcRequest;
+  resolve?: (result: any) => void;
+  reject?: (error: Error) => void;
+}

@@ -27,7 +27,7 @@ export class AlchemyConfig {
   /** The maximum number of retries to perform. */
   readonly maxRetries: number;
 
-  /** User-provided setting to enable automatic batching. */
+  /** Setting to enable automatic batching on json-rpc requests. Defaults to false.*/
   readonly optimizedBatching: boolean;
 
   /**

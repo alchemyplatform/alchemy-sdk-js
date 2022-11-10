@@ -42,8 +42,10 @@ export class AlchemyProvider
   readonly maxRetries: number;
   readonly optimizedBatching: boolean;
 
-  /** VISIBLE ONLY FOR TESTING
-   *@internal */
+  /**
+   * VISIBLE ONLY FOR TESTING
+   *@internal
+   */
   readonly batcher: RequestBatcher;
 
   /** @internal */
@@ -69,7 +71,7 @@ export class AlchemyProvider
 
     // Normalize the Alchemy named network input to the network names used by
     // ethers. This allows the parent super constructor in JsonRpcProvider to
-    // correctly set the network.ƒ
+    // correctly set the network.
     const ethersNetwork = EthersNetwork[alchemyNetwork];
     super(connection, ethersNetwork);
 
@@ -325,11 +327,4 @@ function getResult(payload: {
   }
 
   return payload.result;
-}
-
-/** Internal interface to represent a request on a batch along with the promises to resolve it.*/
-export interface BatchRequest {
-  request: JsonRpcRequest;
-  resolve?: (result: any) => void;
-  reject?: (error: Error) => void;
 }

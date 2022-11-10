@@ -78,7 +78,6 @@ describe('AlchemyProvider', () => {
         hashesOnly: true
       },
       (res: any) => {
-        console.log(res);
         expect(res.transaction).toBeDefined();
         expect(typeof res.transaction.hash).toEqual('string');
         if (eventCount === 5) {
