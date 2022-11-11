@@ -6,7 +6,8 @@ It supports the exact same syntax and functionality of the Ethers.js `AlchemyPro
 
 The SDK leverages Alchemy's hardened node infrastructure, guaranteeing best-in-class node reliability, scalability, and data correctness, and is undergoing active development by Alchemy's engineers.
 
-> 🙋‍♀️ **FEATURE REQUESTS:** We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want on our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback), and we'd love to build it for you:
+> 🙋‍♀️ **FEATURE REQUESTS:** 
+> We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want on our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback), and we'd love to build it for you:
 
 The SDK currently supports the following chains:
 
@@ -37,11 +38,7 @@ const settings = {
 
 const alchemy = new Alchemy(settings);
 ```
-{% note %}
-
-The public "demo" API key may be rate limited based on traffic. To create your own API key, **[sign up for an Alchemy account here](https://alchemy.com/?a=SDKquickstart)** and use the key created on your dashboard for the first app.
-
-{% endnote %}
+> The public "demo" API key may be rate limited based on traffic. To create your own API key, **[sign up for an Alchemy account here](https://alchemy.com/?a=SDKquickstart)** and use the key created on your dashboard for the first app.
 
 The `Alchemy` object returned by `new Alchemy()` provides access to the Alchemy API. An optional config object can be passed in when initializing to set your API key, change the network, or specify the max number of retries.
 
@@ -57,7 +54,7 @@ The Alchemy SDK currently supports five different namespaces, including:
 
 If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should work properly.
 
-Note: The Alchemy SDK now supports ENS names (e.g. `vitalik.eth`) for every parameter where you can pass in a Externally Owned Address, or user address (e.g. `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`).
+> Note: The Alchemy SDK now supports ENS names (e.g. `vitalik.eth`) for every parameter where you can pass in a Externally Owned Address, or user address (e.g. `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`).
 
 ```ts
 import { Alchemy, AlchemySubscription } from 'alchemy-sdk';
