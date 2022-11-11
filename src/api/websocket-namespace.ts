@@ -1,6 +1,12 @@
 import type { Listener } from '@ethersproject/abstract-provider';
 
-import { AlchemyEventType } from '../types/types';
+import { isAlchemyEvent } from '../internal/ethers-event';
+import {
+  AlchemyEventType,
+  AlchemyMinedTransactionsAddress,
+  AlchemySubscription,
+  NonEmptyArray
+} from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
 
 /**
@@ -29,7 +35,8 @@ export class WebSocketNamespace {
   on(eventName: AlchemyEventType, listener: Listener): this {
     void (async () => {
       const provider = await this.config.getWebSocketProvider();
-      provider.on(eventName, listener);
+      const processedEvent = await this._resolveEnsAlchemyEvent(eventName);
+      provider.on(processedEvent, listener);
     })();
     return this;
   }
@@ -46,7 +53,8 @@ export class WebSocketNamespace {
   once(eventName: AlchemyEventType, listener: Listener): this {
     void (async () => {
       const provider = await this.config.getWebSocketProvider();
-      provider.once(eventName, listener);
+      const processedEvent = await this._resolveEnsAlchemyEvent(eventName);
+      provider.once(processedEvent, listener);
     })();
     return this;
   }
@@ -62,7 +70,8 @@ export class WebSocketNamespace {
   off(eventName: AlchemyEventType, listener?: Listener): this {
     void (async () => {
       const provider = await this.config.getWebSocketProvider();
-      return provider.off(eventName, listener);
+      const processedEvent = await this._resolveEnsAlchemyEvent(eventName);
+      return provider.off(processedEvent, listener);
     })();
     return this;
   }
@@ -77,7 +86,10 @@ export class WebSocketNamespace {
   removeAllListeners(eventName?: AlchemyEventType): this {
     void (async () => {
       const provider = await this.config.getWebSocketProvider();
-      provider.removeAllListeners(eventName);
+      const processedEvent = eventName
+        ? await this._resolveEnsAlchemyEvent(eventName)
+        : undefined;
+      provider.removeAllListeners(processedEvent);
     })();
     return this;
   }
@@ -91,7 +103,10 @@ export class WebSocketNamespace {
    */
   async listenerCount(eventName?: AlchemyEventType): Promise<number> {
     const provider = await this.config.getWebSocketProvider();
-    return provider.listenerCount(eventName);
+    const processedEvent = eventName
+      ? await this._resolveEnsAlchemyEvent(eventName)
+      : undefined;
+    return provider.listenerCount(processedEvent);
   }
 
   /**
@@ -102,6 +117,85 @@ export class WebSocketNamespace {
    */
   async listeners(eventName?: AlchemyEventType): Promise<Listener[]> {
     const provider = await this.config.getWebSocketProvider();
-    return provider.listeners(eventName);
+    const processedEvent = eventName
+      ? await this._resolveEnsAlchemyEvent(eventName)
+      : undefined;
+    return provider.listeners(processedEvent);
+  }
+
+  /**
+   * Converts ENS addresses in an Alchemy Event to the underlying resolved
+   * address.
+   *
+   * VISIBLE ONLY FOR TESTING.
+   *
+   * @internal
+   */
+  async _resolveEnsAlchemyEvent(
+    eventName: AlchemyEventType
+  ): Promise<AlchemyEventType> {
+    if (!isAlchemyEvent(eventName)) {
+      return eventName;
+    }
+
+    if (
+      eventName.method === AlchemySubscription.MINED_TRANSACTIONS &&
+      eventName.addresses
+    ) {
+      const processedAddresses: AlchemyMinedTransactionsAddress[] = [];
+      for (const address of eventName.addresses) {
+        if (address.to) {
+          address.to = await this._resolveNameOrError(address.to);
+        }
+        if (address.from) {
+          address.from = await this._resolveNameOrError(address.from);
+        }
+        processedAddresses.push(address);
+      }
+      eventName.addresses =
+        processedAddresses as NonEmptyArray<AlchemyMinedTransactionsAddress>;
+    } else if (eventName.method === AlchemySubscription.PENDING_TRANSACTIONS) {
+      if (eventName.fromAddress) {
+        if (typeof eventName.fromAddress === 'string') {
+          eventName.fromAddress = await this._resolveNameOrError(
+            eventName.fromAddress
+          );
+        } else {
+          eventName.fromAddress = await Promise.all(
+            eventName.fromAddress.map(this._resolveNameOrError)
+          );
+        }
+      }
+      if (eventName.toAddress) {
+        if (typeof eventName.toAddress === 'string') {
+          eventName.toAddress = await this._resolveNameOrError(
+            eventName.toAddress
+          );
+        } else {
+          eventName.toAddress = await Promise.all(
+            eventName.toAddress.map(this._resolveNameOrError)
+          );
+        }
+      }
+    }
+
+    return eventName;
+  }
+
+  /**
+   * Converts the provided ENS address or throws an error. This improves code
+   * readability and type safety in other methods.
+   *
+   * VISIBLE ONLY FOR TESTING.
+   *
+   * @internal
+   */
+  async _resolveNameOrError(name: string): Promise<string> {
+    const provider = await this.config.getProvider();
+    const resolved = await provider.resolveName(name);
+    if (resolved === null) {
+      throw new Error(`Unable to resolve the ENS address: ${name}`);
+    }
+    return resolved;
   }
 }

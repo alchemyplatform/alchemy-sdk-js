@@ -32,3 +32,5 @@ export {
   parseUnits,
   formatUnits
 } from '@ethersproject/units';
+
+export { Interface } from '@ethersproject/abi';
