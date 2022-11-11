@@ -29,7 +29,6 @@ import { AlchemyApiType } from '../util/const';
 import {
   getBaseNftFromRaw,
   getNftContractFromRaw,
-  getNftContractsFromRaw,
   getNftFromRaw,
   getNftRarityFromRaw
 } from '../util/util';
@@ -389,7 +388,7 @@ export async function searchContractMetadata(
     query
   });
 
-  return getNftContractsFromRaw(response);
+  return response.map(getNftContractFromRaw);
 }
 
 export async function summarizeNftAttributes(

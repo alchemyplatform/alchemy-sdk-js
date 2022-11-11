@@ -9,7 +9,6 @@ import {
   GetOwnersForContractWithTokenBalancesResponse,
   Nft,
   NftAttributesResponse,
-  NftContract,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
   NftExcludeFilters,
@@ -97,58 +96,6 @@ describe('NFT module', () => {
       mock.onGet().reply(200, rawNftContractResponse);
     });
 
-    function verifyNftContractMetadata(
-      actualNftContract: NftContract,
-      expectedNftContract: NftContract,
-      address: string,
-      name: string,
-      symbol: string,
-      totalSupply: string,
-      tokenType?: NftTokenType,
-      openSea?: RawOpenSeaCollectionMetadata
-    ) {
-      expect(actualNftContract).toEqual(expectedNftContract);
-
-      expect(actualNftContract.address).toEqual(address);
-      expect(actualNftContract.name).toEqual(name);
-      expect(actualNftContract.symbol).toEqual(symbol);
-      expect(actualNftContract.totalSupply).toEqual(totalSupply);
-      expect(actualNftContract.tokenType).toEqual(tokenType);
-      if (openSea) {
-        expect(actualNftContract.openSea?.floorPrice).toEqual(
-          openSea.floorPrice
-        );
-        expect(actualNftContract.openSea?.collectionName).toEqual(
-          openSea.collectionName
-        );
-        expect(actualNftContract.openSea?.safelistRequestStatus).toEqual(
-          openSea.safelistRequestStatus
-        );
-        expect(actualNftContract.openSea?.imageUrl).toEqual(openSea.imageUrl);
-        expect(actualNftContract.openSea?.description).toEqual(
-          openSea.description
-        );
-        expect(actualNftContract.openSea?.externalUrl).toEqual(
-          openSea.externalUrl
-        );
-        expect(actualNftContract.openSea?.twitterUsername).toEqual(
-          openSea.twitterUsername
-        );
-        expect(actualNftContract.openSea?.discordUrl).toEqual(
-          openSea.discordUrl
-        );
-        expect(actualNftContract.openSea?.lastIngestedAt).toEqual(
-          openSea.lastIngestedAt
-        );
-      }
-
-      expect(mock.history.get.length).toEqual(1);
-      expect(mock.history.get[0].params).toHaveProperty(
-        'contractAddress',
-        address
-      );
-    }
-
     it('returns the api response in the expected format', async () => {
       verifyNftContractMetadata(
         await alchemy.nft.getContractMetadata(address),
@@ -158,6 +105,12 @@ describe('NFT module', () => {
         symbol,
         totalSupply,
         tokenType
+      );
+
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        address
       );
     });
 
