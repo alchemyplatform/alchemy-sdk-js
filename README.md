@@ -80,6 +80,12 @@ alchemy.ws.on(
 );
 ```
 
+The Alchemy SDK also supports a number of Ethers.js objects that streamline the development process: 
+- [`Utils`](https://docs.ethers.io/v5/api/utils/): Equivalent to `ethers.utils`, this provides a number of common Ethers.js utility methods for developers.
+- [`Contract`](https://docs.ethers.io/v5/api/contract/contract/): An abstraction for smart contract code deployed to the blockchain.
+- [`ContractFactory`](https://docs.ethers.io/v5/api/contract/contract-factory/): Allows developers to build a `Contract` object.
+- [`Wallet`](https://docs.ethers.io/v5/api/signer/#Wallet): An implementation of `Signer` that can sign transactions and messages using a private key as a standard Externally Owned Account.
+
 ## Alchemy Core
 
 The core namespace contains all commonly-used [Ethers.js Provider](https://docs.ethers.io/v5/api/providers/api-providers/#AlchemyProvider) methods. If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` when accessing provider methods and it should just work.
