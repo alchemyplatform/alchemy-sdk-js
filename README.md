@@ -37,6 +37,11 @@ const settings = {
 
 const alchemy = new Alchemy(settings);
 ```
+{% note %}
+
+The public "demo" API key may be rate limited based on traffic. To create your own API key, **[sign up for an Alchemy account here](https://alchemy.com/?a=SDKquickstart)** and use the key created on your dashboard for the first app.
+
+{% endnote %}
 
 The `Alchemy` object returned by `new Alchemy()` provides access to the Alchemy API. An optional config object can be passed in when initializing to set your API key, change the network, or specify the max number of retries.
 
