@@ -10,6 +10,7 @@
 
 - Added support for ENS resolution to the `NotifyNamespace` and `WebsocketNamespace` methods.
 - Included new export for the `Interface` class from ethers to simplify encoding ABI when using `eth_call`.
+- Added support for the `NftNamespace.getNftMetadataBatch()` method to fetch metadata for multiple NFTs in a single call.
 
 ## 2.2.1
 

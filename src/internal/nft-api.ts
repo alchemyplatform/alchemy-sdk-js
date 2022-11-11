@@ -17,6 +17,8 @@ import {
   NftAttributesResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
+  NftMetadataBatchOptions,
+  NftMetadataBatchToken,
   NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
@@ -70,6 +72,30 @@ export async function getNftMetadata(
     }
   );
   return getNftFromRaw(response);
+}
+
+export async function getNftMetadataBatch(
+  config: AlchemyConfig,
+  tokens: Array<NftMetadataBatchToken>,
+  options?: NftMetadataBatchOptions
+): Promise<Nft[]> {
+  const data = {
+    tokens,
+    tokenUriTimeoutInMs: options?.tokenUriTimeoutInMs,
+    refreshCache: options?.refreshCache
+  };
+  const response = await requestHttpWithBackoff<{}, RawNft[]>(
+    config,
+    AlchemyApiType.NFT,
+    'getNFTMetadataBatch',
+    'getNftMetadataBatch',
+    {},
+    {
+      method: 'POST',
+      data
+    }
+  );
+  return response.map(getNftFromRaw);
 }
 
 export async function getContractMetadata(

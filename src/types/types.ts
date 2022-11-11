@@ -724,6 +724,35 @@ export interface NftContractTokenBalance {
 }
 
 /**
+ * Represents an NFT token to fetch metadata for in a {@link NftNamespace.getNftMetadataBatch}
+ * method.
+ */
+export interface NftMetadataBatchToken {
+  /** The NFT contract address. Limited to ERC721 and ERC1155 tokens. */
+  contractAddress: string;
+
+  /** The id of the NFT. */
+  tokenId: BigNumberish;
+}
+
+/** Additional options for the {@link NftNamespace.getNftMetadataBatch} method.*/
+export interface NftMetadataBatchOptions {
+  /**
+   * No set timeout by default - When metadata is requested, this parameter is
+   * the timeout (in milliseconds) for the website hosting the metadata to respond.
+   * If you want to only access the cache and not live fetch any metadata for
+   * cache misses then set this value to 0.
+   */
+  tokenUriTimeoutInMs?: number;
+
+  /**
+   * Whether to refresh the metadata for the given NFT token before returning
+   * the response. Defaults to false for faster response times.
+   */
+  refreshCache?: boolean;
+}
+
+/**
  * The successful object returned by the {@link getFloorPrice} call for each
  * marketplace (e.g. looksRare).
  *
