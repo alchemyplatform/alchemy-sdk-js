@@ -6,9 +6,6 @@ export const DEFAULT_ALCHEMY_API_KEY = 'demo';
 export const DEFAULT_NETWORK = Network.ETH_MAINNET;
 export const DEFAULT_MAX_RETRIES = 5;
 
-/** Maximum size of a batch on the rpc provider. */
-export const DEFAULT_MAX_REQUEST_BATCH_SIZE = 100;
-
 /**
  * Returns the base URL for making Alchemy API requests. The `alchemy.com`
  * endpoints only work with non eth json-rpc requests.

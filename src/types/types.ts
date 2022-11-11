@@ -47,7 +47,7 @@ export interface AlchemySettings {
    *
    * This implementation is based on the `JsonRpcBatchProvider` in ethers.
    */
-  optimizedBatching?: boolean;
+  batchRequsets?: boolean;
 }
 
 /**

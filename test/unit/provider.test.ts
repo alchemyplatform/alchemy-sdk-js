@@ -22,7 +22,7 @@ describe('AlchemyProvider', () => {
     let batcher: Mocked<RequestBatcher>;
     beforeEach(async () => {
       alchemy = new Alchemy({
-        optimizedBatching: true
+        batchRequsets: true
       });
       const provider = await alchemy.config.getProvider();
       batcher = provider.batcher as Mocked<RequestBatcher>;

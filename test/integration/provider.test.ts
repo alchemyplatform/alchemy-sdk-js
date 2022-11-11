@@ -150,7 +150,7 @@ describe('AlchemyProvider', () => {
   it('batching mode resolves promises', async () => {
     alchemy = new Alchemy({
       apiKey: process.env.ALCHEMY_API_KEY,
-      optimizedBatching: true
+      batchRequsets: true
     });
 
     const p1 = alchemy.core.getGasPrice();

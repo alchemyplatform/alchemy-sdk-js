@@ -40,7 +40,7 @@ export class AlchemyProvider
 {
   readonly apiKey: string;
   readonly maxRetries: number;
-  readonly optimizedBatching: boolean;
+  readonly batchRequests: boolean;
 
   /**
    * VISIBLE ONLY FOR TESTING
@@ -77,7 +77,7 @@ export class AlchemyProvider
 
     this.apiKey = config.apiKey;
     this.maxRetries = config.maxRetries;
-    this.optimizedBatching = config.optimizedBatching;
+    this.batchRequests = config.batchRequests;
 
     // TODO: support individual headers when calling batch
     const batcherConnection = { ...this.connection };
@@ -250,7 +250,7 @@ export class AlchemyProvider
     const connection = { ...this.connection };
     connection.headers!['Alchemy-Ethers-Sdk-Method'] = methodName;
 
-    if (this.optimizedBatching || forceBatch) {
+    if (this.batchRequests || forceBatch) {
       return this.batcher.enqueueRequest(request as JsonRpcRequest);
     }
     // END MODIFIED CODE

@@ -1,7 +1,12 @@
 import { ConnectionInfo, FetchJsonResponse } from '@ethersproject/web';
 
-import { DEFAULT_MAX_REQUEST_BATCH_SIZE } from '../util/const';
 import { JsonRpcRequest } from './internal-types';
+
+/** Maximum size of a batch on the rpc provider. */
+const DEFAULT_MAX_REQUEST_BATCH_SIZE = 100;
+
+/** Timeout interval before the pending batch is sent. */
+const DEFAULT_REQUEST_BATCH_DELAY_MS = 10;
 
 /**
  * Internal class to enqueue requests and automatically send/process batches.
@@ -57,7 +62,10 @@ export class RequestBatcher {
       void this.sendBatchRequest();
     } else if (!this.pendingBatchTimer) {
       // Schedule batch for next event loop + short duration
-      this.pendingBatchTimer = setTimeout(() => this.sendBatchRequest(), 10);
+      this.pendingBatchTimer = setTimeout(
+        () => this.sendBatchRequest(),
+        DEFAULT_REQUEST_BATCH_DELAY_MS
+      );
     }
 
     return promise;

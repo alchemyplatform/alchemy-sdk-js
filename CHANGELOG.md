@@ -9,7 +9,7 @@
 ### Minor Changes
 
 - Added support for ENS resolution to the `NotifyNamespace` and `WebsocketNamespace` methods.
-- Added the `optimizedBatching` setting in `AlchemySettings`. Enabling this setting will automatically batch and send json-rpc requests to reduce network overhead.
+- Added the `batchRequests` setting in `AlchemySettings`. Enabling this setting will automatically batch and send json-rpc requests to reduce network overhead.
 
 ## 2.2.1
 
