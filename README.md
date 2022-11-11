@@ -8,7 +8,7 @@ The SDK leverages Alchemy's hardened node infrastructure, guaranteeing best-in-c
 
 > 🙋‍♀️ **FEATURE REQUESTS:** 
 > 
-> We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want on our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback), and we'd love to build it for you:
+> We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want on our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback), and we'd love to build it for you.
 
 The SDK currently supports the following chains:
 
@@ -39,7 +39,7 @@ const settings = {
 
 const alchemy = new Alchemy(settings);
 ```
-> **ℹ️ NOTE**
+> **ℹ️ Creating a unique Alchemy API Key**
 > 
 > The public "demo" API key may be rate limited based on traffic. To create your own API key, **[sign up for an Alchemy account here](https://alchemy.com/?a=SDKquickstart)** and use the key created on your dashboard for the first app.
 
@@ -57,7 +57,7 @@ The Alchemy SDK currently supports five different namespaces, including:
 
 If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should work properly.
 
-> **ℹ️ NOTE**
+> **ℹ️ ENS Name Resolution**
 > 
 > The Alchemy SDK now supports ENS names (e.g. `vitalik.eth`) for every parameter where you can pass in a Externally Owned Address, or user address (e.g. `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`).
 
@@ -278,7 +278,11 @@ or as a webpage by opening `docs/index.html` in your browser.
 
 ## Usage Examples
 
-Below are a few usage examples. You can also find examples at the following page: [Examples Using the Alchemy SDK](https://docs.alchemy.com/reference/using-the-alchemy-sdk).
+Below are a few usage examples. 
+
+> **ℹ️ Examples Using the Alchemy SDK**
+> 
+> You can also find examples at the following page: [Examples Using the Alchemy SDK](https://docs.alchemy.com/reference/using-the-alchemy-sdk).
 
 ### Getting the NFTs owned by an address
 
