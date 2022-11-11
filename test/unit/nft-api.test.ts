@@ -177,8 +177,12 @@ describe('NFT module', () => {
     const timeoutInMs = 50;
     // Special case token ID as an integer string, since that's what the NFT
     // API endpoint returns.
-    const rawNftResponse = createRawNft(title, tokenId.toString());
-    const expectedNft = getNftFromRaw(rawNftResponse, contractAddress);
+    const rawNftResponse = createRawNft(
+      contractAddress,
+      title,
+      tokenId.toString()
+    );
+    const expectedNft = getNftFromRaw(rawNftResponse);
 
     beforeEach(() => {
       mock.onGet().reply(200, rawNftResponse);
@@ -648,8 +652,8 @@ describe('NFT module', () => {
 
     const nftResponse: RawGetNftsForContractResponse = {
       nfts: [
-        createRawNft('a', '0x1', NftTokenType.ERC1155),
-        createRawNft('b', '0x2', NftTokenType.ERC1155)
+        createRawNft(contractAddress, 'a', '0x1', NftTokenType.ERC1155),
+        createRawNft(contractAddress, 'b', '0x2', NftTokenType.ERC1155)
       ],
       nextToken: 'page-key1'
     };
@@ -752,24 +756,26 @@ describe('NFT module', () => {
     it('includes contract metadata at the top level', async () => {
       const mockResponse = {
         nfts: [
-          createRawNft('a', '0x1', NftTokenType.UNKNOWN, {
+          createRawNft('0xCA1', 'title', '0x1', NftTokenType.UNKNOWN, {
             contractMetadata: {
               name: 'Super NFT',
               symbol: 'WOW',
               totalSupply: '9999'
             }
           }),
-          createRawNft('b', '0x2', NftTokenType.ERC1155)
+          createRawNft('0xCA1', 'b', '0x2', NftTokenType.ERC1155)
         ]
       };
       mock.reset();
       mock.onGet().reply(200, mockResponse);
       const response = await alchemy.nft.getNftsForContract(contractAddress);
       expect(response.nfts.length).toEqual(2);
+      expect(response.nfts[0].contract.address).toEqual('0xCA1');
       expect(response.nfts[0].contract.tokenType).toEqual(NftTokenType.UNKNOWN);
       expect(response.nfts[0].contract.name).toEqual('Super NFT');
       expect(response.nfts[0].contract.symbol).toEqual('WOW');
       expect(response.nfts[0].contract.totalSupply).toEqual('9999');
+      expect(response.nfts[1].contract.address).toEqual('0xCA1');
       expect(response.nfts[1].contract.tokenType).toEqual(NftTokenType.ERC1155);
       expect(response.nfts[1].contract.name).toBeUndefined();
       expect(response.nfts[1].contract.symbol).toBeUndefined();
@@ -795,13 +801,13 @@ describe('NFT module', () => {
     const nftResponses: RawGetNftsForContractResponse[] = [
       {
         nfts: [
-          createRawNft('a', '0x1', NftTokenType.ERC721),
-          createRawNft('b', '0x2', NftTokenType.ERC721)
+          createRawNft(contractAddress, 'a', '0x1', NftTokenType.ERC721),
+          createRawNft(contractAddress, 'b', '0x2', NftTokenType.ERC721)
         ],
         nextToken: 'page-key1'
       },
       {
-        nfts: [createRawNft('c', '0x3', NftTokenType.ERC721)]
+        nfts: [createRawNft(contractAddress, 'c', '0x3', NftTokenType.ERC721)]
       }
     ];
 
@@ -1411,12 +1417,14 @@ describe('NFT module', () => {
     const tokenId = '66';
     const tokenIdHex = '0x42';
     const rawNftResponse = createRawNft(
+      contractAddress,
       'title',
       tokenIdHex,
       NftTokenType.UNKNOWN,
       { timeLastUpdated: originalTimestamp }
     );
     const rawNftResponseRefreshed = createRawNft(
+      contractAddress,
       'title',
       tokenIdHex,
       NftTokenType.UNKNOWN,

@@ -97,10 +97,12 @@ export function createOwnedBaseNft(
 }
 
 export function createRawBaseNft(
+  contractAddress: string,
   tokenId: string | number,
   tokenType = NftTokenType.UNKNOWN
 ): RawBaseNft {
   return {
+    contract: { address: contractAddress },
     id: {
       tokenId: BigNumber.from(tokenId).toString(),
       tokenMetadata: { tokenType }
@@ -113,7 +115,7 @@ export function createBaseNft(
   tokenId: string | number,
   tokenType = NftTokenType.UNKNOWN
 ): BaseNft {
-  return getBaseNftFromRaw(createRawBaseNft(tokenId, tokenType), address);
+  return getBaseNftFromRaw(createRawBaseNft(address, tokenId, tokenType));
 }
 
 export function createNft(
@@ -125,8 +127,7 @@ export function createNft(
   media?: TokenUri[] | undefined
 ): Nft {
   return getNftFromRaw(
-    createRawNft(title, tokenId, tokenType, { tokenUri, media }),
-    address
+    createRawNft(address, title, tokenId, tokenType, { tokenUri, media })
   );
 }
 
@@ -139,12 +140,14 @@ interface RawNftOptions {
 }
 
 export function createRawNft(
+  contractAddress: string,
   title: string,
   tokenId: string,
   tokenType = NftTokenType.UNKNOWN,
   options?: RawNftOptions
 ): RawNft {
   return {
+    contract: { address: contractAddress },
     title,
     description: options?.description ?? `a truly unique NFT: ${title}`,
     timeLastUpdated: options?.timeLastUpdated ?? '2022-02-16T17:12:00.280Z',
@@ -169,7 +172,7 @@ export function createRawOwnedNft(
   contractMetadata?: RawNftContractMetadata
 ): RawOwnedNft {
   return {
-    ...createRawNft(title, tokenId, tokenType),
+    ...createRawNft(address, title, tokenId, tokenType),
     contract: {
       address
     },
