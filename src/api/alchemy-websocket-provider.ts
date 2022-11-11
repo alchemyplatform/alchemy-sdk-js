@@ -681,7 +681,7 @@ export class AlchemyWebSocketProvider
   private emitNewHeadsEvent(virtualId: string, result: NewHeadsEvent): void {
   try
     {
-      if(result !=undefined && result != null && isNumeric(result))
+      if(result !=undefined && result != null && this.isNumeric(result.toString()))
       {
           this.emitAndRememberEvent(virtualId, result, getNewHeadsBlockNumber);
       }
@@ -690,7 +690,7 @@ export class AlchemyWebSocketProvider
     }
   }
 
-  private function isNumeric(value) {
+  private isNumeric(value: string) {
       return /^-?\d+$/.test(value);
   }
 
