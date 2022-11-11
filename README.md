@@ -136,7 +136,7 @@ alchemy.ws.on('block', res => console.log(res));
 alchemy.ws.once(
   {
     method: AlchemySubscription.PENDING_TRANSACTIONS,
-    toAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+    toAddress: 'vitalik.eth'
   },
   res => console.log(res)
 );
@@ -336,7 +336,7 @@ import { Alchemy } from 'alchemy-sdk';
 const alchemy = new Alchemy();
 
 alchemy.core
-  .getTokenBalances('0x994b342dd87fc825f66e51ffa3ef71ad818b6893')
+  .getTokenBalances('vitalik.eth')
   .then(console.log);
 ```
 
