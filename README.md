@@ -280,9 +280,9 @@ or as a webpage by opening `docs/index.html` in your browser.
 
 Below are a few usage examples. 
 
-> **ℹ️ Examples Using the Alchemy SDK**
+> **ℹ️ More Examples **
 > 
-> You can also find examples at the following page: [Examples Using the Alchemy SDK](https://docs.alchemy.com/reference/using-the-alchemy-sdk).
+> You can also go here: [Examples Using the Alchemy SDK](https://docs.alchemy.com/reference/using-the-alchemy-sdk).
 
 ### Getting the NFTs owned by an address
 
