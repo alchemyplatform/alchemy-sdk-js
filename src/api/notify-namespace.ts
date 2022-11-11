@@ -479,7 +479,7 @@ export class NotifyNamespace {
     for (const address of addresses) {
       const rawAddress = await provider.resolveName(address);
       if (rawAddress === null) {
-        throw new Error(`Unable to resolve the address: ${address}`);
+        throw new Error(`Unable to resolve the ENS address: ${address}`);
       }
       resolvedAddresses.push(rawAddress);
     }

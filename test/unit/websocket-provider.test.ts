@@ -9,6 +9,7 @@ import {
   AlchemyPendingTransactionsEventFilter,
   AlchemySubscription,
   Network,
+  WebSocketNamespace,
   toHex
 } from '../../src';
 import { AlchemyProvider } from '../../src/api/alchemy-provider';
@@ -826,5 +827,87 @@ describe('AlchemyWebSocketProvider', () => {
           ':0xABC,*|*,0xDEF|0x123,0x456:*:*'
       );
     });
+  });
+});
+
+describe('WS provider supports ENS resolution', () => {
+  const sdk = new Alchemy();
+  let wsNamespace: Mocked<WebSocketNamespace>;
+
+  const ens1 = 'ens1.eth';
+  const ens1Raw = '0xABC';
+  const ens2 = 'ens2.eth';
+  const ens2Raw = '0xDEF';
+
+  beforeEach(() => {
+    wsNamespace = sdk.ws as Mocked<WebSocketNamespace>;
+    wsNamespace._resolveNameOrError = jest.fn();
+  });
+
+  it('processes mined transactions', async () => {
+    const minedEvent: AlchemyMinedTransactionsEventFilter = {
+      method: AlchemySubscription.MINED_TRANSACTIONS,
+      addresses: [
+        {
+          to: ens1
+        },
+        {
+          from: ens2
+        },
+        {
+          to: ens1Raw,
+          from: ens2Raw
+        }
+      ]
+    };
+
+    wsNamespace._resolveNameOrError
+      .mockResolvedValueOnce(ens1Raw)
+      .mockResolvedValueOnce(ens2Raw)
+      .mockResolvedValueOnce(ens1Raw)
+      .mockResolvedValueOnce(ens2Raw);
+
+    const res = (await wsNamespace._resolveEnsAlchemyEvent(
+      minedEvent
+    )) as AlchemyMinedTransactionsEventFilter;
+    expect(res.addresses![0]).toEqual({ to: ens1Raw });
+    expect(res.addresses![1]).toEqual({ from: ens2Raw });
+    expect(res.addresses![2]).toEqual({ to: ens1Raw, from: ens2Raw });
+  });
+
+  it('processes pending transactions with string inputs', async () => {
+    const pendingEvent: AlchemyPendingTransactionsEventFilter = {
+      method: AlchemySubscription.PENDING_TRANSACTIONS,
+      fromAddress: ens1,
+      toAddress: ens2
+    };
+
+    wsNamespace._resolveNameOrError
+      .mockResolvedValueOnce(ens1Raw)
+      .mockResolvedValueOnce(ens2Raw);
+    const res = (await wsNamespace._resolveEnsAlchemyEvent(
+      pendingEvent
+    )) as AlchemyPendingTransactionsEventFilter;
+    expect(res.fromAddress).toEqual(ens1Raw);
+    expect(res.toAddress).toEqual(ens2Raw);
+  });
+
+  it('processes pending transactions with array inputs', async () => {
+    const pendingEvent: AlchemyPendingTransactionsEventFilter = {
+      method: AlchemySubscription.PENDING_TRANSACTIONS,
+      fromAddress: [ens1, ens2Raw],
+      toAddress: [ens2, ens1Raw]
+    };
+
+    wsNamespace._resolveNameOrError
+      .mockResolvedValueOnce(ens1Raw)
+      .mockResolvedValueOnce(ens2Raw)
+      .mockResolvedValueOnce(ens2Raw)
+      .mockResolvedValueOnce(ens1Raw);
+    const res = (await wsNamespace._resolveEnsAlchemyEvent(
+      pendingEvent
+    )) as AlchemyPendingTransactionsEventFilter;
+    expect(res.fromAddress).toEqual([ens1Raw, ens2Raw]);
+    expect(res.toAddress).toEqual([ens2Raw, ens1Raw]);
   });
 });
