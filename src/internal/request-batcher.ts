@@ -71,7 +71,7 @@ export class RequestBatcher {
   private async sendBatchRequest(): Promise<void> {
     // Get the current batch and clear it, so new requests
     // go into the next batch
-    const batch = this.pendingBatch!;
+    const batch = this.pendingBatch;
     this.pendingBatch = [];
     if (this.pendingBatchTimer) {
       clearTimeout(this.pendingBatchTimer);
