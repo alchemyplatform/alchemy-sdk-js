@@ -10,7 +10,7 @@ import {
 } from '@ethersproject/providers';
 import { ConnectionInfo, fetchJson } from '@ethersproject/web';
 
-import { JsonRpcRequest } from '../internal/internal-types';
+import { JsonRpcRequest, JsonRpcResponse } from '../internal/internal-types';
 import { RequestBatcher } from '../internal/request-batcher';
 import { Network } from '../types/types';
 import {
@@ -82,7 +82,12 @@ export class AlchemyProvider
     // TODO: support individual headers when calling batch
     const batcherConnection = { ...this.connection };
     batcherConnection.headers!['Alchemy-Ethers-Sdk-Method'] = 'batchSend';
-    this.batcher = new RequestBatcher(fetchJson, batcherConnection);
+    const sendBatchFn = (
+      requests: JsonRpcRequest[]
+    ): Promise<JsonRpcResponse[]> => {
+      return fetchJson(batcherConnection, JSON.stringify(requests));
+    };
+    this.batcher = new RequestBatcher(sendBatchFn);
   }
 
   /**

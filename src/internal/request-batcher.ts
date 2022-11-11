@@ -1,6 +1,4 @@
-import { ConnectionInfo, FetchJsonResponse } from '@ethersproject/web';
-
-import { JsonRpcRequest } from './internal-types';
+import { JsonRpcRequest, JsonRpcResponse } from './internal-types';
 
 /** Maximum size of a batch on the rpc provider. */
 const DEFAULT_MAX_REQUEST_BATCH_SIZE = 100;
@@ -24,11 +22,10 @@ export class RequestBatcher {
    * Array of enqueued requests along with the constructed promise handlers for
    * each request.
    */
-  private pendingBatch: Array<BatchRequest> | undefined;
+  private pendingBatch: Array<BatchRequest> = [];
 
   constructor(
     private readonly sendBatchFn: SendBatchFn,
-    private readonly connection: ConnectionInfo,
     private readonly maxBatchSize = DEFAULT_MAX_REQUEST_BATCH_SIZE
   ) {}
 
@@ -40,10 +37,6 @@ export class RequestBatcher {
    * Returns a promise that resolves with the result of the request.
    */
   async enqueueRequest(request: JsonRpcRequest): Promise<any> {
-    if (this.pendingBatch === undefined) {
-      this.pendingBatch = [];
-    }
-
     const inflightRequest: BatchRequest = {
       request,
       resolve: undefined,
@@ -76,23 +69,19 @@ export class RequestBatcher {
    * the batched response results back to the original promises.
    */
   private async sendBatchRequest(): Promise<void> {
-    // This if-statement handles the case where the maximum batch size triggers
-    // the batch send, so the scheduled timeout send is called with an empty
-    // batch (or vice-versa).
-    if (this.pendingBatch === undefined) {
-      return;
-    }
-
     // Get the current batch and clear it, so new requests
     // go into the next batch
     const batch = this.pendingBatch!;
-    this.pendingBatch = undefined;
-    this.pendingBatchTimer = undefined;
+    this.pendingBatch = [];
+    if (this.pendingBatchTimer) {
+      clearTimeout(this.pendingBatchTimer);
+      this.pendingBatchTimer = undefined;
+    }
 
     // Get the request as an array of requests
     const request = batch.map(inflight => inflight.request);
 
-    return this.sendBatchFn(this.connection, JSON.stringify(request)).then(
+    return this.sendBatchFn(request).then(
       result => {
         // For each result, feed it to the correct Promise, depending
         // on whether it was a success or error
@@ -118,11 +107,7 @@ export class RequestBatcher {
 }
 
 /** Function type to match the `fetchJson` function in ethers. */
-type SendBatchFn = (
-  connection: string | ConnectionInfo,
-  json?: string,
-  processFunc?: (value: any, response: FetchJsonResponse) => any
-) => Promise<any>;
+type SendBatchFn = (reqs: JsonRpcRequest[]) => Promise<JsonRpcResponse[]>;
 
 /**
  * Internal interface to represent a request on a batch along with the promises to resolve it.

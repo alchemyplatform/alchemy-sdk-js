@@ -7,12 +7,9 @@ import { RequestBatcher } from '../../src/internal/request-batcher';
 describe('RequestBatcher', () => {
   let batcher: RequestBatcher;
   let fetchJsonMock: jest.Mock;
-  const connectionInfo = {
-    url: 'http://mock.url'
-  };
   beforeEach(() => {
     fetchJsonMock = jest.fn();
-    batcher = new RequestBatcher(fetchJsonMock, connectionInfo);
+    batcher = new RequestBatcher(fetchJsonMock);
   });
 
   function blockNumberRequest(id: number): JsonRpcRequest {
@@ -45,14 +42,13 @@ describe('RequestBatcher', () => {
     expect(await bn1).toEqual('0x1');
     expect(await bn2).toEqual('0x2');
     expect(await bn3).toEqual('0x3');
-    const connection = fetchJsonMock.mock.calls[0][0];
-    expect(connection).toEqual(connectionInfo);
-    const rawRequest = JSON.parse(fetchJsonMock.mock.calls[0][1]);
+    console.log(fetchJsonMock.mock.calls[0][0]);
+    const rawRequest = fetchJsonMock.mock.calls[0][0];
     expect(rawRequest.length).toEqual(3);
   });
 
   it('sends requests based on maximum batch size', async () => {
-    batcher = new RequestBatcher(fetchJsonMock, connectionInfo, 2);
+    batcher = new RequestBatcher(fetchJsonMock, 2);
     fetchJsonMock
       .mockResolvedValueOnce([
         blockNumberResponse(1, '0x1'),
@@ -73,13 +69,9 @@ describe('RequestBatcher', () => {
     expect(await bn3).toEqual('0x3');
     expect(await bn4).toEqual('0x4');
 
-    let connection = fetchJsonMock.mock.calls[0][0];
-    expect(connection).toEqual(connectionInfo);
-    let rawRequest = JSON.parse(fetchJsonMock.mock.calls[0][1]);
+    let rawRequest = fetchJsonMock.mock.calls[0][0];
     expect(rawRequest.length).toEqual(2);
-    connection = fetchJsonMock.mock.calls[1][0];
-    expect(connection).toEqual(connection);
-    rawRequest = JSON.parse(fetchJsonMock.mock.calls[1][1]);
+    rawRequest = fetchJsonMock.mock.calls[1][0];
     expect(rawRequest.length).toEqual(2);
   });
 
@@ -97,7 +89,7 @@ describe('RequestBatcher', () => {
 
       throw new Error('Promise should have thrown' + expected);
     }
-    batcher = new RequestBatcher(fetchJsonMock, connectionInfo, 2);
+    batcher = new RequestBatcher(fetchJsonMock, 2);
     fetchJsonMock
       .mockRejectedValueOnce('Test error 1')
       .mockRejectedValueOnce('Test error 2');
