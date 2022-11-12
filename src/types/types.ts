@@ -40,6 +40,14 @@ export interface AlchemySettings {
    * in the Alchemy Dashboard on the Notify tab.
    */
   authToken?: string;
+
+  /**
+   * Optional setting that automatically batches and sends json-rpc requests for higher
+   * throughput and reduced network IO. Defaults to false.
+   *
+   * This implementation is based on the `JsonRpcBatchProvider` in ethers.
+   */
+  batchRequsets?: boolean;
 }
 
 /**

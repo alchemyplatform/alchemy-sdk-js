@@ -78,7 +78,6 @@ describe('AlchemyProvider', () => {
         hashesOnly: true
       },
       (res: any) => {
-        console.log(res);
         expect(res.transaction).toBeDefined();
         expect(typeof res.transaction.hash).toEqual('string');
         if (eventCount === 5) {
@@ -146,6 +145,18 @@ describe('AlchemyProvider', () => {
       expect(typeof res).toEqual('number');
       done();
     });
+  });
+
+  it('batching mode resolves promises', async () => {
+    alchemy = new Alchemy({
+      apiKey: process.env.ALCHEMY_API_KEY,
+      batchRequsets: true
+    });
+
+    const p1 = alchemy.core.getGasPrice();
+    const p2 = alchemy.core.getBlockNumber();
+    await p1;
+    await p2;
   });
 
   // // TODO(ethers): Write tests to make sure that the SDK's provider instance
