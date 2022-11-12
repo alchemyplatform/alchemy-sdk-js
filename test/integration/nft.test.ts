@@ -1,6 +1,7 @@
 import {
   Alchemy,
   NftExcludeFilters,
+  NftSaleMarketplace,
   NftTokenType,
   OpenSeaSafelistRequestStatus
 } from '../../src';
@@ -254,6 +255,38 @@ describe('E2E integration tests', () => {
     const response = await alchemy.nft.getFloorPrice(contractAddress);
     expect(response.openSea).toBeDefined();
     expect(response.looksRare).toBeDefined();
+  });
+
+  it('getNftSales()', async () => {
+    const response = await alchemy.nft.getNftSales();
+
+    expect(response.pageKey).toBeDefined();
+    expect(response.nftSales.length).toBeGreaterThan(0);
+  });
+
+  it('getNftSales() with pageKey', async () => {
+    const firstPage = await alchemy.nft.getNftSales();
+
+    const response = await alchemy.nft.getNftSales({
+      pageKey: firstPage?.pageKey
+    });
+
+    expect(response.nftSales).not.toEqual(firstPage.nftSales);
+  });
+
+  it.each(
+    Object.values(NftSaleMarketplace).filter(
+      marketplace => marketplace != NftSaleMarketplace.UNKNOWN
+    )
+  )(`getNftSales() with marketplace=%s`, async marketplace => {
+    const response = await alchemy.nft.getNftSales({
+      marketplace,
+      limit: 10
+    });
+
+    response.nftSales.forEach(nftSale => {
+      expect(nftSale.marketplace).toEqual(marketplace);
+    });
   });
 
   it('computeRarity()', async () => {
