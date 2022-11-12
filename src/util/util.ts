@@ -5,13 +5,17 @@ import { toHex } from '../api/util';
 import {
   RawBaseNft,
   RawBaseNftContract,
+  RawGetNftSalesResponse,
   RawNft,
   RawNftAttributeRarity,
   RawNftContract,
   RawSpamInfo
 } from '../internal/raw-interfaces';
 import {
+  GetNftSalesResponse,
   NftAttributeRarity,
+  NftSaleMarketplace,
+  NftTakerType,
   NftTokenType,
   OpenSeaSafelistRequestStatus,
   SpamInfo,
@@ -113,6 +117,54 @@ export function getNftFromRaw(rawNft: RawNft, contractAddress: string): Nft {
     media: parseNftTokenUriArray(rawNft.media),
     spamInfo
   };
+}
+
+export function getNftSalesFromRaw(
+  rawNftSales: RawGetNftSalesResponse
+): GetNftSalesResponse {
+  return {
+    pageKey: rawNftSales?.pageKey,
+    nftSales: rawNftSales.nftSales.map(rawNftSale => ({
+      marketplace: parseNftSaleMarketplace(rawNftSale.marketplace),
+      contractAddress: rawNftSale.contractAddress,
+      tokenId: rawNftSale.tokenId,
+      quantity: rawNftSale.quantity,
+      buyerAddress: rawNftSale.buyerAddress,
+      sellerAddress: rawNftSale.sellerAddress,
+      taker: parseNftTaker(rawNftSale.taker),
+      sellerFee: rawNftSale?.sellerFee,
+      marketplaceFee: rawNftSale?.marketplaceFee,
+      royaltyFee: rawNftSale?.royaltyFee,
+      blockNumber: rawNftSale?.blockNumber,
+      logIndex: rawNftSale.logIndex,
+      bundleIndex: rawNftSale.bundleIndex,
+      transactionHash: rawNftSale.transactionHash
+    }))
+  };
+}
+
+function parseNftSaleMarketplace(marketplace: string): NftSaleMarketplace {
+  switch (marketplace) {
+    case 'looksrare':
+      return NftSaleMarketplace.LOOKSRARE;
+    case 'seaport':
+      return NftSaleMarketplace.SEAPORT;
+    case 'x2y2':
+      return NftSaleMarketplace.X2Y2;
+    default:
+      return NftSaleMarketplace.UNKNOWN;
+  }
+}
+
+function parseNftTaker(taker: string): NftTakerType {
+  switch (taker) {
+    case 'BUYER':
+      return NftTakerType.BUYER;
+    case 'SELLER':
+      return NftTakerType.SELLER;
+    default:
+      return NftTakerType.UNKNOWN;
+  }
 }
 
 export function getNftRarityFromRaw(
