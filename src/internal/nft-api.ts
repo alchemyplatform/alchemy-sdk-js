@@ -6,6 +6,9 @@ import {
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
   GetFloorPriceResponse,
+  GetNftSales,
+  GetNftSalesByContractAddress,
+  GetNftSalesResponse,
   GetNftsForContractOptions,
   GetNftsForOwnerOptions,
   GetOwnersForContractOptions,
@@ -34,7 +37,8 @@ import {
   getNftContractFromRaw,
   getNftContractsFromRaw,
   getNftFromRaw,
-  getNftRarityFromRaw
+  getNftRarityFromRaw,
+  getNftSalesFromRaw
 } from '../util/util';
 import { paginateEndpoint, requestHttpWithBackoff } from './dispatch';
 import {
@@ -43,6 +47,7 @@ import {
   RawContractNft,
   RawGetBaseNftsForContractResponse,
   RawGetBaseNftsResponse,
+  RawGetNftSalesResponse,
   RawGetNftsForContractResponse,
   RawGetNftsResponse,
   RawGetOwnersForContractResponse,
@@ -364,6 +369,41 @@ export async function getFloorPrice(
       contractAddress
     }
   );
+}
+
+export async function getNftSales(
+  config: AlchemyConfig,
+  options: GetNftSales | GetNftSalesByContractAddress = {},
+  srcMethod = 'getNftSales'
+): Promise<GetNftSalesResponse> {
+  // Avoid ts compiler complaining about the contractAddress field.
+  const params: Partial<GetNftSalesByContractAddress> = {
+    ...options
+  };
+
+  const response = await requestHttpWithBackoff<
+    GetNftSalesParams,
+    RawGetNftSalesResponse
+  >(config, AlchemyApiType.NFT, 'getNFTSales', srcMethod, {
+    fromBlock: params?.fromBlock,
+    toBlock: params?.toBlock,
+    order: params?.order,
+    marketplace:
+      params?.marketplace != NftSaleMarketplace.UNKNOWN
+        ? params?.marketplace
+        : undefined,
+    contractAddress: params?.contractAddress,
+    tokenId: params?.tokenId
+      ? BigNumber.from(params?.tokenId).toString()
+      : undefined,
+    sellerAddress: params?.sellerAddress,
+    buyerAddress: params?.buyerAddress,
+    taker: params?.taker != NftTakerType.UNKNOWN ? params?.taker : undefined,
+    limit: params?.limit,
+    pageKey: params?.pageKey
+  });
+
+  return getNftSalesFromRaw(response);
 }
 
 export async function computeRarity(
