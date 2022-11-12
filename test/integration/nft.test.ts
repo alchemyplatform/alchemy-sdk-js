@@ -262,6 +262,26 @@ describe('E2E integration tests', () => {
 
     expect(response.pageKey).toBeDefined();
     expect(response.nftSales.length).toBeGreaterThan(0);
+    expect(response.nftSales[0].bundleIndex).toBeDefined();
+    expect(typeof response.nftSales[0].bundleIndex).toEqual('number');
+    expect(response.nftSales[0].buyerAddress).toBeDefined();
+    expect(typeof response.nftSales[0].buyerAddress).toEqual('string');
+    expect(response.nftSales[0].contractAddress).toBeDefined();
+    expect(typeof response.nftSales[0].contractAddress).toEqual('string');
+    expect(response.nftSales[0].logIndex).toBeDefined();
+    expect(typeof response.nftSales[0].logIndex).toEqual('number');
+    expect(response.nftSales[0].marketplace).toBeDefined();
+    expect(typeof response.nftSales[0].logIndex).toEqual('number');
+    expect(response.nftSales[0].quantity).toBeDefined();
+    expect(typeof response.nftSales[0].quantity).toEqual('string');
+    expect(response.nftSales[0].sellerAddress).toBeDefined();
+    expect(typeof response.nftSales[0].sellerAddress).toEqual('string');
+    expect(response.nftSales[0].taker).toBeDefined();
+    expect(typeof response.nftSales[0].taker).toEqual('string');
+    expect(response.nftSales[0].tokenId).toBeDefined();
+    expect(typeof response.nftSales[0].tokenId).toEqual('string');
+    expect(response.nftSales[0].transactionHash).toBeDefined();
+    expect(typeof response.nftSales[0].transactionHash).toEqual('string');
   });
 
   it('getNftSales() with pageKey', async () => {
@@ -272,6 +292,15 @@ describe('E2E integration tests', () => {
     });
 
     expect(response.nftSales).not.toEqual(firstPage.nftSales);
+  });
+
+  it('getNftSales() with contractAddress', async () => {
+    const contractAddress = '0xaf1cfc6b4104c797149fb7a294f7d46f7ec27b80';
+
+    const response = await alchemy.nft.getNftSales({ contractAddress });
+
+    expect(response.nftSales.length).toBeGreaterThan(0);
+    expect(response.nftSales[0].contractAddress).toEqual(contractAddress);
   });
 
   it.each(
