@@ -17,13 +17,16 @@ import {
   NftAttributesResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
+  NftSaleMarketplace,
+  NftTakerType,
   NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
   RefreshContractResult,
-  RefreshState
+  RefreshState,
+  SortingOrder
 } from '../types/types';
 import { AlchemyApiType } from '../util/const';
 import {
@@ -621,6 +624,25 @@ interface GetOwnersForNftContractAlchemyParams {
  */
 interface GetFloorPriceParams {
   contractAddress: string;
+}
+
+/**
+ * Interface for the `getNftSales` endpoint.
+ *
+ * @internal
+ */
+interface GetNftSalesParams {
+  fromBlock?: number | 'latest';
+  toBlock?: number | 'latest';
+  order?: SortingOrder;
+  marketplace?: NftSaleMarketplace;
+  contractAddress?: string;
+  tokenId?: string;
+  sellerAddress?: string;
+  buyerAddress?: string;
+  taker?: NftTakerType;
+  limit?: number;
+  pageKey?: string;
 }
 
 /**

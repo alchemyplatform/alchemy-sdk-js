@@ -1,6 +1,7 @@
 import {
   Media,
   NftMetadata,
+  NftSaleFeeData,
   NftSpamClassification,
   NftTokenType,
   TokenUri
@@ -82,9 +83,7 @@ export interface RawNftContractMetadata {
   openSea?: RawOpenSeaCollectionMetadata;
 }
 
-/**
- * OpenSea's metadata for an NFT collection.
- */
+/** OpenSea's metadata for an NFT collection. */
 export interface RawOpenSeaCollectionMetadata {
   floorPrice?: number;
   collectionName?: string;
@@ -276,4 +275,26 @@ export interface RawNftAttributeRarity {
   value: string;
   trait_type: string;
   prevalence: number;
+}
+
+export interface RawGetNftSalesResponse {
+  pageKey?: string;
+  nftSales: RawNftSale[];
+}
+
+export interface RawNftSale {
+  marketplace: string;
+  contractAddress: string;
+  tokenId: string;
+  quantity: string;
+  buyerAddress: string;
+  sellerAddress: string;
+  taker: string;
+  sellerFee?: NftSaleFeeData;
+  marketplaceFee?: NftSaleFeeData;
+  royaltyFee?: NftSaleFeeData;
+  blockNumber?: number;
+  logIndex: number;
+  bundleIndex: number;
+  transactionHash: string;
 }

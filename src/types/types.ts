@@ -766,6 +766,165 @@ export interface GetFloorPriceResponse {
 }
 
 /**
+ * Optional parameters object for the {@link getNftSales} endpoint.
+ *
+ * This interface is used to filter the NFT sales data.
+ *
+ * @public
+ */
+export interface GetNftSales {
+  /** The block number to start fetching NFT sales data from. */
+  fromBlock?: number | 'latest';
+
+  /** The block number limit to fetch NFT sales data from. */
+  toBlock?: number | 'latest';
+
+  /** Whether to return the results in ascending or descending order by block number. */
+  order?: SortingOrder;
+
+  /** The NFT marketplace to filter sales by. */
+  marketplace?: NftSaleMarketplace;
+
+  /** The address of the NFT buyer to filter sales by. */
+  buyerAddress?: string;
+
+  /** The address of the NFT seller to filter sales by. */
+  sellerAddress?: string;
+
+  /** Filter by whether the buyer or seller was the taker in the NFT trade. */
+  taker?: NftTakerType;
+
+  /** The maximum number of NFT sales to return. */
+  limit?: number;
+
+  /** Key for pagination to use to fetch results from the next page if available. */
+  pageKey?: string;
+}
+
+/**
+ * Alternative optional parameters object for the {@link getNftSales} endpoint
+ * that allows filtering results by contractAddress.
+ *
+ * This interface is used to filter the NFT sales data.
+ *
+ * @public
+ */
+export interface GetNftSalesByContractAddress extends GetNftSales {
+  /** The contract address of a NFT collection to filter sales by. */
+  contractAddress: string;
+
+  /** The token ID of an NFT within the specified contractAddress to filter sales by. */
+  tokenId?: BigNumberish;
+}
+
+/**
+ * The response for the {@link NftNamespace.getNftSales} method.
+ *
+ * @public
+ */
+export interface GetNftSalesResponse {
+  /** The page key to use to fetch the next page if more results are available. */
+  pageKey?: string;
+
+  /** List of NFT sales that match the query */
+  nftSales: NftSale[];
+}
+
+/** A single NFT sale data. */
+export interface NftSale {
+  /** The marketplace the sale took place on. */
+  marketplace: NftSaleMarketplace;
+
+  /** The NFT contract address. */
+  contractAddress: string;
+
+  /** The decimal token ID of the NFT being sold. */
+  tokenId: string;
+
+  /** The number of tokens sold in the sale as a decimal integer string. */
+  quantity: string;
+
+  /** The address of the buyer in the NFT sale. */
+  buyerAddress: string;
+
+  /** The address of the seller in the NFT sale. */
+  sellerAddress: string;
+
+  /** Whether the price taker in the trade was the buyer or the seller. */
+  taker: NftTakerType;
+
+  /** The payment from buyer to the seller. */
+  sellerFee?: NftSaleFeeData;
+
+  /** The payment from buyer to the marketplace. */
+  marketplaceFee?: NftSaleFeeData;
+
+  /** The payment from buyer to the royalty address of the NFT collection. */
+  royaltyFee?: NftSaleFeeData;
+
+  /** The block number the NFT sale took place in. */
+  blockNumber?: number;
+
+  /** The log number of the sale event emitted within the block. */
+  logIndex: number;
+
+  /** The index of the token within the bundle of NFTs sold in the sale. */
+  bundleIndex: number;
+
+  /** The transactionHash of the NFT sale. */
+  transactionHash: string;
+}
+
+/**
+ * Fee detail for an NFT sale.
+ *
+ * @public
+ */
+export interface NftSaleFeeData {
+  /** The fee payment amount as a decimal integer string. */
+  amount: string;
+
+  /** The symbol of the token used for the payment. */
+  symbol: string;
+
+  /** The number of decimals of the token used for the payment. */
+  decimal: number;
+}
+
+/**
+ * Enum for representing the supported sorting orders of the api.
+ *
+ * @public
+ */
+export enum SortingOrder {
+  ASCENDING = 'asc',
+  DESCENDING = 'desc'
+}
+
+/**
+ * Enum representing the supported NFT marketplaces by the `getNftSales()` endpoint.
+ *
+ * @public
+ */
+export enum NftSaleMarketplace {
+  SEAPORT = 'seaport',
+  LOOKSRARE = 'looksrare',
+  X2Y2 = 'x2y2',
+  UNKNOWN = 'unknown'
+}
+
+/**
+ * Enum for specifing the taker type for the `getNftSales()` endpoint.
+ *
+ * @public
+ */
+export enum NftTakerType {
+  BUYER = 'buyer',
+  SELLER = 'seller',
+  UNKNOWN = 'unknown'
+}
+
+/**
  * Information about the rarity of an NFT's attribute in the specified collection.
  *
  * @public
@@ -1050,9 +1209,7 @@ export interface NftContractNftsResponse {
   pageKey?: string;
 }
 
-/**
- * OpenSea's metadata for an NFT collection.
- */
+/** OpenSea's metadata for an NFT collection. */
 export interface OpenSeaCollectionMetadata {
   /** The floor price of the NFT. */
   floorPrice?: number;
@@ -1064,7 +1221,7 @@ export interface OpenSeaCollectionMetadata {
   imageUrl?: string;
   /** The description of the collection on OpenSea. */
   description?: string;
-  /** The homepage of the collection as determined by OpenSea.*/
+  /** The homepage of the collection as determined by OpenSea. */
   externalUrl?: string;
   /** The Twitter handle of the collection. */
   twitterUsername?: string;
