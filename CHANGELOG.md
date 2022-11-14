@@ -9,6 +9,7 @@
 ### Minor Changes
 
 - Added support for ENS resolution to the `NotifyNamespace` and `WebsocketNamespace` methods.
+- Added the `batchRequests` setting in `AlchemySettings`. Enabling this setting will automatically batch and send json-rpc requests to reduce network overhead.
 - Included new export for the `Interface` class from ethers to simplify encoding ABI when using `eth_call`.
 - Added support for the `NftNamespace.getNftMetadataBatch()` method to fetch metadata for multiple NFTs in a single call.
 
