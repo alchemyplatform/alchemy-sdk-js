@@ -2,7 +2,6 @@ import { BigNumber } from '@ethersproject/bignumber';
 
 import {
   BaseNft,
-  BaseNftContract,
   Nft,
   NftContract,
   NftTokenType,
@@ -13,7 +12,6 @@ import {
 } from '../src';
 import {
   RawBaseNft,
-  RawBaseNftContract,
   RawContractBaseNft,
   RawNft,
   RawNftContract,
@@ -23,11 +21,7 @@ import {
   RawOwnedNft
 } from '../src/internal/raw-interfaces';
 import { BlockHead, LogsEvent } from '../src/internal/websocket-backfiller';
-import {
-  getBaseNftContractFromRaw,
-  getBaseNftFromRaw,
-  getNftFromRaw
-} from '../src/util/util';
+import { getBaseNftFromRaw, getNftFromRaw } from '../src/util/util';
 
 export const TEST_WALLET_PRIVATE_KEY =
   'dd5bdf09397b1fdf98e4f72c66047d5104b1511fa7dc1b8fdddd61a150f732c9';
@@ -53,14 +47,6 @@ export function createRawNftContract(
       openSea
     }
   };
-}
-
-export function createRawBaseNftContract(address: string): RawBaseNftContract {
-  return { address };
-}
-
-export function createBaseNftContract(address: string): BaseNftContract {
-  return getBaseNftContractFromRaw(createRawBaseNftContract(address));
 }
 
 export function createRawOwnedBaseNft(
@@ -97,10 +83,12 @@ export function createOwnedBaseNft(
 }
 
 export function createRawBaseNft(
+  contractAddress: string,
   tokenId: string | number,
   tokenType = NftTokenType.UNKNOWN
 ): RawBaseNft {
   return {
+    contract: { address: contractAddress },
     id: {
       tokenId: BigNumber.from(tokenId).toString(),
       tokenMetadata: { tokenType }
@@ -113,7 +101,7 @@ export function createBaseNft(
   tokenId: string | number,
   tokenType = NftTokenType.UNKNOWN
 ): BaseNft {
-  return getBaseNftFromRaw(createRawBaseNft(tokenId, tokenType), address);
+  return getBaseNftFromRaw(createRawBaseNft(address, tokenId, tokenType));
 }
 
 export function createNft(
@@ -125,8 +113,7 @@ export function createNft(
   media?: TokenUri[] | undefined
 ): Nft {
   return getNftFromRaw(
-    createRawNft(title, tokenId, tokenType, { tokenUri, media }),
-    address
+    createRawNft(address, title, tokenId, tokenType, { tokenUri, media })
   );
 }
 
@@ -139,12 +126,14 @@ interface RawNftOptions {
 }
 
 export function createRawNft(
+  contractAddress: string,
   title: string,
   tokenId: string,
   tokenType = NftTokenType.UNKNOWN,
   options?: RawNftOptions
 ): RawNft {
   return {
+    contract: { address: contractAddress },
     title,
     description: options?.description ?? `a truly unique NFT: ${title}`,
     timeLastUpdated: options?.timeLastUpdated ?? '2022-02-16T17:12:00.280Z',
@@ -169,17 +158,7 @@ export function createRawOwnedNft(
   contractMetadata?: RawNftContractMetadata
 ): RawOwnedNft {
   return {
-    ...createRawNft(title, tokenId, tokenType),
-    contract: {
-      address
-    },
-    id: {
-      tokenId,
-      tokenMetadata: {
-        tokenType
-      }
-    },
-    contractMetadata,
+    ...createRawNft(address, title, tokenId, tokenType, { contractMetadata }),
     balance
   };
 }
@@ -214,7 +193,8 @@ export function verifyNftContractMetadata(
   name: string,
   symbol: string,
   totalSupply: string,
-  tokenType?: NftTokenType
+  tokenType?: NftTokenType,
+  openSea?: RawOpenSeaCollectionMetadata
 ) {
   expect(actualNftContract).toEqual(expectedNftContract);
   expect(actualNftContract.address).toEqual(address);
@@ -222,6 +202,26 @@ export function verifyNftContractMetadata(
   expect(actualNftContract.symbol).toEqual(symbol);
   expect(actualNftContract.totalSupply).toEqual(totalSupply);
   expect(actualNftContract.tokenType).toEqual(tokenType);
+
+  if (openSea) {
+    expect(actualNftContract.openSea?.floorPrice).toEqual(openSea.floorPrice);
+    expect(actualNftContract.openSea?.collectionName).toEqual(
+      openSea.collectionName
+    );
+    expect(actualNftContract.openSea?.safelistRequestStatus).toEqual(
+      openSea.safelistRequestStatus
+    );
+    expect(actualNftContract.openSea?.imageUrl).toEqual(openSea.imageUrl);
+    expect(actualNftContract.openSea?.description).toEqual(openSea.description);
+    expect(actualNftContract.openSea?.externalUrl).toEqual(openSea.externalUrl);
+    expect(actualNftContract.openSea?.twitterUsername).toEqual(
+      openSea.twitterUsername
+    );
+    expect(actualNftContract.openSea?.discordUrl).toEqual(openSea.discordUrl);
+    expect(actualNftContract.openSea?.lastIngestedAt).toEqual(
+      openSea.lastIngestedAt
+    );
+  }
 }
 
 export type Mocked<T> = T & {
