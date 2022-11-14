@@ -18,7 +18,7 @@ import {
   OwnedNft,
   OwnedNftsResponse,
   RefreshState,
-  fromHex
+  fromHex, NftMetadataBatchToken
 } from '../../src';
 import {
   RawGetBaseNftsForContractResponse,
@@ -239,7 +239,7 @@ describe('NFT module', () => {
     });
 
     it('can be called with raw parameters', async () => {
-      const tokens = [
+      const tokens: NftMetadataBatchToken[] = [
         { contractAddress, tokenId },
         {
           contractAddress: contractAddress2,
