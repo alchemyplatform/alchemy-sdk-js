@@ -6,6 +6,7 @@ import {
   getContractMetadata,
   getFloorPrice,
   getNftMetadata,
+  getNftMetadataBatch,
   getNftsForContract,
   getNftsForContractIterator,
   getNftsForOwner,
@@ -35,6 +36,8 @@ import {
   NftAttributesResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
+  NftMetadataBatchOptions,
+  NftMetadataBatchToken,
   NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
@@ -81,6 +84,19 @@ export class NftNamespace {
       tokenType,
       tokenUriTimeoutInMs
     );
+  }
+
+  /**
+   * Gets the NFT metadata for multiple NFT tokens.
+   *
+   * @param tokens An array of NFT tokens to fetch metadata for.
+   * @param options Configuration options for making the request.
+   */
+  getNftMetadataBatch(
+    tokens: Array<NftMetadataBatchToken>,
+    options?: NftMetadataBatchOptions
+  ): Promise<Nft[]> {
+    return getNftMetadataBatch(this.config, tokens, options);
   }
 
   /**

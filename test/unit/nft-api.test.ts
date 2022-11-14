@@ -18,7 +18,7 @@ import {
   OwnedNft,
   OwnedNftsResponse,
   RefreshState,
-  fromHex
+  fromHex, NftMetadataBatchToken
 } from '../../src';
 import {
   RawGetBaseNftsForContractResponse,
@@ -208,6 +208,55 @@ describe('NFT module', () => {
         contractAddress,
         tokenId
       );
+    });
+
+    it('surfaces errors', async () => {
+      mock.reset();
+      mock.onGet().reply(500, 'Internal Server Error');
+      await expect(
+        alchemy.nft.getNftMetadata(contractAddress, tokenId)
+      ).rejects.toThrow('Internal Server Error');
+    });
+  });
+
+  describe('getNftMetadataBatch()', () => {
+    const contractAddress = '0xABC';
+    const contractAddress2 = '0xDEF';
+    const title = 'NFT Title';
+    const tokenId = '42';
+    const tokenId2 = 43;
+    const timeoutInMs = 50;
+    // Special case token ID as an integer string, since that's what the NFT
+    // API endpoint returns.
+    const rawNftsResponse = [
+      createRawNft(contractAddress, title, tokenId),
+      createRawNft(contractAddress2, title, tokenId2.toString())
+    ];
+    const expectedNfts = rawNftsResponse.map(getNftFromRaw);
+
+    beforeEach(() => {
+      mock.onPost().reply(200, rawNftsResponse);
+    });
+
+    it('can be called with raw parameters', async () => {
+      const tokens: NftMetadataBatchToken[] = [
+        { contractAddress, tokenId },
+        {
+          contractAddress: contractAddress2,
+          tokenId: tokenId2,
+          tokenType: NftTokenType.ERC1155
+        }
+      ];
+      const response = await alchemy.nft.getNftMetadataBatch(tokens, {
+        refreshCache: true,
+        tokenUriTimeoutInMs: timeoutInMs
+      });
+      expect(response).toEqual(expectedNfts);
+      expect(mock.history.post.length).toEqual(1);
+      const parsedRequest = JSON.parse(mock.history.post[0].data);
+      expect(parsedRequest).toHaveProperty('tokens', tokens);
+      expect(parsedRequest).toHaveProperty('tokens', tokens);
+      expect(parsedRequest).toHaveProperty('refreshCache', true);
     });
 
     it('surfaces errors', async () => {

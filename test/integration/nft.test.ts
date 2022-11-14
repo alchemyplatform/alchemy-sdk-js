@@ -2,7 +2,8 @@ import {
   Alchemy,
   NftExcludeFilters,
   NftTokenType,
-  OpenSeaSafelistRequestStatus
+  OpenSeaSafelistRequestStatus,
+  fromHex
 } from '../../src';
 import { loadAlchemyEnv } from '../test-util';
 
@@ -34,6 +35,20 @@ describe('E2E integration tests', () => {
       NftTokenType.UNKNOWN
     );
     expect(response.media).toBeDefined();
+  });
+
+  it('getNftMetadataBatch()', async () => {
+    const response = await alchemy.nft.getNftMetadataBatch([
+      {
+        contractAddress,
+        tokenId: '0x8b57f0',
+        tokenType: NftTokenType.ERC721
+      },
+      { contractAddress, tokenId: 13596716 }
+    ]);
+    expect(response.length).toEqual(2);
+    expect(response[0].tokenId).toEqual(fromHex('0x8b57f0').toString());
+    expect(response[1].tokenId).toEqual('13596716');
   });
 
   it('getContractMetadata()', async () => {
