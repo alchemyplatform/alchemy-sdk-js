@@ -41,7 +41,8 @@ describe('E2E integration tests', () => {
     const response = await alchemy.nft.getNftMetadataBatch([
       {
         contractAddress,
-        tokenId: '0x8b57f0'
+        tokenId: '0x8b57f0',
+        tokenType: NftTokenType.ERC721
       },
       { contractAddress, tokenId: 13596716 }
     ]);

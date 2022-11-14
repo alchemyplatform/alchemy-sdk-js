@@ -741,6 +741,9 @@ export interface NftMetadataBatchToken {
 
   /** The id of the NFT. */
   tokenId: BigNumberish;
+
+  /** Optional field to specify the type of token to speed up the query. */
+  tokenType?: NftTokenType.ERC1155 | NftTokenType.ERC721;
 }
 
 /** Additional options for the {@link NftNamespace.getNftMetadataBatch} method.*/

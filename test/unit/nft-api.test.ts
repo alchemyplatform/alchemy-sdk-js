@@ -243,7 +243,8 @@ describe('NFT module', () => {
         { contractAddress, tokenId },
         {
           contractAddress: contractAddress2,
-          tokenId: tokenId2
+          tokenId: tokenId2,
+          tokenType: NftTokenType.ERC1155
         }
       ];
       const response = await alchemy.nft.getNftMetadataBatch(tokens, {
