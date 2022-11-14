@@ -5,6 +5,7 @@ import { toHex } from '../api/util';
 import {
   RawBaseNft,
   RawBaseNftContract,
+  RawContractBaseNft,
   RawGetNftSalesResponse,
   RawNft,
   RawNftAttributeRarity,
@@ -76,31 +77,30 @@ export function getNftContractFromRaw(
   return contract;
 }
 
-export function getNftContractsFromRaw(
-  rawNftContracts: RawNftContract[]
-): NftContract[] {
-  return rawNftContracts.map(rawNftContract =>
-    getNftContractFromRaw(rawNftContract)
-  );
-}
-
+export function getBaseNftFromRaw(rawBaseNft: RawBaseNft): BaseNft;
 export function getBaseNftFromRaw(
-  rawBaseNft: RawBaseNft,
+  rawContractBaseNft: RawContractBaseNft,
   contractAddress: string
+): BaseNft;
+export function getBaseNftFromRaw(
+  rawBaseNft: RawBaseNft | RawContractBaseNft,
+  contractAddress?: string
 ): BaseNft {
   return {
-    contract: { address: contractAddress },
+    contract: contractAddress
+      ? { address: contractAddress }
+      : (rawBaseNft as RawBaseNft).contract,
     tokenId: BigNumber.from(rawBaseNft.id.tokenId).toString(),
     tokenType: parseNftTokenType(rawBaseNft.id.tokenMetadata?.tokenType)
   };
 }
 
-export function getNftFromRaw(rawNft: RawNft, contractAddress: string): Nft {
+export function getNftFromRaw(rawNft: RawNft): Nft {
   const tokenType = parseNftTokenType(rawNft.id.tokenMetadata?.tokenType);
   const spamInfo = parseSpamInfo(rawNft.spamInfo);
   return {
     contract: {
-      address: contractAddress,
+      address: rawNft.contract.address,
       name: rawNft.contractMetadata?.name,
       symbol: rawNft.contractMetadata?.symbol,
       totalSupply: rawNft.contractMetadata?.totalSupply,

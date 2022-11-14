@@ -1,3 +1,4 @@
+import { BaseNftContract } from '../api/nft';
 import {
   Media,
   NftMetadata,
@@ -19,6 +20,7 @@ import {
  * @internal
  */
 export interface RawBaseNft {
+  contract: BaseNftContract;
   id: RawNftId;
 }
 
@@ -172,7 +174,7 @@ export interface RawGetBaseNftsForContractResponse {
  * @internal
  */
 export interface RawGetNftsForContractResponse {
-  nfts: RawContractNft[];
+  nfts: RawNft[];
   nextToken?: string;
 }
 
@@ -180,19 +182,15 @@ export interface RawGetNftsForContractResponse {
  * Represents the `nfts` field from the Alchemy HTTP response when calling the
  * `getNftsForNftContract` endpoint without metadata.
  *
+ * The main difference between {@link RawContractBaseNft} and {@link RawBaseNft}
+ * is that `RawContractBaseNft` omits the `contract` field in the payload since
+ * the method takes in a contract address param.
+ *
  * @internal
  */
 export interface RawContractBaseNft {
   id: RawNftId;
 }
-
-/**
- * Represents the `nfts` field from the Alchemy HTTP response when calling the
- * `getNftsForNftContract` endpoint with metadata.
- *
- * @internal
- */
-export interface RawContractNft extends RawNft, RawContractBaseNft {}
 
 /**
  * Represents Alchemy's HTTP response for `getOwnersForNftContract`.

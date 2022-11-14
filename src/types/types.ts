@@ -42,8 +42,8 @@ export interface AlchemySettings {
   authToken?: string;
 
   /**
-   * Optional setting that automatically batches and sends json-rpc requests for higher
-   * throughput and reduced network IO. Defaults to false.
+   * Optional setting that automatically batches and sends json-rpc requests for
+   * higher throughput and reduced network IO. Defaults to false.
    *
    * This implementation is based on the `JsonRpcBatchProvider` in ethers.
    */
@@ -729,6 +729,38 @@ export interface NftContractTokenBalance {
 
   /** The token Id balance for the provided owner. */
   balance: number;
+}
+
+/**
+ * Represents an NFT token to fetch metadata for in a
+ * {@link NftNamespace.getNftMetadataBatch} method.
+ */
+export interface NftMetadataBatchToken {
+  /** The NFT contract address. Limited to ERC721 and ERC1155 tokens. */
+  contractAddress: string;
+
+  /** The id of the NFT. */
+  tokenId: BigNumberish;
+
+  /** Optional field to specify the type of token to speed up the query. */
+  tokenType?: NftTokenType.ERC1155 | NftTokenType.ERC721;
+}
+
+/** Additional options for the {@link NftNamespace.getNftMetadataBatch} method. */
+export interface NftMetadataBatchOptions {
+  /**
+   * No set timeout by default - When metadata is requested, this parameter is
+   * the timeout (in milliseconds) for the website hosting the metadata to
+   * respond. If you want to only access the cache and not live fetch any
+   * metadata for cache misses then set this value to 0.
+   */
+  tokenUriTimeoutInMs?: number;
+
+  /**
+   * Whether to refresh the metadata for the given NFT token before returning
+   * the response. Defaults to false for faster response times.
+   */
+  refreshCache?: boolean;
 }
 
 /**

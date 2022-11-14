@@ -20,6 +20,8 @@ import {
   NftAttributesResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
+  NftMetadataBatchOptions,
+  NftMetadataBatchToken,
   NftSaleMarketplace,
   NftTakerType,
   NftTokenType,
@@ -35,7 +37,6 @@ import { AlchemyApiType } from '../util/const';
 import {
   getBaseNftFromRaw,
   getNftContractFromRaw,
-  getNftContractsFromRaw,
   getNftFromRaw,
   getNftRarityFromRaw,
   getNftSalesFromRaw
@@ -44,7 +45,6 @@ import { paginateEndpoint, requestHttpWithBackoff } from './dispatch';
 import {
   RawBaseNft,
   RawContractBaseNft,
-  RawContractNft,
   RawGetBaseNftsForContractResponse,
   RawGetBaseNftsResponse,
   RawGetNftSalesResponse,
@@ -79,7 +79,31 @@ export async function getNftMetadata(
       tokenUriTimeoutInMs
     }
   );
-  return getNftFromRaw(response, contractAddress);
+  return getNftFromRaw(response);
+}
+
+export async function getNftMetadataBatch(
+  config: AlchemyConfig,
+  tokens: Array<NftMetadataBatchToken>,
+  options?: NftMetadataBatchOptions
+): Promise<Nft[]> {
+  const data = {
+    tokens,
+    tokenUriTimeoutInMs: options?.tokenUriTimeoutInMs,
+    refreshCache: options?.refreshCache
+  };
+  const response = await requestHttpWithBackoff<{}, RawNft[]>(
+    config,
+    AlchemyApiType.NFT,
+    'getNFTMetadataBatch',
+    'getNftMetadataBatch',
+    {},
+    {
+      method: 'POST',
+      data
+    }
+  );
+  return response.map(getNftFromRaw);
 }
 
 export async function getContractMetadata(
@@ -179,7 +203,7 @@ export async function getNftsForContract(
 
   return {
     nfts: response.nfts.map(res =>
-      nftFromGetNftNftContractResponse(res, contractAddress)
+      nftFromGetNftContractResponse(res, contractAddress)
     ),
     pageKey: response.nextToken
   };
@@ -205,10 +229,8 @@ export async function* getNftsForContractIterator(
       withMetadata
     }
   )) {
-    for (const nft of response.nfts as
-      | RawContractBaseNft[]
-      | RawContractNft[]) {
-      yield nftFromGetNftNftContractResponse(nft, contractAddress);
+    for (const nft of response.nfts as RawContractBaseNft[] | RawNft[]) {
+      yield nftFromGetNftContractResponse(nft, contractAddress);
     }
   }
 }
@@ -435,7 +457,7 @@ export async function searchContractMetadata(
     query
   });
 
-  return getNftContractsFromRaw(response);
+  return response.map(getNftContractFromRaw);
 }
 
 export async function summarizeNftAttributes(
@@ -511,7 +533,7 @@ async function refresh(
       refreshCache: true
     }
   );
-  return getNftFromRaw(response, contractAddress);
+  return getNftFromRaw(response);
 }
 
 /**
@@ -524,9 +546,9 @@ function nftFromGetNftResponse(
   ownedNft: RawOwnedBaseNft | RawOwnedNft
 ): Nft | BaseNft {
   if (isNftWithMetadata(ownedNft)) {
-    return getNftFromRaw(ownedNft, ownedNft.contract.address);
+    return getNftFromRaw(ownedNft);
   } else {
-    return getBaseNftFromRaw(ownedNft, ownedNft.contract.address);
+    return getBaseNftFromRaw(ownedNft);
   }
 }
 
@@ -536,12 +558,12 @@ function nftFromGetNftResponse(
  *
  * @internal
  */
-function nftFromGetNftNftContractResponse(
-  ownedNft: RawContractBaseNft | RawContractNft,
+function nftFromGetNftContractResponse(
+  ownedNft: RawContractBaseNft | RawNft,
   contractAddress: string
 ): Nft | BaseNft {
   if (isNftWithMetadata(ownedNft)) {
-    return getNftFromRaw(ownedNft, contractAddress);
+    return getNftFromRaw(ownedNft);
   } else {
     return getBaseNftFromRaw(ownedNft, contractAddress);
   }
@@ -549,7 +571,9 @@ function nftFromGetNftNftContractResponse(
 
 /** @internal */
 // TODO: more comprehensive type check
-function isNftWithMetadata(response: RawBaseNft | RawNft): response is RawNft {
+function isNftWithMetadata(
+  response: RawBaseNft | RawContractBaseNft | RawNft
+): response is RawNft {
   return (response as RawNft).title !== undefined;
 }
 
