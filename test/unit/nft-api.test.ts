@@ -4,7 +4,6 @@ import MockAdapter from 'axios-mock-adapter';
 import {
   Alchemy,
   BaseNft,
-  fromHex,
   GetFloorPriceResponse,
   GetNftSales,
   GetNftsForOwnerOptions,
@@ -14,6 +13,7 @@ import {
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
   NftExcludeFilters,
+  NftMetadataBatchToken,
   NftSaleMarketplace,
   NftTakerType,
   NftTokenType,
@@ -23,7 +23,7 @@ import {
   OwnedNftsResponse,
   RefreshState,
   SortingOrder,
-  NftMetadataBatchToken
+  fromHex
 } from '../../src';
 import {
   RawGetBaseNftsForContractResponse,

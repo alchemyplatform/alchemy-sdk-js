@@ -8,8 +8,8 @@ import {
   NftTokenType,
   OwnedBaseNft,
   OwnedNft,
-  toHex,
-  TokenUri
+  TokenUri,
+  toHex
 } from '../src';
 import {
   RawBaseNft,
