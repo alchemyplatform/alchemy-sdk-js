@@ -26,8 +26,8 @@ import {
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
   GetFloorPriceResponse,
-  GetNftSales,
-  GetNftSalesByContractAddress,
+  GetNftSalesOptions,
+  GetNftSalesOptionsByContractAddress,
   GetNftSalesResponse,
   GetNftsForContractOptions,
   GetNftsForOwnerOptions,
@@ -391,12 +391,12 @@ export class NftNamespace {
    * @param options - The optional parameters to use for the request.
    * @beta
    */
-  getNftSales(options?: GetNftSales): Promise<GetNftSalesResponse>;
+  getNftSales(options?: GetNftSalesOptions): Promise<GetNftSalesResponse>;
   getNftSales(
-    options?: GetNftSalesByContractAddress
+    options?: GetNftSalesOptionsByContractAddress
   ): Promise<GetNftSalesResponse>;
   getNftSales(
-    options?: GetNftSales | GetNftSalesByContractAddress
+    options?: GetNftSalesOptions | GetNftSalesOptionsByContractAddress
   ): Promise<GetNftSalesResponse> {
     return getNftSales(this.config, options);
   }

@@ -16,7 +16,7 @@ import {
   GetNftSalesResponse,
   NftAttributeRarity,
   NftSaleMarketplace,
-  NftTakerType,
+  NftSaleTakerType,
   NftTokenType,
   OpenSeaSafelistRequestStatus,
   SpamInfo,
@@ -156,14 +156,15 @@ function parseNftSaleMarketplace(marketplace: string): NftSaleMarketplace {
   }
 }
 
-function parseNftTaker(taker: string): NftTakerType {
-  switch (taker) {
-    case 'BUYER':
-      return NftTakerType.BUYER;
-    case 'SELLER':
-      return NftTakerType.SELLER;
+function parseNftTaker(taker: string): NftSaleTakerType {
+  // The `.toLowerCase()` call is needed because the API returns the capitalized values
+  switch (taker.toLowerCase()) {
+    case 'buyer':
+      return NftSaleTakerType.BUYER;
+    case 'seller':
+      return NftSaleTakerType.SELLER;
     default:
-      return NftTakerType.UNKNOWN;
+      throw new Error(`Unsupported NftSaleTakerType ${taker}`);
   }
 }
 

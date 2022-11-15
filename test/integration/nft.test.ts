@@ -320,7 +320,7 @@ describe('E2E integration tests', () => {
 
   it.each(
     Object.values(NftSaleMarketplace).filter(
-      marketplace => marketplace != NftSaleMarketplace.UNKNOWN
+      marketplace => marketplace !== NftSaleMarketplace.UNKNOWN
     )
   )(`getNftSales() with marketplace=%s`, async marketplace => {
     const response = await alchemy.nft.getNftSales({

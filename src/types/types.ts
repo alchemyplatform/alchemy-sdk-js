@@ -812,7 +812,7 @@ export interface GetFloorPriceResponse {
  *
  * @public
  */
-export interface GetNftSales {
+export interface GetNftSalesOptions {
   /** The block number to start fetching NFT sales data from. */
   fromBlock?: number | 'latest';
 
@@ -820,7 +820,7 @@ export interface GetNftSales {
   toBlock?: number | 'latest';
 
   /** Whether to return the results in ascending or descending order by block number. */
-  order?: SortingOrder;
+  order?: AssetTransfersOrder;
 
   /** The NFT marketplace to filter sales by. */
   marketplace?: NftSaleMarketplace;
@@ -831,8 +831,11 @@ export interface GetNftSales {
   /** The address of the NFT seller to filter sales by. */
   sellerAddress?: string;
 
-  /** Filter by whether the buyer or seller was the taker in the NFT trade. */
-  taker?: NftTakerType;
+  /**
+   * Filter by whether the buyer or seller was the taker in the NFT trade.
+   * Defaults to returning both buyer and seller taker trades.
+   */
+  taker?: NftSaleTakerType;
 
   /** The maximum number of NFT sales to return. */
   limit?: number;
@@ -849,7 +852,8 @@ export interface GetNftSales {
  *
  * @public
  */
-export interface GetNftSalesByContractAddress extends GetNftSales {
+export interface GetNftSalesOptionsByContractAddress
+  extends GetNftSalesOptions {
   /** The contract address of a NFT collection to filter sales by. */
   contractAddress: string;
 
@@ -870,7 +874,7 @@ export interface GetNftSalesResponse {
   nftSales: NftSale[];
 }
 
-/** A single NFT sale data. */
+/** Represents a single NFT sale data in the {@link GetNftSalesResponse}. */
 export interface NftSale {
   /** The marketplace the sale took place on. */
   marketplace: NftSaleMarketplace;
@@ -891,10 +895,10 @@ export interface NftSale {
   sellerAddress: string;
 
   /** Whether the price taker in the trade was the buyer or the seller. */
-  taker: NftTakerType;
+  taker: NftSaleTakerType;
 
   /** The payment from buyer to the seller. */
-  sellerFee?: NftSaleFeeData;
+  sellerFee: NftSaleFeeData;
 
   /** The payment from buyer to the marketplace. */
   marketplaceFee?: NftSaleFeeData;
@@ -903,7 +907,7 @@ export interface NftSale {
   royaltyFee?: NftSaleFeeData;
 
   /** The block number the NFT sale took place in. */
-  blockNumber?: number;
+  blockNumber: number;
 
   /** The log number of the sale event emitted within the block. */
   logIndex: number;
@@ -932,17 +936,14 @@ export interface NftSaleFeeData {
 }
 
 /**
- * Enum for representing the supported sorting orders of the api.
+ * Enum for representing the supported sorting orders of the API.
  *
  * @public
  */
-export enum SortingOrder {
-  ASCENDING = 'asc',
-  DESCENDING = 'desc'
-}
+export { AssetTransfersOrder as SortingOrder };
 
 /**
- * Enum representing the supported NFT marketplaces by the `getNftSales()` endpoint.
+ * Enum representing the supported NFT marketplaces by the {@link getNftSales} endpoint.
  *
  * @public
  */
@@ -954,11 +955,11 @@ export enum NftSaleMarketplace {
 }
 
 /**
- * Enum for specifing the taker type for the `getNftSales()` endpoint.
+ * Enum for specifing the taker type for the {@link getNftSales} endpoint.
  *
  * @public
  */
-export enum NftTakerType {
+export enum NftSaleTakerType {
   BUYER = 'buyer',
   SELLER = 'seller',
   UNKNOWN = 'unknown'

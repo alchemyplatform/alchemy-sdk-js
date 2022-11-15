@@ -6,8 +6,8 @@ import {
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
   GetFloorPriceResponse,
-  GetNftSales,
-  GetNftSalesByContractAddress,
+  GetNftSalesOptions,
+  GetNftSalesOptionsByContractAddress,
   GetNftSalesResponse,
   GetNftsForContractOptions,
   GetNftsForOwnerOptions,
@@ -23,7 +23,7 @@ import {
   NftMetadataBatchOptions,
   NftMetadataBatchToken,
   NftSaleMarketplace,
-  NftTakerType,
+  NftSaleTakerType,
   NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
@@ -395,11 +395,11 @@ export async function getFloorPrice(
 
 export async function getNftSales(
   config: AlchemyConfig,
-  options: GetNftSales | GetNftSalesByContractAddress = {},
+  options: GetNftSalesOptions | GetNftSalesOptionsByContractAddress = {},
   srcMethod = 'getNftSales'
 ): Promise<GetNftSalesResponse> {
   // Avoid ts compiler complaining about the contractAddress field.
-  const params: Partial<GetNftSalesByContractAddress> = {
+  const params: Partial<GetNftSalesOptionsByContractAddress> = {
     ...options
   };
 
@@ -420,7 +420,8 @@ export async function getNftSales(
       : undefined,
     sellerAddress: params?.sellerAddress,
     buyerAddress: params?.buyerAddress,
-    taker: params?.taker != NftTakerType.UNKNOWN ? params?.taker : undefined,
+    taker:
+      params?.taker != NftSaleTakerType.UNKNOWN ? params?.taker : undefined,
     limit: params?.limit,
     pageKey: params?.pageKey
   });
@@ -704,7 +705,7 @@ interface GetNftSalesParams {
   tokenId?: string;
   sellerAddress?: string;
   buyerAddress?: string;
-  taker?: NftTakerType;
+  taker?: NftSaleTakerType;
   limit?: number;
   pageKey?: string;
 }

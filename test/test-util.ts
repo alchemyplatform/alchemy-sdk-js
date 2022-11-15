@@ -9,7 +9,9 @@ import {
   OwnedBaseNft,
   OwnedNft,
   TokenUri,
-  toHex
+  toHex,
+  NftSaleTakerType,
+  NftSaleMarketplace
 } from '../src';
 import {
   RawBaseNft,
@@ -191,8 +193,8 @@ export function createRawNftContractBaseNft(
 export function createRawNftSale(
   contractAddress: string,
   tokenId: string,
-  marketplace: 'x2y2' | 'seaport' | 'looksrare',
-  taker: 'BUYER' | 'SELLER',
+  marketplace: NftSaleMarketplace,
+  taker: NftSaleTakerType,
   buyerAddress: string,
   sellerAddress: string
 ): RawNftSale {
