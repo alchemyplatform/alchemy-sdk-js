@@ -2,6 +2,7 @@ import { BaseNftContract } from '../api/nft';
 import {
   Media,
   NftMetadata,
+  NftSaleFeeData,
   NftSpamClassification,
   NftTokenType,
   TokenUri
@@ -84,9 +85,7 @@ export interface RawNftContractMetadata {
   openSea?: RawOpenSeaCollectionMetadata;
 }
 
-/**
- * OpenSea's metadata for an NFT collection.
- */
+/** OpenSea's metadata for an NFT collection. */
 export interface RawOpenSeaCollectionMetadata {
   floorPrice?: number;
   collectionName?: string;
@@ -183,9 +182,9 @@ export interface RawGetNftsForContractResponse {
  * Represents the `nfts` field from the Alchemy HTTP response when calling the
  * `getNftsForNftContract` endpoint without metadata.
  *
- * The main difference between {@link RawContractBaseNft} and
- * {@link RawBaseNft} is that `RawContractBaseNft` omits the `contract` field
- * in the payload since the method takes in a contract address param.
+ * The main difference between {@link RawContractBaseNft} and {@link RawBaseNft}
+ * is that `RawContractBaseNft` omits the `contract` field in the payload since
+ * the method takes in a contract address param.
  *
  * @internal
  */
@@ -274,4 +273,26 @@ export interface RawNftAttributeRarity {
   value: string;
   trait_type: string;
   prevalence: number;
+}
+
+export interface RawGetNftSalesResponse {
+  pageKey?: string;
+  nftSales: RawNftSale[];
+}
+
+export interface RawNftSale {
+  marketplace: string;
+  contractAddress: string;
+  tokenId: string;
+  quantity: string;
+  buyerAddress: string;
+  sellerAddress: string;
+  taker: string;
+  sellerFee: NftSaleFeeData;
+  marketplaceFee?: NftSaleFeeData;
+  royaltyFee?: NftSaleFeeData;
+  blockNumber: number;
+  logIndex: number;
+  bundleIndex: number;
+  transactionHash: string;
 }
