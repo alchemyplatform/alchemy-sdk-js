@@ -12,6 +12,7 @@
 - Added the `batchRequests` setting in `AlchemySettings`. Enabling this setting will automatically batch and send json-rpc requests to reduce network overhead.
 - Included new export for the `Interface` class from ethers to simplify encoding ABI when using `eth_call`.
 - Added support for the `NftNamespace.getNftMetadataBatch()` method to fetch metadata for multiple NFTs in a single call.
+- Added support for the `NftNamespace.getNftSales()` method to fetch NFT sales across different marketplaces. Thanks @xeno097!
 
 ## 2.2.1
 
