@@ -822,7 +822,7 @@ export interface GetNftSalesOptions {
   toBlock?: number | 'latest';
 
   /** Whether to return the results in ascending or descending order by block number. */
-  order?: AssetTransfersOrder;
+  order?: SortingOrder;
 
   /** The NFT marketplace to filter sales by. */
   marketplace?: NftSaleMarketplace;

@@ -410,18 +410,14 @@ export async function getNftSales(
     fromBlock: params?.fromBlock,
     toBlock: params?.toBlock,
     order: params?.order,
-    marketplace:
-      params?.marketplace != NftSaleMarketplace.UNKNOWN
-        ? params?.marketplace
-        : undefined,
+    marketplace: params?.marketplace,
     contractAddress: params?.contractAddress,
     tokenId: params?.tokenId
       ? BigNumber.from(params?.tokenId).toString()
       : undefined,
     sellerAddress: params?.sellerAddress,
     buyerAddress: params?.buyerAddress,
-    taker:
-      params?.taker != NftSaleTakerType.UNKNOWN ? params?.taker : undefined,
+    taker: params?.taker,
     limit: params?.limit,
     pageKey: params?.pageKey
   });
