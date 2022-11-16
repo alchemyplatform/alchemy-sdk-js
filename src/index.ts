@@ -15,6 +15,8 @@ export { Alchemy } from './api/alchemy';
 
 export { Wallet } from './api/alchemy-wallet';
 
+export { ExternalWallet } from './api/alchemy-external-wallet';
+
 export { Contract, ContractFactory } from './api/alchemy-contract';
 
 export type { AlchemyConfig } from './api/alchemy-config';
