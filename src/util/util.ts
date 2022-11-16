@@ -96,27 +96,32 @@ export function getBaseNftFromRaw(
 }
 
 export function getNftFromRaw(rawNft: RawNft): Nft {
-  const tokenType = parseNftTokenType(rawNft.id.tokenMetadata?.tokenType);
-  const spamInfo = parseSpamInfo(rawNft.spamInfo);
-  return {
-    contract: {
-      address: rawNft.contract.address,
-      name: rawNft.contractMetadata?.name,
-      symbol: rawNft.contractMetadata?.symbol,
-      totalSupply: rawNft.contractMetadata?.totalSupply,
-      tokenType
-    },
-    tokenId: parseNftTokenId(rawNft.id.tokenId),
-    tokenType,
-    title: rawNft.title,
-    description: parseNftDescription(rawNft.description),
-    timeLastUpdated: rawNft.timeLastUpdated,
-    metadataError: rawNft.error,
-    rawMetadata: rawNft.metadata,
-    tokenUri: parseNftTokenUri(rawNft.tokenUri),
-    media: parseNftTokenUriArray(rawNft.media),
-    spamInfo
-  };
+  try {
+    const tokenType = parseNftTokenType(rawNft.id.tokenMetadata?.tokenType);
+    const spamInfo = parseSpamInfo(rawNft.spamInfo);
+
+    return {
+      contract: {
+        address: rawNft.contract.address,
+        name: rawNft.contractMetadata?.name,
+        symbol: rawNft.contractMetadata?.symbol,
+        totalSupply: rawNft.contractMetadata?.totalSupply,
+        tokenType
+      },
+      tokenId: parseNftTokenId(rawNft.id.tokenId),
+      tokenType,
+      title: rawNft.title,
+      description: parseNftDescription(rawNft.description),
+      timeLastUpdated: rawNft.timeLastUpdated,
+      metadataError: rawNft.error,
+      rawMetadata: rawNft.metadata,
+      tokenUri: parseNftTokenUri(rawNft.tokenUri),
+      media: parseNftTokenUriArray(rawNft.media),
+      spamInfo
+    };
+  } catch (e) {
+    throw new Error('Error parsing the NFT response: ' + e);
+  }
 }
 
 export function getNftSalesFromRaw(
