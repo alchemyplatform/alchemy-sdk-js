@@ -202,7 +202,7 @@ export interface AssetTransfersParams {
    * Whether to return results in ascending or descending order by block number.
    * Defaults to ascending if omitted.
    */
-  order?: AssetTransfersOrder;
+  order?: SortingOrder;
 
   /**
    * The from address to filter transfers by. This value defaults to a wildcard
@@ -296,6 +296,8 @@ export enum AssetTransfersCategory {
  * using {@link CoreNamespace.getAssetTransfers}.
  *
  * @public
+ * @deprecated Use {@link SortingOrder} instead. This enum will be removed in a
+ * future version.
  */
 export enum AssetTransfersOrder {
   ASCENDING = 'asc',
@@ -940,7 +942,10 @@ export interface NftSaleFeeData {
  *
  * @public
  */
-export { AssetTransfersOrder as SortingOrder };
+export enum SortingOrder {
+  ASCENDING = 'asc',
+  DESCENDING = 'desc'
+}
 
 /**
  * Enum representing the supported NFT marketplaces by the {@link getNftSales} endpoint.
@@ -961,8 +966,7 @@ export enum NftSaleMarketplace {
  */
 export enum NftSaleTakerType {
   BUYER = 'buyer',
-  SELLER = 'seller',
-  UNKNOWN = 'unknown'
+  SELLER = 'seller'
 }
 
 /**
