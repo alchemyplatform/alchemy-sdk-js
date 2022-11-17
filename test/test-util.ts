@@ -12,7 +12,7 @@ import {
   toHex,
   NftSaleTakerType,
   NftSaleMarketplace,
-  NftMediaData
+  Media
 } from '../src';
 import {
   RawBaseNft,
@@ -242,7 +242,7 @@ export function createRawNftSale(
 export function createRawGetContractsForOwner(
   address: string,
   tokenId: string,
-  media: NftMediaData,
+  media: Media,
   isSpam?: boolean,
   name?: string,
   tokenType?: NftTokenType,
@@ -267,7 +267,7 @@ export function createNftMediaData(
   bytes?: number,
   format?: string,
   thumbnail?: string
-): NftMediaData {
+): Media {
   return {
     raw: 'http://api.nikeape.xyz/ipfs/nickbanc/1.jpg',
     gateway: 'http://api.nikeape.xyz/ipfs/nickbanc/1.jpg',

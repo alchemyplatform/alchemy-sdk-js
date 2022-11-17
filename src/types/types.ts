@@ -887,31 +887,10 @@ export interface ContractForOwner {
   tokenType?: NftTokenType;
 
   /** Alternative NFT metadata for this contract to be parsed manually. */
-  media: NftMediaData;
+  media: Media;
 
   /** OpenSea's metadata for this NFT contract. */
   openSea?: OpenSeaCollectionMetadata;
-}
-
-/** Contains alternative NFT metadata for the {@link ContractForOwner} object. */
-export interface NftMediaData {
-  /**
-   * Uri representing the location of the NFT's original metadata blob. This is
-   * a backup for you to parse when the metadata field is not automatically populated.
-   */
-  raw: string;
-
-  /** Public gateway uri for the raw uri above. */
-  gateway: string;
-
-  /** URL for a resized thumbnail of the NFT media asset. */
-  thumbnail?: string;
-
-  /** The media format (jpg, gif, png, etc.) of the gateway and thumbnail assets. */
-  format?: string;
-
-  /** The size of the media asset in bytes. */
-  bytes?: number;
 }
 
 /**
