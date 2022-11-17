@@ -808,6 +808,30 @@ export interface GetFloorPriceResponse {
 }
 
 /**
+ * Optional parameters object for the the {@link getContractsForOwner} method
+ *
+ * @public
+ */
+export interface GetContractsForOwnerOptions {
+  /** Key for pagination to use to fetch results from the next page if available. */
+  pageKey?: string;
+
+  /**
+   * Optional list of filters applied to the query. NFTs that match one or more
+   * of these filters are included in the response. May not be used in
+   * conjunction with {@link excludeFilters}.
+   */
+  includeFilters?: NftExcludeFilters[];
+
+  /**
+   * Optional list of filters applied to the query. NFTs that match one or more
+   * of these filters are excluded from the response. May not be used in
+   * conjunction with {@link includeFilters}
+   */
+  excludeFilters?: NftExcludeFilters[];
+}
+
+/**
  * The response for the {@link NftNamespace.getContractsForOwner} method.
  *
  * @public
@@ -820,7 +844,7 @@ export interface GetContractsForOwnerResponse {
   pageKey?: string[];
 
   /** Total number of NFT contracts held by the given address. */
-  totalCount: string;
+  totalCount: number;
 }
 
 /** Represents a single NFT contract data in the {@link GetContractsForOwnerResponse}. */
