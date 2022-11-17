@@ -42,8 +42,8 @@ export interface AlchemySettings {
   authToken?: string;
 
   /**
-   * Optional setting that automatically batches and sends json-rpc requests for higher
-   * throughput and reduced network IO. Defaults to false.
+   * Optional setting that automatically batches and sends json-rpc requests for
+   * higher throughput and reduced network IO. Defaults to false.
    *
    * This implementation is based on the `JsonRpcBatchProvider` in ethers.
    */
@@ -732,8 +732,8 @@ export interface NftContractTokenBalance {
 }
 
 /**
- * Represents an NFT token to fetch metadata for in a {@link NftNamespace.getNftMetadataBatch}
- * method.
+ * Represents an NFT token to fetch metadata for in a
+ * {@link NftNamespace.getNftMetadataBatch} method.
  */
 export interface NftMetadataBatchToken {
   /** The NFT contract address. Limited to ERC721 and ERC1155 tokens. */
@@ -746,13 +746,13 @@ export interface NftMetadataBatchToken {
   tokenType?: NftTokenType.ERC1155 | NftTokenType.ERC721;
 }
 
-/** Additional options for the {@link NftNamespace.getNftMetadataBatch} method.*/
+/** Additional options for the {@link NftNamespace.getNftMetadataBatch} method. */
 export interface NftMetadataBatchOptions {
   /**
    * No set timeout by default - When metadata is requested, this parameter is
-   * the timeout (in milliseconds) for the website hosting the metadata to respond.
-   * If you want to only access the cache and not live fetch any metadata for
-   * cache misses then set this value to 0.
+   * the timeout (in milliseconds) for the website hosting the metadata to
+   * respond. If you want to only access the cache and not live fetch any
+   * metadata for cache misses then set this value to 0.
    */
   tokenUriTimeoutInMs?: number;
 
@@ -1090,9 +1090,7 @@ export interface NftContractNftsResponse {
   pageKey?: string;
 }
 
-/**
- * OpenSea's metadata for an NFT collection.
- */
+/** OpenSea's metadata for an NFT collection. */
 export interface OpenSeaCollectionMetadata {
   /** The floor price of the NFT. */
   floorPrice?: number;
@@ -1104,7 +1102,7 @@ export interface OpenSeaCollectionMetadata {
   imageUrl?: string;
   /** The description of the collection on OpenSea. */
   description?: string;
-  /** The homepage of the collection as determined by OpenSea.*/
+  /** The homepage of the collection as determined by OpenSea. */
   externalUrl?: string;
   /** The Twitter handle of the collection. */
   twitterUsername?: string;
@@ -1528,6 +1526,10 @@ export type AddressWebhookUpdate =
   | WebhookStatusUpdate
   | RequireAtLeastOne<WebhookAddressUpdate>
   | WebhookAddressOverride;
+
+export interface RequestedPermissions {
+  [methodName: string]: {}; // an empty object, for future extensibility
+}
 
 /**
  * Requires at least one of the properties to be set.
