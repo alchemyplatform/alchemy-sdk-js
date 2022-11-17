@@ -6,12 +6,17 @@
 
 - Added `TransactNamespace.sendGasOptimizedTransaction()`. Instead of sending a single transaction that might not get mined, this method allows you to send the same transaction multiple times, with different gas prices and gas limits. This should result in lower fees paid.
 
+## 2.2.2
+
+### Major Changes
+
 ### Minor Changes
 
 - Added support for ENS resolution to the `NotifyNamespace` and `WebsocketNamespace` methods.
 - Added the `batchRequests` setting in `AlchemySettings`. Enabling this setting will automatically batch and send json-rpc requests to reduce network overhead.
 - Included new export for the `Interface` class from ethers to simplify encoding ABI when using `eth_call`.
 - Added support for the `NftNamespace.getNftMetadataBatch()` method to fetch metadata for multiple NFTs in a single call.
+- Added support for the `NftNamespace.getNftSales()` method to fetch NFT sales across different marketplaces. Thanks @xeno097!
 
 ## 2.2.1
 

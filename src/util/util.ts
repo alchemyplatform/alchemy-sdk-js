@@ -6,13 +6,17 @@ import {
   RawBaseNft,
   RawBaseNftContract,
   RawContractBaseNft,
+  RawGetNftSalesResponse,
   RawNft,
   RawNftAttributeRarity,
   RawNftContract,
   RawSpamInfo
 } from '../internal/raw-interfaces';
 import {
+  GetNftSalesResponse,
   NftAttributeRarity,
+  NftSaleMarketplace,
+  NftSaleTakerType,
   NftTokenType,
   OpenSeaSafelistRequestStatus,
   SpamInfo,
@@ -92,27 +96,81 @@ export function getBaseNftFromRaw(
 }
 
 export function getNftFromRaw(rawNft: RawNft): Nft {
-  const tokenType = parseNftTokenType(rawNft.id.tokenMetadata?.tokenType);
-  const spamInfo = parseSpamInfo(rawNft.spamInfo);
+  try {
+    const tokenType = parseNftTokenType(rawNft.id.tokenMetadata?.tokenType);
+    const spamInfo = parseSpamInfo(rawNft.spamInfo);
+
+    return {
+      contract: {
+        address: rawNft.contract.address,
+        name: rawNft.contractMetadata?.name,
+        symbol: rawNft.contractMetadata?.symbol,
+        totalSupply: rawNft.contractMetadata?.totalSupply,
+        tokenType
+      },
+      tokenId: parseNftTokenId(rawNft.id.tokenId),
+      tokenType,
+      title: rawNft.title,
+      description: parseNftDescription(rawNft.description),
+      timeLastUpdated: rawNft.timeLastUpdated,
+      metadataError: rawNft.error,
+      rawMetadata: rawNft.metadata,
+      tokenUri: parseNftTokenUri(rawNft.tokenUri),
+      media: parseNftTokenUriArray(rawNft.media),
+      spamInfo
+    };
+  } catch (e) {
+    throw new Error('Error parsing the NFT response: ' + e);
+  }
+}
+
+export function getNftSalesFromRaw(
+  rawNftSales: RawGetNftSalesResponse
+): GetNftSalesResponse {
   return {
-    contract: {
-      address: rawNft.contract.address,
-      name: rawNft.contractMetadata?.name,
-      symbol: rawNft.contractMetadata?.symbol,
-      totalSupply: rawNft.contractMetadata?.totalSupply,
-      tokenType
-    },
-    tokenId: parseNftTokenId(rawNft.id.tokenId),
-    tokenType,
-    title: rawNft.title,
-    description: parseNftDescription(rawNft.description),
-    timeLastUpdated: rawNft.timeLastUpdated,
-    metadataError: rawNft.error,
-    rawMetadata: rawNft.metadata,
-    tokenUri: parseNftTokenUri(rawNft.tokenUri),
-    media: parseNftTokenUriArray(rawNft.media),
-    spamInfo
+    pageKey: rawNftSales?.pageKey,
+    nftSales: rawNftSales.nftSales.map(rawNftSale => ({
+      marketplace: parseNftSaleMarketplace(rawNftSale.marketplace),
+      contractAddress: rawNftSale.contractAddress,
+      tokenId: rawNftSale.tokenId,
+      quantity: rawNftSale.quantity,
+      buyerAddress: rawNftSale.buyerAddress,
+      sellerAddress: rawNftSale.sellerAddress,
+      taker: parseNftTaker(rawNftSale.taker),
+      sellerFee: rawNftSale?.sellerFee,
+      marketplaceFee: rawNftSale?.marketplaceFee,
+      royaltyFee: rawNftSale?.royaltyFee,
+      blockNumber: rawNftSale?.blockNumber,
+      logIndex: rawNftSale.logIndex,
+      bundleIndex: rawNftSale.bundleIndex,
+      transactionHash: rawNftSale.transactionHash
+    }))
   };
+}
+
+function parseNftSaleMarketplace(marketplace: string): NftSaleMarketplace {
+  switch (marketplace) {
+    case 'looksrare':
+      return NftSaleMarketplace.LOOKSRARE;
+    case 'seaport':
+      return NftSaleMarketplace.SEAPORT;
+    case 'x2y2':
+      return NftSaleMarketplace.X2Y2;
+    default:
+      return NftSaleMarketplace.UNKNOWN;
+  }
+}
+
+function parseNftTaker(taker: string): NftSaleTakerType {
+  // The `.toLowerCase()` call is needed because the API returns the capitalized values
+  switch (taker.toLowerCase()) {
+    case 'buyer':
+      return NftSaleTakerType.BUYER;
+    case 'seller':
+      return NftSaleTakerType.SELLER;
+    default:
+      throw new Error(`Unsupported NftSaleTakerType ${taker}`);
+  }
 }
 
 export function getNftRarityFromRaw(

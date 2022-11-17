@@ -7,6 +7,7 @@ import {
   getFloorPrice,
   getNftMetadata,
   getNftMetadataBatch,
+  getNftSales,
   getNftsForContract,
   getNftsForContractIterator,
   getNftsForOwner,
@@ -25,6 +26,9 @@ import {
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
   GetFloorPriceResponse,
+  GetNftSalesOptions,
+  GetNftSalesOptionsByContractAddress,
+  GetNftSalesResponse,
   GetNftsForContractOptions,
   GetNftsForOwnerOptions,
   GetOwnersForContractOptions,
@@ -379,6 +383,22 @@ export class NftNamespace {
    */
   getFloorPrice(contractAddress: string): Promise<GetFloorPriceResponse> {
     return getFloorPrice(this.config, contractAddress);
+  }
+
+  /**
+   * Returns NFT sales that have happened through on-chain marketplaces.
+   *
+   * @param options - The optional parameters to use for the request.
+   * @beta
+   */
+  getNftSales(options?: GetNftSalesOptions): Promise<GetNftSalesResponse>;
+  getNftSales(
+    options?: GetNftSalesOptionsByContractAddress
+  ): Promise<GetNftSalesResponse>;
+  getNftSales(
+    options?: GetNftSalesOptions | GetNftSalesOptionsByContractAddress
+  ): Promise<GetNftSalesResponse> {
+    return getNftSales(this.config, options);
   }
 
   /**

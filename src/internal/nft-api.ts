@@ -6,6 +6,9 @@ import {
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
   GetFloorPriceResponse,
+  GetNftSalesOptions,
+  GetNftSalesOptionsByContractAddress,
+  GetNftSalesResponse,
   GetNftsForContractOptions,
   GetNftsForOwnerOptions,
   GetOwnersForContractOptions,
@@ -19,20 +22,24 @@ import {
   NftContractNftsResponse,
   NftMetadataBatchOptions,
   NftMetadataBatchToken,
+  NftSaleMarketplace,
+  NftSaleTakerType,
   NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
   RefreshContractResult,
-  RefreshState
+  RefreshState,
+  SortingOrder
 } from '../types/types';
 import { AlchemyApiType } from '../util/const';
 import {
   getBaseNftFromRaw,
   getNftContractFromRaw,
   getNftFromRaw,
-  getNftRarityFromRaw
+  getNftRarityFromRaw,
+  getNftSalesFromRaw
 } from '../util/util';
 import { paginateEndpoint, requestHttpWithBackoff } from './dispatch';
 import {
@@ -40,6 +47,7 @@ import {
   RawContractBaseNft,
   RawGetBaseNftsForContractResponse,
   RawGetBaseNftsResponse,
+  RawGetNftSalesResponse,
   RawGetNftsForContractResponse,
   RawGetNftsResponse,
   RawGetOwnersForContractResponse,
@@ -385,6 +393,38 @@ export async function getFloorPrice(
   );
 }
 
+export async function getNftSales(
+  config: AlchemyConfig,
+  options: GetNftSalesOptions | GetNftSalesOptionsByContractAddress = {},
+  srcMethod = 'getNftSales'
+): Promise<GetNftSalesResponse> {
+  // Avoid ts compiler complaining about the contractAddress field.
+  const params: Partial<GetNftSalesOptionsByContractAddress> = {
+    ...options
+  };
+
+  const response = await requestHttpWithBackoff<
+    GetNftSalesParams,
+    RawGetNftSalesResponse
+  >(config, AlchemyApiType.NFT, 'getNFTSales', srcMethod, {
+    fromBlock: params?.fromBlock,
+    toBlock: params?.toBlock,
+    order: params?.order,
+    marketplace: params?.marketplace,
+    contractAddress: params?.contractAddress,
+    tokenId: params?.tokenId
+      ? BigNumber.from(params?.tokenId).toString()
+      : undefined,
+    sellerAddress: params?.sellerAddress,
+    buyerAddress: params?.buyerAddress,
+    taker: params?.taker,
+    limit: params?.limit,
+    pageKey: params?.pageKey
+  });
+
+  return getNftSalesFromRaw(response);
+}
+
 export async function computeRarity(
   config: AlchemyConfig,
   contractAddress: string,
@@ -645,6 +685,25 @@ interface GetOwnersForNftContractAlchemyParams {
  */
 interface GetFloorPriceParams {
   contractAddress: string;
+}
+
+/**
+ * Interface for the `getNftSales` endpoint.
+ *
+ * @internal
+ */
+interface GetNftSalesParams {
+  fromBlock?: number | 'latest';
+  toBlock?: number | 'latest';
+  order?: SortingOrder;
+  marketplace?: NftSaleMarketplace;
+  contractAddress?: string;
+  tokenId?: string;
+  sellerAddress?: string;
+  buyerAddress?: string;
+  taker?: NftSaleTakerType;
+  limit?: number;
+  pageKey?: string;
 }
 
 /**

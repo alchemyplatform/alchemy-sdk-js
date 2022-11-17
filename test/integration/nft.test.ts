@@ -1,6 +1,7 @@
 import {
   Alchemy,
   NftExcludeFilters,
+  NftSaleMarketplace,
   NftTokenType,
   OpenSeaSafelistRequestStatus,
   fromHex
@@ -269,6 +270,67 @@ describe('E2E integration tests', () => {
     const response = await alchemy.nft.getFloorPrice(contractAddress);
     expect(response.openSea).toBeDefined();
     expect(response.looksRare).toBeDefined();
+  });
+
+  it('getNftSales()', async () => {
+    const response = await alchemy.nft.getNftSales();
+
+    expect(response.pageKey).toBeDefined();
+    expect(response.nftSales.length).toBeGreaterThan(0);
+    expect(response.nftSales[0].bundleIndex).toBeDefined();
+    expect(typeof response.nftSales[0].bundleIndex).toEqual('number');
+    expect(response.nftSales[0].buyerAddress).toBeDefined();
+    expect(typeof response.nftSales[0].buyerAddress).toEqual('string');
+    expect(response.nftSales[0].contractAddress).toBeDefined();
+    expect(typeof response.nftSales[0].contractAddress).toEqual('string');
+    expect(response.nftSales[0].logIndex).toBeDefined();
+    expect(typeof response.nftSales[0].logIndex).toEqual('number');
+    expect(response.nftSales[0].marketplace).toBeDefined();
+    expect(typeof response.nftSales[0].logIndex).toEqual('number');
+    expect(response.nftSales[0].quantity).toBeDefined();
+    expect(typeof response.nftSales[0].quantity).toEqual('string');
+    expect(response.nftSales[0].sellerAddress).toBeDefined();
+    expect(typeof response.nftSales[0].sellerAddress).toEqual('string');
+    expect(response.nftSales[0].taker).toBeDefined();
+    expect(typeof response.nftSales[0].taker).toEqual('string');
+    expect(response.nftSales[0].tokenId).toBeDefined();
+    expect(typeof response.nftSales[0].tokenId).toEqual('string');
+    expect(response.nftSales[0].transactionHash).toBeDefined();
+    expect(typeof response.nftSales[0].transactionHash).toEqual('string');
+  });
+
+  it('getNftSales() with pageKey', async () => {
+    const firstPage = await alchemy.nft.getNftSales();
+
+    const response = await alchemy.nft.getNftSales({
+      pageKey: firstPage?.pageKey
+    });
+
+    expect(response.nftSales).not.toEqual(firstPage.nftSales);
+  });
+
+  it('getNftSales() with contractAddress', async () => {
+    const contractAddress = '0xaf1cfc6b4104c797149fb7a294f7d46f7ec27b80';
+
+    const response = await alchemy.nft.getNftSales({ contractAddress });
+
+    expect(response.nftSales.length).toBeGreaterThan(0);
+    expect(response.nftSales[0].contractAddress).toEqual(contractAddress);
+  });
+
+  it.each(
+    Object.values(NftSaleMarketplace).filter(
+      v => v !== NftSaleMarketplace.UNKNOWN
+    )
+  )(`getNftSales() with marketplace=%s`, async marketplace => {
+    const response = await alchemy.nft.getNftSales({
+      marketplace,
+      limit: 10
+    });
+
+    response.nftSales.forEach(nftSale => {
+      expect(nftSale.marketplace).toEqual(marketplace);
+    });
   });
 
   it('computeRarity()', async () => {

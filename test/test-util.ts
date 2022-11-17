@@ -4,11 +4,14 @@ import {
   BaseNft,
   Nft,
   NftContract,
+  NftSaleFeeData,
   NftTokenType,
   OwnedBaseNft,
   OwnedNft,
   TokenUri,
-  toHex
+  toHex,
+  NftSaleTakerType,
+  NftSaleMarketplace
 } from '../src';
 import {
   RawBaseNft,
@@ -16,6 +19,7 @@ import {
   RawNft,
   RawNftContract,
   RawNftContractMetadata,
+  RawNftSale,
   RawOpenSeaCollectionMetadata,
   RawOwnedBaseNft,
   RawOwnedNft
@@ -183,6 +187,39 @@ export function createRawNftContractBaseNft(
     id: {
       tokenId
     }
+  };
+}
+
+export function createRawNftSale(
+  contractAddress: string,
+  tokenId: string,
+  marketplace: NftSaleMarketplace,
+  taker: NftSaleTakerType,
+  buyerAddress: string,
+  sellerAddress: string
+): RawNftSale {
+  const feeData: NftSaleFeeData = {
+    amount: '100',
+    decimal: 18,
+    symbol: 'ETH'
+  };
+
+  return {
+    blockNumber: 15948091,
+    bundleIndex: 0,
+    buyerAddress,
+    contractAddress,
+    logIndex: 392,
+    marketplace,
+    marketplaceFee: feeData,
+    quantity: '2',
+    royaltyFee: feeData,
+    sellerFee: feeData,
+    sellerAddress,
+    taker,
+    tokenId,
+    transactionHash:
+      '0xacad756c9094473a72f042e47cededcd11398333bbc64445f70266b85a929435'
   };
 }
 

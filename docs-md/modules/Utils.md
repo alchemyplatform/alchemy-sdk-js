@@ -4,6 +4,10 @@
 
 ## Table of contents
 
+### Classes
+
+- [Interface](../classes/Utils.Interface.md)
+
 ### Functions
 
 - [arrayify](Utils.md#arrayify)

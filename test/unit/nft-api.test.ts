@@ -5,6 +5,7 @@ import {
   Alchemy,
   BaseNft,
   GetFloorPriceResponse,
+  GetNftSalesOptions,
   GetNftsForOwnerOptions,
   GetOwnersForContractWithTokenBalancesResponse,
   Nft,
@@ -12,17 +13,22 @@ import {
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
   NftExcludeFilters,
+  NftMetadataBatchToken,
+  NftSaleMarketplace,
+  NftSaleTakerType,
   NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
   RefreshState,
-  fromHex, NftMetadataBatchToken
+  SortingOrder,
+  fromHex
 } from '../../src';
 import {
   RawGetBaseNftsForContractResponse,
   RawGetBaseNftsResponse,
+  RawGetNftSalesResponse,
   RawGetNftsForContractResponse,
   RawGetNftsResponse,
   RawGetOwnersForContractWithTokenBalancesResponse,
@@ -42,6 +48,7 @@ import {
   createRawNft,
   createRawNftContract,
   createRawNftContractBaseNft,
+  createRawNftSale,
   createRawOwnedBaseNft,
   createRawOwnedNft,
   verifyNftContractMetadata
@@ -1257,6 +1264,106 @@ describe('NFT module', () => {
       await expect(alchemy.nft.getFloorPrice(contractAddress)).rejects.toThrow(
         'Internal Server Error'
       );
+    });
+  });
+
+  describe('getNftSales', () => {
+    const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
+    const tokenId = '42';
+    const buyerAddress = '0xa56c6b57127e8881fbe51046058d0ddc1bb9e24f';
+    const sellerAddress = '0xb60653cc0acff21cdf59e57bcd5de99e305a4c1c';
+    const templateResponse: RawGetNftSalesResponse = {
+      nftSales: [
+        createRawNftSale(
+          contractAddress,
+          tokenId,
+          NftSaleMarketplace.LOOKSRARE,
+          NftSaleTakerType.BUYER,
+          buyerAddress,
+          sellerAddress
+        ),
+        createRawNftSale(
+          contractAddress,
+          tokenId,
+          NftSaleMarketplace.SEAPORT,
+          NftSaleTakerType.SELLER,
+          buyerAddress,
+          sellerAddress
+        ),
+        createRawNftSale(
+          contractAddress,
+          tokenId,
+          NftSaleMarketplace.X2Y2,
+          NftSaleTakerType.SELLER,
+          buyerAddress,
+          sellerAddress
+        )
+      ]
+    };
+
+    beforeEach(() => {
+      mock.onGet().reply(200, templateResponse);
+    });
+
+    it('calls with the correct parameters (GetNftSalesByContractAddress)', async () => {
+      await alchemy.nft.getNftSales({ contractAddress, tokenId });
+
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        contractAddress
+      );
+      expect(mock.history.get[0].params).toHaveProperty('tokenId', tokenId);
+    });
+
+    it.each<[keyof GetNftSalesOptions, any]>([
+      ['buyerAddress', buyerAddress],
+      ['fromBlock', 0],
+      ['limit', 10],
+      ['marketplace', NftSaleMarketplace.LOOKSRARE],
+      ['order', SortingOrder.ASCENDING],
+      ['pageKey', '2'],
+      ['sellerAddress', sellerAddress],
+      ['taker', NftSaleTakerType.BUYER],
+      ['toBlock', 'latest']
+    ])(
+      'calls with the correct parameters (GetNftSales)',
+      async (fieldName, value) => {
+        await alchemy.nft.getNftSales({
+          [fieldName]: value
+        });
+
+        expect(mock.history.get.length).toEqual(1);
+        expect(mock.history.get[0].params).toHaveProperty(fieldName, value);
+      }
+    );
+
+    it('returns the api response in the expected format', async () => {
+      const result = await alchemy.nft.getNftSales({ contractAddress });
+
+      expect(result.nftSales.length).toEqual(3);
+
+      expect(result.nftSales[0].marketplace).toEqual(
+        NftSaleMarketplace.LOOKSRARE
+      );
+      expect(result.nftSales[0].taker).toEqual(NftSaleTakerType.BUYER);
+
+      expect(result.nftSales[1].marketplace).toEqual(
+        NftSaleMarketplace.SEAPORT
+      );
+      expect(result.nftSales[1].taker).toEqual(NftSaleTakerType.SELLER);
+
+      expect(result.nftSales[2].marketplace).toEqual(NftSaleMarketplace.X2Y2);
+      expect(result.nftSales[2].taker).toEqual(NftSaleTakerType.SELLER);
+    });
+
+    it('surfaces errors', async () => {
+      mock.reset();
+      mock.onGet().reply(400, 'fromBlock should be a non-negative integer');
+
+      await expect(
+        alchemy.nft.getNftSales({ contractAddress })
+      ).rejects.toThrow('fromBlock should be a non-negative integer');
     });
   });
 
