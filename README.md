@@ -91,6 +91,7 @@ alchemy.ws.on(
 The Alchemy SDK also supports a number of Ethers.js objects that streamline the development process:
 
 - [`Utils`](https://docs.ethers.io/v5/api/utils/): Equivalent to `ethers.utils`, this provides a number of common Ethers.js utility methods for developers.
+  - [`Interface`](https://docs.ethers.io/v5/api/utils/abi/interface/): Found in Utils.Interface, this class abstracts the encoding and decoding required to interact with contracts on the Ethereum network.
 - [`Contract`](https://docs.ethers.io/v5/api/contract/contract/): An abstraction for smart contract code deployed to the blockchain.
 - [`ContractFactory`](https://docs.ethers.io/v5/api/contract/contract-factory/): Allows developers to build a `Contract` object.
 - [`Wallet`](https://docs.ethers.io/v5/api/signer/#Wallet): An implementation of `Signer` that can sign transactions and messages using a private key as a standard Externally Owned Account.
