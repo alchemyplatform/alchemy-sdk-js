@@ -4,6 +4,7 @@ import {
   checkNftOwnership,
   computeRarity,
   getContractMetadata,
+  getContractsForOwner,
   getFloorPrice,
   getNftMetadata,
   getNftMetadataBatch,
@@ -25,6 +26,8 @@ import {
 import {
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
+  GetContractsForOwnerOptions,
+  GetContractsForOwnerResponse,
   GetFloorPriceResponse,
   GetNftSalesOptions,
   GetNftSalesOptionsByContractAddress,
@@ -307,6 +310,20 @@ export class NftNamespace {
     tokenId: BigNumberish
   ): Promise<GetOwnersForNftResponse> {
     return getOwnersForNft(this.config, contractAddress, tokenId);
+  }
+
+  /**
+   * Gets all NFT contracts held by the specified owner address.
+   *
+   * @param owner - Address for NFT owner (can be in ENS format!).
+   * @param options - The optional parameters to use for the request.
+   * @public
+   */
+  getContractsForOwner(
+    owner: string,
+    options?: GetContractsForOwnerOptions
+  ): Promise<GetContractsForOwnerResponse> {
+    return getContractsForOwner(this.config, owner, options);
   }
 
   /**
