@@ -295,9 +295,9 @@ export enum AssetTransfersCategory {
  * Enum for the order of the {@link AssetTransfersParams} request object when
  * using {@link CoreNamespace.getAssetTransfers}.
  *
- * @public
  * @deprecated Use {@link SortingOrder} instead. This enum will be removed in a
- * future version.
+ *   future version.
+ * @public
  */
 export enum AssetTransfersOrder {
   ASCENDING = 'asc',
@@ -805,6 +805,83 @@ export interface GetFloorPriceResponse {
    */
   readonly openSea: FloorPriceMarketplace | FloorPriceError;
   readonly looksRare: FloorPriceMarketplace | FloorPriceError;
+}
+
+/**
+ * The response for the {@link NftNamespace.getContractsForOwner} method.
+ *
+ * @public
+ */
+export interface GetContractsForOwnerResponse {
+  /** The list of contracts, that match the query, held by the given address. */
+  contracts: ContractForOwner[];
+
+  /** Key for pagination to use to fetch results from the next page if available. */
+  pageKey?: string[];
+
+  /** Total number of NFT contracts held by the given address. */
+  totalCount: string;
+}
+
+/** Represents a single NFT contract data in the {@link GetContractsForOwnerResponse}. */
+export interface ContractForOwner {
+  /** Address of the held contract. */
+  address: string;
+
+  /**
+   * Sum of NFT balances across all token IDs held by the owner. For
+   * non-fungible tokens this will be equal to the numDistinctTokensOwned, but
+   * it may be higher if the user holds some fungible ERC1155 tokens.
+   */
+  totalBalance: number;
+
+  /**
+   * Number of distinct token IDs held by the owner. For non-fungible tokens
+   * this will be equal to the totalBalance, but it may be lower if the user
+   * holds some fungible ERC1155 tokens.
+   */
+  numDistinctTokensOwned: number;
+
+  isSpam: boolean;
+
+  /** One of the tokens from this contract held by the owner. */
+  tokenId: string;
+
+  /** The name of the contract. */
+  name?: string;
+
+  /** The symbol of the contract. */
+  symbol?: string;
+
+  /** Optional field that specifies the NFT standard used by the contract. */
+  tokenType?: NftTokenType;
+
+  /** Alternative NFT metadata for this contract to be parsed manually. */
+  media: NftMediaData;
+
+  /** OpenSea's metadata for this NFT contract. */
+  openSea?: OpenSeaCollectionMetadata;
+}
+
+/** Contains alternative NFT metadata for the {@link ContractForOwner} object. */
+export interface NftMediaData {
+  /**
+   * Uri representing the location of the NFT's original metadata blob. This is
+   * a backup for you to parse when the metadata field is not automatically populated.
+   */
+  raw: string;
+
+  /** Public gateway uri for the raw uri above. */
+  gateway: string;
+
+  /** URL for a resized thumbnail of the NFT media asset. */
+  thumbnail?: string;
+
+  /** The media format (jpg, gif, png, etc.) of the gateway and thumbnail assets. */
+  format?: string;
+
+  /** The size of the media asset in bytes. */
+  bytes?: number;
 }
 
 /**

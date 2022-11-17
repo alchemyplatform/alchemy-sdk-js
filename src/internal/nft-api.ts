@@ -20,6 +20,7 @@ import {
   NftAttributesResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
+  NftExcludeFilters,
   NftMetadataBatchOptions,
   NftMetadataBatchToken,
   NftSaleMarketplace,
@@ -676,6 +677,18 @@ interface GetContractMetadataParams {
  */
 interface GetOwnersForNftContractAlchemyParams {
   contractAddress: string;
+}
+
+/**
+ * Interface for the `getOwnersForContract` endpoint.
+ *
+ * @internal
+ */
+interface GetOwnersForContractParams {
+  owner: string;
+  pageKey?: string;
+  includeFilters?: NftExcludeFilters[];
+  excludeFilters?: NftExcludeFilters[];
 }
 
 /**

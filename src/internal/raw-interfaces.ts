@@ -1,6 +1,7 @@
 import { BaseNftContract } from '../api/nft';
 import {
   Media,
+  NftMediaData,
   NftMetadata,
   NftSaleFeeData,
   NftSpamClassification,
@@ -295,4 +296,23 @@ export interface RawNftSale {
   logIndex: number;
   bundleIndex: number;
   transactionHash: string;
+}
+
+export interface RawGetContractsForOwnerResponse {
+  contracts: RawContractForOwner[];
+  pageKey?: string[];
+  totalCount: string;
+}
+
+export interface RawContractForOwner {
+  address: string;
+  totalBalance: number;
+  numDistinctTokensOwned: number;
+  isSpam: boolean;
+  tokenId: string;
+  name?: string;
+  symbol?: string;
+  tokenType?: string;
+  media: NftMediaData;
+  opensea?: RawOpenSeaCollectionMetadata;
 }
