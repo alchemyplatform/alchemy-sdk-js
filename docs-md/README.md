@@ -8,7 +8,9 @@ It supports the exact same syntax and functionality of the Ethers.js `AlchemyPro
 
 The SDK leverages Alchemy's hardened node infrastructure, guaranteeing best-in-class node reliability, scalability, and data correctness, and is undergoing active development by Alchemy's engineers.
 
-> 🙋‍♀️ **FEATURE REQUESTS:** We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want on our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback), and we'd love to build it for you:
+> 🙋‍♀️ **FEATURE REQUESTS:**
+>
+> We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want on our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback), and we'd love to build it for you.
 
 The SDK currently supports the following chains:
 
@@ -40,6 +42,10 @@ const settings = {
 const alchemy = new Alchemy(settings);
 ```
 
+> **ℹ️ Creating a unique Alchemy API Key**
+>
+> The public "demo" API key may be rate limited based on traffic. To create your own API key, **[sign up for an Alchemy account here](https://alchemy.com/?a=SDKquickstart)** and use the key created on your dashboard for the first app.
+
 The `Alchemy` object returned by `new Alchemy()` provides access to the Alchemy API. An optional config object can be passed in when initializing to set your API key, change the network, or specify the max number of retries.
 
 ## Using the Alchemy SDK
@@ -53,6 +59,10 @@ The Alchemy SDK currently supports five different namespaces, including:
 - `notify`: CRUD endpoints for modifying Alchemy Notify Webhooks
 
 If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should work properly.
+
+> **ℹ️ ENS Name Resolution**
+>
+> The Alchemy SDK now supports ENS names (e.g. `vitalik.eth`) for every parameter where you can pass in a Externally Owned Address, or user address (e.g. `0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045`).
 
 ```ts
 import { Alchemy, AlchemySubscription } from 'alchemy-sdk';
@@ -79,6 +89,13 @@ alchemy.ws.on(
   res => console.log(res)
 );
 ```
+
+The Alchemy SDK also supports a number of Ethers.js objects that streamline the development process:
+
+- [`Utils`](https://docs.ethers.io/v5/api/utils/): Equivalent to `ethers.utils`, this provides a number of common Ethers.js utility methods for developers.
+- [`Contract`](https://docs.ethers.io/v5/api/contract/contract/): An abstraction for smart contract code deployed to the blockchain.
+- [`ContractFactory`](https://docs.ethers.io/v5/api/contract/contract-factory/): Allows developers to build a `Contract` object.
+- [`Wallet`](https://docs.ethers.io/v5/api/signer/#Wallet): An implementation of `Signer` that can sign transactions and messages using a private key as a standard Externally Owned Account.
 
 ## Alchemy Core
 
@@ -130,7 +147,7 @@ alchemy.ws.on('block', res => console.log(res));
 alchemy.ws.once(
   {
     method: AlchemySubscription.PENDING_TRANSACTIONS,
-    toAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+    toAddress: 'vitalik.eth'
   },
   res => console.log(res)
 );
@@ -171,7 +188,8 @@ The `transact` namespace also aliases over several commonly used methods from th
 The SDK currently supports the following [NFT API](https://docs.alchemy.com/alchemy/enhanced-apis/nft-api) endpoints
 under the `alchemy.nft` namespace:
 
-- `getNftMetadata()`: Get the NFT metadata for a contract address and tokenId.
+- `getNftMetadata()`: Get the NFT metadata for an NFT contract address and tokenId.
+- `getNftMetadataBatch()`: Get the NFT metadata for multiple NFT contract addresses/token id pairs.
 - `getContractMetadata()`: Get the metadata associated with an NFT contract
 - `getNftsForOwner()`: Get NFTs for an owner address.
 - `getNftsForOwnerIterator()`: Get NFTs for an owner address as an async iterator (handles paging automatically).
@@ -187,7 +205,9 @@ under the `alchemy.nft` namespace:
 - `refreshContract()`: Enqueues the specified contract address to have all token ids' metadata refreshed.
 - `getFloorPrice()`: Return the floor prices of a NFT contract by marketplace.
 - `computeRarity()`: Get the rarity of each attribute of an NFT.
+- `getNftSales()`: Returns NFT sales that have happened through on-chain marketplaces.
 - `summarizeNftAttributes()`: Get the summary of attribute prevalence for all NFTs in a contract.
+- `searchContractMetadata()`: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts.
 
 ### Using `BaseNft` and `Nft`
 
@@ -264,7 +284,11 @@ or as a webpage by opening `docs/index.html` in your browser.
 
 ## Usage Examples
 
-Below are a few usage examples. You can also find examples at the following page: [Examples Using the Alchemy SDK](https://docs.alchemy.com/reference/using-the-alchemy-sdk).
+Below are a few usage examples.
+
+> **ℹ️ More Examples **
+>
+> You can also go here: [Examples Using the Alchemy SDK](https://docs.alchemy.com/reference/using-the-alchemy-sdk).
 
 ### Getting the NFTs owned by an address
 
@@ -328,9 +352,7 @@ import { Alchemy } from 'alchemy-sdk';
 
 const alchemy = new Alchemy();
 
-alchemy.core
-  .getTokenBalances('0x994b342dd87fc825f66e51ffa3ef71ad818b6893')
-  .then(console.log);
+alchemy.core.getTokenBalances('vitalik.eth').then(console.log);
 ```
 
 ## Questions and Feedback
