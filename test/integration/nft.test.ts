@@ -376,19 +376,20 @@ describe('E2E integration tests', () => {
     expect(response.nftSales[0].contractAddress).toEqual(contractAddress);
   });
 
-  it.each(Object.values(NftSaleMarketplace))(
-    `getNftSales() with marketplace=%s`,
-    async marketplace => {
-      const response = await alchemy.nft.getNftSales({
-        marketplace,
-        limit: 10
-      });
+  it.each(
+    Object.values(NftSaleMarketplace).filter(
+      v => v !== NftSaleMarketplace.UNKNOWN
+    )
+  )(`getNftSales() with marketplace=%s`, async marketplace => {
+    const response = await alchemy.nft.getNftSales({
+      marketplace,
+      limit: 10
+    });
 
-      response.nftSales.forEach(nftSale => {
-        expect(nftSale.marketplace).toEqual(marketplace);
-      });
-    }
-  );
+    response.nftSales.forEach(nftSale => {
+      expect(nftSale.marketplace).toEqual(marketplace);
+    });
+  });
 
   it('computeRarity()', async () => {
     const contractAddress = '0x0510745d2ca36729bed35c818527c4485912d99e';

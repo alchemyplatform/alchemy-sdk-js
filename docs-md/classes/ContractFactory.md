@@ -74,7 +74,7 @@ ___
 
 ### interface
 
-• `Readonly` **interface**: `Interface`
+• `Readonly` **interface**: [`Interface`](Utils.Interface.md)
 
 #### Inherited from
 
@@ -275,7 +275,7 @@ ___
 
 ### getInterface
 
-▸ `Static` **getInterface**(`contractInterface`): `Interface`
+▸ `Static` **getInterface**(`contractInterface`): [`Interface`](Utils.Interface.md)
 
 #### Parameters
 
@@ -285,7 +285,7 @@ ___
 
 #### Returns
 
-`Interface`
+[`Interface`](Utils.Interface.md)
 
 #### Inherited from
 

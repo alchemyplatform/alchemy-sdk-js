@@ -37,7 +37,7 @@ different network or API key, create a new instance of [Alchemy](Alchemy.md).
 
 #### Defined in
 
-[src/api/alchemy.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/alchemy.ts#L55)
+[src/api/alchemy.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy.ts#L55)
 
 ## Properties
 
@@ -50,7 +50,7 @@ and allows access to the underlying providers.
 
 #### Defined in
 
-[src/api/alchemy.ts:41](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/alchemy.ts#L41)
+[src/api/alchemy.ts:41](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy.ts#L41)
 
 ___
 
@@ -63,7 +63,7 @@ Enhanced APIs.
 
 #### Defined in
 
-[src/api/alchemy.ts:23](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/alchemy.ts#L23)
+[src/api/alchemy.ts:23](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy.ts#L23)
 
 ___
 
@@ -75,7 +75,7 @@ The `nft` namespace contains methods for Alchemy's NFT API.
 
 #### Defined in
 
-[src/api/alchemy.ts:26](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/alchemy.ts#L26)
+[src/api/alchemy.ts:26](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy.ts#L26)
 
 ___
 
@@ -88,7 +88,7 @@ as part of the Notify API.
 
 #### Defined in
 
-[src/api/alchemy.ts:47](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/alchemy.ts#L47)
+[src/api/alchemy.ts:47](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy.ts#L47)
 
 ___
 
@@ -101,7 +101,7 @@ checking on the state of submitted transasctions.
 
 #### Defined in
 
-[src/api/alchemy.ts:35](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/alchemy.ts#L35)
+[src/api/alchemy.ts:35](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy.ts#L35)
 
 ___
 
@@ -113,4 +113,4 @@ The `ws` namespace contains methods for using WebSockets and creating subscripti
 
 #### Defined in
 
-[src/api/alchemy.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/alchemy.ts#L29)
+[src/api/alchemy.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy.ts#L29)

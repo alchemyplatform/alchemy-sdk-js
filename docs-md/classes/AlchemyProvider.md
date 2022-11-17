@@ -41,6 +41,7 @@ Do not call this constructor directly. Instead, instantiate an instance of
 - [\_pollingInterval](AlchemyProvider.md#_pollinginterval)
 - [anyNetwork](AlchemyProvider.md#anynetwork)
 - [apiKey](AlchemyProvider.md#apikey)
+- [batchRequests](AlchemyProvider.md#batchrequests)
 - [connection](AlchemyProvider.md#connection)
 - [disableCcipRead](AlchemyProvider.md#disableccipread)
 - [formatter](AlchemyProvider.md#formatter)
@@ -400,7 +401,17 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/alchemy-provider.ts#L39)
+[src/api/alchemy-provider.ts:41](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy-provider.ts#L41)
+
+___
+
+### batchRequests
+
+• `Readonly` **batchRequests**: `boolean`
+
+#### Defined in
+
+[src/api/alchemy-provider.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy-provider.ts#L43)
 
 ___
 
@@ -452,7 +463,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:40](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/alchemy-provider.ts#L40)
+[src/api/alchemy-provider.ts:42](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy-provider.ts#L42)
 
 ## Accessors
 
@@ -924,7 +935,7 @@ JsonRpcProvider.\_startPending
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:184](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/alchemy-provider.ts#L184)
+[src/api/alchemy-provider.ts:204](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy-provider.ts#L204)
 
 ___
 
@@ -1124,7 +1135,7 @@ JsonRpcProvider.detectNetwork
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:172](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/alchemy-provider.ts#L172)
+[src/api/alchemy-provider.ts:192](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy-provider.ts#L192)
 
 ___
 
@@ -1603,7 +1614,7 @@ CommunityResourcable.isCommunityResource
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:194](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/alchemy-provider.ts#L194)
+[src/api/alchemy-provider.ts:214](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy-provider.ts#L214)
 
 ___
 
@@ -1963,7 +1974,7 @@ JsonRpcProvider.send
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:208](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/api/alchemy-provider.ts#L208)
+[src/api/alchemy-provider.ts:228](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy-provider.ts#L228)
 
 ___
 

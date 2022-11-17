@@ -10,6 +10,7 @@ Options object used to configure the Alchemy SDK.
 
 - [apiKey](AlchemySettings.md#apikey)
 - [authToken](AlchemySettings.md#authtoken)
+- [batchRequests](AlchemySettings.md#batchrequests)
 - [maxRetries](AlchemySettings.md#maxretries)
 - [network](AlchemySettings.md#network)
 - [url](AlchemySettings.md#url)
@@ -22,9 +23,11 @@ Options object used to configure the Alchemy SDK.
 
 The Alchemy API key that can be found in the Alchemy dashboard.
 
+Defaults to: "demo" (a rate-limited public API key)
+
 #### Defined in
 
-[src/types/types.ts:18](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L18)
+[src/types/types.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/types/types.ts#L22)
 
 ___
 
@@ -37,7 +40,22 @@ in the Alchemy Dashboard on the Notify tab.
 
 #### Defined in
 
-[src/types/types.ts:42](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L42)
+[src/types/types.ts:48](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/types/types.ts#L48)
+
+___
+
+### batchRequests
+
+• `Optional` **batchRequests**: `boolean`
+
+Optional setting that automatically batches and sends json-rpc requests for
+higher throughput and reduced network IO. Defaults to false.
+
+This implementation is based on the `JsonRpcBatchProvider` in ethers.
+
+#### Defined in
+
+[src/types/types.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/types/types.ts#L56)
 
 ___
 
@@ -49,7 +67,7 @@ The maximum number of retries to attempt if a request fails. Defaults to 5.
 
 #### Defined in
 
-[src/types/types.ts:27](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L27)
+[src/types/types.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/types/types.ts#L33)
 
 ___
 
@@ -58,11 +76,13 @@ ___
 • `Optional` **network**: [`Network`](../enums/Network.md)
 
 The name of the network. Once configured, the network cannot be changed. To
-use a different network, instantiate a new `Alchemy` instance
+use a different network, instantiate a new `Alchemy` instance.
+
+Defaults to: Network.ETH_MAINNET
 
 #### Defined in
 
-[src/types/types.ts:24](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L24)
+[src/types/types.ts:30](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/types/types.ts#L30)
 
 ___
 
@@ -78,4 +98,4 @@ that not all methods will work with custom URLs.
 
 #### Defined in
 
-[src/types/types.ts:36](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L36)
+[src/types/types.ts:42](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/types/types.ts#L42)
