@@ -29,7 +29,7 @@ The token balance of the NFT.
 
 #### Defined in
 
-[src/types/types.ts:676](https://github.com/alchemyplatform/alchemy-sdk-js/blob/30d9ef5/src/types/types.ts#L676)
+[src/types/types.ts:682](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/types/types.ts#L682)
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 #### Defined in
 
-[src/api/nft.ts:44](https://github.com/alchemyplatform/alchemy-sdk-js/blob/30d9ef5/src/api/nft.ts#L44)
+[src/api/nft.ts:44](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/nft.ts#L44)
 
 ___
 
@@ -59,7 +59,7 @@ The NFT token ID as an integer string.
 
 #### Defined in
 
-[src/api/nft.ts:46](https://github.com/alchemyplatform/alchemy-sdk-js/blob/30d9ef5/src/api/nft.ts#L46)
+[src/api/nft.ts:46](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/nft.ts#L46)
 
 ___
 
@@ -75,4 +75,4 @@ The type of ERC token, if known.
 
 #### Defined in
 
-[src/api/nft.ts:48](https://github.com/alchemyplatform/alchemy-sdk-js/blob/30d9ef5/src/api/nft.ts#L48)
+[src/api/nft.ts:48](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/nft.ts#L48)
