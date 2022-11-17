@@ -208,17 +208,6 @@ under the `alchemy.nft` namespace:
 - `summarizeNftAttributes()`: Get the summary of attribute prevalence for all NFTs in a contract.
 - `searchContractMetadata()`: Search for a keyword across metadata of all ERC-721 and ERC-1155 smart contracts.
 
-### Using `BaseNft` and `Nft`
-
-The SDK currently uses the `BaseNft` and `Nft` classes to represent NFTs returned by the Alchemy. The `BaseNft` object
-does
-not hold any metadata information and only contains the NFT contract and token ID. The `Nft` object additionally
-contains the NFT metadata, token URI information, and media.
-
-By default, the SDK will return the `Nft` object. You can optionally choose to fetch the `BaseNft` object instead by
-setting the `omitMetadata` parameter to `true`. The SDK documentation describes the different parameter and response
-interfaces in more detail.
-
 ### Pagination
 
 The Alchemy NFT endpoints return 100 results per page. To get the next page, you can pass in the `pageKey` returned by
