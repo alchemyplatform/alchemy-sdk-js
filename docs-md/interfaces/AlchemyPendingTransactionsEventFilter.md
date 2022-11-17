@@ -32,7 +32,7 @@ Filter pending transactions sent FROM the provided address or array of addresses
 
 #### Defined in
 
-[src/types/types.ts:1131](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L1131)
+[src/types/types.ts:1333](https://github.com/alchemyplatform/alchemy-sdk-js/blob/30d9ef5/src/types/types.ts#L1333)
 
 ___
 
@@ -49,7 +49,7 @@ response as subscribing to `newPendingTransactions`.
 
 #### Defined in
 
-[src/types/types.ts:1144](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L1144)
+[src/types/types.ts:1346](https://github.com/alchemyplatform/alchemy-sdk-js/blob/30d9ef5/src/types/types.ts#L1346)
 
 ___
 
@@ -59,7 +59,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1128](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L1128)
+[src/types/types.ts:1330](https://github.com/alchemyplatform/alchemy-sdk-js/blob/30d9ef5/src/types/types.ts#L1330)
 
 ___
 
@@ -71,4 +71,4 @@ Filter pending transactions sent TO the provided address or array of addresses.
 
 #### Defined in
 
-[src/types/types.ts:1134](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c3fdebb/src/types/types.ts#L1134)
+[src/types/types.ts:1336](https://github.com/alchemyplatform/alchemy-sdk-js/blob/30d9ef5/src/types/types.ts#L1336)
