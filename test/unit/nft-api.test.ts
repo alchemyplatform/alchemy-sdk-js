@@ -4,6 +4,8 @@ import MockAdapter from 'axios-mock-adapter';
 import {
   Alchemy,
   BaseNft,
+  fromHex,
+  GetContractsForOwnerOptions,
   GetFloorPriceResponse,
   GetNftSalesOptions,
   GetNftsForOwnerOptions,
@@ -22,33 +24,36 @@ import {
   OwnedNft,
   OwnedNftsResponse,
   RefreshState,
-  SortingOrder,
-  fromHex
+  SortingOrder
 } from '../../src';
 import {
   RawGetBaseNftsForContractResponse,
   RawGetBaseNftsResponse,
+  RawGetContractsForOwnerResponse,
   RawGetNftSalesResponse,
   RawGetNftsForContractResponse,
   RawGetNftsResponse,
   RawGetOwnersForContractWithTokenBalancesResponse,
-  RawNftAttributeRarity,
-  RawOpenSeaCollectionMetadata
+  RawNftAttributeRarity
 } from '../../src/internal/raw-interfaces';
 import {
   getNftContractFromRaw,
   getNftFromRaw,
-  getNftRarityFromRaw
+  getNftRarityFromRaw,
+  parseRawOpenSeaNftMetadata
 } from '../../src/util/util';
 import {
   createBaseNft,
   createNft,
+  createNftMediaData,
   createOwnedBaseNft,
   createOwnedNft,
+  createRawGetContractsForOwner,
   createRawNft,
   createRawNftContract,
   createRawNftContractBaseNft,
   createRawNftSale,
+  createRawOpenSeaCollectionMetadata,
   createRawOwnedBaseNft,
   createRawOwnedNft,
   verifyNftContractMetadata
@@ -77,17 +82,7 @@ describe('NFT module', () => {
     const symbol = 'NCN';
     const totalSupply = '9999';
     const tokenType = NftTokenType.ERC721;
-    const openSea: RawOpenSeaCollectionMetadata = {
-      floorPrice: 2.2998,
-      collectionName: 'Collection Name',
-      safelistRequestStatus: 'verified',
-      imageUrl: 'http://image.url',
-      description: 'A sample description',
-      externalUrl: 'http://external.url',
-      twitterUsername: 'twitter-handle',
-      discordUrl: 'https://discord.gg/example',
-      lastIngestedAt: '2022-10-26T22:24:49.000Z'
-    };
+    const openSea = createRawOpenSeaCollectionMetadata();
 
     const rawNftContractResponse = createRawNftContract(
       address,
@@ -1119,6 +1114,101 @@ describe('NFT module', () => {
       await expect(
         alchemy.nft.getOwnersForNft(contractAddress, tokenIdHex)
       ).rejects.toThrow('Too many requests');
+    });
+  });
+
+  describe('getContractsForOwner()', () => {
+    const owner = 'vitalik.eth';
+    const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
+    const tokenId = '27';
+    const name = 'NFT Contract Name';
+    const symbol = 'XNO';
+    const totalContractCount = 3;
+    const nftMediaData = createNftMediaData();
+    const completeNftMediaData = createNftMediaData(
+      128,
+      'jpg',
+      'http://api.nikeape.xyz/ipfs/nickbanc/1.jpg'
+    );
+    const rawOpenSeaContractMetadata = createRawOpenSeaCollectionMetadata();
+    const expectedOpenseaMetadata = parseRawOpenSeaNftMetadata(
+      rawOpenSeaContractMetadata
+    );
+
+    const templateResponse: RawGetContractsForOwnerResponse = {
+      totalCount: totalContractCount,
+      contracts: [
+        createRawGetContractsForOwner(contractAddress, tokenId, nftMediaData),
+        createRawGetContractsForOwner(
+          contractAddress,
+          tokenId,
+          completeNftMediaData,
+          false,
+          name,
+          NftTokenType.ERC721,
+          symbol
+        ),
+        createRawGetContractsForOwner(
+          contractAddress,
+          tokenId,
+          nftMediaData,
+          true,
+          name,
+          NftTokenType.ERC1155,
+          symbol,
+          rawOpenSeaContractMetadata
+        )
+      ]
+    };
+
+    beforeEach(() => {
+      mock.onGet().reply(200, templateResponse);
+    });
+
+    it.each<[keyof GetContractsForOwnerOptions, any]>([
+      ['excludeFilters', [NftExcludeFilters.AIRDROPS]],
+      ['includeFilters', [NftExcludeFilters.SPAM]],
+      ['pageKey', 'a-page-key']
+    ])('calls with the correct parameters', async (fieldName, value) => {
+      await alchemy.nft.getContractsForOwner(owner, {
+        [fieldName]: value
+      });
+
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(fieldName, value);
+    });
+
+    it('returns the api response in the expected format', async () => {
+      const result = await alchemy.nft.getContractsForOwner(owner);
+
+      expect(result.totalCount).toEqual(totalContractCount);
+      expect(result.contracts.length).toEqual(totalContractCount);
+
+      expect(result.contracts[0].address).toEqual(contractAddress);
+      expect(result.contracts[0].tokenId).toEqual(tokenId);
+
+      expect(result.contracts[1].address).toEqual(contractAddress);
+      expect(result.contracts[1].tokenId).toEqual(tokenId);
+      expect(result.contracts[1].name).toEqual(name);
+      expect(result.contracts[1].tokenType).toEqual(NftTokenType.ERC721);
+      expect(result.contracts[1].symbol).toEqual(symbol);
+      expect(result.contracts[1].media).toEqual(completeNftMediaData);
+
+      expect(result.contracts[2].address).toEqual(contractAddress);
+      expect(result.contracts[2].tokenId).toEqual(tokenId);
+      expect(result.contracts[2].name).toEqual(name);
+      expect(result.contracts[2].tokenType).toEqual(NftTokenType.ERC1155);
+      expect(result.contracts[2].symbol).toEqual(symbol);
+      expect(result.contracts[2].openSea).toEqual(expectedOpenseaMetadata);
+    });
+
+    it('surfaces errors', async () => {
+      mock.reset();
+      mock.onGet().reply(400, 'Invalid include filters: []');
+
+      await expect(alchemy.nft.getContractsForOwner(owner)).rejects.toThrow(
+        'Invalid include filters: []'
+      );
     });
   });
 

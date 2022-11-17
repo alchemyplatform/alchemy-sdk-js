@@ -14,6 +14,7 @@ jest.setTimeout(50000);
 // regressions in the backend.
 describe('E2E integration tests', () => {
   let alchemy: Alchemy;
+  const ownerEns = 'vitalik.eth';
   const ownerAddress = '0x65d25E3F2696B73b850daA07Dd1E267dCfa67F2D';
   const contractAddress = '0x01234567bac6ff94d7e4f0ee23119cf848f93245';
 
@@ -149,6 +150,63 @@ describe('E2E integration tests', () => {
     expect(typeof response.owners[0].tokenBalances[0].balance).toEqual(
       'number'
     );
+  });
+
+  it('getContractsForOwner()', async () => {
+    const response = await alchemy.nft.getContractsForOwner(ownerAddress);
+
+    expect(response.contracts.length).toBeGreaterThan(0);
+    expect(response.contracts[0].address).toBeDefined();
+    expect(typeof response.contracts[0].address).toEqual('string');
+    expect(response.contracts[0].isSpam).toBeDefined();
+    expect(typeof response.contracts[0].isSpam).toEqual('boolean');
+    expect(response.contracts[0].media).toBeDefined();
+    expect(response.contracts[0].numDistinctTokensOwned).toBeDefined();
+    expect(typeof response.contracts[0].numDistinctTokensOwned).toEqual(
+      'number'
+    );
+    expect(response.contracts[0].totalBalance).toBeDefined();
+    expect(typeof response.contracts[0].totalBalance).toEqual('number');
+    expect(response.contracts[0].tokenId).toBeDefined();
+    expect(typeof response.contracts[0].tokenId).toEqual('string');
+  });
+
+  it('getContractsForOwner() with pageKey', async () => {
+    const firstPage = await alchemy.nft.getContractsForOwner(ownerEns);
+
+    expect(firstPage.pageKey).toBeDefined();
+    expect(typeof firstPage.pageKey).toEqual('string');
+
+    const response = await alchemy.nft.getContractsForOwner(ownerEns, {
+      pageKey: firstPage?.pageKey
+    });
+
+    expect(response.contracts).not.toEqual(firstPage.contracts);
+  });
+
+  it.each(Object.values(NftExcludeFilters))(
+    `getContractsForOwner() with includeFilters=[%s]`,
+    async includeFilter => {
+      const expectedIsSpam = includeFilter === NftExcludeFilters.SPAM;
+
+      const response = await alchemy.nft.getContractsForOwner(ownerAddress, {
+        includeFilters: [includeFilter]
+      });
+
+      response.contracts.forEach(nftSale => {
+        expect(nftSale.isSpam).toBe(expectedIsSpam);
+      });
+    }
+  );
+
+  it(`getContractsForOwner() with excludeFilter=[${NftExcludeFilters.SPAM}]`, async () => {
+    const response = await alchemy.nft.getContractsForOwner(ownerAddress, {
+      excludeFilters: [NftExcludeFilters.SPAM]
+    });
+
+    response.contracts.forEach(nftSale => {
+      expect(nftSale.isSpam).toBe(false);
+    });
   });
 
   it('getNftsForContract() with pageKey', async () => {
