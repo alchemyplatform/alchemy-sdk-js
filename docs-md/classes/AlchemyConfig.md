@@ -39,7 +39,7 @@ exposes the underlying providers for more advanced use cases.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:58](https://github.com/alchemyplatform/alchemy-sdk-js/blob/30d9ef5/src/api/alchemy-config.ts#L58)
+[src/api/alchemy-config.ts:58](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy-config.ts#L58)
 
 ## Properties
 
@@ -51,7 +51,7 @@ The Alchemy API key.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/30d9ef5/src/api/alchemy-config.ts#L22)
+[src/api/alchemy-config.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy-config.ts#L22)
 
 ___
 
@@ -63,7 +63,7 @@ The optional Alchemy auth token to use when sending requests with the Notify API
 
 #### Defined in
 
-[src/api/alchemy-config.ts:40](https://github.com/alchemyplatform/alchemy-sdk-js/blob/30d9ef5/src/api/alchemy-config.ts#L40)
+[src/api/alchemy-config.ts:40](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy-config.ts#L40)
 
 ___
 
@@ -75,7 +75,7 @@ Setting to enable automatic batching on json-rpc requests. Defaults to false.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/30d9ef5/src/api/alchemy-config.ts#L31)
+[src/api/alchemy-config.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy-config.ts#L31)
 
 ___
 
@@ -87,7 +87,7 @@ The maximum number of retries to perform.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:28](https://github.com/alchemyplatform/alchemy-sdk-js/blob/30d9ef5/src/api/alchemy-config.ts#L28)
+[src/api/alchemy-config.ts:28](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy-config.ts#L28)
 
 ___
 
@@ -99,7 +99,7 @@ The Network that this SDK is associated with.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:25](https://github.com/alchemyplatform/alchemy-sdk-js/blob/30d9ef5/src/api/alchemy-config.ts#L25)
+[src/api/alchemy-config.ts:25](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy-config.ts#L25)
 
 ___
 
@@ -112,7 +112,7 @@ and apiKey.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:37](https://github.com/alchemyplatform/alchemy-sdk-js/blob/30d9ef5/src/api/alchemy-config.ts#L37)
+[src/api/alchemy-config.ts:37](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy-config.ts#L37)
 
 ## Methods
 
@@ -136,7 +136,7 @@ other less-common methods.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:100](https://github.com/alchemyplatform/alchemy-sdk-js/blob/30d9ef5/src/api/alchemy-config.ts#L100)
+[src/api/alchemy-config.ts:100](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy-config.ts#L100)
 
 ___
 
@@ -161,4 +161,4 @@ other less-common methods.
 
 #### Defined in
 
-[src/api/alchemy-config.ts:122](https://github.com/alchemyplatform/alchemy-sdk-js/blob/30d9ef5/src/api/alchemy-config.ts#L122)
+[src/api/alchemy-config.ts:122](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/alchemy-config.ts#L122)
