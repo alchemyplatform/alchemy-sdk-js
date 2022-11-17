@@ -300,7 +300,7 @@ export interface RawNftSale {
 
 export interface RawGetContractsForOwnerResponse {
   contracts: RawContractForOwner[];
-  pageKey?: string[];
+  pageKey?: string;
   totalCount: number;
 }
 

@@ -841,7 +841,7 @@ export interface GetContractsForOwnerResponse {
   contracts: ContractForOwner[];
 
   /** Key for pagination to use to fetch results from the next page if available. */
-  pageKey?: string[];
+  pageKey?: string;
 
   /** Total number of NFT contracts held by the given address. */
   totalCount: number;
