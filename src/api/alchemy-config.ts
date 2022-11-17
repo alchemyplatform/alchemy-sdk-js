@@ -61,7 +61,7 @@ export class AlchemyConfig {
     this.maxRetries = config?.maxRetries || DEFAULT_MAX_RETRIES;
     this.url = config?.url;
     this.authToken = config?.authToken;
-    this.batchRequests = config?.batchRequsets || false;
+    this.batchRequests = config?.batchRequests || false;
   }
 
   /**

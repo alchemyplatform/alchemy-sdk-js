@@ -14,12 +14,18 @@ import { BaseNft, Nft } from '../api/nft';
  * @public
  */
 export interface AlchemySettings {
-  /** The Alchemy API key that can be found in the Alchemy dashboard. */
+  /**
+   * The Alchemy API key that can be found in the Alchemy dashboard.
+   *
+   * Defaults to: "demo" (a rate-limited public API key)
+   */
   apiKey?: string;
 
   /**
    * The name of the network. Once configured, the network cannot be changed. To
-   * use a different network, instantiate a new `Alchemy` instance
+   * use a different network, instantiate a new `Alchemy` instance.
+   *
+   * Defaults to: Network.ETH_MAINNET
    */
   network?: Network;
 
@@ -47,7 +53,7 @@ export interface AlchemySettings {
    *
    * This implementation is based on the `JsonRpcBatchProvider` in ethers.
    */
-  batchRequsets?: boolean;
+  batchRequests?: boolean;
 }
 
 /**
