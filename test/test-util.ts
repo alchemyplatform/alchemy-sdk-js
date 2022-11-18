@@ -239,7 +239,7 @@ export function createRawNftSale(
   };
 }
 
-export function createRawGetContractsForOwner(
+export function createRawContractForOwner(
   address: string,
   tokenId: string,
   media: Media,

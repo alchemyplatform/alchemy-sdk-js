@@ -48,7 +48,7 @@ import {
   createNftMediaData,
   createOwnedBaseNft,
   createOwnedNft,
-  createRawGetContractsForOwner,
+  createRawContractForOwner,
   createRawNft,
   createRawNftContract,
   createRawNftContractBaseNft,
@@ -1138,8 +1138,8 @@ describe('NFT module', () => {
     const templateResponse: RawGetContractsForOwnerResponse = {
       totalCount: totalContractCount,
       contracts: [
-        createRawGetContractsForOwner(contractAddress, tokenId, nftMediaData),
-        createRawGetContractsForOwner(
+        createRawContractForOwner(contractAddress, tokenId, nftMediaData),
+        createRawContractForOwner(
           contractAddress,
           tokenId,
           completeNftMediaData,
@@ -1148,7 +1148,7 @@ describe('NFT module', () => {
           NftTokenType.ERC721,
           symbol
         ),
-        createRawGetContractsForOwner(
+        createRawContractForOwner(
           contractAddress,
           tokenId,
           nftMediaData,
