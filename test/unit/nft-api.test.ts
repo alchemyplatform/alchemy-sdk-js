@@ -14,7 +14,7 @@ import {
   NftAttributesResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
-  NftExcludeFilters,
+  NftFilters,
   NftMetadataBatchToken,
   NftSaleMarketplace,
   NftSaleTakerType,
@@ -274,7 +274,7 @@ describe('NFT module', () => {
     const ownerAddress = '0xABC';
     const pageKey = 'page-key0';
     const contractAddresses = ['0xCA1', '0xCA2'];
-    const excludeFilters = [NftExcludeFilters.SPAM];
+    const excludeFilters = [NftFilters.SPAM];
     const expectedFilters = ['SPAM'];
     const getNftsParams: GetNftsForOwnerOptions = {
       pageKey,
@@ -399,7 +399,7 @@ describe('NFT module', () => {
   describe('getNftsForOwnerIterator()', () => {
     const ownerAddress = '0xABC';
     const contractAddresses = ['0xCA1', '0xCA2'];
-    const excludeFilters = [NftExcludeFilters.SPAM];
+    const excludeFilters = [NftFilters.SPAM];
     const expectedFilters = ['SPAM'];
     const baseResponses: RawGetBaseNftsResponse[] = [
       {
@@ -1166,8 +1166,8 @@ describe('NFT module', () => {
     });
 
     it.each<[keyof GetContractsForOwnerOptions, any]>([
-      ['excludeFilters', [NftExcludeFilters.AIRDROPS]],
-      ['includeFilters', [NftExcludeFilters.SPAM]],
+      ['excludeFilters', [NftFilters.AIRDROPS]],
+      ['includeFilters', [NftFilters.SPAM]],
       ['pageKey', 'a-page-key']
     ])('calls with the correct parameters', async (fieldName, value) => {
       await alchemy.nft.getContractsForOwner(owner, {

@@ -1,10 +1,10 @@
 import {
   Alchemy,
-  NftExcludeFilters,
+  fromHex,
+  NftFilters,
   NftSaleMarketplace,
   NftTokenType,
-  OpenSeaSafelistRequestStatus,
-  fromHex
+  OpenSeaSafelistRequestStatus
 } from '../../src';
 import { loadAlchemyEnv } from '../test-util';
 
@@ -88,13 +88,13 @@ describe('E2E integration tests', () => {
 
   it('getOwnersForNft() from NFT', async () => {
     const nfts = await alchemy.nft.getNftsForOwner(ownerAddress, {
-      excludeFilters: [NftExcludeFilters.SPAM],
+      excludeFilters: [NftFilters.SPAM],
       omitMetadata: true
     });
     expect(nfts.ownedNfts.length).toBeGreaterThan(0);
 
     const nfts2 = await alchemy.nft.getNftsForOwner(ownerAddress, {
-      excludeFilters: [NftExcludeFilters.AIRDROPS],
+      excludeFilters: [NftFilters.AIRDROPS],
       omitMetadata: true
     });
 
@@ -109,7 +109,7 @@ describe('E2E integration tests', () => {
   it('getNftsForOwner() spam check', async () => {
     const withSpam = await alchemy.nft.getNftsForOwner('vitalik.eth');
     const noSpam = await alchemy.nft.getNftsForOwner('vitalik.eth', {
-      excludeFilters: [NftExcludeFilters.SPAM]
+      excludeFilters: [NftFilters.SPAM]
     });
     expect(withSpam.totalCount).not.toEqual(noSpam.totalCount);
   });
@@ -184,10 +184,10 @@ describe('E2E integration tests', () => {
     expect(response.contracts).not.toEqual(firstPage.contracts);
   });
 
-  it.each(Object.values(NftExcludeFilters))(
+  it.each(Object.values(NftFilters))(
     `getContractsForOwner() with includeFilters=[%s]`,
     async includeFilter => {
-      const expectedIsSpam = includeFilter === NftExcludeFilters.SPAM;
+      const expectedIsSpam = includeFilter === NftFilters.SPAM;
 
       const response = await alchemy.nft.getContractsForOwner(ownerAddress, {
         includeFilters: [includeFilter]
@@ -199,9 +199,9 @@ describe('E2E integration tests', () => {
     }
   );
 
-  it(`getContractsForOwner() with excludeFilter=[${NftExcludeFilters.SPAM}]`, async () => {
+  it(`getContractsForOwner() with excludeFilter=[${NftFilters.SPAM}]`, async () => {
     const response = await alchemy.nft.getContractsForOwner(ownerAddress, {
-      excludeFilters: [NftExcludeFilters.SPAM]
+      excludeFilters: [NftFilters.SPAM]
     });
 
     response.contracts.forEach(nftSale => {

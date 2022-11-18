@@ -22,7 +22,7 @@ import {
   NftAttributesResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
-  NftExcludeFilters,
+  NftFilters,
   NftMetadataBatchOptions,
   NftMetadataBatchToken,
   NftSaleMarketplace,
@@ -710,8 +710,8 @@ interface GetOwnersForNftContractAlchemyParams {
 interface GetOwnersForContractParams {
   owner: string;
   pageKey?: string;
-  includeFilters?: NftExcludeFilters[];
-  excludeFilters?: NftExcludeFilters[];
+  includeFilters?: NftFilters[];
+  excludeFilters?: NftFilters[];
 }
 
 /**

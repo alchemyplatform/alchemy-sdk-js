@@ -541,7 +541,7 @@ export interface GetNftsForOwnerOptions {
    * Optional list of filters applied to the query. NFTs that match one or more
    * of these filters are excluded from the response.
    */
-  excludeFilters?: NftExcludeFilters[];
+  excludeFilters?: (NftExcludeFilters | NftFilters)[];
 
   /**
    * Sets the total number of NFTs to return in the response. Defaults to 100.
@@ -584,7 +584,7 @@ export interface GetBaseNftsForOwnerOptions {
    * Optional list of filters applied to the query. NFTs that match one or more
    * of these filters are excluded from the response.
    */
-  excludeFilters?: NftExcludeFilters[];
+  excludeFilters?: (NftExcludeFilters | NftFilters)[];
 
   /**
    * Sets the total number of NFTs to return in the response. Defaults to 100.
@@ -608,6 +608,9 @@ export interface GetBaseNftsForOwnerOptions {
  * Enum of NFT filters that can be applied to a {@link getNftsForOwner} request.
  * NFTs that match one or more of these filters are excluded from the response.
  *
+ * - @deprecated Use {@link NftFilters} instead. This enum will be removed in a
+ *   future version.
+ *
  * @beta
  */
 export enum NftExcludeFilters {
@@ -615,6 +618,20 @@ export enum NftExcludeFilters {
   SPAM = 'SPAM',
 
   /** Exclude NFTs that have been airdropped to a user. */
+  AIRDROPS = 'AIRDROPS'
+}
+
+/**
+ * Enum of NFT filters that can be applied to a {@link getNftsForOwner} or a
+ * {@link getContractsForOwner} request.
+ *
+ * @beta
+ */
+export enum NftFilters {
+  /** NFTs that have been classified as spam. */
+  SPAM = 'SPAM',
+
+  /** NFTs that have been airdropped to a user. */
   AIRDROPS = 'AIRDROPS'
 }
 
@@ -827,14 +844,14 @@ export interface GetContractsForOwnerOptions {
    * of these filters are included in the response. May not be used in
    * conjunction with {@link excludeFilters}.
    */
-  includeFilters?: NftExcludeFilters[];
+  includeFilters?: NftFilters[];
 
   /**
    * Optional list of filters applied to the query. NFTs that match one or more
    * of these filters are excluded from the response. May not be used in
    * conjunction with {@link includeFilters}
    */
-  excludeFilters?: NftExcludeFilters[];
+  excludeFilters?: NftFilters[];
 }
 
 /**
