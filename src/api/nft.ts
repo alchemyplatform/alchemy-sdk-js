@@ -10,6 +10,10 @@ import {
 /**
  * Alchemy representation of a base NFT contract that doesn't contain metadata.
  *
+ * The BaseNftContract does not hold any metadata information and only contains
+ * the address. The NftContract additionally contains the tokenType, name,
+ * symbol, and more.
+ *
  * @public
  */
 export interface BaseNftContract {
@@ -19,6 +23,10 @@ export interface BaseNftContract {
 
 /**
  * Alchemy representation of an NFT contract.
+ *
+ * The BaseNftContract does not hold any metadata information and only contains
+ * the address. The NftContract additionally contains the tokenType, name,
+ * symbol, and more.
  *
  * @public
  */
@@ -36,7 +44,11 @@ export interface NftContract extends BaseNftContract {
 }
 
 /**
- * Alchemy representation of a base NFT that doesn't contain metadata.
+ * Alchemy representation of an NFT that doesn't contain metadata.
+ *
+ * The BaseNft object does not hold any metadata information and only contains
+ * the NFT contract and token ID. The Nft object additionally contains the NFT
+ * metadata, token URI information, and media.
  *
  * @public
  */
@@ -50,6 +62,10 @@ export interface BaseNft {
 
 /**
  * Alchemy representation of an NFT.
+ *
+ * The BaseNft object does not hold any metadata information and only contains
+ * the NFT contract and token ID. The Nft object additionally contains the NFT
+ * metadata, token URI information, and media.
  *
  * @public
  */
