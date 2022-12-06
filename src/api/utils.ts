@@ -33,4 +33,6 @@ export {
   formatUnits
 } from '@ethersproject/units';
 
+export { toUtf8Bytes, toUtf8String } from '@ethersproject/strings';
+
 export { Interface } from '@ethersproject/abi';
