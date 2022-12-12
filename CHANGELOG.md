@@ -8,7 +8,7 @@
 
 ## 2.2.4
 
-## Major Changes
+### Major Changes
 
 ### Minor Changes
 
