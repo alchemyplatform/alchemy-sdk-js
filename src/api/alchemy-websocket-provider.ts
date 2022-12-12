@@ -400,15 +400,7 @@ export class AlchemyWebSocketProvider
       };
     });
 
-    const response = await this.sendBatchConcurrently(payload);
-    const errorResponse = response.find(r => !!r.error);
-    if (errorResponse) {
-      throw new Error(errorResponse.error!.message);
-    }
-    // The ids are ascending numbers because that's what Payload Factories do.
-    return response
-      .sort((r1, r2) => (r1.id as number) - (r2.id as number))
-      .map(r => r.result);
+    return this.sendBatchConcurrently(payload);
   }
 
   /** @override */
@@ -768,7 +760,7 @@ export class AlchemyWebSocketProvider
   // TODO(errors): Use allSettled() once we have more error handling.
   private async sendBatchConcurrently(
     payload: JsonRpcRequest[]
-  ): Promise<JsonRpcResponse[]> {
+  ): Promise<unknown[]> {
     return Promise.all(payload.map(req => this.send(req.method, req.params)));
   }
 
