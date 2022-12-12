@@ -540,7 +540,12 @@ export class AlchemyWebSocketProvider
         break;
       }
       default:
-        break;
+        if (physicalId !== virtualId) {
+          // In the case of a re-opened subscription, ethers will not emit the
+          // event, so the SDK has to.
+          const { result } = (message as SubscriptionEvent<unknown>).params;
+          this.emitEvent(virtualId, result);
+        }
     }
   };
 
@@ -692,7 +697,10 @@ export class AlchemyWebSocketProvider
     getBlockNumber: (result: T) => number
   ): void {
     this.rememberEvent(virtualId, result, getBlockNumber);
+    this.emitEvent(virtualId, result);
+  }
 
+  private emitEvent<T>(virtualId: string, result: T): void {
     const subscription = this.virtualSubscriptionsById.get(virtualId);
     if (!subscription) {
       return;
