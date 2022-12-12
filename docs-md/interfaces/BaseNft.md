@@ -2,7 +2,11 @@
 
 # Interface: BaseNft
 
-Alchemy representation of a base NFT that doesn't contain metadata.
+Alchemy representation of an NFT that doesn't contain metadata.
+
+The BaseNft object does not hold any metadata information and only contains
+the NFT contract and token ID. The Nft object additionally contains the NFT
+metadata, token URI information, and media.
 
 ## Hierarchy
 
@@ -28,7 +32,7 @@ Alchemy representation of a base NFT that doesn't contain metadata.
 
 #### Defined in
 
-[src/api/nft.ts:44](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/nft.ts#L44)
+[src/api/nft.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/nft.ts#L56)
 
 ___
 
@@ -40,7 +44,7 @@ The NFT token ID as an integer string.
 
 #### Defined in
 
-[src/api/nft.ts:46](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/nft.ts#L46)
+[src/api/nft.ts:58](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/nft.ts#L58)
 
 ___
 
@@ -52,4 +56,4 @@ The type of ERC token, if known.
 
 #### Defined in
 
-[src/api/nft.ts:48](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/nft.ts#L48)
+[src/api/nft.ts:60](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/nft.ts#L60)

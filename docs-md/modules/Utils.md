@@ -34,6 +34,8 @@
 - [parseUnits](Utils.md#parseunits)
 - [splitSignature](Utils.md#splitsignature)
 - [stripZeros](Utils.md#stripzeros)
+- [toUtf8Bytes](Utils.md#toutf8bytes)
+- [toUtf8String](Utils.md#toutf8string)
 - [zeroPad](Utils.md#zeropad)
 
 ## Functions
@@ -523,6 +525,48 @@ ___
 #### Defined in
 
 node_modules/@ethersproject/bytes/lib/index.d.ts:30
+
+___
+
+### toUtf8Bytes
+
+▸ **toUtf8Bytes**(`str`, `form?`): `Uint8Array`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `str` | `string` |
+| `form?` | `UnicodeNormalizationForm` |
+
+#### Returns
+
+`Uint8Array`
+
+#### Defined in
+
+node_modules/@ethersproject/strings/lib/utf8.d.ts:22
+
+___
+
+### toUtf8String
+
+▸ **toUtf8String**(`bytes`, `onError?`): `string`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `bytes` | `BytesLike` |
+| `onError?` | `Utf8ErrorFunc` |
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+node_modules/@ethersproject/strings/lib/utf8.d.ts:25
 
 ___
 
