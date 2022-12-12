@@ -400,15 +400,7 @@ export class AlchemyWebSocketProvider
       };
     });
 
-    const response = await this.sendBatchConcurrently(payload);
-    const errorResponse = response.find(r => !!r.error);
-    if (errorResponse) {
-      throw new Error(errorResponse.error!.message);
-    }
-    // The ids are ascending numbers because that's what Payload Factories do.
-    return response
-      .sort((r1, r2) => (r1.id as number) - (r2.id as number))
-      .map(r => r.result);
+    return this.sendBatchConcurrently(payload);
   }
 
   /** @override */
@@ -548,7 +540,12 @@ export class AlchemyWebSocketProvider
         break;
       }
       default:
-        break;
+        if (physicalId !== virtualId) {
+          // In the case of a re-opened subscription, ethers will not emit the
+          // event, so the SDK has to.
+          const { result } = (message as SubscriptionEvent<unknown>).params;
+          this.emitEvent(virtualId, result);
+        }
     }
   };
 
@@ -700,7 +697,10 @@ export class AlchemyWebSocketProvider
     getBlockNumber: (result: T) => number
   ): void {
     this.rememberEvent(virtualId, result, getBlockNumber);
+    this.emitEvent(virtualId, result);
+  }
 
+  private emitEvent<T>(virtualId: string, result: T): void {
     const subscription = this.virtualSubscriptionsById.get(virtualId);
     if (!subscription) {
       return;
@@ -768,7 +768,7 @@ export class AlchemyWebSocketProvider
   // TODO(errors): Use allSettled() once we have more error handling.
   private async sendBatchConcurrently(
     payload: JsonRpcRequest[]
-  ): Promise<JsonRpcResponse[]> {
+  ): Promise<unknown[]> {
     return Promise.all(payload.map(req => this.send(req.method, req.params)));
   }
 

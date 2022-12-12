@@ -6,6 +6,12 @@
 
 - Added `TransactNamespace.sendGasOptimizedTransaction()`. Instead of sending a single transaction that might not get mined, this method allows you to send the same transaction multiple times, with different gas prices and gas limits. This should result in lower fees paid.
 
+### Minor Changes
+
+- Fixed a bug where `newHeads` subscriptions would error and crash when reconnecting to the websocket.
+- Fixed a bug where certain subscriptions would not reconnect after the websocket reconnected.
+- Added exports for `toUtf8Bytes` and `toUtf8String` in `Utils`.
+
 ## 2.2.3
 
 ### Major Changes
