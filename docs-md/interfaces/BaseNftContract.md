@@ -4,6 +4,10 @@
 
 Alchemy representation of a base NFT contract that doesn't contain metadata.
 
+The BaseNftContract does not hold any metadata information and only contains
+the address. The NftContract additionally contains the tokenType, name,
+symbol, and more.
+
 ## Hierarchy
 
 - **`BaseNftContract`**
@@ -26,4 +30,4 @@ The address of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:17](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/nft.ts#L17)
+[src/api/nft.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/nft.ts#L21)

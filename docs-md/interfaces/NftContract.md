@@ -4,6 +4,10 @@
 
 Alchemy representation of an NFT contract.
 
+The BaseNftContract does not hold any metadata information and only contains
+the address. The NftContract additionally contains the tokenType, name,
+symbol, and more.
+
 ## Hierarchy
 
 - [`BaseNftContract`](BaseNftContract.md)
@@ -35,7 +39,7 @@ The address of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:17](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/nft.ts#L17)
+[src/api/nft.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/nft.ts#L21)
 
 ___
 
@@ -47,7 +51,7 @@ The name of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/nft.ts#L29)
+[src/api/nft.ts:37](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/nft.ts#L37)
 
 ___
 
@@ -59,7 +63,7 @@ OpenSea's metadata for the contract.
 
 #### Defined in
 
-[src/api/nft.ts:35](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/nft.ts#L35)
+[src/api/nft.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/nft.ts#L43)
 
 ___
 
@@ -71,7 +75,7 @@ The symbol of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/nft.ts#L31)
+[src/api/nft.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/nft.ts#L39)
 
 ___
 
@@ -83,7 +87,7 @@ The type of the token in the contract.
 
 #### Defined in
 
-[src/api/nft.ts:27](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/nft.ts#L27)
+[src/api/nft.ts:35](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/nft.ts#L35)
 
 ___
 
@@ -95,4 +99,4 @@ The number of NFTs in the contract as an integer string.
 
 #### Defined in
 
-[src/api/nft.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/api/nft.ts#L33)
+[src/api/nft.ts:41](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/nft.ts#L41)

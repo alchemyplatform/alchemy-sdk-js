@@ -33,7 +33,7 @@ Limit 100 address filters. Requires a non-empty array.
 
 #### Defined in
 
-[src/types/types.ts:1376](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/types/types.ts#L1376)
+[src/types/types.ts:1376](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L1376)
 
 ___
 
@@ -47,7 +47,7 @@ the entire transaction response is included).
 
 #### Defined in
 
-[src/types/types.ts:1389](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/types/types.ts#L1389)
+[src/types/types.ts:1389](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L1389)
 
 ___
 
@@ -60,7 +60,7 @@ Defaults to false.
 
 #### Defined in
 
-[src/types/types.ts:1382](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/types/types.ts#L1382)
+[src/types/types.ts:1382](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L1382)
 
 ___
 
@@ -70,4 +70,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1370](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/types/types.ts#L1370)
+[src/types/types.ts:1370](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L1370)

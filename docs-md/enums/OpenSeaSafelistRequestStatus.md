@@ -23,7 +23,7 @@ Collections that are approved on open sea and can be found in search results.
 
 #### Defined in
 
-[src/types/types.ts:1290](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/types/types.ts#L1290)
+[src/types/types.ts:1290](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L1290)
 
 ___
 
@@ -35,7 +35,7 @@ Brand new collections.
 
 #### Defined in
 
-[src/types/types.ts:1294](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/types/types.ts#L1294)
+[src/types/types.ts:1294](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L1294)
 
 ___
 
@@ -47,7 +47,7 @@ Collections that requested safelisting on OpenSea.
 
 #### Defined in
 
-[src/types/types.ts:1292](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/types/types.ts#L1292)
+[src/types/types.ts:1292](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L1292)
 
 ___
 
@@ -59,4 +59,4 @@ Verified collection.
 
 #### Defined in
 
-[src/types/types.ts:1288](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8b1ae5c/src/types/types.ts#L1288)
+[src/types/types.ts:1288](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L1288)
