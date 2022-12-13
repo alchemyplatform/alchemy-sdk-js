@@ -303,15 +303,13 @@ export interface RawGetContractsForOwnerResponse {
   totalCount: number;
 }
 
-export interface RawContractForOwner {
+export interface RawContractForOwner
+  extends Omit<RawNftContractMetadata, 'totalSupply' | 'openSea'> {
   address: string;
   totalBalance: number;
   numDistinctTokensOwned: number;
   isSpam: boolean;
   tokenId: string;
-  name?: string;
-  symbol?: string;
-  tokenType?: string;
   media: Media;
   opensea?: RawOpenSeaCollectionMetadata;
 }

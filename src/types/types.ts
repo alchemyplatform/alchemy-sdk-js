@@ -4,7 +4,7 @@ import {
 } from '@ethersproject/abstract-provider';
 import { BigNumberish } from '@ethersproject/bignumber';
 
-import { BaseNft, Nft } from '../api/nft';
+import { BaseNft, Nft, NftContract } from '../api/nft';
 
 // TODO: separate this file into other files.
 
@@ -871,10 +871,7 @@ export interface GetContractsForOwnerResponse {
 }
 
 /** Represents a single NFT contract data in the {@link GetContractsForOwnerResponse}. */
-export interface ContractForOwner {
-  /** Address of the held contract. */
-  address: string;
-
+export interface ContractForOwner extends Omit<NftContract, 'totalSupply'> {
   /**
    * Sum of NFT balances across all token IDs held by the owner. For
    * non-fungible tokens this will be equal to the numDistinctTokensOwned, but
@@ -894,20 +891,8 @@ export interface ContractForOwner {
   /** One of the tokens from this contract held by the owner. */
   tokenId: string;
 
-  /** The name of the contract. */
-  name?: string;
-
-  /** The symbol of the contract. */
-  symbol?: string;
-
-  /** Optional field that specifies the NFT standard used by the contract. */
-  tokenType?: NftTokenType;
-
   /** Alternative NFT metadata for this contract to be parsed manually. */
   media: Media;
-
-  /** OpenSea's metadata for this NFT contract. */
-  openSea?: OpenSeaCollectionMetadata;
 }
 
 /**
