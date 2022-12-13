@@ -1,15 +1,15 @@
 import { BigNumber } from '@ethersproject/bignumber';
 
-import { BaseNft, BaseNftContract, Nft, NftContract } from '../api/nft';
+import { BaseNft, Nft, NftContract } from '../api/nft';
 import { toHex } from '../api/util';
 import {
   RawBaseNft,
-  RawBaseNftContract,
   RawContractBaseNft,
   RawGetNftSalesResponse,
   RawNft,
   RawNftAttributeRarity,
   RawNftContract,
+  RawOpenSeaCollectionMetadata,
   RawSpamInfo
 } from '../internal/raw-interfaces';
 import {
@@ -18,6 +18,7 @@ import {
   NftSaleMarketplace,
   NftSaleTakerType,
   NftTokenType,
+  OpenSeaCollectionMetadata,
   OpenSeaSafelistRequestStatus,
   SpamInfo,
   TokenUri
@@ -39,42 +40,17 @@ function stringToEnum<T extends string>(
   return Object.values(enumb).includes(x as T) ? (x as T) : undefined;
 }
 
-export function getBaseNftContractFromRaw(
-  rawBaseNftContract: RawBaseNftContract
-): BaseNftContract {
-  return { address: rawBaseNftContract.address };
-}
-
 export function getNftContractFromRaw(
   rawNftContract: RawNftContract
 ): NftContract {
-  const contract: NftContract = {
+  return {
     address: rawNftContract.address,
     name: rawNftContract.contractMetadata.name,
     symbol: rawNftContract.contractMetadata.symbol,
     totalSupply: rawNftContract.contractMetadata.totalSupply,
-    tokenType: parseNftTokenType(rawNftContract.contractMetadata.tokenType)
+    tokenType: parseNftTokenType(rawNftContract.contractMetadata.tokenType),
+    openSea: parseOpenSeaMetadata(rawNftContract.contractMetadata.openSea)
   };
-  if (rawNftContract.contractMetadata.openSea) {
-    const safeListStatus =
-      rawNftContract.contractMetadata.openSea?.safelistRequestStatus;
-    contract.openSea = {
-      floorPrice: rawNftContract.contractMetadata.openSea?.floorPrice,
-      collectionName: rawNftContract.contractMetadata.openSea?.collectionName,
-      safelistRequestStatus:
-        safeListStatus !== undefined
-          ? stringToEnum(safeListStatus, OpenSeaSafelistRequestStatus)
-          : undefined,
-      imageUrl: rawNftContract.contractMetadata.openSea?.imageUrl,
-      description: rawNftContract.contractMetadata.openSea?.description,
-      externalUrl: rawNftContract.contractMetadata.openSea?.externalUrl,
-      twitterUsername: rawNftContract.contractMetadata.openSea?.twitterUsername,
-      discordUrl: rawNftContract.contractMetadata.openSea?.discordUrl,
-      lastIngestedAt: rawNftContract.contractMetadata.openSea?.lastIngestedAt
-    };
-  }
-
-  return contract;
 }
 
 export function getBaseNftFromRaw(rawBaseNft: RawBaseNft): BaseNft;
@@ -106,7 +82,8 @@ export function getNftFromRaw(rawNft: RawNft): Nft {
         name: rawNft.contractMetadata?.name,
         symbol: rawNft.contractMetadata?.symbol,
         totalSupply: rawNft.contractMetadata?.totalSupply,
-        tokenType
+        tokenType,
+        openSea: parseOpenSeaMetadata(rawNft.contractMetadata?.openSea)
       },
       tokenId: parseNftTokenId(rawNft.id.tokenId),
       tokenType,
@@ -240,6 +217,31 @@ function parseNftTokenUriArray(arr: TokenUri[] | undefined): TokenUri[] {
     return [];
   }
   return arr.filter(uri => parseNftTokenUri(uri) !== undefined);
+}
+
+function parseOpenSeaMetadata(
+  openSea: RawOpenSeaCollectionMetadata | undefined
+): OpenSeaCollectionMetadata | undefined {
+  if (openSea === undefined) {
+    return undefined;
+  }
+  return {
+    floorPrice: openSea.floorPrice,
+    collectionName: openSea.collectionName,
+    safelistRequestStatus:
+      openSea.safelistRequestStatus !== undefined
+        ? stringToEnum(
+            openSea.safelistRequestStatus,
+            OpenSeaSafelistRequestStatus
+          )
+        : undefined,
+    imageUrl: openSea.imageUrl,
+    description: openSea.description,
+    externalUrl: openSea.externalUrl,
+    twitterUsername: openSea.twitterUsername,
+    discordUrl: openSea.discordUrl,
+    lastIngestedAt: openSea.lastIngestedAt
+  };
 }
 
 export const IS_BROWSER = typeof window !== 'undefined' && window !== null;
