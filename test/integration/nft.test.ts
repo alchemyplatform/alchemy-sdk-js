@@ -83,6 +83,10 @@ describe('E2E integration tests', () => {
     const response = await alchemy.nft.getNftsForOwner('0xshah.eth', {
       pageSize: 51
     });
+    expect(
+      response.ownedNfts.filter(nft => nft.contract.openSea !== undefined)
+        .length
+    ).toBeGreaterThan(0);
     expect(response.ownedNfts.length).toEqual(51);
   });
 

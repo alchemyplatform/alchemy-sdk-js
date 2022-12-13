@@ -40,7 +40,7 @@ import {
   getNftContractFromRaw,
   getNftFromRaw,
   getNftRarityFromRaw,
-  parseRawOpenSeaNftMetadata
+  parseOpenSeaMetadata
 } from '../../src/util/util';
 import {
   createBaseNft,
@@ -1131,7 +1131,7 @@ describe('NFT module', () => {
       'http://api.nikeape.xyz/ipfs/nickbanc/1.jpg'
     );
     const rawOpenSeaContractMetadata = createRawOpenSeaCollectionMetadata();
-    const expectedOpenseaMetadata = parseRawOpenSeaNftMetadata(
+    const expectedOpenseaMetadata = parseOpenSeaMetadata(
       rawOpenSeaContractMetadata
     );
 
