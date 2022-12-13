@@ -247,6 +247,7 @@ export function createRawContractForOwner(
   name?: string,
   tokenType?: NftTokenType,
   symbol?: string,
+  totalSupply?: string,
   opensea?: RawOpenSeaCollectionMetadata
 ): RawContractForOwner {
   return {
@@ -257,6 +258,7 @@ export function createRawContractForOwner(
     totalBalance: 1,
     numDistinctTokensOwned: 1,
     name,
+    totalSupply,
     opensea,
     symbol,
     tokenType

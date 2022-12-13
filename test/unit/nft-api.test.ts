@@ -1124,6 +1124,7 @@ describe('NFT module', () => {
     const name = 'NFT Contract Name';
     const symbol = 'XNO';
     const totalContractCount = 3;
+    const totalSupply = '1492';
     const nftMediaData = createNftMediaData();
     const completeNftMediaData = createNftMediaData(
       128,
@@ -1156,6 +1157,7 @@ describe('NFT module', () => {
           name,
           NftTokenType.ERC1155,
           symbol,
+          totalSupply,
           rawOpenSeaContractMetadata
         )
       ]
@@ -1186,12 +1188,14 @@ describe('NFT module', () => {
 
       expect(result.contracts[0].address).toEqual(contractAddress);
       expect(result.contracts[0].tokenId).toEqual(tokenId);
+      expect(result.contracts[0].totalSupply).toBeUndefined();
 
       expect(result.contracts[1].address).toEqual(contractAddress);
       expect(result.contracts[1].tokenId).toEqual(tokenId);
       expect(result.contracts[1].name).toEqual(name);
       expect(result.contracts[1].tokenType).toEqual(NftTokenType.ERC721);
       expect(result.contracts[1].symbol).toEqual(symbol);
+      expect(result.contracts[1].totalSupply).toBeUndefined();
       expect(result.contracts[1].media).toEqual(completeNftMediaData);
 
       expect(result.contracts[2].address).toEqual(contractAddress);
@@ -1200,6 +1204,7 @@ describe('NFT module', () => {
       expect(result.contracts[2].tokenType).toEqual(NftTokenType.ERC1155);
       expect(result.contracts[2].symbol).toEqual(symbol);
       expect(result.contracts[2].openSea).toEqual(expectedOpenseaMetadata);
+      expect(result.contracts[2].totalSupply).toEqual(totalSupply);
     });
 
     it('surfaces errors', async () => {
