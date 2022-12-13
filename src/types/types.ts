@@ -871,7 +871,7 @@ export interface GetContractsForOwnerResponse {
 }
 
 /** Represents a single NFT contract data in the {@link GetContractsForOwnerResponse}. */
-export interface ContractForOwner extends Omit<NftContract, 'totalSupply'> {
+export interface ContractForOwner extends NftContract {
   /**
    * Sum of NFT balances across all token IDs held by the owner. For
    * non-fungible tokens this will be equal to the numDistinctTokensOwned, but

@@ -304,7 +304,7 @@ export interface RawGetContractsForOwnerResponse {
 }
 
 export interface RawContractForOwner
-  extends Omit<RawNftContractMetadata, 'totalSupply' | 'openSea'> {
+  extends Omit<RawNftContractMetadata, 'openSea'> {
   address: string;
   totalBalance: number;
   numDistinctTokensOwned: number;

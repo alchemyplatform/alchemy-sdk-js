@@ -169,19 +169,16 @@ export function getContractsForOwnerFromRaw(
     pageKey: rawContractsForOwner?.pageKey,
     totalCount: rawContractsForOwner.totalCount,
     contracts: rawContractsForOwner.contracts.map(contract => {
-      const openSea = contract?.opensea
-        ? parseOpenSeaMetadata(contract?.opensea)
-        : undefined;
-
       return {
         address: contract.address,
+        totalSupply: contract.totalSupply,
         isSpam: contract.isSpam,
         media: contract.media,
         numDistinctTokensOwned: contract.numDistinctTokensOwned,
         tokenId: contract.tokenId,
         totalBalance: contract.totalBalance,
         name: contract.name,
-        openSea,
+        openSea: parseOpenSeaMetadata(contract?.opensea),
         symbol: contract?.symbol,
         tokenType: parseNftTokenType(contract?.tokenType)
       };
