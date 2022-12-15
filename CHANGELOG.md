@@ -25,6 +25,7 @@
 ### Major Changes
 
 ### Minor Changes
+
 - Fixed a typo with the `AlchemySettings.batchRequests` property.
 
 ## 2.2.2 (DEPRECATED)

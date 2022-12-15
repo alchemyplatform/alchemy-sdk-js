@@ -5,13 +5,13 @@ import {
   Nft,
   NftContract,
   NftSaleFeeData,
+  NftSaleMarketplace,
+  NftSaleTakerType,
   NftTokenType,
   OwnedBaseNft,
   OwnedNft,
   TokenUri,
-  toHex,
-  NftSaleTakerType,
-  NftSaleMarketplace
+  toHex
 } from '../src';
 import {
   RawBaseNft,
