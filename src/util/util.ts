@@ -5,6 +5,7 @@ import { toHex } from '../api/util';
 import {
   RawBaseNft,
   RawContractBaseNft,
+  RawGetContractsForOwnerResponse,
   RawGetNftSalesResponse,
   RawNft,
   RawNftAttributeRarity,
@@ -13,6 +14,7 @@ import {
   RawSpamInfo
 } from '../internal/raw-interfaces';
 import {
+  GetContractsForOwnerResponse,
   GetNftSalesResponse,
   NftAttributeRarity,
   NftSaleMarketplace,
@@ -160,6 +162,30 @@ export function getNftRarityFromRaw(
   }));
 }
 
+export function getContractsForOwnerFromRaw(
+  rawContractsForOwner: RawGetContractsForOwnerResponse
+): GetContractsForOwnerResponse {
+  return {
+    pageKey: rawContractsForOwner?.pageKey,
+    totalCount: rawContractsForOwner.totalCount,
+    contracts: rawContractsForOwner.contracts.map(contract => {
+      return {
+        address: contract.address,
+        totalSupply: contract.totalSupply,
+        isSpam: contract.isSpam,
+        media: contract.media,
+        numDistinctTokensOwned: contract.numDistinctTokensOwned,
+        tokenId: contract.tokenId,
+        totalBalance: contract.totalBalance,
+        name: contract.name,
+        openSea: parseOpenSeaMetadata(contract?.opensea),
+        symbol: contract?.symbol,
+        tokenType: parseNftTokenType(contract?.tokenType)
+      };
+    })
+  };
+}
+
 function parseNftTokenId(tokenId: string): string {
   // We have to normalize the token id here since the backend sometimes
   // returns the token ID as a hex string and sometimes as an integer.
@@ -219,7 +245,7 @@ function parseNftTokenUriArray(arr: TokenUri[] | undefined): TokenUri[] {
   return arr.filter(uri => parseNftTokenUri(uri) !== undefined);
 }
 
-function parseOpenSeaMetadata(
+export function parseOpenSeaMetadata(
   openSea: RawOpenSeaCollectionMetadata | undefined
 ): OpenSeaCollectionMetadata | undefined {
   if (openSea === undefined) {

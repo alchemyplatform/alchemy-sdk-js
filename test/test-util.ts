@@ -11,11 +11,15 @@ import {
   OwnedBaseNft,
   OwnedNft,
   TokenUri,
-  toHex
+  toHex,
+  NftSaleTakerType,
+  NftSaleMarketplace,
+  Media
 } from '../src';
 import {
   RawBaseNft,
   RawContractBaseNft,
+  RawContractForOwner,
   RawNft,
   RawNftContract,
   RawNftContractMetadata,
@@ -50,6 +54,20 @@ export function createRawNftContract(
       tokenType,
       openSea
     }
+  };
+}
+
+export function createRawOpenSeaCollectionMetadata(): RawOpenSeaCollectionMetadata {
+  return {
+    floorPrice: 2.2998,
+    collectionName: 'Collection Name',
+    safelistRequestStatus: 'verified',
+    imageUrl: 'http://image.url',
+    description: 'A sample description',
+    externalUrl: 'http://external.url',
+    twitterUsername: 'twitter-handle',
+    discordUrl: 'https://discord.gg/example',
+    lastIngestedAt: '2022-10-26T22:24:49.000Z'
   };
 }
 
@@ -220,6 +238,46 @@ export function createRawNftSale(
     tokenId,
     transactionHash:
       '0xacad756c9094473a72f042e47cededcd11398333bbc64445f70266b85a929435'
+  };
+}
+
+export function createRawContractForOwner(
+  address: string,
+  tokenId: string,
+  media: Media,
+  isSpam?: boolean,
+  name?: string,
+  tokenType?: NftTokenType,
+  symbol?: string,
+  totalSupply?: string,
+  opensea?: RawOpenSeaCollectionMetadata
+): RawContractForOwner {
+  return {
+    address,
+    isSpam: isSpam ?? true,
+    media,
+    tokenId,
+    totalBalance: 1,
+    numDistinctTokensOwned: 1,
+    name,
+    totalSupply,
+    opensea,
+    symbol,
+    tokenType
+  };
+}
+
+export function createNftMediaData(
+  bytes?: number,
+  format?: string,
+  thumbnail?: string
+): Media {
+  return {
+    raw: 'http://api.nikeape.xyz/ipfs/nickbanc/1.jpg',
+    gateway: 'http://api.nikeape.xyz/ipfs/nickbanc/1.jpg',
+    bytes,
+    format,
+    thumbnail
   };
 }
 

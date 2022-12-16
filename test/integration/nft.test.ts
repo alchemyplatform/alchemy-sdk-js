@@ -1,10 +1,10 @@
 import {
   Alchemy,
-  NftExcludeFilters,
+  fromHex,
+  NftFilters,
   NftSaleMarketplace,
   NftTokenType,
-  OpenSeaSafelistRequestStatus,
-  fromHex
+  OpenSeaSafelistRequestStatus
 } from '../../src';
 import { loadAlchemyEnv } from '../test-util';
 
@@ -14,6 +14,7 @@ jest.setTimeout(50000);
 // regressions in the backend.
 describe('E2E integration tests', () => {
   let alchemy: Alchemy;
+  const ownerEns = 'vitalik.eth';
   const ownerAddress = '0x65d25E3F2696B73b850daA07Dd1E267dCfa67F2D';
   const contractAddress = '0x01234567bac6ff94d7e4f0ee23119cf848f93245';
 
@@ -91,13 +92,13 @@ describe('E2E integration tests', () => {
 
   it('getOwnersForNft() from NFT', async () => {
     const nfts = await alchemy.nft.getNftsForOwner(ownerAddress, {
-      excludeFilters: [NftExcludeFilters.SPAM],
+      excludeFilters: [NftFilters.SPAM],
       omitMetadata: true
     });
     expect(nfts.ownedNfts.length).toBeGreaterThan(0);
 
     const nfts2 = await alchemy.nft.getNftsForOwner(ownerAddress, {
-      excludeFilters: [NftExcludeFilters.AIRDROPS],
+      excludeFilters: [NftFilters.AIRDROPS],
       omitMetadata: true
     });
 
@@ -112,7 +113,7 @@ describe('E2E integration tests', () => {
   it('getNftsForOwner() spam check', async () => {
     const withSpam = await alchemy.nft.getNftsForOwner('vitalik.eth');
     const noSpam = await alchemy.nft.getNftsForOwner('vitalik.eth', {
-      excludeFilters: [NftExcludeFilters.SPAM]
+      excludeFilters: [NftFilters.SPAM]
     });
     expect(withSpam.totalCount).not.toEqual(noSpam.totalCount);
   });
@@ -160,6 +161,63 @@ describe('E2E integration tests', () => {
     expect(typeof response.owners[0].tokenBalances[0].balance).toEqual(
       'number'
     );
+  });
+
+  it('getContractsForOwner()', async () => {
+    const response = await alchemy.nft.getContractsForOwner(ownerAddress);
+
+    expect(response.contracts.length).toBeGreaterThan(0);
+    expect(response.contracts[0].address).toBeDefined();
+    expect(typeof response.contracts[0].address).toEqual('string');
+    expect(response.contracts[0].isSpam).toBeDefined();
+    expect(typeof response.contracts[0].isSpam).toEqual('boolean');
+    expect(response.contracts[0].media).toBeDefined();
+    expect(response.contracts[0].numDistinctTokensOwned).toBeDefined();
+    expect(typeof response.contracts[0].numDistinctTokensOwned).toEqual(
+      'number'
+    );
+    expect(response.contracts[0].totalBalance).toBeDefined();
+    expect(typeof response.contracts[0].totalBalance).toEqual('number');
+    expect(response.contracts[0].tokenId).toBeDefined();
+    expect(typeof response.contracts[0].tokenId).toEqual('string');
+  });
+
+  it('getContractsForOwner() with pageKey', async () => {
+    const firstPage = await alchemy.nft.getContractsForOwner(ownerEns);
+
+    expect(firstPage.pageKey).toBeDefined();
+    expect(typeof firstPage.pageKey).toEqual('string');
+
+    const response = await alchemy.nft.getContractsForOwner(ownerEns, {
+      pageKey: firstPage?.pageKey
+    });
+
+    expect(response.contracts).not.toEqual(firstPage.contracts);
+  });
+
+  it.each(Object.values(NftFilters))(
+    `getContractsForOwner() with includeFilters=[%s]`,
+    async includeFilter => {
+      const expectedIsSpam = includeFilter === NftFilters.SPAM;
+
+      const response = await alchemy.nft.getContractsForOwner(ownerAddress, {
+        includeFilters: [includeFilter]
+      });
+
+      response.contracts.forEach(nftSale => {
+        expect(nftSale.isSpam).toBe(expectedIsSpam);
+      });
+    }
+  );
+
+  it(`getContractsForOwner() with excludeFilter=[${NftFilters.SPAM}]`, async () => {
+    const response = await alchemy.nft.getContractsForOwner(ownerAddress, {
+      excludeFilters: [NftFilters.SPAM]
+    });
+
+    response.contracts.forEach(nftSale => {
+      expect(nftSale.isSpam).toBe(false);
+    });
   });
 
   it('getNftsForContract() with pageKey', async () => {
@@ -367,7 +425,7 @@ describe('E2E integration tests', () => {
     expect(response[0].address).toBeDefined();
     expect(typeof response[0].address).toEqual('string');
     expect(response[0].tokenType).toBeDefined();
-    expect(response[0].tokenType).toEqual(NftTokenType.ERC721);
+    expect(response[0].tokenType).toEqual(NftTokenType.ERC1155);
   });
 
   it('summarizeNftAttributes()', async () => {

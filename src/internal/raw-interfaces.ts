@@ -296,3 +296,20 @@ export interface RawNftSale {
   bundleIndex: number;
   transactionHash: string;
 }
+
+export interface RawGetContractsForOwnerResponse {
+  contracts: RawContractForOwner[];
+  pageKey?: string;
+  totalCount: number;
+}
+
+export interface RawContractForOwner
+  extends Omit<RawNftContractMetadata, 'openSea'> {
+  address: string;
+  totalBalance: number;
+  numDistinctTokensOwned: number;
+  isSpam: boolean;
+  tokenId: string;
+  media: Media;
+  opensea?: RawOpenSeaCollectionMetadata;
+}
