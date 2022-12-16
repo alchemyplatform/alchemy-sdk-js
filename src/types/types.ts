@@ -4,7 +4,7 @@ import {
 } from '@ethersproject/abstract-provider';
 import { BigNumberish } from '@ethersproject/bignumber';
 
-import { BaseNft, Nft } from '../api/nft';
+import { BaseNft, Nft, NftContract } from '../api/nft';
 
 // TODO: separate this file into other files.
 
@@ -301,9 +301,9 @@ export enum AssetTransfersCategory {
  * Enum for the order of the {@link AssetTransfersParams} request object when
  * using {@link CoreNamespace.getAssetTransfers}.
  *
- * @public
  * @deprecated Use {@link SortingOrder} instead. This enum will be removed in a
- * future version.
+ *   future version.
+ * @public
  */
 export enum AssetTransfersOrder {
   ASCENDING = 'asc',
@@ -541,7 +541,7 @@ export interface GetNftsForOwnerOptions {
    * Optional list of filters applied to the query. NFTs that match one or more
    * of these filters are excluded from the response.
    */
-  excludeFilters?: NftExcludeFilters[];
+  excludeFilters?: (NftExcludeFilters | NftFilters)[];
 
   /**
    * Sets the total number of NFTs to return in the response. Defaults to 100.
@@ -584,7 +584,7 @@ export interface GetBaseNftsForOwnerOptions {
    * Optional list of filters applied to the query. NFTs that match one or more
    * of these filters are excluded from the response.
    */
-  excludeFilters?: NftExcludeFilters[];
+  excludeFilters?: (NftExcludeFilters | NftFilters)[];
 
   /**
    * Sets the total number of NFTs to return in the response. Defaults to 100.
@@ -608,6 +608,9 @@ export interface GetBaseNftsForOwnerOptions {
  * Enum of NFT filters that can be applied to a {@link getNftsForOwner} request.
  * NFTs that match one or more of these filters are excluded from the response.
  *
+ * - @deprecated Use {@link NftFilters} instead. This enum will be removed in a
+ *   future version.
+ *
  * @beta
  */
 export enum NftExcludeFilters {
@@ -615,6 +618,20 @@ export enum NftExcludeFilters {
   SPAM = 'SPAM',
 
   /** Exclude NFTs that have been airdropped to a user. */
+  AIRDROPS = 'AIRDROPS'
+}
+
+/**
+ * Enum of NFT filters that can be applied to a {@link getNftsForOwner} or a
+ * {@link getContractsForOwner} request.
+ *
+ * @beta
+ */
+export enum NftFilters {
+  /** NFTs that have been classified as spam. */
+  SPAM = 'SPAM',
+
+  /** NFTs that have been airdropped to a user. */
   AIRDROPS = 'AIRDROPS'
 }
 
@@ -811,6 +828,71 @@ export interface GetFloorPriceResponse {
    */
   readonly openSea: FloorPriceMarketplace | FloorPriceError;
   readonly looksRare: FloorPriceMarketplace | FloorPriceError;
+}
+
+/**
+ * Optional parameters object for the the {@link getContractsForOwner} method
+ *
+ * @public
+ */
+export interface GetContractsForOwnerOptions {
+  /** Key for pagination to use to fetch results from the next page if available. */
+  pageKey?: string;
+
+  /**
+   * Optional list of filters applied to the query. NFTs that match one or more
+   * of these filters are included in the response. May not be used in
+   * conjunction with {@link excludeFilters}.
+   */
+  includeFilters?: NftFilters[];
+
+  /**
+   * Optional list of filters applied to the query. NFTs that match one or more
+   * of these filters are excluded from the response. May not be used in
+   * conjunction with {@link includeFilters}
+   */
+  excludeFilters?: NftFilters[];
+}
+
+/**
+ * The response for the {@link NftNamespace.getContractsForOwner} method.
+ *
+ * @public
+ */
+export interface GetContractsForOwnerResponse {
+  /** The list of contracts, that match the query, held by the given address. */
+  contracts: ContractForOwner[];
+
+  /** Key for pagination to use to fetch results from the next page if available. */
+  pageKey?: string;
+
+  /** Total number of NFT contracts held by the given address. */
+  totalCount: number;
+}
+
+/** Represents a single NFT contract data in the {@link GetContractsForOwnerResponse}. */
+export interface ContractForOwner extends NftContract {
+  /**
+   * Sum of NFT balances across all token IDs held by the owner. For
+   * non-fungible tokens this will be equal to the numDistinctTokensOwned, but
+   * it may be higher if the user holds some fungible ERC1155 tokens.
+   */
+  totalBalance: number;
+
+  /**
+   * Number of distinct token IDs held by the owner. For non-fungible tokens
+   * this will be equal to the totalBalance, but it may be lower if the user
+   * holds some fungible ERC1155 tokens.
+   */
+  numDistinctTokensOwned: number;
+
+  isSpam: boolean;
+
+  /** One of the tokens from this contract held by the owner. */
+  tokenId: string;
+
+  /** Alternative NFT metadata for this contract to be parsed manually. */
+  media: Media;
 }
 
 /**

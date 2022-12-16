@@ -5,6 +5,8 @@ import { BaseNft, Nft, NftContract } from '../api/nft';
 import {
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
+  GetContractsForOwnerOptions,
+  GetContractsForOwnerResponse,
   GetFloorPriceResponse,
   GetNftSalesOptions,
   GetNftSalesOptionsByContractAddress,
@@ -20,6 +22,7 @@ import {
   NftAttributesResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
+  NftFilters,
   NftMetadataBatchOptions,
   NftMetadataBatchToken,
   NftSaleMarketplace,
@@ -36,6 +39,7 @@ import {
 import { AlchemyApiType } from '../util/const';
 import {
   getBaseNftFromRaw,
+  getContractsForOwnerFromRaw,
   getNftContractFromRaw,
   getNftFromRaw,
   getNftRarityFromRaw,
@@ -47,6 +51,7 @@ import {
   RawContractBaseNft,
   RawGetBaseNftsForContractResponse,
   RawGetBaseNftsResponse,
+  RawGetContractsForOwnerResponse,
   RawGetNftSalesResponse,
   RawGetNftsForContractResponse,
   RawGetNftsResponse,
@@ -260,6 +265,25 @@ export async function getOwnersForContract(
     // Only include the pageKey in the final response if it's defined
     ...(response.pageKey !== undefined && { pageKey: response.pageKey })
   };
+}
+
+export async function getContractsForOwner(
+  config: AlchemyConfig,
+  owner: string,
+  options?: GetContractsForOwnerOptions,
+  srcMethod = 'getContractsForOwner'
+): Promise<GetContractsForOwnerResponse> {
+  const response = await requestHttpWithBackoff<
+    GetOwnersForContractParams,
+    RawGetContractsForOwnerResponse
+  >(config, AlchemyApiType.NFT, 'getContractsForOwner', srcMethod, {
+    owner,
+    excludeFilters: options?.excludeFilters,
+    includeFilters: options?.includeFilters,
+    pageKey: options?.pageKey
+  });
+
+  return getContractsForOwnerFromRaw(response);
 }
 
 export async function getOwnersForNft(
@@ -676,6 +700,18 @@ interface GetContractMetadataParams {
  */
 interface GetOwnersForNftContractAlchemyParams {
   contractAddress: string;
+}
+
+/**
+ * Interface for the `getOwnersForContract` endpoint.
+ *
+ * @internal
+ */
+interface GetOwnersForContractParams {
+  owner: string;
+  pageKey?: string;
+  includeFilters?: NftFilters[];
+  excludeFilters?: NftFilters[];
 }
 
 /**
