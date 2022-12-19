@@ -25,6 +25,7 @@ import {
   NftFilters,
   NftMetadataBatchOptions,
   NftMetadataBatchToken,
+  NftOrdering,
   NftSaleMarketplace,
   NftSaleTakerType,
   NftTokenType,
@@ -173,10 +174,13 @@ export async function getNftsForOwner(
     contractAddresses: options?.contractAddresses,
     pageKey: options?.pageKey,
     filters: options?.excludeFilters,
+    excludeFilters: options?.excludeFilters,
+    includeFilters: options?.includeFilters,
     owner,
     pageSize: options?.pageSize,
     withMetadata,
-    tokenUriTimeoutInMs: options?.tokenUriTimeoutInMs
+    tokenUriTimeoutInMs: options?.tokenUriTimeoutInMs,
+    orderBy: options?.orderBy
   });
   return {
     ownedNfts: response.ownedNfts.map(res => ({
@@ -274,13 +278,14 @@ export async function getContractsForOwner(
   srcMethod = 'getContractsForOwner'
 ): Promise<GetContractsForOwnerResponse> {
   const response = await requestHttpWithBackoff<
-    GetOwnersForContractParams,
+    GetContractsForOwnerParams,
     RawGetContractsForOwnerResponse
   >(config, AlchemyApiType.NFT, 'getContractsForOwner', srcMethod, {
     owner,
     excludeFilters: options?.excludeFilters,
     includeFilters: options?.includeFilters,
-    pageKey: options?.pageKey
+    pageKey: options?.pageKey,
+    orderBy: options?.orderBy
   });
 
   return getContractsForOwnerFromRaw(response);
@@ -656,10 +661,14 @@ interface GetNftsAlchemyParams {
   owner: string;
   pageKey?: string;
   contractAddresses?: string[];
+  /** @deprecated - Please use `excludeFilters` instead. */
   filters?: string[];
+  excludeFilters?: NftFilters[];
+  includeFilters?: NftFilters[];
   pageSize?: number;
   withMetadata: boolean;
   tokenUriTimeoutInMs?: number;
+  orderBy?: string;
 }
 
 /**
@@ -707,11 +716,12 @@ interface GetOwnersForNftContractAlchemyParams {
  *
  * @internal
  */
-interface GetOwnersForContractParams {
+interface GetContractsForOwnerParams {
   owner: string;
   pageKey?: string;
   includeFilters?: NftFilters[];
   excludeFilters?: NftFilters[];
+  orderBy?: NftOrdering;
 }
 
 /**
