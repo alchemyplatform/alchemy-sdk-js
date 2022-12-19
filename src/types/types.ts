@@ -544,6 +544,12 @@ export interface GetNftsForOwnerOptions {
   excludeFilters?: (NftExcludeFilters | NftFilters)[];
 
   /**
+   * Optional list of filters applied to the query. NFTs that match one or more
+   * of these filters are included in the response.
+   */
+  includeFilters?: NftFilters[];
+
+  /**
    * Sets the total number of NFTs to return in the response. Defaults to 100.
    * Maximum page size is 100.
    */
@@ -559,6 +565,12 @@ export interface GetNftsForOwnerOptions {
    * metadata for cache misses then set this value to 0.
    */
   tokenUriTimeoutInMs?: number;
+
+  /**
+   * Order in which to return results. By default, results are ordered by
+   * contract address and token ID in lexicographic order. When this parameter is set to
+   */
+  orderBy?: NftOrdering;
 }
 
 /**
@@ -587,6 +599,12 @@ export interface GetBaseNftsForOwnerOptions {
   excludeFilters?: (NftExcludeFilters | NftFilters)[];
 
   /**
+   * Optional list of filters applied to the query. NFTs that match one or more
+   * of these filters are included in the response.
+   */
+  includeFilters?: NftFilters[];
+
+  /**
    * Sets the total number of NFTs to return in the response. Defaults to 100.
    * Maximum page size is 100.
    */
@@ -602,6 +620,12 @@ export interface GetBaseNftsForOwnerOptions {
    * metadata for cache misses then set this value to 0.
    */
   tokenUriTimeoutInMs?: number;
+
+  /**
+   * Order in which to return results. By default, results are ordered by
+   * contract address and token ID in lexicographic order. When this parameter is set to
+   */
+  orderBy?: NftOrdering;
 }
 
 /**
@@ -633,6 +657,16 @@ export enum NftFilters {
 
   /** NFTs that have been airdropped to a user. */
   AIRDROPS = 'AIRDROPS'
+}
+
+/**
+ * Enum of ordering that can be applied to a {@link getNftsForOwner} or a
+ * {@link getContractsForOwner} response.
+ *
+ * @beta
+ */
+export enum NftOrdering {
+  TRANSFERTIME = 'TRANSFERTIME'
 }
 
 /**
@@ -852,6 +886,12 @@ export interface GetContractsForOwnerOptions {
    * conjunction with {@link includeFilters}
    */
   excludeFilters?: NftFilters[];
+
+  /**
+   * Order in which to return results. By default, results are ordered by
+   * contract address and token ID in lexicographic order. When this parameter is set to
+   */
+  orderBy?: NftOrdering;
 }
 
 /**

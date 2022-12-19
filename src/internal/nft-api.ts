@@ -25,6 +25,7 @@ import {
   NftFilters,
   NftMetadataBatchOptions,
   NftMetadataBatchToken,
+  NftOrdering,
   NftSaleMarketplace,
   NftSaleTakerType,
   NftTokenType,
@@ -173,10 +174,12 @@ export async function getNftsForOwner(
     contractAddresses: options?.contractAddresses,
     pageKey: options?.pageKey,
     filters: options?.excludeFilters,
+    includeFilters: options?.includeFilters,
     owner,
     pageSize: options?.pageSize,
     withMetadata,
-    tokenUriTimeoutInMs: options?.tokenUriTimeoutInMs
+    tokenUriTimeoutInMs: options?.tokenUriTimeoutInMs,
+    orderBy: options?.orderBy
   });
   return {
     ownedNfts: response.ownedNfts.map(res => ({
@@ -280,7 +283,8 @@ export async function getContractsForOwner(
     owner,
     excludeFilters: options?.excludeFilters,
     includeFilters: options?.includeFilters,
-    pageKey: options?.pageKey
+    pageKey: options?.pageKey,
+    orderBy: options?.orderBy
   });
 
   return getContractsForOwnerFromRaw(response);
@@ -657,9 +661,11 @@ interface GetNftsAlchemyParams {
   pageKey?: string;
   contractAddresses?: string[];
   filters?: string[];
+  includeFilters?: NftFilters[];
   pageSize?: number;
   withMetadata: boolean;
   tokenUriTimeoutInMs?: number;
+  orderBy?: string;
 }
 
 /**
@@ -712,6 +718,7 @@ interface GetOwnersForContractParams {
   pageKey?: string;
   includeFilters?: NftFilters[];
   excludeFilters?: NftFilters[];
+  orderBy?: NftOrdering;
 }
 
 /**
