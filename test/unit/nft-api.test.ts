@@ -4,7 +4,6 @@ import MockAdapter from 'axios-mock-adapter';
 import {
   Alchemy,
   BaseNft,
-  fromHex,
   GetContractsForOwnerOptions,
   GetFloorPriceResponse,
   GetNftSalesOptions,
@@ -16,6 +15,7 @@ import {
   NftContractNftsResponse,
   NftFilters,
   NftMetadataBatchToken,
+  NftOrdering,
   NftSaleMarketplace,
   NftSaleTakerType,
   NftTokenType,
@@ -24,7 +24,8 @@ import {
   OwnedNft,
   OwnedNftsResponse,
   RefreshState,
-  SortingOrder
+  SortingOrder,
+  fromHex
 } from '../../src';
 import {
   RawGetBaseNftsForContractResponse,
@@ -281,7 +282,8 @@ describe('NFT module', () => {
       contractAddresses,
       excludeFilters,
       pageSize: 3,
-      tokenUriTimeoutInMs: 50
+      tokenUriTimeoutInMs: 50,
+      orderBy: NftOrdering.TRANSFERTIME
     };
     const baseNftResponse: RawGetBaseNftsResponse = {
       ownedNfts: [
@@ -336,6 +338,10 @@ describe('NFT module', () => {
         expect(mock.history.get[0].params).toHaveProperty(
           'tokenUriTimeoutInMs',
           50
+        );
+        expect(mock.history.get[0].params).toHaveProperty(
+          'orderBy',
+          'TRANSFERTIME'
         );
       }
     );
