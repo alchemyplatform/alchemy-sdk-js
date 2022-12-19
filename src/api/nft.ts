@@ -37,7 +37,10 @@ export interface NftContract extends BaseNftContract {
   name?: string;
   /** The symbol of the contract. */
   symbol?: string;
-  /** The number of NFTs in the contract as an integer string. */
+  /**
+   * The number of NFTs in the contract as an integer string. This field is only
+   * available on ERC-721 contracts.
+   */
   totalSupply?: string;
   /** OpenSea's metadata for the contract. */
   openSea?: OpenSeaCollectionMetadata;
