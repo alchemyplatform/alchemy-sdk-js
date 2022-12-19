@@ -9,8 +9,9 @@
 
 ### Minor Changes
 
-- Fixed a bug in `NftNamesapce.getNftsForOwner()` where the `openSea` metadata was not included in the returned NFT.
-- Marked the `NftFilters` type as deprecated. Please use `NftExcludeFilters` or `NftIncludeFilters` instead.
+- Fixed a bug in `NftNamespace.getNftsForOwner()` where the `openSea` metadata was not included in the returned NFT.
+- Marked the `NftExcludeFilters` type as deprecated. Please use `NftFilters` instead.
+- Added support for the `orderBy` param to `NftNamespace.getNftsForOwner()` and `NftNamespace.getContractsForOwner()`.
 
 ## 2.2.4
 
@@ -27,6 +28,7 @@
 ### Major Changes
 
 ### Minor Changes
+
 - Fixed a typo with the `AlchemySettings.batchRequests` property.
 
 ## 2.2.2 (DEPRECATED)
