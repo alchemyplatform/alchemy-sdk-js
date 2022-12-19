@@ -174,6 +174,7 @@ export async function getNftsForOwner(
     contractAddresses: options?.contractAddresses,
     pageKey: options?.pageKey,
     filters: options?.excludeFilters,
+    excludeFilters: options?.excludeFilters,
     includeFilters: options?.includeFilters,
     owner,
     pageSize: options?.pageSize,
@@ -660,7 +661,9 @@ interface GetNftsAlchemyParams {
   owner: string;
   pageKey?: string;
   contractAddresses?: string[];
+  /** @deprecated - Please use `excludeFilters` instead. */
   filters?: string[];
+  excludeFilters?: NftFilters[];
   includeFilters?: NftFilters[];
   pageSize?: number;
   withMetadata: boolean;

@@ -541,7 +541,7 @@ export interface GetNftsForOwnerOptions {
    * Optional list of filters applied to the query. NFTs that match one or more
    * of these filters are excluded from the response.
    */
-  excludeFilters?: (NftExcludeFilters | NftFilters)[];
+  excludeFilters?: NftFilters[];
 
   /**
    * Optional list of filters applied to the query. NFTs that match one or more
@@ -568,7 +568,7 @@ export interface GetNftsForOwnerOptions {
 
   /**
    * Order in which to return results. By default, results are ordered by
-   * contract address and token ID in lexicographic order. When this parameter is set to
+   * contract address and token ID in lexicographic order.
    */
   orderBy?: NftOrdering;
 }
@@ -596,7 +596,7 @@ export interface GetBaseNftsForOwnerOptions {
    * Optional list of filters applied to the query. NFTs that match one or more
    * of these filters are excluded from the response.
    */
-  excludeFilters?: (NftExcludeFilters | NftFilters)[];
+  excludeFilters?: NftFilters[];
 
   /**
    * Optional list of filters applied to the query. NFTs that match one or more
@@ -623,7 +623,7 @@ export interface GetBaseNftsForOwnerOptions {
 
   /**
    * Order in which to return results. By default, results are ordered by
-   * contract address and token ID in lexicographic order. When this parameter is set to
+   * contract address and token ID in lexicographic order.
    */
   orderBy?: NftOrdering;
 }
@@ -889,7 +889,7 @@ export interface GetContractsForOwnerOptions {
 
   /**
    * Order in which to return results. By default, results are ordered by
-   * contract address and token ID in lexicographic order. When this parameter is set to
+   * contract address and token ID in lexicographic order.
    */
   orderBy?: NftOrdering;
 }
