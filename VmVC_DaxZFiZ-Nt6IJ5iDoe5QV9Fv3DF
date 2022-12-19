@@ -1,0 +1,17 @@
+$ npm install alchemy-
+VmVC_DaxZFiZ-Nt6IJ5iDoe5QV9Fv3DF
+
+
+0x994b342dd87fc825f66e51ffa3ef71ad818b6893')
+    .then(console.log);
+
+// Get all the NFTs owned by an address
+const nfts = alchemy.nft.getNftsForOwner("0xshah.eth");
+    
+// Listen to all new pending transactions
+alchemy.ws.on(
+    { method: "alchemy_pendingTransactions",
+    fromAddress: "0xshah.eth" },
+    (res) => console.log(res)
+); 0x684f340860c46aa1c18fd4d13740481f8163a829
+
