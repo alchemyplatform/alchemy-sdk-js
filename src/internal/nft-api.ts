@@ -277,7 +277,7 @@ export async function getContractsForOwner(
   srcMethod = 'getContractsForOwner'
 ): Promise<GetContractsForOwnerResponse> {
   const response = await requestHttpWithBackoff<
-    GetOwnersForContractParams,
+    GetContractsForOwnerParams,
     RawGetContractsForOwnerResponse
   >(config, AlchemyApiType.NFT, 'getContractsForOwner', srcMethod, {
     owner,
@@ -713,7 +713,7 @@ interface GetOwnersForNftContractAlchemyParams {
  *
  * @internal
  */
-interface GetOwnersForContractParams {
+interface GetContractsForOwnerParams {
   owner: string;
   pageKey?: string;
   includeFilters?: NftFilters[];
