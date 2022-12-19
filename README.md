@@ -97,7 +97,7 @@ The Alchemy SDK also supports a number of Ethers.js objects that streamline the 
 - [`Wallet`](https://docs.ethers.io/v5/api/signer/#Wallet): An implementation of `Signer` that can sign transactions and messages using a private key as a standard Externally Owned Account.
 
 ## Alchemy Settings
-An `AlchemySettings` object can be passed on instantiation to the Alchemy object, with the following optional parameters: 
+An `AlchemySettings` object can be passed on instantiation to the Alchemy object, with the following optional parameters:
 - `apiKey`: API key that can be found in the Alchemy dashboard. Defaults to `demo`: a rate-limited public key.
 - `network`: Name of the network. Defaults to `Network.ETH_MAINNET`
 - `maxRetries`: The maximum number of retries to attempt if a request fails. Defaults to 5.
@@ -199,6 +199,7 @@ under the `alchemy.nft` namespace:
 - `getNftMetadata()`: Get the NFT metadata for an NFT contract address and tokenId.
 - `getNftMetadataBatch()`: Get the NFT metadata for multiple NFT contract addresses/token id pairs.
 - `getContractMetadata()`: Get the metadata associated with an NFT contract
+- `getContractsForOwner()`: Get all NFT contracts that the provided owner address owns.
 - `getNftsForOwner()`: Get NFTs for an owner address.
 - `getNftsForOwnerIterator()`: Get NFTs for an owner address as an async iterator (handles paging automatically).
 - `getNftsForContract()`: Get all NFTs for a contract address.

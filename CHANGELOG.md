@@ -5,10 +5,12 @@
 ### Major Changes
 
 - Added `TransactNamespace.sendGasOptimizedTransaction()`. Instead of sending a single transaction that might not get mined, this method allows you to send the same transaction multiple times, with different gas prices and gas limits. This should result in lower fees paid.
+- Added `NftNamespace.getContractsForOwner()` to fetch all NFT contracts for a specified owner address.
 
 ### Minor Changes
 
 - Fixed a bug in `NftNamesapce.getNftsForOwner()` where the `openSea` metadata was not included in the returned NFT.
+- Marked the `NftFilters` type as deprecated. Please use `NftExcludeFilters` or `NftIncludeFilters` instead.
 
 ## 2.2.4
 
