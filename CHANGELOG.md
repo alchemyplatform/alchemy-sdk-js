@@ -8,7 +8,17 @@
 
 ### Minor Changes
 
-- Fixed a bug in `NftNamesapce.getNftsForOwner()` where the `openSea` metadata was not included in the returned NFT.
+## 2.2.5
+
+### Major Changes
+
+- Added `NftNamespace.getContractsForOwner()` to fetch all NFT contracts for a specified owner address.
+
+### Minor Changes
+
+- Fixed a bug in `NftNamespace.getNftsForOwner()` where the `openSea` metadata was not included in the returned NFT.
+- Marked the `NftExcludeFilters` type as deprecated. Please use `NftFilters` instead.
+- Added support for the `orderBy` param to `NftNamespace.getNftsForOwner()` and `NftNamespace.getContractsForOwner()`.
 
 ## 2.2.4
 
