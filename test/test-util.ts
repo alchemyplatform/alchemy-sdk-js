@@ -2,17 +2,17 @@ import { BigNumber } from '@ethersproject/bignumber';
 
 import {
   BaseNft,
+  Media,
   Nft,
   NftContract,
   NftSaleFeeData,
+  NftSaleMarketplace,
+  NftSaleTakerType,
   NftTokenType,
   OwnedBaseNft,
   OwnedNft,
   TokenUri,
-  toHex,
-  NftSaleTakerType,
-  NftSaleMarketplace,
-  Media
+  toHex
 } from '../src';
 import {
   RawBaseNft,

@@ -1,10 +1,10 @@
 import {
   Alchemy,
-  fromHex,
   NftFilters,
   NftSaleMarketplace,
   NftTokenType,
-  OpenSeaSafelistRequestStatus
+  OpenSeaSafelistRequestStatus,
+  fromHex
 } from '../../src';
 import { loadAlchemyEnv } from '../test-util';
 
