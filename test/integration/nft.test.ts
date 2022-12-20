@@ -1,10 +1,10 @@
 import {
   Alchemy,
-  fromHex,
   NftFilters,
   NftSaleMarketplace,
   NftTokenType,
-  OpenSeaSafelistRequestStatus
+  OpenSeaSafelistRequestStatus,
+  fromHex
 } from '../../src';
 import { loadAlchemyEnv } from '../test-util';
 
@@ -116,13 +116,6 @@ describe('E2E integration tests', () => {
       excludeFilters: [NftFilters.SPAM]
     });
     expect(withSpam.totalCount).not.toEqual(noSpam.totalCount);
-  });
-
-  it('test', async () => {
-    const nfts = await alchemy.nft.getNftsForOwner(
-      '0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85'
-    );
-    console.log(nfts);
   });
 
   it('getNftsForOwner() spam info check', async () => {
