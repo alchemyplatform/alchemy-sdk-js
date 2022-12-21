@@ -8,6 +8,8 @@
 
 ### Minor Changes
 
+- Added the `tokenUriTimeoutInMs` option to `NftNamespace.getNftsForContract()` to specify the timeout duration for fetching an NFT's underlying metadata.
+
 ## 2.2.5
 
 ### Major Changes
