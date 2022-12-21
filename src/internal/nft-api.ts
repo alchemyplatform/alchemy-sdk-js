@@ -207,7 +207,7 @@ export async function getNftsForContract(
     startToken: options?.pageKey,
     withMetadata,
     limit: options?.pageSize ?? undefined,
-    tokenUriTimeoutInMs: 50
+    tokenUriTimeoutInMs: options?.tokenUriTimeoutInMs
   });
 
   return {
