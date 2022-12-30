@@ -1756,7 +1756,7 @@ export interface NftFilter {
   /** The contract address of the NFT. */
   contractAddress: string;
   /** The token id of the NFT. */
-  tokenId: BigNumberish;
+  tokenId?: BigNumberish;
 }
 
 /** Response object for the {@link NotifyNamespace.getNftFilters} method. */

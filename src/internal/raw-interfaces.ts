@@ -266,7 +266,7 @@ export interface RawCreateWebhookResponse {
 
 export interface RawNftFilterParam {
   contract_address: string;
-  token_id: string;
+  token_id?: string;
 }
 
 export interface RawNftAttributeRarity {

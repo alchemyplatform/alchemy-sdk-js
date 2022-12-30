@@ -106,7 +106,7 @@ describe('E2E integration tests', () => {
 
     let response = await alchemy.notify.getNftFilters(nftWh);
     const sortFn = (a: NftFilter, b: NftFilter) =>
-      a.tokenId < b.tokenId ? 1 : -1;
+      (a?.tokenId ?? -1) < (b.tokenId ?? -1) ? 1 : -1;
     expect(response.filters.sort(sortFn)).toEqual(
       expectedNftFilters.sort(sortFn)
     );
