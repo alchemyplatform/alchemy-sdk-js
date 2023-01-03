@@ -150,7 +150,8 @@ describe('NFT module', () => {
       contractAddress: string,
       tokenId: string,
       tokenType?: NftTokenType,
-      timeoutInMs?: number
+      timeoutInMs?: number,
+      refreshCache?: boolean
     ) {
       expect(actualNft).toEqual(expectedNft);
       expect(actualNft.tokenId).toEqual(tokenId);
@@ -168,21 +169,25 @@ describe('NFT module', () => {
         'tokenUriTimeoutInMs',
         timeoutInMs ?? undefined
       );
+      expect(mock.history.get[0].params).toHaveProperty(
+        'refreshCache',
+        refreshCache ?? undefined
+      );
     }
 
     it('can be called with raw parameters', async () => {
       verifyNftMetadata(
-        await alchemy.nft.getNftMetadata(
-          contractAddress,
-          tokenId,
-          NftTokenType.ERC1155,
-          timeoutInMs
-        ),
+        await alchemy.nft.getNftMetadata(contractAddress, tokenId, {
+          tokenType: NftTokenType.ERC1155,
+          tokenUriTimeoutInMs: timeoutInMs,
+          refreshCache: true
+        }),
         expectedNft,
         contractAddress,
         tokenId,
         NftTokenType.ERC1155,
-        timeoutInMs
+        timeoutInMs,
+        true
       );
     });
 
@@ -1648,7 +1653,10 @@ describe('NFT module', () => {
         contractAddress
       );
       expect(mock.history.get[0].params).toHaveProperty('tokenId', tokenId);
-      expect(mock.history.get[0].params).not.toHaveProperty('refreshCache');
+      expect(mock.history.get[0].params).toHaveProperty(
+        'refreshCache',
+        undefined
+      );
       expect(mock.history.get[1].params).toHaveProperty(
         'contractAddress',
         contractAddress

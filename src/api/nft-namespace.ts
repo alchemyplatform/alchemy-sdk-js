@@ -29,6 +29,7 @@ import {
   GetContractsForOwnerOptions,
   GetContractsForOwnerResponse,
   GetFloorPriceResponse,
+  GetNftMetadataOptions,
   GetNftSalesOptions,
   GetNftSalesOptionsByContractAddress,
   GetNftSalesResponse,
@@ -77,20 +78,40 @@ export class NftNamespace {
    *   website hosting the metadata to respond. If you want to only access the
    *   cache and not live fetch any metadata for cache misses then set this value to 0.
    * @public
+   * @deprecated Please use the method with the `options` overload. This method
+   * will be removed in a subsequent release.
    */
   getNftMetadata(
     contractAddress: string,
     tokenId: BigNumberish,
     tokenType?: NftTokenType,
     tokenUriTimeoutInMs?: number
+  ): Promise<Nft>;
+  getNftMetadata(
+    contractAddress: string,
+    tokenId: BigNumberish,
+    options?: GetNftMetadataOptions
+  ): Promise<Nft>;
+  getNftMetadata(
+    contractAddress: string,
+    tokenId: BigNumberish,
+    optionsOrTokenType?: GetNftMetadataOptions | NftTokenType,
+    tokenUriTimeoutInMs?: number
   ): Promise<Nft> {
-    return getNftMetadata(
-      this.config,
-      contractAddress,
-      tokenId,
-      tokenType,
-      tokenUriTimeoutInMs
-    );
+    let options: GetNftMetadataOptions;
+    if (typeof optionsOrTokenType === 'object') {
+      options = {
+        tokenType: optionsOrTokenType.tokenType,
+        tokenUriTimeoutInMs: optionsOrTokenType.tokenUriTimeoutInMs,
+        refreshCache: optionsOrTokenType.refreshCache
+      };
+    } else {
+      options = {
+        tokenType: optionsOrTokenType,
+        tokenUriTimeoutInMs
+      };
+    }
+    return getNftMetadata(this.config, contractAddress, tokenId, options);
   }
 
   /**

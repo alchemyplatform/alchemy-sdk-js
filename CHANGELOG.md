@@ -9,6 +9,7 @@
 ### Minor Changes
 
 - Added the `tokenUriTimeoutInMs` option to `NftNamespace.getNftsForContract()` to specify the timeout duration for fetching an NFT's underlying metadata.
+- Added support for the `refreshCache` option in `NftNamespace.getNftMetadata()`. This option is now available when using the `options` overload. The original method without the `options` overload is now deprecated.
 
 ## 2.2.5
 
