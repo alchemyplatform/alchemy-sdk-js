@@ -9,6 +9,7 @@
 ### Minor Changes
 
 - Added the `tokenUriTimeoutInMs` option to `NftNamespace.getNftsForContract()` to specify the timeout duration for fetching an NFT's underlying metadata.
+- Fixed a bug where using `AlchemySubscriptions.PENDING_TRANSACTIONS` with a string array input would throw an error (#222).
 
 ## 2.2.5
 
