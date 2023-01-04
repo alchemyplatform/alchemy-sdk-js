@@ -8,6 +8,7 @@ import {
   GetContractsForOwnerOptions,
   GetContractsForOwnerResponse,
   GetFloorPriceResponse,
+  GetNftMetadataOptions,
   GetNftSalesOptions,
   GetNftSalesOptionsByContractAddress,
   GetNftSalesResponse,
@@ -69,8 +70,7 @@ export async function getNftMetadata(
   config: AlchemyConfig,
   contractAddress: string,
   tokenId: BigNumberish,
-  tokenType?: NftTokenType,
-  tokenUriTimeoutInMs?: number,
+  options?: GetNftMetadataOptions,
   srcMethod = 'getNftMetadata'
 ): Promise<Nft> {
   const response = await requestHttpWithBackoff<GetNftMetadataParams, RawNft>(
@@ -81,8 +81,12 @@ export async function getNftMetadata(
     {
       contractAddress,
       tokenId: BigNumber.from(tokenId!).toString(),
-      tokenType: tokenType !== NftTokenType.UNKNOWN ? tokenType : undefined,
-      tokenUriTimeoutInMs
+      tokenType:
+        options?.tokenType !== NftTokenType.UNKNOWN
+          ? options?.tokenType
+          : undefined,
+      tokenUriTimeoutInMs: options?.tokenUriTimeoutInMs,
+      refreshCache: options?.refreshCache
     }
   );
   return getNftFromRaw(response);
@@ -510,7 +514,6 @@ export async function refreshNftMetadata(
     config,
     contractAddress,
     tokenIdString,
-    undefined,
     undefined,
     srcMethod
   );
