@@ -632,7 +632,7 @@ export interface GetBaseNftsForOwnerOptions {
  * Enum of NFT filters that can be applied to a {@link getNftsForOwner} request.
  * NFTs that match one or more of these filters are excluded from the response.
  *
- * - @deprecated Use {@link NftFilters} instead. This enum will be removed in a
+ * @deprecated Use {@link NftFilters} instead. This enum will be removed in a
  *   future version.
  *
  * @beta
