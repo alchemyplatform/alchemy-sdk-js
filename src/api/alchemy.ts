@@ -4,6 +4,7 @@ import { CoreNamespace } from './core-namespace';
 import { NftNamespace } from './nft-namespace';
 import { NotifyNamespace } from './notify-namespace';
 import { TransactNamespace } from './transact-namespace';
+import { WalletNamespace } from './wallet-namespace';
 import { WebSocketNamespace } from './websocket-namespace';
 
 /**
@@ -47,6 +48,14 @@ export class Alchemy {
   readonly notify: NotifyNamespace;
 
   /**
+   * The `wallet` namespace contains methods for interacting with externally
+   * owned wallets. To use the wallet namespace, pass in the external wallet
+   * via the {@link AlchemySettings.walletProvider} property when instantiating
+   * {@link Alchemy}.
+   */
+  readonly wallet: WalletNamespace;
+
+  /**
    * @param {string} [settings.apiKey] - The API key to use for Alchemy
    * @param {Network} [settings.network] - The network to use for Alchemy
    * @param {number} [settings.maxRetries] - The maximum number of retries to attempt
@@ -60,5 +69,6 @@ export class Alchemy {
     this.ws = new WebSocketNamespace(this.config);
     this.transact = new TransactNamespace(this.config);
     this.notify = new NotifyNamespace(this.config);
+    this.wallet = new WalletNamespace(this.config);
   }
 }

@@ -33,6 +33,8 @@ export type { TransactNamespace } from './api/transact-namespace';
 
 export type { NotifyNamespace } from './api/notify-namespace';
 
+export type { WalletNamespace } from './api/wallet-namespace';
+
 export type { BaseNftContract, NftContract, Nft, BaseNft } from './api/nft';
 
 export { fromHex, toHex, isHex } from './api/util';

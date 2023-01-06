@@ -3,6 +3,7 @@ import {
   TransactionReceipt
 } from '@ethersproject/abstract-provider';
 import { BigNumberish } from '@ethersproject/bignumber';
+import type { ExternalProvider } from '@ethersproject/providers';
 
 import { BaseNft, Nft, NftContract } from '../api/nft';
 
@@ -54,6 +55,12 @@ export interface AlchemySettings {
    * This implementation is based on the `JsonRpcBatchProvider` in ethers.
    */
   batchRequests?: boolean;
+
+  /**
+   * External wallet provider object (ex: `window.ethereum`) than can be passed
+   * in to use the {@link WalletNamespace}.
+   */
+  walletProvider?: ExternalProvider;
 }
 
 /**
@@ -1826,6 +1833,37 @@ export type AddressWebhookUpdate =
   | WebhookStatusUpdate
   | RequireAtLeastOne<WebhookAddressUpdate>
   | WebhookAddressOverride;
+
+/**
+ * The requested permissions parameter for {@link WalletNamespace.requestPermissions}.
+ */
+export interface RequestedPermissions {
+  [methodName: string]: {}; // an empty object, for future extensibility
+}
+
+/**
+ * Chain to
+ */
+export interface AddEthereumChainParams {
+  chainId: string; // A 0x-prefixed hexadecimal string
+  chainName: string;
+  nativeCurrency: {
+    name: string;
+    symbol: string; // 2-6 characters long
+    decimals: 18;
+  };
+  rpcUrls: string[];
+  blockExplorerUrls?: string[];
+  iconUrls?: string[]; // Currently ignored.
+}
+
+export interface Web3WalletPermission {
+  // The name of the method corresponding to the permission
+  parentCapability: string;
+
+  // The date the permission was granted, in UNIX epoch time
+  date?: number;
+}
 
 /**
  * Requires at least one of the properties to be set.

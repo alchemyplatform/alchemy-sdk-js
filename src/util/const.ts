@@ -71,6 +71,21 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   }
 };
 
+/**
+ * Mapping of Alchemy's {@link Network} enum to the corresponding chainId in hex.
+ */
+export const NetworkToChainId: Record<string, string> = {
+  [Network.ETH_MAINNET]: '0x1',
+  [Network.ETH_GOERLI]: '0x5',
+  [Network.OPT_MAINNET]: '0xa',
+  [Network.OPT_GOERLI]: '0x1a4',
+  [Network.ARB_MAINNET]: '0xa4b1',
+  [Network.ARB_GOERLI]: '0x66eed',
+  [Network.MATIC_MAINNET]: '0x89',
+  [Network.MATIC_MUMBAI]: '0x13881',
+  [Network.ASTAR_MAINNET]: '0x250'
+};
+
 export function noop(): void {
   // It's a no-op
 }

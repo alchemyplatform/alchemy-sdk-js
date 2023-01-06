@@ -1,3 +1,5 @@
+import type { ExternalProvider, Web3Provider } from '@ethersproject/providers';
+
 import { AlchemySettings, Network } from '../types/types';
 import {
   AlchemyApiType,
@@ -55,6 +57,10 @@ export class AlchemyConfig {
     | Promise<AlchemyWebSocketProvider>
     | undefined;
 
+  private readonly _walletProvider: ExternalProvider | undefined;
+
+  private _walletProviderPromise: Promise<Web3Provider> | undefined;
+
   constructor(config?: AlchemySettings) {
     this.apiKey = config?.apiKey || DEFAULT_ALCHEMY_API_KEY;
     this.network = config?.network || DEFAULT_NETWORK;
@@ -62,6 +68,7 @@ export class AlchemyConfig {
     this.url = config?.url;
     this.authToken = config?.authToken;
     this.batchRequests = config?.batchRequests || false;
+    this._walletProvider = config?.walletProvider;
   }
 
   /**
@@ -129,5 +136,23 @@ export class AlchemyConfig {
       })();
     }
     return this._baseAlchemyWssProvider;
+  }
+
+  /**
+   * Returns the passed in {@link AlchemySettings.walletProvider} wrapped in a
+   * dynamically loaded {@link Web3Provider}. This method is not exposed to the
+   * end user.
+   */
+  getWalletProvider(): Promise<Web3Provider> {
+    if (this._walletProvider === undefined) {
+      throw new Error('No external provider provided during instantiation');
+    }
+    if (!this._walletProviderPromise) {
+      this._walletProviderPromise = (async () => {
+        const { Web3Provider } = await import('./web3-provider');
+        return new Web3Provider(this._walletProvider!);
+      })();
+    }
+    return this._walletProviderPromise;
   }
 }
