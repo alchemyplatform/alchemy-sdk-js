@@ -639,7 +639,7 @@ export interface GetBaseNftsForOwnerOptions {
  * Enum of NFT filters that can be applied to a {@link getNftsForOwner} request.
  * NFTs that match one or more of these filters are excluded from the response.
  *
- * - @deprecated Use {@link NftFilters} instead. This enum will be removed in a
+ * @deprecated Use {@link NftFilters} instead. This enum will be removed in a
  *   future version.
  *
  * @beta
@@ -795,6 +795,27 @@ export interface NftContractTokenBalance {
 
   /** The token Id balance for the provided owner. */
   balance: number;
+}
+
+/**
+ * Additional options for the {@link NftNamespace.getNftMetadata} method.
+ */
+export interface GetNftMetadataOptions {
+  /** Optional field to specify the type of token to speed up the query. */
+  tokenType?: NftTokenType;
+  /**
+   * No set timeout by default - When metadata is requested, this parameter is
+   * the timeout (in milliseconds) for the website hosting the metadata to
+   * respond. If you want to only access the cache and not live fetch any
+   * metadata for cache misses then set this value to 0.
+   */
+  tokenUriTimeoutInMs?: number;
+
+  /**
+   * Whether to refresh the metadata for the given NFT token before returning
+   * the response. Defaults to false for faster response times.
+   */
+  refreshCache?: boolean;
 }
 
 /**

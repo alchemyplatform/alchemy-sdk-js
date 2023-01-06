@@ -162,7 +162,9 @@ export class WebSocketNamespace {
           );
         } else {
           eventName.fromAddress = await Promise.all(
-            eventName.fromAddress.map(this._resolveNameOrError)
+            eventName.fromAddress.map(address =>
+              this._resolveNameOrError(address)
+            )
           );
         }
       }
@@ -173,7 +175,9 @@ export class WebSocketNamespace {
           );
         } else {
           eventName.toAddress = await Promise.all(
-            eventName.toAddress.map(this._resolveNameOrError)
+            eventName.toAddress.map(address =>
+              this._resolveNameOrError(address)
+            )
           );
         }
       }

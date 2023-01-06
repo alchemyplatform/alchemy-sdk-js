@@ -205,7 +205,7 @@ under the `alchemy.nft` namespace:
 - `getNftsForOwner()`: Get NFTs for an owner address.
 - `getNftsForOwnerIterator()`: Get NFTs for an owner address as an async iterator (handles paging automatically).
 - `getNftsForContract()`: Get all NFTs for a contract address.
-- `getNftForContractIterator()`: Get all NFTs for a contract address as an async iterator (handles paging
+- `getNftsForContractIterator()`: Get all NFTs for a contract address as an async iterator (handles paging
   automatically).
 - `getOwnersForNft()`: Get all the owners for a given NFT contract address and a particular token ID.
 - `getOwnersForContract()`: Get all the owners for a given NFT contract address.
