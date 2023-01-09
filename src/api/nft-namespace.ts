@@ -6,6 +6,7 @@ import {
   getContractMetadata,
   getContractsForOwner,
   getFloorPrice,
+  getMintedNfts,
   getNftMetadata,
   getNftMetadataBatch,
   getNftSales,
@@ -29,6 +30,8 @@ import {
   GetContractsForOwnerOptions,
   GetContractsForOwnerResponse,
   GetFloorPriceResponse,
+  GetMintedNftsOptions,
+  GetMintedNftsResponse,
   GetNftMetadataOptions,
   GetNftSalesOptions,
   GetNftSalesOptionsByContractAddress,
@@ -345,6 +348,19 @@ export class NftNamespace {
     options?: GetContractsForOwnerOptions
   ): Promise<GetContractsForOwnerResponse> {
     return getContractsForOwner(this.config, owner, options);
+  }
+
+  /**
+   * Get all the NFTs minted by a specified owner address.
+   *
+   * @param owner - Address for the NFT owner (can be in ENS format).
+   * @param options - The optional parameters to use for the request.
+   */
+  async getMintedNfts(
+    owner: string,
+    options?: GetMintedNftsOptions
+  ): Promise<GetMintedNftsResponse> {
+    return getMintedNfts(this.config, owner, options);
   }
 
   /**

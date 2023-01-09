@@ -5,6 +5,7 @@
 ### Major Changes
 
 - Added `TransactNamespace.sendGasOptimizedTransaction()`. Instead of sending a single transaction that might not get mined, this method allows you to send the same transaction multiple times, with different gas prices and gas limits. This should result in lower fees paid.
+- Added `NftNamespace.getMintedNfts()` to fetch all the NFTs an owner address minted, optionally filtered by a set of specific NFT contracts.
 
 ### Minor Changes
 

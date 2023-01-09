@@ -14,6 +14,7 @@ import type { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import type { Network as EthersNetworkAlias } from '@ethersproject/networks/lib/types';
 import type { Deferrable } from '@ethersproject/properties';
 
+import { getAssetTransfers } from '../internal/core-api';
 import {
   AssetTransfersParams,
   AssetTransfersResponse,
@@ -30,7 +31,6 @@ import {
   TransactionReceiptsResponse
 } from '../types/types';
 import { ETH_NULL_VALUE } from '../util/const';
-import { formatBlock } from '../util/util';
 import { AlchemyConfig } from './alchemy-config';
 import { toHex } from './util';
 
@@ -534,29 +534,7 @@ export class CoreNamespace {
   async getAssetTransfers(
     params: AssetTransfersWithMetadataParams | AssetTransfersParams
   ): Promise<AssetTransfersResponse | AssetTransfersWithMetadataResponse> {
-    const provider = await this.config.getProvider();
-    if (params.fromAddress) {
-      params.fromAddress = await provider._getAddress(params.fromAddress);
-    }
-    if (params.toAddress) {
-      params.toAddress = await provider._getAddress(params.toAddress);
-    }
-    return provider._send(
-      'alchemy_getAssetTransfers',
-      [
-        {
-          ...params,
-          fromBlock:
-            params.fromBlock != null
-              ? formatBlock(params.fromBlock)
-              : undefined,
-          toBlock:
-            params.toBlock != null ? formatBlock(params.toBlock) : undefined,
-          maxCount: params.maxCount != null ? toHex(params.maxCount) : undefined
-        }
-      ],
-      'getAssetTransfers'
-    );
+    return getAssetTransfers(this.config, params);
   }
 
   /**
