@@ -41,7 +41,10 @@ export async function requestHttpWithBackoff<Req, Res>(
         restApiName,
         methodName,
         params,
-        overrides
+        {
+          ...overrides,
+          timeout: config.requestTimeout
+        }
       );
 
       if (response.status === 200) {

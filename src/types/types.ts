@@ -48,6 +48,12 @@ export interface AlchemySettings {
   authToken?: string;
 
   /**
+   * Optional Request timeout provided in `ms` while using NFT and NOTIFY API.
+   * Default to 0 (No timeout).
+   */
+  requestTimeout?: number;
+
+  /**
    * Optional setting that automatically batches and sends json-rpc requests for
    * higher throughput and reduced network IO. Defaults to false.
    *
