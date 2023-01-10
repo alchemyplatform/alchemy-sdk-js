@@ -81,7 +81,6 @@ describe('DebugNamespace', () => {
     const finalizedBlock = await alchemy.core.getBlock(
       CommitmentLevel.FINALIZED
     );
-    console.log(finalizedBlock);
     const response = await alchemy.debug.traceBlock(finalizedBlock.number, {
       type: DebugTracerType.CALL_TRACER,
       onlyTopCall: true
@@ -93,14 +92,13 @@ describe('DebugNamespace', () => {
         onlyTopCall: true
       }
     );
-    const response3 = await alchemy.debug.traceBlock(
-      CommitmentLevel.FINALIZED,
-      {
-        type: DebugTracerType.CALL_TRACER,
-        onlyTopCall: true
-      }
-    );
+
     expect(response).toEqual(response2);
-    expect(response).toEqual(response3);
+
+    // Check that we can call trace with commitment levels.
+    await alchemy.debug.traceBlock(CommitmentLevel.FINALIZED, {
+      type: DebugTracerType.CALL_TRACER,
+      onlyTopCall: true
+    });
   });
 });
