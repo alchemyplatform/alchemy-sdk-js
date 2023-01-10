@@ -83,16 +83,19 @@ describe('NFT module', () => {
     const symbol = 'NCN';
     const totalSupply = '9999';
     const tokenType = NftTokenType.ERC721;
+    const contractDeployer = '0xDEF';
+    const deployedBlockNumber = 424242;
     const openSea = createRawOpenSeaCollectionMetadata();
 
-    const rawNftContractResponse = createRawNftContract(
-      address,
+    const rawNftContractResponse = createRawNftContract(address, {
       tokenType,
       name,
       symbol,
       totalSupply,
-      openSea
-    );
+      openSea,
+      contractDeployer,
+      deployedBlockNumber
+    });
     const expectedNftContract = getNftContractFromRaw(rawNftContractResponse);
 
     beforeEach(() => {
@@ -131,12 +134,22 @@ describe('NFT module', () => {
     const title = 'NFT Title';
     const tokenId = '42';
     const timeoutInMs = 50;
+    const contractMetadata = {
+      name: 'NFT Title',
+      symbol: 'NCN',
+      totalSupply: '9999',
+      tokenType: NftTokenType.ERC721,
+      contractDeployer: '0xDEF',
+      deployedBlockNumber: 424242
+    };
     // Special case token ID as an integer string, since that's what the NFT
     // API endpoint returns.
     const rawNftResponse = createRawNft(
       contractAddress,
       title,
-      tokenId.toString()
+      tokenId.toString(),
+      NftTokenType.UNKNOWN,
+      { contractMetadata }
     );
     const expectedNft = getNftFromRaw(rawNftResponse);
 
@@ -1532,13 +1545,12 @@ describe('NFT module', () => {
     const totalSupply = '1155';
     const tokenType = NftTokenType.ERC721;
 
-    const rawNftContractResponse = createRawNftContract(
-      address,
+    const rawNftContractResponse = createRawNftContract(address, {
       tokenType,
       name,
       symbol,
       totalSupply
-    );
+    });
     const templateResponse = [rawNftContractResponse];
     const expectedNftContract = getNftContractFromRaw(rawNftContractResponse);
 
