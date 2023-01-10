@@ -185,7 +185,7 @@ describe('E2E integration tests', () => {
       pageKey: firstPage?.pageKey
     });
 
-    expect(response.contracts).not.toEqual(firstPage.contracts);
+    expect(response.contracts[0]).not.toEqual(firstPage.contracts[0]);
   });
 
   it.each(Object.values(NftFilters))(
@@ -218,10 +218,11 @@ describe('E2E integration tests', () => {
       contractAddress
     );
 
+    expect(nftsForNftContract).not.toBeUndefined();
     const nextPage = await alchemy.nft.getNftsForContract(contractAddress, {
       pageKey: nftsForNftContract.pageKey
     });
-    expect(nftsForNftContract.nfts).not.toEqual(nextPage.nfts);
+    expect(nftsForNftContract.nfts[0]).not.toEqual(nextPage.nfts[0]);
   });
 
   it('getNftsForContract() with limit', async () => {
@@ -364,11 +365,12 @@ describe('E2E integration tests', () => {
   it('getNftSales() with pageKey', async () => {
     const firstPage = await alchemy.nft.getNftSales();
 
+    expect(firstPage.pageKey).not.toBeUndefined();
     const response = await alchemy.nft.getNftSales({
       pageKey: firstPage?.pageKey
     });
 
-    expect(response.nftSales).not.toEqual(firstPage.nftSales);
+    expect(response.nftSales[0]).not.toEqual(firstPage.nftSales[0]);
   });
 
   it('getNftSales() with contractAddress', async () => {

@@ -9,7 +9,9 @@
 ### Minor Changes
 
 - Added the `tokenUriTimeoutInMs` option to `NftNamespace.getNftsForContract()` to specify the timeout duration for fetching an NFT's underlying metadata.
+- Fixed a bug where using `AlchemySubscriptions.PENDING_TRANSACTIONS` with a string array input would throw an error (#222).
 - Added support for the `refreshCache` option in `NftNamespace.getNftMetadata()`. This option is now available when using the `options` overload. The original method without the `options` overload is now deprecated.
+- Added support for the `requestTimeout` option in the `AlchemySettings` object to configure a timeout for `NftNamespace` and `NotifyNamespace` methods. Thanks @Abbaskt!
 
 ## 2.2.5
 

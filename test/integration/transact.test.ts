@@ -25,7 +25,8 @@ describe('E2E integration tests', () => {
       value: Math.floor(Math.random() * 10000),
       nonce: 2,
       type: 2,
-      chainId: 5
+      maxFeePerGas: 30000,
+      chainId: 1
     };
 
     const wallet = new Wallet(TESTING_PRIVATE_KEY);
