@@ -4,6 +4,7 @@ import {
   DEFAULT_ALCHEMY_API_KEY,
   DEFAULT_MAX_RETRIES,
   DEFAULT_NETWORK,
+  DEFAULT_REQUEST_TIMEOUT,
   getAlchemyHttpUrl,
   getAlchemyNftHttpUrl,
   getAlchemyWebhookHttpUrl
@@ -40,6 +41,11 @@ export class AlchemyConfig {
   readonly authToken?: string;
 
   /**
+   * The optional Request timeout provided in `ms` for NFT and NOTIFY API. Defaults to 0.
+   */
+  readonly requestTimeout?: number;
+
+  /**
    * Dynamically imported provider instance.
    *
    * @internal
@@ -62,6 +68,7 @@ export class AlchemyConfig {
     this.url = config?.url;
     this.authToken = config?.authToken;
     this.batchRequests = config?.batchRequests || false;
+    this.requestTimeout = config?.requestTimeout || DEFAULT_REQUEST_TIMEOUT;
   }
 
   /**

@@ -57,6 +57,7 @@ export class Alchemy {
    * @param {string} [settings.apiKey] - The API key to use for Alchemy
    * @param {Network} [settings.network] - The network to use for Alchemy
    * @param {number} [settings.maxRetries] - The maximum number of retries to attempt
+   * @param {number} [settings.requestTimeout] - The timeout after which request should fail
    * @public
    */
   constructor(settings?: AlchemySettings) {
