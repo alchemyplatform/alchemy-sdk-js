@@ -1,6 +1,7 @@
 import { AlchemySettings } from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
 import { CoreNamespace } from './core-namespace';
+import { DebugNamespace } from './debug-namespace';
 import { NftNamespace } from './nft-namespace';
 import { NotifyNamespace } from './notify-namespace';
 import { TransactNamespace } from './transact-namespace';
@@ -47,6 +48,12 @@ export class Alchemy {
   readonly notify: NotifyNamespace;
 
   /**
+   * The `debug` namespace contains methods for inspecting and debugging
+   * transactions.
+   */
+  readonly debug: DebugNamespace;
+
+  /**
    * @param {string} [settings.apiKey] - The API key to use for Alchemy
    * @param {Network} [settings.network] - The network to use for Alchemy
    * @param {number} [settings.maxRetries] - The maximum number of retries to attempt
@@ -60,5 +67,6 @@ export class Alchemy {
     this.ws = new WebSocketNamespace(this.config);
     this.transact = new TransactNamespace(this.config);
     this.notify = new NotifyNamespace(this.config);
+    this.debug = new DebugNamespace(this.config);
   }
 }
