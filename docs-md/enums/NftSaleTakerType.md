@@ -19,7 +19,7 @@ Enum for specifing the taker type for the [getNftSales](../classes/NftNamespace.
 
 #### Defined in
 
-[src/types/types.ts:974](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L974)
+[src/types/types.ts:1123](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1123)
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:975](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L975)
+[src/types/types.ts:1124](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1124)
