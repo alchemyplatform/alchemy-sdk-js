@@ -14,11 +14,15 @@ symbol, and more.
 
   ↳ **`NftContract`**
 
+  ↳↳ [`ContractForOwner`](ContractForOwner.md)
+
 ## Table of contents
 
 ### Properties
 
 - [address](NftContract.md#address)
+- [contractDeployer](NftContract.md#contractdeployer)
+- [deployedBlockNumber](NftContract.md#deployedblocknumber)
 - [name](NftContract.md#name)
 - [openSea](NftContract.md#opensea)
 - [symbol](NftContract.md#symbol)
@@ -39,7 +43,31 @@ The address of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/nft.ts#L21)
+[src/api/nft.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/api/nft.ts#L21)
+
+___
+
+### contractDeployer
+
+• `Optional` **contractDeployer**: `string`
+
+The address that deployed the NFT contract.
+
+#### Defined in
+
+[src/api/nft.ts:48](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/api/nft.ts#L48)
+
+___
+
+### deployedBlockNumber
+
+• `Optional` **deployedBlockNumber**: `number`
+
+The block number the NFT contract deployed in.
+
+#### Defined in
+
+[src/api/nft.ts:50](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/api/nft.ts#L50)
 
 ___
 
@@ -51,7 +79,7 @@ The name of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:37](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/nft.ts#L37)
+[src/api/nft.ts:37](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/api/nft.ts#L37)
 
 ___
 
@@ -63,7 +91,7 @@ OpenSea's metadata for the contract.
 
 #### Defined in
 
-[src/api/nft.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/nft.ts#L43)
+[src/api/nft.ts:46](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/api/nft.ts#L46)
 
 ___
 
@@ -75,7 +103,7 @@ The symbol of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/nft.ts#L39)
+[src/api/nft.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/api/nft.ts#L39)
 
 ___
 
@@ -87,7 +115,7 @@ The type of the token in the contract.
 
 #### Defined in
 
-[src/api/nft.ts:35](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/nft.ts#L35)
+[src/api/nft.ts:35](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/api/nft.ts#L35)
 
 ___
 
@@ -95,8 +123,9 @@ ___
 
 • `Optional` **totalSupply**: `string`
 
-The number of NFTs in the contract as an integer string.
+The number of NFTs in the contract as an integer string. This field is only
+available on ERC-721 contracts.
 
 #### Defined in
 
-[src/api/nft.ts:41](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/nft.ts#L41)
+[src/api/nft.ts:44](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/api/nft.ts#L44)

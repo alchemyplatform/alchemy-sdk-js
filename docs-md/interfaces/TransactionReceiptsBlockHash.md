@@ -20,4 +20,4 @@ The block hash to get transaction receipts for.
 
 #### Defined in
 
-[src/types/types.ts:1069](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L1069)
+[src/types/types.ts:1218](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1218)
