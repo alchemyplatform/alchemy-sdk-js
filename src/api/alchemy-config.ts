@@ -1,4 +1,4 @@
-import type { Web3Provider } from '@ethersproject/providers';
+import type { ExternalProvider, Web3Provider } from '@ethersproject/providers';
 
 import { AlchemySettings, Network } from '../types/types';
 import {
@@ -53,6 +53,10 @@ export class AlchemyConfig {
    * @internal
    */
   private _baseAlchemyProvider: Promise<AlchemyProvider> | undefined;
+
+  private readonly _walletProvider: ExternalProvider | undefined;
+
+  private _walletProviderPromise: Promise<Web3Provider> | undefined;
 
   /**
    * Dynamically imported provider instance.

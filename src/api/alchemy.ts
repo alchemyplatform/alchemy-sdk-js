@@ -1,9 +1,11 @@
 import { AlchemySettings } from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
 import { CoreNamespace } from './core-namespace';
+import { DebugNamespace } from './debug-namespace';
 import { NftNamespace } from './nft-namespace';
 import { NotifyNamespace } from './notify-namespace';
 import { TransactNamespace } from './transact-namespace';
+import { WalletNamespace } from './wallet-namespace';
 import { WebSocketNamespace } from './websocket-namespace';
 
 /**
