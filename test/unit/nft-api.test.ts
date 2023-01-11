@@ -1150,6 +1150,8 @@ describe('NFT module', () => {
     const totalContractCount = 3;
     const totalSupply = '1492';
     const nftMediaData = createNftMediaData();
+    const contractDeployer = '0xABC';
+    const deployedBlockNumber = 424242;
     const completeNftMediaData = createNftMediaData(
       128,
       'jpg',
@@ -1182,7 +1184,9 @@ describe('NFT module', () => {
           NftTokenType.ERC1155,
           symbol,
           totalSupply,
-          rawOpenSeaContractMetadata
+          rawOpenSeaContractMetadata,
+          contractDeployer,
+          deployedBlockNumber
         )
       ]
     };

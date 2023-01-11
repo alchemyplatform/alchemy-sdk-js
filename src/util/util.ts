@@ -184,7 +184,9 @@ export function getContractsForOwnerFromRaw(
         name: contract.name,
         openSea: parseOpenSeaMetadata(contract?.opensea),
         symbol: contract?.symbol,
-        tokenType: parseNftTokenType(contract?.tokenType)
+        tokenType: parseNftTokenType(contract?.tokenType),
+        contractDeployer: contract.contractDeployer,
+        deployedBlockNumber: contract.deployedBlockNumber
       };
     })
   };
