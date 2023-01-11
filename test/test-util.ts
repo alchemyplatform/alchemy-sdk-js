@@ -37,20 +37,12 @@ export const TEST_WALLET_PUBLIC_ADDRESS =
 /** Creates a dummy response for the `getContractMetadata` endpoint. */
 export function createRawNftContract(
   address: string,
-  tokenType: NftTokenType,
-  name?: string,
-  symbol?: string,
-  totalSupply?: string,
-  openSea?: RawOpenSeaCollectionMetadata
+  metadata: RawNftContractMetadata
 ): RawNftContract {
   return {
     address,
     contractMetadata: {
-      name,
-      symbol,
-      totalSupply,
-      tokenType,
-      openSea
+      ...metadata
     }
   };
 }
@@ -248,7 +240,9 @@ export function createRawContractForOwner(
   tokenType?: NftTokenType,
   symbol?: string,
   totalSupply?: string,
-  opensea?: RawOpenSeaCollectionMetadata
+  opensea?: RawOpenSeaCollectionMetadata,
+  contractDeployer?: string,
+  deployedBlockNumber?: number
 ): RawContractForOwner {
   return {
     address,
@@ -261,7 +255,9 @@ export function createRawContractForOwner(
     totalSupply,
     opensea,
     symbol,
-    tokenType
+    tokenType,
+    contractDeployer,
+    deployedBlockNumber
   };
 }
 

@@ -5,6 +5,7 @@ import { Network } from '../types/types';
 export const DEFAULT_ALCHEMY_API_KEY = 'demo';
 export const DEFAULT_NETWORK = Network.ETH_MAINNET;
 export const DEFAULT_MAX_RETRIES = 5;
+export const DEFAULT_REQUEST_TIMEOUT = 0; // 0 = no timeout
 
 /**
  * Returns the base URL for making Alchemy API requests. The `alchemy.com`

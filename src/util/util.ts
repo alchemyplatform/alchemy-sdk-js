@@ -51,7 +51,9 @@ export function getNftContractFromRaw(
     symbol: rawNftContract.contractMetadata.symbol,
     totalSupply: rawNftContract.contractMetadata.totalSupply,
     tokenType: parseNftTokenType(rawNftContract.contractMetadata.tokenType),
-    openSea: parseOpenSeaMetadata(rawNftContract.contractMetadata.openSea)
+    openSea: parseOpenSeaMetadata(rawNftContract.contractMetadata.openSea),
+    contractDeployer: rawNftContract.contractMetadata.contractDeployer,
+    deployedBlockNumber: rawNftContract.contractMetadata.deployedBlockNumber
   };
 }
 
@@ -85,7 +87,9 @@ export function getNftFromRaw(rawNft: RawNft): Nft {
         symbol: rawNft.contractMetadata?.symbol,
         totalSupply: rawNft.contractMetadata?.totalSupply,
         tokenType,
-        openSea: parseOpenSeaMetadata(rawNft.contractMetadata?.openSea)
+        openSea: parseOpenSeaMetadata(rawNft.contractMetadata?.openSea),
+        contractDeployer: rawNft.contractMetadata?.contractDeployer,
+        deployedBlockNumber: rawNft.contractMetadata?.deployedBlockNumber
       },
       tokenId: parseNftTokenId(rawNft.id.tokenId),
       tokenType,
@@ -180,7 +184,9 @@ export function getContractsForOwnerFromRaw(
         name: contract.name,
         openSea: parseOpenSeaMetadata(contract?.opensea),
         symbol: contract?.symbol,
-        tokenType: parseNftTokenType(contract?.tokenType)
+        tokenType: parseNftTokenType(contract?.tokenType),
+        contractDeployer: contract.contractDeployer,
+        deployedBlockNumber: contract.deployedBlockNumber
       };
     })
   };
