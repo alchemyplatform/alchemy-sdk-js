@@ -21,7 +21,7 @@ List of NFT sales that match the query
 
 #### Defined in
 
-[src/types/types.ts:882](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L882)
+[src/types/types.ts:1031](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1031)
 
 ___
 
@@ -33,4 +33,4 @@ The page key to use to fetch the next page if more results are available.
 
 #### Defined in
 
-[src/types/types.ts:879](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L879)
+[src/types/types.ts:1028](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1028)

@@ -4,13 +4,21 @@
 
 ### Major Changes
 
-- Added `TransactNamespace.sendGasOptimizedTransaction()`. Instead of sending a single transaction that might not get mined, this method allows you to send the same transaction multiple times, with different gas prices and gas limits. This should result in lower fees paid.
+### Minor Changes
+
+## 2.3.0
+
+### Major Changes
+
+- Added the `DebugNamespace` to the top-level `Alchemy` object. The `DebugNamespace` is used to replay and inspect transactions and mined blocks in greater detail.
 
 ### Minor Changes
 
 - Added the `tokenUriTimeoutInMs` option to `NftNamespace.getNftsForContract()` to specify the timeout duration for fetching an NFT's underlying metadata.
 - Fixed a bug where using `AlchemySubscriptions.PENDING_TRANSACTIONS` with a string array input would throw an error (#222).
 - Added support for the `refreshCache` option in `NftNamespace.getNftMetadata()`. This option is now available when using the `options` overload. The original method without the `options` overload is now deprecated.
+- Added support for the `requestTimeout` option in the `AlchemySettings` object to configure a timeout for `NftNamespace` and `NotifyNamespace` methods. Thanks @Abbaskt!
+- Added the `contractDeployer` and `deployedBlockNumber` into the `NftContract` object. Methods that return NFTs such as `NftNamespace.getNftsForOwner()` and `NftNamespace.getContractsForOwner()` now include this information under the `contract` field.
 
 ## 2.2.5
 

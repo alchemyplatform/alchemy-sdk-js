@@ -87,6 +87,15 @@ export class NftNamespace {
     tokenType?: NftTokenType,
     tokenUriTimeoutInMs?: number
   ): Promise<Nft>;
+
+  /**
+   * Get the NFT metadata associated with the provided parameters.
+   *
+   * @param contractAddress - The contract address of the NFT.
+   * @param tokenId - Token id of the NFT.
+   * @param options - Options for the request.
+   * @public
+   */
   getNftMetadata(
     contractAddress: string,
     tokenId: BigNumberish,

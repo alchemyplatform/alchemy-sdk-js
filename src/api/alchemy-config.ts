@@ -1,4 +1,4 @@
-import type { ExternalProvider, Web3Provider } from '@ethersproject/providers';
+import type { Web3Provider } from '@ethersproject/providers';
 
 import { AlchemySettings, Network } from '../types/types';
 import {
@@ -6,6 +6,7 @@ import {
   DEFAULT_ALCHEMY_API_KEY,
   DEFAULT_MAX_RETRIES,
   DEFAULT_NETWORK,
+  DEFAULT_REQUEST_TIMEOUT,
   getAlchemyHttpUrl,
   getAlchemyNftHttpUrl,
   getAlchemyWebhookHttpUrl
@@ -42,6 +43,11 @@ export class AlchemyConfig {
   readonly authToken?: string;
 
   /**
+   * The optional Request timeout provided in `ms` for NFT and NOTIFY API. Defaults to 0.
+   */
+  readonly requestTimeout?: number;
+
+  /**
    * Dynamically imported provider instance.
    *
    * @internal
@@ -57,10 +63,6 @@ export class AlchemyConfig {
     | Promise<AlchemyWebSocketProvider>
     | undefined;
 
-  private readonly _walletProvider: ExternalProvider | undefined;
-
-  private _walletProviderPromise: Promise<Web3Provider> | undefined;
-
   constructor(config?: AlchemySettings) {
     this.apiKey = config?.apiKey || DEFAULT_ALCHEMY_API_KEY;
     this.network = config?.network || DEFAULT_NETWORK;
@@ -68,6 +70,7 @@ export class AlchemyConfig {
     this.url = config?.url;
     this.authToken = config?.authToken;
     this.batchRequests = config?.batchRequests || false;
+    this.requestTimeout = config?.requestTimeout || DEFAULT_REQUEST_TIMEOUT;
     this._walletProvider = config?.walletProvider;
   }
 

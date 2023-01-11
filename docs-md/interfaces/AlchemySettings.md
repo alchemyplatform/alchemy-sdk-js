@@ -13,6 +13,7 @@ Options object used to configure the Alchemy SDK.
 - [batchRequests](AlchemySettings.md#batchrequests)
 - [maxRetries](AlchemySettings.md#maxretries)
 - [network](AlchemySettings.md#network)
+- [requestTimeout](AlchemySettings.md#requesttimeout)
 - [url](AlchemySettings.md#url)
 
 ## Properties
@@ -27,7 +28,7 @@ Defaults to: "demo" (a rate-limited public API key)
 
 #### Defined in
 
-[src/types/types.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L22)
+[src/types/types.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L22)
 
 ___
 
@@ -40,7 +41,7 @@ in the Alchemy Dashboard on the Notify tab.
 
 #### Defined in
 
-[src/types/types.ts:48](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L48)
+[src/types/types.ts:48](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L48)
 
 ___
 
@@ -55,7 +56,7 @@ This implementation is based on the `JsonRpcBatchProvider` in ethers.
 
 #### Defined in
 
-[src/types/types.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L56)
+[src/types/types.ts:62](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L62)
 
 ___
 
@@ -67,7 +68,7 @@ The maximum number of retries to attempt if a request fails. Defaults to 5.
 
 #### Defined in
 
-[src/types/types.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L33)
+[src/types/types.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L33)
 
 ___
 
@@ -82,7 +83,20 @@ Defaults to: Network.ETH_MAINNET
 
 #### Defined in
 
-[src/types/types.ts:30](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L30)
+[src/types/types.ts:30](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L30)
+
+___
+
+### requestTimeout
+
+• `Optional` **requestTimeout**: `number`
+
+Optional Request timeout provided in `ms` while using NFT and NOTIFY API.
+Default to 0 (No timeout).
+
+#### Defined in
+
+[src/types/types.ts:54](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L54)
 
 ___
 
@@ -98,4 +112,4 @@ that not all methods will work with custom URLs.
 
 #### Defined in
 
-[src/types/types.ts:42](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L42)
+[src/types/types.ts:42](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L42)

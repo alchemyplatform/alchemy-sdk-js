@@ -3,7 +3,6 @@ import {
   TransactionReceipt
 } from '@ethersproject/abstract-provider';
 import { BigNumberish } from '@ethersproject/bignumber';
-import type { ExternalProvider } from '@ethersproject/providers';
 
 import { BaseNft, Nft, NftContract } from '../api/nft';
 
@@ -55,12 +54,6 @@ export interface AlchemySettings {
    * This implementation is based on the `JsonRpcBatchProvider` in ethers.
    */
   batchRequests?: boolean;
-
-  /**
-   * External wallet provider object (ex: `window.ethereum`) than can be passed
-   * in to use the {@link WalletNamespace}.
-   */
-  walletProvider?: ExternalProvider;
 }
 
 /**
@@ -1854,6 +1847,161 @@ export type AddressWebhookUpdate =
   | WebhookStatusUpdate
   | RequireAtLeastOne<WebhookAddressUpdate>
   | WebhookAddressOverride;
+
+/**
+ * Transaction object used in {@link DebugNamespace.traceCall}.
+ */
+export interface DebugTransaction {
+  /** The address the transaction is directed to. */
+  to?: string;
+  /** The address the transaction is sent from. */
+  from?: string;
+  /** The gas price to use as a hex string. */
+  gasPrice?: string;
+  /** The value associated with the transaction as a hex string. */
+  value?: string;
+  /** The data associated with the transaction. */
+  data?: string;
+}
+
+/**
+ * Commitment level of the target block with using methods in the
+ * {@link DebugNamespace}
+ */
+export enum CommitmentLevel {
+  /**
+   * Sample next block inferred by Alchemy built on top of the latest block.
+   * This contains the set of transactions taken from the local mempool and
+   * is a proxy for blocks that have not been mined yet.
+   */
+  PENDING = 'pending',
+  /**
+   * The most recent block in the canonical chain observed by Alchemy. Note that
+   * this block may be re-orged out of the canonical chain.
+   */
+  LATEST = 'latest',
+  /**
+   * The most recent crypto-economically secure block that cannot be re-orged
+   * outside of manual intervention driven by community coordination. This is
+   * only available on {@link Network.ETH_GOERLI}.
+   */
+  SAFE = 'safe',
+  /**
+   * The most recent secure block that has been accepted by >2/3 of validators.
+   * This block is very unlikely to be re-orged. This is only available on
+   * {@link Network.ETH_GOERLI}.
+   */
+  FINALIZED = 'finalized',
+  /**
+   * The lowest numbered block available that is usually the first block created.
+   */
+  EARLIEST = 'earliest'
+}
+
+/**
+ * The block identifier to specify which block to run a debug call in, used for
+ * methods in the {@link DebugNamespace}.
+ */
+export type BlockIdentifier = string | CommitmentLevel;
+
+/**
+ * The type of tracer to use when running debug methods in the
+ * {@link DebugNamespace}.
+ */
+export enum DebugTracerType {
+  CALL_TRACER = 'callTracer',
+  PRESTATE_TRACER = 'prestateTracer'
+}
+
+/**
+ * Tracer used with debug methods in the {@link DebugNamespace}.
+ *
+ * This tracer tracks all call frames executed during a transaction, including
+ * depth 0. The returned result {@link DebugCallTrace} is a nested list of call
+ * frames executed as part of the call.
+ *
+ * Here are some things to note when using the call tracer:
+ * - Calls to precompiles are also included in the result.
+ * - In case a frame reverts, the field output will contain the raw return data.
+ * - In case the top level frame reverts, its `revertReason` field will contain
+ *   the parsed reason of revert as returned by the Solidity contract
+ */
+export interface DebugCallTracer {
+  /** Specified type is `CALL_TRACER`. */
+  type: DebugTracerType.CALL_TRACER;
+  /**
+   * Whether to only trace the main (top-level) calls and ignore sub-calls.
+   * Defaults to `false`.
+   */
+  onlyTopCall?: boolean;
+}
+
+/**
+ * Tracer used with debug methods in the {@link DebugNamespace}.
+ *
+ * This tracer replays the transaction and tracks every part of state that was
+ * touched during the transaction.
+ *
+ * Returns a {@link DebugPrestateTrace}. This contains sufficient information to
+ * create a local execution of the transaction from a custom assembled genesis
+ * block.
+ */
+export interface DebugPrestateTracer {
+  /** Specified type is `PRESTATE_TRACER`. */
+  type: DebugTracerType.PRESTATE_TRACER;
+  /**
+   * Whether to only trace the main (top-level) calls and ignore sub-calls.
+   * Defaults to `false`.
+   */
+  onlyTopCall?: boolean;
+}
+
+/**
+ * Debug result returned when using a {@link DebugCallTracer}.
+ */
+export interface DebugCallTrace {
+  /** The type of call: `CALL` or `CREATE` for the top-level call. */
+  type: string;
+  /** From address of the transaction. */
+  from: string;
+  /** To address of the transaction. */
+  to: string;
+  /** Amount of value transfer as a hex string. */
+  value: string;
+  /** Gas provided for call as a hex string. */
+  gas: string;
+  /** Gas used during the call as a hex string. */
+  gasUsed: string;
+  /** Call data. */
+  input: string;
+  /** Return data. */
+  output: string;
+  /** Optional error field. */
+  error?: string;
+  /** Solidity revert reason, if the call reverted. */
+  revertReason?: string;
+  /** Array of sub-calls executed as part of the original call. */
+  calls?: DebugCallTrace[];
+}
+
+/**
+ * Debug result returned by a {@link DebugPrestateTracer}.
+ *
+ * The keys are the addresses of the accounts, mapped to its corresponding state.
+ */
+export type DebugPrestateTrace = Record<string, DebugPrestate>;
+
+/** The */
+export interface DebugPrestate {
+  /** Balance of the account in wei as a hex string. */
+  balance: string;
+  /** Nonce */
+  nonce: number;
+  /** Hex-encoded bytecode. */
+  code: string;
+  /** Storage slots of the contract. */
+  storage: Record<string, string>;
+}
 
 /**
  * The requested permissions parameter for {@link WalletNamespace.requestPermissions}.
