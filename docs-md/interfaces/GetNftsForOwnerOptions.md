@@ -14,7 +14,9 @@ Nfts without their associated metadata, use [GetBaseNftsForOwnerOptions](GetBase
 
 - [contractAddresses](GetNftsForOwnerOptions.md#contractaddresses)
 - [excludeFilters](GetNftsForOwnerOptions.md#excludefilters)
+- [includeFilters](GetNftsForOwnerOptions.md#includefilters)
 - [omitMetadata](GetNftsForOwnerOptions.md#omitmetadata)
+- [orderBy](GetNftsForOwnerOptions.md#orderby)
 - [pageKey](GetNftsForOwnerOptions.md#pagekey)
 - [pageSize](GetNftsForOwnerOptions.md#pagesize)
 - [tokenUriTimeoutInMs](GetNftsForOwnerOptions.md#tokenuritimeoutinms)
@@ -29,20 +31,33 @@ Optional list of contract addresses to filter the results by. Limit is 20.
 
 #### Defined in
 
-[src/types/types.ts:538](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L538)
+[src/types/types.ts:544](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L544)
 
 ___
 
 ### excludeFilters
 
-• `Optional` **excludeFilters**: [`NftExcludeFilters`](../enums/NftExcludeFilters.md)[]
+• `Optional` **excludeFilters**: [`NftFilters`](../enums/NftFilters.md)[]
 
 Optional list of filters applied to the query. NFTs that match one or more
 of these filters are excluded from the response.
 
 #### Defined in
 
-[src/types/types.ts:544](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L544)
+[src/types/types.ts:550](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L550)
+
+___
+
+### includeFilters
+
+• `Optional` **includeFilters**: [`NftFilters`](../enums/NftFilters.md)[]
+
+Optional list of filters applied to the query. NFTs that match one or more
+of these filters are included in the response.
+
+#### Defined in
+
+[src/types/types.ts:556](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L556)
 
 ___
 
@@ -54,7 +69,20 @@ Optional boolean flag to omit NFT metadata. Defaults to `false`.
 
 #### Defined in
 
-[src/types/types.ts:553](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L553)
+[src/types/types.ts:565](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L565)
+
+___
+
+### orderBy
+
+• `Optional` **orderBy**: [`TRANSFERTIME`](../enums/NftOrdering.md#transfertime)
+
+Order in which to return results. By default, results are ordered by
+contract address and token ID in lexicographic order.
+
+#### Defined in
+
+[src/types/types.ts:579](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L579)
 
 ___
 
@@ -67,7 +95,7 @@ Optional page key from an existing [OwnedBaseNftsResponse](OwnedBaseNftsResponse
 
 #### Defined in
 
-[src/types/types.ts:535](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L535)
+[src/types/types.ts:541](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L541)
 
 ___
 
@@ -80,7 +108,7 @@ Maximum page size is 100.
 
 #### Defined in
 
-[src/types/types.ts:550](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L550)
+[src/types/types.ts:562](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L562)
 
 ___
 
@@ -95,4 +123,4 @@ metadata for cache misses then set this value to 0.
 
 #### Defined in
 
-[src/types/types.ts:561](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L561)
+[src/types/types.ts:573](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L573)

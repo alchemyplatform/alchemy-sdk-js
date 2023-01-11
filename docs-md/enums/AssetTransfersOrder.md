@@ -6,7 +6,7 @@ Enum for the order of the [AssetTransfersParams](../interfaces/AssetTransfersPar
 using [CoreNamespace.getAssetTransfers](../classes/CoreNamespace.md#getassettransfers).
 
 **`deprecated`** Use [SortingOrder](SortingOrder.md) instead. This enum will be removed in a
-future version.
+  future version.
 
 ## Table of contents
 
@@ -23,7 +23,7 @@ future version.
 
 #### Defined in
 
-[src/types/types.ts:309](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L309)
+[src/types/types.ts:315](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L315)
 
 ___
 
@@ -33,4 +33,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:310](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L310)
+[src/types/types.ts:316](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L316)
