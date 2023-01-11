@@ -1,5 +1,6 @@
 import {
   Alchemy,
+  NftContract,
   NftFilters,
   NftSaleMarketplace,
   NftTokenType,
@@ -28,15 +29,34 @@ describe('E2E integration tests', () => {
     jest.setTimeout(50000);
   });
 
+  function verifyNftContractMetadata(metadata: NftContract): void {
+    expect(typeof metadata.totalSupply).toEqual('string');
+    expect(typeof metadata.symbol).toEqual('string');
+    expect(metadata.tokenType).toEqual(NftTokenType.ERC721);
+    expect(typeof metadata.name).toEqual('string');
+    expect(metadata.openSea).toBeDefined();
+    expect(metadata.openSea?.safelistRequestStatus).toBeDefined();
+    expect(
+      Object.values(OpenSeaSafelistRequestStatus).includes(
+        metadata.openSea?.safelistRequestStatus!
+      )
+    ).toEqual(true);
+    expect(typeof metadata.contractDeployer).toEqual('string');
+    expect(typeof metadata.deployedBlockNumber).toEqual('number');
+  }
+
   it('getNftMetadata()', async () => {
     const contractAddress = '0x0510745d2ca36729bed35c818527c4485912d99e';
     const tokenId = 403;
     const response = await alchemy.nft.getNftMetadata(
       contractAddress,
       tokenId,
-      NftTokenType.UNKNOWN
+      {
+        tokenType: NftTokenType.UNKNOWN
+      }
     );
     expect(response.media).toBeDefined();
+    verifyNftContractMetadata(response.contract);
   });
 
   it('getNftMetadataBatch()', async () => {
@@ -55,18 +75,7 @@ describe('E2E integration tests', () => {
 
   it('getContractMetadata()', async () => {
     const response = await alchemy.nft.getContractMetadata(contractAddress);
-    expect(typeof response.totalSupply).toEqual('string');
-    expect(typeof response.symbol).toEqual('string');
-    expect(response.tokenType).toEqual(NftTokenType.ERC721);
-    expect(response.address).toEqual(contractAddress);
-    expect(typeof response.name).toEqual('string');
-    expect(response.openSea).toBeDefined();
-    expect(response.openSea?.safelistRequestStatus).toBeDefined();
-    expect(
-      Object.values(OpenSeaSafelistRequestStatus).includes(
-        response.openSea?.safelistRequestStatus!
-      )
-    ).toEqual(true);
+    verifyNftContractMetadata(response);
   });
 
   it('getOwnersForNft()', async () => {
@@ -160,19 +169,7 @@ describe('E2E integration tests', () => {
     const response = await alchemy.nft.getContractsForOwner(ownerAddress);
 
     expect(response.contracts.length).toBeGreaterThan(0);
-    expect(response.contracts[0].address).toBeDefined();
-    expect(typeof response.contracts[0].address).toEqual('string');
-    expect(response.contracts[0].isSpam).toBeDefined();
-    expect(typeof response.contracts[0].isSpam).toEqual('boolean');
-    expect(response.contracts[0].media).toBeDefined();
-    expect(response.contracts[0].numDistinctTokensOwned).toBeDefined();
-    expect(typeof response.contracts[0].numDistinctTokensOwned).toEqual(
-      'number'
-    );
-    expect(response.contracts[0].totalBalance).toBeDefined();
-    expect(typeof response.contracts[0].totalBalance).toEqual('number');
-    expect(response.contracts[0].tokenId).toBeDefined();
-    expect(typeof response.contracts[0].tokenId).toEqual('string');
+    verifyNftContractMetadata(response.contracts[0]);
   });
 
   it('getContractsForOwner() with pageKey', async () => {
