@@ -4,7 +4,13 @@
 
 ### Major Changes
 
-- Added the `DebugNamesapce` to the top-level `Alchemy` object. The `DebugNamespace` is used to replay and inspect transactions and mined blocks in greater detail.
+### Minor Changes
+
+## 2.3.0
+
+### Major Changes
+
+- Added the `DebugNamespace` to the top-level `Alchemy` object. The `DebugNamespace` is used to replay and inspect transactions and mined blocks in greater detail.
 
 ### Minor Changes
 
