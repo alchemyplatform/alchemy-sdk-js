@@ -275,6 +275,16 @@ Methods include:
 - `updateWebhook()`: Update an existing webhook's active status or tracked addresses and NFT filters.
 - `deleteWebhook()`: Delete the provided webhook.
 
+## Alchemy Debug
+
+Methods on the `DebugNamespace` can be accessed via `alchemy.debug`. These methods are used for inspecting and debugging transactions.
+
+Methods include:
+
+- `traceCall()`: Run an `eth_call` with the context of the provided block execution using the final state of the parent block as the base.
+- `traceTransaction()`: Run the transaction in the exact same manner as it was executed on the network. It will replay any transaction that may have been executed prior to this one before it and will then attempt to execute the transaction that corresponds to the given hash.
+- `traceBlock()`: Replay a block that has already been mined.
+
 ## Documentation
 
 The SDK is documented via `tsdoc` comments in the source code. The generated types and documentation are included when
