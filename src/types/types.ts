@@ -236,7 +236,7 @@ export interface AssetTransfersParams {
 
   /**
    * Whether to exclude transfers with zero value. Note that zero value is
-   * different than null value. Defaults to `false` if omitted.
+   * different than null value. Defaults to `true` if omitted.
    */
   excludeZeroValue?: boolean;
 
