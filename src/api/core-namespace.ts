@@ -14,7 +14,10 @@ import type { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import type { Network as EthersNetworkAlias } from '@ethersproject/networks/lib/types';
 import type { Deferrable } from '@ethersproject/properties';
 
-import { getAssetTransfers } from '../internal/core-api';
+import {
+  getAssetTransfers,
+  getTransactionReceipts
+} from '../internal/core-api';
 import {
   AssetTransfersParams,
   AssetTransfersResponse,
@@ -380,9 +383,13 @@ export class CoreNamespace {
     );
 
     // Find the first transaction in the block that matches the provided address.
-    const txReceipts = await this.getTransactionReceipts({
-      blockNumber: toHex(firstBlock)
-    });
+    const txReceipts = await getTransactionReceipts(
+      this.config,
+      {
+        blockNumber: toHex(firstBlock)
+      },
+      'findContractDeployer'
+    );
     const matchingReceipt = txReceipts.receipts?.find(
       receipt => receipt.contractAddress === contractAddress.toLowerCase()
     );
@@ -546,12 +553,7 @@ export class CoreNamespace {
   async getTransactionReceipts(
     params: TransactionReceiptsParams
   ): Promise<TransactionReceiptsResponse> {
-    const provider = await this.config.getProvider();
-    return provider._send(
-      'alchemy_getTransactionReceipts',
-      [params],
-      'getTransactionReceipts'
-    );
+    return getTransactionReceipts(this.config, params);
   }
 
   /**
