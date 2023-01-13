@@ -83,6 +83,8 @@ export interface RawNftContractMetadata {
   totalSupply?: string;
   tokenType?: NftTokenType;
   openSea?: RawOpenSeaCollectionMetadata;
+  contractDeployer?: string;
+  deployedBlockNumber?: number;
 }
 
 /** OpenSea's metadata for an NFT collection. */

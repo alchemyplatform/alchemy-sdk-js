@@ -13,8 +13,12 @@
 - [AlchemySubscription](enums/AlchemySubscription.md)
 - [AssetTransfersCategory](enums/AssetTransfersCategory.md)
 - [AssetTransfersOrder](enums/AssetTransfersOrder.md)
+- [CommitmentLevel](enums/CommitmentLevel.md)
+- [DebugTracerType](enums/DebugTracerType.md)
 - [Network](enums/Network.md)
 - [NftExcludeFilters](enums/NftExcludeFilters.md)
+- [NftFilters](enums/NftFilters.md)
+- [NftOrdering](enums/NftOrdering.md)
 - [NftSaleMarketplace](enums/NftSaleMarketplace.md)
 - [NftSaleTakerType](enums/NftSaleTakerType.md)
 - [NftSpamClassification](enums/NftSpamClassification.md)
@@ -35,6 +39,7 @@
 - [Contract](classes/Contract.md)
 - [ContractFactory](classes/ContractFactory.md)
 - [CoreNamespace](classes/CoreNamespace.md)
+- [DebugNamespace](classes/DebugNamespace.md)
 - [NftNamespace](classes/NftNamespace.md)
 - [NotifyNamespace](classes/NotifyNamespace.md)
 - [TransactNamespace](classes/TransactNamespace.md)
@@ -58,6 +63,12 @@
 - [AssetTransfersWithMetadataResult](interfaces/AssetTransfersWithMetadataResult.md)
 - [BaseNft](interfaces/BaseNft.md)
 - [BaseNftContract](interfaces/BaseNftContract.md)
+- [ContractForOwner](interfaces/ContractForOwner.md)
+- [DebugCallTrace](interfaces/DebugCallTrace.md)
+- [DebugCallTracer](interfaces/DebugCallTracer.md)
+- [DebugPrestate](interfaces/DebugPrestate.md)
+- [DebugPrestateTracer](interfaces/DebugPrestateTracer.md)
+- [DebugTransaction](interfaces/DebugTransaction.md)
 - [DeployResult](interfaces/DeployResult.md)
 - [DroppedTransactionWebhook](interfaces/DroppedTransactionWebhook.md)
 - [ERC1155Metadata](interfaces/ERC1155Metadata.md)
@@ -67,7 +78,10 @@
 - [GetAllWebhooksResponse](interfaces/GetAllWebhooksResponse.md)
 - [GetBaseNftsForContractOptions](interfaces/GetBaseNftsForContractOptions.md)
 - [GetBaseNftsForOwnerOptions](interfaces/GetBaseNftsForOwnerOptions.md)
+- [GetContractsForOwnerOptions](interfaces/GetContractsForOwnerOptions.md)
+- [GetContractsForOwnerResponse](interfaces/GetContractsForOwnerResponse.md)
 - [GetFloorPriceResponse](interfaces/GetFloorPriceResponse.md)
+- [GetNftMetadataOptions](interfaces/GetNftMetadataOptions.md)
 - [GetNftSalesOptions](interfaces/GetNftSalesOptions.md)
 - [GetNftSalesOptionsByContractAddress](interfaces/GetNftSalesOptionsByContractAddress.md)
 - [GetNftSalesResponse](interfaces/GetNftSalesResponse.md)
@@ -130,6 +144,8 @@
 - [AlchemyEventFilter](modules.md#alchemyeventfilter)
 - [AlchemyEventType](modules.md#alchemyeventtype)
 - [AlchemyMinedTransactionsAddress](modules.md#alchemyminedtransactionsaddress)
+- [BlockIdentifier](modules.md#blockidentifier)
+- [DebugPrestateTrace](modules.md#debugprestatetrace)
 - [LogLevel](modules.md#loglevel)
 - [NftWebhookUpdate](modules.md#nftwebhookupdate)
 - [NonEmptyArray](modules.md#nonemptyarray)
@@ -155,7 +171,7 @@ Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespa
 
 #### Defined in
 
-[src/types/types.ts:1695](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L1695)
+[src/types/types.ts:1852](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1852)
 
 ___
 
@@ -168,7 +184,7 @@ filters compatible with other ethers events.
 
 #### Defined in
 
-[src/types/types.ts:1413](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L1413)
+[src/types/types.ts:1570](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1570)
 
 ___
 
@@ -181,7 +197,7 @@ also include Alchemy's Subscription API.
 
 #### Defined in
 
-[src/types/types.ts:1407](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L1407)
+[src/types/types.ts:1564](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1564)
 
 ___
 
@@ -194,7 +210,34 @@ least one of the fields to be set.
 
 #### Defined in
 
-[src/types/types.ts:1396](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L1396)
+[src/types/types.ts:1553](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1553)
+
+___
+
+### BlockIdentifier
+
+Ƭ **BlockIdentifier**: `string` \| [`CommitmentLevel`](enums/CommitmentLevel.md)
+
+The block identifier to specify which block to run a debug call in, used for
+methods in the [DebugNamespace](classes/DebugNamespace.md).
+
+#### Defined in
+
+[src/types/types.ts:1911](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1911)
+
+___
+
+### DebugPrestateTrace
+
+Ƭ **DebugPrestateTrace**: `Record`<`string`, [`DebugPrestate`](interfaces/DebugPrestate.md)\>
+
+Debug result returned by a [DebugPrestateTracer](interfaces/DebugPrestateTracer.md).
+
+The keys are the addresses of the accounts, mapped to its corresponding state.
+
+#### Defined in
+
+[src/types/types.ts:1998](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1998)
 
 ___
 
@@ -206,7 +249,7 @@ The level of verbosity for the logger.
 
 #### Defined in
 
-[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/util/logger.ts#L22)
+[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/util/logger.ts#L22)
 
 ___
 
@@ -219,7 +262,7 @@ Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespa
 
 #### Defined in
 
-[src/types/types.ts:1687](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L1687)
+[src/types/types.ts:1844](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1844)
 
 ___
 
@@ -237,7 +280,7 @@ Requires an array with at least one value.
 
 #### Defined in
 
-[src/types/types.ts:1712](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L1712)
+[src/types/types.ts:2024](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L2024)
 
 ___
 
@@ -258,7 +301,7 @@ Implementation copied over from
 
 #### Defined in
 
-[src/types/types.ts:1706](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L1706)
+[src/types/types.ts:2018](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L2018)
 
 ___
 
@@ -268,7 +311,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:145](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L145)
+[src/types/types.ts:151](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L151)
 
 ___
 
@@ -280,7 +323,7 @@ The parameters to use with the [CoreNamespace.getTransactionReceipts](classes/Co
 
 #### Defined in
 
-[src/types/types.ts:1077](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/types/types.ts#L1077)
+[src/types/types.ts:1226](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1226)
 
 ## Functions
 
@@ -302,7 +345,7 @@ Converts a hex string to a decimal number.
 
 #### Defined in
 
-[src/api/util.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/util.ts#L9)
+[src/api/util.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/api/util.ts#L9)
 
 ___
 
@@ -324,7 +367,7 @@ Checks if a value is a hex string.
 
 #### Defined in
 
-[src/api/util.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/util.ts#L29)
+[src/api/util.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/api/util.ts#L29)
 
 ___
 
@@ -346,7 +389,7 @@ Configures the verbosity of logging. The default log level is `info`.
 
 #### Defined in
 
-[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/util/logger.ts#L56)
+[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/util/logger.ts#L56)
 
 ___
 
@@ -368,4 +411,4 @@ Converts a number to a hex string.
 
 #### Defined in
 
-[src/api/util.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/d97ef0d/src/api/util.ts#L19)
+[src/api/util.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/api/util.ts#L19)

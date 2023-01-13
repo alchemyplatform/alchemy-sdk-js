@@ -48,13 +48,14 @@ The `Alchemy` object returned by `new Alchemy()` provides access to the Alchemy 
 
 ## Using the Alchemy SDK
 
-The Alchemy SDK currently supports five different namespaces, including:
+The Alchemy SDK currently supports the following namespaces:
 
 - `core`: All commonly-used Ethers.js Provider methods and Alchemy Enhanced API methods
 - `nft`: All Alchemy NFT API methods
 - `ws`: All WebSockets methods
 - `transact`: All Alchemy Transaction API methods
 - `notify`: CRUD endpoints for modifying Alchemy Notify Webhooks
+- `debug`: Methods to inspect and replay transactions and blocks
 
 If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should work properly.
 
@@ -274,6 +275,16 @@ Methods include:
 - `createWebhook()`: Create a new webhook.
 - `updateWebhook()`: Update an existing webhook's active status or tracked addresses and NFT filters.
 - `deleteWebhook()`: Delete the provided webhook.
+
+## Alchemy Debug
+
+Methods on the `DebugNamespace` can be accessed via `alchemy.debug`. These methods are used for inspecting and debugging transactions.
+
+Methods include:
+
+- `traceCall()`: Run an `eth_call` with the context of the provided block execution using the final state of the parent block as the base.
+- `traceTransaction()`: Run the transaction in the exact same manner as it was executed on the network. It will replay any transaction that may have been executed prior to this one before it and will then attempt to execute the transaction that corresponds to the given hash.
+- `traceBlock()`: Replay a block that has already been mined.
 
 ## Documentation
 

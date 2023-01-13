@@ -99,7 +99,9 @@ The Alchemy SDK also supports a number of Ethers.js objects that streamline the 
 - [`Wallet`](https://docs.ethers.io/v5/api/signer/#Wallet): An implementation of `Signer` that can sign transactions and messages using a private key as a standard Externally Owned Account.
 
 ## Alchemy Settings
-An `AlchemySettings` object can be passed on instantiation to the Alchemy object, with the following optional parameters: 
+
+An `AlchemySettings` object can be passed on instantiation to the Alchemy object, with the following optional parameters:
+
 - `apiKey`: API key that can be found in the Alchemy dashboard. Defaults to `demo`: a rate-limited public key.
 - `network`: Name of the network. Defaults to `Network.ETH_MAINNET`
 - `maxRetries`: The maximum number of retries to attempt if a request fails. Defaults to 5.
@@ -201,10 +203,11 @@ under the `alchemy.nft` namespace:
 - `getNftMetadata()`: Get the NFT metadata for an NFT contract address and tokenId.
 - `getNftMetadataBatch()`: Get the NFT metadata for multiple NFT contract addresses/token id pairs.
 - `getContractMetadata()`: Get the metadata associated with an NFT contract
+- `getContractsForOwner()`: Get all NFT contracts that the provided owner address owns.
 - `getNftsForOwner()`: Get NFTs for an owner address.
 - `getNftsForOwnerIterator()`: Get NFTs for an owner address as an async iterator (handles paging automatically).
 - `getNftsForContract()`: Get all NFTs for a contract address.
-- `getNftForContractIterator()`: Get all NFTs for a contract address as an async iterator (handles paging
+- `getNftsForContractIterator()`: Get all NFTs for a contract address as an async iterator (handles paging
   automatically).
 - `getOwnersForNft()`: Get all the owners for a given NFT contract address and a particular token ID.
 - `getOwnersForContract()`: Get all the owners for a given NFT contract address.
@@ -273,6 +276,16 @@ Methods include:
 - `createWebhook()`: Create a new webhook.
 - `updateWebhook()`: Update an existing webhook's active status or tracked addresses and NFT filters.
 - `deleteWebhook()`: Delete the provided webhook.
+
+## Alchemy Debug
+
+Methods on the `DebugNamespace` can be accessed via `alchemy.debug`. These methods are used for inspecting and debugging transactions.
+
+Methods include:
+
+- `traceCall()`: Run an `eth_call` with the context of the provided block execution using the final state of the parent block as the base.
+- `traceTransaction()`: Run the transaction in the exact same manner as it was executed on the network. It will replay any transaction that may have been executed prior to this one before it and will then attempt to execute the transaction that corresponds to the given hash.
+- `traceBlock()`: Replay a block that has already been mined.
 
 ## Documentation
 
