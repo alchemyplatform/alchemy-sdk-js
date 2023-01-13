@@ -226,7 +226,7 @@ describe('E2E integration tests', () => {
     ).toEqual(0);
   });
 
-  it('update NftActivityWebhook filter', async () => {
+  it('update NftActivityWebhook filter with same filter', async () => {
     const addFilters = [
       {
         contractAddress: '0x88b48f654c30e99bc2e4a1559b4dcf1ad93fa656',

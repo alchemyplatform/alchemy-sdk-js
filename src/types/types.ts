@@ -1782,7 +1782,10 @@ export interface AddressWebhookParams {
 export interface NftFilter {
   /** The contract address of the NFT. */
   contractAddress: string;
-  /** The token id of the NFT. */
+  /**
+   * The token id of the NFT to track. If this field is omitted, defaults to
+   * tracking all NFTs for the provided contract address.
+   */
   tokenId?: BigNumberish;
 }
 
