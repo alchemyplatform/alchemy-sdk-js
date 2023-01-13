@@ -6,6 +6,8 @@
 
 ### Minor Changes
 
+- Added support for passing in a null `tokenId` when using NFT Webhook Filters, which allows you to listen to all token ids in a collection.
+
 ## 2.3.0
 
 ### Major Changes
