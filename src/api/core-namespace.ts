@@ -3,8 +3,6 @@ import type {
   BlockTag,
   BlockWithTransactions,
   FeeData,
-  Filter,
-  FilterByBlockHash,
   Log,
   TransactionReceipt,
   TransactionRequest,
@@ -14,13 +12,15 @@ import type { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import type { Network as EthersNetworkAlias } from '@ethersproject/networks/lib/types';
 import type { Deferrable } from '@ethersproject/properties';
 
-import { getAssetTransfers } from '../internal/core-api';
+import { getAssetTransfers, getLogs } from '../internal/core-api';
 import {
   AssetTransfersParams,
   AssetTransfersResponse,
   AssetTransfersWithMetadataParams,
   AssetTransfersWithMetadataResponse,
   DeployResult,
+  Filter,
+  FilterByBlockHash,
   TokenBalanceType,
   TokenBalancesOptionsDefaultTokens,
   TokenBalancesOptionsErc20,
@@ -333,8 +333,7 @@ export class CoreNamespace {
   async getLogs(
     filter: Filter | FilterByBlockHash | Promise<Filter | FilterByBlockHash>
   ): Promise<Array<Log>> {
-    const provider = await this.config.getProvider();
-    return provider.getLogs(filter);
+    return getLogs(this.config, filter);
   }
 
   /**
