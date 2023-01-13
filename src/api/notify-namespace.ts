@@ -356,10 +356,16 @@ export class NotifyNamespace {
       network = params.network
         ? NETWORK_TO_WEBHOOK_NETWORK.get(params.network)
         : network;
-      filters = (params.filters as NftFilter[]).map(filter => ({
-        contract_address: filter.contractAddress,
-        token_id: BigNumber.from(filter.tokenId).toString()
-      }));
+      filters = (params.filters as NftFilter[]).map(filter =>
+        filter.tokenId
+          ? {
+              contract_address: filter.contractAddress,
+              token_id: BigNumber.from(filter.tokenId).toString()
+            }
+          : {
+              contract_address: filter.contractAddress
+            }
+      );
     } else if (type === WebhookType.ADDRESS_ACTIVITY) {
       if (
         params === undefined ||
@@ -552,18 +558,28 @@ function parseRawNftFiltersResponse(
   response: RawNftFiltersResponse
 ): NftFiltersResponse {
   return {
-    filters: response.data.map(f => ({
-      contractAddress: f.contract_address,
-      tokenId: BigNumber.from(f.token_id).toString()
-    })),
+    filters: response.data.map(f =>
+      f.token_id
+        ? {
+            contractAddress: f.contract_address,
+            tokenId: BigNumber.from(f.token_id).toString()
+          }
+        : {
+            contractAddress: f.contract_address
+          }
+    ),
     totalCount: response.pagination.total_count,
     pageKey: response.pagination.cursors.after
   };
 }
 
 function nftFilterToParam(filter: NftFilter): RawNftFilterParam {
-  return {
-    contract_address: filter.contractAddress,
-    token_id: BigNumber.from(filter.tokenId).toString()
-  };
+  return filter.tokenId
+    ? {
+        contract_address: filter.contractAddress,
+        token_id: BigNumber.from(filter.tokenId).toString()
+      }
+    : {
+        contract_address: filter.contractAddress
+      };
 }

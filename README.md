@@ -48,13 +48,14 @@ The `Alchemy` object returned by `new Alchemy()` provides access to the Alchemy 
 
 ## Using the Alchemy SDK
 
-The Alchemy SDK currently supports five different namespaces, including:
+The Alchemy SDK currently supports the following namespaces:
 
 - `core`: All commonly-used Ethers.js Provider methods and Alchemy Enhanced API methods
 - `nft`: All Alchemy NFT API methods
 - `ws`: All WebSockets methods
 - `transact`: All Alchemy Transaction API methods
 - `notify`: CRUD endpoints for modifying Alchemy Notify Webhooks
+- `debug`: Methods to inspect and replay transactions and blocks
 
 If you are already using Ethers.js, you should be simply able to replace the Ethers.js Provider object with `alchemy.core` and it should work properly.
 

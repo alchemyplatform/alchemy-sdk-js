@@ -236,7 +236,7 @@ export interface AssetTransfersParams {
 
   /**
    * Whether to exclude transfers with zero value. Note that zero value is
-   * different than null value. Defaults to `false` if omitted.
+   * different than null value. Defaults to `true` if omitted.
    */
   excludeZeroValue?: boolean;
 
@@ -1814,8 +1814,11 @@ export interface AddressWebhookParams {
 export interface NftFilter {
   /** The contract address of the NFT. */
   contractAddress: string;
-  /** The token id of the NFT. */
-  tokenId: BigNumberish;
+  /**
+   * The token id of the NFT to track. If this field is omitted, defaults to
+   * tracking all NFTs for the provided contract address.
+   */
+  tokenId?: BigNumberish;
 }
 
 /** Response object for the {@link NotifyNamespace.getNftFilters} method. */
