@@ -1584,9 +1584,18 @@ export interface SendPrivateTransactionOptions {
   fast: boolean;
 }
 
-type AssetType = 'NATIVE' | 'ERC20' | 'ERC721' | 'ERC1155' | 'SPECIAL_NFT';
+export enum AssetType {
+  NATIVE = 'NATIVE',
+  ERC20 = 'ERC20',
+  ERC721 = 'ERC721',
+  ERC1155 = 'ERC1155',
+  SPECIAL_NFT = 'SPECIAL_NFT'
+}
 
-type ChangeType = 'APPROVE' | 'TRANSFER';
+export enum ChangeType {
+  APPROVE = 'APPROVE',
+  TRANSFER = 'TRANSFER'
+}
 
 interface AssetChange {
   asset_type: AssetType;
