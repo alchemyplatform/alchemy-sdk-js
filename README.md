@@ -184,10 +184,13 @@ right. The Alchemy SDK automatically handles these failures with no configuratio
 
 ## Alchemy Transact
 
-The `transact` namespace contains methods used for sending transactions. The unique methods to the `transact` namespace are:
+The `transact` namespace contains methods used for simulating and sending transactions. The unique methods to the `transact` namespace are:
 
 - `sendPrivateTransaction()`: Send a private transaction through Flashbots.
 - `cancelPrivateTransaction()`: Cancel a private transaction sent with Flashbots.
+
+- `simulateAssetChanges()`: Simulate a transaction and get list of asset changes.
+- `simulateTransaction()`: Simulate a transaction and get list of internal transactions, logs and more.
 
 The `transact` namespace also aliases over several commonly used methods from the `core` namespace for convenience:
 
