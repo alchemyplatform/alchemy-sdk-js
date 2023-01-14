@@ -7,9 +7,11 @@ import type { BigNumber } from '@ethersproject/bignumber';
 import { Deferrable } from '@ethersproject/properties';
 
 import {
+  DebugTransaction,
   GasOptimizedTransactionResponse,
   GasOptimizedTransactionStatusResponse,
-  SendPrivateTransactionOptions
+  SendPrivateTransactionOptions,
+  SimulateAssetChangesResponse
 } from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
 import { Wallet } from './alchemy-wallet';
@@ -88,6 +90,27 @@ export class TransactNamespace {
         }
       ],
       'cancelPrivateTransaction'
+    );
+  }
+
+  /**
+   * Used to simulate a single transaction.
+   *
+   * Returns list of asset changes.
+   *
+   * @param transaction The transaction to simulate.
+   */
+  simulateAssetChanges(
+    transaction: DebugTransaction
+  ): Promise<SimulateAssetChangesResponse>;
+  async simulateAssetChanges(
+    transaction: DebugTransaction
+  ): Promise<SimulateAssetChangesResponse> {
+    const provider = await this.config.getProvider();
+    return provider._send(
+      'alchemy_simulateAssetChanges',
+      [transaction],
+      'simulateAssetChanges'
     );
   }
 
