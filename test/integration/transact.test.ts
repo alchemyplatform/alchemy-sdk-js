@@ -1,5 +1,7 @@
 import {
   Alchemy,
+  AssetType,
+  ChangeType,
   GasOptimizedTransactionStatus,
   Network,
   Wallet
@@ -33,6 +35,43 @@ describe('E2E integration tests', () => {
     const signed = await wallet.signTransaction(transaction);
     const response = await alchemy.transact.sendPrivateTransaction(signed);
     expect(typeof response).toEqual('string');
+  });
+
+  describe('simulateAssetChanges()', () => {
+    // vitalik.eth transferring 1 USDC to random address
+    const USDC_CONTRACT_ADDRESS = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48';
+    const transaction = {
+      from: '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045',
+      to: USDC_CONTRACT_ADDRESS,
+      value: '0x0',
+      data: '0xa9059cbb000000000000000000000000fc43f5f9dd45258b3aff31bdbe6561d97e8b71de00000000000000000000000000000000000000000000000000000000000f4240'
+    };
+
+    it('can simulate a transaction', async () => {
+      const res = await alchemy.transact.simulateAssetChanges(transaction);
+      expect(res.changes).toBeDefined();
+      expect(res.changes).toHaveLength(1);
+      expect(res.error).toBeDefined();
+    });
+
+    it('can simulate sending 1 USDC', async () => {
+      const res = await alchemy.transact.simulateAssetChanges(transaction);
+      const change = res.changes[0];
+      expect(change.asset_type).toBe(AssetType.ERC20);
+      expect(change.change_type).toBe(ChangeType.TRANSFER);
+      expect(change.from).toBe(transaction.from.toLowerCase());
+      expect(change.to).toBeDefined();
+      // expect(change.raw_amount).toBe('1000000');
+      expect(change.contract_address).toBe(USDC_CONTRACT_ADDRESS.toLowerCase());
+      expect(change.token_id).toBe(null);
+      expect(change.decimals).toBe(6);
+      expect(change.symbol).toBe('USDC');
+      expect(change.name).toBe('USD Coin');
+      expect(change.logo).toBe(
+        'https://static.alchemyapi.io/images/assets/3408.png'
+      );
+      expect(change.amount).toBe('1');
+    });
   });
 
   describe('sendGasOptimizedTransaction()', () => {
