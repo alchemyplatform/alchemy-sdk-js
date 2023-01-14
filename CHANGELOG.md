@@ -4,6 +4,8 @@
 
 ### Major Changes
 
+- Added `TransactNamespace.simulateAssetChanges()` to simulate a transaction and return a list of asset changes.
+
 ### Minor Changes
 
 - Added support for passing in a null `tokenId` when using NFT Webhook Filters, which allows you to listen to all token ids in a collection.
