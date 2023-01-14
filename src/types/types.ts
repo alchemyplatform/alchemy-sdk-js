@@ -1584,6 +1584,39 @@ export interface SendPrivateTransactionOptions {
   fast: boolean;
 }
 
+type AssetType = 'NATIVE' | 'ERC20' | 'ERC721' | 'ERC1155' | 'SPECIAL_NFT';
+
+type ChangeType = 'APPROVE' | 'TRANSFER';
+
+interface AssetChange {
+  asset_type: AssetType;
+  change_type: ChangeType;
+  from: string;
+  to: string;
+
+  /* All - NATIVE, ERC20, ERC721, ERC1555, SPECIAL_NFT */
+  raw_amount: string;
+  amount: string;
+  name: string | null;
+  symbol: string;
+  decimals: number;
+
+  /* ERC20, ERC721, ERC1555, SPECIAL_NFT */
+  contract_address: string | null;
+
+  /* ERC20  */
+  logo: string | null;
+
+  /* ERC721, ERC1555  */
+  token_id: string | null;
+}
+
+/** Response object for the {@link TransactNamespace.simulateAssetChanges} method. */
+export interface SimulateAssetChangesResponse {
+  changes: AssetChange[];
+  error: string;
+}
+
 /**
  * Response object for the {@link TransactNamespace.sendGasOptimizedTransaction} method.
  *
