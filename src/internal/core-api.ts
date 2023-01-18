@@ -1,6 +1,7 @@
 import type { Log } from '@ethersproject/abstract-provider';
 import { resolveProperties } from '@ethersproject/properties';
 import { FormatFunc } from '@ethersproject/providers/src.ts/formatter';
+
 import { AlchemyConfig } from '../api/alchemy-config';
 import { toHex } from '../api/util';
 import {
@@ -9,7 +10,9 @@ import {
   AssetTransfersWithMetadataParams,
   AssetTransfersWithMetadataResponse,
   Filter,
-  FilterByBlockHash
+  FilterByBlockHash,
+  TransactionReceiptsParams,
+  TransactionReceiptsResponse
 } from '../types/types';
 import { formatBlock } from '../util/util';
 
@@ -17,7 +20,7 @@ import { formatBlock } from '../util/util';
  * This file contains the underlying implementations for exposed API surface in
  * the {@link CoreNamespace}. By moving the methods out into a separate file,
  * other namespaces can access these methods without depending on the entire
- * CoreNamespace.
+ * CoreNamespace, or override the `srcMethod` param used for logging.
  */
 
 /**
@@ -49,6 +52,15 @@ export async function getAssetTransfers(
     ],
     srcMethod
   );
+}
+
+export async function getTransactionReceipts(
+  config: AlchemyConfig,
+  params: TransactionReceiptsParams,
+  srcMethod = 'getTransactionReceipts'
+): Promise<TransactionReceiptsResponse> {
+  const provider = await config.getProvider();
+  return provider._send('alchemy_getTransactionReceipts', [params], srcMethod);
 }
 
 /**
