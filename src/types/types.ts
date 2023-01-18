@@ -969,7 +969,8 @@ export interface ContractForOwner extends NftContract {
 export interface GetMintedNftsOptions {
   /**
    * List of NFT contract addresses to filter mints by. If omitted, defaults to
-   * all contract addresses.*/
+   * all contract addresses.
+   */
   contractAddresses?: string[];
 
   /**
