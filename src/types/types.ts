@@ -1,4 +1,5 @@
 import {
+  BlockTag,
   EventType,
   TransactionReceipt
 } from '@ethersproject/abstract-provider';
@@ -968,7 +969,8 @@ export interface ContractForOwner extends NftContract {
 export interface GetMintedNftsOptions {
   /**
    * List of NFT contract addresses to filter mints by. If omitted, defaults to
-   * all contract addresses.*/
+   * all contract addresses.
+   */
   contractAddresses?: string[];
 
   /**
@@ -2023,6 +2025,36 @@ export interface DebugCallTrace {
   revertReason?: string;
   /** Array of sub-calls executed as part of the original call. */
   calls?: DebugCallTrace[];
+}
+
+/**
+ * Filter object used to filter logs by a specific block hash when using
+ * {@link CoreNamespace.getLogs}.
+ */
+export interface FilterByBlockHash extends EventFilter {
+  /** The specific block hash to search for logs matching the filter. */
+  blockHash?: string;
+}
+
+/**
+ * Filter object used to filter logs by block number range when using
+ * {@link CoreNamespace.getLogs}
+ */
+export interface Filter extends EventFilter {
+  /** The starting block (inclusive) to search for logs matching the filter. */
+  fromBlock?: BlockTag;
+  /** The end block (inclusive) to search for logs matching the filter.*/
+  toBlock?: BlockTag;
+}
+
+/**
+ * Filter object used to filter logs by when using {@link CoreNamespace.getLogs}
+ */
+export interface EventFilter {
+  /** The address to filter by. If omitted, filters for all addresses. */
+  address?: string | string[];
+  /** The topics to filter by, or null to match any topics. */
+  topics?: Array<string | Array<string> | null>;
 }
 
 /**
