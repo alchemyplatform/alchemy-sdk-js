@@ -77,3 +77,5 @@ export function noop(): void {
 }
 
 export const ETH_NULL_VALUE = '0x';
+
+export const ETH_NULL_ADDRESS = '0x0000000000000000000000000000000000000000';

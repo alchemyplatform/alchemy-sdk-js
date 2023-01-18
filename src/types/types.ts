@@ -963,7 +963,38 @@ export interface ContractForOwner extends NftContract {
 }
 
 /**
- * Optional parameters object for the {@link getNftSales} endpoint.
+ * Optional parameters object for the {@link NftNamespace.getMintedNfts} method.
+ */
+export interface GetMintedNftsOptions {
+  /**
+   * List of NFT contract addresses to filter mints by. If omitted, defaults to
+   * all contract addresses.
+   */
+  contractAddresses?: string[];
+
+  /**
+   * Filter mints by ERC721 vs ERC1155 contracts. If omitted, defaults to all
+   * NFTs.
+   */
+  tokenType?: NftTokenType.ERC1155 | NftTokenType.ERC721;
+
+  /**
+   * Optional page key from an existing {@link GetMintedNftsResponse} to use for
+   * pagination.
+   */
+  pageKey?: string;
+}
+
+export interface GetMintedNftsResponse {
+  /** An array of the minted NFTs for the provided owner address. */
+  nfts: Nft[];
+
+  /** Key for pagination to use to fetch results from the next page if available. */
+  pageKey?: string;
+}
+
+/**
+ * Optional parameters object for the {@link NftNamespace.getNftSales} method.
  *
  * This interface is used to filter the NFT sales data.
  *
@@ -1002,8 +1033,8 @@ export interface GetNftSalesOptions {
 }
 
 /**
- * Alternative optional parameters object for the {@link getNftSales} endpoint
- * that allows filtering results by contractAddress.
+ * Alternative optional parameters object for the {@link NftNamespace.getNftSales}
+ * method that allows filtering results by contractAddress.
  *
  * This interface is used to filter the NFT sales data.
  *
@@ -1103,7 +1134,8 @@ export enum SortingOrder {
 }
 
 /**
- * Enum representing the supported NFT marketplaces by the {@link getNftSales} endpoint.
+ * Enum representing the supported NFT marketplaces by the
+ * {@link NftNamespace.getNftSales} method.
  *
  * @public
  */
@@ -1115,7 +1147,8 @@ export enum NftSaleMarketplace {
 }
 
 /**
- * Enum for specifing the taker type for the {@link getNftSales} endpoint.
+ * Enum for specifying the taker type for the {@link NftNamespace.getNftSales}
+ * method.
  *
  * @public
  */
