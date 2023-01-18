@@ -99,4 +99,39 @@ describe('E2E integration tests', () => {
     const finalName = await alchemy.core.lookupAddress(address!);
     expect(finalName).toEqual(name);
   });
+
+  it('getLogs() with multiple address fields', async () => {
+    const blockHash =
+      '0x8243343df08b9751f5ca0c5f8c9c0460d8a9b6351066fae0acbd4d3e776de8bb';
+    const address = [
+      '0xb59f67a8bff5d8cd03f6ac17265c550ed8f33907',
+      '0xf433089366899d83a9f26a773d59ec7ecf30355e'
+    ];
+    const logs = await alchemy.core.getLogs({
+      blockHash,
+      address
+    });
+    logs.forEach(log => {
+      expect(log.blockHash).toEqual(blockHash);
+      expect(address).toContain(log.address.toLowerCase());
+    });
+  });
+
+  it('getLogs() with single and undefined address field', async () => {
+    const blockHash =
+      '0x8243343df08b9751f5ca0c5f8c9c0460d8a9b6351066fae0acbd4d3e776de8bb';
+    const address = '0xb59f67a8bff5d8cd03f6ac17265c550ed8f33907';
+    let logs = await alchemy.core.getLogs({
+      blockHash,
+      address
+    });
+    expect(logs.length).toEqual(1);
+    expect(logs[0].blockHash).toEqual(blockHash);
+    expect(address).toEqual(logs[0].address.toLowerCase());
+
+    logs = await alchemy.core.getLogs({
+      blockHash
+    });
+    expect(logs.length).toEqual(88);
+  });
 });
