@@ -1,6 +1,7 @@
 import type { Log } from '@ethersproject/abstract-provider';
 import { resolveProperties } from '@ethersproject/properties';
 import { FormatFunc } from '@ethersproject/providers/src.ts/formatter';
+
 import { AlchemyConfig } from '../api/alchemy-config';
 import { toHex } from '../api/util';
 import {
@@ -8,10 +9,10 @@ import {
   AssetTransfersResponse,
   AssetTransfersWithMetadataParams,
   AssetTransfersWithMetadataResponse,
+  Filter,
+  FilterByBlockHash,
   TransactionReceiptsParams,
   TransactionReceiptsResponse
-  Filter,
-  FilterByBlockHash
 } from '../types/types';
 import { formatBlock } from '../util/util';
 

@@ -12,9 +12,9 @@ import type { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import type { Network as EthersNetworkAlias } from '@ethersproject/networks/lib/types';
 import type { Deferrable } from '@ethersproject/properties';
 
-import { getAssetTransfers, getLogs } from '../internal/core-api';
 import {
   getAssetTransfers,
+  getLogs,
   getTransactionReceipts
 } from '../internal/core-api';
 import {
