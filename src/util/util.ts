@@ -110,6 +110,7 @@ export function getNftFromRaw(rawNft: RawNft): Nft {
 export function getNftSalesFromRaw(
   rawNftSales: RawGetNftSalesResponse
 ): GetNftSalesResponse {
+  console.log('raw', rawNftSales);
   return {
     pageKey: rawNftSales?.pageKey,
     nftSales: rawNftSales.nftSales.map(rawNftSale => ({
@@ -121,7 +122,8 @@ export function getNftSalesFromRaw(
       sellerAddress: rawNftSale.sellerAddress,
       taker: parseNftTaker(rawNftSale.taker),
       sellerFee: rawNftSale?.sellerFee,
-      marketplaceFee: rawNftSale?.marketplaceFee,
+      marketplaceFee: rawNftSale?.protocolFee,
+      protocolFee: rawNftSale?.protocolFee,
       royaltyFee: rawNftSale?.royaltyFee,
       blockNumber: rawNftSale?.blockNumber,
       logIndex: rawNftSale.logIndex,
