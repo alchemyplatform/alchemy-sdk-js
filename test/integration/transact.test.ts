@@ -1,9 +1,9 @@
 import {
   Alchemy,
-  AssetType,
-  ChangeType,
   GasOptimizedTransactionStatus,
   Network,
+  SimulateAssetType,
+  SimulateChangeType,
   Wallet
 } from '../../src';
 import { TESTING_PRIVATE_KEY, loadAlchemyEnv } from '../test-util';
@@ -57,8 +57,8 @@ describe('E2E integration tests', () => {
     it('can simulate sending 1 USDC', async () => {
       const res = await alchemy.transact.simulateAssetChanges(transaction);
       const change = res.changes[0];
-      expect(change.assetType).toBe(AssetType.ERC20);
-      expect(change.changeType).toBe(ChangeType.TRANSFER);
+      expect(change.assetType).toBe(SimulateAssetType.ERC20);
+      expect(change.changeType).toBe(SimulateChangeType.TRANSFER);
       expect(change.from).toBe(transaction.from.toLowerCase());
       expect(change.to).toBeDefined();
       expect(change.rawAmount).toBe('1000000');
