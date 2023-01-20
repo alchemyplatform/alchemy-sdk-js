@@ -189,7 +189,7 @@ The `transact` namespace contains methods used for simulating and sending transa
 - `sendPrivateTransaction()`: Send a private transaction through Flashbots.
 - `cancelPrivateTransaction()`: Cancel a private transaction sent with Flashbots.
 - `simulateAssetChanges()`: Simulate a transaction and get a list of asset changes.
-- `simulateTransaction()`: Simulate a transaction and get a list of internal transactions, logs and more.
+- `simulateExecution()`: Simulate a transaction and get a full list of internal transactions, logs, ABI decoded results and more.
 
 The `transact` namespace also aliases over several commonly used methods from the `core` namespace for convenience:
 
