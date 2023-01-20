@@ -57,13 +57,13 @@ describe('E2E integration tests', () => {
     it('can simulate sending 1 USDC', async () => {
       const res = await alchemy.transact.simulateAssetChanges(transaction);
       const change = res.changes[0];
-      expect(change.asset_type).toBe(AssetType.ERC20);
-      expect(change.change_type).toBe(ChangeType.TRANSFER);
+      expect(change.assetType).toBe(AssetType.ERC20);
+      expect(change.changeType).toBe(ChangeType.TRANSFER);
       expect(change.from).toBe(transaction.from.toLowerCase());
       expect(change.to).toBeDefined();
-      // expect(change.raw_amount).toBe('1000000');
-      expect(change.contract_address).toBe(USDC_CONTRACT_ADDRESS.toLowerCase());
-      expect(change.token_id).toBe(null);
+      expect(change.rawAmount).toBe('1000000');
+      expect(change.contractAddress).toBe(USDC_CONTRACT_ADDRESS.toLowerCase());
+      expect(change.tokenId).toBe(null);
       expect(change.decimals).toBe(6);
       expect(change.symbol).toBe('USDC');
       expect(change.name).toBe('USD Coin');
