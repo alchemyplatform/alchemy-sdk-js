@@ -1663,7 +1663,7 @@ export interface SimulateAssetChange {
 /** Response object for the {@link TransactNamespace.simulateAssetChanges} method. */
 export interface SimulateAssetChangesResponse {
   changes: SimulateAssetChange[];
-  error: string;
+  error?: string;
 }
 
 /**

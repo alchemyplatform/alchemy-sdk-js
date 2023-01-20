@@ -320,7 +320,7 @@ export interface RawContractForOwner
 
 export interface RawSimulateAssetChangesResponse {
   changes: RawSimulateAssetChange[];
-  error: string;
+  error?: string;
 }
 
 export interface RawSimulateAssetChange {
