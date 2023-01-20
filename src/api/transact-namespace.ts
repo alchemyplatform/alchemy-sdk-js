@@ -11,6 +11,7 @@ import {
   RawSimulateAssetChangesResponse
 } from '../internal/raw-interfaces';
 import {
+  BlockIdentifier,
   DebugTransaction,
   GasOptimizedTransactionResponse,
   GasOptimizedTransactionStatusResponse,
@@ -107,7 +108,8 @@ export class TransactNamespace {
    * @param transaction The transaction to simulate.
    */
   simulateAssetChanges(
-    transaction: DebugTransaction
+    transaction: DebugTransaction,
+    blockIdentifier: BlockIdentifier
   ): Promise<SimulateAssetChangesResponse>;
   async simulateAssetChanges(
     transaction: DebugTransaction
@@ -129,7 +131,8 @@ export class TransactNamespace {
    * @param transaction The transaction to simulate.
    */
   simulateExecution(
-    transaction: DebugTransaction
+    transaction: DebugTransaction,
+    blockIdentifier: BlockIdentifier
   ): Promise<SimulateExecutionResponse>;
   async simulateExecution(
     transaction: DebugTransaction
