@@ -291,7 +291,7 @@ export interface RawNftSale {
   sellerAddress: string;
   taker: string;
   sellerFee: NftSaleFeeData;
-  marketplaceFee?: NftSaleFeeData;
+  protocolFee?: NftSaleFeeData;
   royaltyFee?: NftSaleFeeData;
   blockNumber: number;
   logIndex: number;

@@ -3,11 +3,16 @@ import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { AlchemyConfig } from '../api/alchemy-config';
 import { BaseNft, Nft, NftContract } from '../api/nft';
 import {
+  AssetTransfersCategory,
+  AssetTransfersParams,
+  AssetTransfersResult,
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
   GetContractsForOwnerOptions,
   GetContractsForOwnerResponse,
   GetFloorPriceResponse,
+  GetMintedNftsOptions,
+  GetMintedNftsResponse,
   GetNftMetadataOptions,
   GetNftSalesOptions,
   GetNftSalesOptionsByContractAddress,
@@ -38,7 +43,7 @@ import {
   RefreshState,
   SortingOrder
 } from '../types/types';
-import { AlchemyApiType } from '../util/const';
+import { AlchemyApiType, ETH_NULL_ADDRESS } from '../util/const';
 import {
   getBaseNftFromRaw,
   getContractsForOwnerFromRaw,
@@ -47,6 +52,7 @@ import {
   getNftRarityFromRaw,
   getNftSalesFromRaw
 } from '../util/util';
+import { getAssetTransfers } from './core-api';
 import { paginateEndpoint, requestHttpWithBackoff } from './dispatch';
 import {
   RawBaseNft,
@@ -66,6 +72,16 @@ import {
   RawReingestContractResponse
 } from './raw-interfaces';
 
+/**
+ * This file contains the underlying implementations for exposed API surface in
+ * the {@link NftNamespace}. By moving the methods out into a separate file,
+ * other namespaces can access these methods without depending on the entire
+ * NftNamespace.
+ */
+
+/**
+ * Get the NFT metadata for the provided contract address.
+ */
 export async function getNftMetadata(
   config: AlchemyConfig,
   contractAddress: string,
@@ -311,6 +327,80 @@ export async function getOwnersForNft(
       tokenId: BigNumber.from(tokenId!).toString()
     }
   );
+}
+
+export async function getMintedNfts(
+  config: AlchemyConfig,
+  owner: string,
+  options?: GetMintedNftsOptions
+): Promise<GetMintedNftsResponse> {
+  const provider = await config.getProvider();
+  const ownerAddress = await provider._getAddress(owner);
+  const category = nftTokenTypeToCategory(options?.tokenType);
+  const params: AssetTransfersParams = {
+    fromBlock: '0x0',
+    fromAddress: ETH_NULL_ADDRESS,
+    toAddress: ownerAddress,
+    excludeZeroValue: true,
+    contractAddresses: options?.contractAddresses,
+    category,
+    maxCount: 100
+  };
+  const response = await getAssetTransfers(config, params, 'getMintedNfts');
+
+  const tokens: NftMetadataBatchToken[] = [];
+  response.transfers
+    .filter(transfer => transfer.rawContract.address !== null)
+    .forEach(transfer => {
+      // ERC1155 NFTs can contain multiple tokens in a single transfer, which
+      // requires special logic.
+      if (transfer.category === AssetTransfersCategory.ERC1155) {
+        tokens.push(...parse1155Transfer(transfer));
+      } else {
+        tokens.push({
+          contractAddress: transfer.rawContract.address!,
+          tokenId: transfer.tokenId!,
+          tokenType:
+            transfer.category === AssetTransfersCategory.ERC721
+              ? NftTokenType.ERC721
+              : undefined
+        });
+      }
+    });
+
+  const nfts = await getNftMetadataBatch(config, tokens);
+
+  return {
+    nfts,
+    pageKey: response.pageKey
+  };
+}
+
+function nftTokenTypeToCategory(
+  tokenType: NftTokenType | undefined
+): AssetTransfersCategory[] {
+  switch (tokenType) {
+    case NftTokenType.ERC721:
+      return [AssetTransfersCategory.ERC721];
+    case NftTokenType.ERC1155:
+      return [AssetTransfersCategory.ERC1155];
+    default:
+      return [
+        AssetTransfersCategory.ERC721,
+        AssetTransfersCategory.ERC1155,
+        AssetTransfersCategory.SPECIALNFT
+      ];
+  }
+}
+
+function parse1155Transfer(
+  transfer: AssetTransfersResult
+): NftMetadataBatchToken[] {
+  return transfer.erc1155Metadata!.map(metadata => ({
+    contractAddress: transfer.rawContract.address!,
+    tokenId: metadata.tokenId,
+    tokenType: NftTokenType.ERC1155
+  }));
 }
 
 export async function checkNftOwnership(

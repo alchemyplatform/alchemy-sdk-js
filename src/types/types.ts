@@ -1,4 +1,5 @@
 import {
+  BlockTag,
   EventType,
   TransactionReceipt
 } from '@ethersproject/abstract-provider';
@@ -963,7 +964,38 @@ export interface ContractForOwner extends NftContract {
 }
 
 /**
- * Optional parameters object for the {@link getNftSales} endpoint.
+ * Optional parameters object for the {@link NftNamespace.getMintedNfts} method.
+ */
+export interface GetMintedNftsOptions {
+  /**
+   * List of NFT contract addresses to filter mints by. If omitted, defaults to
+   * all contract addresses.
+   */
+  contractAddresses?: string[];
+
+  /**
+   * Filter mints by ERC721 vs ERC1155 contracts. If omitted, defaults to all
+   * NFTs.
+   */
+  tokenType?: NftTokenType.ERC1155 | NftTokenType.ERC721;
+
+  /**
+   * Optional page key from an existing {@link GetMintedNftsResponse} to use for
+   * pagination.
+   */
+  pageKey?: string;
+}
+
+export interface GetMintedNftsResponse {
+  /** An array of the minted NFTs for the provided owner address. */
+  nfts: Nft[];
+
+  /** Key for pagination to use to fetch results from the next page if available. */
+  pageKey?: string;
+}
+
+/**
+ * Optional parameters object for the {@link NftNamespace.getNftSales} method.
  *
  * This interface is used to filter the NFT sales data.
  *
@@ -1002,8 +1034,8 @@ export interface GetNftSalesOptions {
 }
 
 /**
- * Alternative optional parameters object for the {@link getNftSales} endpoint
- * that allows filtering results by contractAddress.
+ * Alternative optional parameters object for the {@link NftNamespace.getNftSales}
+ * method that allows filtering results by contractAddress.
  *
  * This interface is used to filter the NFT sales data.
  *
@@ -1057,8 +1089,14 @@ export interface NftSale {
   /** The payment from buyer to the seller. */
   sellerFee: NftSaleFeeData;
 
-  /** The payment from buyer to the marketplace. */
+  /**
+   * The payment from buyer to the marketplace.
+   * @deprecated Please use `protocolFee` instead.
+   */
   marketplaceFee?: NftSaleFeeData;
+
+  /** The payment from buyer to the marketplace. */
+  protocolFee?: NftSaleFeeData;
 
   /** The payment from buyer to the royalty address of the NFT collection. */
   royaltyFee?: NftSaleFeeData;
@@ -1103,7 +1141,8 @@ export enum SortingOrder {
 }
 
 /**
- * Enum representing the supported NFT marketplaces by the {@link getNftSales} endpoint.
+ * Enum representing the supported NFT marketplaces by the
+ * {@link NftNamespace.getNftSales} method.
  *
  * @public
  */
@@ -1115,7 +1154,8 @@ export enum NftSaleMarketplace {
 }
 
 /**
- * Enum for specifing the taker type for the {@link getNftSales} endpoint.
+ * Enum for specifying the taker type for the {@link NftNamespace.getNftSales}
+ * method.
  *
  * @public
  */
@@ -2033,6 +2073,36 @@ export interface DebugCallTrace {
   revertReason?: string;
   /** Array of sub-calls executed as part of the original call. */
   calls?: DebugCallTrace[];
+}
+
+/**
+ * Filter object used to filter logs by a specific block hash when using
+ * {@link CoreNamespace.getLogs}.
+ */
+export interface FilterByBlockHash extends EventFilter {
+  /** The specific block hash to search for logs matching the filter. */
+  blockHash?: string;
+}
+
+/**
+ * Filter object used to filter logs by block number range when using
+ * {@link CoreNamespace.getLogs}
+ */
+export interface Filter extends EventFilter {
+  /** The starting block (inclusive) to search for logs matching the filter. */
+  fromBlock?: BlockTag;
+  /** The end block (inclusive) to search for logs matching the filter.*/
+  toBlock?: BlockTag;
+}
+
+/**
+ * Filter object used to filter logs by when using {@link CoreNamespace.getLogs}
+ */
+export interface EventFilter {
+  /** The address to filter by. If omitted, filters for all addresses. */
+  address?: string | string[];
+  /** The topics to filter by, or null to match any topics. */
+  topics?: Array<string | Array<string> | null>;
 }
 
 /**

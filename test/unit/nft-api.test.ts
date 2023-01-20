@@ -1782,4 +1782,7 @@ describe('NFT module', () => {
     it('handles upper case input', async () => {});
     it('handles errors', async () => {});
   });
+
+  // TODO: Add unit tests once we've implemented MockProvider.
+  describe('getMintedNfts()', () => {});
 });
