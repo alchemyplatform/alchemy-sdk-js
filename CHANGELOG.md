@@ -10,7 +10,7 @@
 - Added `NftNamespace.getMintedNfts()` to fetch all the NFTs an owner address minted, optionally filtered by a set of specific NFT contracts.
 - Added support for passing in a null `tokenId` when using NFT Webhook Filters, which allows you to listen to all token ids in a collection.
 - Added the option to pass in an `EventFilter` with multiple addresses to the `CoreNamespace.getLogs()` method.
-- Fixed a bug where the `protocolFee` was not included the response for `NftNamespace.getNftSales()`. Deprecated the existing `marketplaceFee` property in favor of the new `protocolFee` property.
+- Fixed a bug where the `protocolFee` was not included in the response for `NftNamespace.getNftSales()`. Deprecated the existing `marketplaceFee` property in favor of the new `protocolFee` property.
 
 ## 2.3.0
 
