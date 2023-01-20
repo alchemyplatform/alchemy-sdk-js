@@ -2002,7 +2002,7 @@ export type AddressWebhookUpdate =
   | WebhookAddressOverride;
 
 /**
- * Transaction object used in {@link DebugNamespace.traceCall} and {@link TransactNamespace.simulateAssetChanges}.
+ * Transaction object used in {@link DebugNamespace.traceCall}, {@link TransactNamespace.simulateAssetChanges} and {@link TransactNamespace.simulateExecution}.
  */
 export interface DebugTransaction {
   /** The address the transaction is directed to. */
