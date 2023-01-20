@@ -5,6 +5,8 @@ import {
   NftSaleFeeData,
   NftSpamClassification,
   NftTokenType,
+  SimulateAssetType,
+  SimulateChangeType,
   TokenUri
 } from '../types/types';
 
@@ -314,4 +316,32 @@ export interface RawContractForOwner
   tokenId: string;
   media: Media;
   opensea?: RawOpenSeaCollectionMetadata;
+}
+
+export interface RawSimulateAssetChangesResponse {
+  changes: RawSimulateAssetChange[];
+  error: string;
+}
+
+export interface RawSimulateAssetChange {
+  asset_type: SimulateAssetType;
+  change_type: SimulateChangeType;
+  from: string;
+  to: string;
+
+  /* All - NATIVE, ERC20, ERC721, ERC1555, SPECIAL_NFT */
+  raw_amount: string;
+  amount: string;
+  name: string | null;
+  symbol: string;
+  decimals: number;
+
+  /* ERC20, ERC721, ERC1555, SPECIAL_NFT */
+  contract_address: string | null;
+
+  /* ERC20  */
+  logo: string | null;
+
+  /* ERC721, ERC1555  */
+  token_id: string | null;
 }
