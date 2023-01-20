@@ -18,6 +18,7 @@ import {
   SendPrivateTransactionOptions,
   SimulateAssetChange,
   SimulateAssetChangesResponse,
+  SimulateExecutionOptions,
   SimulateExecutionResponse
 } from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
@@ -109,7 +110,7 @@ export class TransactNamespace {
    */
   simulateAssetChanges(
     transaction: DebugTransaction,
-    blockIdentifier: BlockIdentifier
+    blockIdentifier?: BlockIdentifier
   ): Promise<SimulateAssetChangesResponse>;
   async simulateAssetChanges(
     transaction: DebugTransaction
@@ -132,7 +133,8 @@ export class TransactNamespace {
    */
   simulateExecution(
     transaction: DebugTransaction,
-    blockIdentifier: BlockIdentifier
+    blockIdentifier?: BlockIdentifier,
+    options?: SimulateExecutionOptions
   ): Promise<SimulateExecutionResponse>;
   async simulateExecution(
     transaction: DebugTransaction

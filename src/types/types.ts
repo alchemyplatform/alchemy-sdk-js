@@ -1666,6 +1666,10 @@ export interface SimulateAssetChangesResponse {
   error?: string;
 }
 
+export interface SimulateExecutionOptions {
+  format: 'FLAT' | 'NESTED';
+}
+
 enum DecodingAuthority {
   ETHERSCAN = 'ETHERSCAN'
 }
