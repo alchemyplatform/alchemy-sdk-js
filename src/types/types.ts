@@ -1624,7 +1624,7 @@ export interface SendPrivateTransactionOptions {
   fast: boolean;
 }
 
-export enum AssetType {
+export enum SimulateAssetType {
   NATIVE = 'NATIVE',
   ERC20 = 'ERC20',
   ERC721 = 'ERC721',
@@ -1632,37 +1632,37 @@ export enum AssetType {
   SPECIAL_NFT = 'SPECIAL_NFT'
 }
 
-export enum ChangeType {
+export enum SimulateChangeType {
   APPROVE = 'APPROVE',
   TRANSFER = 'TRANSFER'
 }
 
-interface AssetChange {
-  asset_type: AssetType;
-  change_type: ChangeType;
+export interface SimulateAssetChange {
+  assetType: SimulateAssetType;
+  changeType: SimulateChangeType;
   from: string;
   to: string;
 
   /* All - NATIVE, ERC20, ERC721, ERC1555, SPECIAL_NFT */
-  raw_amount: string;
+  rawAmount: string;
   amount: string;
   name: string | null;
   symbol: string;
   decimals: number;
 
   /* ERC20, ERC721, ERC1555, SPECIAL_NFT */
-  contract_address: string | null;
+  contractAddress: string | null;
 
   /* ERC20  */
   logo: string | null;
 
   /* ERC721, ERC1555  */
-  token_id: string | null;
+  tokenId: string | null;
 }
 
 /** Response object for the {@link TransactNamespace.simulateAssetChanges} method. */
 export interface SimulateAssetChangesResponse {
-  changes: AssetChange[];
+  changes: SimulateAssetChange[];
   error: string;
 }
 
