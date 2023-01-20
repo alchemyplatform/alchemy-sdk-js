@@ -1666,6 +1666,68 @@ export interface SimulateAssetChangesResponse {
   error?: string;
 }
 
+enum DecodingAuthority {
+  ETHERSCAN = 'ETHERSCAN'
+}
+
+enum CallType {
+  CALL = 'CALL',
+  STATICCALL = 'STATICCALL',
+  DELEGATECALL = 'DELEGATECALL'
+}
+
+interface DecodedCallParam {
+  value: string;
+  name: string;
+  type: string;
+}
+interface DecodedCall {
+  methodName: string;
+  inputs: DecodedCallParam[];
+  outputs: DecodedCallParam[];
+  authority: DecodingAuthority;
+}
+
+interface Call {
+  type: CallType;
+  from: string;
+  to: string;
+  value?: string;
+  data: string;
+  gas: string;
+  gasUsed: string;
+  input: string;
+  output: string;
+  decoded?: DecodedCall;
+}
+
+interface DecodedLogInput {
+  name: string;
+  value: string;
+  type: string;
+  indexed: true;
+}
+
+interface DecodedLog {
+  eventName: string;
+  inputs: DecodedLogInput[];
+  authority: DecodingAuthority;
+}
+
+interface Log {
+  topics: string[];
+  address: string;
+  data: string;
+  decoded?: DecodedLog;
+}
+
+/** Response object for the {@link TransactNamespace.simulateExecution} method. */
+export interface SimulateExecutionResponse {
+  calls: Call[];
+  logs: Log[];
+  error?: string;
+}
+
 /**
  * Response object for the {@link TransactNamespace.sendGasOptimizedTransaction} method.
  *
