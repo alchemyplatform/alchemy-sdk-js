@@ -14,7 +14,7 @@ describe('E2E integration tests', () => {
 
   beforeAll(async () => {
     await loadAlchemyEnv();
-    alchemy = await new Alchemy({
+    alchemy = new Alchemy({
       apiKey: process.env.ALCHEMY_API_KEY,
       network: Network.ETH_MAINNET
     });
