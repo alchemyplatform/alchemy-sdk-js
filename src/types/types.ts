@@ -1646,18 +1646,18 @@ export interface SimulateAssetChange {
   /* All - NATIVE, ERC20, ERC721, ERC1555, SPECIAL_NFT */
   rawAmount: string;
   amount: string;
-  name: string | null;
+  name?: string;
   symbol: string;
   decimals: number;
 
   /* ERC20, ERC721, ERC1555, SPECIAL_NFT */
-  contractAddress: string | null;
+  contractAddress?: string;
 
   /* ERC20  */
-  logo: string | null;
+  logo?: string;
 
   /* ERC721, ERC1555  */
-  tokenId: string | null;
+  tokenId?: string;
 }
 
 /** Response object for the {@link TransactNamespace.simulateAssetChanges} method. */

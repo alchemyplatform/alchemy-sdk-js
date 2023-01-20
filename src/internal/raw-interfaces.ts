@@ -332,16 +332,16 @@ export interface RawSimulateAssetChange {
   /* All - NATIVE, ERC20, ERC721, ERC1555, SPECIAL_NFT */
   raw_amount: string;
   amount: string;
-  name: string | null;
+  name?: string;
   symbol: string;
   decimals: number;
 
   /* ERC20, ERC721, ERC1555, SPECIAL_NFT */
-  contract_address: string | null;
+  contract_address?: string;
 
   /* ERC20  */
-  logo: string | null;
+  logo?: string;
 
   /* ERC721, ERC1555  */
-  token_id: string | null;
+  token_id?: string;
 }
