@@ -7,10 +7,15 @@ import type { BigNumber } from '@ethersproject/bignumber';
 import { Deferrable } from '@ethersproject/properties';
 
 import {
+  RawSimulateAssetChange,
+  RawSimulateAssetChangesResponse
+} from '../internal/raw-interfaces';
+import {
   DebugTransaction,
   GasOptimizedTransactionResponse,
   GasOptimizedTransactionStatusResponse,
   SendPrivateTransactionOptions,
+  SimulateAssetChange,
   SimulateAssetChangesResponse
 } from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
@@ -107,11 +112,12 @@ export class TransactNamespace {
     transaction: DebugTransaction
   ): Promise<SimulateAssetChangesResponse> {
     const provider = await this.config.getProvider();
-    return provider._send(
+    const response = (await provider._send(
       'alchemy_simulateAssetChanges',
       [transaction],
       'simulateAssetChanges'
-    );
+    )) as RawSimulateAssetChangesResponse;
+    return parseRawSimulateAssetChangesResponse(response);
   }
 
   /**
@@ -371,4 +377,32 @@ export function generateGasSpreadTransactions(
       maxPriorityFeePerGas: Math.round(feeMultiplier * priorityFee)
     };
   });
+}
+
+function parseRawSimulateAssetChangesResponse(
+  response: RawSimulateAssetChangesResponse
+): SimulateAssetChangesResponse {
+  return {
+    changes: response.changes.map(parseRawSimulateAssetChange),
+    error: response.error
+  };
+}
+
+function parseRawSimulateAssetChange(
+  rawAssetChange: RawSimulateAssetChange
+): SimulateAssetChange {
+  return {
+    assetType: rawAssetChange.asset_type,
+    changeType: rawAssetChange.change_type,
+    from: rawAssetChange.from,
+    to: rawAssetChange.to,
+    rawAmount: rawAssetChange.raw_amount,
+    amount: rawAssetChange.amount,
+    name: rawAssetChange.name,
+    symbol: rawAssetChange.symbol,
+    decimals: rawAssetChange.decimals,
+    contractAddress: rawAssetChange.contract_address,
+    logo: rawAssetChange.logo,
+    tokenId: rawAssetChange.token_id
+  };
 }
