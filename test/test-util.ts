@@ -219,7 +219,7 @@ export function createRawNftSale(
     contractAddress,
     logIndex: 392,
     marketplace,
-    marketplaceFee: feeData,
+    protocolFee: feeData,
     quantity: '2',
     royaltyFee: feeData,
     sellerFee: feeData,
