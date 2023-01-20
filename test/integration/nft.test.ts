@@ -1,5 +1,6 @@
 import {
   Alchemy,
+  GetNftSalesResponse,
   NftContract,
   NftFilters,
   NftSaleMarketplace,
@@ -43,6 +44,30 @@ describe('E2E integration tests', () => {
     ).toEqual(true);
     expect(typeof metadata.contractDeployer).toEqual('string');
     expect(typeof metadata.deployedBlockNumber).toEqual('number');
+  }
+
+  function verifyNftSalesData(response: GetNftSalesResponse): void {
+    expect(response.nftSales.length).toBeGreaterThan(0);
+    expect(response.nftSales[0].bundleIndex).toBeDefined();
+    expect(typeof response.nftSales[0].bundleIndex).toEqual('number');
+    expect(response.nftSales[0].buyerAddress).toBeDefined();
+    expect(typeof response.nftSales[0].buyerAddress).toEqual('string');
+    expect(response.nftSales[0].contractAddress).toBeDefined();
+    expect(typeof response.nftSales[0].contractAddress).toEqual('string');
+    expect(response.nftSales[0].logIndex).toBeDefined();
+    expect(typeof response.nftSales[0].logIndex).toEqual('number');
+    expect(response.nftSales[0].marketplace).toBeDefined();
+    expect(typeof response.nftSales[0].logIndex).toEqual('number');
+    expect(response.nftSales[0].quantity).toBeDefined();
+    expect(typeof response.nftSales[0].quantity).toEqual('string');
+    expect(response.nftSales[0].sellerAddress).toBeDefined();
+    expect(typeof response.nftSales[0].sellerAddress).toEqual('string');
+    expect(response.nftSales[0].taker).toBeDefined();
+    expect(typeof response.nftSales[0].taker).toEqual('string');
+    expect(response.nftSales[0].tokenId).toBeDefined();
+    expect(typeof response.nftSales[0].tokenId).toEqual('string');
+    expect(response.nftSales[0].transactionHash).toBeDefined();
+    expect(typeof response.nftSales[0].transactionHash).toEqual('string');
   }
 
   it('getNftMetadata()', async () => {
@@ -377,30 +402,26 @@ describe('E2E integration tests', () => {
   });
 
   it('getNftSales()', async () => {
-    const response = await alchemy.nft.getNftSales();
+    const response = await alchemy.nft.getNftSales({
+      contractAddress: '0xe785E82358879F061BC3dcAC6f0444462D4b5330',
+      tokenId: 44
+    });
 
     expect(response.pageKey).toBeDefined();
-    expect(response.nftSales.length).toBeGreaterThan(0);
-    expect(response.nftSales[0].bundleIndex).toBeDefined();
-    expect(typeof response.nftSales[0].bundleIndex).toEqual('number');
-    expect(response.nftSales[0].buyerAddress).toBeDefined();
-    expect(typeof response.nftSales[0].buyerAddress).toEqual('string');
-    expect(response.nftSales[0].contractAddress).toBeDefined();
-    expect(typeof response.nftSales[0].contractAddress).toEqual('string');
-    expect(response.nftSales[0].logIndex).toBeDefined();
-    expect(typeof response.nftSales[0].logIndex).toEqual('number');
-    expect(response.nftSales[0].marketplace).toBeDefined();
-    expect(typeof response.nftSales[0].logIndex).toEqual('number');
-    expect(response.nftSales[0].quantity).toBeDefined();
-    expect(typeof response.nftSales[0].quantity).toEqual('string');
-    expect(response.nftSales[0].sellerAddress).toBeDefined();
-    expect(typeof response.nftSales[0].sellerAddress).toEqual('string');
-    expect(response.nftSales[0].taker).toBeDefined();
-    expect(typeof response.nftSales[0].taker).toEqual('string');
-    expect(response.nftSales[0].tokenId).toBeDefined();
-    expect(typeof response.nftSales[0].tokenId).toEqual('string');
-    expect(response.nftSales[0].transactionHash).toBeDefined();
-    expect(typeof response.nftSales[0].transactionHash).toEqual('string');
+    verifyNftSalesData(response);
+  });
+
+  it('getNftSales() with token', async () => {
+    const response = await alchemy.nft.getNftSales({
+      contractAddress: '0xe785E82358879F061BC3dcAC6f0444462D4b5330',
+      tokenId: 44
+    });
+
+    verifyNftSalesData(response);
+    expect(response.nftSales[0].royaltyFee).toBeDefined();
+    expect(response.nftSales[0].marketplaceFee).toBeDefined();
+    expect(response.nftSales[0].protocolFee).toBeDefined();
+    expect(response.nftSales[0].sellerFee).toBeDefined();
   });
 
   it('getNftSales() with pageKey', async () => {

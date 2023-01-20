@@ -1089,8 +1089,14 @@ export interface NftSale {
   /** The payment from buyer to the seller. */
   sellerFee: NftSaleFeeData;
 
-  /** The payment from buyer to the marketplace. */
+  /**
+   * The payment from buyer to the marketplace.
+   * @deprecated Please use `protocolFee` instead.
+   */
   marketplaceFee?: NftSaleFeeData;
+
+  /** The payment from buyer to the marketplace. */
+  protocolFee?: NftSaleFeeData;
 
   /** The payment from buyer to the royalty address of the NFT collection. */
   royaltyFee?: NftSaleFeeData;
