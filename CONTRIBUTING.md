@@ -14,6 +14,7 @@ namespaces and their methods.
 
 We use [TypeScript](https://www.typescriptlang.org/) to provide type safety and documentation for the SDK. Here is a
 brief overview of the codebase:
+
 - `src`: Contains the source code for the SDK.
 - `src/index.ts`: The entry point for the SDK. All developer facing classes and methods are exported here.
 - `src/types`: Contains the TypeScript type definitions that are used and exported by the SDK.
