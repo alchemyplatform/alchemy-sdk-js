@@ -16,7 +16,8 @@ import {
   GasOptimizedTransactionStatusResponse,
   SendPrivateTransactionOptions,
   SimulateAssetChange,
-  SimulateAssetChangesResponse
+  SimulateAssetChangesResponse,
+  SimulateExecutionResponse
 } from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
 import { Wallet } from './alchemy-wallet';
@@ -118,6 +119,27 @@ export class TransactNamespace {
       'simulateAssetChanges'
     )) as RawSimulateAssetChangesResponse;
     return parseRawSimulateAssetChangesResponse(response);
+  }
+
+  /**
+   * Used to simulate a single transaction.
+   *
+   * Returns list of decoded traces and logs.
+   *
+   * @param transaction The transaction to simulate.
+   */
+  simulateExecution(
+    transaction: DebugTransaction
+  ): Promise<SimulateExecutionResponse>;
+  async simulateExecution(
+    transaction: DebugTransaction
+  ): Promise<SimulateExecutionResponse> {
+    const provider = await this.config.getProvider();
+    return provider._send(
+      'alchemy_simulateExecution',
+      [transaction],
+      'simulateExecution'
+    );
   }
 
   /**
