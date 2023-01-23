@@ -1670,11 +1670,11 @@ export interface SimulateExecutionOptions {
   format: 'FLAT' | 'NESTED';
 }
 
-enum DecodingAuthority {
+export enum DecodingAuthority {
   ETHERSCAN = 'ETHERSCAN'
 }
 
-enum CallType {
+export enum CallType {
   CALL = 'CALL',
   STATICCALL = 'STATICCALL',
   DELEGATECALL = 'DELEGATECALL'
