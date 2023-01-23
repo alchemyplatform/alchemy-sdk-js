@@ -16,7 +16,6 @@
     "lint-file": "eslint --fix",
     "test": "jest test/unit",
     "test-integration": "jest test/integration",
-    "api": "yarn build && api-extractor run",
     "docs": "typedoc --plugin none --out docs src/index.ts",
     "docs-md": "typedoc --plugin typedoc-plugin-markdown --out docs-md src/index.ts",
     "prepare": "husky install"
@@ -72,8 +71,6 @@
     "websocket": "^1.0.34"
   },
   "devDependencies": {
-    "@microsoft/api-documenter": "^7.16.0",
-    "@microsoft/api-extractor": "^7.19.5",
     "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@size-limit/preset-big-lib": "^7.0.8",
