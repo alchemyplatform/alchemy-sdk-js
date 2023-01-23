@@ -2,8 +2,8 @@
 
 # Interface: GetNftSalesOptionsByContractAddress
 
-Alternative optional parameters object for the [getNftSales](../classes/NftNamespace.md#getnftsales) endpoint
-that allows filtering results by contractAddress.
+Alternative optional parameters object for the [NftNamespace.getNftSales](../classes/NftNamespace.md#getnftsales)
+method that allows filtering results by contractAddress.
 
 This interface is used to filter the NFT sales data.
 
@@ -43,7 +43,7 @@ The address of the NFT buyer to filter sales by.
 
 #### Defined in
 
-[src/types/types.ts:986](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L986)
+[src/types/types.ts:1018](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1018)
 
 ___
 
@@ -55,7 +55,7 @@ The contract address of a NFT collection to filter sales by.
 
 #### Defined in
 
-[src/types/types.ts:1015](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1015)
+[src/types/types.ts:1047](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1047)
 
 ___
 
@@ -71,7 +71,7 @@ The block number to start fetching NFT sales data from.
 
 #### Defined in
 
-[src/types/types.ts:974](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L974)
+[src/types/types.ts:1006](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1006)
 
 ___
 
@@ -87,7 +87,7 @@ The maximum number of NFT sales to return.
 
 #### Defined in
 
-[src/types/types.ts:998](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L998)
+[src/types/types.ts:1030](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1030)
 
 ___
 
@@ -103,7 +103,7 @@ The NFT marketplace to filter sales by.
 
 #### Defined in
 
-[src/types/types.ts:983](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L983)
+[src/types/types.ts:1015](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1015)
 
 ___
 
@@ -119,7 +119,7 @@ Whether to return the results in ascending or descending order by block number.
 
 #### Defined in
 
-[src/types/types.ts:980](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L980)
+[src/types/types.ts:1012](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1012)
 
 ___
 
@@ -135,7 +135,7 @@ Key for pagination to use to fetch results from the next page if available.
 
 #### Defined in
 
-[src/types/types.ts:1001](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1001)
+[src/types/types.ts:1033](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1033)
 
 ___
 
@@ -151,7 +151,7 @@ The address of the NFT seller to filter sales by.
 
 #### Defined in
 
-[src/types/types.ts:989](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L989)
+[src/types/types.ts:1021](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1021)
 
 ___
 
@@ -168,7 +168,7 @@ Defaults to returning both buyer and seller taker trades.
 
 #### Defined in
 
-[src/types/types.ts:995](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L995)
+[src/types/types.ts:1027](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1027)
 
 ___
 
@@ -184,7 +184,7 @@ The block number limit to fetch NFT sales data from.
 
 #### Defined in
 
-[src/types/types.ts:977](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L977)
+[src/types/types.ts:1009](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1009)
 
 ___
 
@@ -196,4 +196,4 @@ The token ID of an NFT within the specified contractAddress to filter sales by.
 
 #### Defined in
 
-[src/types/types.ts:1018](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1018)
+[src/types/types.ts:1050](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1050)

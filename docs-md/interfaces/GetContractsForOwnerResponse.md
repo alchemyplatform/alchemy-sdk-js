@@ -22,7 +22,7 @@ The list of contracts, that match the query, held by the given address.
 
 #### Defined in
 
-[src/types/types.ts:931](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L931)
+[src/types/types.ts:932](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L932)
 
 ___
 
@@ -34,7 +34,7 @@ Key for pagination to use to fetch results from the next page if available.
 
 #### Defined in
 
-[src/types/types.ts:934](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L934)
+[src/types/types.ts:935](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L935)
 
 ___
 
@@ -46,4 +46,4 @@ Total number of NFT contracts held by the given address.
 
 #### Defined in
 
-[src/types/types.ts:937](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L937)
+[src/types/types.ts:938](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L938)

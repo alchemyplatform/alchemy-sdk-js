@@ -32,7 +32,7 @@ Defaults to `false`.
 
 #### Defined in
 
-[src/types/types.ts:1942](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1942)
+[src/types/types.ts:1985](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1985)
 
 ___
 
@@ -44,4 +44,4 @@ Specified type is `CALL_TRACER`.
 
 #### Defined in
 
-[src/types/types.ts:1937](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1937)
+[src/types/types.ts:1980](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1980)

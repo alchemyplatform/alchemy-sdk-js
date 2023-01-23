@@ -22,7 +22,7 @@ The NFT filters on the provided webhook.
 
 #### Defined in
 
-[src/types/types.ts:1792](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1792)
+[src/types/types.ts:1835](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1835)
 
 ___
 
@@ -34,7 +34,7 @@ Optional page key used to fetch the remaining filters.
 
 #### Defined in
 
-[src/types/types.ts:1796](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1796)
+[src/types/types.ts:1839](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1839)
 
 ___
 
@@ -46,4 +46,4 @@ The total number of NFT filters on the webhook.
 
 #### Defined in
 
-[src/types/types.ts:1794](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1794)
+[src/types/types.ts:1837](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1837)
