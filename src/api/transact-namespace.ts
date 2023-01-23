@@ -107,7 +107,9 @@ export class TransactNamespace {
    * Returns list of asset changes.
    *
    * @param transaction The transaction to simulate.
+   * @param blockIdentifier Optional block identifier.
    */
+  /* A function that is used to simulate asset changes. */
   simulateAssetChanges(
     transaction: DebugTransaction,
     blockIdentifier?: BlockIdentifier
@@ -130,6 +132,8 @@ export class TransactNamespace {
    * Returns list of decoded traces and logs.
    *
    * @param transaction The transaction to simulate.
+   * @param blockIdentifier Optional block identifier.
+   * @param options Optional options to choose response format (flat or nested).
    */
   simulateExecution(
     transaction: DebugTransaction,
