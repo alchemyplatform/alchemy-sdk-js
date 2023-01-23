@@ -30,7 +30,7 @@ Array of sub-calls executed as part of the original call.
 
 #### Defined in
 
-[src/types/types.ts:1990](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1990)
+[src/types/types.ts:2033](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L2033)
 
 ___
 
@@ -42,7 +42,7 @@ Optional error field.
 
 #### Defined in
 
-[src/types/types.ts:1986](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1986)
+[src/types/types.ts:2029](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L2029)
 
 ___
 
@@ -54,7 +54,7 @@ From address of the transaction.
 
 #### Defined in
 
-[src/types/types.ts:1972](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1972)
+[src/types/types.ts:2015](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L2015)
 
 ___
 
@@ -66,7 +66,7 @@ Gas provided for call as a hex string.
 
 #### Defined in
 
-[src/types/types.ts:1978](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1978)
+[src/types/types.ts:2021](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L2021)
 
 ___
 
@@ -78,7 +78,7 @@ Gas used during the call as a hex string.
 
 #### Defined in
 
-[src/types/types.ts:1980](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1980)
+[src/types/types.ts:2023](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L2023)
 
 ___
 
@@ -90,7 +90,7 @@ Call data.
 
 #### Defined in
 
-[src/types/types.ts:1982](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1982)
+[src/types/types.ts:2025](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L2025)
 
 ___
 
@@ -102,7 +102,7 @@ Return data.
 
 #### Defined in
 
-[src/types/types.ts:1984](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1984)
+[src/types/types.ts:2027](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L2027)
 
 ___
 
@@ -114,7 +114,7 @@ Solidity revert reason, if the call reverted.
 
 #### Defined in
 
-[src/types/types.ts:1988](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1988)
+[src/types/types.ts:2031](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L2031)
 
 ___
 
@@ -126,7 +126,7 @@ To address of the transaction.
 
 #### Defined in
 
-[src/types/types.ts:1974](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1974)
+[src/types/types.ts:2017](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L2017)
 
 ___
 
@@ -138,7 +138,7 @@ The type of call: `CALL` or `CREATE` for the top-level call.
 
 #### Defined in
 
-[src/types/types.ts:1970](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1970)
+[src/types/types.ts:2013](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L2013)
 
 ___
 
@@ -150,4 +150,4 @@ Amount of value transfer as a hex string.
 
 #### Defined in
 
-[src/types/types.ts:1976](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1976)
+[src/types/types.ts:2019](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L2019)

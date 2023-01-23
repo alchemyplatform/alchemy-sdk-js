@@ -20,4 +20,4 @@ A list of transaction receipts for the queried block.
 
 #### Defined in
 
-[src/types/types.ts:1237](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1237)
+[src/types/types.ts:1277](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1277)

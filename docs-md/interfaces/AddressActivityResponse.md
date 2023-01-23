@@ -22,7 +22,7 @@ The addresses for the webhook.
 
 #### Defined in
 
-[src/types/types.ts:1730](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1730)
+[src/types/types.ts:1770](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1770)
 
 ___
 
@@ -34,7 +34,7 @@ Optional page key used to fetch the remaining addresses.
 
 #### Defined in
 
-[src/types/types.ts:1734](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1734)
+[src/types/types.ts:1774](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1774)
 
 ___
 
@@ -46,4 +46,4 @@ The total number of addresses.
 
 #### Defined in
 
-[src/types/types.ts:1732](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1732)
+[src/types/types.ts:1772](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1772)

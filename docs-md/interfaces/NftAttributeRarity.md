@@ -23,7 +23,7 @@ trait type in the current collection.
 
 #### Defined in
 
-[src/types/types.ts:1143](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1143)
+[src/types/types.ts:1183](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1183)
 
 ___
 
@@ -35,7 +35,7 @@ The type of NFT attribute.
 
 #### Defined in
 
-[src/types/types.ts:1137](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1137)
+[src/types/types.ts:1177](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1177)
 
 ___
 
@@ -47,4 +47,4 @@ Name of the NFT's attribute.
 
 #### Defined in
 
-[src/types/types.ts:1134](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1134)
+[src/types/types.ts:1174](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1174)
