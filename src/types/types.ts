@@ -1637,7 +1637,7 @@ export enum SimulateChangeType {
   TRANSFER = 'TRANSFER'
 }
 
-export interface SimulateAssetChange {
+interface SimulateAssetChange {
   assetType: SimulateAssetType;
   changeType: SimulateChangeType;
   from: string;
