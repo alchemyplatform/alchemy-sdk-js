@@ -1637,7 +1637,7 @@ export enum SimulateChangeType {
   TRANSFER = 'TRANSFER'
 }
 
-interface SimulateAssetChange {
+export interface SimulateAssetChange {
   assetType: SimulateAssetType;
   changeType: SimulateChangeType;
   from: string;
@@ -1685,19 +1685,19 @@ export enum CallType {
   DELEGATECALL = 'DELEGATECALL'
 }
 
-interface DecodedCallParam {
+export interface DecodedCallParam {
   value: string;
   name: string;
   type: string;
 }
-interface DecodedCall {
+export interface DecodedCall {
   methodName: string;
   inputs: DecodedCallParam[];
   outputs: DecodedCallParam[];
   authority: DecodingAuthority;
 }
 
-interface Call {
+export interface Call {
   type: CallType;
   from: string;
   to: string;
@@ -1710,20 +1710,20 @@ interface Call {
   decoded?: DecodedCall;
 }
 
-interface DecodedLogInput {
+export interface DecodedLogInput {
   name: string;
   value: string;
   type: string;
   indexed: true;
 }
 
-interface DecodedLog {
+export interface DecodedLog {
   eventName: string;
   inputs: DecodedLogInput[];
   authority: DecodingAuthority;
 }
 
-interface Log {
+export interface Log {
   topics: string[];
   address: string;
   data: string;
