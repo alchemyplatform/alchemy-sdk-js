@@ -1666,8 +1666,13 @@ export interface SimulateAssetChangesResponse {
   error?: string;
 }
 
-export interface SimulateExecutionOptions {
-  format: 'FLAT' | 'NESTED';
+export enum SimulateExecutionFormat {
+  FLAT = 'FLAT',
+  NESTED = 'NESTED'
+}
+
+/** Options for the {@link TransactNamespace.simulateExecution} method. */ export interface SimulateExecutionOptions {
+  format: SimulateExecutionFormat;
 }
 
 export enum DecodingAuthority {
