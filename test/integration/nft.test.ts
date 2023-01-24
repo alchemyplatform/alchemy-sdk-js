@@ -402,10 +402,7 @@ describe('E2E integration tests', () => {
   });
 
   it('getNftSales()', async () => {
-    const response = await alchemy.nft.getNftSales({
-      contractAddress: '0xe785E82358879F061BC3dcAC6f0444462D4b5330',
-      tokenId: 44
-    });
+    const response = await alchemy.nft.getNftSales();
 
     expect(response.pageKey).toBeDefined();
     verifyNftSalesData(response);

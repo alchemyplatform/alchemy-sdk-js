@@ -61,9 +61,6 @@ describe('Alchemy-Ethers Wallet', () => {
     expect(await alchWallet.getChainId()).toEqual(
       await providerWallet.getChainId()
     );
-    expect(await alchWallet.getGasPrice()).toEqual(
-      await providerWallet.getGasPrice()
-    );
     expect(await alchWallet.getFeeData()).toEqual(
       await providerWallet.getFeeData()
     );

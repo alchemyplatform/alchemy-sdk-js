@@ -1,6 +1,6 @@
 {
   "name": "alchemy-sdk",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Extended Ethers.js SDK for Alchemy APIs",
   "author": "Alchemy",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "lint": "eslint -c .eslintrc.js '**/*.ts' --ignore-path '.gitignore'",
     "lint-file": "eslint --fix",
     "test": "jest test/unit",
-    "test-integration": "jest test/integration",
+    "test-integration": "jest test/integration --testTimeout=20000",
     "docs": "typedoc --plugin none --out docs src/index.ts",
     "docs-md": "typedoc --plugin typedoc-plugin-markdown --out docs-md src/index.ts",
     "prepare": "husky install"

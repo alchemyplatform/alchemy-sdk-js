@@ -1,6 +1,5 @@
 import type { Log } from '@ethersproject/abstract-provider';
 import { resolveProperties } from '@ethersproject/properties';
-import { FormatFunc } from '@ethersproject/providers/src.ts/formatter';
 
 import { AlchemyConfig } from '../api/alchemy-config';
 import { toHex } from '../api/util';
@@ -151,12 +150,13 @@ async function getFilter(
  *
  * This function is directly copied over from ethers implementation of
  * `Formatter.arrayOf()`. It is copied here to avoid having to import the
- * `Formatter` class from ethers.
+ * `Formatter` class or `FormatterFunc` type from ethers, that are not part of
+ * the default export.
  *
  * This function returns a function that applies the formatter to an array of
  * values, and is used to format the logs returned by `getLogs()`.
  */
-function arrayOf(format: FormatFunc): FormatFunc {
+function arrayOf(format: any): any {
   return function (array: any): Array<any> {
     if (!Array.isArray(array)) {
       throw new Error('not an array');

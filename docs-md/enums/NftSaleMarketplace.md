@@ -2,7 +2,8 @@
 
 # Enumeration: NftSaleMarketplace
 
-Enum representing the supported NFT marketplaces by the [getNftSales](../classes/NftNamespace.md#getnftsales) endpoint.
+Enum representing the supported NFT marketplaces by the
+[NftNamespace.getNftSales](../classes/NftNamespace.md#getnftsales) method.
 
 ## Table of contents
 
@@ -21,7 +22,7 @@ Enum representing the supported NFT marketplaces by the [getNftSales](../classes
 
 #### Defined in
 
-[src/types/types.ts:1112](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1112)
+[src/types/types.ts:1151](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1151)
 
 ___
 
@@ -31,7 +32,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1111](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1111)
+[src/types/types.ts:1150](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1150)
 
 ___
 
@@ -41,7 +42,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1114](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1114)
+[src/types/types.ts:1153](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1153)
 
 ___
 
@@ -51,4 +52,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1113](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1113)
+[src/types/types.ts:1152](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1152)
