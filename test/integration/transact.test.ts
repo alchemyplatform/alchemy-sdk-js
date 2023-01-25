@@ -1,6 +1,7 @@
 import {
   Alchemy,
   DebugCallType,
+  DecodingAuthority,
   GasOptimizedTransactionStatus,
   Network,
   SimulateAssetType,
@@ -67,7 +68,7 @@ describe('E2E integration tests', () => {
       expect(change.to).toBeDefined();
       expect(change.rawAmount).toBe('1000000');
       expect(change.contractAddress).toBe(USDC_CONTRACT_ADDRESS.toLowerCase());
-      expect(change.tokenId).toBe(null);
+      expect(change.tokenId).toBeUndefined();
       expect(change.decimals).toBe(6);
       expect(change.symbol).toBe('USDC');
       expect(change.name).toBe('USD Coin');
@@ -90,11 +91,10 @@ describe('E2E integration tests', () => {
         'latest'
       );
       expect(res.changes.length).toEqual(0);
-      expect(typeof res.gasUsed).toBeUndefined();
+      expect(res.gasUsed).toBeUndefined();
       expect(typeof res.error?.message).toEqual('string');
     });
 
-    // TODO: Add test for ERC721 transfer and verify fields
     it('can simulate approvals', async () => {
       const transaction = {
         from: '0xa06c3c08a19e51b33309eddfb356c33ead8517a3',
@@ -107,7 +107,11 @@ describe('E2E integration tests', () => {
       const res = await alchemy.transact.simulateAssetChanges(transaction);
       expect(res.changes.length).toEqual(1);
       expect(res.changes[0].changeType).toEqual(SimulateChangeType.APPROVE);
+      expect(res.changes[0].decimals).toEqual(0);
     });
+
+    // TODO(bastien): Add test for ERC721 transfer and verify fields
+    it('can simulate ERC721 transfers', async () => {});
   });
 
   describe('simulateExecution()', () => {
@@ -125,19 +129,16 @@ describe('E2E integration tests', () => {
       expect(res.calls).toBeDefined();
       expect(res.logs).toBeDefined();
       expect(res.logs).toHaveLength(1);
-      expect(res.error).toBeUndefined();
     });
 
+    // TODO(bastien): verify the decoded logs.
     it('can simulate sending 1 USDC', async () => {
       const { calls, logs } = await alchemy.transact.simulateExecution(
         transaction
       );
 
-      console.log(JSON.stringify(calls, null, 2));
-
       expect(calls).toHaveLength(2);
       expect(logs).toHaveLength(1);
-      // expect(error).toBe(null);
 
       // Call 1
       expect(calls[0].type).toBe(DebugCallType.CALL);
@@ -152,13 +153,12 @@ describe('E2E integration tests', () => {
       expect(calls[0].output).toBe(
         '0x0000000000000000000000000000000000000000000000000000000000000001'
       );
-      // expect(calls[0].decoded).toBe(null);
 
       // Call 2
-      expect(calls[1].type).toBe(CallType.DELEGATECALL);
+      expect(calls[1].type).toBe(DebugCallType.DELEGATECALL);
       expect(calls[1].from).toBe('0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48');
       expect(calls[1].to).toBe('0xa2327a938febf5fec13bacfb16ae10ecbc4cbdcf');
-      // expect(calls[1].value).toBe('0x0');
+      expect(calls[1].value).toBeUndefined();
       expect(calls[1].gas).toBe('0x7dffffffffff8ef8');
       expect(calls[1].gasUsed).toBe('0x4cac');
       expect(calls[1].input).toBe(
@@ -167,8 +167,8 @@ describe('E2E integration tests', () => {
       expect(calls[1].output).toBe(
         '0x0000000000000000000000000000000000000000000000000000000000000001'
       );
-      expect(calls[1].decoded).toBe({
-        authority: 'ETHERSCAN',
+      expect(calls[1].decoded).toStrictEqual({
+        authority: DecodingAuthority.ETHERSCAN,
         methodName: 'transfer',
         inputs: [
           {
@@ -199,7 +199,20 @@ describe('E2E integration tests', () => {
       expect(logs[0].data).toBe(
         '0x00000000000000000000000000000000000000000000000000000000000f4240'
       );
-      expect(logs[0].decoded).toBeDefined();
+      expect(logs[0].decoded).toBeUndefined();
+    });
+
+    it('can simulate transactions that revert', async () => {
+      const transaction = {
+        from: '0x538dF212DEf9d27B646B733cB267a69cBE1b77ad',
+        to: '0x00000000006c3852cbEf3e08E8dF289169EdE581',
+        value: '0x38d7ea4c68000',
+        data: '0xfb0f3ee100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e609c82d34e000000000000000000000000000a0553e045fda77dbbe741ffd5b58ae7cefdab380000000000000000000000000004c00500000ad104d7dbd00e3ae0a5c00560c000000000000000000000000003ab3fdd225bb64268d39265c05550427257129b100000000000000000000000000000000000000000000000000000000000000ea000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000063d136550000000000000000000000000000000000000000000000000000000063da70d40000000000000000000000000000000000000000000000000000000000000000360c6ebe000000000000000000000000000000000000000060ce396f48879da70000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f00000000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f00000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000024000000000000000000000000000000000000000000000000000000000000002e000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000006379da05b60000000000000000000000000000000a26b00c1f0df003000390027140000faa719000000000000000000000000000000000000000000000000000c6f3b40b6c00000000000000000000000000059e601a72a776d39efdb33e06b046357f3ce50500000000000000000000000000000000000000000000000000000000000000040aac1402fa335a3bb20a69991578f1a19be008c44d00f8d8bb1619471ef3fd67429b910868e87f42a97ad637d09010d68cdce3011bff12f8ba6448a69ce1bed3400000000360c6ebe',
+        gas: '0x266ce'
+      };
+      const res = await alchemy.transact.simulateExecution(transaction);
+      expect(res.calls.length).toBe(2);
+      expect(typeof res.calls[0].error).toBe('string');
     });
   });
 

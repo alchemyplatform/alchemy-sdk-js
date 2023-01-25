@@ -13,7 +13,6 @@ import {
   GasOptimizedTransactionStatusResponse,
   SendPrivateTransactionOptions,
   SimulateAssetChangesResponse,
-  SimulateExecutionOptions,
   SimulateExecutionResponse
 } from '../types/types';
 import { nullsToUndefined } from '../util/util';
@@ -105,7 +104,8 @@ export class TransactNamespace {
    * blockchain.
    *
    * @param transaction The transaction to simulate.
-   * @param blockIdentifier
+   * @param blockIdentifier Optional block identifier to simulate the
+   * transaction in.
    */
   async simulateAssetChanges(
     transaction: DebugTransaction,
@@ -131,21 +131,24 @@ export class TransactNamespace {
    * Note that this method does not run the transaction on the blockchain.
    *
    * @param transaction The transaction to simulate.
-   * @param options Optional options to choose response format (flat or nested).
+   * @param blockIdentifier Optional block identifier to simulate the
+   * transaction in.
    */
-  simulateExecution(
-    transaction: DebugTransaction,
-    options?: SimulateExecutionOptions
-  ): Promise<SimulateExecutionResponse>;
   async simulateExecution(
-    transaction: DebugTransaction
+    transaction: DebugTransaction,
+    blockIdentifier?: BlockIdentifier
   ): Promise<SimulateExecutionResponse> {
     const provider = await this.config.getProvider();
-    return provider._send(
+    const params =
+      blockIdentifier !== undefined
+        ? [transaction, blockIdentifier]
+        : [transaction];
+    const res = provider._send(
       'alchemy_simulateExecution',
-      [transaction],
+      params,
       'simulateExecution'
     );
+    return nullsToUndefined(res);
   }
 
   /**

@@ -1626,35 +1626,25 @@ export interface SendPrivateTransactionOptions {
 
 /**
  * Asset type returned when calling {@link TransactNamespace.simulateAssetChanges}.
- * Allows you to determine if the assets approved or / and transferred are native, tokens or NFTs.
+ * Allows you to determine if the assets approved or / and transferred are
+ * native, tokens or NFTs.
  */
-/** The type of asset in a {@link SimulateAssetChange}*/
 export enum SimulateAssetType {
   /**
-   * Native transfers
-   * i.e. involving the currency of the chain you are simulating on.
-   * ETH for Ethereum, MATIC for Polygon, ETH for Arbitrum.
+   * Native transfers that involve the currency of the chain the simulation is
+   * run on (ex: ETH for Ethereum, MATIC for Polygon, ETH for Arbitrum).
    */
   NATIVE = 'NATIVE',
-
   /** ERC20 approval or transfers. */
   ERC20 = 'ERC20',
-
   /** ERC721 approval or transfers. */
   ERC721 = 'ERC721',
-
   /** ERC1155 approval or transfers. */
   ERC1155 = 'ERC1155',
-
-  /** Only applies to ApproveForAll.
-   * In rare cases, we are not yet able to get the token type.
-   * For ApproveForAll events - the event signature is not enough to differentiate between ERC721 and ERC1155 given both have the same signature.
-   * We will return NFT in this situation. */
-  NFT = 'NFT',
-
-  /** Approval or transfers.
-   * Special contracts that don't follow ERC 721/1155.
-   * Currently CryptoKitties and CryptoPunks. */
+  /**
+   * Special contracts that don't follow ERC 721/1155.Currently limited to
+   * CryptoKitties and CryptoPunks.
+   */
   SPECIAL_NFT = 'SPECIAL_NFT'
 }
 
@@ -1663,20 +1653,26 @@ export enum SimulateAssetType {
  */
 export enum SimulateChangeType {
   /**
+   * Represents a transaction that approved or disapproved permissions for a
+   * contract.
+   *
    * APPROVE without token ID → approve all tokens
    * APPROVE without amount → approve all amount
    * APPROVE with zero amount → approval being cleared
    */
   APPROVE = 'APPROVE',
 
+  /**
+   * Represents a transaction that transferred tokens from one address to another.
+   */
   TRANSFER = 'TRANSFER'
 }
 
 /**
- * The error field returned in a {@link SimulateAssetChangesResponse} and
- * {@link SimulateExecutionResponse} if the simulation failed.
+ * The error field returned in a {@link SimulateAssetChangesResponse} if the
+ * simulation failed.
  */
-export interface SimulationError extends Record<string, any> {
+export interface SimulateAssetChangesError extends Record<string, any> {
   /** The error message. */
   message: string;
 }
@@ -1685,7 +1681,6 @@ export interface SimulationError extends Record<string, any> {
  * Represents an asset change from a call to
  * {@link TransactNamespace.simulateAssetChanges}.
  */
-
 export interface SimulateAssetChangesChange {
   /** The type of asset from the transaction. */
   assetType: SimulateAssetType;
@@ -1701,7 +1696,7 @@ export interface SimulateAssetChangesChange {
 
   /**
    * The raw amount as an integer string. Only available on TRANSFER changes for
-   * ERC20 and NATIVE assets, or ERC721/ERC1155 disapprove changes (field set to
+   * NATIVE and ERC20 assets, or ERC721/ERC1155 disapprove changes (field set to
    * '0').
    */
   rawAmount?: string;
@@ -1709,7 +1704,7 @@ export interface SimulateAssetChangesChange {
   /**
    * The amount as an integer string. This value is calculated by applying the
    * `decimals` field to the `rawAmount` field. Only available on TRANSFER
-   * changes for ERC20 and NATIVE assets, or ERC721/ERC1155 disapprove changes
+   * changes for NATIVE and ERC20 assets, or ERC721/ERC1155 disapprove changes
    * (field set to '0').
    */
   amount?: string;
@@ -1717,13 +1712,15 @@ export interface SimulateAssetChangesChange {
   /** The name of the asset transferred, if available. */
   name?: string;
 
-  /** The symbol of the asset transferred if available.*/
+  /** The symbol of the asset transferred if available. */
   symbol?: string;
 
   /**
-   * The number of decimals used by the ERC20 token. Set to 0 otherwise.
+   * The number of decimals used by the ERC20 token. Set to 0 for APPROVE
+   * changes. Field is undefined if it's not defined in the contract and not
+   * available from other sources.
    */
-  decimals: number;
+  decimals?: number;
 
   /**
    * The contract address of the asset. Only applicable to ERC20, ERC721,
@@ -1750,59 +1747,54 @@ export interface SimulateAssetChangesResponse {
   /** An array of asset changes that resulted from the transaction. */
   changes: SimulateAssetChangesChange[];
   /**
-   * The amount of gas used by the transaction. The field is undefined if an
-   * error occurred.
+   * The amount of gas used by the transaction represented as a hex string. The
+   * field is undefined if an error occurred.
    */
   gasUsed?: string;
   /** Optional error field that is present if an error occurred. */
-  error?: SimulationError;
+  error?: SimulateAssetChangesError;
 }
 
 /**
- * Option to determine the response format of {@link TransactNamespace.simulateExecution}.
- * Defaults to {@link SimulateExecutionFormat.FLAT}.
+ * Authority used to decode calls and logs when using the
+ * {@link TransactNamespace.simulateExecution} method.
  */
-export enum SimulateExecutionFormat {
-  /** Flat response.
-   * Cumulative gas used is found in 1st entry of calls array (`calls[0]`).
-   */
-  FLAT = 'FLAT',
-
-  /** Nested response.
-   * Cumulative gas used is found at the top level of response.
-   */
-  NESTED = 'NESTED'
-}
-
-/** Options for the {@link TransactNamespace.simulateExecution} method. */ export interface SimulateExecutionOptions {
-  /** Whether to return flat or nested response.
-   * Defaults to FLAT.
-   */
-  format: SimulateExecutionFormat;
-}
-
-/** List of authorities used to decode calls and logs when usin the {@link TransactNamespace.simulateExecution} method. */
 export enum DecodingAuthority {
   ETHERSCAN = 'ETHERSCAN'
 }
 
+/** The input or output parameters from a {@link DecodedDebugCallTrace}. */
 export interface DecodedCallParam {
+  /** Value of the parameter. */
   value: string;
+  /** The name of the parameter. */
   name: string;
+  /** The type of the parameter.*/
   type: string;
 }
 
+/** The input parameters from a {@link DecodedLog}. */
 export interface DecodedLogInput extends DecodedCallParam {
+  /** Whether the log is marked as indexed in the smart contract. */
   indexed: boolean;
 }
 
+/**
+ * Decoded representation of the call trace that is part of a
+ * {@link SimulationCallTrace}.
+ */
 export interface DecodedDebugCallTrace {
+  /** The smart contract method called. */
   methodName: string;
+  /** Method inputs. */
   inputs: DecodedCallParam[];
+  /** Method outputs. */
   outputs: DecodedCallParam[];
+  /** The source used to provide the decoded call trace. */
   authority: DecodingAuthority;
 }
 
+/** The type of call in a debug call trace. */
 export enum DebugCallType {
   CREATE = 'CREATE',
   CALL = 'CALL',
@@ -1810,36 +1802,56 @@ export enum DebugCallType {
   DELEGATECALL = 'DELEGATECALL'
 }
 
+/**
+ * Debug call trace in a {@link SimulateExecutionResponse}.
+ */
 export interface SimulationCallTrace
   extends Omit<DebugCallTrace, 'revertReason' | 'calls'> {
+  /** The type of call. */
   type: DebugCallType;
+  /** A decoded version of the call. Provided on a best-effort basis. */
   decoded?: DecodedDebugCallTrace;
 }
 
-export interface DecodedDebugLog {
+/**
+ * Decoded representation of the debug log that is part of a
+ * {@link SimulationDebugLog}.
+ */
+
+export interface DecodedLog {
+  /** The decoded name of the log event. */
   eventName: string;
+  /** The decoded inputs to the log. */
   inputs: DecodedLogInput[];
+  /** The source used to provide the decoded log. */
   authority: DecodingAuthority;
 }
 
+/**
+ * Debug log in a {@link SimulateExecutionResponse}.
+ */
 export interface SimulationDebugLog {
+  /** An array of topics in the log. */
   topics: string[];
+  /** The address of the contract that generated the log. */
   address: string;
+  /** The data included the log. */
   data: string;
-  decoded?: DecodedDebugLog;
+  /** A decoded version of the log. Provided on a best-effort basis. */
+  decoded?: DecodedLog;
 }
 
 /** Response object for the {@link TransactNamespace.simulateExecution} method. */
 export interface SimulateExecutionResponse {
   /**
-   * An array of traces generated during simulation.
-   * Decoded if possible.
+   * An array of traces generated during simulation that represent the execution
+   * of the transaction along with the decoded calls if available.
    */
   calls: SimulationCallTrace[];
 
   /**
-   * An array of logs emitted during simulation.
-   * Decoded if possible.
+   * An array of logs emitted during simulation along with the decoded logs if
+   * available.
    */
   logs: SimulationDebugLog[];
 }
