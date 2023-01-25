@@ -89,7 +89,8 @@ describe('E2E integration tests', () => {
         'latest'
       );
       expect(res.changes.length).toEqual(0);
-      expect(typeof res.error).toEqual('string');
+      expect(typeof res.gasUsed).toBeUndefined();
+      expect(typeof res.error?.message).toEqual('string');
     });
 
     // TODO: Add test for ERC721 transfer and verify fields
@@ -103,7 +104,8 @@ describe('E2E integration tests', () => {
       };
 
       const res = await alchemy.transact.simulateAssetChanges(transaction);
-      console.log(res);
+      expect(res.changes.length).toEqual(1);
+      expect(res.changes[0].changeType).toEqual(SimulateChangeType.APPROVE);
     });
   });
 
@@ -121,7 +123,7 @@ describe('E2E integration tests', () => {
       const res = await alchemy.transact.simulateExecution(transaction);
       expect(res.calls).toBeDefined();
       expect(res.logs).toHaveLength(1);
-      // expect(res.error).toBeDefined();
+      expect(res.error).toBeUndefined();
     });
 
     it('can simulate sending 1 USDC', async () => {

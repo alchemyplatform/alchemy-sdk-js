@@ -1639,6 +1639,15 @@ export enum SimulateChangeType {
 }
 
 /**
+ * The error field returned in a {@link SimulateAssetChangesResponse} and
+ * {@link SimulateExecutionResponse} if the simulation failed.
+ */
+export interface SimulationError extends Record<string, any> {
+  /** The error message. */
+  message: string;
+}
+
+/**
  * Represents an asset change from a call to
  * {@link TransactNamespace.simulateAssetChanges}.
  */
@@ -1701,7 +1710,7 @@ export interface SimulateAssetChangesResponse {
    */
   gasUsed?: string;
   /** Optional error field that is present if an error occurred. */
-  error?: string;
+  error?: SimulationError;
 }
 
 export enum SimulateExecutionFormat {
