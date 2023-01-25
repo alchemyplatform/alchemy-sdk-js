@@ -1,5 +1,6 @@
 import {
   Alchemy,
+  DebugCallType,
   GasOptimizedTransactionStatus,
   Network,
   SimulateAssetType,
@@ -122,13 +123,83 @@ describe('E2E integration tests', () => {
     it('can simulate a transaction', async () => {
       const res = await alchemy.transact.simulateExecution(transaction);
       expect(res.calls).toBeDefined();
+      expect(res.logs).toBeDefined();
       expect(res.logs).toHaveLength(1);
       expect(res.error).toBeUndefined();
     });
 
     it('can simulate sending 1 USDC', async () => {
-      // const res = await alchemy.transact.simulateExecution(transaction);
-      // TODO: add tests
+      const { calls, logs } = await alchemy.transact.simulateExecution(
+        transaction
+      );
+
+      console.log(JSON.stringify(calls, null, 2));
+
+      expect(calls).toHaveLength(2);
+      expect(logs).toHaveLength(1);
+      // expect(error).toBe(null);
+
+      // Call 1
+      expect(calls[0].type).toBe(DebugCallType.CALL);
+      expect(calls[0].from).toBe('0xd8da6bf26964af9d7eed9e03e53415d37aa96045');
+      expect(calls[0].to).toBe('0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48');
+      expect(calls[0].value).toBe('0x0');
+      expect(calls[0].gas).toBe('0x7fffffffffffaad0');
+      expect(calls[0].gasUsed).toBe('0x6925');
+      expect(calls[0].input).toBe(
+        '0xa9059cbb000000000000000000000000fc43f5f9dd45258b3aff31bdbe6561d97e8b71de00000000000000000000000000000000000000000000000000000000000f4240'
+      );
+      expect(calls[0].output).toBe(
+        '0x0000000000000000000000000000000000000000000000000000000000000001'
+      );
+      // expect(calls[0].decoded).toBe(null);
+
+      // Call 2
+      expect(calls[1].type).toBe(CallType.DELEGATECALL);
+      expect(calls[1].from).toBe('0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48');
+      expect(calls[1].to).toBe('0xa2327a938febf5fec13bacfb16ae10ecbc4cbdcf');
+      // expect(calls[1].value).toBe('0x0');
+      expect(calls[1].gas).toBe('0x7dffffffffff8ef8');
+      expect(calls[1].gasUsed).toBe('0x4cac');
+      expect(calls[1].input).toBe(
+        '0xa9059cbb000000000000000000000000fc43f5f9dd45258b3aff31bdbe6561d97e8b71de00000000000000000000000000000000000000000000000000000000000f4240'
+      );
+      expect(calls[1].output).toBe(
+        '0x0000000000000000000000000000000000000000000000000000000000000001'
+      );
+      expect(calls[1].decoded).toBe({
+        authority: 'ETHERSCAN',
+        methodName: 'transfer',
+        inputs: [
+          {
+            name: 'to',
+            value: '0xfc43f5f9dd45258b3aff31bdbe6561d97e8b71de',
+            type: 'address'
+          },
+          {
+            name: 'value',
+            value: '1000000',
+            type: 'uint256'
+          }
+        ],
+        outputs: [
+          {
+            name: '',
+            value: 'true',
+            type: 'bool'
+          }
+        ]
+      });
+
+      // Logs
+      expect(logs[0].topics).toBeDefined();
+      expect(logs[0].address).toBe(
+        '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
+      );
+      expect(logs[0].data).toBe(
+        '0x00000000000000000000000000000000000000000000000000000000000f4240'
+      );
+      expect(logs[0].decoded).toBeDefined();
     });
   });
 
