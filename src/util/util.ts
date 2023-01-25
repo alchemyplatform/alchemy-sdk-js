@@ -278,3 +278,19 @@ export function parseOpenSeaMetadata(
 }
 
 export const IS_BROWSER = typeof window !== 'undefined' && window !== null;
+
+/** Recursively converts all `null` fields to `undefined. */
+// TODO: Add typing support so it doesn't return `any`.
+export function nullsToUndefined<T>(obj: T): any {
+  if (obj === null) {
+    return undefined as any;
+  }
+
+  // if `obj` is an object, recursively convert all `null` fields to `undefined`.
+  if (typeof obj === 'object') {
+    for (const key in obj) {
+      obj[key] = nullsToUndefined(obj[key]) as any;
+    }
+  }
+  return obj as any;
+}

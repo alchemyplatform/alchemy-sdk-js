@@ -4,6 +4,9 @@
 
 ### Major Changes
 
+- Added `TransactNamespace.simulateAssetChanges()` to simulate a transaction and return a list of asset changes.
+- Added `TransactNamespace.simulateExecution()` to simulate a transaction and return a list of decoded logs and traces.
+
 ### Minor Changes
 
 ## 2.3.1

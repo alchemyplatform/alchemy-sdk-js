@@ -1625,6 +1625,238 @@ export interface SendPrivateTransactionOptions {
 }
 
 /**
+ * Asset type returned when calling {@link TransactNamespace.simulateAssetChanges}.
+ * Allows you to determine if the assets approved or / and transferred are
+ * native, tokens or NFTs.
+ */
+export enum SimulateAssetType {
+  /**
+   * Native transfers that involve the currency of the chain the simulation is
+   * run on (ex: ETH for Ethereum, MATIC for Polygon, ETH for Arbitrum).
+   */
+  NATIVE = 'NATIVE',
+  /** ERC20 approval or transfers. */
+  ERC20 = 'ERC20',
+  /** ERC721 approval or transfers. */
+  ERC721 = 'ERC721',
+  /** ERC1155 approval or transfers. */
+  ERC1155 = 'ERC1155',
+  /**
+   * Special contracts that don't follow ERC 721/1155.Currently limited to
+   * CryptoKitties and CryptoPunks.
+   */
+  SPECIAL_NFT = 'SPECIAL_NFT'
+}
+
+/**
+ * Change type returned when calling {@link TransactNamespace.simulateAssetChanges}.
+ */
+export enum SimulateChangeType {
+  /**
+   * Represents a transaction that approved or disapproved permissions for a
+   * contract.
+   *
+   * APPROVE without token ID → approve all tokens
+   * APPROVE without amount → approve all amount
+   * APPROVE with zero amount → approval being cleared
+   */
+  APPROVE = 'APPROVE',
+
+  /**
+   * Represents a transaction that transferred tokens from one address to another.
+   */
+  TRANSFER = 'TRANSFER'
+}
+
+/**
+ * The error field returned in a {@link SimulateAssetChangesResponse} if the
+ * simulation failed.
+ */
+export interface SimulateAssetChangesError extends Record<string, any> {
+  /** The error message. */
+  message: string;
+}
+
+/**
+ * Represents an asset change from a call to
+ * {@link TransactNamespace.simulateAssetChanges}.
+ */
+export interface SimulateAssetChangesChange {
+  /** The type of asset from the transaction. */
+  assetType: SimulateAssetType;
+
+  /** The type of change from the transaction. */
+  changeType: SimulateChangeType;
+
+  /** The from address. */
+  from: string;
+
+  /** The to address. */
+  to: string;
+
+  /**
+   * The raw amount as an integer string. Only available on TRANSFER changes for
+   * NATIVE and ERC20 assets, or ERC721/ERC1155 disapprove changes (field set to
+   * '0').
+   */
+  rawAmount?: string;
+
+  /**
+   * The amount as an integer string. This value is calculated by applying the
+   * `decimals` field to the `rawAmount` field. Only available on TRANSFER
+   * changes for NATIVE and ERC20 assets, or ERC721/ERC1155 disapprove changes
+   * (field set to '0').
+   */
+  amount?: string;
+
+  /** The name of the asset transferred, if available. */
+  name?: string;
+
+  /** The symbol of the asset transferred if available. */
+  symbol?: string;
+
+  /**
+   * The number of decimals used by the ERC20 token. Set to 0 for APPROVE
+   * changes. Field is undefined if it's not defined in the contract and not
+   * available from other sources.
+   */
+  decimals?: number;
+
+  /**
+   * The contract address of the asset. Only applicable to ERC20, ERC721,
+   * ERC1155, NFT and SPECIAL_NFT transactions.
+   */
+  contractAddress?: string;
+
+  /**
+   * URL for the logo of the asset, if available. Only applicable to ERC20 transactions.
+   */
+  logo?: string;
+
+  /**
+   * The token id of the asset transferred. Only applicable to ERC721,
+   * ERC1155 and SPECIAL_NFT NFTs.
+   */
+  tokenId?: string;
+}
+
+/**
+ * Response object for the {@link TransactNamespace.simulateAssetChanges} method.
+ */
+export interface SimulateAssetChangesResponse {
+  /** An array of asset changes that resulted from the transaction. */
+  changes: SimulateAssetChangesChange[];
+  /**
+   * The amount of gas used by the transaction represented as a hex string. The
+   * field is undefined if an error occurred.
+   */
+  gasUsed?: string;
+  /** Optional error field that is present if an error occurred. */
+  error?: SimulateAssetChangesError;
+}
+
+/**
+ * Authority used to decode calls and logs when using the
+ * {@link TransactNamespace.simulateExecution} method.
+ */
+export enum DecodingAuthority {
+  ETHERSCAN = 'ETHERSCAN'
+}
+
+/** The input or output parameters from a {@link DecodedDebugCallTrace}. */
+export interface DecodedCallParam {
+  /** Value of the parameter. */
+  value: string;
+  /** The name of the parameter. */
+  name: string;
+  /** The type of the parameter.*/
+  type: string;
+}
+
+/** The input parameters from a {@link DecodedLog}. */
+export interface DecodedLogInput extends DecodedCallParam {
+  /** Whether the log is marked as indexed in the smart contract. */
+  indexed: boolean;
+}
+
+/**
+ * Decoded representation of the call trace that is part of a
+ * {@link SimulationCallTrace}.
+ */
+export interface DecodedDebugCallTrace {
+  /** The smart contract method called. */
+  methodName: string;
+  /** Method inputs. */
+  inputs: DecodedCallParam[];
+  /** Method outputs. */
+  outputs: DecodedCallParam[];
+  /** The source used to provide the decoded call trace. */
+  authority: DecodingAuthority;
+}
+
+/** The type of call in a debug call trace. */
+export enum DebugCallType {
+  CREATE = 'CREATE',
+  CALL = 'CALL',
+  STATICCALL = 'STATICCALL',
+  DELEGATECALL = 'DELEGATECALL'
+}
+
+/**
+ * Debug call trace in a {@link SimulateExecutionResponse}.
+ */
+export interface SimulationCallTrace
+  extends Omit<DebugCallTrace, 'revertReason' | 'calls'> {
+  /** The type of call. */
+  type: DebugCallType;
+  /** A decoded version of the call. Provided on a best-effort basis. */
+  decoded?: DecodedDebugCallTrace;
+}
+
+/**
+ * Decoded representation of the debug log that is part of a
+ * {@link SimulationDebugLog}.
+ */
+
+export interface DecodedLog {
+  /** The decoded name of the log event. */
+  eventName: string;
+  /** The decoded inputs to the log. */
+  inputs: DecodedLogInput[];
+  /** The source used to provide the decoded log. */
+  authority: DecodingAuthority;
+}
+
+/**
+ * Debug log in a {@link SimulateExecutionResponse}.
+ */
+export interface SimulationDebugLog {
+  /** An array of topics in the log. */
+  topics: string[];
+  /** The address of the contract that generated the log. */
+  address: string;
+  /** The data included the log. */
+  data: string;
+  /** A decoded version of the log. Provided on a best-effort basis. */
+  decoded?: DecodedLog;
+}
+
+/** Response object for the {@link TransactNamespace.simulateExecution} method. */
+export interface SimulateExecutionResponse {
+  /**
+   * An array of traces generated during simulation that represent the execution
+   * of the transaction along with the decoded calls if available.
+   */
+  calls: SimulationCallTrace[];
+
+  /**
+   * An array of logs emitted during simulation along with the decoded logs if
+   * available.
+   */
+  logs: SimulationDebugLog[];
+}
+
+/**
  * Response object for the {@link TransactNamespace.sendGasOptimizedTransaction} method.
  *
  * @internal
@@ -1898,7 +2130,7 @@ export type AddressWebhookUpdate =
   | WebhookAddressOverride;
 
 /**
- * Transaction object used in {@link DebugNamespace.traceCall}.
+ * Transaction object used in {@link DebugNamespace.traceCall}, {@link TransactNamespace.simulateAssetChanges} and {@link TransactNamespace.simulateExecution}.
  */
 export interface DebugTransaction {
   /** The address the transaction is directed to. */
