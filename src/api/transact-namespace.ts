@@ -6,7 +6,6 @@ import {
 import type { BigNumber } from '@ethersproject/bignumber';
 import { Deferrable } from '@ethersproject/properties';
 
-import { RawSimulateAssetChangesResponse } from '../internal/raw-interfaces';
 import {
   BlockIdentifier,
   DebugTransaction,
@@ -117,11 +116,11 @@ export class TransactNamespace {
       blockIdentifier !== undefined
         ? [transaction, blockIdentifier]
         : [transaction];
-    const res = (await provider._send(
+    const res = await provider._send(
       'alchemy_simulateAssetChanges',
       params,
       'simulateAssetChanges'
-    )) as RawSimulateAssetChangesResponse;
+    );
     return nullsToUndefined(res);
   }
 

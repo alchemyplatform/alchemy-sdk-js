@@ -5,7 +5,6 @@ import {
   NftSaleFeeData,
   NftSpamClassification,
   NftTokenType,
-  SimulateAssetChange,
   TokenUri
 } from '../types/types';
 
@@ -315,9 +314,4 @@ export interface RawContractForOwner
   tokenId: string;
   media: Media;
   opensea?: RawOpenSeaCollectionMetadata;
-}
-
-export interface RawSimulateAssetChangesResponse {
-  changes: SimulateAssetChange[];
-  error: string | null;
 }
