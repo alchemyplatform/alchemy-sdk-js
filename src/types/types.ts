@@ -1663,14 +1663,12 @@ export enum SimulateAssetType {
  */
 export enum SimulateChangeType {
   /**
-   * Approval
    * APPROVE without token ID → approve all tokens
    * APPROVE without amount → approve all amount
    * APPROVE with zero amount → approval being cleared
    */
   APPROVE = 'APPROVE',
 
-  /** T */
   TRANSFER = 'TRANSFER'
 }
 
@@ -1715,8 +1713,10 @@ export interface SimulateAssetChangesChange {
    * (field set to '0').
    */
   amount?: string;
+
   /** The name of the asset transferred, if available. */
   name?: string;
+
   /** The symbol of the asset transferred if available.*/
   symbol?: string;
 
@@ -1725,7 +1725,6 @@ export interface SimulateAssetChangesChange {
    */
   decimals: number;
 
-  /* ERC20, ERC721, ERC1555, SPECIAL_NFT */
   /**
    * The contract address of the asset. Only applicable to ERC20, ERC721,
    * ERC1155, NFT and SPECIAL_NFT transactions.
@@ -1749,7 +1748,6 @@ export interface SimulateAssetChangesChange {
  */
 export interface SimulateAssetChangesResponse {
   /** An array of asset changes that resulted from the transaction. */
-  /**  */
   changes: SimulateAssetChangesChange[];
   /**
    * The amount of gas used by the transaction. The field is undefined if an
