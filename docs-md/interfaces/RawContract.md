@@ -23,7 +23,7 @@ The contract address. `null` if it was an internal or external transfer.
 
 #### Defined in
 
-[src/types/types.ts:1305](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1305)
+[src/types/types.ts:1305](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L1305)
 
 ___
 
@@ -36,7 +36,7 @@ is not in the contract and not available from other sources.
 
 #### Defined in
 
-[src/types/types.ts:1311](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1311)
+[src/types/types.ts:1311](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L1311)
 
 ___
 
@@ -49,4 +49,4 @@ ERC721 or ERC1155 token.
 
 #### Defined in
 
-[src/types/types.ts:1302](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1302)
+[src/types/types.ts:1302](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L1302)

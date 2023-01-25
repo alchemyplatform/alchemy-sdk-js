@@ -28,7 +28,7 @@ Defaults to: "demo" (a rate-limited public API key)
 
 #### Defined in
 
-[src/types/types.ts:23](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L23)
+[src/types/types.ts:23](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L23)
 
 ___
 
@@ -41,7 +41,7 @@ in the Alchemy Dashboard on the Notify tab.
 
 #### Defined in
 
-[src/types/types.ts:49](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L49)
+[src/types/types.ts:49](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L49)
 
 ___
 
@@ -56,7 +56,7 @@ This implementation is based on the `JsonRpcBatchProvider` in ethers.
 
 #### Defined in
 
-[src/types/types.ts:63](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L63)
+[src/types/types.ts:63](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L63)
 
 ___
 
@@ -68,7 +68,7 @@ The maximum number of retries to attempt if a request fails. Defaults to 5.
 
 #### Defined in
 
-[src/types/types.ts:34](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L34)
+[src/types/types.ts:34](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L34)
 
 ___
 
@@ -83,7 +83,7 @@ Defaults to: Network.ETH_MAINNET
 
 #### Defined in
 
-[src/types/types.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L31)
+[src/types/types.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L31)
 
 ___
 
@@ -96,7 +96,7 @@ Default to 0 (No timeout).
 
 #### Defined in
 
-[src/types/types.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L55)
+[src/types/types.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L55)
 
 ___
 
@@ -112,4 +112,4 @@ that not all methods will work with custom URLs.
 
 #### Defined in
 
-[src/types/types.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L43)
+[src/types/types.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L43)

@@ -19,7 +19,7 @@ The version of the webhook. All newly created webhooks default to V2.
 
 #### Defined in
 
-[src/types/types.ts:1702](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1702)
+[src/types/types.ts:1934](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L1934)
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1703](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1703)
+[src/types/types.ts:1935](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L1935)

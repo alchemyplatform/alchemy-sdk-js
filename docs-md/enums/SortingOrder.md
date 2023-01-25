@@ -19,7 +19,7 @@ Enum for representing the supported sorting orders of the API.
 
 #### Defined in
 
-[src/types/types.ts:1139](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1139)
+[src/types/types.ts:1139](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L1139)
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1140](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1140)
+[src/types/types.ts:1140](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L1140)

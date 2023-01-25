@@ -22,7 +22,7 @@ The token Id balance for the provided owner.
 
 #### Defined in
 
-[src/types/types.ts:797](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L797)
+[src/types/types.ts:797](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L797)
 
 ___
 
@@ -34,4 +34,4 @@ The token id owned in the NFT contract.
 
 #### Defined in
 
-[src/types/types.ts:794](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L794)
+[src/types/types.ts:794](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L794)
