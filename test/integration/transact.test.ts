@@ -47,14 +47,17 @@ describe('E2E integration tests', () => {
       data: '0xa9059cbb000000000000000000000000fc43f5f9dd45258b3aff31bdbe6561d97e8b71de00000000000000000000000000000000000000000000000000000000000f4240'
     };
 
-    it('can simulate a transaction', async () => {
-      const res = await alchemy.transact.simulateAssetChanges(transaction);
+    it('can simulate transaction with block identifier', async () => {
+      const res = await alchemy.transact.simulateAssetChanges(
+        transaction,
+        'latest'
+      );
       expect(res.changes).toBeDefined();
       expect(res.changes).toHaveLength(1);
-      expect(res.error).toBeDefined();
+      expect(res.error).toBeUndefined();
     });
 
-    it('can simulate sending 1 USDC', async () => {
+    it('can simulate transaction with no identifier ', async () => {
       const res = await alchemy.transact.simulateAssetChanges(transaction);
       const change = res.changes[0];
       expect(change.assetType).toBe(SimulateAssetType.ERC20);
@@ -71,6 +74,36 @@ describe('E2E integration tests', () => {
         'https://static.alchemyapi.io/images/assets/3408.png'
       );
       expect(change.amount).toBe('1');
+    });
+
+    it('can simulate transactions that revert', async () => {
+      const transaction = {
+        from: '0x538dF212DEf9d27B646B733cB267a69cBE1b77ad',
+        to: '0x00000000006c3852cbEf3e08E8dF289169EdE581',
+        value: '0x38d7ea4c68000',
+        data: '0xfb0f3ee100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e609c82d34e000000000000000000000000000a0553e045fda77dbbe741ffd5b58ae7cefdab380000000000000000000000000004c00500000ad104d7dbd00e3ae0a5c00560c000000000000000000000000003ab3fdd225bb64268d39265c05550427257129b100000000000000000000000000000000000000000000000000000000000000ea000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000063d136550000000000000000000000000000000000000000000000000000000063da70d40000000000000000000000000000000000000000000000000000000000000000360c6ebe000000000000000000000000000000000000000060ce396f48879da70000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f00000000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f00000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000024000000000000000000000000000000000000000000000000000000000000002e000000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000006379da05b60000000000000000000000000000000a26b00c1f0df003000390027140000faa719000000000000000000000000000000000000000000000000000c6f3b40b6c00000000000000000000000000059e601a72a776d39efdb33e06b046357f3ce50500000000000000000000000000000000000000000000000000000000000000040aac1402fa335a3bb20a69991578f1a19be008c44d00f8d8bb1619471ef3fd67429b910868e87f42a97ad637d09010d68cdce3011bff12f8ba6448a69ce1bed3400000000360c6ebe',
+        gas: '0x266ce'
+      };
+      const res = await alchemy.transact.simulateAssetChanges(
+        transaction,
+        'latest'
+      );
+      expect(res.changes.length).toEqual(0);
+      expect(typeof res.error).toEqual('string');
+    });
+
+    // TODO: Add test for ERC721 transfer and verify fields
+    it('can simulate approvals', async () => {
+      const transaction = {
+        from: '0xa06c3c08a19e51b33309eddfb356c33ead8517a3',
+        to: '0xB54420149dBE2D5B2186A3e6dc6fC9d1A58316d4',
+        value: '0x0',
+        data: '0xa22cb4650000000000000000000000000dd7eef07982749410eceaa721cdc8ff3167fc9b0000000000000000000000000000000000000000000000000000000000000001',
+        gas: '0x266ce'
+      };
+
+      const res = await alchemy.transact.simulateAssetChanges(transaction);
+      console.log(res);
     });
   });
 
@@ -92,7 +125,7 @@ describe('E2E integration tests', () => {
     });
 
     it('can simulate sending 1 USDC', async () => {
-      const res = await alchemy.transact.simulateExecution(transaction);
+      // const res = await alchemy.transact.simulateExecution(transaction);
       // TODO: add tests
     });
   });

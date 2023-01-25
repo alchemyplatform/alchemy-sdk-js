@@ -1624,6 +1624,7 @@ export interface SendPrivateTransactionOptions {
   fast: boolean;
 }
 
+/** The type of asset in a {@link SimulateAssetChange}*/
 export enum SimulateAssetType {
   NATIVE = 'NATIVE',
   ERC20 = 'ERC20',
@@ -1637,32 +1638,69 @@ export enum SimulateChangeType {
   TRANSFER = 'TRANSFER'
 }
 
+/**
+ * Represents an asset change from a call to
+ * {@link TransactNamespace.simulateAssetChanges}.
+ */
 export interface SimulateAssetChange {
+  /** The type of asset from the transaction. */
   assetType: SimulateAssetType;
+  /** The type of change from the transaction. */
   changeType: SimulateChangeType;
+  /** The from address. */
   from: string;
+  /** The to address. */
   to: string;
-
-  /* All - NATIVE, ERC20, ERC721, ERC1555, SPECIAL_NFT */
-  rawAmount: string;
-  amount: string;
+  /**
+   * The raw amount as an integer string. Only available on TRANSFER changes for
+   * ERC20 and NATIVE assets, or ERC721/ERC1155 disapprove changes (field set to
+   * '0').
+   */
+  rawAmount?: string;
+  /**
+   * The amount as an integer string. This value is calculated by applying the
+   * `decimals` field to the `rawAmount` field. Only available on TRANSFER
+   * changes for ERC20 and NATIVE assets, or ERC721/ERC1155 disapprove changes
+   * (field set to '0').
+   */
+  amount?: string;
+  /** The name of the asset transferred, if available. */
   name?: string;
-  symbol: string;
+  /** The symbol of the asset transferred if available.*/
+  symbol?: string;
+  /**
+   * The number of decimals used by the ERC20 token. Set to 0 otherwise.
+   */
   decimals: number;
-
-  /* ERC20, ERC721, ERC1555, SPECIAL_NFT */
+  /**
+   * The contract address of the asset. Only applicable to ERC20, ERC721, and
+   * ERC1155 transactions.
+   */
   contractAddress?: string;
-
-  /* ERC20  */
+  /**
+   * URL for the logo of the asset, if available. Only applicable to ERC20,
+   * ERC721, and ERC1155 transactions.
+   */
   logo?: string;
-
-  /* ERC721, ERC1555  */
+  /**
+   * The token id of the asset transferred. Only applicable to ERC721 and
+   * ERC1155 NFTs.
+   */
   tokenId?: string;
 }
 
-/** Response object for the {@link TransactNamespace.simulateAssetChanges} method. */
+/**
+ * Response object for the {@link TransactNamespace.simulateAssetChanges} method.
+ */
 export interface SimulateAssetChangesResponse {
+  /** An array of asset changes that resulted from the transaction. */
   changes: SimulateAssetChange[];
+  /**
+   * The amount of gas used by the transaction. The field is undefined if an
+   * error occurred.
+   */
+  gasUsed?: string;
+  /** Optional error field that is present if an error occurred. */
   error?: string;
 }
 
@@ -1671,8 +1709,10 @@ export enum SimulateExecutionFormat {
   NESTED = 'NESTED'
 }
 
-/** Options for the {@link TransactNamespace.simulateExecution} method. */ export interface SimulateExecutionOptions {
-  format: SimulateExecutionFormat;
+/** Options for the {@link TransactNamespace.simulateExecution} method. */
+export interface SimulateExecutionOptions {
+  format?: SimulateExecutionFormat;
+  blockIdentifier?: BlockIdentifier;
 }
 
 export enum DecodingAuthority {

@@ -6,6 +6,7 @@ import {
 import type { BigNumber } from '@ethersproject/bignumber';
 import { Deferrable } from '@ethersproject/properties';
 
+import { RawSimulateAssetChangesResponse } from '../internal/raw-interfaces';
 import {
   BlockIdentifier,
   DebugTransaction,
@@ -16,6 +17,7 @@ import {
   SimulateExecutionOptions,
   SimulateExecutionResponse
 } from '../types/types';
+import { nullsToUndefined } from '../util/util';
 import { AlchemyConfig } from './alchemy-config';
 import { Wallet } from './alchemy-wallet';
 import { fromHex, toHex } from './util';
@@ -97,41 +99,43 @@ export class TransactNamespace {
   }
 
   /**
-   * Used to simulate a single transaction.
+   * Simulates the asset changes resulting from a single transaction.
    *
-   * Returns list of asset changes.
+   * Returns list of asset changes that occurred during the transaction
+   * simulation. Note that this method does not run the transaction on the
+   * blockchain.
    *
    * @param transaction The transaction to simulate.
-   * @param blockIdentifier Optional block identifier.
+   * @param blockIdentifier
    */
-  /* A function that is used to simulate asset changes. */
-  simulateAssetChanges(
+  async simulateAssetChanges(
     transaction: DebugTransaction,
     blockIdentifier?: BlockIdentifier
-  ): Promise<SimulateAssetChangesResponse>;
-  async simulateAssetChanges(
-    transaction: DebugTransaction
   ): Promise<SimulateAssetChangesResponse> {
     const provider = await this.config.getProvider();
-    return provider._send(
+    const params =
+      blockIdentifier !== undefined
+        ? [transaction, blockIdentifier]
+        : [transaction];
+    const res = (await provider._send(
       'alchemy_simulateAssetChanges',
-      [transaction],
+      params,
       'simulateAssetChanges'
-    );
+    )) as RawSimulateAssetChangesResponse;
+    return nullsToUndefined(res);
   }
 
   /**
-   * Used to simulate a single transaction.
+   * Simulates a single transaction and the resulting and returns list of
+   * decoded traces and logs that occurred during the transaction simulation.
    *
-   * Returns list of decoded traces and logs.
+   * Note that this method does not run the transaction on the blockchain.
    *
    * @param transaction The transaction to simulate.
-   * @param blockIdentifier Optional block identifier.
    * @param options Optional options to choose response format (flat or nested).
    */
   simulateExecution(
     transaction: DebugTransaction,
-    blockIdentifier?: BlockIdentifier,
     options?: SimulateExecutionOptions
   ): Promise<SimulateExecutionResponse>;
   async simulateExecution(
