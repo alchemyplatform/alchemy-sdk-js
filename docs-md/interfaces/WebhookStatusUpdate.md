@@ -21,4 +21,4 @@ Whether the webhook is active.
 
 #### Defined in
 
-[src/types/types.ts:1848](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/types/types.ts#L1848)
+[src/types/types.ts:2080](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L2080)

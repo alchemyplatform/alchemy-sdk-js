@@ -19,6 +19,8 @@ namespace via `alchemy.transact`.
 - [getTransaction](TransactNamespace.md#gettransaction)
 - [sendPrivateTransaction](TransactNamespace.md#sendprivatetransaction)
 - [sendTransaction](TransactNamespace.md#sendtransaction)
+- [simulateAssetChanges](TransactNamespace.md#simulateassetchanges)
+- [simulateExecution](TransactNamespace.md#simulateexecution)
 - [waitForTransaction](TransactNamespace.md#waitfortransaction)
 
 ## Methods
@@ -48,7 +50,7 @@ Returns a boolean indicating whether the cancellation was successful.
 
 #### Defined in
 
-[src/api/transact-namespace.ts:81](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/api/transact-namespace.ts#L81)
+[src/api/transact-namespace.ts:86](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/api/transact-namespace.ts#L86)
 
 ___
 
@@ -77,7 +79,7 @@ This is an alias for [CoreNamespace.estimateGas](CoreNamespace.md#estimategas).
 
 #### Defined in
 
-[src/api/transact-namespace.ts:144](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/api/transact-namespace.ts#L144)
+[src/api/transact-namespace.ts:204](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/api/transact-namespace.ts#L204)
 
 ___
 
@@ -97,7 +99,7 @@ transaction request.
 
 #### Defined in
 
-[src/api/transact-namespace.ts:160](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/api/transact-namespace.ts#L160)
+[src/api/transact-namespace.ts:220](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/api/transact-namespace.ts#L220)
 
 ___
 
@@ -126,7 +128,7 @@ NOTE: This is an alias for [CoreNamespace.getTransaction](CoreNamespace.md#gettr
 
 #### Defined in
 
-[src/api/transact-namespace.ts:107](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/api/transact-namespace.ts#L107)
+[src/api/transact-namespace.ts:167](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/api/transact-namespace.ts#L167)
 
 ___
 
@@ -153,7 +155,7 @@ Returns the transaction hash of the submitted transaction.
 
 #### Defined in
 
-[src/api/transact-namespace.ts:49](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/api/transact-namespace.ts#L49)
+[src/api/transact-namespace.ts:54](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/api/transact-namespace.ts#L54)
 
 ___
 
@@ -179,7 +181,60 @@ NOTE: This is an alias for [CoreNamespace.sendTransaction](CoreNamespace.md#send
 
 #### Defined in
 
-[src/api/transact-namespace.ts:124](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/api/transact-namespace.ts#L124)
+[src/api/transact-namespace.ts:184](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/api/transact-namespace.ts#L184)
+
+___
+
+### simulateAssetChanges
+
+▸ **simulateAssetChanges**(`transaction`, `blockIdentifier?`): `Promise`<[`SimulateAssetChangesResponse`](../interfaces/SimulateAssetChangesResponse.md)\>
+
+Simulates the asset changes resulting from a single transaction.
+
+Returns list of asset changes that occurred during the transaction
+simulation. Note that this method does not run the transaction on the
+blockchain.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `transaction` | [`DebugTransaction`](../interfaces/DebugTransaction.md) | The transaction to simulate. |
+| `blockIdentifier?` | `string` | Optional block identifier to simulate the transaction in. |
+
+#### Returns
+
+`Promise`<[`SimulateAssetChangesResponse`](../interfaces/SimulateAssetChangesResponse.md)\>
+
+#### Defined in
+
+[src/api/transact-namespace.ts:110](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/api/transact-namespace.ts#L110)
+
+___
+
+### simulateExecution
+
+▸ **simulateExecution**(`transaction`, `blockIdentifier?`): `Promise`<[`SimulateExecutionResponse`](../interfaces/SimulateExecutionResponse.md)\>
+
+Simulates a single transaction and the resulting and returns list of
+decoded traces and logs that occurred during the transaction simulation.
+
+Note that this method does not run the transaction on the blockchain.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `transaction` | [`DebugTransaction`](../interfaces/DebugTransaction.md) | The transaction to simulate. |
+| `blockIdentifier?` | `string` | Optional block identifier to simulate the transaction in. |
+
+#### Returns
+
+`Promise`<[`SimulateExecutionResponse`](../interfaces/SimulateExecutionResponse.md)\>
+
+#### Defined in
+
+[src/api/transact-namespace.ts:137](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/api/transact-namespace.ts#L137)
 
 ___
 
@@ -210,4 +265,4 @@ NOTE: This is an alias for [CoreNamespace.waitForTransaction](CoreNamespace.md#w
 
 #### Defined in
 
-[src/api/transact-namespace.ts:185](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c023713/src/api/transact-namespace.ts#L185)
+[src/api/transact-namespace.ts:245](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/api/transact-namespace.ts#L245)
