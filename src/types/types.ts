@@ -2238,7 +2238,7 @@ export interface DebugPrestateTracer {
 }
 
 /**
- * Debug result returned when using a {@link DebugCallTracer} or when calling {@link TransactNamespace.simulateExecution}.
+ * Debug result returned when using a {@link DebugCallTracer}.
  */
 export interface DebugCallTrace {
   /** The type of call: `CALL` or `CREATE` for the top-level call. */
