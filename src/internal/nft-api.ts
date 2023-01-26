@@ -44,7 +44,6 @@ import {
   RefreshContractResult,
   RefreshState,
   SortingOrder,
-  TransferredNft,
   TransfersNftResponse
 } from '../types/types';
 import { AlchemyApiType, ETH_NULL_ADDRESS } from '../util/const';
@@ -714,21 +713,29 @@ async function getNftsForTransfers(
   config: AlchemyConfig,
   response: AssetTransfersResponse
 ): Promise<TransfersNftResponse> {
-  const { tokens, transferMetadata } = assetTransferToNftMetadataBatch(
-    response.transfers
-  );
+  const metadataTransfers = response.transfers
+    .filter(transfer => transfer.rawContract.address !== null)
+    // Use flatMap to flatten 1155 transfers that contain multiple NFTs.
+    .flatMap(transfer => {
+      const tokens = getTokensFromTransfer(transfer);
 
-  const nfts = await getNftMetadataBatch(config, tokens);
-  const transferredNfts: TransferredNft[] = nfts.map(
-    (nft, i) =>
-      ({
-        ...nft,
-        from: transferMetadata[i].from,
-        to: transferMetadata[i].to,
-        transactionHash: transferMetadata[i].transactionHash,
-        blockNumber: transferMetadata[i].blockNumber
-      } as TransferredNft)
+      const metadata = {
+        from: transfer.from,
+        to: transfer.to ?? undefined,
+        transactionHash: transfer.hash,
+        blockNumber: transfer.blockNum
+      };
+      return tokens.map(token => ({ metadata, token }));
+    });
+
+  const nfts = await getNftMetadataBatch(
+    config,
+    metadataTransfers.map(transfer => transfer.token)
   );
+  const transferredNfts = nfts.map((nft, i) => ({
+    ...nft,
+    ...metadataTransfers[i].metadata
+  }));
 
   return {
     nfts: transferredNfts,
@@ -737,49 +744,29 @@ async function getNftsForTransfers(
 }
 
 /**
- * Given an AssetTransferResult, returns an array of tokens to be used with
- * a `getNftMetadataBatch` call, along with an array of transfer metadata.
- *
- * This helper exists to handle 1155 transfers, which can have multiple
- * tokens transferred in a single transaction.
+ * Returns the underlying NFT tokens from a transfer as the params for a
+ * `getNftMetadataBatch` call. Handles the 1155 case where multiple NFTs can be
+ * transferred in a single transaction.
  */
-function assetTransferToNftMetadataBatch(
-  allTransfers: AssetTransfersResult[]
-): TokensWithTransferMetadata {
-  const tokens: NftMetadataBatchToken[] = [];
-  const transferMetadata: TransferMetadata[] = [];
-
-  for (const transfer of allTransfers) {
-    if (transfer.rawContract.address === null) {
-      continue;
-    }
-
-    const metadata = {
-      from: transfer.from,
-      to: transfer.to ?? undefined,
-      transactionHash: transfer.hash,
-      blockNumber: transfer.blockNum
-    };
-    // ERC1155 NFTs can contain multiple tokens in a single transfer, which
-    // requires special logic.
-    if (transfer.category === AssetTransfersCategory.ERC1155) {
-      const parsedTransfers = parse1155Transfer(transfer);
-      tokens.push(...parsedTransfers);
-      parsedTransfers.forEach(_ => transferMetadata.push(metadata));
-    } else {
-      tokens.push({
+function getTokensFromTransfer(
+  transfer: AssetTransfersResult
+): NftMetadataBatchToken[] {
+  // ERC1155 NFTs can contain multiple tokens in a single transfer, which
+  // requires special logic.
+  if (transfer.category === AssetTransfersCategory.ERC1155) {
+    return parse1155Transfer(transfer);
+  } else {
+    return [
+      {
         contractAddress: transfer.rawContract.address!,
         tokenId: transfer.tokenId!,
         tokenType:
           transfer.category === AssetTransfersCategory.ERC721
             ? NftTokenType.ERC721
             : undefined
-      });
-      transferMetadata.push(metadata);
-    }
+      }
+    ];
   }
-
-  return { tokens, transferMetadata };
 }
 
 /**
@@ -961,16 +948,4 @@ interface SummarizeNftAttributesParams {
 
 interface ReingestContractParams {
   contractAddress: string;
-}
-
-interface TokensWithTransferMetadata {
-  tokens: NftMetadataBatchToken[];
-  transferMetadata: TransferMetadata[];
-}
-
-interface TransferMetadata {
-  from: string;
-  to?: string;
-  transactionHash: string;
-  blockNumber: string;
 }
