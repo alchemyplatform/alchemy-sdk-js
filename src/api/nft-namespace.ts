@@ -17,6 +17,7 @@ import {
   getOwnersForContract,
   getOwnersForNft,
   getSpamContracts,
+  getTransfersForOwner,
   isSpamContract,
   refreshContract,
   refreshNftMetadata,
@@ -31,7 +32,6 @@ import {
   GetContractsForOwnerResponse,
   GetFloorPriceResponse,
   GetMintedNftsOptions,
-  GetMintedNftsResponse,
   GetNftMetadataOptions,
   GetNftSalesOptions,
   GetNftSalesOptionsByContractAddress,
@@ -43,6 +43,8 @@ import {
   GetOwnersForContractWithTokenBalancesOptions,
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
+  GetTransfersForOwnerOptions,
+  GetTransfersForOwnerTransferType,
   NftAttributeRarity,
   NftAttributesResponse,
   NftContractBaseNftsResponse,
@@ -54,7 +56,8 @@ import {
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
-  RefreshContractResult
+  RefreshContractResult,
+  TransfersNftResponse
 } from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
 import { BaseNft, Nft, NftContract } from './nft';
@@ -360,6 +363,21 @@ export class NftNamespace {
   }
 
   /**
+   * Gets all NFT transfers for a given owner's address.
+   *
+   * @param owner The owner to get transfers for.
+   * @param category Whether to get transfers to or from the owner address.
+   * @param options Additional options for the request.
+   */
+  getTransfersForOwner(
+    owner: string,
+    category: GetTransfersForOwnerTransferType,
+    options?: GetTransfersForOwnerOptions
+  ): Promise<TransfersNftResponse> {
+    return getTransfersForOwner(this.config, owner, category, options);
+  }
+
+  /**
    * Get all the NFTs minted by a specified owner address.
    *
    * @param owner - Address for the NFT owner (can be in ENS format).
@@ -368,7 +386,7 @@ export class NftNamespace {
   async getMintedNfts(
     owner: string,
     options?: GetMintedNftsOptions
-  ): Promise<GetMintedNftsResponse> {
+  ): Promise<TransfersNftResponse> {
     return getMintedNfts(this.config, owner, options);
   }
 
