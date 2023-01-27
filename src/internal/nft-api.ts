@@ -5,6 +5,7 @@ import { BaseNft, Nft, NftContract } from '../api/nft';
 import {
   AssetTransfersCategory,
   AssetTransfersParams,
+  AssetTransfersResponse,
   AssetTransfersResult,
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
@@ -12,7 +13,6 @@ import {
   GetContractsForOwnerResponse,
   GetFloorPriceResponse,
   GetMintedNftsOptions,
-  GetMintedNftsResponse,
   GetNftMetadataOptions,
   GetNftSalesOptions,
   GetNftSalesOptionsByContractAddress,
@@ -24,6 +24,8 @@ import {
   GetOwnersForContractWithTokenBalancesOptions,
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
+  GetTransfersForOwnerOptions,
+  GetTransfersForOwnerTransferType,
   NftAttributeRarity,
   NftAttributesResponse,
   NftContractBaseNftsResponse,
@@ -41,7 +43,8 @@ import {
   OwnedNftsResponse,
   RefreshContractResult,
   RefreshState,
-  SortingOrder
+  SortingOrder,
+  TransfersNftResponse
 } from '../types/types';
 import { AlchemyApiType, ETH_NULL_ADDRESS } from '../util/const';
 import {
@@ -333,7 +336,7 @@ export async function getMintedNfts(
   config: AlchemyConfig,
   owner: string,
   options?: GetMintedNftsOptions
-): Promise<GetMintedNftsResponse> {
+): Promise<TransfersNftResponse> {
   const provider = await config.getProvider();
   const ownerAddress = await provider._getAddress(owner);
   const category = nftTokenTypeToCategory(options?.tokenType);
@@ -344,36 +347,43 @@ export async function getMintedNfts(
     excludeZeroValue: true,
     contractAddresses: options?.contractAddresses,
     category,
-    maxCount: 100
+    maxCount: 100,
+    pageKey: options?.pageKey
   };
   const response = await getAssetTransfers(config, params, 'getMintedNfts');
+  return getNftsForTransfers(config, response);
+}
 
-  const tokens: NftMetadataBatchToken[] = [];
-  response.transfers
-    .filter(transfer => transfer.rawContract.address !== null)
-    .forEach(transfer => {
-      // ERC1155 NFTs can contain multiple tokens in a single transfer, which
-      // requires special logic.
-      if (transfer.category === AssetTransfersCategory.ERC1155) {
-        tokens.push(...parse1155Transfer(transfer));
-      } else {
-        tokens.push({
-          contractAddress: transfer.rawContract.address!,
-          tokenId: transfer.tokenId!,
-          tokenType:
-            transfer.category === AssetTransfersCategory.ERC721
-              ? NftTokenType.ERC721
-              : undefined
-        });
-      }
-    });
-
-  const nfts = await getNftMetadataBatch(config, tokens);
-
-  return {
-    nfts,
-    pageKey: response.pageKey
+export async function getTransfersForOwner(
+  config: AlchemyConfig,
+  owner: string,
+  transferType: GetTransfersForOwnerTransferType,
+  options?: GetTransfersForOwnerOptions
+): Promise<TransfersNftResponse> {
+  const provider = await config.getProvider();
+  const ownerAddress = await provider._getAddress(owner);
+  const category = nftTokenTypeToCategory(options?.tokenType);
+  const params: AssetTransfersParams = {
+    fromBlock: '0x0',
+    excludeZeroValue: true,
+    contractAddresses: options?.contractAddresses,
+    category,
+    maxCount: 100,
+    pageKey: options?.pageKey
   };
+
+  if (transferType === GetTransfersForOwnerTransferType.TO) {
+    params.toAddress = ownerAddress;
+  } else {
+    params.fromAddress = ownerAddress;
+  }
+  const transfersResponse = await getAssetTransfers(
+    config,
+    params,
+    'getTransfersForOwner'
+  );
+
+  return getNftsForTransfers(config, transfersResponse);
 }
 
 function nftTokenTypeToCategory(
@@ -393,6 +403,7 @@ function nftTokenTypeToCategory(
   }
 }
 
+/** A single 1155 transfer can contain multiple individual NFTs. */
 function parse1155Transfer(
   transfer: AssetTransfersResult
 ): NftMetadataBatchToken[] {
@@ -694,6 +705,70 @@ function isNftWithMetadata(
   response: RawBaseNft | RawContractBaseNft | RawNft
 ): response is RawNft {
   return (response as RawNft).title !== undefined;
+}
+
+/**
+ * Given an AssetTransfersResponse, fetches the NFTs associated with the
+ * transfers and collates them with transfer metadata.
+ */
+async function getNftsForTransfers(
+  config: AlchemyConfig,
+  response: AssetTransfersResponse
+): Promise<TransfersNftResponse> {
+  const metadataTransfers = response.transfers
+    .filter(transfer => transfer.rawContract.address !== null)
+    // Use flatMap to flatten 1155 transfers that contain multiple NFTs.
+    .flatMap(transfer => {
+      const tokens = getTokensFromTransfer(transfer);
+
+      const metadata = {
+        from: transfer.from,
+        to: transfer.to ?? undefined,
+        transactionHash: transfer.hash,
+        blockNumber: transfer.blockNum
+      };
+      return tokens.map(token => ({ metadata, token }));
+    });
+
+  const nfts = await getNftMetadataBatch(
+    config,
+    metadataTransfers.map(transfer => transfer.token)
+  );
+  const transferredNfts = nfts.map((nft, i) => ({
+    ...nft,
+    ...metadataTransfers[i].metadata
+  }));
+
+  return {
+    nfts: transferredNfts,
+    pageKey: response.pageKey
+  };
+}
+
+/**
+ * Returns the underlying NFT tokens from a transfer as the params for a
+ * `getNftMetadataBatch` call. Handles the 1155 case where multiple NFTs can be
+ * transferred in a single transaction.
+ */
+function getTokensFromTransfer(
+  transfer: AssetTransfersResult
+): NftMetadataBatchToken[] {
+  // ERC1155 NFTs can contain multiple tokens in a single transfer, which
+  // requires special logic.
+  if (transfer.category === AssetTransfersCategory.ERC1155) {
+    return parse1155Transfer(transfer);
+  } else {
+    return [
+      {
+        contractAddress: transfer.rawContract.address!,
+        tokenId: transfer.tokenId!,
+        tokenType:
+          transfer.category === AssetTransfersCategory.ERC721
+            ? NftTokenType.ERC721
+            : undefined
+      }
+    ];
+  }
 }
 
 /**

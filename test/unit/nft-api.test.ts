@@ -1785,4 +1785,5 @@ describe('NFT module', () => {
 
   // TODO: Add unit tests once we've implemented MockProvider.
   describe('getMintedNfts()', () => {});
+  describe('getTransfersForOwner()', () => {});
 });

@@ -964,6 +964,67 @@ export interface ContractForOwner extends NftContract {
 }
 
 /**
+ * The type of transfer for the request. Note that using `TO` will also include
+ * NFTs that were minted by the owner.
+ */
+export enum GetTransfersForOwnerTransferType {
+  'TO' = 'TO',
+  'FROM' = 'FROM'
+}
+
+/**
+ * Optional parameters object for the {@link NftNamespace.getTransfersForOwner} method.
+ */
+export interface GetTransfersForOwnerOptions {
+  /**
+   * List of NFT contract addresses to filter mints by. If omitted, defaults to
+   * all contract addresses.
+   */
+  contractAddresses?: string[];
+
+  /**
+   * Filter mints by ERC721 vs ERC1155 contracts. If omitted, defaults to all
+   * NFTs.
+   */
+  tokenType?: NftTokenType.ERC1155 | NftTokenType.ERC721;
+
+  /**
+   * Optional page key from an existing {@link TransfersNftResponse} to use for
+   * pagination.
+   */
+  pageKey?: string;
+}
+
+/**
+ * Response object for NFT methods that fetch NFTs that were transferred or
+ * minted (ex: {@link NftNamespace.getTransfersForOwner} or
+ * {@link NftNamespace.getMintedNfts}).
+ */
+export interface TransfersNftResponse {
+  /** An array of NFTs.*/
+  nfts: TransferredNft[];
+  /** Optional page key to use to fetch the next group of NFTs. */
+  pageKey?: string;
+}
+
+/**
+ * NFT with extra data for a single NFT that was transferred or minted.
+ */
+export interface TransferredNft extends Nft {
+  /**
+   * The address the NFT was from. For minted NFTs, this field is the set to
+   * `0x0000000000000000000000000000000000000000`.
+   **/
+  from: string;
+  /** The address the NFT was sent or minted to. */
+  to?: string;
+  /** The transaction hash where the transfer or mint occurred. */
+  transactionHash: string;
+  /** The block number as a hex string of when the transfer or mint occurred. */
+  blockNumber: string;
+}
+
+/**
  * Optional parameters object for the {@link NftNamespace.getMintedNfts} method.
  */
 export interface GetMintedNftsOptions {
@@ -980,12 +1041,15 @@ export interface GetMintedNftsOptions {
   tokenType?: NftTokenType.ERC1155 | NftTokenType.ERC721;
 
   /**
-   * Optional page key from an existing {@link GetMintedNftsResponse} to use for
+   * Optional page key from an existing {@link TransfersNftResponse} to use for
    * pagination.
    */
   pageKey?: string;
 }
 
+/**
+ * @deprecated Use {@link TransfersNftResponse} instead.
+ */
 export interface GetMintedNftsResponse {
   /** An array of the minted NFTs for the provided owner address. */
   nfts: Nft[];
