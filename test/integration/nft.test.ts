@@ -325,7 +325,7 @@ describe('E2E integration tests', () => {
       pageKey: response.pageKey
     });
     expect(responseWithPageKey.nfts.length).toBeGreaterThan(0);
-    expect(response).not.toEqual(responseWithPageKey);
+    expect(response.nfts[0]).not.toStrictEqual(responseWithPageKey.nfts[0]);
 
     // Handles ERC1155 NFT mints.
     const response3 = await alchemy.nft.getMintedNfts('vitalik.eth', {
@@ -376,7 +376,7 @@ describe('E2E integration tests', () => {
       }
     );
     expect(responseWithPageKey.nfts.length).toBeGreaterThan(0);
-    expect(response).not.toEqual(responseWithPageKey);
+    expect(response.nfts[0]).not.toEqual(responseWithPageKey.nfts[0]);
 
     // Handles ERC1155 NFT transfers.
     const response3 = await alchemy.nft.getTransfersForOwner(

@@ -347,7 +347,8 @@ export async function getMintedNfts(
     excludeZeroValue: true,
     contractAddresses: options?.contractAddresses,
     category,
-    maxCount: 100
+    maxCount: 100,
+    pageKey: options?.pageKey
   };
   const response = await getAssetTransfers(config, params, 'getMintedNfts');
   return getNftsForTransfers(config, response);
@@ -367,7 +368,8 @@ export async function getTransfersForOwner(
     excludeZeroValue: true,
     contractAddresses: options?.contractAddresses,
     category,
-    maxCount: 100
+    maxCount: 100,
+    pageKey: options?.pageKey
   };
 
   if (transferType === GetTransfersForOwnerTransferType.TO) {
