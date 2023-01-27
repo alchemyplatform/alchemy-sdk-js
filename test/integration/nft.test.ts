@@ -7,6 +7,7 @@ import {
   NftSaleMarketplace,
   NftTokenType,
   OpenSeaSafelistRequestStatus,
+  SortingOrder,
   fromHex
 } from '../../src';
 import { loadAlchemyEnv } from '../test-util';
@@ -421,6 +422,38 @@ describe('E2E integration tests', () => {
       contractAddresses.includes(nft.contract.address)
     );
     expect(nftsWithAddress.length).toEqual(response5.nfts.length);
+  });
+
+  it('getTransfersForContract()', async () => {
+    const CRYPTO_PUNKS_CONTRACT = '0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB';
+    // Handles paging
+    const response = await alchemy.nft.getTransfersForContract(
+      CRYPTO_PUNKS_CONTRACT
+    );
+    expect(response.pageKey).toBeDefined();
+    expect(response.nfts.length).toBeGreaterThan(0);
+    const responseWithPageKey = await alchemy.nft.getTransfersForContract(
+      CRYPTO_PUNKS_CONTRACT,
+      {
+        pageKey: response.pageKey
+      }
+    );
+    expect(responseWithPageKey.nfts.length).toBeGreaterThan(0);
+    expect(response.nfts[0]).not.toEqual(responseWithPageKey.nfts[0]);
+
+    // Handles block ranges and sort order.
+    const response2 = await alchemy.nft.getTransfersForContract(
+      CRYPTO_PUNKS_CONTRACT,
+      {
+        fromBlock: 10000000,
+        toBlock: 'latest',
+        order: SortingOrder.DESCENDING
+      }
+    );
+    expect(response2.nfts.length).toBeGreaterThan(0);
+    expect(fromHex(response2.nfts[0].blockNumber)).toBeGreaterThanOrEqual(
+      fromHex(response2.nfts[1].blockNumber)
+    );
   });
 
   it('verifyNftOwnership() boolean', async () => {

@@ -996,6 +996,27 @@ export interface GetTransfersForOwnerOptions {
 }
 
 /**
+ * Optional parameters object for the {@link NftNamespace.getTransfersForOwner}
+ * method.
+ */
+export interface GetTransfersForContractOptions {
+  /** Starting block (inclusive) to get transfers from. */
+  fromBlock?: BlockTag;
+  /** Ending block (inclusive) to get transfers from. */
+  toBlock?: BlockTag;
+  /**
+   * Whether to return results in ascending or descending order by block number.
+   * Defaults to ascending if omitted.
+   */
+  order?: SortingOrder;
+  /**
+   * Optional page key from an existing {@link TransfersNftResponse} to use for
+   * pagination.
+   */
+  pageKey?: string;
+}
+
+/**
  * Response object for NFT methods that fetch NFTs that were transferred or
  * minted (ex: {@link NftNamespace.getTransfersForOwner} or
  * {@link NftNamespace.getMintedNfts}).

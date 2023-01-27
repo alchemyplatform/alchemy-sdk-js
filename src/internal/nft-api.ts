@@ -24,6 +24,7 @@ import {
   GetOwnersForContractWithTokenBalancesOptions,
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
+  GetTransfersForContractOptions,
   GetTransfersForOwnerOptions,
   GetTransfersForOwnerTransferType,
   NftAttributeRarity,
@@ -381,6 +382,45 @@ export async function getTransfersForOwner(
     config,
     params,
     'getTransfersForOwner'
+  );
+
+  return getNftsForTransfers(config, transfersResponse);
+}
+
+export async function getTransfersForContract(
+  config: AlchemyConfig,
+  contract: string,
+  options?: GetTransfersForContractOptions
+): Promise<TransfersNftResponse> {
+  const category = [
+    AssetTransfersCategory.ERC721,
+    AssetTransfersCategory.ERC1155,
+    AssetTransfersCategory.SPECIALNFT
+  ];
+  const provider = await config.getProvider();
+  const fromBlock = options?.fromBlock
+    ? provider.formatter.blockTag(
+        await provider._getBlockTag(options.fromBlock)
+      )
+    : '0x0';
+  const toBlock = options?.toBlock
+    ? provider.formatter.blockTag(await provider._getBlockTag(options.toBlock))
+    : undefined;
+  const params: AssetTransfersParams = {
+    fromBlock,
+    toBlock,
+    excludeZeroValue: true,
+    contractAddresses: [contract],
+    order: options?.order,
+    category,
+    maxCount: 100,
+    pageKey: options?.pageKey
+  };
+
+  const transfersResponse = await getAssetTransfers(
+    config,
+    params,
+    'getTransfersForContract'
   );
 
   return getNftsForTransfers(config, transfersResponse);
