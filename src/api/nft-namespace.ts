@@ -17,6 +17,7 @@ import {
   getOwnersForContract,
   getOwnersForNft,
   getSpamContracts,
+  getTransfersForContract,
   getTransfersForOwner,
   isSpamContract,
   refreshContract,
@@ -43,6 +44,7 @@ import {
   GetOwnersForContractWithTokenBalancesOptions,
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
+  GetTransfersForContractOptions,
   GetTransfersForOwnerOptions,
   GetTransfersForOwnerTransferType,
   NftAttributeRarity,
@@ -375,6 +377,22 @@ export class NftNamespace {
     options?: GetTransfersForOwnerOptions
   ): Promise<TransfersNftResponse> {
     return getTransfersForOwner(this.config, owner, category, options);
+  }
+
+  /**
+   * Gets all NFT transfers for a given NFT contract address.
+   *
+   * Defaults to all transfers for the contract. To get transfers for a specific
+   * block range, use {@link GetTransfersForContractOptions}.
+   *
+   * @param contract The NFT contract to get transfers for.
+   * @param options Additional options for the request.
+   */
+  getTransfersForContract(
+    contract: string,
+    options?: GetTransfersForContractOptions
+  ): Promise<TransfersNftResponse> {
+    return getTransfersForContract(this.config, contract, options);
   }
 
   /**
