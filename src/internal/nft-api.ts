@@ -443,7 +443,6 @@ function nftTokenTypeToCategory(
   }
 }
 
-/** A single 1155 transfer can contain multiple individual NFTs. */
 function parse1155Transfer(
   transfer: AssetTransfersResult
 ): NftMetadataBatchToken[] {
