@@ -5,6 +5,12 @@
 ### Major Changes
 
 ### Minor Changes
+
+## 2.4.1
+
+### Major Changes
+
+### Minor Changes
 - Added the `NftNamespace.getTransfersForOwner()` method to get all NFT transfers to or from a provided owner address.
 - Added the `NftNamespace.getTransfersForContract()` method to all the NFT transfers for a provided NFT contract address.
 - Deprecated the `GetMintedNftsResponse` interface in favor of the `TransfersNftResponse`. The `TransfersNftResponse` contains the same properties as the `GetMintedNftsResponse` and includes additional fields about the transfer.
