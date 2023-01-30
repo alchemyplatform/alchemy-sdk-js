@@ -25,7 +25,7 @@ The lowest numbered block available that is usually the first block created.
 
 #### Defined in
 
-[src/types/types.ts:2179](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L2179)
+[src/types/types.ts:2264](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2264)
 
 ___
 
@@ -39,7 +39,7 @@ This block is very unlikely to be re-orged. This is only available on
 
 #### Defined in
 
-[src/types/types.ts:2175](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L2175)
+[src/types/types.ts:2260](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2260)
 
 ___
 
@@ -52,7 +52,7 @@ this block may be re-orged out of the canonical chain.
 
 #### Defined in
 
-[src/types/types.ts:2163](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L2163)
+[src/types/types.ts:2248](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2248)
 
 ___
 
@@ -66,7 +66,7 @@ is a proxy for blocks that have not been mined yet.
 
 #### Defined in
 
-[src/types/types.ts:2158](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L2158)
+[src/types/types.ts:2243](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2243)
 
 ___
 
@@ -80,4 +80,4 @@ only available on [Network.ETH_GOERLI](Network.md#eth_goerli).
 
 #### Defined in
 
-[src/types/types.ts:2169](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L2169)
+[src/types/types.ts:2254](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2254)

@@ -25,7 +25,7 @@ The contract has already been queued for refresh.
 
 #### Defined in
 
-[src/types/types.ts:1226](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L1226)
+[src/types/types.ts:1311](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1311)
 
 ___
 
@@ -37,7 +37,7 @@ The provided contract is not an NFT or does not contain metadata.
 
 #### Defined in
 
-[src/types/types.ts:1223](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L1223)
+[src/types/types.ts:1308](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1308)
 
 ___
 
@@ -49,7 +49,7 @@ The contract refresh is complete.
 
 #### Defined in
 
-[src/types/types.ts:1232](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L1232)
+[src/types/types.ts:1317](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1317)
 
 ___
 
@@ -61,7 +61,7 @@ The contract is currently being refreshed.
 
 #### Defined in
 
-[src/types/types.ts:1229](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L1229)
+[src/types/types.ts:1314](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1314)
 
 ___
 
@@ -73,7 +73,7 @@ The contract refresh has been queued and await execution.
 
 #### Defined in
 
-[src/types/types.ts:1235](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L1235)
+[src/types/types.ts:1320](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1320)
 
 ___
 
@@ -85,4 +85,4 @@ The contract was unable to be queued due to an internal error.
 
 #### Defined in
 
-[src/types/types.ts:1238](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L1238)
+[src/types/types.ts:1323](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1323)
