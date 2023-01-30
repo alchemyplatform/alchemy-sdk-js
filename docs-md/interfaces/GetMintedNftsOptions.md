@@ -23,7 +23,7 @@ all contract addresses.
 
 #### Defined in
 
-[src/types/types.ts:974](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L974)
+[src/types/types.ts:1056](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1056)
 
 ___
 
@@ -31,12 +31,12 @@ ___
 
 • `Optional` **pageKey**: `string`
 
-Optional page key from an existing [GetMintedNftsResponse](GetMintedNftsResponse.md) to use for
+Optional page key from an existing [TransfersNftResponse](TransfersNftResponse.md) to use for
 pagination.
 
 #### Defined in
 
-[src/types/types.ts:986](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L986)
+[src/types/types.ts:1068](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1068)
 
 ___
 
@@ -49,4 +49,4 @@ NFTs.
 
 #### Defined in
 
-[src/types/types.ts:980](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L980)
+[src/types/types.ts:1062](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1062)

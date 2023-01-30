@@ -50,7 +50,7 @@ Returns a boolean indicating whether the cancellation was successful.
 
 #### Defined in
 
-[src/api/transact-namespace.ts:86](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/api/transact-namespace.ts#L86)
+[src/api/transact-namespace.ts:86](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/transact-namespace.ts#L86)
 
 ___
 
@@ -79,7 +79,7 @@ This is an alias for [CoreNamespace.estimateGas](CoreNamespace.md#estimategas).
 
 #### Defined in
 
-[src/api/transact-namespace.ts:204](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/api/transact-namespace.ts#L204)
+[src/api/transact-namespace.ts:204](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/transact-namespace.ts#L204)
 
 ___
 
@@ -99,7 +99,7 @@ transaction request.
 
 #### Defined in
 
-[src/api/transact-namespace.ts:220](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/api/transact-namespace.ts#L220)
+[src/api/transact-namespace.ts:220](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/transact-namespace.ts#L220)
 
 ___
 
@@ -128,7 +128,7 @@ NOTE: This is an alias for [CoreNamespace.getTransaction](CoreNamespace.md#gettr
 
 #### Defined in
 
-[src/api/transact-namespace.ts:167](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/api/transact-namespace.ts#L167)
+[src/api/transact-namespace.ts:167](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/transact-namespace.ts#L167)
 
 ___
 
@@ -155,7 +155,7 @@ Returns the transaction hash of the submitted transaction.
 
 #### Defined in
 
-[src/api/transact-namespace.ts:54](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/api/transact-namespace.ts#L54)
+[src/api/transact-namespace.ts:54](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/transact-namespace.ts#L54)
 
 ___
 
@@ -181,7 +181,7 @@ NOTE: This is an alias for [CoreNamespace.sendTransaction](CoreNamespace.md#send
 
 #### Defined in
 
-[src/api/transact-namespace.ts:184](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/api/transact-namespace.ts#L184)
+[src/api/transact-namespace.ts:184](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/transact-namespace.ts#L184)
 
 ___
 
@@ -208,7 +208,7 @@ blockchain.
 
 #### Defined in
 
-[src/api/transact-namespace.ts:110](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/api/transact-namespace.ts#L110)
+[src/api/transact-namespace.ts:110](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/transact-namespace.ts#L110)
 
 ___
 
@@ -234,7 +234,7 @@ Note that this method does not run the transaction on the blockchain.
 
 #### Defined in
 
-[src/api/transact-namespace.ts:137](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/api/transact-namespace.ts#L137)
+[src/api/transact-namespace.ts:137](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/transact-namespace.ts#L137)
 
 ___
 
@@ -265,4 +265,4 @@ NOTE: This is an alias for [CoreNamespace.waitForTransaction](CoreNamespace.md#w
 
 #### Defined in
 
-[src/api/transact-namespace.ts:245](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/api/transact-namespace.ts#L245)
+[src/api/transact-namespace.ts:245](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/transact-namespace.ts#L245)

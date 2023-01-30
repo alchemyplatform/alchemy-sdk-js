@@ -24,7 +24,7 @@ The data associated with the transaction.
 
 #### Defined in
 
-[src/types/types.ts:2145](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L2145)
+[src/types/types.ts:2230](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2230)
 
 ___
 
@@ -36,7 +36,7 @@ The address the transaction is sent from.
 
 #### Defined in
 
-[src/types/types.ts:2139](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L2139)
+[src/types/types.ts:2224](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2224)
 
 ___
 
@@ -48,7 +48,7 @@ The gas price to use as a hex string.
 
 #### Defined in
 
-[src/types/types.ts:2141](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L2141)
+[src/types/types.ts:2226](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2226)
 
 ___
 
@@ -60,7 +60,7 @@ The address the transaction is directed to.
 
 #### Defined in
 
-[src/types/types.ts:2137](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L2137)
+[src/types/types.ts:2222](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2222)
 
 ___
 
@@ -72,4 +72,4 @@ The value associated with the transaction as a hex string.
 
 #### Defined in
 
-[src/types/types.ts:2143](https://github.com/alchemyplatform/alchemy-sdk-js/blob/bed7d71/src/types/types.ts#L2143)
+[src/types/types.ts:2228](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2228)
