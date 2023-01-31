@@ -5,6 +5,7 @@
 ### Major Changes
 
 ### Minor Changes
+- Added the `CoreNamespace.getTokensForOwner()` method to get all the token balances and token metadata for a given address.
 
 ## 2.4.1
 
