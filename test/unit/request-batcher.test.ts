@@ -42,7 +42,6 @@ describe('RequestBatcher', () => {
     expect(await bn1).toEqual('0x1');
     expect(await bn2).toEqual('0x2');
     expect(await bn3).toEqual('0x3');
-    console.log(fetchJsonMock.mock.calls[0][0]);
     const rawRequest = fetchJsonMock.mock.calls[0][0];
     expect(rawRequest.length).toEqual(3);
   });

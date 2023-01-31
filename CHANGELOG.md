@@ -6,6 +6,35 @@
 
 ### Minor Changes
 
+## 2.4.1
+
+### Major Changes
+
+### Minor Changes
+- Added the `NftNamespace.getTransfersForOwner()` method to get all NFT transfers to or from a provided owner address.
+- Added the `NftNamespace.getTransfersForContract()` method to all the NFT transfers for a provided NFT contract address.
+- Deprecated the `GetMintedNftsResponse` interface in favor of the `TransfersNftResponse`. The `TransfersNftResponse` contains the same properties as the `GetMintedNftsResponse` and includes additional fields about the transfer.
+
+## 2.4.0
+
+### Major Changes
+
+- Added `TransactNamespace.simulateAssetChanges()` to simulate a transaction and return a list of asset changes.
+- Added `TransactNamespace.simulateExecution()` to simulate a transaction and return a list of decoded logs and traces.
+
+### Minor Changes
+
+## 2.3.1
+
+### Major Changes
+
+### Minor Changes
+
+- Added support for passing in a `null` `tokenId` when using NFT Webhook Filters, which allows you to listen to all token ids in a collection.
+- Added `NftNamespace.getMintedNfts()` to fetch all the NFTs an owner address minted, optionally filtered by a set of specific NFT contracts.
+- Added the option to pass in an `EventFilter` with multiple addresses to the `CoreNamespace.getLogs()` method.
+- Fixed a bug where the `protocolFee` was not included in the response for `NftNamespace.getNftSales()`. Deprecated the existing `marketplaceFee` property in favor of the new `protocolFee` property.
+
 ## 2.3.0
 
 ### Major Changes

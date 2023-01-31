@@ -25,7 +25,7 @@ conjunction with [includeFilters](GetContractsForOwnerOptions.md#includefilters)
 
 #### Defined in
 
-[src/types/types.ts:915](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L915)
+[src/types/types.ts:916](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L916)
 
 ___
 
@@ -39,7 +39,7 @@ conjunction with [excludeFilters](GetContractsForOwnerOptions.md#excludefilters)
 
 #### Defined in
 
-[src/types/types.ts:908](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L908)
+[src/types/types.ts:909](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L909)
 
 ___
 
@@ -52,7 +52,7 @@ contract address and token ID in lexicographic order.
 
 #### Defined in
 
-[src/types/types.ts:921](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L921)
+[src/types/types.ts:922](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L922)
 
 ___
 
@@ -64,4 +64,4 @@ Key for pagination to use to fetch results from the next page if available.
 
 #### Defined in
 
-[src/types/types.ts:901](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L901)
+[src/types/types.ts:902](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L902)

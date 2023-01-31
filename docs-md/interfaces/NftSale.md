@@ -15,6 +15,7 @@ Represents a single NFT sale data in the [GetNftSalesResponse](GetNftSalesRespon
 - [logIndex](NftSale.md#logindex)
 - [marketplace](NftSale.md#marketplace)
 - [marketplaceFee](NftSale.md#marketplacefee)
+- [protocolFee](NftSale.md#protocolfee)
 - [quantity](NftSale.md#quantity)
 - [royaltyFee](NftSale.md#royaltyfee)
 - [sellerAddress](NftSale.md#selleraddress)
@@ -33,7 +34,7 @@ The block number the NFT sale took place in.
 
 #### Defined in
 
-[src/types/types.ts:1067](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1067)
+[src/types/types.ts:1190](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1190)
 
 ___
 
@@ -45,7 +46,7 @@ The index of the token within the bundle of NFTs sold in the sale.
 
 #### Defined in
 
-[src/types/types.ts:1073](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1073)
+[src/types/types.ts:1196](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1196)
 
 ___
 
@@ -57,7 +58,7 @@ The address of the buyer in the NFT sale.
 
 #### Defined in
 
-[src/types/types.ts:1049](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1049)
+[src/types/types.ts:1166](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1166)
 
 ___
 
@@ -69,7 +70,7 @@ The NFT contract address.
 
 #### Defined in
 
-[src/types/types.ts:1040](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1040)
+[src/types/types.ts:1157](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1157)
 
 ___
 
@@ -81,7 +82,7 @@ The log number of the sale event emitted within the block.
 
 #### Defined in
 
-[src/types/types.ts:1070](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1070)
+[src/types/types.ts:1193](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1193)
 
 ___
 
@@ -93,7 +94,7 @@ The marketplace the sale took place on.
 
 #### Defined in
 
-[src/types/types.ts:1037](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1037)
+[src/types/types.ts:1154](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1154)
 
 ___
 
@@ -103,9 +104,23 @@ ___
 
 The payment from buyer to the marketplace.
 
+**`deprecated`** Please use `protocolFee` instead.
+
 #### Defined in
 
-[src/types/types.ts:1061](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1061)
+[src/types/types.ts:1181](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1181)
+
+___
+
+### protocolFee
+
+• `Optional` **protocolFee**: [`NftSaleFeeData`](NftSaleFeeData.md)
+
+The payment from buyer to the marketplace.
+
+#### Defined in
+
+[src/types/types.ts:1184](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1184)
 
 ___
 
@@ -117,7 +132,7 @@ The number of tokens sold in the sale as a decimal integer string.
 
 #### Defined in
 
-[src/types/types.ts:1046](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1046)
+[src/types/types.ts:1163](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1163)
 
 ___
 
@@ -129,7 +144,7 @@ The payment from buyer to the royalty address of the NFT collection.
 
 #### Defined in
 
-[src/types/types.ts:1064](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1064)
+[src/types/types.ts:1187](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1187)
 
 ___
 
@@ -141,7 +156,7 @@ The address of the seller in the NFT sale.
 
 #### Defined in
 
-[src/types/types.ts:1052](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1052)
+[src/types/types.ts:1169](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1169)
 
 ___
 
@@ -153,7 +168,7 @@ The payment from buyer to the seller.
 
 #### Defined in
 
-[src/types/types.ts:1058](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1058)
+[src/types/types.ts:1175](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1175)
 
 ___
 
@@ -165,7 +180,7 @@ Whether the price taker in the trade was the buyer or the seller.
 
 #### Defined in
 
-[src/types/types.ts:1055](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1055)
+[src/types/types.ts:1172](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1172)
 
 ___
 
@@ -177,7 +192,7 @@ The decimal token ID of the NFT being sold.
 
 #### Defined in
 
-[src/types/types.ts:1043](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1043)
+[src/types/types.ts:1160](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1160)
 
 ___
 
@@ -189,4 +204,4 @@ The transactionHash of the NFT sale.
 
 #### Defined in
 
-[src/types/types.ts:1076](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1076)
+[src/types/types.ts:1199](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1199)

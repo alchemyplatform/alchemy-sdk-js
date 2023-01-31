@@ -268,7 +268,7 @@ export interface RawCreateWebhookResponse {
 
 export interface RawNftFilterParam {
   contract_address: string;
-  token_id: string;
+  token_id?: string;
 }
 
 export interface RawNftAttributeRarity {
@@ -291,7 +291,7 @@ export interface RawNftSale {
   sellerAddress: string;
   taker: string;
   sellerFee: NftSaleFeeData;
-  marketplaceFee?: NftSaleFeeData;
+  protocolFee?: NftSaleFeeData;
   royaltyFee?: NftSaleFeeData;
   blockNumber: number;
   logIndex: number;

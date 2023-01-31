@@ -3,8 +3,6 @@ import type {
   BlockTag,
   BlockWithTransactions,
   FeeData,
-  Filter,
-  FilterByBlockHash,
   Log,
   TransactionReceipt,
   TransactionRequest,
@@ -15,11 +13,18 @@ import type { Network as EthersNetworkAlias } from '@ethersproject/networks/lib/
 import type { Deferrable } from '@ethersproject/properties';
 
 import {
+  getAssetTransfers,
+  getLogs,
+  getTransactionReceipts
+} from '../internal/core-api';
+import {
   AssetTransfersParams,
   AssetTransfersResponse,
   AssetTransfersWithMetadataParams,
   AssetTransfersWithMetadataResponse,
   DeployResult,
+  Filter,
+  FilterByBlockHash,
   TokenBalanceType,
   TokenBalancesOptionsDefaultTokens,
   TokenBalancesOptionsErc20,
@@ -30,7 +35,6 @@ import {
   TransactionReceiptsResponse
 } from '../types/types';
 import { ETH_NULL_VALUE } from '../util/const';
-import { formatBlock } from '../util/util';
 import { AlchemyConfig } from './alchemy-config';
 import { toHex } from './util';
 
@@ -333,8 +337,7 @@ export class CoreNamespace {
   async getLogs(
     filter: Filter | FilterByBlockHash | Promise<Filter | FilterByBlockHash>
   ): Promise<Array<Log>> {
-    const provider = await this.config.getProvider();
-    return provider.getLogs(filter);
+    return getLogs(this.config, filter);
   }
 
   /**
@@ -380,9 +383,13 @@ export class CoreNamespace {
     );
 
     // Find the first transaction in the block that matches the provided address.
-    const txReceipts = await this.getTransactionReceipts({
-      blockNumber: toHex(firstBlock)
-    });
+    const txReceipts = await getTransactionReceipts(
+      this.config,
+      {
+        blockNumber: toHex(firstBlock)
+      },
+      'findContractDeployer'
+    );
     const matchingReceipt = txReceipts.receipts?.find(
       receipt => receipt.contractAddress === contractAddress.toLowerCase()
     );
@@ -534,29 +541,7 @@ export class CoreNamespace {
   async getAssetTransfers(
     params: AssetTransfersWithMetadataParams | AssetTransfersParams
   ): Promise<AssetTransfersResponse | AssetTransfersWithMetadataResponse> {
-    const provider = await this.config.getProvider();
-    if (params.fromAddress) {
-      params.fromAddress = await provider._getAddress(params.fromAddress);
-    }
-    if (params.toAddress) {
-      params.toAddress = await provider._getAddress(params.toAddress);
-    }
-    return provider._send(
-      'alchemy_getAssetTransfers',
-      [
-        {
-          ...params,
-          fromBlock:
-            params.fromBlock != null
-              ? formatBlock(params.fromBlock)
-              : undefined,
-          toBlock:
-            params.toBlock != null ? formatBlock(params.toBlock) : undefined,
-          maxCount: params.maxCount != null ? toHex(params.maxCount) : undefined
-        }
-      ],
-      'getAssetTransfers'
-    );
+    return getAssetTransfers(this.config, params);
   }
 
   /**
@@ -568,12 +553,7 @@ export class CoreNamespace {
   async getTransactionReceipts(
     params: TransactionReceiptsParams
   ): Promise<TransactionReceiptsResponse> {
-    const provider = await this.config.getProvider();
-    return provider._send(
-      'alchemy_getTransactionReceipts',
-      [params],
-      'getTransactionReceipts'
-    );
+    return getTransactionReceipts(this.config, params);
   }
 
   /**

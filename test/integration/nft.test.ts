@@ -1,10 +1,13 @@
 import {
   Alchemy,
+  GetNftSalesResponse,
+  GetTransfersForOwnerTransferType,
   NftContract,
   NftFilters,
   NftSaleMarketplace,
   NftTokenType,
   OpenSeaSafelistRequestStatus,
+  SortingOrder,
   fromHex
 } from '../../src';
 import { loadAlchemyEnv } from '../test-util';
@@ -43,6 +46,30 @@ describe('E2E integration tests', () => {
     ).toEqual(true);
     expect(typeof metadata.contractDeployer).toEqual('string');
     expect(typeof metadata.deployedBlockNumber).toEqual('number');
+  }
+
+  function verifyNftSalesData(response: GetNftSalesResponse): void {
+    expect(response.nftSales.length).toBeGreaterThan(0);
+    expect(response.nftSales[0].bundleIndex).toBeDefined();
+    expect(typeof response.nftSales[0].bundleIndex).toEqual('number');
+    expect(response.nftSales[0].buyerAddress).toBeDefined();
+    expect(typeof response.nftSales[0].buyerAddress).toEqual('string');
+    expect(response.nftSales[0].contractAddress).toBeDefined();
+    expect(typeof response.nftSales[0].contractAddress).toEqual('string');
+    expect(response.nftSales[0].logIndex).toBeDefined();
+    expect(typeof response.nftSales[0].logIndex).toEqual('number');
+    expect(response.nftSales[0].marketplace).toBeDefined();
+    expect(typeof response.nftSales[0].logIndex).toEqual('number');
+    expect(response.nftSales[0].quantity).toBeDefined();
+    expect(typeof response.nftSales[0].quantity).toEqual('string');
+    expect(response.nftSales[0].sellerAddress).toBeDefined();
+    expect(typeof response.nftSales[0].sellerAddress).toEqual('string');
+    expect(response.nftSales[0].taker).toBeDefined();
+    expect(typeof response.nftSales[0].taker).toEqual('string');
+    expect(response.nftSales[0].tokenId).toBeDefined();
+    expect(typeof response.nftSales[0].tokenId).toEqual('string');
+    expect(response.nftSales[0].transactionHash).toBeDefined();
+    expect(typeof response.nftSales[0].transactionHash).toEqual('string');
   }
 
   it('getNftMetadata()', async () => {
@@ -290,6 +317,208 @@ describe('E2E integration tests', () => {
     expect(allNfts.length).toEqual(totalCount);
   });
 
+  it('getMintedNfts()', async () => {
+    // Handles paging
+    const response = await alchemy.nft.getMintedNfts('vitalik.eth');
+    expect(response.pageKey).toBeDefined();
+    expect(response.nfts.length).toBeGreaterThan(0);
+    const responseWithPageKey = await alchemy.nft.getMintedNfts('vitalik.eth', {
+      pageKey: response.pageKey
+    });
+    expect(responseWithPageKey.nfts.length).toBeGreaterThan(0);
+    expect(response).not.toEqual(responseWithPageKey);
+
+    // Handles ERC1155 NFT mints.
+    const response3 = await alchemy.nft.getMintedNfts('vitalik.eth', {
+      tokenType: NftTokenType.ERC1155
+    });
+    const nfts1155 = response3.nfts.filter(
+      nft => nft.tokenType === NftTokenType.ERC1155
+    );
+    expect(nfts1155.length).toEqual(response3.nfts.length);
+
+    // // Handles ERC721 NFT mints.
+    const response4 = await alchemy.nft.getMintedNfts('vitalik.eth', {
+      tokenType: NftTokenType.ERC721
+    });
+    const nfts721 = response4.nfts.filter(
+      // Some 721 transfers are ingested as NftTokenType.UNKNOWN.
+      nft => nft.tokenType !== NftTokenType.ERC1155
+    );
+    expect(nfts721.length).toEqual(response4.nfts.length);
+
+    // Handles contract address specifying.
+    const contractAddresses = [
+      '0xa1eb40c284c5b44419425c4202fa8dabff31006b',
+      '0x8442864d6ab62a9193be2f16580c08e0d7bcda2f'
+    ];
+    const response5 = await alchemy.nft.getMintedNfts('vitalik.eth', {
+      contractAddresses
+    });
+    const nftsWithAddress = response5.nfts.filter(nft =>
+      contractAddresses.includes(nft.contract.address)
+    );
+    expect(nftsWithAddress.length).toEqual(response5.nfts.length);
+  });
+
+  it('getTransfersForOwner()', async () => {
+    // Handles paging
+    const response = await alchemy.nft.getTransfersForOwner(
+      'vitalik.eth',
+      GetTransfersForOwnerTransferType.TO
+    );
+    expect(response.pageKey).toBeDefined();
+    expect(response.nfts.length).toBeGreaterThan(0);
+    const responseWithPageKey = await alchemy.nft.getTransfersForOwner(
+      'vitalik.eth',
+      GetTransfersForOwnerTransferType.TO,
+      {
+        pageKey: response.pageKey
+      }
+    );
+    expect(responseWithPageKey.nfts.length).toBeGreaterThan(0);
+    expect(response.nfts[0]).not.toEqual(responseWithPageKey.nfts[0]);
+
+    // Handles ERC1155 NFT transfers.
+    const response3 = await alchemy.nft.getTransfersForOwner(
+      'vitalik.eth',
+      GetTransfersForOwnerTransferType.TO,
+      {
+        tokenType: NftTokenType.ERC1155
+      }
+    );
+    const nfts1155 = response3.nfts.filter(
+      nft => nft.tokenType === NftTokenType.ERC1155
+    );
+    expect(nfts1155.length).toEqual(response3.nfts.length);
+
+    // Handles ERC721 NFT transfers.
+    const response4 = await alchemy.nft.getTransfersForOwner(
+      'vitalik.eth',
+      GetTransfersForOwnerTransferType.FROM,
+      {
+        tokenType: NftTokenType.ERC721
+      }
+    );
+    const nfts721 = response4.nfts.filter(
+      // Some 721 transfers are ingested as NftTokenType.UNKNOWN.
+      nft => nft.tokenType !== NftTokenType.ERC1155
+    );
+    expect(nfts721.length).toEqual(response4.nfts.length);
+
+    // Handles contract address specifying.
+    const contractAddresses = [
+      '0xa1eb40c284c5b44419425c4202fa8dabff31006b',
+      '0x8442864d6ab62a9193be2f16580c08e0d7bcda2f'
+    ];
+    const response5 = await alchemy.nft.getTransfersForOwner(
+      'vitalik.eth',
+      GetTransfersForOwnerTransferType.TO,
+      {
+        contractAddresses
+      }
+    );
+    const nftsWithAddress = response5.nfts.filter(nft =>
+      contractAddresses.includes(nft.contract.address)
+    );
+    expect(nftsWithAddress.length).toEqual(response5.nfts.length);
+  });
+
+  it('getTransfersForOwner()', async () => {
+    // Handles paging
+    const response = await alchemy.nft.getTransfersForOwner(
+      'vitalik.eth',
+      GetTransfersForOwnerTransferType.TO
+    );
+    expect(response.pageKey).toBeDefined();
+    expect(response.nfts.length).toBeGreaterThan(0);
+    const responseWithPageKey = await alchemy.nft.getTransfersForOwner(
+      'vitalik.eth',
+      GetTransfersForOwnerTransferType.TO,
+      {
+        pageKey: response.pageKey
+      }
+    );
+    expect(responseWithPageKey.nfts.length).toBeGreaterThan(0);
+    expect(response.nfts[0]).not.toEqual(responseWithPageKey.nfts[0]);
+
+    // Handles ERC1155 NFT transfers.
+    const response3 = await alchemy.nft.getTransfersForOwner(
+      'vitalik.eth',
+      GetTransfersForOwnerTransferType.TO,
+      {
+        tokenType: NftTokenType.ERC1155
+      }
+    );
+    const nfts1155 = response3.nfts.filter(
+      nft => nft.tokenType === NftTokenType.ERC1155
+    );
+    expect(nfts1155.length).toEqual(response3.nfts.length);
+
+    // Handles ERC721 NFT transfers.
+    const response4 = await alchemy.nft.getTransfersForOwner(
+      'vitalik.eth',
+      GetTransfersForOwnerTransferType.FROM,
+      {
+        tokenType: NftTokenType.ERC721
+      }
+    );
+    const nfts721 = response4.nfts.filter(
+      // Some 721 transfers are ingested as NftTokenType.UNKNOWN.
+      nft => nft.tokenType !== NftTokenType.ERC1155
+    );
+    expect(nfts721.length).toEqual(response4.nfts.length);
+
+    // Handles contract address specifying.
+    const contractAddresses = [
+      '0xa1eb40c284c5b44419425c4202fa8dabff31006b',
+      '0x8442864d6ab62a9193be2f16580c08e0d7bcda2f'
+    ];
+    const response5 = await alchemy.nft.getTransfersForOwner(
+      'vitalik.eth',
+      GetTransfersForOwnerTransferType.TO,
+      {
+        contractAddresses
+      }
+    );
+    const nftsWithAddress = response5.nfts.filter(nft =>
+      contractAddresses.includes(nft.contract.address)
+    );
+    expect(nftsWithAddress.length).toEqual(response5.nfts.length);
+  });
+
+  it('getTransfersForContract()', async () => {
+    const CRYPTO_PUNKS_CONTRACT = '0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB';
+    // Handles paging
+    const response = await alchemy.nft.getTransfersForContract(
+      CRYPTO_PUNKS_CONTRACT
+    );
+    expect(response.pageKey).toBeDefined();
+    expect(response.nfts.length).toBeGreaterThan(0);
+    const responseWithPageKey = await alchemy.nft.getTransfersForContract(
+      CRYPTO_PUNKS_CONTRACT,
+      {
+        pageKey: response.pageKey
+      }
+    );
+    expect(responseWithPageKey.nfts.length).toBeGreaterThan(0);
+    expect(response.nfts[0]).not.toEqual(responseWithPageKey.nfts[0]);
+
+    // Handles block ranges and sort order.
+    const response2 = await alchemy.nft.getTransfersForContract(
+      CRYPTO_PUNKS_CONTRACT,
+      {
+        fromBlock: 10000000,
+        toBlock: 'latest',
+        order: SortingOrder.DESCENDING
+      }
+    );
+    expect(response2.nfts.length).toBeGreaterThan(0);
+    expect(fromHex(response2.nfts[0].blockNumber)).toBeGreaterThanOrEqual(
+      fromHex(response2.nfts[1].blockNumber)
+    );
+  });
+
   it('verifyNftOwnership() boolean', async () => {
     const response = await alchemy.nft.verifyNftOwnership(
       ownerAddress,
@@ -336,27 +565,20 @@ describe('E2E integration tests', () => {
     const response = await alchemy.nft.getNftSales();
 
     expect(response.pageKey).toBeDefined();
-    expect(response.nftSales.length).toBeGreaterThan(0);
-    expect(response.nftSales[0].bundleIndex).toBeDefined();
-    expect(typeof response.nftSales[0].bundleIndex).toEqual('number');
-    expect(response.nftSales[0].buyerAddress).toBeDefined();
-    expect(typeof response.nftSales[0].buyerAddress).toEqual('string');
-    expect(response.nftSales[0].contractAddress).toBeDefined();
-    expect(typeof response.nftSales[0].contractAddress).toEqual('string');
-    expect(response.nftSales[0].logIndex).toBeDefined();
-    expect(typeof response.nftSales[0].logIndex).toEqual('number');
-    expect(response.nftSales[0].marketplace).toBeDefined();
-    expect(typeof response.nftSales[0].logIndex).toEqual('number');
-    expect(response.nftSales[0].quantity).toBeDefined();
-    expect(typeof response.nftSales[0].quantity).toEqual('string');
-    expect(response.nftSales[0].sellerAddress).toBeDefined();
-    expect(typeof response.nftSales[0].sellerAddress).toEqual('string');
-    expect(response.nftSales[0].taker).toBeDefined();
-    expect(typeof response.nftSales[0].taker).toEqual('string');
-    expect(response.nftSales[0].tokenId).toBeDefined();
-    expect(typeof response.nftSales[0].tokenId).toEqual('string');
-    expect(response.nftSales[0].transactionHash).toBeDefined();
-    expect(typeof response.nftSales[0].transactionHash).toEqual('string');
+    verifyNftSalesData(response);
+  });
+
+  it('getNftSales() with token', async () => {
+    const response = await alchemy.nft.getNftSales({
+      contractAddress: '0xe785E82358879F061BC3dcAC6f0444462D4b5330',
+      tokenId: 44
+    });
+
+    verifyNftSalesData(response);
+    expect(response.nftSales[0].royaltyFee).toBeDefined();
+    expect(response.nftSales[0].marketplaceFee).toBeDefined();
+    expect(response.nftSales[0].protocolFee).toBeDefined();
+    expect(response.nftSales[0].sellerFee).toBeDefined();
   });
 
   it('getNftSales() with pageKey', async () => {

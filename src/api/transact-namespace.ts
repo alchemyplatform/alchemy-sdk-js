@@ -7,10 +7,15 @@ import type { BigNumber } from '@ethersproject/bignumber';
 import { Deferrable } from '@ethersproject/properties';
 
 import {
+  BlockIdentifier,
+  DebugTransaction,
   GasOptimizedTransactionResponse,
   GasOptimizedTransactionStatusResponse,
-  SendPrivateTransactionOptions
+  SendPrivateTransactionOptions,
+  SimulateAssetChangesResponse,
+  SimulateExecutionResponse
 } from '../types/types';
+import { nullsToUndefined } from '../util/util';
 import { AlchemyConfig } from './alchemy-config';
 import { Wallet } from './alchemy-wallet';
 import { fromHex, toHex } from './util';
@@ -89,6 +94,61 @@ export class TransactNamespace {
       ],
       'cancelPrivateTransaction'
     );
+  }
+
+  /**
+   * Simulates the asset changes resulting from a single transaction.
+   *
+   * Returns list of asset changes that occurred during the transaction
+   * simulation. Note that this method does not run the transaction on the
+   * blockchain.
+   *
+   * @param transaction The transaction to simulate.
+   * @param blockIdentifier Optional block identifier to simulate the
+   * transaction in.
+   */
+  async simulateAssetChanges(
+    transaction: DebugTransaction,
+    blockIdentifier?: BlockIdentifier
+  ): Promise<SimulateAssetChangesResponse> {
+    const provider = await this.config.getProvider();
+    const params =
+      blockIdentifier !== undefined
+        ? [transaction, blockIdentifier]
+        : [transaction];
+    const res = await provider._send(
+      'alchemy_simulateAssetChanges',
+      params,
+      'simulateAssetChanges'
+    );
+    return nullsToUndefined(res);
+  }
+
+  /**
+   * Simulates a single transaction and the resulting and returns list of
+   * decoded traces and logs that occurred during the transaction simulation.
+   *
+   * Note that this method does not run the transaction on the blockchain.
+   *
+   * @param transaction The transaction to simulate.
+   * @param blockIdentifier Optional block identifier to simulate the
+   * transaction in.
+   */
+  async simulateExecution(
+    transaction: DebugTransaction,
+    blockIdentifier?: BlockIdentifier
+  ): Promise<SimulateExecutionResponse> {
+    const provider = await this.config.getProvider();
+    const params =
+      blockIdentifier !== undefined
+        ? [transaction, blockIdentifier]
+        : [transaction];
+    const res = provider._send(
+      'alchemy_simulateExecution',
+      params,
+      'simulateExecution'
+    );
+    return nullsToUndefined(res);
   }
 
   /**

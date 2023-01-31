@@ -1,4 +1,5 @@
 import {
+  BlockTag,
   EventType,
   TransactionReceipt
 } from '@ethersproject/abstract-provider';
@@ -243,7 +244,7 @@ export interface AssetTransfersParams {
 
   /**
    * Whether to exclude transfers with zero value. Note that zero value is
-   * different than null value. Defaults to `false` if omitted.
+   * different than null value. Defaults to `true` if omitted.
    */
   excludeZeroValue?: boolean;
 
@@ -970,7 +971,123 @@ export interface ContractForOwner extends NftContract {
 }
 
 /**
- * Optional parameters object for the {@link getNftSales} endpoint.
+ * The type of transfer for the request. Note that using `TO` will also include
+ * NFTs that were minted by the owner.
+ */
+export enum GetTransfersForOwnerTransferType {
+  'TO' = 'TO',
+  'FROM' = 'FROM'
+}
+
+/**
+ * Optional parameters object for the {@link NftNamespace.getTransfersForOwner} method.
+ */
+export interface GetTransfersForOwnerOptions {
+  /**
+   * List of NFT contract addresses to filter mints by. If omitted, defaults to
+   * all contract addresses.
+   */
+  contractAddresses?: string[];
+
+  /**
+   * Filter mints by ERC721 vs ERC1155 contracts. If omitted, defaults to all
+   * NFTs.
+   */
+  tokenType?: NftTokenType.ERC1155 | NftTokenType.ERC721;
+
+  /**
+   * Optional page key from an existing {@link TransfersNftResponse} to use for
+   * pagination.
+   */
+  pageKey?: string;
+}
+
+/**
+ * Optional parameters object for the {@link NftNamespace.getTransfersForOwner}
+ * method.
+ */
+export interface GetTransfersForContractOptions {
+  /** Starting block (inclusive) to get transfers from. */
+  fromBlock?: BlockTag;
+  /** Ending block (inclusive) to get transfers from. */
+  toBlock?: BlockTag;
+  /**
+   * Whether to return results in ascending or descending order by block number.
+   * Defaults to ascending if omitted.
+   */
+  order?: SortingOrder;
+  /**
+   * Optional page key from an existing {@link TransfersNftResponse} to use for
+   * pagination.
+   */
+  pageKey?: string;
+}
+
+/**
+ * Response object for NFT methods that fetch NFTs that were transferred or
+ * minted (ex: {@link NftNamespace.getTransfersForOwner} or
+ * {@link NftNamespace.getMintedNfts}).
+ */
+export interface TransfersNftResponse {
+  /** An array of NFTs.*/
+  nfts: TransferredNft[];
+  /** Optional page key to use to fetch the next group of NFTs. */
+  pageKey?: string;
+}
+
+/**
+ * NFT with extra data for a single NFT that was transferred or minted.
+ */
+export interface TransferredNft extends Nft {
+  /**
+   * The address the NFT was from. For minted NFTs, this field is the set to
+   * `0x0000000000000000000000000000000000000000`.
+   **/
+  from: string;
+  /** The address the NFT was sent or minted to. */
+  to?: string;
+  /** The transaction hash where the transfer or mint occurred. */
+  transactionHash: string;
+  /** The block number as a hex string of when the transfer or mint occurred. */
+  blockNumber: string;
+}
+
+/**
+ * Optional parameters object for the {@link NftNamespace.getMintedNfts} method.
+ */
+export interface GetMintedNftsOptions {
+  /**
+   * List of NFT contract addresses to filter mints by. If omitted, defaults to
+   * all contract addresses.
+   */
+  contractAddresses?: string[];
+
+  /**
+   * Filter mints by ERC721 vs ERC1155 contracts. If omitted, defaults to all
+   * NFTs.
+   */
+  tokenType?: NftTokenType.ERC1155 | NftTokenType.ERC721;
+
+  /**
+   * Optional page key from an existing {@link TransfersNftResponse} to use for
+   * pagination.
+   */
+  pageKey?: string;
+}
+
+/**
+ * @deprecated Use {@link TransfersNftResponse} instead.
+ */
+export interface GetMintedNftsResponse {
+  /** An array of the minted NFTs for the provided owner address. */
+  nfts: Nft[];
+
+  /** Key for pagination to use to fetch results from the next page if available. */
+  pageKey?: string;
+}
+
+/**
+ * Optional parameters object for the {@link NftNamespace.getNftSales} method.
  *
  * This interface is used to filter the NFT sales data.
  *
@@ -1009,8 +1126,8 @@ export interface GetNftSalesOptions {
 }
 
 /**
- * Alternative optional parameters object for the {@link getNftSales} endpoint
- * that allows filtering results by contractAddress.
+ * Alternative optional parameters object for the {@link NftNamespace.getNftSales}
+ * method that allows filtering results by contractAddress.
  *
  * This interface is used to filter the NFT sales data.
  *
@@ -1064,8 +1181,14 @@ export interface NftSale {
   /** The payment from buyer to the seller. */
   sellerFee: NftSaleFeeData;
 
-  /** The payment from buyer to the marketplace. */
+  /**
+   * The payment from buyer to the marketplace.
+   * @deprecated Please use `protocolFee` instead.
+   */
   marketplaceFee?: NftSaleFeeData;
+
+  /** The payment from buyer to the marketplace. */
+  protocolFee?: NftSaleFeeData;
 
   /** The payment from buyer to the royalty address of the NFT collection. */
   royaltyFee?: NftSaleFeeData;
@@ -1110,7 +1233,8 @@ export enum SortingOrder {
 }
 
 /**
- * Enum representing the supported NFT marketplaces by the {@link getNftSales} endpoint.
+ * Enum representing the supported NFT marketplaces by the
+ * {@link NftNamespace.getNftSales} method.
  *
  * @public
  */
@@ -1122,7 +1246,8 @@ export enum NftSaleMarketplace {
 }
 
 /**
- * Enum for specifing the taker type for the {@link getNftSales} endpoint.
+ * Enum for specifying the taker type for the {@link NftNamespace.getNftSales}
+ * method.
  *
  * @public
  */
@@ -1592,6 +1717,238 @@ export interface SendPrivateTransactionOptions {
 }
 
 /**
+ * Asset type returned when calling {@link TransactNamespace.simulateAssetChanges}.
+ * Allows you to determine if the assets approved or / and transferred are
+ * native, tokens or NFTs.
+ */
+export enum SimulateAssetType {
+  /**
+   * Native transfers that involve the currency of the chain the simulation is
+   * run on (ex: ETH for Ethereum, MATIC for Polygon, ETH for Arbitrum).
+   */
+  NATIVE = 'NATIVE',
+  /** ERC20 approval or transfers. */
+  ERC20 = 'ERC20',
+  /** ERC721 approval or transfers. */
+  ERC721 = 'ERC721',
+  /** ERC1155 approval or transfers. */
+  ERC1155 = 'ERC1155',
+  /**
+   * Special contracts that don't follow ERC 721/1155.Currently limited to
+   * CryptoKitties and CryptoPunks.
+   */
+  SPECIAL_NFT = 'SPECIAL_NFT'
+}
+
+/**
+ * Change type returned when calling {@link TransactNamespace.simulateAssetChanges}.
+ */
+export enum SimulateChangeType {
+  /**
+   * Represents a transaction that approved or disapproved permissions for a
+   * contract.
+   *
+   * APPROVE without token ID → approve all tokens
+   * APPROVE without amount → approve all amount
+   * APPROVE with zero amount → approval being cleared
+   */
+  APPROVE = 'APPROVE',
+
+  /**
+   * Represents a transaction that transferred tokens from one address to another.
+   */
+  TRANSFER = 'TRANSFER'
+}
+
+/**
+ * The error field returned in a {@link SimulateAssetChangesResponse} if the
+ * simulation failed.
+ */
+export interface SimulateAssetChangesError extends Record<string, any> {
+  /** The error message. */
+  message: string;
+}
+
+/**
+ * Represents an asset change from a call to
+ * {@link TransactNamespace.simulateAssetChanges}.
+ */
+export interface SimulateAssetChangesChange {
+  /** The type of asset from the transaction. */
+  assetType: SimulateAssetType;
+
+  /** The type of change from the transaction. */
+  changeType: SimulateChangeType;
+
+  /** The from address. */
+  from: string;
+
+  /** The to address. */
+  to: string;
+
+  /**
+   * The raw amount as an integer string. Only available on TRANSFER changes for
+   * NATIVE and ERC20 assets, or ERC721/ERC1155 disapprove changes (field set to
+   * '0').
+   */
+  rawAmount?: string;
+
+  /**
+   * The amount as an integer string. This value is calculated by applying the
+   * `decimals` field to the `rawAmount` field. Only available on TRANSFER
+   * changes for NATIVE and ERC20 assets, or ERC721/ERC1155 disapprove changes
+   * (field set to '0').
+   */
+  amount?: string;
+
+  /** The name of the asset transferred, if available. */
+  name?: string;
+
+  /** The symbol of the asset transferred if available. */
+  symbol?: string;
+
+  /**
+   * The number of decimals used by the ERC20 token. Set to 0 for APPROVE
+   * changes. Field is undefined if it's not defined in the contract and not
+   * available from other sources.
+   */
+  decimals?: number;
+
+  /**
+   * The contract address of the asset. Only applicable to ERC20, ERC721,
+   * ERC1155, NFT and SPECIAL_NFT transactions.
+   */
+  contractAddress?: string;
+
+  /**
+   * URL for the logo of the asset, if available. Only applicable to ERC20 transactions.
+   */
+  logo?: string;
+
+  /**
+   * The token id of the asset transferred. Only applicable to ERC721,
+   * ERC1155 and SPECIAL_NFT NFTs.
+   */
+  tokenId?: string;
+}
+
+/**
+ * Response object for the {@link TransactNamespace.simulateAssetChanges} method.
+ */
+export interface SimulateAssetChangesResponse {
+  /** An array of asset changes that resulted from the transaction. */
+  changes: SimulateAssetChangesChange[];
+  /**
+   * The amount of gas used by the transaction represented as a hex string. The
+   * field is undefined if an error occurred.
+   */
+  gasUsed?: string;
+  /** Optional error field that is present if an error occurred. */
+  error?: SimulateAssetChangesError;
+}
+
+/**
+ * Authority used to decode calls and logs when using the
+ * {@link TransactNamespace.simulateExecution} method.
+ */
+export enum DecodingAuthority {
+  ETHERSCAN = 'ETHERSCAN'
+}
+
+/** The input or output parameters from a {@link DecodedDebugCallTrace}. */
+export interface DecodedCallParam {
+  /** Value of the parameter. */
+  value: string;
+  /** The name of the parameter. */
+  name: string;
+  /** The type of the parameter.*/
+  type: string;
+}
+
+/** The input parameters from a {@link DecodedLog}. */
+export interface DecodedLogInput extends DecodedCallParam {
+  /** Whether the log is marked as indexed in the smart contract. */
+  indexed: boolean;
+}
+
+/**
+ * Decoded representation of the call trace that is part of a
+ * {@link SimulationCallTrace}.
+ */
+export interface DecodedDebugCallTrace {
+  /** The smart contract method called. */
+  methodName: string;
+  /** Method inputs. */
+  inputs: DecodedCallParam[];
+  /** Method outputs. */
+  outputs: DecodedCallParam[];
+  /** The source used to provide the decoded call trace. */
+  authority: DecodingAuthority;
+}
+
+/** The type of call in a debug call trace. */
+export enum DebugCallType {
+  CREATE = 'CREATE',
+  CALL = 'CALL',
+  STATICCALL = 'STATICCALL',
+  DELEGATECALL = 'DELEGATECALL'
+}
+
+/**
+ * Debug call trace in a {@link SimulateExecutionResponse}.
+ */
+export interface SimulationCallTrace
+  extends Omit<DebugCallTrace, 'revertReason' | 'calls'> {
+  /** The type of call. */
+  type: DebugCallType;
+  /** A decoded version of the call. Provided on a best-effort basis. */
+  decoded?: DecodedDebugCallTrace;
+}
+
+/**
+ * Decoded representation of the debug log that is part of a
+ * {@link SimulationDebugLog}.
+ */
+
+export interface DecodedLog {
+  /** The decoded name of the log event. */
+  eventName: string;
+  /** The decoded inputs to the log. */
+  inputs: DecodedLogInput[];
+  /** The source used to provide the decoded log. */
+  authority: DecodingAuthority;
+}
+
+/**
+ * Debug log in a {@link SimulateExecutionResponse}.
+ */
+export interface SimulationDebugLog {
+  /** An array of topics in the log. */
+  topics: string[];
+  /** The address of the contract that generated the log. */
+  address: string;
+  /** The data included the log. */
+  data: string;
+  /** A decoded version of the log. Provided on a best-effort basis. */
+  decoded?: DecodedLog;
+}
+
+/** Response object for the {@link TransactNamespace.simulateExecution} method. */
+export interface SimulateExecutionResponse {
+  /**
+   * An array of traces generated during simulation that represent the execution
+   * of the transaction along with the decoded calls if available.
+   */
+  calls: SimulationCallTrace[];
+
+  /**
+   * An array of logs emitted during simulation along with the decoded logs if
+   * available.
+   */
+  logs: SimulationDebugLog[];
+}
+
+/**
  * Response object for the {@link TransactNamespace.sendGasOptimizedTransaction} method.
  *
  * @internal
@@ -1789,8 +2146,11 @@ export interface AddressWebhookParams {
 export interface NftFilter {
   /** The contract address of the NFT. */
   contractAddress: string;
-  /** The token id of the NFT. */
-  tokenId: BigNumberish;
+  /**
+   * The token id of the NFT to track. If this field is omitted, defaults to
+   * tracking all NFTs for the provided contract address.
+   */
+  tokenId?: BigNumberish;
 }
 
 /** Response object for the {@link NotifyNamespace.getNftFilters} method. */
@@ -1862,7 +2222,7 @@ export type AddressWebhookUpdate =
   | WebhookAddressOverride;
 
 /**
- * Transaction object used in {@link DebugNamespace.traceCall}.
+ * Transaction object used in {@link DebugNamespace.traceCall}, {@link TransactNamespace.simulateAssetChanges} and {@link TransactNamespace.simulateExecution}.
  */
 export interface DebugTransaction {
   /** The address the transaction is directed to. */
@@ -1995,6 +2355,36 @@ export interface DebugCallTrace {
   revertReason?: string;
   /** Array of sub-calls executed as part of the original call. */
   calls?: DebugCallTrace[];
+}
+
+/**
+ * Filter object used to filter logs by a specific block hash when using
+ * {@link CoreNamespace.getLogs}.
+ */
+export interface FilterByBlockHash extends EventFilter {
+  /** The specific block hash to search for logs matching the filter. */
+  blockHash?: string;
+}
+
+/**
+ * Filter object used to filter logs by block number range when using
+ * {@link CoreNamespace.getLogs}
+ */
+export interface Filter extends EventFilter {
+  /** The starting block (inclusive) to search for logs matching the filter. */
+  fromBlock?: BlockTag;
+  /** The end block (inclusive) to search for logs matching the filter.*/
+  toBlock?: BlockTag;
+}
+
+/**
+ * Filter object used to filter logs by when using {@link CoreNamespace.getLogs}
+ */
+export interface EventFilter {
+  /** The address to filter by. If omitted, filters for all addresses. */
+  address?: string | string[];
+  /** The topics to filter by, or null to match any topics. */
+  topics?: Array<string | Array<string> | null>;
 }
 
 /**

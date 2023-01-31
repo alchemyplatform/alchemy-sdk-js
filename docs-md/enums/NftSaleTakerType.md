@@ -2,7 +2,8 @@
 
 # Enumeration: NftSaleTakerType
 
-Enum for specifing the taker type for the [getNftSales](../classes/NftNamespace.md#getnftsales) endpoint.
+Enum for specifying the taker type for the [NftNamespace.getNftSales](../classes/NftNamespace.md#getnftsales)
+method.
 
 ## Table of contents
 
@@ -19,7 +20,7 @@ Enum for specifing the taker type for the [getNftSales](../classes/NftNamespace.
 
 #### Defined in
 
-[src/types/types.ts:1123](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1123)
+[src/types/types.ts:1248](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1248)
 
 ___
 
@@ -29,4 +30,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1124](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1124)
+[src/types/types.ts:1249](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1249)

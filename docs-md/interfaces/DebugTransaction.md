@@ -2,7 +2,7 @@
 
 # Interface: DebugTransaction
 
-Transaction object used in [DebugNamespace.traceCall](../classes/DebugNamespace.md#tracecall).
+Transaction object used in [DebugNamespace.traceCall](../classes/DebugNamespace.md#tracecall), [TransactNamespace.simulateAssetChanges](../classes/TransactNamespace.md#simulateassetchanges) and [TransactNamespace.simulateExecution](../classes/TransactNamespace.md#simulateexecution).
 
 ## Table of contents
 
@@ -24,7 +24,7 @@ The data associated with the transaction.
 
 #### Defined in
 
-[src/types/types.ts:1870](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1870)
+[src/types/types.ts:2230](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2230)
 
 ___
 
@@ -36,7 +36,7 @@ The address the transaction is sent from.
 
 #### Defined in
 
-[src/types/types.ts:1864](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1864)
+[src/types/types.ts:2224](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2224)
 
 ___
 
@@ -48,7 +48,7 @@ The gas price to use as a hex string.
 
 #### Defined in
 
-[src/types/types.ts:1866](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1866)
+[src/types/types.ts:2226](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2226)
 
 ___
 
@@ -60,7 +60,7 @@ The address the transaction is directed to.
 
 #### Defined in
 
-[src/types/types.ts:1862](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1862)
+[src/types/types.ts:2222](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2222)
 
 ___
 
@@ -72,4 +72,4 @@ The value associated with the transaction as a hex string.
 
 #### Defined in
 
-[src/types/types.ts:1868](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/types/types.ts#L1868)
+[src/types/types.ts:2228](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2228)

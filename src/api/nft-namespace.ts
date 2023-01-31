@@ -6,6 +6,7 @@ import {
   getContractMetadata,
   getContractsForOwner,
   getFloorPrice,
+  getMintedNfts,
   getNftMetadata,
   getNftMetadataBatch,
   getNftSales,
@@ -16,6 +17,8 @@ import {
   getOwnersForContract,
   getOwnersForNft,
   getSpamContracts,
+  getTransfersForContract,
+  getTransfersForOwner,
   isSpamContract,
   refreshContract,
   refreshNftMetadata,
@@ -29,6 +32,7 @@ import {
   GetContractsForOwnerOptions,
   GetContractsForOwnerResponse,
   GetFloorPriceResponse,
+  GetMintedNftsOptions,
   GetNftMetadataOptions,
   GetNftSalesOptions,
   GetNftSalesOptionsByContractAddress,
@@ -40,6 +44,9 @@ import {
   GetOwnersForContractWithTokenBalancesOptions,
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
+  GetTransfersForContractOptions,
+  GetTransfersForOwnerOptions,
+  GetTransfersForOwnerTransferType,
   NftAttributeRarity,
   NftAttributesResponse,
   NftContractBaseNftsResponse,
@@ -51,7 +58,8 @@ import {
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
-  RefreshContractResult
+  RefreshContractResult,
+  TransfersNftResponse
 } from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
 import { BaseNft, Nft, NftContract } from './nft';
@@ -354,6 +362,50 @@ export class NftNamespace {
     options?: GetContractsForOwnerOptions
   ): Promise<GetContractsForOwnerResponse> {
     return getContractsForOwner(this.config, owner, options);
+  }
+
+  /**
+   * Gets all NFT transfers for a given owner's address.
+   *
+   * @param owner The owner to get transfers for.
+   * @param category Whether to get transfers to or from the owner address.
+   * @param options Additional options for the request.
+   */
+  getTransfersForOwner(
+    owner: string,
+    category: GetTransfersForOwnerTransferType,
+    options?: GetTransfersForOwnerOptions
+  ): Promise<TransfersNftResponse> {
+    return getTransfersForOwner(this.config, owner, category, options);
+  }
+
+  /**
+   * Gets all NFT transfers for a given NFT contract address.
+   *
+   * Defaults to all transfers for the contract. To get transfers for a specific
+   * block range, use {@link GetTransfersForContractOptions}.
+   *
+   * @param contract The NFT contract to get transfers for.
+   * @param options Additional options for the request.
+   */
+  getTransfersForContract(
+    contract: string,
+    options?: GetTransfersForContractOptions
+  ): Promise<TransfersNftResponse> {
+    return getTransfersForContract(this.config, contract, options);
+  }
+
+  /**
+   * Get all the NFTs minted by a specified owner address.
+   *
+   * @param owner - Address for the NFT owner (can be in ENS format).
+   * @param options - The optional parameters to use for the request.
+   */
+  async getMintedNfts(
+    owner: string,
+    options?: GetMintedNftsOptions
+  ): Promise<TransfersNftResponse> {
+    return getMintedNfts(this.config, owner, options);
   }
 
   /**

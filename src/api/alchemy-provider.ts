@@ -80,8 +80,13 @@ export class AlchemyProvider
     this.batchRequests = config.batchRequests;
 
     // TODO: support individual headers when calling batch
-    const batcherConnection = { ...this.connection };
-    batcherConnection.headers!['Alchemy-Ethers-Sdk-Method'] = 'batchSend';
+    const batcherConnection = {
+      ...this.connection,
+      headers: {
+        ...this.connection.headers,
+        'Alchemy-Ethers-Sdk-Method': 'batchSend'
+      }
+    };
     const sendBatchFn = (
       requests: JsonRpcRequest[]
     ): Promise<JsonRpcResponse[]> => {

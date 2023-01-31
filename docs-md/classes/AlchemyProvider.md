@@ -401,7 +401,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:41](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/api/alchemy-provider.ts#L41)
+[src/api/alchemy-provider.ts:41](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/alchemy-provider.ts#L41)
 
 ___
 
@@ -411,7 +411,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/api/alchemy-provider.ts#L43)
+[src/api/alchemy-provider.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/alchemy-provider.ts#L43)
 
 ___
 
@@ -463,7 +463,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:42](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/api/alchemy-provider.ts#L42)
+[src/api/alchemy-provider.ts:42](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/alchemy-provider.ts#L42)
 
 ## Accessors
 
@@ -935,7 +935,7 @@ JsonRpcProvider.\_startPending
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:204](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/api/alchemy-provider.ts#L204)
+[src/api/alchemy-provider.ts:204](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/alchemy-provider.ts#L204)
 
 ___
 
@@ -1135,7 +1135,7 @@ JsonRpcProvider.detectNetwork
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:192](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/api/alchemy-provider.ts#L192)
+[src/api/alchemy-provider.ts:192](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/alchemy-provider.ts#L192)
 
 ___
 
@@ -1614,7 +1614,7 @@ CommunityResourcable.isCommunityResource
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:214](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/api/alchemy-provider.ts#L214)
+[src/api/alchemy-provider.ts:214](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/alchemy-provider.ts#L214)
 
 ___
 
@@ -1974,7 +1974,7 @@ JsonRpcProvider.send
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:228](https://github.com/alchemyplatform/alchemy-sdk-js/blob/0c05b32/src/api/alchemy-provider.ts#L228)
+[src/api/alchemy-provider.ts:228](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/alchemy-provider.ts#L228)
 
 ___
 
