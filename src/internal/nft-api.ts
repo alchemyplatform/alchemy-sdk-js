@@ -161,7 +161,7 @@ export async function* getNftsForOwnerIterator(
   for await (const response of paginateEndpoint(
     config,
     AlchemyApiType.NFT,
-    'getNFTs',
+    'getNFTsForOwner',
     srcMethod,
     'pageKey',
     'pageKey',
@@ -194,7 +194,7 @@ export async function getNftsForOwner(
   const response = await requestHttpWithBackoff<
     GetNftsAlchemyParams,
     RawGetBaseNftsResponse | RawGetNftsResponse
-  >(config, AlchemyApiType.NFT, 'getNFTs', srcMethod, {
+  >(config, AlchemyApiType.NFT, 'getNFTsForOwner', srcMethod, {
     contractAddresses: options?.contractAddresses,
     pageKey: options?.pageKey,
     filters: options?.excludeFilters,
@@ -227,7 +227,7 @@ export async function getNftsForContract(
   const response = await requestHttpWithBackoff<
     GetNftsForContractAlchemyParams,
     RawGetBaseNftsForContractResponse | RawGetNftsForContractResponse
-  >(config, AlchemyApiType.NFT, 'getNFTsForCollection', srcMethod, {
+  >(config, AlchemyApiType.NFT, 'getNFTsForContract', srcMethod, {
     contractAddress,
     startToken: options?.pageKey,
     withMetadata,
@@ -253,7 +253,7 @@ export async function* getNftsForContractIterator(
   for await (const response of paginateEndpoint(
     config,
     AlchemyApiType.NFT,
-    'getNFTsForCollection',
+    'getNFTsForContract',
     srcMethod,
     'startToken',
     'nextToken',
@@ -283,7 +283,7 @@ export async function getOwnersForContract(
   const response: any = await requestHttpWithBackoff<
     GetOwnersForNftContractAlchemyParams,
     RawGetOwnersForContractResponse
-  >(config, AlchemyApiType.NFT, 'getOwnersForCollection', srcMethod, {
+  >(config, AlchemyApiType.NFT, 'getOwnersForContract', srcMethod, {
     ...options,
     contractAddress
   });
@@ -325,7 +325,7 @@ export async function getOwnersForNft(
   return requestHttpWithBackoff(
     config,
     AlchemyApiType.NFT,
-    'getOwnersForToken',
+    'getOwnersForNFT',
     srcMethod,
     {
       contractAddress,
@@ -639,7 +639,7 @@ export async function summarizeNftAttributes(
   return requestHttpWithBackoff<
     SummarizeNftAttributesParams,
     NftAttributesResponse
-  >(config, AlchemyApiType.NFT, 'summarizeNftAttributes', srcMethod, {
+  >(config, AlchemyApiType.NFT, 'summarizeNFTAttributes', srcMethod, {
     contractAddress
   });
 }
