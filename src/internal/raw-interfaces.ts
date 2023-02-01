@@ -67,7 +67,13 @@ export interface RawBaseNftContract {
  */
 export interface RawNftContract {
   address: string;
-  contractMetadata: RawNftContractMetadata;
+  name?: string;
+  symbol?: string;
+  totalSupply?: string;
+  tokenType?: NftTokenType;
+  contractDeployer?: string;
+  deployedBlockNumber?: number;
+  openSeaMetadata?: RawOpenSeaCollectionMetadata;
 }
 
 /**
@@ -82,7 +88,7 @@ export interface RawNftContractMetadata {
   symbol?: string;
   totalSupply?: string;
   tokenType?: NftTokenType;
-  openSea?: RawOpenSeaCollectionMetadata;
+  openSeaMetadata?: RawOpenSeaCollectionMetadata;
   contractDeployer?: string;
   deployedBlockNumber?: number;
 }
@@ -307,13 +313,11 @@ export interface RawGetContractsForOwnerResponse {
   totalCount: number;
 }
 
-export interface RawContractForOwner
-  extends Omit<RawNftContractMetadata, 'openSea'> {
+export interface RawContractForOwner extends RawNftContractMetadata {
   address: string;
   totalBalance: number;
   numDistinctTokensOwned: number;
   isSpam: boolean;
   tokenId: string;
   media: Media;
-  opensea?: RawOpenSeaCollectionMetadata;
 }

@@ -41,9 +41,7 @@ export function createRawNftContract(
 ): RawNftContract {
   return {
     address,
-    contractMetadata: {
-      ...metadata
-    }
+    ...metadata
   };
 }
 
@@ -240,7 +238,7 @@ export function createRawContractForOwner(
   tokenType?: NftTokenType,
   symbol?: string,
   totalSupply?: string,
-  opensea?: RawOpenSeaCollectionMetadata,
+  openSeaMetadata?: RawOpenSeaCollectionMetadata,
   contractDeployer?: string,
   deployedBlockNumber?: number
 ): RawContractForOwner {
@@ -253,7 +251,7 @@ export function createRawContractForOwner(
     numDistinctTokensOwned: 1,
     name,
     totalSupply,
-    opensea,
+    openSeaMetadata,
     symbol,
     tokenType,
     contractDeployer,
@@ -293,21 +291,31 @@ export function verifyNftContractMetadata(
   expect(actualNftContract.tokenType).toEqual(tokenType);
 
   if (openSea) {
-    expect(actualNftContract.openSea?.floorPrice).toEqual(openSea.floorPrice);
-    expect(actualNftContract.openSea?.collectionName).toEqual(
+    expect(actualNftContract.openSeaMetadata?.floorPrice).toEqual(
+      openSea.floorPrice
+    );
+    expect(actualNftContract.openSeaMetadata?.collectionName).toEqual(
       openSea.collectionName
     );
-    expect(actualNftContract.openSea?.safelistRequestStatus).toEqual(
+    expect(actualNftContract.openSeaMetadata?.safelistRequestStatus).toEqual(
       openSea.safelistRequestStatus
     );
-    expect(actualNftContract.openSea?.imageUrl).toEqual(openSea.imageUrl);
-    expect(actualNftContract.openSea?.description).toEqual(openSea.description);
-    expect(actualNftContract.openSea?.externalUrl).toEqual(openSea.externalUrl);
-    expect(actualNftContract.openSea?.twitterUsername).toEqual(
+    expect(actualNftContract.openSeaMetadata?.imageUrl).toEqual(
+      openSea.imageUrl
+    );
+    expect(actualNftContract.openSeaMetadata?.description).toEqual(
+      openSea.description
+    );
+    expect(actualNftContract.openSeaMetadata?.externalUrl).toEqual(
+      openSea.externalUrl
+    );
+    expect(actualNftContract.openSeaMetadata?.twitterUsername).toEqual(
       openSea.twitterUsername
     );
-    expect(actualNftContract.openSea?.discordUrl).toEqual(openSea.discordUrl);
-    expect(actualNftContract.openSea?.lastIngestedAt).toEqual(
+    expect(actualNftContract.openSeaMetadata?.discordUrl).toEqual(
+      openSea.discordUrl
+    );
+    expect(actualNftContract.openSeaMetadata?.lastIngestedAt).toEqual(
       openSea.lastIngestedAt
     );
   }

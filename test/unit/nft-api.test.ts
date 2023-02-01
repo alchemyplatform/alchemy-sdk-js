@@ -85,14 +85,14 @@ describe('NFT module', () => {
     const tokenType = NftTokenType.ERC721;
     const contractDeployer = '0xDEF';
     const deployedBlockNumber = 424242;
-    const openSea = createRawOpenSeaCollectionMetadata();
+    const openSeaMetadata = createRawOpenSeaCollectionMetadata();
 
     const rawNftContractResponse = createRawNftContract(address, {
       tokenType,
       name,
       symbol,
       totalSupply,
-      openSea,
+      openSeaMetadata,
       contractDeployer,
       deployedBlockNumber
     });
@@ -1240,7 +1240,9 @@ describe('NFT module', () => {
       expect(result.contracts[2].name).toEqual(name);
       expect(result.contracts[2].tokenType).toEqual(NftTokenType.ERC1155);
       expect(result.contracts[2].symbol).toEqual(symbol);
-      expect(result.contracts[2].openSea).toEqual(expectedOpenseaMetadata);
+      expect(result.contracts[2].openSeaMetadata).toEqual(
+        expectedOpenseaMetadata
+      );
       expect(result.contracts[2].totalSupply).toEqual(totalSupply);
     });
 

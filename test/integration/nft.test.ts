@@ -37,11 +37,11 @@ describe('E2E integration tests', () => {
     expect(typeof metadata.symbol).toEqual('string');
     expect(metadata.tokenType).toEqual(NftTokenType.ERC721);
     expect(typeof metadata.name).toEqual('string');
-    expect(metadata.openSea).toBeDefined();
-    expect(metadata.openSea?.safelistRequestStatus).toBeDefined();
+    expect(metadata.openSeaMetadata).toBeDefined();
+    expect(metadata.openSeaMetadata!.safelistRequestStatus).toBeDefined();
     expect(
       Object.values(OpenSeaSafelistRequestStatus).includes(
-        metadata.openSea?.safelistRequestStatus!
+        metadata.openSeaMetadata?.safelistRequestStatus!
       )
     ).toEqual(true);
     expect(typeof metadata.contractDeployer).toEqual('string');
@@ -120,8 +120,9 @@ describe('E2E integration tests', () => {
       pageSize: 51
     });
     expect(
-      response.ownedNfts.filter(nft => nft.contract.openSea !== undefined)
-        .length
+      response.ownedNfts.filter(
+        nft => nft.contract.openSeaMetadata !== undefined
+      ).length
     ).toBeGreaterThan(0);
     expect(response.ownedNfts.length).toEqual(51);
     expect(typeof response.blockHash).toEqual('string');

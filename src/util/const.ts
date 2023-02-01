@@ -18,7 +18,7 @@ export function getAlchemyHttpUrl(network: Network, apiKey: string): string {
 }
 
 export function getAlchemyNftHttpUrl(network: Network, apiKey: string): string {
-  return `https://${network}.g.alchemy.com/nft/v2/${apiKey}`;
+  return `https://${network}.g.alchemy.com/nft/v3/${apiKey}`;
 }
 
 export function getAlchemyWsUrl(network: Network, apiKey: string): string {
