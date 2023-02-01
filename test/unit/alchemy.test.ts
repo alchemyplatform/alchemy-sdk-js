@@ -81,7 +81,7 @@ describe('Alchemy class', () => {
     });
 
     expect(alchemy.config._getRequestUrl(AlchemyApiType.NFT)).toEqual(
-      'https://opt-mainnet.g.alchemy.com/nft/v2/demo-key'
+      'https://opt-mainnet.g.alchemy.com/nft/v3/demo-key'
     );
     expect(alchemy.config._getRequestUrl(AlchemyApiType.BASE)).toEqual(
       'https://opt-mainnet.g.alchemy.com/v2/demo-key'
