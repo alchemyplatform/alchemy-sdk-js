@@ -43,7 +43,7 @@ export interface NftContract extends BaseNftContract {
    */
   totalSupply?: string;
   /** OpenSea's metadata for the contract. */
-  openSea?: OpenSeaCollectionMetadata;
+  openSeaMetadata?: OpenSeaCollectionMetadata;
   /** The address that deployed the NFT contract. */
   contractDeployer?: string;
   /** The block number the NFT contract deployed in. */

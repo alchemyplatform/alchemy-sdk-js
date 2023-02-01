@@ -47,13 +47,13 @@ export function getNftContractFromRaw(
 ): NftContract {
   return {
     address: rawNftContract.address,
-    name: rawNftContract.contractMetadata.name,
-    symbol: rawNftContract.contractMetadata.symbol,
-    totalSupply: rawNftContract.contractMetadata.totalSupply,
-    tokenType: parseNftTokenType(rawNftContract.contractMetadata.tokenType),
-    openSea: parseOpenSeaMetadata(rawNftContract.contractMetadata.openSea),
-    contractDeployer: rawNftContract.contractMetadata.contractDeployer,
-    deployedBlockNumber: rawNftContract.contractMetadata.deployedBlockNumber
+    name: rawNftContract.name,
+    symbol: rawNftContract.symbol,
+    totalSupply: rawNftContract.totalSupply,
+    tokenType: parseNftTokenType(rawNftContract.tokenType),
+    openSeaMetadata: parseOpenSeaMetadata(rawNftContract.openSeaMetadata),
+    contractDeployer: rawNftContract.contractDeployer,
+    deployedBlockNumber: rawNftContract.deployedBlockNumber
   };
 }
 
@@ -87,7 +87,9 @@ export function getNftFromRaw(rawNft: RawNft): Nft {
         symbol: rawNft.contractMetadata?.symbol,
         totalSupply: rawNft.contractMetadata?.totalSupply,
         tokenType,
-        openSea: parseOpenSeaMetadata(rawNft.contractMetadata?.openSea),
+        openSeaMetadata: parseOpenSeaMetadata(
+          rawNft.contractMetadata?.openSeaMetadata
+        ),
         contractDeployer: rawNft.contractMetadata?.contractDeployer,
         deployedBlockNumber: rawNft.contractMetadata?.deployedBlockNumber
       },
@@ -187,8 +189,12 @@ export function getContractsForOwnerFromRaw(
         tokenId: contract.tokenId,
         totalBalance: contract.totalBalance,
         name: contract.name,
+<<<<<<< HEAD
         title: contract.title,
         openSea: parseOpenSeaMetadata(contract?.opensea),
+=======
+        openSeaMetadata: parseOpenSeaMetadata(contract?.openSeaMetadata),
+>>>>>>> 3e0b13a (Update NftContract to use v3)
         symbol: contract?.symbol,
         tokenType: parseNftTokenType(contract?.tokenType),
         contractDeployer: contract.contractDeployer,
