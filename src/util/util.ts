@@ -140,6 +140,10 @@ function parseNftSaleMarketplace(marketplace: string): NftSaleMarketplace {
       return NftSaleMarketplace.SEAPORT;
     case 'x2y2':
       return NftSaleMarketplace.X2Y2;
+    case 'wyvern':
+      return NftSaleMarketplace.WYVERN;
+    case 'cryptopunks':
+      return NftSaleMarketplace.CRYPTOPUNKS;
     default:
       return NftSaleMarketplace.UNKNOWN;
   }
