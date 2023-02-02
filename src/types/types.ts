@@ -1235,6 +1235,8 @@ export enum NftSaleMarketplace {
   SEAPORT = 'seaport',
   LOOKSRARE = 'looksrare',
   X2Y2 = 'x2y2',
+  'WYVERN' = 'wyvern',
+  'CRYPTOPUNKS' = 'cryptopunks',
   UNKNOWN = 'unknown'
 }
 

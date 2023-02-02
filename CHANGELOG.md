@@ -5,6 +5,7 @@
 ### Major Changes
 
 ### Minor Changes
+- Added the `wyvern` and `cryptopunks` marketplaces in the `NftSaleMarketplace` enum to the `NftNamespace.getNftSales()` method.
 
 ## 2.4.1
 
