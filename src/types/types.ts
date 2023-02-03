@@ -443,15 +443,6 @@ export interface NftMetadata extends Record<string, any> {
   /** URL to the NFT asset image. */
   image?: string;
 
-  /**
-   * The image URL that appears along the top of the NFT asset page. This tends
-   * to be the highest resolution image.
-   */
-  external_url?: string;
-
-  /** Background color of the NFT item. Usually defined as a 6 character hex string. */
-  background_color?: string;
-
   /** The traits, attributes, and characteristics for the NFT asset. */
   attributes?: Array<Record<string, any>>;
 }
@@ -960,13 +951,10 @@ export interface ContractForOwner extends NftContract {
    */
   numDistinctTokensOwned: number;
 
-  isSpam: boolean;
+  isSpam?: boolean;
 
   /** One of the tokens from this contract held by the owner. */
   tokenId: string;
-
-  /** Alternative NFT metadata for this contract to be parsed manually. */
-  media: Media;
 }
 
 /**
@@ -1301,7 +1289,7 @@ export interface RefreshContractResult {
   contractAddress: string;
 
   /** The current state of the refresh request. */
-  refreshState: RefreshState;
+  refreshState: NftRefreshState;
 
   /**
    * Percentage of tokens currently refreshed, represented as an integer string.
@@ -1311,7 +1299,7 @@ export interface RefreshContractResult {
 }
 
 /** The current state of the NFT contract refresh process. */
-export enum RefreshState {
+export enum NftRefreshState {
   /** The provided contract is not an NFT or does not contain metadata. */
   DOES_NOT_EXIST = 'does_not_exist',
 

@@ -11,7 +11,6 @@ import {
   NftTokenType,
   OwnedBaseNft,
   OwnedNft,
-  TokenUri,
   toHex
 } from '../src';
 import {
@@ -20,7 +19,7 @@ import {
   RawContractForOwner,
   RawNft,
   RawNftContract,
-  RawNftContractMetadata,
+  RawNftImage,
   RawNftSale,
   RawOpenSeaCollectionMetadata,
   RawOwnedBaseNft,
@@ -34,18 +33,32 @@ export const TEST_WALLET_PRIVATE_KEY =
 export const TEST_WALLET_PUBLIC_ADDRESS =
   '0x4b9007B0BcE78cfB634032ec31Ed56adB464287b';
 
-/** Creates a dummy response for the `getContractMetadata` endpoint. */
 export function createRawNftContract(
-  address: string,
-  metadata: RawNftContractMetadata
+  overrides?: Partial<RawNftContract>
 ): RawNftContract {
   return {
-    address,
-    ...metadata
+    address: '0x123',
+    name: 'Test Contract',
+    symbol: 'TEST',
+    tokenType: 'ERC721',
+    totalSupply: '9999',
+    openSeaMetadata: {
+      ...createRawOpenSeaCollectionMetadata(overrides?.openSeaMetadata)
+    },
+    image: {
+      ...createRawNftImage(overrides?.image)
+    },
+    contractDeployer: '0x123',
+    deployedBlockNumber: 424242,
+    isSpam: true,
+    classifications: ['Erc721TooManyOwners'],
+    ...overrides
   };
 }
 
-export function createRawOpenSeaCollectionMetadata(): RawOpenSeaCollectionMetadata {
+export function createRawOpenSeaCollectionMetadata(
+  overrides?: Partial<RawOpenSeaCollectionMetadata>
+): RawOpenSeaCollectionMetadata {
   return {
     floorPrice: 2.2998,
     collectionName: 'Collection Name',
@@ -55,107 +68,113 @@ export function createRawOpenSeaCollectionMetadata(): RawOpenSeaCollectionMetada
     externalUrl: 'http://external.url',
     twitterUsername: 'twitter-handle',
     discordUrl: 'https://discord.gg/example',
-    lastIngestedAt: '2022-10-26T22:24:49.000Z'
+    lastIngestedAt: '2022-10-26T22:24:49.000Z',
+    ...overrides
+  };
+}
+
+export function createRawNftImage(
+  overrides?: Partial<RawNftImage>
+): RawNftImage {
+  return {
+    originalUrl: 'http://original.url',
+    cachedUrl: 'http://cached.url',
+    thumbnailUrl: 'http://thumbnail.url',
+    pngUrl: 'http://png.url',
+    contentType: 'image/png',
+    size: 12345,
+    ...overrides
   };
 }
 
 export function createRawOwnedBaseNft(
   address: string,
   tokenId: string,
-  balance: string,
-  tokenType?: NftTokenType
+  balance: string
 ): RawOwnedBaseNft {
-  const response: RawOwnedBaseNft = {
+  return {
     balance,
     contract: {
       address
     },
-    id: {
-      tokenId
-    }
+    tokenId
   };
-  if (tokenType) {
-    response.id.tokenMetadata = { tokenType };
-  }
-  return response;
 }
 
 export function createOwnedBaseNft(
   address: string,
   tokenId: string,
-  balance: number,
-  tokenType = NftTokenType.UNKNOWN
+  balance: number
 ): OwnedBaseNft {
   return {
-    ...createBaseNft(address, tokenId, tokenType),
-    balance
+    ...createBaseNft(address, tokenId),
+    balance,
+    tokenType: NftTokenType.UNKNOWN
   };
 }
 
 export function createRawBaseNft(
   contractAddress: string,
-  tokenId: string | number,
-  tokenType = NftTokenType.UNKNOWN
+  tokenId: string | number
 ): RawBaseNft {
   return {
     contract: { address: contractAddress },
-    id: {
-      tokenId: BigNumber.from(tokenId).toString(),
-      tokenMetadata: { tokenType }
-    }
+    tokenId: BigNumber.from(tokenId).toString()
   };
 }
 
 export function createBaseNft(
   address: string,
-  tokenId: string | number,
-  tokenType = NftTokenType.UNKNOWN
+  tokenId: string | number
 ): BaseNft {
-  return getBaseNftFromRaw(createRawBaseNft(address, tokenId, tokenType));
+  return getBaseNftFromRaw(createRawBaseNft(address, tokenId));
 }
 
 export function createNft(
   title: string,
   address: string,
   tokenId: string,
-  tokenType = NftTokenType.UNKNOWN,
-  tokenUri?: TokenUri,
-  media?: TokenUri[] | undefined
+  tokenType = NftTokenType.UNKNOWN
 ): Nft {
-  return getNftFromRaw(
-    createRawNft(address, title, tokenId, tokenType, { tokenUri, media })
-  );
-}
-
-interface RawNftOptions {
-  tokenUri?: TokenUri;
-  media?: TokenUri[] | undefined;
-  timeLastUpdated?: string;
-  description?: string | Array<string>;
-  contractMetadata?: RawNftContractMetadata;
+  return getNftFromRaw(createRawNft(address, title, tokenId, tokenType));
 }
 
 export function createRawNft(
   contractAddress: string,
-  title: string,
+  name: string,
   tokenId: string,
   tokenType = NftTokenType.UNKNOWN,
-  options?: RawNftOptions
+  overrides?: Partial<RawNft>
 ): RawNft {
   return {
-    contract: { address: contractAddress },
-    title,
-    description: options?.description ?? `a truly unique NFT: ${title}`,
-    timeLastUpdated: options?.timeLastUpdated ?? '2022-02-16T17:12:00.280Z',
-    id: {
-      tokenId,
-      tokenMetadata: {
-        tokenType
-      }
+    contract: {
+      address: contractAddress,
+      tokenType,
+      name,
+      symbol: 'SYM',
+      totalSupply: '1',
+      openSeaMetadata: overrides?.contract?.openSeaMetadata ?? nullOSC,
+      contractDeployer: '0xDEF',
+      deployedBlockNumber: 424242,
+      isSpam: true,
+      classifications: ['Erc721TooManyOwners'],
+      image: createRawNftImage(),
+      ...overrides?.contract
     },
-    tokenUri: options?.tokenUri,
-    media: options?.media,
-    contractMetadata: options?.contractMetadata
+    name,
+    tokenType,
+    tokenId,
+    description: overrides?.description ?? `a truly unique NFT: ${name}`,
+    timeLastUpdated: overrides?.timeLastUpdated ?? '2022-02-16T17:12:00.280Z',
+    raw: {
+      tokenUri: 'ipfs://token.uri',
+      metadata: {},
+      ...overrides?.raw
+    },
+    error: 'Mock error field',
+    tokenUri: 'https://token.uri',
+    image: createRawNftImage(),
+    ...overrides
   };
 }
 
@@ -165,11 +184,12 @@ export function createRawOwnedNft(
   tokenId: string,
   balance: string,
   tokenType = NftTokenType.UNKNOWN,
-  contractMetadata?: RawNftContractMetadata
+  overrides?: Partial<RawOwnedNft>
 ): RawOwnedNft {
   return {
-    ...createRawNft(address, title, tokenId, tokenType, { contractMetadata }),
-    balance
+    ...createRawNft(address, title, tokenId, tokenType),
+    balance,
+    ...overrides
   };
 }
 
@@ -190,9 +210,7 @@ export function createRawNftContractBaseNft(
   tokenId: string
 ): RawContractBaseNft {
   return {
-    id: {
-      tokenId
-    }
+    tokenId
   };
 }
 
@@ -232,32 +250,28 @@ export function createRawNftSale(
 export function createRawContractForOwner(
   address: string,
   tokenId: string,
-  media: Media,
-  isSpam?: boolean,
-  name?: string,
-  tokenType?: NftTokenType,
-  symbol?: string,
-  totalSupply?: string,
-  openSeaMetadata?: RawOpenSeaCollectionMetadata,
-  contractDeployer?: string,
-  deployedBlockNumber?: number
+  overrides?: Partial<RawContractForOwner>
 ): RawContractForOwner {
   return {
-    address,
-    isSpam: isSpam ?? true,
-    media,
     tokenId,
     totalBalance: 1,
     numDistinctTokensOwned: 1,
-    name,
-    totalSupply,
-    openSeaMetadata,
-    symbol,
-    tokenType,
-    contractDeployer,
-    deployedBlockNumber
+    ...createRawNftContract({ address }),
+    ...overrides
   };
 }
+
+export const nullOSC = {
+  floorPrice: null,
+  collectionName: null,
+  safelistRequestStatus: null,
+  imageUrl: null,
+  description: null,
+  externalUrl: null,
+  twitterUsername: null,
+  discordUrl: null,
+  lastIngestedAt: null
+};
 
 export function createNftMediaData(
   bytes?: number,

@@ -1,10 +1,8 @@
 import {
-  Media,
   NftMetadata,
+  NftSpamClassification,
   NftTokenType,
-  OpenSeaCollectionMetadata,
-  SpamInfo,
-  TokenUri
+  OpenSeaCollectionMetadata
 } from '../types/types';
 
 /**
@@ -42,12 +40,16 @@ export interface NftContract extends BaseNftContract {
    * available on ERC-721 contracts.
    */
   totalSupply?: string;
-  /** OpenSea's metadata for the contract. */
-  openSeaMetadata?: OpenSeaCollectionMetadata;
   /** The address that deployed the NFT contract. */
   contractDeployer?: string;
+  /** OpenSea's metadata for the contract. */
+  openSeaMetadata: OpenSeaCollectionMetadata;
   /** The block number the NFT contract deployed in. */
   deployedBlockNumber?: number;
+  /** Whether the NFT was marked as spam. */
+  isSpam?: boolean;
+  /** */
+  classifications: NftSpamClassification[];
 }
 
 /**
@@ -81,29 +83,39 @@ export interface Nft extends BaseNft {
   contract: NftContract;
 
   /** The NFT title. */
-  title: string;
+  name?: string;
 
   /** The NFT description. */
-  description: string;
+  description?: string;
 
   /** When the NFT was last updated in the blockchain. Represented in ISO-8601 format. */
   timeLastUpdated: string;
 
   /** Holds an error message if there was an issue fetching metadata. */
-  metadataError: string | undefined;
+  metadataError?: string;
 
   /**
    * The raw metadata fetched from the metadata URL specified by the NFT. The
    * field is undefined if Alchemy was unable to fetch metadata.
    */
-  rawMetadata: NftMetadata | undefined;
+  raw: NftRawFields;
 
-  /** URIs for accessing the NFT's metadata blob. */
-  tokenUri: TokenUri | undefined;
+  isSpam?: boolean;
+  classification: NftSpamClassification[];
+  openSeaMetadata: OpenSeaCollectionMetadata;
+  image: NftImage;
+}
 
-  /** URIs for accessing the NFT's media assets. */
-  media: Media[];
+export interface NftImage {
+  originalUrl?: string;
+  cachedUrl?: string;
+  thumbnailUrl?: string;
+  pngUrl?: string;
+  contentType?: string;
+  size?: number;
+}
 
-  /** Detailed information on why an NFT was classified as spam. */
-  spamInfo?: SpamInfo;
+export interface NftRawFields {
+  tokenUri?: string;
+  metadata: NftMetadata;
 }

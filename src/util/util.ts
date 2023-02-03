@@ -10,8 +10,7 @@ import {
   RawNft,
   RawNftAttributeRarity,
   RawNftContract,
-  RawOpenSeaCollectionMetadata,
-  RawSpamInfo
+  RawOpenSeaCollectionMetadata
 } from '../internal/raw-interfaces';
 import {
   GetContractsForOwnerResponse,
@@ -21,9 +20,7 @@ import {
   NftSaleTakerType,
   NftTokenType,
   OpenSeaCollectionMetadata,
-  OpenSeaSafelistRequestStatus,
-  SpamInfo,
-  TokenUri
+  OpenSeaSafelistRequestStatus
 } from '../types/types';
 
 export function formatBlock(block: string | number): string {
@@ -45,16 +42,11 @@ function stringToEnum<T extends string>(
 export function getNftContractFromRaw(
   rawNftContract: RawNftContract
 ): NftContract {
-  return {
-    address: rawNftContract.address,
-    name: rawNftContract.name,
-    symbol: rawNftContract.symbol,
-    totalSupply: rawNftContract.totalSupply,
+  return nullsToUndefined({
+    ...rawNftContract,
     tokenType: parseNftTokenType(rawNftContract.tokenType),
-    openSeaMetadata: parseOpenSeaMetadata(rawNftContract.openSeaMetadata),
-    contractDeployer: rawNftContract.contractDeployer,
-    deployedBlockNumber: rawNftContract.deployedBlockNumber
-  };
+    openSeaMetadata: parseOpenSeaMetadata(rawNftContract.openSeaMetadata)
+  });
 }
 
 export function getBaseNftFromRaw(rawBaseNft: RawBaseNft): BaseNft;
@@ -70,40 +62,31 @@ export function getBaseNftFromRaw(
     contract: contractAddress
       ? { address: contractAddress }
       : (rawBaseNft as RawBaseNft).contract,
-    tokenId: BigNumber.from(rawBaseNft.id.tokenId).toString(),
-    tokenType: parseNftTokenType(rawBaseNft.id.tokenMetadata?.tokenType)
+    tokenId: BigNumber.from(rawBaseNft.tokenId).toString(),
+    tokenType: NftTokenType.UNKNOWN
   };
 }
 
 export function getNftFromRaw(rawNft: RawNft): Nft {
   try {
-    const tokenType = parseNftTokenType(rawNft.id.tokenMetadata?.tokenType);
-    const spamInfo = parseSpamInfo(rawNft.spamInfo);
+    // TODO(v3): do you still need this?
+    const tokenType = parseNftTokenType(rawNft.tokenType);
 
-    return {
+    // TODO(v3): add new types in to make errors go away.
+    const nftFields = {
+      ...rawNft,
       contract: {
-        address: rawNft.contract.address,
-        name: rawNft.contractMetadata?.name,
-        symbol: rawNft.contractMetadata?.symbol,
-        totalSupply: rawNft.contractMetadata?.totalSupply,
+        ...rawNft.contract,
         tokenType,
-        openSeaMetadata: parseOpenSeaMetadata(
-          rawNft.contractMetadata?.openSeaMetadata
-        ),
-        contractDeployer: rawNft.contractMetadata?.contractDeployer,
-        deployedBlockNumber: rawNft.contractMetadata?.deployedBlockNumber
+        openSeaMetadata: parseOpenSeaMetadata(rawNft.contract.openSeaMetadata)
       },
-      tokenId: parseNftTokenId(rawNft.id.tokenId),
+      tokenId: parseNftTokenId(rawNft.tokenId),
       tokenType,
-      title: rawNft.title,
       description: parseNftDescription(rawNft.description),
-      timeLastUpdated: rawNft.timeLastUpdated,
-      metadataError: rawNft.error,
-      rawMetadata: rawNft.metadata,
-      tokenUri: parseNftTokenUri(rawNft.tokenUri),
-      media: parseNftTokenUriArray(rawNft.media),
-      spamInfo
+      // TODO(v3): move this field into the `contract.raw` object.
+      metadataError: rawNft.error
     };
+    return nullsToUndefined(nftFields);
   } catch (e) {
     throw new Error('Error parsing the NFT response: ' + e);
   }
@@ -112,26 +95,16 @@ export function getNftFromRaw(rawNft: RawNft): Nft {
 export function getNftSalesFromRaw(
   rawNftSales: RawGetNftSalesResponse
 ): GetNftSalesResponse {
-  return {
-    pageKey: rawNftSales?.pageKey,
+  return nullsToUndefined({
+    pageKey: rawNftSales.pageKey,
     nftSales: rawNftSales.nftSales.map(rawNftSale => ({
+      ...rawNftSale,
       marketplace: parseNftSaleMarketplace(rawNftSale.marketplace),
-      contractAddress: rawNftSale.contractAddress,
-      tokenId: rawNftSale.tokenId,
-      quantity: rawNftSale.quantity,
-      buyerAddress: rawNftSale.buyerAddress,
-      sellerAddress: rawNftSale.sellerAddress,
       taker: parseNftTaker(rawNftSale.taker),
-      sellerFee: rawNftSale?.sellerFee,
-      marketplaceFee: rawNftSale?.protocolFee,
-      protocolFee: rawNftSale?.protocolFee,
-      royaltyFee: rawNftSale?.royaltyFee,
-      blockNumber: rawNftSale?.blockNumber,
-      logIndex: rawNftSale.logIndex,
-      bundleIndex: rawNftSale.bundleIndex,
-      transactionHash: rawNftSale.transactionHash
+      protocolFee: rawNftSale.protocolFee ?? undefined,
+      royaltyFee: rawNftSale.royaltyFee ?? undefined
     }))
-  };
+  });
 }
 
 function parseNftSaleMarketplace(marketplace: string): NftSaleMarketplace {
@@ -163,6 +136,7 @@ function parseNftTaker(taker: string): NftSaleTakerType {
   }
 }
 
+// TODO(v3): remove this function once backend updates `trait_type`
 export function getNftRarityFromRaw(
   rawNftRarity: RawNftAttributeRarity[]
 ): NftAttributeRarity[] {
@@ -176,27 +150,18 @@ export function getNftRarityFromRaw(
 export function getContractsForOwnerFromRaw(
   rawContractsForOwner: RawGetContractsForOwnerResponse
 ): GetContractsForOwnerResponse {
-  return {
+  return nullsToUndefined({
     pageKey: rawContractsForOwner?.pageKey,
     totalCount: rawContractsForOwner.totalCount,
     contracts: rawContractsForOwner.contracts.map(contract => {
       return {
-        address: contract.address,
-        totalSupply: contract.totalSupply,
-        isSpam: contract.isSpam,
-        media: contract.media,
-        numDistinctTokensOwned: contract.numDistinctTokensOwned,
-        tokenId: contract.tokenId,
+        ...getNftContractFromRaw(contract),
         totalBalance: contract.totalBalance,
-        name: contract.name,
-        openSeaMetadata: parseOpenSeaMetadata(contract?.openSeaMetadata),
-        symbol: contract?.symbol,
-        tokenType: parseNftTokenType(contract?.tokenType),
-        contractDeployer: contract.contractDeployer,
-        deployedBlockNumber: contract.deployedBlockNumber
+        numDistinctTokensOwned: contract.numDistinctTokensOwned,
+        tokenId: contract.tokenId
       };
     })
-  };
+  });
 }
 
 function parseNftTokenId(tokenId: string): string {
@@ -207,10 +172,8 @@ function parseNftTokenId(tokenId: string): string {
 
 function parseNftTokenType(tokenType: string | undefined): NftTokenType {
   switch (tokenType) {
-    case 'erc721':
     case 'ERC721':
       return NftTokenType.ERC721;
-    case 'erc1155':
     case 'ERC1155':
       return NftTokenType.ERC1155;
     default:
@@ -218,25 +181,13 @@ function parseNftTokenType(tokenType: string | undefined): NftTokenType {
   }
 }
 
-function parseSpamInfo(
-  spamInfo: RawSpamInfo | undefined
-): SpamInfo | undefined {
-  if (!spamInfo) {
-    return undefined;
-  }
-  const { isSpam, classifications } = spamInfo;
-  return {
-    isSpam: isSpam === 'true',
-    classifications
-  };
-}
-
-function parseNftDescription(description?: string | string[]): string {
-  if (description === undefined) {
+// TODO(v3): verify backend state to remove this function.
+function parseNftDescription(description?: string | string[] | null): string {
+  if (description === undefined || description === null) {
     return '';
   }
 
-  // TODO: Remove after backend adds JSON stringification.
+  // TODO(v3): Remove after backend adds JSON stringification.
   if (!Array.isArray(description) && typeof description === 'object') {
     return JSON.stringify(description);
   }
@@ -244,43 +195,22 @@ function parseNftDescription(description?: string | string[]): string {
   return typeof description === 'string' ? description : description.join(' ');
 }
 
-function parseNftTokenUri(uri: TokenUri | undefined): TokenUri | undefined {
-  if (uri && uri.raw.length === 0 && uri.gateway.length == 0) {
-    return undefined;
-  }
-  return uri;
-}
-
-function parseNftTokenUriArray(arr: TokenUri[] | undefined): TokenUri[] {
-  if (arr === undefined) {
-    return [];
-  }
-  return arr.filter(uri => parseNftTokenUri(uri) !== undefined);
-}
-
+// TODO(v3): Remove `null` from param after backend always returns the field.
 export function parseOpenSeaMetadata(
-  openSea: RawOpenSeaCollectionMetadata | undefined
+  openSeaMetadata: RawOpenSeaCollectionMetadata | null
 ): OpenSeaCollectionMetadata | undefined {
-  if (openSea === undefined) {
+  if (openSeaMetadata === null) {
     return undefined;
   }
-  return {
-    floorPrice: openSea.floorPrice,
-    collectionName: openSea.collectionName,
-    safelistRequestStatus:
-      openSea.safelistRequestStatus !== undefined
-        ? stringToEnum(
-            openSea.safelistRequestStatus,
-            OpenSeaSafelistRequestStatus
-          )
-        : undefined,
-    imageUrl: openSea.imageUrl,
-    description: openSea.description,
-    externalUrl: openSea.externalUrl,
-    twitterUsername: openSea.twitterUsername,
-    discordUrl: openSea.discordUrl,
-    lastIngestedAt: openSea.lastIngestedAt
-  };
+  return nullsToUndefined({
+    ...openSeaMetadata,
+    safelistRequestStatus: openSeaMetadata.safelistRequestStatus
+      ? stringToEnum(
+          openSeaMetadata.safelistRequestStatus,
+          OpenSeaSafelistRequestStatus
+        )
+      : undefined
+  });
 }
 
 export const IS_BROWSER = typeof window !== 'undefined' && window !== null;

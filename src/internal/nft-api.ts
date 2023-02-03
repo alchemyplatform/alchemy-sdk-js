@@ -35,6 +35,7 @@ import {
   NftMetadataBatchOptions,
   NftMetadataBatchToken,
   NftOrdering,
+  NftRefreshState,
   NftSaleMarketplace,
   NftSaleTakerType,
   NftTokenType,
@@ -43,7 +44,6 @@ import {
   OwnedNft,
   OwnedNftsResponse,
   RefreshContractResult,
-  RefreshState,
   SortingOrder,
   TransfersNftResponse
 } from '../types/types';
@@ -54,7 +54,8 @@ import {
   getNftContractFromRaw,
   getNftFromRaw,
   getNftRarityFromRaw,
-  getNftSalesFromRaw
+  getNftSalesFromRaw,
+  nullsToUndefined
 } from '../util/util';
 import { getAssetTransfers } from './core-api';
 import { paginateEndpoint, requestHttpWithBackoff } from './dispatch';
@@ -206,7 +207,7 @@ export async function getNftsForOwner(
     tokenUriTimeoutInMs: options?.tokenUriTimeoutInMs,
     orderBy: options?.orderBy
   });
-  return {
+  return nullsToUndefined({
     ownedNfts: response.ownedNfts.map(res => ({
       ...nftFromGetNftResponse(res),
       balance: parseInt(res.balance)
@@ -214,7 +215,7 @@ export async function getNftsForOwner(
     pageKey: response.pageKey,
     totalCount: response.totalCount,
     blockHash: response.blockHash
-  };
+  });
 }
 
 export async function getNftsForContract(
@@ -744,7 +745,7 @@ function nftFromGetNftContractResponse(
 function isNftWithMetadata(
   response: RawBaseNft | RawContractBaseNft | RawNft
 ): response is RawNft {
-  return (response as RawNft).title !== undefined;
+  return (response as RawNft).name !== undefined;
 }
 
 /**
@@ -824,20 +825,20 @@ function omitMetadataToWithMetadata(
   return omitMetadata === undefined ? true : !omitMetadata;
 }
 
-function parseReingestionState(reingestionState: string): RefreshState {
+function parseReingestionState(reingestionState: string): NftRefreshState {
   switch (reingestionState) {
     case 'does_not_exist':
-      return RefreshState.DOES_NOT_EXIST;
+      return NftRefreshState.DOES_NOT_EXIST;
     case 'already_queued':
-      return RefreshState.ALREADY_QUEUED;
+      return NftRefreshState.ALREADY_QUEUED;
     case 'in_progress':
-      return RefreshState.IN_PROGRESS;
+      return NftRefreshState.IN_PROGRESS;
     case 'finished':
-      return RefreshState.FINISHED;
+      return NftRefreshState.FINISHED;
     case 'queued':
-      return RefreshState.QUEUED;
+      return NftRefreshState.QUEUED;
     case 'queue_failed':
-      return RefreshState.QUEUE_FAILED;
+      return NftRefreshState.QUEUE_FAILED;
     default:
       throw new Error('Unknown reingestion state: ' + reingestionState);
   }
