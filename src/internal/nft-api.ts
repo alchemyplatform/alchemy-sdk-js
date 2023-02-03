@@ -212,7 +212,8 @@ export async function getNftsForOwner(
       balance: parseInt(res.balance)
     })),
     pageKey: response.pageKey,
-    totalCount: response.totalCount
+    totalCount: response.totalCount,
+    blockHash: response.blockHash
   };
 }
 

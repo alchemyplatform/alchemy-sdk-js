@@ -6,6 +6,7 @@
 
 ### Minor Changes
 - Added the `wyvern` and `cryptopunks` marketplaces in the `NftSaleMarketplace` enum to the `NftNamespace.getNftSales()` method.
+- Added the `blockHash` field to the `OwnedNftsResponse` returned by `NftNamespace.getNftsForOwner()` to track the block hash that the request was based on.
 
 ## 2.4.1
 
