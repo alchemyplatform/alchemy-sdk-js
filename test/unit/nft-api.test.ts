@@ -172,10 +172,6 @@ describe('NFT module', () => {
       });
       expect(getNftFromRaw(rawNft)).toEqual(expectedNft);
     });
-
-    it('getNftSalesFromRaw()', () => {});
-    it('getNftRarityFromRaw()', () => {});
-    it('getContractsForOwnerFromRaw()', () => {});
   });
 
   describe('getContractMetadata()', () => {
