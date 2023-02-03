@@ -372,7 +372,8 @@ describe('NFT module', () => {
         createOwnedBaseNft('0xCA2', '0x2', 2, NftTokenType.ERC721)
       ],
       pageKey: 'page-key1',
-      totalCount: 3
+      totalCount: 3,
+      blockHash: '0x123abc'
     };
     const nftExpected: OwnedNftsResponse = {
       ownedNfts: [

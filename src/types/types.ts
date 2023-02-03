@@ -721,6 +721,9 @@ export interface OwnedBaseNftsResponse {
 
   /** The total count of NFTs owned by the provided address. */
   readonly totalCount: number;
+
+  /** The canonical head block hash of when your request was received. */
+  blockHash: string;
 }
 
 /**
