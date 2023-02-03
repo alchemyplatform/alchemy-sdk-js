@@ -309,7 +309,8 @@ describe('NFT module', () => {
         createRawOwnedBaseNft('0xCA2', '0x2', '2', NftTokenType.ERC721)
       ],
       pageKey: 'page-key1',
-      totalCount: 3
+      totalCount: 3,
+      blockHash: '0x123abc'
     };
 
     const nftResponse: RawGetNftsResponse = {
@@ -318,7 +319,8 @@ describe('NFT module', () => {
         createRawOwnedNft('b', '0xCA2', '0x2', '2', NftTokenType.ERC1155)
       ],
       pageKey: 'page-key1',
-      totalCount: 3
+      totalCount: 3,
+      blockHash: '0x123abc'
     };
 
     const paramCases = [
@@ -378,7 +380,8 @@ describe('NFT module', () => {
         createOwnedNft('b', '0xCA2', '0x2', 2, NftTokenType.ERC1155)
       ],
       pageKey: 'page-key1',
-      totalCount: 3
+      totalCount: 3,
+      blockHash: '0x123abc'
     };
     const responseCases: Array<
       [
@@ -432,13 +435,15 @@ describe('NFT module', () => {
           createRawOwnedBaseNft('0xCA2', '0x2', '2', NftTokenType.ERC721)
         ],
         pageKey: 'page-key1',
-        totalCount: 3
+        totalCount: 3,
+        blockHash: '0x123abc'
       },
       {
         ownedNfts: [
           createRawOwnedBaseNft('0xCA2', '0x3', '1', NftTokenType.ERC721)
         ],
-        totalCount: 3
+        totalCount: 3,
+        blockHash: '0x123abc'
       }
     ];
     const nftResponses: RawGetNftsResponse[] = [
@@ -448,13 +453,15 @@ describe('NFT module', () => {
           createRawOwnedNft('b', '0xCA2', '0x2', '2', NftTokenType.ERC1155)
         ],
         pageKey: 'page-key1',
-        totalCount: 3
+        totalCount: 3,
+        blockHash: '0x123abc'
       },
       {
         ownedNfts: [
           createRawOwnedNft('c', '0xCA2', '0x3', '1', NftTokenType.ERC1155)
         ],
-        totalCount: 3
+        totalCount: 3,
+        blockHash: '0x123abc'
       }
     ];
 
@@ -646,7 +653,8 @@ describe('NFT module', () => {
             createRawOwnedNft('b', '0xCA2', '0x2', '2', NftTokenType.ERC1155)
           ],
           pageKey: 'page-key1',
-          totalCount: 2
+          totalCount: 2,
+          blockHash: '0x123abc'
         }
       ];
       setupMock(mockResponse);
@@ -1250,20 +1258,23 @@ describe('NFT module', () => {
     const addresses = ['0xCA1', '0xCA2'];
     const emptyResponse: RawGetNftsResponse = {
       ownedNfts: [],
-      totalCount: 0
+      totalCount: 0,
+      blockHash: '0x123abc'
     };
     const partialResponse: RawGetNftsResponse = {
       ownedNfts: [
         createRawOwnedNft('b', '0xCA2', '0x2', '2', NftTokenType.ERC1155)
       ],
-      totalCount: 1
+      totalCount: 1,
+      blockHash: '0x123abc'
     };
     const nftResponse: RawGetNftsResponse = {
       ownedNfts: [
         createRawOwnedNft('a', '0xCA1', '0x1', '1'),
         createRawOwnedNft('b', '0xCA2', '0x2', '2', NftTokenType.ERC1155)
       ],
-      totalCount: 2
+      totalCount: 2,
+      blockHash: '0x123abc'
     };
 
     it('calls with the correct parameters', async () => {

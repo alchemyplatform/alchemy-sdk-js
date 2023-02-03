@@ -124,6 +124,7 @@ describe('E2E integration tests', () => {
         .length
     ).toBeGreaterThan(0);
     expect(response.ownedNfts.length).toEqual(51);
+    expect(typeof response.blockHash).toEqual('string');
   });
 
   it('getOwnersForNft() from NFT', async () => {
