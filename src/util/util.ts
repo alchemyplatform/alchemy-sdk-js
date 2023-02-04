@@ -69,10 +69,7 @@ export function getBaseNftFromRaw(
 
 export function getNftFromRaw(rawNft: RawNft): Nft {
   try {
-    // TODO(v3): do you still need this?
     const tokenType = parseNftTokenType(rawNft.tokenType);
-
-    // TODO(v3): add new types in to make errors go away.
     const nftFields = {
       ...rawNft,
       contract: {
@@ -82,7 +79,7 @@ export function getNftFromRaw(rawNft: RawNft): Nft {
       },
       tokenId: parseNftTokenId(rawNft.tokenId),
       tokenType,
-      description: parseNftDescription(rawNft.description),
+      description: rawNft.description,
       // TODO(v3): move this field into the `contract.raw` object.
       metadataError: rawNft.error
     };
@@ -179,20 +176,6 @@ function parseNftTokenType(tokenType: string | undefined): NftTokenType {
     default:
       return NftTokenType.UNKNOWN;
   }
-}
-
-// TODO(v3): verify backend state to remove this function.
-function parseNftDescription(description?: string | string[] | null): string {
-  if (description === undefined || description === null) {
-    return '';
-  }
-
-  // TODO(v3): Remove after backend adds JSON stringification.
-  if (!Array.isArray(description) && typeof description === 'object') {
-    return JSON.stringify(description);
-  }
-
-  return typeof description === 'string' ? description : description.join(' ');
 }
 
 // TODO(v3): Remove `null` from param after backend always returns the field.

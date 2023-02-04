@@ -1,5 +1,3 @@
-import { NftMetadata, NftSaleFeeData } from '../types/types';
-
 /**
  * This file contains the raw HTTP responses returned by the Alchemy endpoints.
  * These types are not exposed to the end user and are instead used internally
@@ -23,27 +21,21 @@ export interface RawBaseNft {
  */
 export interface RawNft extends RawBaseNft {
   contract: RawNftContract;
-  // TODO(v3): Verify this is never null
-  name: string;
-  // TODO(v3): Verify this is never null
+  name: string | null;
   tokenType: string;
-  // TODO(v3): verify we no longer return null
+  // TODO(v3): verify we no longer return objects/ arrays
   description: string | null;
   tokenUri: string | null;
-  // TODO(v3): verify this is never null
   timeLastUpdated: string;
   // TODO(v3): move this field into `raw` after change.
   error: string | null;
-  // TODO(v3): Verify this is never null
   raw: RawNftMetadata;
-  // TODO(v3): Verify this is never null
   image: RawNftImage;
 }
 
 export interface RawNftMetadata {
   tokenUri: string | null;
-  // TODO: verify this is never null
-  metadata: NftMetadata;
+  metadata: Record<string, any>;
 }
 
 export interface RawNftImage {
@@ -77,7 +69,6 @@ export interface RawNftContract {
   name: string | null;
   symbol: string | null;
   totalSupply: string | null;
-  // TODO(v3): will this ever be null?
   tokenType: string;
   openSeaMetadata: RawOpenSeaCollectionMetadata;
   contractDeployer: string | null;
@@ -149,7 +140,7 @@ export interface RawOwnedNft extends RawNft {
  */
 export interface RawGetBaseNftsForContractResponse {
   nfts: RawContractBaseNft[];
-  // TODO: change to pagekey on backend.
+  // TODO(v3): change to pagekey on backend.
   nextToken?: string;
 }
 
@@ -160,6 +151,7 @@ export interface RawGetBaseNftsForContractResponse {
  */
 export interface RawGetNftsForContractResponse {
   nfts: RawNft[];
+  // TODO(v3): change to pagekey on backend.
   nextToken?: string;
 }
 
@@ -273,9 +265,9 @@ export interface RawNftSale {
   buyerAddress: string;
   sellerAddress: string;
   taker: string;
-  sellerFee: NftSaleFeeData;
-  protocolFee: NftSaleFeeData | null;
-  royaltyFee: NftSaleFeeData | null;
+  sellerFee: RawNftSaleFeeData;
+  protocolFee: RawNftSaleFeeData;
+  royaltyFee: RawNftSaleFeeData;
   blockNumber: number;
   logIndex: number;
   bundleIndex: number;
@@ -292,4 +284,10 @@ export interface RawContractForOwner extends RawNftContract {
   totalBalance: number;
   numDistinctTokensOwned: number;
   tokenId: string;
+}
+
+export interface RawNftSaleFeeData {
+  amount: string | null;
+  symbol: string | null;
+  decimal: number | null;
 }

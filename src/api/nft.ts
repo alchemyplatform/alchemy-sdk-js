@@ -91,6 +91,7 @@ export interface Nft extends BaseNft {
   /** When the NFT was last updated in the blockchain. Represented in ISO-8601 format. */
   timeLastUpdated: string;
 
+  // TODO(v3): move into field into `raw` after change.
   /** Holds an error message if there was an issue fetching metadata. */
   metadataError?: string;
 
