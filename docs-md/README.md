@@ -125,6 +125,7 @@ It also includes the majority of Alchemy Enhanced APIs, including:
 You will also find the following utility methods:
 
 - `findContractDeployer()`: Find the contract deployer and block number for a given contract address.
+- `getTokensForOwner()`: Get all token balances and metadata for a given owner address
 
 ### Accessing the full Ethers.js Provider
 
