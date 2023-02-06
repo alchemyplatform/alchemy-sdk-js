@@ -128,6 +128,7 @@ export interface RawGetBaseNftsResponse {
   ownedNfts: RawOwnedBaseNft[];
   pageKey?: string;
   totalCount: number;
+  blockHash: string;
 }
 
 /**
@@ -139,6 +140,7 @@ export interface RawGetNftsResponse {
   ownedNfts: RawOwnedNft[];
   pageKey?: string;
   totalCount: number;
+  blockHash: string;
 }
 
 /**
