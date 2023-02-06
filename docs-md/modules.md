@@ -106,6 +106,8 @@
 - [GetOwnersForContractWithTokenBalancesOptions](interfaces/GetOwnersForContractWithTokenBalancesOptions.md)
 - [GetOwnersForContractWithTokenBalancesResponse](interfaces/GetOwnersForContractWithTokenBalancesResponse.md)
 - [GetOwnersForNftResponse](interfaces/GetOwnersForNftResponse.md)
+- [GetTokensForOwnerOptions](interfaces/GetTokensForOwnerOptions.md)
+- [GetTokensForOwnerResponse](interfaces/GetTokensForOwnerResponse.md)
 - [GetTransfersForContractOptions](interfaces/GetTransfersForContractOptions.md)
 - [GetTransfersForOwnerOptions](interfaces/GetTransfersForOwnerOptions.md)
 - [Media](interfaces/Media.md)
@@ -132,6 +134,7 @@
 - [OwnedBaseNftsResponse](interfaces/OwnedBaseNftsResponse.md)
 - [OwnedNft](interfaces/OwnedNft.md)
 - [OwnedNftsResponse](interfaces/OwnedNftsResponse.md)
+- [OwnedToken](interfaces/OwnedToken.md)
 - [RawContract](interfaces/RawContract.md)
 - [RefreshContractResult](interfaces/RefreshContractResult.md)
 - [SendPrivateTransactionOptions](interfaces/SendPrivateTransactionOptions.md)
@@ -195,7 +198,7 @@ Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespa
 
 #### Defined in
 
-[src/types/types.ts:2212](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2212)
+[src/types/types.ts:2288](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L2288)
 
 ___
 
@@ -208,7 +211,7 @@ filters compatible with other ethers events.
 
 #### Defined in
 
-[src/types/types.ts:1695](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1695)
+[src/types/types.ts:1771](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L1771)
 
 ___
 
@@ -221,7 +224,7 @@ also include Alchemy's Subscription API.
 
 #### Defined in
 
-[src/types/types.ts:1689](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1689)
+[src/types/types.ts:1765](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L1765)
 
 ___
 
@@ -234,7 +237,7 @@ least one of the fields to be set.
 
 #### Defined in
 
-[src/types/types.ts:1678](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1678)
+[src/types/types.ts:1754](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L1754)
 
 ___
 
@@ -247,7 +250,7 @@ methods in the [DebugNamespace](classes/DebugNamespace.md).
 
 #### Defined in
 
-[src/types/types.ts:2271](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2271)
+[src/types/types.ts:2347](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L2347)
 
 ___
 
@@ -261,7 +264,7 @@ The keys are the addresses of the accounts, mapped to its corresponding state.
 
 #### Defined in
 
-[src/types/types.ts:2388](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2388)
+[src/types/types.ts:2464](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L2464)
 
 ___
 
@@ -273,7 +276,7 @@ The level of verbosity for the logger.
 
 #### Defined in
 
-[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/util/logger.ts#L22)
+[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/util/logger.ts#L22)
 
 ___
 
@@ -286,7 +289,7 @@ Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespa
 
 #### Defined in
 
-[src/types/types.ts:2204](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2204)
+[src/types/types.ts:2280](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L2280)
 
 ___
 
@@ -304,7 +307,7 @@ Requires an array with at least one value.
 
 #### Defined in
 
-[src/types/types.ts:2414](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2414)
+[src/types/types.ts:2490](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L2490)
 
 ___
 
@@ -325,7 +328,7 @@ Implementation copied over from
 
 #### Defined in
 
-[src/types/types.ts:2408](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2408)
+[src/types/types.ts:2484](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L2484)
 
 ___
 
@@ -335,7 +338,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:152](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L152)
+[src/types/types.ts:152](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L152)
 
 ___
 
@@ -347,7 +350,7 @@ The parameters to use with the [CoreNamespace.getTransactionReceipts](classes/Co
 
 #### Defined in
 
-[src/types/types.ts:1351](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1351)
+[src/types/types.ts:1427](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L1427)
 
 ## Functions
 
@@ -369,7 +372,7 @@ Converts a hex string to a decimal number.
 
 #### Defined in
 
-[src/api/util.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/util.ts#L9)
+[src/api/util.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/util.ts#L9)
 
 ___
 
@@ -391,7 +394,7 @@ Checks if a value is a hex string.
 
 #### Defined in
 
-[src/api/util.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/util.ts#L29)
+[src/api/util.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/util.ts#L29)
 
 ___
 
@@ -413,7 +416,7 @@ Configures the verbosity of logging. The default log level is `info`.
 
 #### Defined in
 
-[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/util/logger.ts#L56)
+[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/util/logger.ts#L56)
 
 ___
 
@@ -435,4 +438,4 @@ Converts a number to a hex string.
 
 #### Defined in
 
-[src/api/util.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/api/util.ts#L19)
+[src/api/util.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/util.ts#L19)

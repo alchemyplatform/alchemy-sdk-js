@@ -11,11 +11,24 @@ the total count.
 
 ### Properties
 
+- [blockHash](OwnedNftsResponse.md#blockhash)
 - [ownedNfts](OwnedNftsResponse.md#ownednfts)
 - [pageKey](OwnedNftsResponse.md#pagekey)
 - [totalCount](OwnedNftsResponse.md#totalcount)
 
 ## Properties
+
+### blockHash
+
+• **blockHash**: `string`
+
+The canonical head block hash of when your request was received.
+
+#### Defined in
+
+[src/types/types.ts:769](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L769)
+
+___
 
 ### ownedNfts
 
@@ -25,7 +38,7 @@ The NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/types.ts:689](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L689)
+[src/types/types.ts:757](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L757)
 
 ___
 
@@ -38,7 +51,7 @@ NFTs. If there is no page key, then there are no more NFTs to fetch.
 
 #### Defined in
 
-[src/types/types.ts:695](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L695)
+[src/types/types.ts:763](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L763)
 
 ___
 
@@ -50,4 +63,4 @@ The total count of NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/types.ts:698](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L698)
+[src/types/types.ts:766](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L766)
