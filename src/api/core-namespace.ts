@@ -8,7 +8,7 @@ import type {
   TransactionRequest,
   TransactionResponse
 } from '@ethersproject/abstract-provider';
-import type { BigNumber, BigNumberish } from '@ethersproject/bignumber';
+import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import type { Network as EthersNetworkAlias } from '@ethersproject/networks/lib/types';
 import type { Deferrable } from '@ethersproject/properties';
 
@@ -25,6 +25,8 @@ import {
   DeployResult,
   Filter,
   FilterByBlockHash,
+  GetTokensForOwnerOptions,
+  GetTokensForOwnerResponse,
   TokenBalanceType,
   TokenBalancesOptionsDefaultTokens,
   TokenBalancesOptionsErc20,
@@ -35,8 +37,10 @@ import {
   TransactionReceiptsResponse
 } from '../types/types';
 import { ETH_NULL_VALUE } from '../util/const';
+import { nullsToUndefined } from '../util/util';
 import { AlchemyConfig } from './alchemy-config';
 import { toHex } from './util';
+import { formatUnits } from './utils';
 
 /**
  * The core namespace contains all commonly-used [Ethers.js
@@ -451,6 +455,7 @@ export class CoreNamespace {
     addressOrName: string,
     options: TokenBalancesOptionsDefaultTokens
   ): Promise<TokenBalancesResponse>;
+
   async getTokenBalances(
     addressOrName: string,
     contractAddressesOrOptions?:
@@ -494,6 +499,63 @@ export class CoreNamespace {
         'getTokenBalances'
       );
     }
+  }
+
+  /**
+   * Returns the tokens that the specified address owns, along with the amount
+   * of each token and the relevant metadata.
+   *
+   * @param addressOrName The owner address to get the tokens with balances for.
+   * @param options Additional options to pass to the request.
+   * @public
+   */
+  async getTokensForOwner(
+    addressOrName: string,
+    options?: GetTokensForOwnerOptions
+  ): Promise<GetTokensForOwnerResponse> {
+    const provider = await this.config.getProvider();
+    const address = await provider._getAddress(addressOrName);
+    const params: any[] = [
+      address,
+      options?.contractAddresses ?? TokenBalanceType.ERC20
+    ];
+    if (options?.pageKey) {
+      params.push({ pageKey: options.pageKey });
+    }
+    const response = (await provider._send(
+      'alchemy_getTokenBalances',
+      params,
+      'getTokensForOwner'
+    )) as TokenBalancesResponseErc20;
+
+    const formattedBalances = response.tokenBalances.map(balance => ({
+      contractAddress: balance.contractAddress,
+      rawBalance: BigNumber.from(balance.tokenBalance!).toString()
+    }));
+
+    const metadata: TokenMetadataResponse[] = await Promise.all(
+      response.tokenBalances.map(token =>
+        provider._send(
+          'alchemy_getTokenMetadata',
+          [token.contractAddress],
+          'getTokensForOwner',
+          /* forceBatch= */ true
+        )
+      )
+    );
+    const ownedTokens = formattedBalances.map((balance, index) => ({
+      ...balance,
+      ...metadata[index],
+      balance:
+        metadata[index].decimals !== null
+          ? formatUnits(balance.rawBalance, metadata[index].decimals!)
+          : undefined
+    }));
+
+    return {
+      tokens: ownedTokens.map(nullsToUndefined),
+      pageKey: response.pageKey
+    };
   }
 
   /**

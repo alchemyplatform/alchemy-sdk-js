@@ -166,6 +166,74 @@ export interface TokenBalanceFailure {
 }
 
 /**
+ * Optional params to pass into {@link CoreNamespace.getTokensForOwner}.
+ */
+export interface GetTokensForOwnerOptions {
+  /**
+   * List of contract addresses to filter by. If omitted, defaults to
+   * {@link TokenBalanceType.ERC20}.
+   */
+  contractAddresses?: string[] | TokenBalanceType;
+  /**
+   * Optional page key from an existing {@link GetTokensForOwnerResponse} to use for
+   * pagination.
+   */
+  pageKey?: string;
+}
+
+/**
+ * Response object for {@link CoreNamespace.getTokensForOwner}.
+ */
+export interface GetTokensForOwnerResponse {
+  /** Owned tokens for the provided addresses along with relevant metadata. */
+  tokens: OwnedToken[];
+  /** Page key for the next page of results, if one exists. */
+  pageKey?: string;
+}
+
+/**
+ * Represents an owned token on a {@link GetTokensForOwnerResponse}.
+ */
+export interface OwnedToken {
+  /** The contract address of the token. */
+  contractAddress: string;
+  /**
+   * The raw value of the balance field as a hex string. This value is undefined
+   * if the {@link error} field is present.
+   */
+  rawBalance?: string;
+  /**
+   * The formatted value of the balance field as a hex string. This value is
+   * undefined if the {@link error} field is present, or if the `decimals` field=
+   * is undefined.
+   */
+  balance?: string;
+  /** */
+  /**
+   * The token's name. Is undefined if the name is not defined in the contract and
+   * not available from other sources.
+   */
+  name?: string;
+  /**
+   * The token's symbol. Is undefined if the symbol is not defined in the contract
+   * and not available from other sources.
+   */
+  symbol?: string;
+  /**
+   * The number of decimals of the token. Is undefined if not defined in the
+   * contract and not available from other sources.
+   */
+  decimals?: number;
+  /** URL link to the token's logo. Is undefined if the logo is not available. */
+  logo?: string;
+  /**
+   * Error from fetching the token balances. If this field is defined, none of
+   * the other fields will be defined.
+   */
+  error?: string;
+}
+
+/**
  * Response object for the {@link CoreNamespace.getTokenMetadata} method.
  *
  * @public
