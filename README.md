@@ -1,4 +1,4 @@
-# Alchemy SDK for Javascript
+ Alchemy SDK for Javascript
 
 The Alchemy SDK is the most comprehensive, stable, and powerful Javascript SDK available today to interact with the blockchain.
 
