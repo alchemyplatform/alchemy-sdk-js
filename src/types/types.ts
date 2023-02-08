@@ -2298,6 +2298,8 @@ export interface DebugTransaction {
   to?: string;
   /** The address the transaction is sent from. */
   from?: string;
+  /** The gas provided for the transaction execution, as a hex string. */
+  gas?: string;
   /** The gas price to use as a hex string. */
   gasPrice?: string;
   /** The value associated with the transaction as a hex string. */
