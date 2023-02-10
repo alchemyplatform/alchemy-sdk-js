@@ -10,6 +10,7 @@ Transaction object used in [DebugNamespace.traceCall](../classes/DebugNamespace.
 
 - [data](DebugTransaction.md#data)
 - [from](DebugTransaction.md#from)
+- [gas](DebugTransaction.md#gas)
 - [gasPrice](DebugTransaction.md#gasprice)
 - [to](DebugTransaction.md#to)
 - [value](DebugTransaction.md#value)
@@ -24,7 +25,7 @@ The data associated with the transaction.
 
 #### Defined in
 
-[src/types/types.ts:2306](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L2306)
+[src/types/types.ts:2308](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/types/types.ts#L2308)
 
 ___
 
@@ -36,7 +37,19 @@ The address the transaction is sent from.
 
 #### Defined in
 
-[src/types/types.ts:2300](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L2300)
+[src/types/types.ts:2300](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/types/types.ts#L2300)
+
+___
+
+### gas
+
+• `Optional` **gas**: `string`
+
+The gas provided for the transaction execution, as a hex string.
+
+#### Defined in
+
+[src/types/types.ts:2302](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/types/types.ts#L2302)
 
 ___
 
@@ -48,7 +61,7 @@ The gas price to use as a hex string.
 
 #### Defined in
 
-[src/types/types.ts:2302](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L2302)
+[src/types/types.ts:2304](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/types/types.ts#L2304)
 
 ___
 
@@ -60,7 +73,7 @@ The address the transaction is directed to.
 
 #### Defined in
 
-[src/types/types.ts:2298](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L2298)
+[src/types/types.ts:2298](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/types/types.ts#L2298)
 
 ___
 
@@ -72,4 +85,4 @@ The value associated with the transaction as a hex string.
 
 #### Defined in
 
-[src/types/types.ts:2304](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/types/types.ts#L2304)
+[src/types/types.ts:2306](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/types/types.ts#L2306)

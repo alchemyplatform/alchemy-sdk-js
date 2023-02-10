@@ -257,7 +257,7 @@ ___
 | :------ | :------ |
 | `tx` | `Object` |
 | `tx.from` | `string` |
-| `tx.nonce` | `number` \| `BytesLike` \| `BigNumber` |
+| `tx.nonce` | `number` \| `BytesLike` \| [`BigNumber`](BigNumber.md) |
 
 #### Returns
 

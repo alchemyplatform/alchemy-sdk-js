@@ -449,7 +449,7 @@ ___
 
 ### parseEther
 
-▸ **parseEther**(`ether`): `BigNumber`
+▸ **parseEther**(`ether`): [`BigNumber`](../classes/BigNumber.md)
 
 #### Parameters
 
@@ -459,7 +459,7 @@ ___
 
 #### Returns
 
-`BigNumber`
+[`BigNumber`](../classes/BigNumber.md)
 
 #### Defined in
 
@@ -469,7 +469,7 @@ ___
 
 ### parseUnits
 
-▸ **parseUnits**(`value`, `unitName?`): `BigNumber`
+▸ **parseUnits**(`value`, `unitName?`): [`BigNumber`](../classes/BigNumber.md)
 
 #### Parameters
 
@@ -480,7 +480,7 @@ ___
 
 #### Returns
 
-`BigNumber`
+[`BigNumber`](../classes/BigNumber.md)
 
 #### Defined in
 

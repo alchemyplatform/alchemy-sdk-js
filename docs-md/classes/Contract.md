@@ -182,7 +182,7 @@ ___
 
 #### Index signature
 
-▪ [name: `string`]: `ContractFunction`<`BigNumber`\>
+▪ [name: `string`]: `ContractFunction`<[`BigNumber`](BigNumber.md)\>
 
 #### Inherited from
 

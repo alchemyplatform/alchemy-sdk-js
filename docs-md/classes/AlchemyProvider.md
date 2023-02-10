@@ -401,7 +401,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:41](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-provider.ts#L41)
+[src/api/alchemy-provider.ts:41](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-provider.ts#L41)
 
 ___
 
@@ -411,7 +411,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-provider.ts#L43)
+[src/api/alchemy-provider.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-provider.ts#L43)
 
 ___
 
@@ -463,7 +463,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:42](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-provider.ts#L42)
+[src/api/alchemy-provider.ts:42](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-provider.ts#L42)
 
 ## Accessors
 
@@ -935,7 +935,7 @@ JsonRpcProvider.\_startPending
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:209](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-provider.ts#L209)
+[src/api/alchemy-provider.ts:209](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-provider.ts#L209)
 
 ___
 
@@ -998,7 +998,7 @@ ___
 | `replaceable.nonce` | `number` |
 | `replaceable.startBlock` | `number` |
 | `replaceable.to` | `string` |
-| `replaceable.value` | `BigNumber` |
+| `replaceable.value` | [`BigNumber`](BigNumber.md) |
 
 #### Returns
 
@@ -1135,7 +1135,7 @@ JsonRpcProvider.detectNetwork
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:197](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-provider.ts#L197)
+[src/api/alchemy-provider.ts:197](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-provider.ts#L197)
 
 ___
 
@@ -1166,7 +1166,7 @@ ___
 
 ### estimateGas
 
-▸ **estimateGas**(`transaction`): `Promise`<`BigNumber`\>
+▸ **estimateGas**(`transaction`): `Promise`<[`BigNumber`](BigNumber.md)\>
 
 #### Parameters
 
@@ -1176,7 +1176,7 @@ ___
 
 #### Returns
 
-`Promise`<`BigNumber`\>
+`Promise`<[`BigNumber`](BigNumber.md)\>
 
 #### Inherited from
 
@@ -1214,7 +1214,7 @@ ___
 
 ### getBalance
 
-▸ **getBalance**(`addressOrName`, `blockTag?`): `Promise`<`BigNumber`\>
+▸ **getBalance**(`addressOrName`, `blockTag?`): `Promise`<[`BigNumber`](BigNumber.md)\>
 
 #### Parameters
 
@@ -1225,7 +1225,7 @@ ___
 
 #### Returns
 
-`Promise`<`BigNumber`\>
+`Promise`<[`BigNumber`](BigNumber.md)\>
 
 #### Inherited from
 
@@ -1366,11 +1366,11 @@ ___
 
 ### getGasPrice
 
-▸ **getGasPrice**(): `Promise`<`BigNumber`\>
+▸ **getGasPrice**(): `Promise`<[`BigNumber`](BigNumber.md)\>
 
 #### Returns
 
-`Promise`<`BigNumber`\>
+`Promise`<[`BigNumber`](BigNumber.md)\>
 
 #### Inherited from
 
@@ -1614,7 +1614,7 @@ CommunityResourcable.isCommunityResource
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:219](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-provider.ts#L219)
+[src/api/alchemy-provider.ts:219](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-provider.ts#L219)
 
 ___
 
@@ -1974,7 +1974,7 @@ JsonRpcProvider.send
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:233](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-provider.ts#L233)
+[src/api/alchemy-provider.ts:233](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-provider.ts#L233)
 
 ___
 

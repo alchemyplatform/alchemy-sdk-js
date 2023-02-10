@@ -91,7 +91,7 @@ EthersWallet.constructor
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-wallet.ts#L39)
+[src/api/alchemy-wallet.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-wallet.ts#L39)
 
 ## Properties
 
@@ -173,7 +173,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-wallet.ts#L31)
+[src/api/alchemy-wallet.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-wallet.ts#L31)
 
 ___
 
@@ -321,7 +321,7 @@ EthersWallet.call
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:102](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-wallet.ts#L102)
+[src/api/alchemy-wallet.ts:102](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-wallet.ts#L102)
 
 ___
 
@@ -401,7 +401,7 @@ ___
 
 ### estimateGas
 
-▸ **estimateGas**(`transaction`): `Promise`<`BigNumber`\>
+▸ **estimateGas**(`transaction`): `Promise`<[`BigNumber`](BigNumber.md)\>
 
 Returns the result of estimating the cost to send the transactionRequest,
 with this account address being used as the from field.
@@ -416,7 +416,7 @@ with this account address being used as the from field.
 
 #### Returns
 
-`Promise`<`BigNumber`\>
+`Promise`<[`BigNumber`](BigNumber.md)\>
 
 #### Overrides
 
@@ -424,7 +424,7 @@ EthersWallet.estimateGas
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-wallet.ts#L90)
+[src/api/alchemy-wallet.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-wallet.ts#L90)
 
 ___
 
@@ -448,7 +448,7 @@ ___
 
 ### getBalance
 
-▸ **getBalance**(`blockTag?`): `Promise`<`BigNumber`\>
+▸ **getBalance**(`blockTag?`): `Promise`<[`BigNumber`](BigNumber.md)\>
 
 Returns the balance of this wallet at blockTag.
 
@@ -462,7 +462,7 @@ Returns the balance of this wallet at blockTag.
 
 #### Returns
 
-`Promise`<`BigNumber`\>
+`Promise`<[`BigNumber`](BigNumber.md)\>
 
 #### Overrides
 
@@ -470,7 +470,7 @@ EthersWallet.getBalance
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:66](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-wallet.ts#L66)
+[src/api/alchemy-wallet.ts:66](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-wallet.ts#L66)
 
 ___
 
@@ -492,7 +492,7 @@ EthersWallet.getChainId
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:125](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-wallet.ts#L125)
+[src/api/alchemy-wallet.ts:125](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-wallet.ts#L125)
 
 ___
 
@@ -520,13 +520,13 @@ EthersWallet.getFeeData
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:149](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-wallet.ts#L149)
+[src/api/alchemy-wallet.ts:149](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-wallet.ts#L149)
 
 ___
 
 ### getGasPrice
 
-▸ **getGasPrice**(): `Promise`<`BigNumber`\>
+▸ **getGasPrice**(): `Promise`<[`BigNumber`](BigNumber.md)\>
 
 Returns the current gas price.
 
@@ -534,7 +534,7 @@ Returns the current gas price.
 
 #### Returns
 
-`Promise`<`BigNumber`\>
+`Promise`<[`BigNumber`](BigNumber.md)\>
 
 #### Overrides
 
@@ -542,7 +542,7 @@ EthersWallet.getGasPrice
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:134](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-wallet.ts#L134)
+[src/api/alchemy-wallet.ts:134](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-wallet.ts#L134)
 
 ___
 
@@ -571,7 +571,7 @@ EthersWallet.getTransactionCount
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:77](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-wallet.ts#L77)
+[src/api/alchemy-wallet.ts:77](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-wallet.ts#L77)
 
 ___
 
@@ -585,7 +585,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:165](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-wallet.ts#L165)
+[src/api/alchemy-wallet.ts:165](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-wallet.ts#L165)
 
 ___
 
@@ -639,7 +639,7 @@ EthersWallet.resolveName
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:161](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-wallet.ts#L161)
+[src/api/alchemy-wallet.ts:161](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-wallet.ts#L161)
 
 ___
 
@@ -667,7 +667,7 @@ EthersWallet.sendTransaction
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:114](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a8bc079/src/api/alchemy-wallet.ts#L114)
+[src/api/alchemy-wallet.ts:114](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-wallet.ts#L114)
 
 ___
 
