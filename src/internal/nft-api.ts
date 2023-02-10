@@ -770,6 +770,10 @@ async function getNftsForTransfers(
       return tokens.map(token => ({ metadata, token }));
     });
 
+  if (metadataTransfers.length === 0) {
+    return { nfts: [] };
+  }
+
   const nfts = await getNftMetadataBatch(
     config,
     metadataTransfers.map(transfer => transfer.token)
