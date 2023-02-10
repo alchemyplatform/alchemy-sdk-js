@@ -5,6 +5,12 @@
 ### Major Changes
 
 ### Minor Changes
+
+## 2.4.3
+
+### Major Changes
+
+### Minor Changes
 - Added a missing `gas` field in the `DebugTransaction` interface to specify the gas provided for a transaction execution.
 - Fixed a bug with `NftNamespace.getMintedNfts()`, `NftNamespace.getTransfersForOwner()`, and `NftNamespace.getTransfersForContract()` where the method would incorrectly error if the specified address had no transfers.
 - Added the `BigNumber` ethers export. You can access this by importing `BigNumber` along with the other exports in the package.
