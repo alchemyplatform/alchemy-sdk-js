@@ -7,6 +7,8 @@ import { BigNumberish } from '@ethersproject/bignumber';
 
 import { BaseNft, Nft, NftContract } from '../api/nft';
 
+export * from './ethers-types';
+
 // TODO: separate this file into other files.
 
 /**

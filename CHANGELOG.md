@@ -5,6 +5,7 @@
 ### Major Changes
 
 ### Minor Changes
+- Added exports for Ethers.js types and interfaces used by the SDK.
 
 ## 2.4.3
 
