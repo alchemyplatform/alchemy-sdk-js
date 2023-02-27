@@ -97,6 +97,33 @@ export class TransactNamespace {
   }
 
   /**
+   * Simulates the asset changes resulting from a list of transactions simulated
+   * in sequence.
+   *
+   * Returns a list of asset changes for each transaction during simulation.
+   *
+   * @param transactions Transactions list of max 3 transactions to simulate.
+   * @param blockIdentifier Optional block identifier to simulate the
+   * transaction in.
+   */
+  async simulateAssetChangesBundle(
+    transactions: DebugTransaction[],
+    blockIdentifier?: BlockIdentifier
+  ): Promise<SimulateAssetChangesResponse[]> {
+    const provider = await this.config.getProvider();
+    const params =
+      blockIdentifier !== undefined
+        ? [transactions, blockIdentifier]
+        : [transactions];
+    const res = await provider._send(
+      'alchemy_simulateAssetChangesBundle',
+      params,
+      'simulateAssetChangesBundle'
+    );
+    return nullsToUndefined(res);
+  }
+
+  /**
    * Simulates the asset changes resulting from a single transaction.
    *
    * Returns list of asset changes that occurred during the transaction
@@ -120,6 +147,33 @@ export class TransactNamespace {
       'alchemy_simulateAssetChanges',
       params,
       'simulateAssetChanges'
+    );
+    return nullsToUndefined(res);
+  }
+
+  /**
+   * Simulates a list of transactions in sequence and returns list of decoded
+   * traces and logs that occurred for each transaction during simulation.
+   *
+   * Note that this method does not run any transactions on the blockchain.
+   *
+   * @param transactions Transactions list of max 3 transactions to simulate.
+   * @param blockIdentifier Optional block identifier to simulate the
+   * transaction in.
+   */
+  async simulateExecutionBundle(
+    transactions: DebugTransaction[],
+    blockIdentifier?: BlockIdentifier
+  ): Promise<SimulateExecutionResponse[]> {
+    const provider = await this.config.getProvider();
+    const params =
+      blockIdentifier !== undefined
+        ? [transactions, blockIdentifier]
+        : [transactions];
+    const res = provider._send(
+      'alchemy_simulateExecutionBundle',
+      params,
+      'simulateExecutionBundle'
     );
     return nullsToUndefined(res);
   }

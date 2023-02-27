@@ -191,6 +191,8 @@ The `transact` namespace contains methods used for simulating and sending transa
 - `cancelPrivateTransaction()`: Cancel a private transaction sent with Flashbots.
 - `simulateAssetChanges()`: Simulate a transaction and get a list of asset changes.
 - `simulateExecution()`: Simulate a transaction and get a full list of internal transactions, logs, ABI decoded results and more.
+- `simulateAssetChangesBundle()`: Simulate a list of transactions in sequence and get a list of asset changes.
+- `simulateExecutionBundle()`: Simulate a list of transactions in sequence and get a full list of internal transactions, logs, ABI decoded results and more.
 
 The `transact` namespace also aliases over several commonly used methods from the `core` namespace for convenience:
 

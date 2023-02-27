@@ -39,6 +39,97 @@ describe('E2E integration tests', () => {
     expect(typeof response).toEqual('string');
   });
 
+  describe('simulateAssetChangesBundle()', () => {
+    const transferAToB = {
+      from: '0x699aeca448ad51effd6dbee0a8618a79cf4370ba',
+      to: '0x32e74d0b224e3ab4e854e81adc645dac9968ee93',
+      data: '0x23b872dd000000000000000000000000699aeca448ad51effd6dbee0a8618a79cf4370ba000000000000000000000000699aeca448ad51effd6dbee0a8618a79cf4370bb0000000000000000000000000000000000000000000000000000000000000625'
+    };
+    const transferBToC = {
+      from: '0x699aeca448ad51effd6dbee0a8618a79cf4370bb',
+      to: '0x32e74d0b224e3ab4e854e81adc645dac9968ee93',
+      data: '0x23b872dd000000000000000000000000699aeca448ad51effd6dbee0a8618a79cf4370bb000000000000000000000000699aeca448ad51effd6dbee0a8618a79cf4370bc0000000000000000000000000000000000000000000000000000000000000625'
+    };
+
+    const block = '0xF604F8';
+
+    it('can simulate bundle successfully', async () => {
+      const res = await alchemy.transact.simulateAssetChangesBundle(
+        [transferAToB, transferBToC],
+        block
+      );
+      expect(res).toHaveLength(2);
+      expect(res[0].error).toBeUndefined();
+      expect(res[0].changes).toHaveLength(1);
+      expect(res[0].changes[0].assetType).toBe(SimulateAssetType.ERC721);
+      expect(res[0].changes[0].changeType).toBe(SimulateChangeType.TRANSFER);
+      expect(res[0].changes[0].from).toBe(
+        '0x699aeca448ad51effd6dbee0a8618a79cf4370ba'
+      );
+      expect(res[0].changes[0].to).toBe(
+        '0x699aeca448ad51effd6dbee0a8618a79cf4370bb'
+      );
+
+      expect(res[1].error).toBeUndefined();
+      expect(res[1].changes).toHaveLength(1);
+      expect(res[1].changes[0].assetType).toBe(SimulateAssetType.ERC721);
+      expect(res[1].changes[0].changeType).toBe(SimulateChangeType.TRANSFER);
+      expect(res[1].changes[0].from).toBe(
+        '0x699aeca448ad51effd6dbee0a8618a79cf4370bb'
+      );
+      expect(res[1].changes[0].to).toBe(
+        '0x699aeca448ad51effd6dbee0a8618a79cf4370bc'
+      );
+    });
+
+    it('can simulate bundle with revert', async () => {
+      const res = await alchemy.transact.simulateAssetChangesBundle(
+        [transferBToC, transferAToB],
+        block
+      );
+      expect(typeof res[0].error!.message).toBe('string');
+      expect(res[0].changes).toHaveLength(0);
+    });
+  });
+
+  describe('simulateExecutionBundle()', () => {
+    const transferAToB = {
+      from: '0x699aeca448ad51effd6dbee0a8618a79cf4370ba',
+      to: '0x32e74d0b224e3ab4e854e81adc645dac9968ee93',
+      data: '0x23b872dd000000000000000000000000699aeca448ad51effd6dbee0a8618a79cf4370ba000000000000000000000000699aeca448ad51effd6dbee0a8618a79cf4370bb0000000000000000000000000000000000000000000000000000000000000625'
+    };
+    const transferBToC = {
+      from: '0x699aeca448ad51effd6dbee0a8618a79cf4370bb',
+      to: '0x32e74d0b224e3ab4e854e81adc645dac9968ee93',
+      data: '0x23b872dd000000000000000000000000699aeca448ad51effd6dbee0a8618a79cf4370bb000000000000000000000000699aeca448ad51effd6dbee0a8618a79cf4370bc0000000000000000000000000000000000000000000000000000000000000625'
+    };
+
+    const block = '0xF604F8';
+
+    it('can simulate bundle successfully', async () => {
+      const res = await alchemy.transact.simulateExecutionBundle(
+        [transferAToB, transferBToC],
+        block
+      );
+      expect(res).toHaveLength(2);
+      expect(res[0].calls).toHaveLength(1);
+      expect(res[0].logs).toHaveLength(1);
+
+      expect(res[1].calls).toHaveLength(1);
+      expect(res[1].logs).toHaveLength(1);
+    });
+
+    it('can simulate bundle with revert', async () => {
+      const res = await alchemy.transact.simulateExecutionBundle(
+        [transferBToC, transferAToB],
+        block
+      );
+
+      expect(res[0].calls.length).toBe(1);
+      expect(typeof res[0].calls[0].error).toBe('string');
+    });
+  });
+
   describe('simulateAssetChanges()', () => {
     // vitalik.eth transferring 1 USDC to random address
     const USDC_CONTRACT_ADDRESS = '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48';
@@ -211,7 +302,7 @@ describe('E2E integration tests', () => {
         gas: '0x266ce'
       };
       const res = await alchemy.transact.simulateExecution(transaction);
-      expect(res.calls.length).toBe(2);
+      expect(res.calls.length).toBe(1);
       expect(typeof res.calls[0].error).toBe('string');
     });
   });
