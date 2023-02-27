@@ -978,6 +978,12 @@ export interface GetContractsForOwnerOptions {
   pageKey?: string;
 
   /**
+   * Configure the number of NFTs to return in each response. Maximum pages size
+   * is 100. Defaults to 100.
+   */
+  pageSize?: number;
+
+  /**
    * Optional list of filters applied to the query. NFTs that match one or more
    * of these filters are included in the response. May not be used in
    * conjunction with {@link excludeFilters}.

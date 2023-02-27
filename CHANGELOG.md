@@ -6,6 +6,7 @@
 
 ### Minor Changes
 - Added exports for Ethers.js types and interfaces used by the SDK.
+- Added the `pageSize` parameter to the `NftNamespace.getContractsForOwner()` method.
 
 ## 2.4.3
 

@@ -310,6 +310,7 @@ export async function getContractsForOwner(
     excludeFilters: options?.excludeFilters,
     includeFilters: options?.includeFilters,
     pageKey: options?.pageKey,
+    pageSize: options?.pageSize,
     orderBy: options?.orderBy
   });
 
@@ -931,6 +932,7 @@ interface GetOwnersForNftContractAlchemyParams {
 interface GetContractsForOwnerParams {
   owner: string;
   pageKey?: string;
+  pageSize?: number;
   includeFilters?: NftFilters[];
   excludeFilters?: NftFilters[];
   orderBy?: NftOrdering;

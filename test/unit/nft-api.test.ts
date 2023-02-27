@@ -1207,7 +1207,8 @@ describe('NFT module', () => {
     it.each<[keyof GetContractsForOwnerOptions, any]>([
       ['excludeFilters', [NftFilters.AIRDROPS]],
       ['includeFilters', [NftFilters.SPAM]],
-      ['pageKey', 'a-page-key']
+      ['pageKey', 'a-page-key'],
+      ['pageSize', 50]
     ])('calls with the correct parameters', async (fieldName, value) => {
       await alchemy.nft.getContractsForOwner(owner, {
         [fieldName]: value

@@ -200,11 +200,14 @@ describe('E2E integration tests', () => {
     verifyNftContractMetadata(response.contracts[0]);
   });
 
-  it('getContractsForOwner() with pageKey', async () => {
-    const firstPage = await alchemy.nft.getContractsForOwner(ownerEns);
+  it('getContractsForOwner() with pageKey and pageSize', async () => {
+    const firstPage = await alchemy.nft.getContractsForOwner(ownerEns, {
+      pageSize: 4
+    });
 
     expect(firstPage.pageKey).toBeDefined();
     expect(typeof firstPage.pageKey).toEqual('string');
+    expect(firstPage.contracts.length).toEqual(4);
 
     const response = await alchemy.nft.getContractsForOwner(ownerEns, {
       pageKey: firstPage?.pageKey
