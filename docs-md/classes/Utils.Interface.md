@@ -593,7 +593,7 @@ ___
 | :------ | :------ |
 | `tx` | `Object` |
 | `tx.data` | `string` |
-| `tx.value?` | `BigNumberish` |
+| `tx.value?` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 

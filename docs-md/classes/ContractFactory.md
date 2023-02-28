@@ -174,7 +174,7 @@ ___
 
 ### getDeployTransaction
 
-▸ **getDeployTransaction**(...`args`): `TransactionRequest`
+▸ **getDeployTransaction**(...`args`): [`TransactionRequest`](../modules.md#transactionrequest)
 
 #### Parameters
 
@@ -184,7 +184,7 @@ ___
 
 #### Returns
 
-`TransactionRequest`
+[`TransactionRequest`](../modules.md#transactionrequest)
 
 #### Inherited from
 

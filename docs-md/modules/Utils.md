@@ -109,7 +109,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `wei` | `BigNumberish` |
+| `wei` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
@@ -129,8 +129,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `value` | `BigNumberish` |
-| `unitName?` | `BigNumberish` |
+| `value` | [`BigNumberish`](../modules.md#bignumberish) |
+| `unitName?` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
@@ -476,7 +476,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `value` | `string` |
-| `unitName?` | `BigNumberish` |
+| `unitName?` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 

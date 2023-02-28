@@ -110,7 +110,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `other` | `BigNumberish` |
+| `other` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
@@ -130,7 +130,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `other` | `BigNumberish` |
+| `other` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
@@ -150,7 +150,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `other` | `BigNumberish` |
+| `other` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
@@ -170,7 +170,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `other` | `BigNumberish` |
+| `other` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
@@ -210,7 +210,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `other` | `BigNumberish` |
+| `other` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
@@ -230,7 +230,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `other` | `BigNumberish` |
+| `other` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
@@ -278,7 +278,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `other` | `BigNumberish` |
+| `other` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
@@ -298,7 +298,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `other` | `BigNumberish` |
+| `other` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
@@ -338,7 +338,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `other` | `BigNumberish` |
+| `other` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
@@ -358,7 +358,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `other` | `BigNumberish` |
+| `other` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
@@ -378,7 +378,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `other` | `BigNumberish` |
+| `other` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
@@ -398,7 +398,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `other` | `BigNumberish` |
+| `other` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
@@ -458,7 +458,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `other` | `BigNumberish` |
+| `other` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
@@ -578,7 +578,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `other` | `BigNumberish` |
+| `other` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
