@@ -151,6 +151,25 @@ export async function getContractMetadata(
   return getNftContractFromRaw(response);
 }
 
+export async function getContractMetadataBatch(
+  config: AlchemyConfig,
+  contractAddresses: string[]
+): Promise<NftContract[]> {
+  const response = await requestHttpWithBackoff<{}, RawNftContract[]>(
+    config,
+    AlchemyApiType.NFT,
+    'getContractMetadataBatch',
+    'getContractMetadataBatch',
+    {},
+    {
+      method: 'POST',
+      data: { contractAddresses }
+    }
+  );
+
+  return response.map(getNftContractFromRaw);
+}
+
 export async function* getNftsForOwnerIterator(
   config: AlchemyConfig,
   owner: string,

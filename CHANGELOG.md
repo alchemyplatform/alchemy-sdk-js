@@ -6,6 +6,7 @@
 
 - Added `TransactNamespace.simulateAssetChangesBundle()` to simulate a list of transactions in sequence and return a list of asset changes.
 - Added `TransactNamespace.simulateExecutionBundle()` to simulate a list of transactions in sequence and return a list of decoded logs and traces.
+- Added `NftNamespace.getContractMetadataBatch()` to get the metadata associated with multiple NFT contracts in a single request.
 
 ### Minor Changes
 - Added exports for Ethers.js types and interfaces used by the SDK.
