@@ -275,6 +275,19 @@ describe('E2E integration tests', () => {
     ).toBeGreaterThan(0);
   });
 
+  it('getContractMetadataBatch()', async () => {
+    const contractAddresses = [
+      '0xe785e82358879f061bc3dcac6f0444462d4b5330',
+      '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d'
+    ];
+    const response = await alchemy.nft.getContractMetadataBatch(
+      contractAddresses
+    );
+    expect(response.length).toEqual(2);
+    expect(contractAddresses.includes(response[0].address)).toEqual(true);
+    expect(contractAddresses.includes(response[1].address)).toEqual(true);
+  });
+
   it('getNftsForOwnerIterator()', async () => {
     jest.setTimeout(15000);
     let allNfts = [];
