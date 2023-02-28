@@ -202,7 +202,7 @@ WebSocketProvider.\_events
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:81](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-websocket-provider.ts#L81)
+[src/api/alchemy-websocket-provider.ts:81](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/alchemy-websocket-provider.ts#L81)
 
 ___
 
@@ -504,7 +504,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:82](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-websocket-provider.ts#L82)
+[src/api/alchemy-websocket-provider.ts:82](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/alchemy-websocket-provider.ts#L82)
 
 ___
 
@@ -710,8 +710,8 @@ node_modules/@ethersproject/providers/lib/websocket-provider.d.ts:34
 
 | Name | Type |
 | :------ | :------ |
-| `transaction` | `TransactionRequest` |
-| `blockTag` | `BlockTag` |
+| `transaction` | [`TransactionRequest`](../modules.md#transactionrequest) |
+| `blockTag` | [`BlockTag`](../modules.md#blocktag) |
 | `attempt` | `number` |
 
 #### Returns
@@ -754,18 +754,18 @@ ___
 
 ### \_getBlock
 
-▸ **_getBlock**(`blockHashOrBlockTag`, `includeTransactions?`): `Promise`<`Block` \| `BlockWithTransactions`\>
+▸ **_getBlock**(`blockHashOrBlockTag`, `includeTransactions?`): `Promise`<[`Block`](../interfaces/Block.md) \| [`BlockWithTransactions`](../interfaces/BlockWithTransactions.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `blockHashOrBlockTag` | `BlockTag` \| `Promise`<`BlockTag`\> |
+| `blockHashOrBlockTag` | [`BlockTag`](../modules.md#blocktag) \| `Promise`<[`BlockTag`](../modules.md#blocktag)\> |
 | `includeTransactions?` | `boolean` |
 
 #### Returns
 
-`Promise`<`Block` \| `BlockWithTransactions`\>
+`Promise`<[`Block`](../interfaces/Block.md) \| [`BlockWithTransactions`](../interfaces/BlockWithTransactions.md)\>
 
 #### Inherited from
 
@@ -779,17 +779,17 @@ ___
 
 ### \_getBlockTag
 
-▸ **_getBlockTag**(`blockTag`): `Promise`<`BlockTag`\>
+▸ **_getBlockTag**(`blockTag`): `Promise`<[`BlockTag`](../modules.md#blocktag)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `blockTag` | `BlockTag` \| `Promise`<`BlockTag`\> |
+| `blockTag` | [`BlockTag`](../modules.md#blocktag) \| `Promise`<[`BlockTag`](../modules.md#blocktag)\> |
 
 #### Returns
 
-`Promise`<`BlockTag`\>
+`Promise`<[`BlockTag`](../modules.md#blocktag)\>
 
 #### Inherited from
 
@@ -900,7 +900,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `transaction` | `Deferrable`<`TransactionRequest`\> |
+| `transaction` | `Deferrable`<[`TransactionRequest`](../modules.md#transactionrequest)\> |
 
 #### Returns
 
@@ -941,7 +941,7 @@ order to parse the Alchemy subscription event.
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:947](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-websocket-provider.ts#L947)
+[src/api/alchemy-websocket-provider.ts:947](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/alchemy-websocket-provider.ts#L947)
 
 ___
 
@@ -970,7 +970,7 @@ order to parse the Alchemy subscription event.
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:970](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-websocket-provider.ts#L970)
+[src/api/alchemy-websocket-provider.ts:970](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/alchemy-websocket-provider.ts#L970)
 
 ___
 
@@ -1000,7 +1000,7 @@ order to parse the Alchemy subscription event.
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:871](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-websocket-provider.ts#L871)
+[src/api/alchemy-websocket-provider.ts:871](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/alchemy-websocket-provider.ts#L871)
 
 ___
 
@@ -1047,7 +1047,7 @@ order to parse the Alchemy subscription event.
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:911](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-websocket-provider.ts#L911)
+[src/api/alchemy-websocket-provider.ts:911](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/alchemy-websocket-provider.ts#L911)
 
 ___
 
@@ -1113,7 +1113,7 @@ ___
 
 ### \_waitForTransaction
 
-▸ **_waitForTransaction**(`transactionHash`, `confirmations`, `timeout`, `replaceable`): `Promise`<`TransactionReceipt`\>
+▸ **_waitForTransaction**(`transactionHash`, `confirmations`, `timeout`, `replaceable`): `Promise`<[`TransactionReceipt`](../interfaces/TransactionReceipt.md)\>
 
 #### Parameters
 
@@ -1132,7 +1132,7 @@ ___
 
 #### Returns
 
-`Promise`<`TransactionReceipt`\>
+`Promise`<[`TransactionReceipt`](../interfaces/TransactionReceipt.md)\>
 
 #### Inherited from
 
@@ -1146,7 +1146,7 @@ ___
 
 ### \_wrapTransaction
 
-▸ **_wrapTransaction**(`tx`, `hash?`, `startBlock?`): `TransactionResponse`
+▸ **_wrapTransaction**(`tx`, `hash?`, `startBlock?`): [`TransactionResponse`](../interfaces/TransactionResponse.md)
 
 #### Parameters
 
@@ -1158,7 +1158,7 @@ ___
 
 #### Returns
 
-`TransactionResponse`
+[`TransactionResponse`](../interfaces/TransactionResponse.md)
 
 #### Inherited from
 
@@ -1178,7 +1178,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | `EventType` |
+| `eventName` | [`EventType`](../modules.md#eventtype) |
 | `listener` | `Listener` |
 
 #### Returns
@@ -1203,8 +1203,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `transaction` | `Deferrable`<`TransactionRequest`\> |
-| `blockTag?` | `BlockTag` \| `Promise`<`BlockTag`\> |
+| `transaction` | `Deferrable`<[`TransactionRequest`](../modules.md#transactionrequest)\> |
+| `blockTag?` | [`BlockTag`](../modules.md#blocktag) \| `Promise`<[`BlockTag`](../modules.md#blocktag)\> |
 
 #### Returns
 
@@ -1262,7 +1262,7 @@ WebSocketProvider.destroy
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:407](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-websocket-provider.ts#L407)
+[src/api/alchemy-websocket-provider.ts:407](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/alchemy-websocket-provider.ts#L407)
 
 ___
 
@@ -1307,7 +1307,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:703](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-websocket-provider.ts#L703)
+[src/api/alchemy-websocket-provider.ts:703](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/alchemy-websocket-provider.ts#L703)
 
 ___
 
@@ -1319,7 +1319,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `transaction` | `Deferrable`<`TransactionRequest`\> |
+| `transaction` | `Deferrable`<[`TransactionRequest`](../modules.md#transactionrequest)\> |
 
 #### Returns
 
@@ -1368,7 +1368,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `addressOrName` | `string` \| `Promise`<`string`\> |
-| `blockTag?` | `BlockTag` \| `Promise`<`BlockTag`\> |
+| `blockTag?` | [`BlockTag`](../modules.md#blocktag) \| `Promise`<[`BlockTag`](../modules.md#blocktag)\> |
 
 #### Returns
 
@@ -1386,17 +1386,17 @@ ___
 
 ### getBlock
 
-▸ **getBlock**(`blockHashOrBlockTag`): `Promise`<`Block`\>
+▸ **getBlock**(`blockHashOrBlockTag`): `Promise`<[`Block`](../interfaces/Block.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `blockHashOrBlockTag` | `BlockTag` \| `Promise`<`BlockTag`\> |
+| `blockHashOrBlockTag` | [`BlockTag`](../modules.md#blocktag) \| `Promise`<[`BlockTag`](../modules.md#blocktag)\> |
 
 #### Returns
 
-`Promise`<`Block`\>
+`Promise`<[`Block`](../interfaces/Block.md)\>
 
 #### Inherited from
 
@@ -1428,17 +1428,17 @@ ___
 
 ### getBlockWithTransactions
 
-▸ **getBlockWithTransactions**(`blockHashOrBlockTag`): `Promise`<`BlockWithTransactions`\>
+▸ **getBlockWithTransactions**(`blockHashOrBlockTag`): `Promise`<[`BlockWithTransactions`](../interfaces/BlockWithTransactions.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `blockHashOrBlockTag` | `BlockTag` \| `Promise`<`BlockTag`\> |
+| `blockHashOrBlockTag` | [`BlockTag`](../modules.md#blocktag) \| `Promise`<[`BlockTag`](../modules.md#blocktag)\> |
 
 #### Returns
 
-`Promise`<`BlockWithTransactions`\>
+`Promise`<[`BlockWithTransactions`](../interfaces/BlockWithTransactions.md)\>
 
 #### Inherited from
 
@@ -1459,7 +1459,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `addressOrName` | `string` \| `Promise`<`string`\> |
-| `blockTag?` | `BlockTag` \| `Promise`<`BlockTag`\> |
+| `blockTag?` | [`BlockTag`](../modules.md#blocktag) \| `Promise`<[`BlockTag`](../modules.md#blocktag)\> |
 
 #### Returns
 
@@ -1495,11 +1495,11 @@ ___
 
 ### getFeeData
 
-▸ **getFeeData**(): `Promise`<`FeeData`\>
+▸ **getFeeData**(): `Promise`<[`FeeData`](../interfaces/FeeData.md)\>
 
 #### Returns
 
-`Promise`<`FeeData`\>
+`Promise`<[`FeeData`](../interfaces/FeeData.md)\>
 
 #### Inherited from
 
@@ -1531,7 +1531,7 @@ ___
 
 ### getLogs
 
-▸ **getLogs**(`filter`): `Promise`<`Log`[]\>
+▸ **getLogs**(`filter`): `Promise`<[`Log`](../interfaces/Log.md)[]\>
 
 #### Parameters
 
@@ -1541,7 +1541,7 @@ ___
 
 #### Returns
 
-`Promise`<`Log`[]\>
+`Promise`<[`Log`](../interfaces/Log.md)[]\>
 
 #### Inherited from
 
@@ -1628,8 +1628,8 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `addressOrName` | `string` \| `Promise`<`string`\> |
-| `position` | `BigNumberish` \| `Promise`<`BigNumberish`\> |
-| `blockTag?` | `BlockTag` \| `Promise`<`BlockTag`\> |
+| `position` | [`BigNumberish`](../modules.md#bignumberish) \| `Promise`<[`BigNumberish`](../modules.md#bignumberish)\> |
+| `blockTag?` | [`BlockTag`](../modules.md#blocktag) \| `Promise`<[`BlockTag`](../modules.md#blocktag)\> |
 
 #### Returns
 
@@ -1647,7 +1647,7 @@ ___
 
 ### getTransaction
 
-▸ **getTransaction**(`transactionHash`): `Promise`<`TransactionResponse`\>
+▸ **getTransaction**(`transactionHash`): `Promise`<[`TransactionResponse`](../interfaces/TransactionResponse.md)\>
 
 #### Parameters
 
@@ -1657,7 +1657,7 @@ ___
 
 #### Returns
 
-`Promise`<`TransactionResponse`\>
+`Promise`<[`TransactionResponse`](../interfaces/TransactionResponse.md)\>
 
 #### Inherited from
 
@@ -1678,7 +1678,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `addressOrName` | `string` \| `Promise`<`string`\> |
-| `blockTag?` | `BlockTag` \| `Promise`<`BlockTag`\> |
+| `blockTag?` | [`BlockTag`](../modules.md#blocktag) \| `Promise`<[`BlockTag`](../modules.md#blocktag)\> |
 
 #### Returns
 
@@ -1696,7 +1696,7 @@ ___
 
 ### getTransactionReceipt
 
-▸ **getTransactionReceipt**(`transactionHash`): `Promise`<`TransactionReceipt`\>
+▸ **getTransactionReceipt**(`transactionHash`): `Promise`<[`TransactionReceipt`](../interfaces/TransactionReceipt.md)\>
 
 #### Parameters
 
@@ -1706,7 +1706,7 @@ ___
 
 #### Returns
 
-`Promise`<`TransactionReceipt`\>
+`Promise`<[`TransactionReceipt`](../interfaces/TransactionReceipt.md)\>
 
 #### Inherited from
 
@@ -1761,7 +1761,7 @@ CommunityResourcable.isCommunityResource
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:419](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-websocket-provider.ts#L419)
+[src/api/alchemy-websocket-provider.ts:419](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/alchemy-websocket-provider.ts#L419)
 
 ___
 
@@ -1808,7 +1808,7 @@ WebSocketProvider.listenerCount
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:223](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-websocket-provider.ts#L223)
+[src/api/alchemy-websocket-provider.ts:223](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/alchemy-websocket-provider.ts#L223)
 
 ___
 
@@ -1837,7 +1837,7 @@ WebSocketProvider.listeners
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:239](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-websocket-provider.ts#L239)
+[src/api/alchemy-websocket-provider.ts:239](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/alchemy-websocket-provider.ts#L239)
 
 ___
 
@@ -1891,7 +1891,7 @@ WebSocketProvider.off
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:191](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-websocket-provider.ts#L191)
+[src/api/alchemy-websocket-provider.ts:191](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/alchemy-websocket-provider.ts#L191)
 
 ___
 
@@ -1920,7 +1920,7 @@ WebSocketProvider.on
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:163](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-websocket-provider.ts#L163)
+[src/api/alchemy-websocket-provider.ts:163](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/alchemy-websocket-provider.ts#L163)
 
 ___
 
@@ -1951,7 +1951,7 @@ WebSocketProvider.once
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:178](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-websocket-provider.ts#L178)
+[src/api/alchemy-websocket-provider.ts:178](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/alchemy-websocket-provider.ts#L178)
 
 ___
 
@@ -2048,7 +2048,7 @@ WebSocketProvider.removeAllListeners
 
 #### Defined in
 
-[src/api/alchemy-websocket-provider.ts:207](https://github.com/alchemyplatform/alchemy-sdk-js/blob/aeb51c8/src/api/alchemy-websocket-provider.ts#L207)
+[src/api/alchemy-websocket-provider.ts:207](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/alchemy-websocket-provider.ts#L207)
 
 ___
 
@@ -2060,7 +2060,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `eventName` | `EventType` |
+| `eventName` | [`EventType`](../modules.md#eventtype) |
 | `listener` | `Listener` |
 
 #### Returns
@@ -2152,7 +2152,7 @@ ___
 
 ### sendTransaction
 
-▸ **sendTransaction**(`signedTransaction`): `Promise`<`TransactionResponse`\>
+▸ **sendTransaction**(`signedTransaction`): `Promise`<[`TransactionResponse`](../interfaces/TransactionResponse.md)\>
 
 #### Parameters
 
@@ -2162,7 +2162,7 @@ ___
 
 #### Returns
 
-`Promise`<`TransactionResponse`\>
+`Promise`<[`TransactionResponse`](../interfaces/TransactionResponse.md)\>
 
 #### Inherited from
 
@@ -2176,7 +2176,7 @@ ___
 
 ### waitForTransaction
 
-▸ **waitForTransaction**(`transactionHash`, `confirmations?`, `timeout?`): `Promise`<`TransactionReceipt`\>
+▸ **waitForTransaction**(`transactionHash`, `confirmations?`, `timeout?`): `Promise`<[`TransactionReceipt`](../interfaces/TransactionReceipt.md)\>
 
 #### Parameters
 
@@ -2188,7 +2188,7 @@ ___
 
 #### Returns
 
-`Promise`<`TransactionReceipt`\>
+`Promise`<[`TransactionReceipt`](../interfaces/TransactionReceipt.md)\>
 
 #### Inherited from
 
@@ -2244,7 +2244,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `transaction` | `TransactionRequest` |
+| `transaction` | [`TransactionRequest`](../modules.md#transactionrequest) |
 | `allowExtra?` | `Object` |
 
 #### Returns
