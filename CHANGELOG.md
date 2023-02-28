@@ -15,6 +15,7 @@
 - Added `NftNamespace.getContractMetadataBatch()` to get the metadata associated with multiple NFT contracts in a single request.
 
 ### Minor Changes
+
 - Added exports for Ethers.js types and interfaces used by the SDK.
 - Added the `pageSize` parameter to the `NftNamespace.getContractsForOwner()` method.
 
@@ -23,6 +24,7 @@
 ### Major Changes
 
 ### Minor Changes
+
 - Added a missing `gas` field in the `DebugTransaction` interface to specify the gas provided for a transaction execution.
 - Fixed a bug with `NftNamespace.getMintedNfts()`, `NftNamespace.getTransfersForOwner()`, and `NftNamespace.getTransfersForContract()` where the method would incorrectly error if the specified address had no transfers.
 - Added the `BigNumber` ethers export. You can access this by importing `BigNumber` along with the other exports in the package.
@@ -32,6 +34,7 @@
 ### Major Changes
 
 ### Minor Changes
+
 - Added the `CoreNamespace.getTokensForOwner()` method to get all the token balances and token metadata for a given address.
 - Added the `wyvern` and `cryptopunks` marketplaces in the `NftSaleMarketplace` enum to the `NftNamespace.getNftSales()` method.
 - Added the `blockHash` field to the `OwnedNftsResponse` returned by `NftNamespace.getNftsForOwner()` to track the block hash that the request was based on.
@@ -41,6 +44,7 @@
 ### Major Changes
 
 ### Minor Changes
+
 - Added the `NftNamespace.getTransfersForOwner()` method to get all NFT transfers to or from a provided owner address.
 - Added the `NftNamespace.getTransfersForContract()` method to all the NFT transfers for a provided NFT contract address.
 - Deprecated the `GetMintedNftsResponse` interface in favor of the `TransfersNftResponse`. The `TransfersNftResponse` contains the same properties as the `GetMintedNftsResponse` and includes additional fields about the transfer.
