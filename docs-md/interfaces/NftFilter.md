@@ -21,17 +21,17 @@ The contract address of the NFT.
 
 #### Defined in
 
-[src/types/types.ts:2141](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2141)
+[src/types/types.ts:2225](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L2225)
 
 ___
 
 ### tokenId
 
-• `Optional` **tokenId**: `BigNumberish`
+• `Optional` **tokenId**: [`BigNumberish`](../modules.md#bignumberish)
 
 The token id of the NFT to track. If this field is omitted, defaults to
 tracking all NFTs for the provided contract address.
 
 #### Defined in
 
-[src/types/types.ts:2146](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2146)
+[src/types/types.ts:2230](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L2230)

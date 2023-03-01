@@ -14,10 +14,10 @@ Response object for a [CoreNamespace.getTransactionReceipts](../classes/CoreName
 
 ### receipts
 
-• **receipts**: ``null`` \| `TransactionReceipt`[]
+• **receipts**: ``null`` \| [`TransactionReceipt`](TransactionReceipt.md)[]
 
 A list of transaction receipts for the queried block.
 
 #### Defined in
 
-[src/types/types.ts:1362](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1362)
+[src/types/types.ts:1446](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1446)

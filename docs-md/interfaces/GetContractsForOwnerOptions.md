@@ -12,6 +12,7 @@ Optional parameters object for the the [getContractsForOwner](../classes/NftName
 - [includeFilters](GetContractsForOwnerOptions.md#includefilters)
 - [orderBy](GetContractsForOwnerOptions.md#orderby)
 - [pageKey](GetContractsForOwnerOptions.md#pagekey)
+- [pageSize](GetContractsForOwnerOptions.md#pagesize)
 
 ## Properties
 
@@ -25,7 +26,7 @@ conjunction with [includeFilters](GetContractsForOwnerOptions.md#includefilters)
 
 #### Defined in
 
-[src/types/types.ts:916](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L916)
+[src/types/types.ts:998](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L998)
 
 ___
 
@@ -39,7 +40,7 @@ conjunction with [excludeFilters](GetContractsForOwnerOptions.md#excludefilters)
 
 #### Defined in
 
-[src/types/types.ts:909](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L909)
+[src/types/types.ts:991](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L991)
 
 ___
 
@@ -52,7 +53,7 @@ contract address and token ID in lexicographic order.
 
 #### Defined in
 
-[src/types/types.ts:922](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L922)
+[src/types/types.ts:1004](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1004)
 
 ___
 
@@ -64,4 +65,17 @@ Key for pagination to use to fetch results from the next page if available.
 
 #### Defined in
 
-[src/types/types.ts:902](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L902)
+[src/types/types.ts:978](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L978)
+
+___
+
+### pageSize
+
+• `Optional` **pageSize**: `number`
+
+Configure the number of NFTs to return in each response. Maximum pages size
+is 100. Defaults to 100.
+
+#### Defined in
+
+[src/types/types.ts:984](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L984)

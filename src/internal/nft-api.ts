@@ -151,6 +151,25 @@ export async function getContractMetadata(
   return getNftContractFromRaw(response);
 }
 
+export async function getContractMetadataBatch(
+  config: AlchemyConfig,
+  contractAddresses: string[]
+): Promise<NftContract[]> {
+  const response = await requestHttpWithBackoff<{}, RawNftContract[]>(
+    config,
+    AlchemyApiType.NFT,
+    'getContractMetadataBatch',
+    'getContractMetadataBatch',
+    {},
+    {
+      method: 'POST',
+      data: { contractAddresses }
+    }
+  );
+
+  return response.map(getNftContractFromRaw);
+}
+
 export async function* getNftsForOwnerIterator(
   config: AlchemyConfig,
   owner: string,
@@ -212,7 +231,8 @@ export async function getNftsForOwner(
       balance: parseInt(res.balance)
     })),
     pageKey: response.pageKey,
-    totalCount: response.totalCount
+    totalCount: response.totalCount,
+    blockHash: response.blockHash
   };
 }
 
@@ -309,6 +329,7 @@ export async function getContractsForOwner(
     excludeFilters: options?.excludeFilters,
     includeFilters: options?.includeFilters,
     pageKey: options?.pageKey,
+    pageSize: options?.pageSize,
     orderBy: options?.orderBy
   });
 
@@ -769,6 +790,10 @@ async function getNftsForTransfers(
       return tokens.map(token => ({ metadata, token }));
     });
 
+  if (metadataTransfers.length === 0) {
+    return { nfts: [] };
+  }
+
   const nfts = await getNftMetadataBatch(
     config,
     metadataTransfers.map(transfer => transfer.token)
@@ -926,6 +951,7 @@ interface GetOwnersForNftContractAlchemyParams {
 interface GetContractsForOwnerParams {
   owner: string;
   pageKey?: string;
+  pageSize?: number;
   includeFilters?: NftFilters[];
   excludeFilters?: NftFilters[];
   orderBy?: NftOrdering;

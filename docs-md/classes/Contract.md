@@ -164,7 +164,7 @@ ___
 
 ### deployTransaction
 
-• `Readonly` **deployTransaction**: `TransactionResponse`
+• `Readonly` **deployTransaction**: [`TransactionResponse`](../interfaces/TransactionResponse.md)
 
 #### Inherited from
 
@@ -182,7 +182,7 @@ ___
 
 #### Index signature
 
-▪ [name: `string`]: `ContractFunction`<`BigNumber`\>
+▪ [name: `string`]: `ContractFunction`<[`BigNumber`](BigNumber.md)\>
 
 #### Inherited from
 
@@ -336,7 +336,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `blockTag?` | `BlockTag` |
+| `blockTag?` | [`BlockTag`](../modules.md#blocktag) |
 
 #### Returns
 
@@ -361,7 +361,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `runningEvent` | `RunningEvent` |
-| `log` | `Log` |
+| `log` | [`Log`](../interfaces/Log.md) |
 | `listener` | `Listener` |
 
 #### Returns
@@ -471,17 +471,17 @@ ___
 
 ### fallback
 
-▸ **fallback**(`overrides?`): `Promise`<`TransactionResponse`\>
+▸ **fallback**(`overrides?`): `Promise`<[`TransactionResponse`](../interfaces/TransactionResponse.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `overrides?` | `TransactionRequest` |
+| `overrides?` | [`TransactionRequest`](../modules.md#transactionrequest) |
 
 #### Returns
 
-`Promise`<`TransactionResponse`\>
+`Promise`<[`TransactionResponse`](../interfaces/TransactionResponse.md)\>
 
 #### Inherited from
 
@@ -625,8 +625,8 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `event` | `string` \| `EventFilter` |
-| `fromBlockOrBlockhash?` | `BlockTag` |
-| `toBlock?` | `BlockTag` |
+| `fromBlockOrBlockhash?` | [`BlockTag`](../modules.md#blocktag) |
+| `toBlock?` | [`BlockTag`](../modules.md#blocktag) |
 
 #### Returns
 
@@ -701,7 +701,7 @@ ___
 | :------ | :------ |
 | `transaction` | `Object` |
 | `transaction.from` | `string` |
-| `transaction.nonce` | `BigNumberish` |
+| `transaction.nonce` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 

@@ -20,4 +20,4 @@ An array of owner addresses for the provided token.
 
 #### Defined in
 
-[src/types/types.ts:750](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L750)
+[src/types/types.ts:826](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L826)

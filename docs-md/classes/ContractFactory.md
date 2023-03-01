@@ -174,7 +174,7 @@ ___
 
 ### getDeployTransaction
 
-▸ **getDeployTransaction**(...`args`): `TransactionRequest`
+▸ **getDeployTransaction**(...`args`): [`TransactionRequest`](../modules.md#transactionrequest)
 
 #### Parameters
 
@@ -184,7 +184,7 @@ ___
 
 #### Returns
 
-`TransactionRequest`
+[`TransactionRequest`](../modules.md#transactionrequest)
 
 #### Inherited from
 
@@ -257,7 +257,7 @@ ___
 | :------ | :------ |
 | `tx` | `Object` |
 | `tx.from` | `string` |
-| `tx.nonce` | `number` \| `BytesLike` \| `BigNumber` |
+| `tx.nonce` | `number` \| `BytesLike` \| [`BigNumber`](BigNumber.md) |
 
 #### Returns
 

@@ -109,7 +109,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `wei` | `BigNumberish` |
+| `wei` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
@@ -129,8 +129,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `value` | `BigNumberish` |
-| `unitName?` | `BigNumberish` |
+| `value` | [`BigNumberish`](../modules.md#bignumberish) |
+| `unitName?` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
@@ -449,7 +449,7 @@ ___
 
 ### parseEther
 
-▸ **parseEther**(`ether`): `BigNumber`
+▸ **parseEther**(`ether`): [`BigNumber`](../classes/BigNumber.md)
 
 #### Parameters
 
@@ -459,7 +459,7 @@ ___
 
 #### Returns
 
-`BigNumber`
+[`BigNumber`](../classes/BigNumber.md)
 
 #### Defined in
 
@@ -469,18 +469,18 @@ ___
 
 ### parseUnits
 
-▸ **parseUnits**(`value`, `unitName?`): `BigNumber`
+▸ **parseUnits**(`value`, `unitName?`): [`BigNumber`](../classes/BigNumber.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `value` | `string` |
-| `unitName?` | `BigNumberish` |
+| `unitName?` | [`BigNumberish`](../modules.md#bignumberish) |
 
 #### Returns
 
-`BigNumber`
+[`BigNumber`](../classes/BigNumber.md)
 
 #### Defined in
 

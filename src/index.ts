@@ -17,6 +17,8 @@ export { Wallet } from './api/alchemy-wallet';
 
 export { Contract, ContractFactory } from './api/alchemy-contract';
 
+export { BigNumber } from '@ethersproject/bignumber';
+
 export type { AlchemyConfig } from './api/alchemy-config';
 
 export type { AlchemyProvider } from './api/alchemy-provider';

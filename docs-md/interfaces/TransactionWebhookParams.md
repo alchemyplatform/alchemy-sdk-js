@@ -28,4 +28,4 @@ The app id of the project to create the webhook on.
 
 #### Defined in
 
-[src/types/types.ts:2107](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L2107)
+[src/types/types.ts:2191](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L2191)

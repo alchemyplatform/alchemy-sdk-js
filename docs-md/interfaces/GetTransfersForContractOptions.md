@@ -18,13 +18,13 @@ method.
 
 ### fromBlock
 
-• `Optional` **fromBlock**: `BlockTag`
+• `Optional` **fromBlock**: [`BlockTag`](../modules.md#blocktag)
 
 Starting block (inclusive) to get transfers from.
 
 #### Defined in
 
-[src/types/types.ts:1004](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1004)
+[src/types/types.ts:1086](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1086)
 
 ___
 
@@ -37,7 +37,7 @@ Defaults to ascending if omitted.
 
 #### Defined in
 
-[src/types/types.ts:1011](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1011)
+[src/types/types.ts:1093](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1093)
 
 ___
 
@@ -50,16 +50,16 @@ pagination.
 
 #### Defined in
 
-[src/types/types.ts:1016](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1016)
+[src/types/types.ts:1098](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1098)
 
 ___
 
 ### toBlock
 
-• `Optional` **toBlock**: `BlockTag`
+• `Optional` **toBlock**: [`BlockTag`](../modules.md#blocktag)
 
 Ending block (inclusive) to get transfers from.
 
 #### Defined in
 
-[src/types/types.ts:1006](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1006)
+[src/types/types.ts:1088](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1088)

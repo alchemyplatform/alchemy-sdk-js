@@ -9,12 +9,24 @@ Enum representing the supported NFT marketplaces by the
 
 ### Enumeration members
 
+- [CRYPTOPUNKS](NftSaleMarketplace.md#cryptopunks)
 - [LOOKSRARE](NftSaleMarketplace.md#looksrare)
 - [SEAPORT](NftSaleMarketplace.md#seaport)
 - [UNKNOWN](NftSaleMarketplace.md#unknown)
+- [WYVERN](NftSaleMarketplace.md#wyvern)
 - [X2Y2](NftSaleMarketplace.md#x2y2)
 
 ## Enumeration members
+
+### CRYPTOPUNKS
+
+• **CRYPTOPUNKS** = `"cryptopunks"`
+
+#### Defined in
+
+[src/types/types.ts:1321](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1321)
+
+___
 
 ### LOOKSRARE
 
@@ -22,7 +34,7 @@ Enum representing the supported NFT marketplaces by the
 
 #### Defined in
 
-[src/types/types.ts:1236](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1236)
+[src/types/types.ts:1318](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1318)
 
 ___
 
@@ -32,7 +44,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1235](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1235)
+[src/types/types.ts:1317](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1317)
 
 ___
 
@@ -42,7 +54,17 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1238](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1238)
+[src/types/types.ts:1322](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1322)
+
+___
+
+### WYVERN
+
+• **WYVERN** = `"wyvern"`
+
+#### Defined in
+
+[src/types/types.ts:1320](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1320)
 
 ___
 
@@ -52,4 +74,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1237](https://github.com/alchemyplatform/alchemy-sdk-js/blob/dc20ee4/src/types/types.ts#L1237)
+[src/types/types.ts:1319](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1319)

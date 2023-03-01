@@ -1,6 +1,6 @@
 alchemy-sdk / [Exports](modules.md)
 
-# Alchemy SDK for Javascript
+ Alchemy SDK for Javascript
 
 The Alchemy SDK is the most comprehensive, stable, and powerful Javascript SDK available today to interact with the blockchain.
 
@@ -125,6 +125,7 @@ It also includes the majority of Alchemy Enhanced APIs, including:
 You will also find the following utility methods:
 
 - `findContractDeployer()`: Find the contract deployer and block number for a given contract address.
+- `getTokensForOwner()`: Get all token balances and metadata for a given owner address
 
 ### Accessing the full Ethers.js Provider
 
@@ -192,6 +193,8 @@ The `transact` namespace contains methods used for simulating and sending transa
 - `cancelPrivateTransaction()`: Cancel a private transaction sent with Flashbots.
 - `simulateAssetChanges()`: Simulate a transaction and get a list of asset changes.
 - `simulateExecution()`: Simulate a transaction and get a full list of internal transactions, logs, ABI decoded results and more.
+- `simulateAssetChangesBundle()`: Simulate a list of transactions in sequence and get a list of asset changes.
+- `simulateExecutionBundle()`: Simulate a list of transactions in sequence and get a full list of internal transactions, logs, ABI decoded results and more.
 
 The `transact` namespace also aliases over several commonly used methods from the `core` namespace for convenience:
 
@@ -207,6 +210,7 @@ under the `alchemy.nft` namespace:
 - `getNftMetadata()`: Get the NFT metadata for an NFT contract address and tokenId.
 - `getNftMetadataBatch()`: Get the NFT metadata for multiple NFT contract addresses/token id pairs.
 - `getContractMetadata()`: Get the metadata associated with an NFT contract
+- `getContractMetadataBatch()`: Get the metadata associated with multiple NFT contracts in a single request.
 - `getContractsForOwner()`: Get all NFT contracts that the provided owner address owns.
 - `getNftsForOwner()`: Get NFTs for an owner address.
 - `getNftsForOwnerIterator()`: Get NFTs for an owner address as an async iterator (handles paging automatically).

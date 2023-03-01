@@ -134,4 +134,30 @@ describe('E2E integration tests', () => {
     });
     expect(logs.length).toEqual(88);
   });
+
+  it('getTokensForOwner()', async () => {
+    // Works with page key
+    const res = await alchemy.core.getTokensForOwner('vitalik.eth');
+    expect(res.pageKey).not.toBeUndefined();
+    const res2 = await alchemy.core.getTokensForOwner('vitalik.eth', {
+      pageKey: res.pageKey
+    });
+    expect(res.tokens[0]).not.toEqual(res2.tokens[0]);
+
+    // Works with DEFAULT_TOKENS
+    const res3 = await alchemy.core.getTokensForOwner('vitalik.eth', {
+      contractAddresses: TokenBalanceType.DEFAULT_TOKENS
+    });
+    expect(res3.tokens.length).toEqual(100);
+
+    // Works with custom contract addresses
+    const USDC_ADDRESS = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48';
+    const USDT_ADDRESS = '0xdac17f958d2ee523a2206206994597c13d831ec7';
+    const res4 = await alchemy.core.getTokensForOwner('vitalik.eth', {
+      contractAddresses: [USDC_ADDRESS, USDT_ADDRESS]
+    });
+    expect(res4.tokens.length).toEqual(2);
+    expect(res4.tokens[0].contractAddress).toEqual(USDC_ADDRESS);
+    expect(res4.tokens[1].contractAddress).toEqual(USDT_ADDRESS);
+  });
 });

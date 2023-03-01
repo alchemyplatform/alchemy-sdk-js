@@ -8,6 +8,8 @@ import type { ExternalProvider } from '@ethersproject/providers';
 
 import { BaseNft, Nft, NftContract } from '../api/nft';
 
+export * from './ethers-types';
+
 // TODO: separate this file into other files.
 
 /**
@@ -170,6 +172,74 @@ export interface TokenBalanceFailure {
   contractAddress: string;
   tokenBalance: null;
   error: string;
+}
+
+/**
+ * Optional params to pass into {@link CoreNamespace.getTokensForOwner}.
+ */
+export interface GetTokensForOwnerOptions {
+  /**
+   * List of contract addresses to filter by. If omitted, defaults to
+   * {@link TokenBalanceType.ERC20}.
+   */
+  contractAddresses?: string[] | TokenBalanceType;
+  /**
+   * Optional page key from an existing {@link GetTokensForOwnerResponse} to use for
+   * pagination.
+   */
+  pageKey?: string;
+}
+
+/**
+ * Response object for {@link CoreNamespace.getTokensForOwner}.
+ */
+export interface GetTokensForOwnerResponse {
+  /** Owned tokens for the provided addresses along with relevant metadata. */
+  tokens: OwnedToken[];
+  /** Page key for the next page of results, if one exists. */
+  pageKey?: string;
+}
+
+/**
+ * Represents an owned token on a {@link GetTokensForOwnerResponse}.
+ */
+export interface OwnedToken {
+  /** The contract address of the token. */
+  contractAddress: string;
+  /**
+   * The raw value of the balance field as a hex string. This value is undefined
+   * if the {@link error} field is present.
+   */
+  rawBalance?: string;
+  /**
+   * The formatted value of the balance field as a hex string. This value is
+   * undefined if the {@link error} field is present, or if the `decimals` field=
+   * is undefined.
+   */
+  balance?: string;
+  /** */
+  /**
+   * The token's name. Is undefined if the name is not defined in the contract and
+   * not available from other sources.
+   */
+  name?: string;
+  /**
+   * The token's symbol. Is undefined if the symbol is not defined in the contract
+   * and not available from other sources.
+   */
+  symbol?: string;
+  /**
+   * The number of decimals of the token. Is undefined if not defined in the
+   * contract and not available from other sources.
+   */
+  decimals?: number;
+  /** URL link to the token's logo. Is undefined if the logo is not available. */
+  logo?: string;
+  /**
+   * Error from fetching the token balances. If this field is defined, none of
+   * the other fields will be defined.
+   */
+  error?: string;
 }
 
 /**
@@ -703,6 +773,9 @@ export interface OwnedNftsResponse {
 
   /** The total count of NFTs owned by the provided address. */
   readonly totalCount: number;
+
+  /** The canonical head block hash of when your request was received. */
+  blockHash: string;
 }
 
 /**
@@ -725,6 +798,9 @@ export interface OwnedBaseNftsResponse {
 
   /** The total count of NFTs owned by the provided address. */
   readonly totalCount: number;
+
+  /** The canonical head block hash of when your request was received. */
+  blockHash: string;
 }
 
 /**
@@ -907,6 +983,12 @@ export interface GetFloorPriceResponse {
 export interface GetContractsForOwnerOptions {
   /** Key for pagination to use to fetch results from the next page if available. */
   pageKey?: string;
+
+  /**
+   * Configure the number of NFTs to return in each response. Maximum pages size
+   * is 100. Defaults to 100.
+   */
+  pageSize?: number;
 
   /**
    * Optional list of filters applied to the query. NFTs that match one or more
@@ -1242,6 +1324,8 @@ export enum NftSaleMarketplace {
   SEAPORT = 'seaport',
   LOOKSRARE = 'looksrare',
   X2Y2 = 'x2y2',
+  'WYVERN' = 'wyvern',
+  'CRYPTOPUNKS' = 'cryptopunks',
   UNKNOWN = 'unknown'
 }
 
@@ -2229,6 +2313,8 @@ export interface DebugTransaction {
   to?: string;
   /** The address the transaction is sent from. */
   from?: string;
+  /** The gas provided for the transaction execution, as a hex string. */
+  gas?: string;
   /** The gas price to use as a hex string. */
   gasPrice?: string;
   /** The value associated with the transaction as a hex string. */

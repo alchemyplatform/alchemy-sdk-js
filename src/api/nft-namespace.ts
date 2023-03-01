@@ -4,6 +4,7 @@ import {
   checkNftOwnership,
   computeRarity,
   getContractMetadata,
+  getContractMetadataBatch,
   getContractsForOwner,
   getFloorPrice,
   getMintedNfts,
@@ -145,13 +146,24 @@ export class NftNamespace {
   }
 
   /**
-   * Get the NFT collection metadata associated with the provided parameters.
+   * Get the NFT contract metadata associated with the provided parameters.
    *
    * @param contractAddress - The contract address of the NFT.
    * @public
    */
   getContractMetadata(contractAddress: string): Promise<NftContract> {
     return getContractMetadata(this.config, contractAddress);
+  }
+
+  /**
+   * Get the NFT contract metadata for multiple NFT contracts in a single request.
+   *
+   * @param contractAddresses - An array of contract addresses to fetch metadata for.
+   */
+  getContractMetadataBatch(
+    contractAddresses: string[]
+  ): Promise<NftContract[]> {
+    return getContractMetadataBatch(this.config, contractAddresses);
   }
 
   /**
