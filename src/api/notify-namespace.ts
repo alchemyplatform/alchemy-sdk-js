@@ -432,7 +432,7 @@ export class NotifyNamespace {
       ...(appId && { app_id: appId }),
 
       // Only include the filters/addresses in the final response if they're defined
-      ...(nftFilterObj && { ...nftFilterObj }),
+      ...nftFilterObj,
       ...(addresses && { addresses })
     };
 
