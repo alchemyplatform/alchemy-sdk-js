@@ -2109,7 +2109,8 @@ export enum WebhookType {
   MINED_TRANSACTION = 'MINED_TRANSACTION',
   DROPPED_TRANSACTION = 'DROPPED_TRANSACTION',
   ADDRESS_ACTIVITY = 'ADDRESS_ACTIVITY',
-  NFT_ACTIVITY = 'NFT_ACTIVITY'
+  NFT_ACTIVITY = 'NFT_ACTIVITY',
+  NFT_METADATA_UPDATE = 'NFT_METADATA_UPDATE'
 }
 
 /**
@@ -2146,6 +2147,15 @@ export interface AddressActivityWebhook extends Webhook {
  */
 export interface NftActivityWebhook extends Webhook {
   type: WebhookType.NFT_ACTIVITY;
+}
+
+/**
+ * The NFT Metadata Update Webhook tracks all ERC721 and ERC1155 metadata updates.
+ * This can be used to notify your app with real time state changes when an NFT's
+ * metadata changes.
+ */
+export interface NftMetadataUpdateWebhook extends Webhook {
+  type: WebhookType.NFT_METADATA_UPDATE;
 }
 
 /** The response for a {@link NotifyNamespace.getAllWebhooks} method. */
@@ -2193,7 +2203,7 @@ export interface TransactionWebhookParams {
 
 /**
  * Params to pass in when calling {@link NotifyNamespace.createWebhook} in order
- * to create a {@link NftActivityWebhook}.
+ * to create a {@link NftActivityWebhook} or {@link NftMetadataUpdateWebhook}.
  */
 export interface NftWebhookParams {
   /** Array of NFT filters the webhook should track. */
@@ -2219,7 +2229,7 @@ export interface AddressWebhookParams {
   network?: Network;
 }
 
-/** NFT to track on a {@link NftActivityWebhook}. */
+/** NFT to track on a {@link NftActivityWebhook} or {@link NftMetadataUpdateWebhook}. */
 export interface NftFilter {
   /** The contract address of the NFT. */
   contractAddress: string;
@@ -2262,6 +2272,17 @@ export interface WebhookNftFilterUpdate {
 
 /**
  * Params object when calling {@link NotifyNamespace.updateWebhook} to add and
+ * remove NFT filters for a {@link NftMetadataUpdateWebhook}.
+ */
+export interface WebhookNftMetadataFilterUpdate {
+  /** The filters to additionally track. */
+  addMetadataFilters: NftFilter[];
+  /** Existing filters to remove. */
+  removeMetadataFilters: NftFilter[];
+}
+
+/**
+ * Params object when calling {@link NotifyNamespace.updateWebhook} to add and
  * remove addresses for a {@link AddressActivityWebhook}.
  */
 export interface WebhookAddressUpdate {
@@ -2284,10 +2305,17 @@ export interface WebhookAddressOverride {
  * Params object when calling {@link NotifyNamespace.updateWebhook} to update a
  * {@link NftActivityWebhook}.
  */
-
 export type NftWebhookUpdate =
   | WebhookStatusUpdate
   | RequireAtLeastOne<WebhookNftFilterUpdate>;
+
+/**
+ * Params object when calling {@link NotifyNamespace.updateWebhook} to update a
+ * {@link NftMetadataUpdateWebhook}.
+ */
+export type NftMetadataWebhookUpdate =
+  | WebhookStatusUpdate
+  | RequireAtLeastOne<WebhookNftMetadataFilterUpdate>;
 
 /**
  * Params object when calling {@link NotifyNamespace.updateWebhook} to update a

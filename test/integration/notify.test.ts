@@ -4,6 +4,7 @@ import {
   Network,
   NftActivityWebhook,
   NftFilter,
+  NftMetadataUpdateWebhook,
   WebhookType
 } from '../../src';
 import { loadAlchemyEnv } from '../test-util';
@@ -32,6 +33,7 @@ describe('E2E integration tests', () => {
 
   let addressWh: AddressActivityWebhook;
   let nftWh: NftActivityWebhook;
+  let nftMetadataWh: NftMetadataUpdateWebhook;
 
   async function createInitialWebhooks(): Promise<void> {
     addressWh = await alchemy.notify.createWebhook(
@@ -42,6 +44,11 @@ describe('E2E integration tests', () => {
     nftWh = await alchemy.notify.createWebhook(
       webhookUrl,
       WebhookType.NFT_ACTIVITY,
+      { filters: nftFilters, network: Network.ETH_MAINNET }
+    );
+    nftMetadataWh = await alchemy.notify.createWebhook(
+      webhookUrl,
+      WebhookType.NFT_METADATA_UPDATE,
       { filters: nftFilters, network: Network.ETH_MAINNET }
     );
   }
@@ -226,12 +233,35 @@ describe('E2E integration tests', () => {
     ).toEqual(0);
   });
 
+  it('create and delete NftActivityWebhook', async () => {
+    const nftActivityWebhook = await alchemy.notify.createWebhook(
+      webhookUrl,
+      WebhookType.NFT_METADATA_UPDATE,
+      { filters: nftFilters, network: Network.ETH_GOERLI }
+    );
+    expect(nftActivityWebhook.url).toEqual(webhookUrl);
+    expect(nftActivityWebhook.type).toEqual(WebhookType.NFT_METADATA_UPDATE);
+    expect(nftActivityWebhook.network).toEqual(Network.ETH_GOERLI);
+    let response = await alchemy.notify.getAllWebhooks();
+    expect(
+      response.webhooks.filter(wh => wh.id === nftActivityWebhook.id).length
+    ).toEqual(1);
+
+    await alchemy.notify.deleteWebhook(nftActivityWebhook.id);
+    response = await alchemy.notify.getAllWebhooks();
+    expect(
+      response.webhooks.filter(wh => wh.id === nftActivityWebhook.id).length
+    ).toEqual(0);
+  });
+
   it('update NftActivityWebhook filter with same filter', async () => {
     const addFilters = [
+      // Duplicate filter
       {
         contractAddress: '0x88b48f654c30e99bc2e4a1559b4dcf1ad93fa656',
         tokenId: '234'
       },
+      // New Filter
       {
         contractAddress: '0x88b48f654c30e99bc2e4a1559b4dcf1ad93fa656',
         tokenId: '123'
@@ -270,6 +300,54 @@ describe('E2E integration tests', () => {
     const updated = response.webhooks.filter(wh => wh.id === nftWh.id);
     expect(updated.length).toEqual(1);
     expect(updated[0].isActive).toEqual(false);
+  });
+
+  it('update NftMetadataUpdateWebhook status', async () => {
+    await alchemy.notify.updateWebhook(nftMetadataWh.id, {
+      isActive: false
+    });
+    const response = await alchemy.notify.getAllWebhooks();
+    const updated = response.webhooks.filter(wh => wh.id === nftMetadataWh.id);
+    expect(updated.length).toEqual(1);
+    expect(updated[0].isActive).toEqual(false);
+  });
+
+  it('update NftMetadataUpdateWebhook filter with same filter', async () => {
+    const addMetadataFilters = [
+      // Duplicate filter
+      {
+        contractAddress: '0x88b48f654c30e99bc2e4a1559b4dcf1ad93fa656',
+        tokenId: '234'
+      },
+      // New Filter
+      {
+        contractAddress: '0x88b48f654c30e99bc2e4a1559b4dcf1ad93fa656',
+        tokenId: '123'
+      }
+    ];
+
+    const removeMetadataFilters = [
+      {
+        contractAddress: '0x17dc95f9052f86ed576af55b018360f853e19ac2',
+        tokenId: 345
+      }
+    ];
+
+    await alchemy.notify.updateWebhook(nftWh, {
+      addFilters: addMetadataFilters,
+      removeFilters: removeMetadataFilters
+    });
+
+    const response = await alchemy.notify.getNftFilters(nftWh);
+    expect(response.filters.length).toEqual(2);
+
+    await alchemy.notify.updateWebhook(nftWh, {
+      removeFilters: removeMetadataFilters
+    });
+
+    await alchemy.notify.updateWebhook(nftWh, {
+      addFilters: addMetadataFilters
+    });
   });
 
   it('update AddressActivityWebhook address', async () => {

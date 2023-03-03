@@ -4,6 +4,8 @@
 
 ### Major Changes
 
+- Added the `NftMetadataUpdateWebhook` to be used with the `NotifyNamespace`. This webhook tracks all ERC721 and ERC1155 token metadata updates.
+
 ### Minor Changes
 
 ## 2.5.0
