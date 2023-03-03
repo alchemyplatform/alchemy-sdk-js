@@ -307,7 +307,8 @@ describe('E2E integration tests', () => {
     });
   });
 
-  describe('sendGasOptimizedTransaction()', () => {
+  // TODO(txjob): enable once released
+  describe.skip('sendGasOptimizedTransaction()', () => {
     it('can send signed transactions', async () => {
       const response = await alchemy.transact.sendGasOptimizedTransaction([
         '0x02f86f0107847735940085174876e8008252089415fdad99a4b0c72fc5c2761542e1b17cff7357de843b9aca0080c080a0db73b4c108202f2a0d22d8836ccb2052b24aaffbcbd8222e2030d0b8d68c3218a01ec636ff8a3a6125ba524d72348e91c96be5ac8330eadab31e70e753fbe00236'
@@ -337,7 +338,8 @@ describe('E2E integration tests', () => {
     });
   });
 
-  describe('getGasOptimizedTransactionStatus()', () => {
+  // TODO(txjob): enable once released
+  describe.skip('getGasOptimizedTransactionStatus()', () => {
     it('can get the transaction state', async () => {
       const response = await alchemy.transact.sendGasOptimizedTransaction([
         '0x02f86f0107847735940085174876e8008252089415fdad99a4b0c72fc5c2761542e1b17cff7357de843b9aca0080c080a0db73b4c108202f2a0d22d8836ccb2052b24aaffbcbd8222e2030d0b8d68c3218a01ec636ff8a3a6125ba524d72348e91c96be5ac8330eadab31e70e753fbe00236'
