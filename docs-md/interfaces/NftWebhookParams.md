@@ -3,7 +3,7 @@
 # Interface: NftWebhookParams
 
 Params to pass in when calling [NotifyNamespace.createWebhook](../classes/NotifyNamespace.md#createwebhook) in order
-to create a [NftActivityWebhook](NftActivityWebhook.md).
+to create a [NftActivityWebhook](NftActivityWebhook.md) or [NftMetadataUpdateWebhook](NftMetadataUpdateWebhook.md).
 
 ## Table of contents
 
@@ -22,7 +22,7 @@ Array of NFT filters the webhook should track.
 
 #### Defined in
 
-[src/types/types.ts:2200](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L2200)
+[src/types/types.ts:2224](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L2224)
 
 ___
 
@@ -35,4 +35,4 @@ created on network of the app provided in the api key config.
 
 #### Defined in
 
-[src/types/types.ts:2205](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L2205)
+[src/types/types.ts:2229](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L2229)

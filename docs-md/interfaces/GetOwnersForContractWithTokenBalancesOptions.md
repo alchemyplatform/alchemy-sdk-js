@@ -25,7 +25,7 @@ The block number in hex or decimal to fetch owners for.
 
 #### Defined in
 
-[src/types/types.ts:1589](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1589)
+[src/types/types.ts:1589](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L1589)
 
 ___
 
@@ -37,7 +37,7 @@ Optional page key to paginate the next page for large requests.
 
 #### Defined in
 
-[src/types/types.ts:1592](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1592)
+[src/types/types.ts:1592](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L1592)
 
 ___
 
@@ -50,4 +50,4 @@ to false when omitted.
 
 #### Defined in
 
-[src/types/types.ts:1586](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1586)
+[src/types/types.ts:1586](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L1586)

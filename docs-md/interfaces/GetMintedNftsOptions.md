@@ -23,7 +23,7 @@ all contract addresses.
 
 #### Defined in
 
-[src/types/types.ts:1138](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1138)
+[src/types/types.ts:1138](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L1138)
 
 ___
 
@@ -36,7 +36,7 @@ pagination.
 
 #### Defined in
 
-[src/types/types.ts:1150](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1150)
+[src/types/types.ts:1150](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L1150)
 
 ___
 
@@ -49,4 +49,4 @@ NFTs.
 
 #### Defined in
 
-[src/types/types.ts:1144](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1144)
+[src/types/types.ts:1144](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L1144)

@@ -55,7 +55,7 @@ Note that the webhook will be created in the app network of the provided app id.
 
 #### Defined in
 
-[src/api/notify-namespace.ts:276](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/notify-namespace.ts#L276)
+[src/api/notify-namespace.ts:305](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L305)
 
 ▸ **createWebhook**(`url`, `type`, `params`): `Promise`<[`DroppedTransactionWebhook`](../interfaces/DroppedTransactionWebhook.md)\>
 
@@ -78,7 +78,7 @@ Note that the webhook will be created in the app network of the provided app id.
 
 #### Defined in
 
-[src/api/notify-namespace.ts:293](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/notify-namespace.ts#L293)
+[src/api/notify-namespace.ts:322](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L322)
 
 ▸ **createWebhook**(`url`, `type`, `params`): `Promise`<[`NftActivityWebhook`](../interfaces/NftActivityWebhook.md)\>
 
@@ -98,7 +98,25 @@ Create a new [NftActivityWebhook](../interfaces/NftActivityWebhook.md) to track 
 
 #### Defined in
 
-[src/api/notify-namespace.ts:307](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/notify-namespace.ts#L307)
+[src/api/notify-namespace.ts:336](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L336)
+
+▸ **createWebhook**(`url`, `type`, `params`): `Promise`<[`NftMetadataUpdateWebhook`](../interfaces/NftMetadataUpdateWebhook.md)\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `url` | `string` |
+| `type` | [`NFT_METADATA_UPDATE`](../enums/WebhookType.md#nft_metadata_update) |
+| `params` | [`NftWebhookParams`](../interfaces/NftWebhookParams.md) |
+
+#### Returns
+
+`Promise`<[`NftMetadataUpdateWebhook`](../interfaces/NftMetadataUpdateWebhook.md)\>
+
+#### Defined in
+
+[src/api/notify-namespace.ts:342](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L342)
 
 ▸ **createWebhook**(`url`, `type`, `params`): `Promise`<[`AddressActivityWebhook`](../interfaces/AddressActivityWebhook.md)\>
 
@@ -118,7 +136,7 @@ Create a new [AddressActivityWebhook](../interfaces/AddressActivityWebhook.md) t
 
 #### Defined in
 
-[src/api/notify-namespace.ts:321](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/notify-namespace.ts#L321)
+[src/api/notify-namespace.ts:356](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L356)
 
 ___
 
@@ -140,7 +158,7 @@ Delete the provided webhook.
 
 #### Defined in
 
-[src/api/notify-namespace.ts:414](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/notify-namespace.ts#L414)
+[src/api/notify-namespace.ts:457](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L457)
 
 ▸ **deleteWebhook**(`webhookId`): `Promise`<`void`\>
 
@@ -158,7 +176,7 @@ Delete the provided webhook.
 
 #### Defined in
 
-[src/api/notify-namespace.ts:421](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/notify-namespace.ts#L421)
+[src/api/notify-namespace.ts:464](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L464)
 
 ___
 
@@ -181,7 +199,7 @@ Get all addresses tracked for the provided [AddressActivityWebhook](../interface
 
 #### Defined in
 
-[src/api/notify-namespace.ts:84](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/notify-namespace.ts#L84)
+[src/api/notify-namespace.ts:86](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L86)
 
 ▸ **getAddresses**(`webhookId`, `options?`): `Promise`<[`AddressActivityResponse`](../interfaces/AddressActivityResponse.md)\>
 
@@ -200,7 +218,7 @@ Get all addresses tracked for the provided [AddressActivityWebhook](../interface
 
 #### Defined in
 
-[src/api/notify-namespace.ts:97](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/notify-namespace.ts#L97)
+[src/api/notify-namespace.ts:99](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L99)
 
 ___
 
@@ -221,7 +239,7 @@ This method returns a response object containing all the webhooks
 
 #### Defined in
 
-[src/api/notify-namespace.ts:65](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/notify-namespace.ts#L65)
+[src/api/notify-namespace.ts:67](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L67)
 
 ___
 
@@ -244,7 +262,7 @@ Get all NFTs tracked for the provided [NftActivityWebhook](../interfaces/NftActi
 
 #### Defined in
 
-[src/api/notify-namespace.ts:126](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/notify-namespace.ts#L126)
+[src/api/notify-namespace.ts:128](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L128)
 
 ▸ **getNftFilters**(`webhookId`, `options?`): `Promise`<[`NftFiltersResponse`](../interfaces/NftFiltersResponse.md)\>
 
@@ -263,7 +281,7 @@ Get all NFT filters tracked for the provided [NftActivityWebhook](../interfaces/
 
 #### Defined in
 
-[src/api/notify-namespace.ts:139](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/notify-namespace.ts#L139)
+[src/api/notify-namespace.ts:141](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L141)
 
 ___
 
@@ -292,7 +310,7 @@ ___
 
 #### Defined in
 
-[src/api/notify-namespace.ts:453](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/notify-namespace.ts#L453)
+[src/api/notify-namespace.ts:496](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L496)
 
 ___
 
@@ -315,7 +333,7 @@ Update a [NftActivityWebhook](../interfaces/NftActivityWebhook.md)'s active stat
 
 #### Defined in
 
-[src/api/notify-namespace.ts:168](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/notify-namespace.ts#L168)
+[src/api/notify-namespace.ts:170](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L170)
 
 ▸ **updateWebhook**(`nftWebhookId`, `update`): `Promise`<`void`\>
 
@@ -334,7 +352,26 @@ Update a [NftActivityWebhook](../interfaces/NftActivityWebhook.md)'s active stat
 
 #### Defined in
 
-[src/api/notify-namespace.ts:179](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/notify-namespace.ts#L179)
+[src/api/notify-namespace.ts:181](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L181)
+
+▸ **updateWebhook**(`nftMetadataWebhookId`, `update`): `Promise`<`void`\>
+
+Update a [NftMetadataUpdateWebhook](../interfaces/NftMetadataUpdateWebhook.md)'s active status or NFT filters.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `nftMetadataWebhookId` | `string` | The id of the NFT activity webhook. |
+| `update` | [`NftMetadataWebhookUpdate`](../modules.md#nftmetadatawebhookupdate) | Object containing the update. |
+
+#### Returns
+
+`Promise`<`void`\>
+
+#### Defined in
+
+[src/api/notify-namespace.ts:189](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L189)
 
 ▸ **updateWebhook**(`addressWebhook`, `update`): `Promise`<`void`\>
 
@@ -353,7 +390,7 @@ Update a [AddressActivityWebhook](../interfaces/AddressActivityWebhook.md)'s act
 
 #### Defined in
 
-[src/api/notify-namespace.ts:187](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/notify-namespace.ts#L187)
+[src/api/notify-namespace.ts:200](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L200)
 
 ▸ **updateWebhook**(`addressWebhookId`, `update`): `Promise`<`void`\>
 
@@ -372,7 +409,7 @@ Update a [AddressActivityWebhook](../interfaces/AddressActivityWebhook.md)'s act
 
 #### Defined in
 
-[src/api/notify-namespace.ts:198](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/notify-namespace.ts#L198)
+[src/api/notify-namespace.ts:211](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L211)
 
 ___
 
@@ -386,4 +423,4 @@ ___
 
 #### Defined in
 
-[src/api/notify-namespace.ts:444](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/api/notify-namespace.ts#L444)
+[src/api/notify-namespace.ts:487](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/api/notify-namespace.ts#L487)
