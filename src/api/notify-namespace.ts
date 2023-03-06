@@ -24,6 +24,8 @@ import {
   NftActivityWebhook,
   NftFilter,
   NftFiltersResponse,
+  NftMetadataUpdateWebhook,
+  NftMetadataWebhookUpdate,
   NftWebhookParams,
   NftWebhookUpdate,
   TransactionWebhookParams,
@@ -179,6 +181,17 @@ export class NotifyNamespace {
   updateWebhook(nftWebhookId: string, update: NftWebhookUpdate): Promise<void>;
 
   /**
+   * Update a {@link NftMetadataUpdateWebhook}'s active status or NFT filters.
+   *
+   * @param nftMetadataWebhookId The id of the NFT activity webhook.
+   * @param update Object containing the update.
+   */
+  updateWebhook(
+    nftMetadataWebhookId: string,
+    update: NftMetadataWebhookUpdate
+  ): Promise<void>;
+
+  /**
    * Update a {@link AddressActivityWebhook}'s active status or addresses.
    *
    * @param addressWebhook The address activity webhook to update.
@@ -201,7 +214,7 @@ export class NotifyNamespace {
   ): Promise<void>;
   async updateWebhook(
     webhookOrId: NftActivityWebhook | AddressActivityWebhook | string,
-    update: NftWebhookUpdate | AddressWebhookUpdate
+    update: NftWebhookUpdate | AddressWebhookUpdate | NftMetadataWebhookUpdate
   ): Promise<void> {
     const webhookId =
       typeof webhookOrId === 'string' ? webhookOrId : webhookOrId.id;
@@ -228,6 +241,22 @@ export class NotifyNamespace {
           : [],
         nft_filters_to_remove: update.removeFilters
           ? update.removeFilters.map(nftFilterToParam)
+          : []
+      };
+    } else if (
+      'addMetadataFilters' in update ||
+      'removeMetadataFilters' in update
+    ) {
+      restApiName = 'update-webhook-nft-metadata-filters';
+      methodName = 'updateWebhookNftMetadataFilters';
+      method = 'PATCH';
+      data = {
+        webhook_id: webhookId,
+        nft_metadata_filters_to_add: update.addMetadataFilters
+          ? update.addMetadataFilters.map(nftFilterToParam)
+          : [],
+        nft_metadata_filters_to_remove: update.removeMetadataFilters
+          ? update.removeMetadataFilters.map(nftFilterToParam)
           : []
       };
     } else if ('addAddresses' in update || 'removeAddresses' in update) {
@@ -310,6 +339,12 @@ export class NotifyNamespace {
     params: NftWebhookParams
   ): Promise<NftActivityWebhook>;
 
+  createWebhook(
+    url: string,
+    type: WebhookType.NFT_METADATA_UPDATE,
+    params: NftWebhookParams
+  ): Promise<NftMetadataUpdateWebhook>;
+
   /**
    * Create a new {@link AddressActivityWebhook} to track address activity.
    *
@@ -332,6 +367,7 @@ export class NotifyNamespace {
     | DroppedTransactionWebhook
     | NftActivityWebhook
     | AddressActivityWebhook
+    | NftMetadataUpdateWebhook
   > {
     let appId;
     if (
@@ -345,9 +381,12 @@ export class NotifyNamespace {
     }
 
     let network = NETWORK_TO_WEBHOOK_NETWORK.get(this.config.network);
-    let filters;
+    let nftFilterObj;
     let addresses;
-    if (type === WebhookType.NFT_ACTIVITY) {
+    if (
+      type === WebhookType.NFT_ACTIVITY ||
+      type === WebhookType.NFT_METADATA_UPDATE
+    ) {
       if (!('filters' in params) || params.filters.length === 0) {
         throw new Error(
           'Nft Activity Webhooks require a non-empty array input.'
@@ -356,7 +395,7 @@ export class NotifyNamespace {
       network = params.network
         ? NETWORK_TO_WEBHOOK_NETWORK.get(params.network)
         : network;
-      filters = (params.filters as NftFilter[]).map(filter =>
+      const filters = (params.filters as NftFilter[]).map(filter =>
         filter.tokenId
           ? {
               contract_address: filter.contractAddress,
@@ -366,6 +405,10 @@ export class NotifyNamespace {
               contract_address: filter.contractAddress
             }
       );
+      nftFilterObj =
+        type === WebhookType.NFT_ACTIVITY
+          ? { nft_filters: filters }
+          : { nft_metadata_filters: filters };
     } else if (type === WebhookType.ADDRESS_ACTIVITY) {
       if (
         params === undefined ||
@@ -388,8 +431,8 @@ export class NotifyNamespace {
       webhook_url: url,
       ...(appId && { app_id: appId }),
 
-      // Only include the filters/addresses in the final response if it's defined
-      ...(filters && { nft_filters: filters }),
+      // Only include the filters/addresses in the final response if they're defined
+      ...nftFilterObj,
       ...(addresses && { addresses })
     };
 
