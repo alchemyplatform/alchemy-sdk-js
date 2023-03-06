@@ -1701,10 +1701,24 @@ export enum AlchemySubscription {
 export interface AlchemyPendingTransactionsEventFilter {
   method: AlchemySubscription.PENDING_TRANSACTIONS;
 
-  /** Filter pending transactions sent FROM the provided address or array of addresses. */
+  /**
+   * Filter pending transactions sent FROM the provided address or array of
+   * addresses.
+   *
+   * If a {@link AlchemyPendingTransactionsEventFilter.toAddress} is also
+   * present, then this filter will return transactions sent from the
+   * `fromAddress` OR transactions received by the `toAddress`.
+   */
   fromAddress?: string | string[];
 
-  /** Filter pending transactions sent TO the provided address or array of addresses. */
+  /**
+   * Filter pending transactions sent TO the provided address or array of
+   * addresses.
+   *
+   * If a {@link AlchemyPendingTransactionsEventFilter.fromAddress} is also
+   * present, then this filter will return transactions sent from the
+   * `fromAddress` OR transactions received by the `toAddress`.
+   */
   toAddress?: string | string[];
 
   /**
