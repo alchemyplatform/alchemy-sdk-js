@@ -29,7 +29,7 @@ Whether the log is marked as indexed in the smart contract.
 
 #### Defined in
 
-[src/types/types.ts:1948](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1948)
+[src/types/types.ts:1962](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L1962)
 
 ___
 
@@ -45,7 +45,7 @@ The name of the parameter.
 
 #### Defined in
 
-[src/types/types.ts:1940](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1940)
+[src/types/types.ts:1954](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L1954)
 
 ___
 
@@ -61,7 +61,7 @@ The type of the parameter.
 
 #### Defined in
 
-[src/types/types.ts:1942](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1942)
+[src/types/types.ts:1956](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L1956)
 
 ___
 
@@ -77,4 +77,4 @@ Value of the parameter.
 
 #### Defined in
 
-[src/types/types.ts:1938](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1938)
+[src/types/types.ts:1952](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L1952)

@@ -22,7 +22,7 @@ The fee payment amount as a decimal integer string.
 
 #### Defined in
 
-[src/types/types.ts:1291](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1291)
+[src/types/types.ts:1291](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L1291)
 
 ___
 
@@ -34,7 +34,7 @@ The number of decimals of the token used for the payment.
 
 #### Defined in
 
-[src/types/types.ts:1297](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1297)
+[src/types/types.ts:1297](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L1297)
 
 ___
 
@@ -46,4 +46,4 @@ The symbol of the token used for the payment.
 
 #### Defined in
 
-[src/types/types.ts:1294](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L1294)
+[src/types/types.ts:1294](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L1294)

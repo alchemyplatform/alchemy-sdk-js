@@ -12,6 +12,7 @@ The type of [Webhook](../interfaces/Webhook.md).
 - [DROPPED\_TRANSACTION](WebhookType.md#dropped_transaction)
 - [MINED\_TRANSACTION](WebhookType.md#mined_transaction)
 - [NFT\_ACTIVITY](WebhookType.md#nft_activity)
+- [NFT\_METADATA\_UPDATE](WebhookType.md#nft_metadata_update)
 
 ## Enumeration members
 
@@ -21,7 +22,7 @@ The type of [Webhook](../interfaces/Webhook.md).
 
 #### Defined in
 
-[src/types/types.ts:2111](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L2111)
+[src/types/types.ts:2125](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L2125)
 
 ___
 
@@ -31,7 +32,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:2110](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L2110)
+[src/types/types.ts:2124](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L2124)
 
 ___
 
@@ -41,7 +42,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:2109](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L2109)
+[src/types/types.ts:2123](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L2123)
 
 ___
 
@@ -51,4 +52,14 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:2112](https://github.com/alchemyplatform/alchemy-sdk-js/blob/340ad5a/src/types/types.ts#L2112)
+[src/types/types.ts:2126](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L2126)
+
+___
+
+### NFT\_METADATA\_UPDATE
+
+• **NFT\_METADATA\_UPDATE** = `"NFT_METADATA_UPDATE"`
+
+#### Defined in
+
+[src/types/types.ts:2127](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L2127)
