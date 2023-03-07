@@ -1029,6 +1029,9 @@ export interface ContractForOwner extends NftContract {
    */
   totalBalance: number;
 
+  /** The title of the token held by the owner. */
+  title: string;
+
   /**
    * Number of distinct token IDs held by the owner. For non-fungible tokens
    * this will be equal to the totalBalance, but it may be lower if the user

@@ -187,6 +187,7 @@ export function getContractsForOwnerFromRaw(
         tokenId: contract.tokenId,
         totalBalance: contract.totalBalance,
         name: contract.name,
+        title: contract.title,
         openSea: parseOpenSeaMetadata(contract?.opensea),
         symbol: contract?.symbol,
         tokenType: parseNftTokenType(contract?.tokenType),

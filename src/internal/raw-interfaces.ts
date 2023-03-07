@@ -312,6 +312,7 @@ export interface RawContractForOwner
   address: string;
   totalBalance: number;
   numDistinctTokensOwned: number;
+  title: string;
   isSpam: boolean;
   tokenId: string;
   media: Media;

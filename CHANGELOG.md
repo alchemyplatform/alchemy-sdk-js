@@ -6,6 +6,8 @@
 
 ### Minor Changes
 
+- Added the `title` field to `ContractForOwner` to represent the title of the token held by the owner.
+
 ## 2.6.0
 
 ### Major Changes
