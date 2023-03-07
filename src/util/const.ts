@@ -45,6 +45,7 @@ export const EthersNetwork = {
   [Network.ETH_GOERLI]: 'goerli',
   [Network.ETH_KOVAN]: 'kovan',
   [Network.ETH_RINKEBY]: 'rinkeby',
+  [Network.ETH_SEPOLIA]: 'sepolia',
   [Network.OPT_MAINNET]: 'optimism',
   [Network.OPT_KOVAN]: 'optimism-kovan',
   [Network.OPT_GOERLI]: 'optimism-goerli',
@@ -69,6 +70,10 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'astar-mainnet': {
     chainId: 592,
     name: 'astar-mainnet'
+  },
+  sepolia: {
+    chainId: 11155111,
+    name: 'sepolia'
   }
 };
 
