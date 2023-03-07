@@ -234,7 +234,7 @@ export function createRawNftSale(
 export function createRawContractForOwner(
   address: string,
   tokenId: string,
-  media: Media,
+  media: Media[],
   isSpam?: boolean,
   name?: string,
   tokenType?: NftTokenType,
@@ -267,14 +267,16 @@ export function createNftMediaData(
   bytes?: number,
   format?: string,
   thumbnail?: string
-): Media {
-  return {
-    raw: 'http://api.nikeape.xyz/ipfs/nickbanc/1.jpg',
-    gateway: 'http://api.nikeape.xyz/ipfs/nickbanc/1.jpg',
-    bytes,
-    format,
-    thumbnail
-  };
+): Media[] {
+  return [
+    {
+      raw: 'http://api.nikeape.xyz/ipfs/nickbanc/1.jpg',
+      gateway: 'http://api.nikeape.xyz/ipfs/nickbanc/1.jpg',
+      bytes,
+      format,
+      thumbnail
+    }
+  ];
 }
 
 export function verifyNftContractMetadata(

@@ -1045,7 +1045,7 @@ export interface ContractForOwner extends NftContract {
   tokenId: string;
 
   /** Alternative NFT metadata for this contract to be parsed manually. */
-  media: Media;
+  media: Media[];
 }
 
 /**
