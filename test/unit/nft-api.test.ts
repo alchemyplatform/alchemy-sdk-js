@@ -1183,8 +1183,7 @@ describe('NFT module', () => {
           false,
           name,
           NftTokenType.ERC721,
-          symbol,
-          title
+          symbol
         ),
         createRawContractForOwner(
           contractAddress,
@@ -1234,7 +1233,6 @@ describe('NFT module', () => {
       expect(result.contracts[1].address).toEqual(contractAddress);
       expect(result.contracts[1].tokenId).toEqual(tokenId);
       expect(result.contracts[1].name).toEqual(name);
-      expect(result.contracts[1].title).toEqual(title);
       expect(result.contracts[1].tokenType).toEqual(NftTokenType.ERC721);
       expect(result.contracts[1].symbol).toEqual(symbol);
       expect(result.contracts[1].totalSupply).toBeUndefined();
