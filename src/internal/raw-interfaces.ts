@@ -314,6 +314,6 @@ export interface RawContractForOwner
   numDistinctTokensOwned: number;
   isSpam: boolean;
   tokenId: string;
-  media: Media;
+  media: Media[];
   opensea?: RawOpenSeaCollectionMetadata;
 }
