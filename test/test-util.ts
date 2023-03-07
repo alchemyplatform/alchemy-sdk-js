@@ -242,7 +242,8 @@ export function createRawContractForOwner(
   totalSupply?: string,
   opensea?: RawOpenSeaCollectionMetadata,
   contractDeployer?: string,
-  deployedBlockNumber?: number
+  deployedBlockNumber?: number,
+  title = 'NFT Title'
 ): RawContractForOwner {
   return {
     address,
@@ -252,6 +253,7 @@ export function createRawContractForOwner(
     totalBalance: 1,
     numDistinctTokensOwned: 1,
     name,
+    title,
     totalSupply,
     opensea,
     symbol,

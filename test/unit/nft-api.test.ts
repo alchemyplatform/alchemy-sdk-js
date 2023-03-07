@@ -1155,6 +1155,7 @@ describe('NFT module', () => {
     const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
     const tokenId = '27';
     const name = 'NFT Contract Name';
+    const title = 'NFT Title';
     const symbol = 'XNO';
     const totalContractCount = 3;
     const totalSupply = '1492';
@@ -1195,7 +1196,8 @@ describe('NFT module', () => {
           totalSupply,
           rawOpenSeaContractMetadata,
           contractDeployer,
-          deployedBlockNumber
+          deployedBlockNumber,
+          title
         )
       ]
     };
@@ -1239,6 +1241,7 @@ describe('NFT module', () => {
       expect(result.contracts[2].address).toEqual(contractAddress);
       expect(result.contracts[2].tokenId).toEqual(tokenId);
       expect(result.contracts[2].name).toEqual(name);
+      expect(result.contracts[2].title).toEqual(title);
       expect(result.contracts[2].tokenType).toEqual(NftTokenType.ERC1155);
       expect(result.contracts[2].symbol).toEqual(symbol);
       expect(result.contracts[2].openSea).toEqual(expectedOpenseaMetadata);
