@@ -6,6 +6,8 @@
 
 ### Minor Changes
 
+- Fixed a bug where the `media` field in `ContractForOwner` was a `Media` object rather than a `Media[]` array.
+
 ## 2.6.0
 
 ### Major Changes
