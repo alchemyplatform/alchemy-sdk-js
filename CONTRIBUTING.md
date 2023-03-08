@@ -35,3 +35,8 @@ key. Then run:
 ```bash
 yarn test-integration
 ```
+
+## Documentation
+
+Documentation lives in the `/docs` and `/docs-md` directories. Please do not modify those directories, as the files there
+are automatically generated when a new version is published.
