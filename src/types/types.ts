@@ -82,6 +82,7 @@ export enum Network {
   ETH_KOVAN = 'eth-kovan',
   /** @deprecated - Will be removed in subsequent versions */
   ETH_RINKEBY = 'eth-rinkeby',
+  ETH_SEPOLIA = 'eth-sepolia',
   OPT_MAINNET = 'opt-mainnet',
   /** @deprecated - Will be removed in subsequent versions */
   OPT_KOVAN = 'opt-kovan',
@@ -2380,13 +2381,13 @@ export enum CommitmentLevel {
   /**
    * The most recent crypto-economically secure block that cannot be re-orged
    * outside of manual intervention driven by community coordination. This is
-   * only available on {@link Network.ETH_GOERLI}.
+   * only available on {@link Network.ETH_GOERLI} and {@link Network.ETH_SEPOLIA}.
    */
   SAFE = 'safe',
   /**
    * The most recent secure block that has been accepted by >2/3 of validators.
    * This block is very unlikely to be re-orged. This is only available on
-   * {@link Network.ETH_GOERLI}.
+   * {@link Network.ETH_GOERLI} and {@link Network.ETH_SEPOLIA}.
    */
   FINALIZED = 'finalized',
   /**
