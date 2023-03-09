@@ -25,7 +25,7 @@ The lowest numbered block available that is usually the first block created.
 
 #### Defined in
 
-[src/types/types.ts:2392](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L2392)
+[src/types/types.ts:2396](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L2396)
 
 ___
 
@@ -35,11 +35,11 @@ ___
 
 The most recent secure block that has been accepted by >2/3 of validators.
 This block is very unlikely to be re-orged. This is only available on
-[Network.ETH_GOERLI](Network.md#eth_goerli).
+[Network.ETH_GOERLI](Network.md#eth_goerli) and [Network.ETH_SEPOLIA](Network.md#eth_sepolia).
 
 #### Defined in
 
-[src/types/types.ts:2388](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L2388)
+[src/types/types.ts:2392](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L2392)
 
 ___
 
@@ -52,7 +52,7 @@ this block may be re-orged out of the canonical chain.
 
 #### Defined in
 
-[src/types/types.ts:2376](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L2376)
+[src/types/types.ts:2380](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L2380)
 
 ___
 
@@ -66,7 +66,7 @@ is a proxy for blocks that have not been mined yet.
 
 #### Defined in
 
-[src/types/types.ts:2371](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L2371)
+[src/types/types.ts:2375](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L2375)
 
 ___
 
@@ -76,8 +76,8 @@ ___
 
 The most recent crypto-economically secure block that cannot be re-orged
 outside of manual intervention driven by community coordination. This is
-only available on [Network.ETH_GOERLI](Network.md#eth_goerli).
+only available on [Network.ETH_GOERLI](Network.md#eth_goerli) and [Network.ETH_SEPOLIA](Network.md#eth_sepolia).
 
 #### Defined in
 
-[src/types/types.ts:2382](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L2382)
+[src/types/types.ts:2386](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L2386)
