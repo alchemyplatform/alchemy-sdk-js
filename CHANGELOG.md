@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 2.6.1
+
+### Major Changes
+
+### Minor Changes
+
 - Added the `title` field to `ContractForOwner` to represent the title of the token held by the owner.
 - Fixed a bug where the `media` field in `ContractForOwner` was a `Media` object rather than a `Media[]` array.
 - Added support for the Eth Sepolia network via the `Network.ETH_SEPOLIA` enum.
