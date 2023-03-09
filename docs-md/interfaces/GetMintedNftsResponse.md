@@ -21,7 +21,7 @@ An array of the minted NFTs for the provided owner address.
 
 #### Defined in
 
-[src/types/types.ts:1158](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L1158)
+[src/types/types.ts:1162](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L1162)
 
 ___
 
@@ -33,4 +33,4 @@ Key for pagination to use to fetch results from the next page if available.
 
 #### Defined in
 
-[src/types/types.ts:1161](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7bf2430/src/types/types.ts#L1161)
+[src/types/types.ts:1165](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L1165)
