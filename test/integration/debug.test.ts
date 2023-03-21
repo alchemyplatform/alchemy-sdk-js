@@ -1,4 +1,5 @@
-import { Alchemy, CommitmentLevel, DebugTracerType, toHex } from '../../src';
+import { Alchemy, CommitmentLevel, DebugTracerType } from '../../src';
+import { Utils } from '../../src/index';
 import { loadAlchemyEnv } from '../test-util';
 
 describe('DebugNamespace', () => {
@@ -49,6 +50,7 @@ describe('DebugNamespace', () => {
     );
     const addresses = Object.keys(response);
     expect(addresses.length).toBeGreaterThan(1);
+    console.log(response[addresses[0]]);
     expect(response[addresses[0]].balance).toBeDefined();
     expect(response[addresses[0]].nonce).toBeDefined();
     expect(response[addresses[0]].code).toBeDefined();
@@ -86,7 +88,7 @@ describe('DebugNamespace', () => {
       onlyTopCall: true
     });
     const response2 = await alchemy.debug.traceBlock(
-      toHex(finalizedBlock.number),
+      Utils.hexStripZeros(Utils.hexValue(finalizedBlock.number)),
       {
         type: DebugTracerType.CALL_TRACER,
         onlyTopCall: true
