@@ -396,6 +396,8 @@ export enum AssetTransfersOrder {
 export enum NftTokenType {
   ERC721 = 'ERC721',
   ERC1155 = 'ERC1155',
+  NO_SUPPORTED_NFT_STANDARD = 'NO_SUPPORTED_NFT_STANDARD',
+  NOT_A_CONTRACT = 'NOT_A_CONTRACT',
   UNKNOWN = 'UNKNOWN'
 }
 
@@ -879,7 +881,7 @@ export interface NftContractTokenBalance {
  */
 export interface GetNftMetadataOptions {
   /** Optional field to specify the type of token to speed up the query. */
-  tokenType?: NftTokenType;
+  tokenType?: NftTokenType.ERC1155 | NftTokenType.ERC721;
   /**
    * No set timeout by default - When metadata is requested, this parameter is
    * the timeout (in milliseconds) for the website hosting the metadata to

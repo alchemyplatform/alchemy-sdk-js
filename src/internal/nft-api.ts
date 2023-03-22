@@ -101,10 +101,7 @@ export async function getNftMetadata(
     {
       contractAddress,
       tokenId: BigNumber.from(tokenId!).toString(),
-      tokenType:
-        options?.tokenType !== NftTokenType.UNKNOWN
-          ? options?.tokenType
-          : undefined,
+      tokenType: options?.tokenType,
       tokenUriTimeoutInMs: options?.tokenUriTimeoutInMs,
       refreshCache: options?.refreshCache
     }
@@ -911,7 +908,7 @@ interface GetNftsAlchemyParams {
 interface GetNftMetadataParams {
   contractAddress: string;
   tokenId: string;
-  tokenType?: NftTokenType;
+  tokenType?: NftTokenType.ERC1155 | NftTokenType.ERC721;
   refreshCache?: boolean;
   tokenUriTimeoutInMs?: number;
 }

@@ -212,6 +212,12 @@ function parseNftTokenType(tokenType: string | undefined): NftTokenType {
     case 'erc1155':
     case 'ERC1155':
       return NftTokenType.ERC1155;
+    case 'no_supported_nft_standard':
+    case 'NO_SUPPORTED_NFT_STANDARD':
+      return NftTokenType.NO_SUPPORTED_NFT_STANDARD;
+    case 'not_a_contract':
+    case 'NOT_A_CONTRACT':
+      return NftTokenType.NOT_A_CONTRACT;
     default:
       return NftTokenType.UNKNOWN;
   }
