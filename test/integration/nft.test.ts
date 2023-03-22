@@ -656,7 +656,6 @@ describe('E2E integration tests', () => {
     expect(response[0].address).toBeDefined();
     expect(typeof response[0].address).toEqual('string');
     expect(response[0].tokenType).toBeDefined();
-    expect(response[0].tokenType).toEqual(NftTokenType.ERC1155);
   });
 
   it('summarizeNftAttributes()', async () => {

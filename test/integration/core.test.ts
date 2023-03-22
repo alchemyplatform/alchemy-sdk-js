@@ -1,4 +1,9 @@
-import { Alchemy, AssetTransfersCategory, TokenBalanceType } from '../../src';
+import {
+  Alchemy,
+  AssetTransfersCategory,
+  TokenBalanceType,
+  fromHex
+} from '../../src';
 import { Utils } from '../../src/index';
 import { loadAlchemyEnv } from '../test-util';
 
@@ -87,8 +92,8 @@ describe('E2E integration tests', () => {
       blockNumber: Utils.hexlify(blockNumber)
     });
     expect(response.receipts?.length).toBeGreaterThan(0);
-    expect(response.receipts![0].blockNumber).toEqual(
-      Utils.hexlify(blockNumber)
+    expect(fromHex(response.receipts![0].blockNumber.toString())).toEqual(
+      blockNumber
     );
   });
 

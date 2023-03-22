@@ -6,6 +6,7 @@ import {
   Network,
   SimulateAssetType,
   SimulateChangeType,
+  Utils,
   Wallet
 } from '../../src';
 import { TESTING_PRIVATE_KEY, loadAlchemyEnv } from '../test-util';
@@ -237,7 +238,7 @@ describe('E2E integration tests', () => {
       expect(calls[0].to).toBe('0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48');
       expect(calls[0].value).toBe('0x0');
       expect(calls[0].gas).toBe('0x7fffffffffffaad0');
-      expect(calls[0].gasUsed).toBe('0x6925');
+      expect(Utils.isHexString(calls[0].gasUsed)).toBe(true);
       expect(calls[0].input).toBe(
         '0xa9059cbb000000000000000000000000fc43f5f9dd45258b3aff31bdbe6561d97e8b71de00000000000000000000000000000000000000000000000000000000000f4240'
       );

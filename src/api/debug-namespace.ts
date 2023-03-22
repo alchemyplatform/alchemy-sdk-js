@@ -7,7 +7,7 @@ import {
   DebugTransaction
 } from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
-import { hexValue, isHexString } from './utils';
+import { hexStripZeros, hexValue, isHexString } from './utils';
 
 /**
  * The Debug namespace contains methods to access the non-standard RPC methods
@@ -146,7 +146,7 @@ export class DebugNamespace {
       method = 'debug_traceBlockByNumber';
       const block =
         typeof blockIdentifier === 'number'
-          ? hexValue(blockIdentifier)
+          ? hexStripZeros(hexValue(blockIdentifier))
           : blockIdentifier;
       params = [block as string, parseTracerParams(tracer)];
     }
