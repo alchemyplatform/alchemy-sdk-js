@@ -396,6 +396,8 @@ export enum AssetTransfersOrder {
 export enum NftTokenType {
   ERC721 = 'ERC721',
   ERC1155 = 'ERC1155',
+  NO_SUPPORTED_NFT_STANDARD = 'NO_SUPPORTED_NFT_STANDARD',
+  NOT_A_CONTRACT = 'NOT_A_CONTRACT',
   UNKNOWN = 'UNKNOWN'
 }
 
