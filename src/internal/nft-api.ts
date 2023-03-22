@@ -27,7 +27,6 @@ import {
   GetTransfersForContractOptions,
   GetTransfersForOwnerOptions,
   GetTransfersForOwnerTransferType,
-  InputNftTokenType,
   NftAttributeRarity,
   NftAttributesResponse,
   NftContractBaseNftsResponse,
@@ -901,6 +900,16 @@ interface GetNftsAlchemyParams {
   tokenUriTimeoutInMs?: number;
   orderBy?: string;
 }
+
+/**
+ * NftTokenTypes that are allowed as request inputs.
+ *
+ * @internal
+ */
+export type InputNftTokenType =
+  | NftTokenType.ERC1155
+  | NftTokenType.ERC721
+  | undefined;
 
 /**
  * Interface for the `getNftMetadata` endpoint.

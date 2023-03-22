@@ -402,16 +402,6 @@ export enum NftTokenType {
 }
 
 /**
- * NftTokenTypes that are allowed as request inputs.
- *
- * @public
- */
-export type InputNftTokenType =
-  | NftTokenType.ERC1155
-  | NftTokenType.ERC721
-  | undefined;
-
-/**
  * Response object for the {@link CoreNamespace.getAssetTransfers} method.
  *
  * @public
