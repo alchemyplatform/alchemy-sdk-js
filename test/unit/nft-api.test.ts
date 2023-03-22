@@ -218,6 +218,32 @@ describe('NFT module', () => {
       );
     });
 
+    it('sets tokenType to undefined if tokenType is UNKNOWN', async () => {
+      verifyNftMetadata(
+        await alchemy.nft.getNftMetadata(
+          contractAddress,
+          tokenId,
+          NftTokenType.UNKNOWN
+        ),
+        expectedNft,
+        contractAddress,
+        tokenId
+      );
+    });
+
+    it('sets tokenType to undefined if tokenType is NOT_A_CONTRACT', async () => {
+      verifyNftMetadata(
+        await alchemy.nft.getNftMetadata(
+          contractAddress,
+          tokenId,
+          NftTokenType.NOT_A_CONTRACT
+        ),
+        expectedNft,
+        contractAddress,
+        tokenId
+      );
+    });
+
     it('surfaces errors', async () => {
       mock.reset();
       mock.onGet().reply(500, 'Internal Server Error');
