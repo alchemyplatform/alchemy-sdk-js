@@ -113,7 +113,10 @@ export class NftNamespace {
   getNftMetadata(
     contractAddress: string,
     tokenId: BigNumberish,
-    optionsOrTokenType?: GetNftMetadataOptions | NftTokenType,
+    optionsOrTokenType?:
+      | GetNftMetadataOptions
+      | NftTokenType.ERC721
+      | NftTokenType.ERC1155,
     tokenUriTimeoutInMs?: number
   ): Promise<Nft> {
     let options: GetNftMetadataOptions;
