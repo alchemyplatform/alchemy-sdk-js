@@ -27,6 +27,7 @@ import {
   GetTransfersForContractOptions,
   GetTransfersForOwnerOptions,
   GetTransfersForOwnerTransferType,
+  InputNftTokenType,
   NftAttributeRarity,
   NftAttributesResponse,
   NftContractBaseNftsResponse,
@@ -48,6 +49,7 @@ import {
   TransfersNftResponse
 } from '../types/types';
 import { AlchemyApiType, ETH_NULL_ADDRESS } from '../util/const';
+import { sanitizeTokenType } from '../util/inputSanitization';
 import {
   getBaseNftFromRaw,
   getContractsForOwnerFromRaw,
@@ -101,7 +103,7 @@ export async function getNftMetadata(
     {
       contractAddress,
       tokenId: BigNumber.from(tokenId!).toString(),
-      tokenType: options?.tokenType,
+      tokenType: sanitizeTokenType(options?.tokenType),
       tokenUriTimeoutInMs: options?.tokenUriTimeoutInMs,
       refreshCache: options?.refreshCache
     }
@@ -908,7 +910,7 @@ interface GetNftsAlchemyParams {
 interface GetNftMetadataParams {
   contractAddress: string;
   tokenId: string;
-  tokenType?: NftTokenType.ERC1155 | NftTokenType.ERC721;
+  tokenType?: InputNftTokenType;
   refreshCache?: boolean;
   tokenUriTimeoutInMs?: number;
 }

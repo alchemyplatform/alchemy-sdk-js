@@ -402,6 +402,16 @@ export enum NftTokenType {
 }
 
 /**
+ * NftTokenTypes that are allowed as request inputs.
+ *
+ * @public
+ */
+export type InputNftTokenType =
+  | NftTokenType.ERC1155
+  | NftTokenType.ERC721
+  | NftTokenType.UNKNOWN;
+
+/**
  * Response object for the {@link CoreNamespace.getAssetTransfers} method.
  *
  * @public
@@ -881,7 +891,7 @@ export interface NftContractTokenBalance {
  */
 export interface GetNftMetadataOptions {
   /** Optional field to specify the type of token to speed up the query. */
-  tokenType?: NftTokenType.ERC1155 | NftTokenType.ERC721;
+  tokenType?: InputNftTokenType;
   /**
    * No set timeout by default - When metadata is requested, this parameter is
    * the timeout (in milliseconds) for the website hosting the metadata to

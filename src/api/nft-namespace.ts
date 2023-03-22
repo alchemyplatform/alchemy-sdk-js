@@ -48,13 +48,13 @@ import {
   GetTransfersForContractOptions,
   GetTransfersForOwnerOptions,
   GetTransfersForOwnerTransferType,
+  InputNftTokenType,
   NftAttributeRarity,
   NftAttributesResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
   NftMetadataBatchOptions,
   NftMetadataBatchToken,
-  NftTokenType,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
   OwnedNft,
@@ -93,7 +93,7 @@ export class NftNamespace {
   getNftMetadata(
     contractAddress: string,
     tokenId: BigNumberish,
-    tokenType?: NftTokenType.ERC1155 | NftTokenType.ERC721,
+    tokenType?: InputNftTokenType,
     tokenUriTimeoutInMs?: number
   ): Promise<Nft>;
 
@@ -113,10 +113,7 @@ export class NftNamespace {
   getNftMetadata(
     contractAddress: string,
     tokenId: BigNumberish,
-    optionsOrTokenType?:
-      | GetNftMetadataOptions
-      | NftTokenType.ERC721
-      | NftTokenType.ERC1155,
+    optionsOrTokenType?: GetNftMetadataOptions | InputNftTokenType,
     tokenUriTimeoutInMs?: number
   ): Promise<Nft> {
     let options: GetNftMetadataOptions;
