@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 2.6.2
+
+### Major Changes
+
+### Minor Changes
+
 - Added additional descriptive tokenTypes in NFT- and contract-level metadata, for contracts which don't support any NFT standard.
 
 ## 2.6.1

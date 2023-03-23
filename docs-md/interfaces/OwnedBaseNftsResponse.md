@@ -26,7 +26,7 @@ The canonical head block hash of when your request was received.
 
 #### Defined in
 
-[src/types/types.ts:797](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L797)
+[src/types/types.ts:799](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a162d40/src/types/types.ts#L799)
 
 ___
 
@@ -38,7 +38,7 @@ The NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/types.ts:785](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L785)
+[src/types/types.ts:787](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a162d40/src/types/types.ts#L787)
 
 ___
 
@@ -51,7 +51,7 @@ NFTs. If there is no page key, then there are no more NFTs to fetch.
 
 #### Defined in
 
-[src/types/types.ts:791](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L791)
+[src/types/types.ts:793](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a162d40/src/types/types.ts#L793)
 
 ___
 
@@ -63,4 +63,4 @@ The total count of NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/types.ts:794](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L794)
+[src/types/types.ts:796](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a162d40/src/types/types.ts#L796)

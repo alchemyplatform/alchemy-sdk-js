@@ -20,4 +20,4 @@ An array of owner addresses for the provided contract address
 
 #### Defined in
 
-[src/types/types.ts:837](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L837)
+[src/types/types.ts:839](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a162d40/src/types/types.ts#L839)

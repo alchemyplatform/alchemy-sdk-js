@@ -23,7 +23,7 @@ The NFT contract address. Limited to ERC721 and ERC1155 tokens.
 
 #### Defined in
 
-[src/types/types.ts:904](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L904)
+[src/types/types.ts:906](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a162d40/src/types/types.ts#L906)
 
 ___
 
@@ -35,7 +35,7 @@ The id of the NFT.
 
 #### Defined in
 
-[src/types/types.ts:907](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L907)
+[src/types/types.ts:909](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a162d40/src/types/types.ts#L909)
 
 ___
 
@@ -47,4 +47,4 @@ Optional field to specify the type of token to speed up the query.
 
 #### Defined in
 
-[src/types/types.ts:910](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L910)
+[src/types/types.ts:912](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a162d40/src/types/types.ts#L912)
