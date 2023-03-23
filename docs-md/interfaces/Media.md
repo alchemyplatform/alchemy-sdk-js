@@ -25,7 +25,7 @@ The size of the media asset in bytes.
 
 #### Defined in
 
-[src/types/types.ts:579](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L579)
+[src/types/types.ts:581](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a162d40/src/types/types.ts#L581)
 
 ___
 
@@ -38,7 +38,7 @@ The media format (ex: jpg, gif, png) of the [gateway](Media.md#gateway) and
 
 #### Defined in
 
-[src/types/types.ts:568](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L568)
+[src/types/types.ts:570](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a162d40/src/types/types.ts#L570)
 
 ___
 
@@ -50,7 +50,7 @@ Public gateway URI for the raw URI. Generally offers better performance.
 
 #### Defined in
 
-[src/types/types.ts:559](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L559)
+[src/types/types.ts:561](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a162d40/src/types/types.ts#L561)
 
 ___
 
@@ -63,7 +63,7 @@ original IPFS link).
 
 #### Defined in
 
-[src/types/types.ts:556](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L556)
+[src/types/types.ts:558](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a162d40/src/types/types.ts#L558)
 
 ___
 
@@ -78,7 +78,7 @@ DEPRECATED - The size of the media asset in bytes
 
 #### Defined in
 
-[src/types/types.ts:576](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L576)
+[src/types/types.ts:578](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a162d40/src/types/types.ts#L578)
 
 ___
 
@@ -90,4 +90,4 @@ URL for a resized thumbnail of the NFT media asset.
 
 #### Defined in
 
-[src/types/types.ts:562](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L562)
+[src/types/types.ts:564](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a162d40/src/types/types.ts#L564)

@@ -21,4 +21,4 @@ Enum of ordering that can be applied to a [getNftsForOwner](../classes/NftNamesp
 
 #### Defined in
 
-[src/types/types.ts:747](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L747)
+[src/types/types.ts:749](https://github.com/alchemyplatform/alchemy-sdk-js/blob/a162d40/src/types/types.ts#L749)
