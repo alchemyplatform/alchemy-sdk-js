@@ -827,6 +827,9 @@ export interface OwnedBaseNft extends BaseNft {
 export interface GetOwnersForNftResponse {
   /** An array of owner addresses for the provided token. */
   readonly owners: string[];
+
+  /** Optional The key for the next page of results, if applicable. */
+  readonly pageKey?: string;
 }
 
 /**
@@ -1596,6 +1599,24 @@ export interface GetOwnersForContractWithTokenBalancesOptions {
 
   /** Optional page key to paginate the next page for large requests. */
   pageKey?: string;
+}
+
+/**
+ * Optional parameters object for the {@link getNftsForContract} method.
+ *
+ * This interface configures options when fetching the owner addresses of the
+ * provided contract.
+ *
+ * @public
+ */
+export interface GetOwnersForNftOptions {
+  /** Optional page key to paginate the next page for large requests. */
+  pageKey?: string;
+
+  /**
+   * Sets the total number of owners to return in the response.
+   */
+  pageSize?: number;
 }
 
 /**

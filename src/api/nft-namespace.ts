@@ -44,6 +44,7 @@ import {
   GetOwnersForContractResponse,
   GetOwnersForContractWithTokenBalancesOptions,
   GetOwnersForContractWithTokenBalancesResponse,
+  GetOwnersForNftOptions,
   GetOwnersForNftResponse,
   GetTransfersForContractOptions,
   GetTransfersForOwnerOptions,
@@ -357,9 +358,10 @@ export class NftNamespace {
    */
   getOwnersForNft(
     contractAddress: string,
-    tokenId: BigNumberish
+    tokenId: BigNumberish,
+    options?: GetOwnersForNftOptions
   ): Promise<GetOwnersForNftResponse> {
-    return getOwnersForNft(this.config, contractAddress, tokenId);
+    return getOwnersForNft(this.config, contractAddress, tokenId, options);
   }
 
   /**

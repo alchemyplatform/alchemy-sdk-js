@@ -1024,6 +1024,8 @@ describe('NFT module', () => {
     const tokenIdHex = '0x1b7';
     const tokenIdNumber = '439';
     const owners = ['0x1', '0x2', '0x3'];
+    const pageKey = 'abcdefg';
+    const pageSize = 500;
 
     beforeEach(() => {
       mock.onGet().reply(200, {
@@ -1032,7 +1034,10 @@ describe('NFT module', () => {
     });
 
     it('calls with the correct parameters', async () => {
-      await alchemy.nft.getOwnersForNft(contractAddress, tokenIdHex);
+      await alchemy.nft.getOwnersForNft(contractAddress, tokenIdHex, {
+        pageKey,
+        pageSize
+      });
       expect(mock.history.get.length).toEqual(1);
       expect(mock.history.get[0].params).toHaveProperty(
         'contractAddress',
@@ -1042,6 +1047,8 @@ describe('NFT module', () => {
         'tokenId',
         tokenIdNumber
       );
+      expect(mock.history.get[0].params).toHaveProperty('pageKey', pageKey);
+      expect(mock.history.get[0].params).toHaveProperty('pageSize', pageSize);
 
       const response = await alchemy.nft.getOwnersForNft(
         contractAddress,

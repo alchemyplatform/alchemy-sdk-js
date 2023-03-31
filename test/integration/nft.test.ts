@@ -115,6 +115,38 @@ describe('E2E integration tests', () => {
     expect(response.owners.length).toBeGreaterThan(0);
   });
 
+  it('getOwnersForNft() with pageSize on erc1155 contract 0x84162fE2E695Fedbf4D3bcA1c3458FB616E44735', async () => {
+    const tokenId = '0';
+    const response = await alchemy.nft.getOwnersForNft(
+      '0x84162fE2E695Fedbf4D3bcA1c3458FB616E44735',
+      tokenId,
+      { pageSize: 51 }
+    );
+    expect(response.owners.length).toEqual(51);
+  });
+
+  it('getOwnersForNft() with pageKey on erc1155 contract 0x84162fE2E695Fedbf4D3bcA1c3458FB616E44735', async () => {
+    const tokenId = '0';
+    const firstPageResponse = await alchemy.nft.getOwnersForNft(
+      '0x84162fE2E695Fedbf4D3bcA1c3458FB616E44735',
+      tokenId,
+      { pageSize: 1 }
+    );
+    const pageKey = firstPageResponse.pageKey;
+    expect(pageKey).toBeDefined();
+
+    const nextPageResponse = await alchemy.nft.getOwnersForNft(
+      contractAddress,
+      tokenId,
+      { pageSize: 1, pageKey }
+    );
+    expect(nextPageResponse.owners.length).toEqual(1);
+    // cursory check that the pages contain different data
+    expect(
+      firstPageResponse.owners[0] === nextPageResponse.owners[0]
+    ).toBeFalsy();
+  });
+
   it('getNftForOwners() with pageSize', async () => {
     const response = await alchemy.nft.getNftsForOwner('0xshah.eth', {
       pageSize: 51
