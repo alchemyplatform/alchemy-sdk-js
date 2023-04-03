@@ -6,6 +6,15 @@
 
 ### Minor Changes
 
+## 2.6.3
+
+### Major Changes
+
+### Minor Changes
+
+- Added support for a `pageKey` and `pageSize` parameter in `NftNamespace.getOwnersforNft` to allow for pagination of the results.
+
+
 ## 2.6.2
 
 ### Major Changes
