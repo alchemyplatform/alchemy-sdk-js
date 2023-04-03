@@ -338,6 +338,7 @@ export async function getOwnersForNft(
   config: AlchemyConfig,
   contractAddress: string,
   tokenId: BigNumberish,
+  options?: GetOwnersForContractOptions,
   srcMethod = 'getOwnersForNft'
 ): Promise<GetOwnersForNftResponse> {
   return requestHttpWithBackoff(
@@ -347,7 +348,8 @@ export async function getOwnersForNft(
     srcMethod,
     {
       contractAddress,
-      tokenId: BigNumber.from(tokenId!).toString()
+      tokenId: BigNumber.from(tokenId!).toString(),
+      ...options
     }
   );
 }
