@@ -1602,10 +1602,10 @@ export interface GetOwnersForContractWithTokenBalancesOptions {
 }
 
 /**
- * Optional parameters object for the {@link getNftsForContract} method.
+ * Optional parameters object for the {@link getOwnersForNft} method.
  *
  * This interface configures options when fetching the owner addresses of the
- * provided contract.
+ * provided NFT contract.
  *
  * @public
  */

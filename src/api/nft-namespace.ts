@@ -354,6 +354,7 @@ export class NftNamespace {
    *
    * @param contractAddress - The NFT contract address.
    * @param tokenId - Token id of the NFT.
+   * @param options - Optional parameters to use for the request.
    * @beta
    */
   getOwnersForNft(
