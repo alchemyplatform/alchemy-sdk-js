@@ -6,6 +6,7 @@ import { requestHttpWithBackoff } from '../internal/dispatch';
 import {
   RawAddressActivityResponse,
   RawCreateWebhookResponse,
+  RawCustomWebhookConfig,
   RawGetAllWebhooksResponse,
   RawNftFilterParam,
   RawNftFiltersResponse,
@@ -16,6 +17,10 @@ import {
   AddressActivityWebhook,
   AddressWebhookParams,
   AddressWebhookUpdate,
+  CustomWebhook,
+  CustomWebhookConfig,
+  CustomWebhookParams,
+  CustomWebhookUpdate,
   DroppedTransactionWebhook,
   GetAddressesOptions,
   GetAllWebhooksResponse,
@@ -120,6 +125,37 @@ export class NotifyNamespace {
   }
 
   /**
+   * Get the graphql query used for the provided {@link CustomWebhook}.
+   *
+   * @param customWebhook The custom webhook.
+   */
+  getGraphqlQuery(customWebhook: CustomWebhook): Promise<CustomWebhookConfig>;
+
+  /**
+   * Get the graphql query used for the provided {@link CustomWebhook}.
+   *
+   * @param webhookId The id of the custom webhook. Passing in an id
+   *   of a non-custom webhook will result in a response object with
+   *   no graphql query.
+   */
+  getGraphqlQuery(webhookId: string): Promise<CustomWebhookConfig>;
+  async getGraphqlQuery(
+    webhookOrId: CustomWebhook | string
+  ): Promise<CustomWebhookConfig> {
+    this.verifyConfig();
+    const webhookId =
+      typeof webhookOrId === 'string' ? webhookOrId : webhookOrId.id;
+    const response = await this.sendWebhookRequest<RawCustomWebhookConfig>(
+      'dashboard-webhook-graphql-query',
+      'getGraphqlQuery',
+      {
+        webhook_id: webhookId
+      }
+    );
+    return parseRawCustomWebhookResponse(response);
+  }
+
+  /**
    * Get all NFTs tracked for the provided {@link NftActivityWebhook}.
    *
    * @param nftWebhook The NFT Activity webhook.
@@ -192,6 +228,18 @@ export class NotifyNamespace {
   ): Promise<void>;
 
   /**
+   * Update a {@link CustomWebhook}'s active status.
+   * The graphql query associated with the CustomWebhook is immutable.
+   *
+   * @param customWebhookId The id of the custom webhook.
+   * @param update Object containing the update.
+   */
+  updateWebhook(
+    customWebhookId: string,
+    update: CustomWebhookUpdate
+  ): Promise<void>;
+
+  /**
    * Update a {@link AddressActivityWebhook}'s active status or addresses.
    *
    * @param addressWebhook The address activity webhook to update.
@@ -214,7 +262,11 @@ export class NotifyNamespace {
   ): Promise<void>;
   async updateWebhook(
     webhookOrId: NftActivityWebhook | AddressActivityWebhook | string,
-    update: NftWebhookUpdate | AddressWebhookUpdate | NftMetadataWebhookUpdate
+    update:
+      | NftWebhookUpdate
+      | AddressWebhookUpdate
+      | NftMetadataWebhookUpdate
+      | CustomWebhookUpdate
   ): Promise<void> {
     const webhookId =
       typeof webhookOrId === 'string' ? webhookOrId : webhookOrId.id;
@@ -346,6 +398,20 @@ export class NotifyNamespace {
   ): Promise<NftMetadataUpdateWebhook>;
 
   /**
+   * Create a new {@link CustomWebhook} to track any event on every block.
+   *
+   * @param url The URL that the webhook should send events to.
+   * @param type The type of webhook to create.
+   * @param params Parameters object containing the graphql query to be executed
+   * on every block
+   */
+  createWebhook(
+    url: string,
+    type: WebhookType.GRAPHQL,
+    params: CustomWebhookParams
+  ): Promise<CustomWebhook>;
+
+  /**
    * Create a new {@link AddressActivityWebhook} to track address activity.
    *
    * @param url The URL that the webhook should send events to.
@@ -361,13 +427,18 @@ export class NotifyNamespace {
   async createWebhook(
     url: string,
     type: WebhookType,
-    params: NftWebhookParams | AddressWebhookParams | TransactionWebhookParams
+    params:
+      | NftWebhookParams
+      | AddressWebhookParams
+      | TransactionWebhookParams
+      | CustomWebhookParams
   ): Promise<
     | MinedTransactionWebhook
     | DroppedTransactionWebhook
     | NftActivityWebhook
     | AddressActivityWebhook
     | NftMetadataUpdateWebhook
+    | CustomWebhook
   > {
     let appId;
     if (
@@ -383,6 +454,7 @@ export class NotifyNamespace {
     let network = NETWORK_TO_WEBHOOK_NETWORK.get(this.config.network);
     let nftFilterObj;
     let addresses;
+    let graphqlQuery;
     if (
       type === WebhookType.NFT_ACTIVITY ||
       type === WebhookType.NFT_METADATA_UPDATE
@@ -423,6 +495,18 @@ export class NotifyNamespace {
         ? NETWORK_TO_WEBHOOK_NETWORK.get(params.network)
         : network;
       addresses = await this.resolveAddresses(params.addresses);
+    } else if (type == WebhookType.GRAPHQL) {
+      if (
+        params === undefined ||
+        !('graphqlQuery' in params) ||
+        params.graphqlQuery.length === 0
+      ) {
+        throw new Error('Custom Webhooks require a non-empty graphql query.');
+      }
+      network = params.network
+        ? NETWORK_TO_WEBHOOK_NETWORK.get(params.network)
+        : network;
+      graphqlQuery = params.graphqlQuery;
     }
 
     const data = {
@@ -433,7 +517,8 @@ export class NotifyNamespace {
 
       // Only include the filters/addresses in the final response if they're defined
       ...nftFilterObj,
-      ...(addresses && { addresses })
+      ...(addresses && { addresses }),
+      ...(graphqlQuery && { graphql_query: graphqlQuery })
     };
 
     const response = await this.sendWebhookRequest<RawCreateWebhookResponse>(
@@ -594,6 +679,14 @@ function parseRawAddressActivityResponse(
     addresses: response.data,
     totalCount: response.pagination.total_count,
     pageKey: response.pagination.cursors.after
+  };
+}
+
+function parseRawCustomWebhookResponse(
+  response: RawCustomWebhookConfig
+): CustomWebhookConfig {
+  return {
+    graphqlQuery: response.data.graphql_query
   };
 }
 

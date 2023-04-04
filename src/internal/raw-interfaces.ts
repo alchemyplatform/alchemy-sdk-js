@@ -254,6 +254,13 @@ export interface RawAddressActivityResponse {
   pagination: RawWebhookPagination;
 }
 
+export interface RawCustomWebhookConfig {
+  data: {
+    webhook_id: string;
+    graphql_query: string;
+  };
+}
+
 export interface RawNftFilter {
   contract_address: string;
   token_id: string;

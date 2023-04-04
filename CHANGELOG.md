@@ -4,6 +4,8 @@
 
 ### Major Changes
 
+- Added `CustomWebhook`'s to be used with the `NotifyNamespace`. This webhook uses graphql to track any event on every block.
+
 ### Minor Changes
 
 ## 2.6.3
@@ -13,7 +15,6 @@
 ### Minor Changes
 
 - Added support for a `pageKey` and `pageSize` parameter in `NftNamespace.getOwnersforNft` to allow for pagination of the results.
-
 
 ## 2.6.2
 
