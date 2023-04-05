@@ -254,7 +254,7 @@ export interface RawAddressActivityResponse {
   pagination: RawWebhookPagination;
 }
 
-export interface RawCustomWebhookConfig {
+export interface RawCustomGraphqlWebhookConfig {
   data: {
     webhook_id: string;
     graphql_query: string;

@@ -1,12 +1,11 @@
 import {
   AddressActivityWebhook,
   Alchemy,
-  CustomWebhook,
+  CustomGraphqlWebhook,
   Network,
   NftActivityWebhook,
   NftFilter,
   NftMetadataUpdateWebhook,
-  Webhook,
   WebhookType
 } from '../../src';
 import { loadAlchemyEnv } from '../test-util';
@@ -37,7 +36,7 @@ describe('E2E integration tests', () => {
   let addressWh: AddressActivityWebhook;
   let nftWh: NftActivityWebhook;
   let nftMetadataWh: NftMetadataUpdateWebhook;
-  let customWh: CustomWebhook;
+  let customWh: CustomGraphqlWebhook;
 
   async function createInitialWebhooks(): Promise<void> {
     addressWh = await alchemy.notify.createWebhook(
@@ -341,13 +340,11 @@ describe('E2E integration tests', () => {
 
   it('update CustomWebhook status', async () => {
     const webhooks = await alchemy.notify.getAllWebhooks();
-    const customWebhook: Webhook | undefined = webhooks.webhooks.find(
+    const filteredWebhooks = webhooks.webhooks.filter(
       webhook => webhook.id === customWh.id
     );
-    expect(customWebhook).toBeDefined();
-    if (!customWebhook) {
-      return;
-    }
+    expect(filteredWebhooks.length).toEqual(1);
+    const customWebhook = filteredWebhooks[0];
     const currStatus = customWebhook.isActive;
     await alchemy.notify.updateWebhook(customWebhook.id, {
       isActive: !currStatus

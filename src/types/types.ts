@@ -2206,7 +2206,7 @@ export interface NftMetadataUpdateWebhook extends Webhook {
  * This can be used to notify your app with real time changes whenever an
  * EOA or a smart contract performs any action on-chain.
  */
-export interface CustomWebhook extends Webhook {
+export interface CustomGraphqlWebhook extends Webhook {
   type: WebhookType.GRAPHQL;
 }
 
@@ -2238,7 +2238,7 @@ export interface AddressActivityResponse {
 }
 
 /** Response object for the {@link NotifyNamespace.getGraphqlQuery} method. */
-export interface CustomWebhookConfig {
+export interface CustomGraphqlWebhookConfig {
   /** The graphql query for the webhook. */
   graphqlQuery: string;
 }
@@ -2275,9 +2275,9 @@ export interface NftWebhookParams {
 
 /**
  * Params to pass in when calling {@link NotifyNamespace.createWebhook} in order
- * to create a {@link CustomWebhook}
+ * to create a {@link CustomGraphqlWebhook}
  */
-export interface CustomWebhookParams {
+export interface CustomGraphqlWebhookParams {
   /** GraphQL query */
   graphqlQuery: string;
   /**
@@ -2391,9 +2391,9 @@ export type NftMetadataWebhookUpdate =
 
 /**
  * Params object when calling {@link NotifyNamespace.updateWebhook} to update a
- * {@link CustomWebhook}.
+ * {@link CustomGraphqlWebhook}.
  */
-export type CustomWebhookUpdate = WebhookStatusUpdate;
+export type CustomGraphqlWebhookUpdate = WebhookStatusUpdate;
 
 /**
  * Params object when calling {@link NotifyNamespace.updateWebhook} to update a

@@ -4,7 +4,7 @@
 
 ### Major Changes
 
-- Added `CustomWebhook`'s to be used with the `NotifyNamespace`. This webhook uses graphql to track any event on every block.
+- Added `CustomGraphqlWebhook` to be used with the `NotifyNamespace`. This webhook uses graphql to track any event on every block.
 
 ### Minor Changes
 
