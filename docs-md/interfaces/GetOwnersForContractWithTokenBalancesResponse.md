@@ -21,7 +21,7 @@ An array of owner addresses for the provided contract address
 
 #### Defined in
 
-[src/types/types.ts:852](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5fad342/src/types/types.ts#L852)
+[src/types/types.ts:852](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L852)
 
 ___
 
@@ -33,4 +33,4 @@ Optional page key that is returned when a collection has more than 50,000 owners
 
 #### Defined in
 
-[src/types/types.ts:855](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5fad342/src/types/types.ts#L855)
+[src/types/types.ts:855](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L855)
