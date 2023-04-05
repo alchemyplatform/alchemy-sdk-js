@@ -24,7 +24,7 @@ Optional page key to paginate the next page for large requests.
 
 #### Defined in
 
-[src/types/types.ts:1614](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5fad342/src/types/types.ts#L1614)
+[src/types/types.ts:1614](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L1614)
 
 ___
 
@@ -36,4 +36,4 @@ Sets the total number of owners to return in the response.
 
 #### Defined in
 
-[src/types/types.ts:1619](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5fad342/src/types/types.ts#L1619)
+[src/types/types.ts:1619](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L1619)

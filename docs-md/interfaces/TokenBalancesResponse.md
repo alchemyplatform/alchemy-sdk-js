@@ -23,7 +23,7 @@
 
 #### Defined in
 
-[src/types/types.ts:150](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5fad342/src/types/types.ts#L150)
+[src/types/types.ts:150](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L150)
 
 ___
 
@@ -33,4 +33,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:151](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5fad342/src/types/types.ts#L151)
+[src/types/types.ts:151](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L151)
