@@ -2591,6 +2591,22 @@ export interface DebugPrestate {
   storage: Record<string, string>;
 }
 
+export interface PaymasterRequestUserOperation {
+  sender: string;
+  nonce: number;
+  initCode: ArrayBuffer;
+  callData: ArrayBuffer;
+  callGasLimit: number;
+  verificationGasLimit: number;
+  preVerificationGas: number;
+  maxFeePerGas: number;
+  maxPriorityFeePerGas: number;
+}
+
+export type PaymasterDataResponse = {
+  paymasterAndData: ArrayBuffer;
+};
+
 /**
  * Requires at least one of the properties to be set.
  *

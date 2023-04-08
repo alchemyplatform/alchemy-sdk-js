@@ -4,6 +4,7 @@ import { CoreNamespace } from './core-namespace';
 import { DebugNamespace } from './debug-namespace';
 import { NftNamespace } from './nft-namespace';
 import { NotifyNamespace } from './notify-namespace';
+import { PaymasterNamespace } from './paymaster-namespace';
 import { TransactNamespace } from './transact-namespace';
 import { WebSocketNamespace } from './websocket-namespace';
 
@@ -54,6 +55,12 @@ export class Alchemy {
   readonly debug: DebugNamespace;
 
   /**
+   * The `paymaster` namespace contains methods for requesting paymaster
+   * actions.
+   */
+  readonly paymaster: PaymasterNamespace;
+
+  /**
    * @param {string} [settings.apiKey] - The API key to use for Alchemy
    * @param {Network} [settings.network] - The network to use for Alchemy
    * @param {number} [settings.maxRetries] - The maximum number of retries to attempt
@@ -69,5 +76,6 @@ export class Alchemy {
     this.transact = new TransactNamespace(this.config);
     this.notify = new NotifyNamespace(this.config);
     this.debug = new DebugNamespace(this.config);
+    this.paymaster = new PaymasterNamespace(this.config);
   }
 }
