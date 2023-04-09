@@ -1303,7 +1303,7 @@ export interface NftSaleFeeData {
   symbol: string;
 
   /** The number of decimals of the token used for the payment. */
-  decimal: number;
+  decimals: number;
 }
 
 /**
@@ -1486,7 +1486,7 @@ export interface RawContract {
    * The number of decimals in the contract as a hex string. `null` if the value
    * is not in the contract and not available from other sources.
    */
-  decimal: string | null;
+  decimals: string | null;
 }
 
 /**

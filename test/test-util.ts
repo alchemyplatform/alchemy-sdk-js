@@ -208,7 +208,7 @@ export function createRawNftSale(
 ): RawNftSale {
   const feeData: NftSaleFeeData = {
     amount: '100',
-    decimal: 18,
+    decimals: 18,
     symbol: 'ETH'
   };
 
