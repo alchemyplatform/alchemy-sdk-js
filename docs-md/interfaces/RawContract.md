@@ -10,7 +10,7 @@ in a [AssetTransfersResult](AssetTransfersResult.md) object.
 ### Properties
 
 - [address](RawContract.md#address)
-- [decimal](RawContract.md#decimal)
+- [decimals](RawContract.md#decimals)
 - [value](RawContract.md#value)
 
 ## Properties
@@ -27,9 +27,9 @@ The contract address. `null` if it was an internal or external transfer.
 
 ___
 
-### decimal
+### decimals
 
-• **decimal**: ``null`` \| `string`
+• **decimals**: ``null`` \| `string`
 
 The number of decimals in the contract as a hex string. `null` if the value
 is not in the contract and not available from other sources.

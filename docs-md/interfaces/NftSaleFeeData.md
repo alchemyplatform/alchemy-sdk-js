@@ -9,7 +9,7 @@ Fee detail for an NFT sale.
 ### Properties
 
 - [amount](NftSaleFeeData.md#amount)
-- [decimal](NftSaleFeeData.md#decimal)
+- [decimals](NftSaleFeeData.md#decimals)
 - [symbol](NftSaleFeeData.md#symbol)
 
 ## Properties
@@ -26,9 +26,9 @@ The fee payment amount as a decimal integer string.
 
 ___
 
-### decimal
+### decimals
 
-• **decimal**: `number`
+• **decimals**: `number`
 
 The number of decimals of the token used for the payment.
 
