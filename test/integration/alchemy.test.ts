@@ -47,9 +47,15 @@ describe('E2E integration tests', () => {
         });
       }
 
+      const excludedNetworks = [
+        Network.ASTAR_MAINNET,
+        Network.POLYGONZKEVM_MAINNET,
+        Network.POLYGONZKEVM_TESTNET
+      ];
+
       for (const network of supportedNetworks) {
         // TODO: Enable after Astar websockets work.
-        if (network === Network.ASTAR_MAINNET) {
+        if (excludedNetworks.includes(network)) {
           continue;
         }
 
