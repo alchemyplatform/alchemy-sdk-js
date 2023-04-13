@@ -84,7 +84,7 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'polygonzkevm-testnet': {
     chainId: 1442,
     name: 'polygonzkevm-testnet'
-  },
+  }
 };
 
 export function noop(): void {

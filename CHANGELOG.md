@@ -3,7 +3,9 @@
 ## Unreleased
 
 ### Major Changes
+
 Added PolygonZkEvm Mainnet and Testnet limited support to the sdk
+
 ### Minor Changes
 
 ## 2.7.0
