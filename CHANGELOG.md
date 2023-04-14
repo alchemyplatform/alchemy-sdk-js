@@ -6,6 +6,8 @@
 
 ### Minor Changes
 
+- Fixed a bug where the SDK was not compatible with `moduleResolution: bundler` when using `typescript` at `v5.0`(#302). Thanks @florrdv!
+
 ## 2.8.0
 
 ### Major Changes
