@@ -21,7 +21,7 @@ A list of reasons why an NFT contract was marked as spam.
 
 #### Defined in
 
-[src/types/types.ts:598](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L598)
+[src/types/types.ts:600](https://github.com/alchemyplatform/alchemy-sdk-js/blob/85196e8/src/types/types.ts#L600)
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:595](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L595)
+[src/types/types.ts:597](https://github.com/alchemyplatform/alchemy-sdk-js/blob/85196e8/src/types/types.ts#L597)
