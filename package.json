@@ -30,7 +30,8 @@
       "import": "./dist/cjs/index.js"
     },
     "package.json": "./package.json",
-    "default": "./dist/esm/index.js"
+    "default": "./dist/esm/index.js",
+    "types": "./dist/src/index.d.ts"
   },
   "types": "./dist/src/index.d.ts",
   "repository": {
