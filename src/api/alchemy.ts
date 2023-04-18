@@ -1,10 +1,10 @@
 import { AlchemySettings } from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
+import { BundlerNamespace } from './bundler-namespace';
 import { CoreNamespace } from './core-namespace';
 import { DebugNamespace } from './debug-namespace';
 import { NftNamespace } from './nft-namespace';
 import { NotifyNamespace } from './notify-namespace';
-import { PaymasterNamespace } from './paymaster-namespace';
 import { TransactNamespace } from './transact-namespace';
 import { WebSocketNamespace } from './websocket-namespace';
 
@@ -55,10 +55,10 @@ export class Alchemy {
   readonly debug: DebugNamespace;
 
   /**
-   * The `paymaster` namespace contains methods for requesting paymaster
+   * The `bundler` namespace contains methods for requesting bundler
    * actions.
    */
-  readonly paymaster: PaymasterNamespace;
+  readonly bundler: BundlerNamespace;
 
   /**
    * @param {string} [settings.apiKey] - The API key to use for Alchemy
@@ -76,6 +76,6 @@ export class Alchemy {
     this.transact = new TransactNamespace(this.config);
     this.notify = new NotifyNamespace(this.config);
     this.debug = new DebugNamespace(this.config);
-    this.paymaster = new PaymasterNamespace(this.config);
+    this.bundler = new BundlerNamespace(this.config);
   }
 }
