@@ -1,4 +1,4 @@
-import type { Listener } from '@ethersproject/abstract-provider';
+import type { Listener } from 'ethers';
 
 import { isAlchemyEvent } from '../internal/ethers-event';
 import {
@@ -36,7 +36,8 @@ export class WebSocketNamespace {
     void (async () => {
       const provider = await this.config.getWebSocketProvider();
       const processedEvent = await this._resolveEnsAlchemyEvent(eventName);
-      provider.on(processedEvent, listener);
+      // TODO(v6-ws): Connect everything again.
+      (provider as any).on(processedEvent, listener);
     })();
     return this;
   }
@@ -54,7 +55,8 @@ export class WebSocketNamespace {
     void (async () => {
       const provider = await this.config.getWebSocketProvider();
       const processedEvent = await this._resolveEnsAlchemyEvent(eventName);
-      provider.once(processedEvent, listener);
+      // TODO(v6-ws): Connect everything again.
+      (provider as any).once(processedEvent, listener);
     })();
     return this;
   }
@@ -71,7 +73,8 @@ export class WebSocketNamespace {
     void (async () => {
       const provider = await this.config.getWebSocketProvider();
       const processedEvent = await this._resolveEnsAlchemyEvent(eventName);
-      return provider.off(processedEvent, listener);
+      // TODO(v6-ws): Connect everything again.
+      return (provider as any).off(processedEvent, listener);
     })();
     return this;
   }
@@ -89,7 +92,8 @@ export class WebSocketNamespace {
       const processedEvent = eventName
         ? await this._resolveEnsAlchemyEvent(eventName)
         : undefined;
-      provider.removeAllListeners(processedEvent);
+      // TODO(v6-ws): Connect everything again.
+      (provider as any).removeAllListeners(processedEvent);
     })();
     return this;
   }
@@ -106,7 +110,8 @@ export class WebSocketNamespace {
     const processedEvent = eventName
       ? await this._resolveEnsAlchemyEvent(eventName)
       : undefined;
-    return provider.listenerCount(processedEvent);
+    // TODO(v6-ws): Connect everything again.
+    return (provider as any).listenerCount(processedEvent);
   }
 
   /**
@@ -120,7 +125,8 @@ export class WebSocketNamespace {
     const processedEvent = eventName
       ? await this._resolveEnsAlchemyEvent(eventName)
       : undefined;
-    return provider.listeners(processedEvent);
+    // TODO(v6-ws): Connect everything again.
+    return (provider as any).listeners(processedEvent);
   }
 
   /**

@@ -1,4 +1,4 @@
-import { parseEther, parseUnits } from '@ethersproject/units';
+import { parseEther, parseUnits } from 'ethers';
 
 import { Alchemy, Network, Wallet } from '../../src';
 import {

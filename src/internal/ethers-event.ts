@@ -1,4 +1,4 @@
-import { EventType, Filter, Listener } from '@ethersproject/abstract-provider';
+import { Filter, Listener } from 'ethers';
 
 import {
   AlchemyEventFilter,
@@ -25,6 +25,7 @@ import {
  * Subscription API types. The original class is not exported by ethers. Minimal
  * changes have been made in order to get TS to compile.
  */
+// TODO(v6): figure this out
 class Event {
   readonly listener: Listener;
   readonly once: boolean;
@@ -41,7 +42,7 @@ class Event {
     this._inflight = false;
   }
 
-  get event(): EventType {
+  get event(): any {
     switch (this.type) {
       case 'tx':
         return this.hash!;

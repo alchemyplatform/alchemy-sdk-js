@@ -24,7 +24,7 @@ describe('Alchemy class', () => {
   it('preserves settings', () => {
     const config: AlchemySettings = {
       apiKey: 'api-key-here',
-      network: Network.OPT_KOVAN,
+      network: Network.OPT_GOERLI,
       maxRetries: 2,
       url: 'invalid-url'
     };
@@ -35,7 +35,7 @@ describe('Alchemy class', () => {
     config.url = 'another-url';
 
     expect(alchemy.config.apiKey).toEqual('api-key-here');
-    expect(alchemy.config.network).toEqual(Network.OPT_KOVAN);
+    expect(alchemy.config.network).toEqual(Network.OPT_GOERLI);
     expect(alchemy.config.maxRetries).toEqual(2);
     expect(alchemy.config.url).toEqual('invalid-url');
   });
@@ -91,7 +91,7 @@ describe('Alchemy class', () => {
   it('uses the config url instead of apiKey/network if one was provided', () => {
     const alchemy = new Alchemy({
       apiKey: 'api-key-here',
-      network: Network.OPT_KOVAN,
+      network: Network.OPT_GOERLI,
       url: 'custom-url'
     });
     expect(alchemy.config._getRequestUrl(AlchemyApiType.NFT)).toEqual(

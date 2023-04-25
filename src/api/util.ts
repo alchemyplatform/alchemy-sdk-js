@@ -1,5 +1,3 @@
-import { BigNumber } from '@ethersproject/bignumber';
-
 /**
  * Converts a hex string to a decimal number.
  *
@@ -7,7 +5,7 @@ import { BigNumber } from '@ethersproject/bignumber';
  * @public
  */
 export function fromHex(hexString: string): number {
-  return BigNumber.from(hexString).toNumber();
+  return Number(BigInt(hexString));
 }
 
 /**
@@ -17,7 +15,7 @@ export function fromHex(hexString: string): number {
  * @public
  */
 export function toHex(num: number): string {
-  return BigNumber.from(num).toHexString();
+  return '0x' + BigInt(num).toString(16);
 }
 
 /**

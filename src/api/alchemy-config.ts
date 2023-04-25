@@ -132,7 +132,8 @@ export class AlchemyConfig {
         const { AlchemyWebSocketProvider } = await import(
           './alchemy-websocket-provider'
         );
-        return new AlchemyWebSocketProvider(this);
+        // TODO(v6-ws): Remove this as any.
+        return new AlchemyWebSocketProvider();
       })();
     }
     return this._baseAlchemyWssProvider;

@@ -1,17 +1,12 @@
 import {
+  FetchRequest,
+  JsonRpcPayload,
+  JsonRpcProvider,
+  JsonRpcResult,
   Network as NetworkFromEthers,
-  Networkish,
-  getNetwork as getNetworkFromEthers
-} from '@ethersproject/networks';
-import { deepCopy } from '@ethersproject/properties';
-import {
-  CommunityResourcable,
-  JsonRpcProvider
-} from '@ethersproject/providers';
-import { ConnectionInfo, fetchJson } from '@ethersproject/web';
+  Networkish
+} from 'ethers';
 
-import { JsonRpcRequest, JsonRpcResponse } from '../internal/internal-types';
-import { RequestBatcher } from '../internal/request-batcher';
 import { Network } from '../types/types';
 import {
   CustomNetworks,
@@ -34,19 +29,12 @@ import { AlchemyConfig } from './alchemy-config';
  *
  * @public
  */
-export class AlchemyProvider
-  extends JsonRpcProvider
-  implements CommunityResourcable
-{
+export class AlchemyProvider extends JsonRpcProvider {
   readonly apiKey: string;
   readonly maxRetries: number;
   readonly batchRequests: boolean;
 
-  /**
-   * VISIBLE ONLY FOR TESTING
-   *@internal
-   */
-  readonly batcher: RequestBatcher;
+  private fetchRequest: FetchRequest;
 
   /** @internal */
   constructor(config: AlchemyConfig) {
@@ -54,8 +42,9 @@ export class AlchemyProvider
     const apiKey = AlchemyProvider.getApiKey(config.apiKey);
 
     // Generate our own connection info with the correct endpoint URLs.
+    // TODO(v6): support CustomNetwork
     const alchemyNetwork = AlchemyProvider.getAlchemyNetwork(config.network);
-    const connection = AlchemyProvider.getAlchemyConnectionInfo(
+    const fetchRequest = AlchemyProvider.getAlchemyFetchRequest(
       alchemyNetwork,
       apiKey,
       'http'
@@ -64,35 +53,28 @@ export class AlchemyProvider
     // If a hardcoded url was specified in the config, use that instead of the
     // provided apiKey or network.
     if (config.url !== undefined) {
-      connection.url = config.url;
+      fetchRequest.url = config.url;
     }
 
-    connection.throttleLimit = config.maxRetries;
+    fetchRequest.setThrottleParams({ maxAttempts: config.maxRetries });
+
+    if (config.network in CustomNetworks) {
+      NetworkFromEthers.register(
+        config.network,
+        () => CustomNetworks[config.network]
+      );
+    }
 
     // Normalize the Alchemy named network input to the network names used by
     // ethers. This allows the parent super constructor in JsonRpcProvider to
     // correctly set the network.
     const ethersNetwork = EthersNetwork[alchemyNetwork];
-    super(connection, ethersNetwork);
+    super(fetchRequest, ethersNetwork, { batchMaxCount: 1 });
 
+    this.fetchRequest = fetchRequest;
     this.apiKey = config.apiKey;
     this.maxRetries = config.maxRetries;
     this.batchRequests = config.batchRequests;
-
-    // TODO: support individual headers when calling batch
-    const batcherConnection = {
-      ...this.connection,
-      headers: {
-        ...this.connection.headers,
-        'Alchemy-Ethers-Sdk-Method': 'batchSend'
-      }
-    };
-    const sendBatchFn = (
-      requests: JsonRpcRequest[]
-    ): Promise<JsonRpcResponse[]> => {
-      return fetchJson(batcherConnection, JSON.stringify(requests));
-    };
-    this.batcher = new RequestBatcher(sendBatchFn);
   }
 
   /**
@@ -112,24 +94,6 @@ export class AlchemyProvider
       );
     }
     return apiKey;
-  }
-
-  /**
-   * Overrides the `BaseProvider.getNetwork` method as implemented by ethers.js.
-   *
-   * This override allows the SDK to set the provider's network to values not
-   * yet supported by ethers.js.
-   *
-   * @internal
-   * @override
-   */
-  static getNetwork(network: Networkish): NetworkFromEthers {
-    if (typeof network === 'string' && network in CustomNetworks) {
-      return CustomNetworks[network];
-    }
-
-    // Call the standard ethers.js getNetwork method for other networks.
-    return getNetworkFromEthers(network);
   }
 
   /**
@@ -160,32 +124,46 @@ export class AlchemyProvider
   }
 
   /**
-   * Returns a {@link ConnectionInfo} object compatible with ethers that contains
+   * Returns a {@link FetchRequest} object compatible with ethers that contains
    * the correct URLs for Alchemy.
    *
    * @internal
    */
-  static getAlchemyConnectionInfo(
+  static getAlchemyFetchRequest(
     network: Network,
     apiKey: string,
     type: 'wss' | 'http'
-  ): ConnectionInfo {
+  ): FetchRequest {
     const url =
       type === 'http'
         ? getAlchemyHttpUrl(network, apiKey)
         : getAlchemyWsUrl(network, apiKey);
-    return {
-      headers: IS_BROWSER
-        ? {
-            'Alchemy-Ethers-Sdk-Version': VERSION
-          }
-        : {
-            'Alchemy-Ethers-Sdk-Version': VERSION,
-            'Accept-Encoding': 'gzip'
-          },
-      allowGzip: true,
-      url
-    };
+    const fetchRequest = new FetchRequest(url);
+    fetchRequest.setHeader('Alchemy-Ethers-Sdk-Version', VERSION);
+    if (IS_BROWSER) {
+      fetchRequest.setHeader('Accept-Encoding', 'gzip');
+    }
+    fetchRequest.allowGzip = true;
+    return fetchRequest;
+  }
+
+  /**
+   * Overrides the `BaseProvider.getNetwork` method as implemented by ethers.js.
+   *
+   * This override allows the SDK to set the provider's network to values not
+   * yet supported by ethers.js.
+   *
+   * @internal
+   * @override
+   */
+  getNetwork(): Promise<NetworkFromEthers> {
+    // TODO(v6): implement custom network support
+    // if (typeof network === 'string' && network in CustomNetworks) {
+    //   return CustomNetworks[network];
+    // }
+
+    // Call the standard ethers.js getNetwork method for other networks.
+    return super.getNetwork();
   }
 
   /**
@@ -195,9 +173,9 @@ export class AlchemyProvider
    * @override
    */
   async detectNetwork(): Promise<NetworkFromEthers> {
-    let network = this.network;
+    let network = this._network;
     if (network == null) {
-      network = await super.detectNetwork();
+      network = await super._detectNetwork();
 
       if (!network) {
         throw new Error('No network detected');
@@ -230,8 +208,31 @@ export class AlchemyProvider
    * @public
    */
   // TODO: Add headers for `perform()` override.
-  send(method: string, params: Array<any>): Promise<any> {
-    return this._send(method, params, 'send');
+  send(method: string, params: Array<any> | Record<string, any>): Promise<any>;
+  /**
+   * @internal
+   */
+  send(
+    method: string,
+    params: Array<any> | Record<string, any>,
+    sdkMethodName: string
+  ): Promise<any>;
+  async send(
+    method: string,
+    params: Array<any> | Record<string, any>,
+    sdkMethodName?: string
+  ): Promise<any> {
+    let updatedParams;
+
+    // HACK: There is no way to pass headers into each SDK method call, so we
+    // sneak them through via the `params` array as the last element.
+    if (Array.isArray(params)) {
+      updatedParams = [...params, { sdkMethodName }];
+    } else {
+      updatedParams = { ...params };
+      updatedParams.sdkMethodName = sdkMethodName;
+    }
+    return super.send(method, updatedParams);
   }
 
   /**
@@ -243,98 +244,72 @@ export class AlchemyProvider
    *
    * @internal
    */
-  _send(
-    method: string,
-    params: Array<any>,
-    methodName: string,
-    forceBatch = false
-  ): Promise<any> {
-    const request = {
-      method,
-      params,
-      id: this._nextId++,
-      jsonrpc: '2.0'
-    };
+  async _send(
+    payload: JsonRpcPayload | JsonRpcPayload[]
+  ): Promise<JsonRpcResult[]> {
+    const request = this._getConnection();
 
     // START MODIFIED CODE
-    const connection = { ...this.connection };
-    connection.headers!['Alchemy-Ethers-Sdk-Method'] = methodName;
-
-    if (this.batchRequests || forceBatch) {
-      return this.batcher.enqueueRequest(request as JsonRpcRequest);
-    }
+    request.setHeader('Alchemy-Ethers-Sdk-Method', this.getMethodName(payload));
+    // Remove last element from the `payload.params` array if we added it in the
+    // `send()` override.
+    const filteredPayload = this.filterPayloadMethod(payload);
     // END MODIFIED CODE
 
-    this.emit('debug', {
-      action: 'request',
-      request: deepCopy(request),
-      provider: this
-    });
+    request.body = JSON.stringify(filteredPayload);
+    request.setHeader('content-type', 'application/json');
 
-    // We can expand this in the future to any call, but for now these
-    // are the biggest wins and do not require any serializing parameters.
-    const cache = ['eth_chainId', 'eth_blockNumber'].indexOf(method) >= 0;
-    if (cache && this._cache[method]) {
-      return this._cache[method];
+    const response = await request.send();
+    response.assertOk();
+
+    let resp = response.bodyJson;
+    if (!Array.isArray(resp)) {
+      resp = [resp];
     }
 
-    const result = fetchJson(
-      this.connection,
-      JSON.stringify(request),
-      getResult
-    ).then(
-      result => {
-        this.emit('debug', {
-          action: 'response',
-          request,
-          response: result,
-          provider: this
-        });
+    return resp;
+  }
 
-        return result;
-      },
-      error => {
-        this.emit('debug', {
-          action: 'response',
-          error,
-          request,
-          provider: this
-        });
-
-        throw error;
+  private getMethodName(payload: JsonRpcPayload | JsonRpcPayload[]): string {
+    if (Array.isArray(payload)) {
+      if (payload.length >= 2) {
+        return 'batchSend';
       }
-    );
 
-    // Cache the fetch, but clear it on the next event loop
-    if (cache) {
-      this._cache[method] = result;
-      setTimeout(() => {
-        // @ts-ignore - This is done by ethers.
-        this._cache[method] = null;
-      }, 0);
+      return payload[0].method;
+    }
+    return payload.method;
+  }
+
+  // Filter out the last element of the `payload.params` array if it is an
+  // object with the key `sdkMethodName`. If `payload` is an object, then
+  // remove the `sdkMethodName` key from the `payload.params` object, if it exists.
+  private filterPayloadMethod(
+    payload: JsonRpcPayload | JsonRpcPayload[]
+  ): JsonRpcPayload | JsonRpcPayload[] {
+    if (!Array.isArray(payload)) {
+      payload.params = this.filterParams(payload.params);
+      return payload;
     }
 
-    return result;
-  }
-}
-
-/**
- * DO NOT MODIFY.
- *
- * Original code copied over from ether.js's
- * `@ethersproject/web/src.ts/index.ts`. Used to support
- * {@link AlchemyProvider._send}, which is also copied over.
- */
-function getResult(payload: {
-  error?: { code?: number; data?: any; message?: string };
-  result?: any;
-}): any {
-  if (payload.error) {
-    const error: any = new Error(payload.error.message);
-    error.code = payload.error.code;
-    error.data = payload.error.data;
-    throw error;
+    // Check each array element and remove the sdk method name
+    return payload.map(p => {
+      p.params = this.filterParams(p.params);
+      return p;
+    });
   }
 
-  return payload.result;
+  private filterParams(
+    params: Array<any> | Record<string, any>
+  ): Array<any> | Record<string, any> {
+    if (Array.isArray(params)) {
+      return params.filter(
+        p => typeof p !== 'object' || !('sdkMethodName' in p)
+      );
+    }
+    if ('sdkMethodName' in params) {
+      delete params.sdkMethodName;
+    }
+    return params;
+  }
 }

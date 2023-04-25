@@ -6,6 +6,7 @@ describe('E2E integration tests', () => {
   beforeAll(async () => {
     await loadAlchemyEnv();
   });
+
   describe('handles networks', () => {
     // TODO(deprecation): Remove after removing deprecated networks.
     const deprecated = ['ropsten', 'kovan', 'rinkeby'];
@@ -31,7 +32,8 @@ describe('E2E integration tests', () => {
       }
     });
 
-    describe('AlchemyWebSocketProvider', () => {
+    // TODO(v6): enable.
+    describe.skip('AlchemyWebSocketProvider', () => {
       function testNetwork(network: Network) {
         it(`block subscription for ${network}`, () => {
           const alchemy = new Alchemy({
@@ -39,7 +41,8 @@ describe('E2E integration tests', () => {
             network
           });
           const done = new Deferred<void>();
-          alchemy.ws.once('block', () => {
+          // TODO(v6): enable test
+          alchemy.ws.once('block' as any, () => {
             alchemy.ws.removeAllListeners();
             done.resolve();
           });

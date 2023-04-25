@@ -7,7 +7,7 @@ import {
   DebugTransaction
 } from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
-import { hexStripZeros, hexValue, isHexString } from './utils';
+import { isHexString, toQuantity } from './utils';
 
 /**
  * The Debug namespace contains methods to access the non-standard RPC methods
@@ -60,7 +60,7 @@ export class DebugNamespace {
   ): Promise<DebugCallTrace | DebugPrestateTrace> {
     const provider = await this.config.getProvider();
     const params = [transaction, blockIdentifier, parseTracerParams(tracer)];
-    return provider._send('debug_traceCall', params, 'traceCall');
+    return provider.send('debug_traceCall', params, 'traceCall');
   }
 
   /**
@@ -107,7 +107,7 @@ export class DebugNamespace {
   ): Promise<DebugCallTrace | DebugPrestateTrace> {
     const provider = await this.config.getProvider();
     const params = [transactionHash, parseTracerParams(tracer, timeout)];
-    return provider._send('debug_traceTransaction', params, 'traceTransaction');
+    return provider.send('debug_traceTransaction', params, 'traceTransaction');
   }
 
   /**
@@ -146,11 +146,11 @@ export class DebugNamespace {
       method = 'debug_traceBlockByNumber';
       const block =
         typeof blockIdentifier === 'number'
-          ? hexStripZeros(hexValue(blockIdentifier))
+          ? toQuantity(blockIdentifier)
           : blockIdentifier;
       params = [block as string, parseTracerParams(tracer)];
     }
-    return provider._send(method, params, 'traceBlock');
+    return provider.send(method, params, 'traceBlock');
   }
 }
 

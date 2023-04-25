@@ -227,7 +227,10 @@ export class WebsocketBackfiller {
    * @private
    */
   private async getBlockNumber(): Promise<number> {
-    const blockNumberHex: string = await this.provider.send('eth_blockNumber');
+    const blockNumberHex: string = await this.provider.send(
+      'eth_blockNumber',
+      []
+    );
     return fromHex(blockNumberHex);
   }
 
@@ -254,7 +257,9 @@ export class WebsocketBackfiller {
     }
 
     // TODO: handle errors
-    const blockHeads = await this.provider.sendBatch(batchParts);
+    // TODO(v6-ws): remove hack
+    const blockHeads = await this.provider.send('fix', batchParts);
+    // const blockHeads = await this.provider.send(batchParts);
     return blockHeads.map(toNewHeadsEvent);
   }
 

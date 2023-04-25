@@ -1,6 +1,5 @@
 import { AxiosRequestConfig, Method } from 'axios';
-
-import { BigNumber } from '@ethersproject/bignumber';
+import { resolveAddress } from 'ethers';
 
 import { requestHttpWithBackoff } from '../internal/dispatch';
 import {
@@ -634,17 +633,12 @@ const WEBHOOK_NETWORK_TO_NETWORK: { [key: string]: Network } = {
   ETH_MAINNET: Network.ETH_MAINNET,
   ETH_GOERLI: Network.ETH_GOERLI,
   ETH_SEPOLIA: Network.ETH_SEPOLIA,
-  ETH_ROPSTEN: Network.ETH_ROPSTEN,
-  ETH_RINKEBY: Network.ETH_RINKEBY,
-  ETH_KOVAN: Network.ETH_KOVAN,
   MATIC_MAINNET: Network.MATIC_MAINNET,
   MATIC_MUMBAI: Network.MATIC_MUMBAI,
   ARB_MAINNET: Network.ARB_MAINNET,
   ARB_GOERLI: Network.ARB_GOERLI,
-  ARB_RINKEBY: Network.ARB_RINKEBY,
   OPT_MAINNET: Network.OPT_MAINNET,
   OPT_GOERLI: Network.OPT_GOERLI,
-  OPT_KOVAN: Network.OPT_KOVAN
 };
 
 /** Mapping of the SDK's network representation the webhook API's network representation. */

@@ -1,4 +1,4 @@
-import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
+import { BigNumberish } from 'ethers';
 
 import { AlchemyConfig } from '../api/alchemy-config';
 import { BaseNft, Nft, NftContract } from '../api/nft';
@@ -101,7 +101,7 @@ export async function getNftMetadata(
     srcMethod,
     {
       contractAddress,
-      tokenId: BigNumber.from(tokenId!).toString(),
+      tokenId: BigInt(tokenId!).toString(),
       tokenType: sanitizeTokenType(options?.tokenType),
       tokenUriTimeoutInMs: options?.tokenUriTimeoutInMs,
       refreshCache: options?.refreshCache
@@ -348,7 +348,7 @@ export async function getOwnersForNft(
     srcMethod,
     {
       contractAddress,
-      tokenId: BigNumber.from(tokenId!).toString(),
+      tokenId: BigInt(tokenId!).toString(),
       ...options
     }
   );
@@ -420,12 +420,10 @@ export async function getTransfersForContract(
   ];
   const provider = await config.getProvider();
   const fromBlock = options?.fromBlock
-    ? provider.formatter.blockTag(
-        await provider._getBlockTag(options.fromBlock)
-      )
+    ? await provider._getBlockTag(options.fromBlock)
     : '0x0';
   const toBlock = options?.toBlock
-    ? provider.formatter.blockTag(await provider._getBlockTag(options.toBlock))
+    ? await provider._getBlockTag(options.toBlock)
     : undefined;
   const params: AssetTransfersParams = {
     fromBlock,
@@ -606,9 +604,7 @@ export async function getNftSales(
     order: params?.order,
     marketplace: params?.marketplace,
     contractAddress: params?.contractAddress,
-    tokenId: params?.tokenId
-      ? BigNumber.from(params?.tokenId).toString()
-      : undefined,
+    tokenId: params?.tokenId ? BigInt(params?.tokenId).toString() : undefined,
     sellerAddress: params?.sellerAddress,
     buyerAddress: params?.buyerAddress,
     taker: params?.taker,
@@ -630,7 +626,7 @@ export async function computeRarity(
     RawNftAttributeRarity[]
   >(config, AlchemyApiType.NFT, 'computeRarity', srcMethod, {
     contractAddress,
-    tokenId: BigNumber.from(tokenId).toString()
+    tokenId: BigInt(tokenId).toString()
   });
 
   return getNftRarityFromRaw(response);
@@ -670,7 +666,7 @@ export async function refreshNftMetadata(
   tokenId: BigNumberish,
   srcMethod = 'refreshNftMetadata'
 ): Promise<boolean> {
-  const tokenIdString = BigNumber.from(tokenId!).toString();
+  const tokenIdString = BigInt(tokenId!).toString();
   const first = await getNftMetadata(
     config,
     contractAddress,
@@ -719,7 +715,7 @@ async function refresh(
     srcMethod,
     {
       contractAddress,
-      tokenId: BigNumber.from(tokenId!).toString(),
+      tokenId: BigInt(tokenId!).toString(),
       refreshCache: true
     }
   );

@@ -1,7 +1,7 @@
 import {
   Contract as EthersContract,
   ContractFactory as EthersContractFactory
-} from '@ethersproject/contracts';
+} from 'ethers';
 
 /**
  * The Contract class is a wrapper around the Contract class from ethers.js and

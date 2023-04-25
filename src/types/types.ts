@@ -1,9 +1,4 @@
-import {
-  BlockTag,
-  EventType,
-  TransactionReceipt
-} from '@ethersproject/abstract-provider';
-import { BigNumberish } from '@ethersproject/bignumber';
+import { BigNumberish, BlockTag, TransactionReceipt } from 'ethers';
 
 import { BaseNft, Nft, NftContract } from '../api/nft';
 
@@ -75,21 +70,11 @@ export interface AlchemySettings {
  */
 export enum Network {
   ETH_MAINNET = 'eth-mainnet',
-  /** @deprecated - Will be removed in subsequent versions */
-  ETH_ROPSTEN = 'eth-ropsten',
   ETH_GOERLI = 'eth-goerli',
-  /** @deprecated - Will be removed in subsequent versions */
-  ETH_KOVAN = 'eth-kovan',
-  /** @deprecated - Will be removed in subsequent versions */
-  ETH_RINKEBY = 'eth-rinkeby',
   ETH_SEPOLIA = 'eth-sepolia',
   OPT_MAINNET = 'opt-mainnet',
-  /** @deprecated - Will be removed in subsequent versions */
-  OPT_KOVAN = 'opt-kovan',
   OPT_GOERLI = 'opt-goerli',
   ARB_MAINNET = 'arb-mainnet',
-  /** @deprecated - Will be removed in subsequent versions */
-  ARB_RINKEBY = 'arb-rinkeby',
   ARB_GOERLI = 'arb-goerli',
   MATIC_MAINNET = 'polygon-mainnet',
   MATIC_MUMBAI = 'polygon-mumbai',
@@ -1574,7 +1559,7 @@ export interface GetOwnersForContractOptions {
    */
   withTokenBalances?: boolean;
 
-  /** The block number in hex or decimal to fetch owners for. */
+  /** The https://www.notion.so/alchemotion/Add-Valid-Block-to-NFT-Sales-e999a46000cb45faaaa0450a2a2829cb number in hex or decimal to fetch owners for. */
   block?: string;
 
   /** Optional page key to paginate the next page for large requests. */
@@ -1813,7 +1798,8 @@ export type AlchemyMinedTransactionsAddress = RequireAtLeastOne<{
  *
  * @public
  */
-export type AlchemyEventType = EventType | AlchemyEventFilter;
+// TODO(v6): Figure out websocket
+export type AlchemyEventType = AlchemyEventFilter;
 
 /**
  * This type represents the Alchemy's Subscription API endpoints as event

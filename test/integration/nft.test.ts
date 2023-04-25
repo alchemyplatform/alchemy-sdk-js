@@ -148,7 +148,7 @@ describe('E2E integration tests', () => {
   });
 
   it('getNftForOwners() with pageSize', async () => {
-    const response = await alchemy.nft.getNftsForOwner('0xshah.eth', {
+    const response = await alchemy.nft.getNftsForOwner('vitalik.eth', {
       pageSize: 51
     });
     expect(
@@ -197,7 +197,7 @@ describe('E2E integration tests', () => {
   });
 
   it('getNftsForOwner() contract metadata check', async () => {
-    const nfts = await alchemy.nft.getNftsForOwner('0xshah.eth');
+    const nfts = await alchemy.nft.getNftsForOwner('vitalik.eth');
     expect(
       nfts.ownedNfts.filter(
         nft =>

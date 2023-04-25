@@ -261,7 +261,7 @@ describe('E2E integration tests', () => {
       );
       expect(calls[1].decoded).toStrictEqual({
         authority: DecodingAuthority.ETHERSCAN,
-        methodName: 'transfer',
+        sdkMethodName: 'transfer',
         inputs: [
           {
             name: 'to',

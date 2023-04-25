@@ -1,4 +1,4 @@
-import type { BigNumberish } from '@ethersproject/bignumber';
+import { BigNumberish } from 'ethers';
 
 import {
   checkNftOwnership,

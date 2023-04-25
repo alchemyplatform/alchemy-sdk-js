@@ -1,10 +1,9 @@
 import {
+  BigNumberish,
   TransactionReceipt,
   TransactionRequest,
   TransactionResponse
-} from '@ethersproject/abstract-provider';
-import type { BigNumber } from '@ethersproject/bignumber';
-import { Deferrable } from '@ethersproject/properties';
+} from 'ethers';
 
 import {
   BlockIdentifier,
@@ -58,7 +57,7 @@ export class TransactNamespace {
   ): Promise<string> {
     const provider = await this.config.getProvider();
     const hexBlockNumber = maxBlockNumber ? toHex(maxBlockNumber) : undefined;
-    return provider._send(
+    return provider.send(
       'eth_sendPrivateTransaction',
       [
         {
@@ -85,7 +84,7 @@ export class TransactNamespace {
    */
   async cancelPrivateTransaction(transactionHash: string): Promise<boolean> {
     const provider = await this.config.getProvider();
-    return provider._send(
+    return provider.send(
       'eth_cancelPrivateTransaction',
       [
         {
@@ -115,7 +114,7 @@ export class TransactNamespace {
       blockIdentifier !== undefined
         ? [transactions, blockIdentifier]
         : [transactions];
-    const res = await provider._send(
+    const res = await provider.send(
       'alchemy_simulateAssetChangesBundle',
       params,
       'simulateAssetChangesBundle'
@@ -143,7 +142,7 @@ export class TransactNamespace {
       blockIdentifier !== undefined
         ? [transaction, blockIdentifier]
         : [transaction];
-    const res = await provider._send(
+    const res = await provider.send(
       'alchemy_simulateAssetChanges',
       params,
       'simulateAssetChanges'
@@ -170,7 +169,7 @@ export class TransactNamespace {
       blockIdentifier !== undefined
         ? [transactions, blockIdentifier]
         : [transactions];
-    const res = provider._send(
+    const res = provider.send(
       'alchemy_simulateExecutionBundle',
       params,
       'simulateExecutionBundle'
@@ -197,7 +196,7 @@ export class TransactNamespace {
       blockIdentifier !== undefined
         ? [transaction, blockIdentifier]
         : [transaction];
-    const res = provider._send(
+    const res = provider.send(
       'alchemy_simulateExecution',
       params,
       'simulateExecution'
@@ -219,7 +218,7 @@ export class TransactNamespace {
    * @public
    */
   async getTransaction(
-    transactionHash: string | Promise<string>
+    transactionHash: string
   ): Promise<TransactionResponse | null> {
     const provider = await this.config.getProvider();
     return provider.getTransaction(transactionHash);
@@ -230,16 +229,16 @@ export class TransactNamespace {
    * signed, and be valid (i.e. the nonce is correct and the account has
    * sufficient balance to pay for the transaction).
    *
-   * NOTE: This is an alias for {@link CoreNamespace.sendTransaction}.
+   * NOTE: This is an alias for {@link CoreNamespace.broadcastTransaction}.
    *
    * @param signedTransaction The signed transaction to send.
    * @public
    */
-  async sendTransaction(
-    signedTransaction: string | Promise<string>
+  async broadcastTransaction(
+    signedTransaction: string
   ): Promise<TransactionResponse> {
     const provider = await this.config.getProvider();
-    return provider.sendTransaction(signedTransaction);
+    return provider.broadcastTransaction(signedTransaction);
   }
 
   /**
@@ -255,9 +254,7 @@ export class TransactNamespace {
    * @param transaction The transaction to estimate gas for.
    * @public
    */
-  async estimateGas(
-    transaction: Deferrable<TransactionRequest>
-  ): Promise<BigNumber> {
+  async estimateGas(transaction: TransactionRequest): Promise<bigint> {
     const provider = await this.config.getProvider();
     return provider.estimateGas(transaction);
   }
@@ -273,7 +270,7 @@ export class TransactNamespace {
    */
   async getMaxPriorityFeePerGas(): Promise<number> {
     const provider = await this.config.getProvider();
-    const feeHex = await provider._send(
+    const feeHex = await provider.send(
       'eth_maxPriorityFeePerGas',
       [],
       'getMaxPriorityFeePerGas'
@@ -375,20 +372,23 @@ export class TransactNamespace {
 
     let gasLimit;
     let priorityFee;
-    let baseFee;
+    let currentBlock;
     const provider = await this.config.getProvider();
     try {
       gasLimit = await this.estimateGas(transactionOrSignedTxs);
       priorityFee = await this.getMaxPriorityFeePerGas();
-      const currentBlock = await provider.getBlock('latest');
-      baseFee = currentBlock.baseFeePerGas!.toNumber();
+      currentBlock = await provider.getBlock('latest');
     } catch (e) {
       throw new Error(`Failed to estimate gas for transaction: ${e}`);
     }
+    if (currentBlock == null) {
+      throw new Error('Failed to get latest block');
+    }
+    const baseFee = currentBlock.baseFeePerGas!;
 
     const gasSpreadTransactions = generateGasSpreadTransactions(
       transactionOrSignedTxs,
-      gasLimit.toNumber(),
+      gasLimit,
       baseFee,
       priorityFee
     );
@@ -414,7 +414,7 @@ export class TransactNamespace {
     trackingId: string
   ): Promise<GasOptimizedTransactionStatusResponse> {
     const provider = await this.config.getProvider();
-    return provider._send(
+    return provider.send(
       'alchemy_getGasOptimizedTransactionStatus',
       [trackingId],
       'getGasOptimizedTransactionStatus'
@@ -427,7 +427,7 @@ export class TransactNamespace {
     methodName: string
   ): Promise<GasOptimizedTransactionResponse> {
     const provider = await this.config.getProvider();
-    return provider._send(
+    return provider.send(
       'alchemy_sendGasOptimizedTransaction',
       [
         {
@@ -448,8 +448,8 @@ export class TransactNamespace {
 // Visible for testing
 export function generateGasSpreadTransactions(
   transaction: TransactionRequest,
-  gasLimit: number,
-  baseFee: number,
+  gasLimit: BigNumberish,
+  baseFee: BigNumberish,
   priorityFee: number
 ): TransactionRequest[] {
   return GAS_OPTIMIZED_TX_FEE_MULTIPLES.map(feeMultiplier => {
@@ -457,7 +457,7 @@ export function generateGasSpreadTransactions(
       ...transaction,
       gasLimit,
       maxFeePerGas: Math.round(
-        baseFee * feeMultiplier + priorityFee * feeMultiplier
+        Number(baseFee) * feeMultiplier + priorityFee * feeMultiplier
       ),
       maxPriorityFeePerGas: Math.round(feeMultiplier * priorityFee)
     };

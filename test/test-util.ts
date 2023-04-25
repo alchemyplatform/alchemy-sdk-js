@@ -1,5 +1,3 @@
-import { BigNumber } from '@ethersproject/bignumber';
-
 import {
   BaseNft,
   Media,
@@ -102,7 +100,7 @@ export function createRawBaseNft(
   return {
     contract: { address: contractAddress },
     id: {
-      tokenId: BigNumber.from(tokenId).toString(),
+      tokenId: BigInt(tokenId).toString(),
       tokenMetadata: { tokenType }
     }
   };

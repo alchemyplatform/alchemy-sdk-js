@@ -1,5 +1,3 @@
-import { BigNumber } from '@ethersproject/bignumber';
-
 import { BaseNft, Nft, NftContract } from '../api/nft';
 import { toHex } from '../api/util';
 import {
@@ -70,7 +68,7 @@ export function getBaseNftFromRaw(
     contract: contractAddress
       ? { address: contractAddress }
       : (rawBaseNft as RawBaseNft).contract,
-    tokenId: BigNumber.from(rawBaseNft.id.tokenId).toString(),
+    tokenId: BigInt(rawBaseNft.id.tokenId).toString(),
     tokenType: parseNftTokenType(rawBaseNft.id.tokenMetadata?.tokenType)
   };
 }
@@ -201,7 +199,7 @@ export function getContractsForOwnerFromRaw(
 function parseNftTokenId(tokenId: string): string {
   // We have to normalize the token id here since the backend sometimes
   // returns the token ID as a hex string and sometimes as an integer.
-  return BigNumber.from(tokenId).toString();
+  return BigInt(tokenId).toString();
 }
 
 function parseNftTokenType(tokenType: string | undefined): NftTokenType {

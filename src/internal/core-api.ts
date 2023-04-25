@@ -1,5 +1,5 @@
-import type { Log } from '@ethersproject/abstract-provider';
-import { resolveProperties } from '@ethersproject/properties';
+import type { Log } from 'ethers';
+import { resolveProperties } from 'ethers';
 
 import { AlchemyConfig } from '../api/alchemy-config';
 import { toHex } from '../api/util';
@@ -37,7 +37,7 @@ export async function getAssetTransfers(
   if (params.toAddress) {
     params.toAddress = await provider._getAddress(params.toAddress);
   }
-  return provider._send(
+  return provider.send(
     'alchemy_getAssetTransfers',
     [
       {
@@ -59,7 +59,7 @@ export async function getTransactionReceipts(
   srcMethod = 'getTransactionReceipts'
 ): Promise<TransactionReceiptsResponse> {
   const provider = await config.getProvider();
-  return provider._send('alchemy_getTransactionReceipts', [params], srcMethod);
+  return provider.send('alchemy_getTransactionReceipts', [params], srcMethod);
 }
 
 /**
@@ -84,10 +84,12 @@ export async function getLogs(
   const logs: Array<Log> = await provider.send('eth_getLogs', [params.filter]);
   logs.forEach(log => {
     if (log.removed == null) {
-      log.removed = false;
+      (log as any).removed = false;
     }
   });
-  return arrayOf(provider.formatter.filterLog.bind(provider.formatter))(logs);
+
+  // TODO(v6): format log with ethers formatter.
+  return logs;
 }
 
 /**
@@ -127,7 +129,7 @@ async function getFilter(
   // BEGIN MODIFIED CODE
   // Format the `result` object using the ethers formatter without the `address`
   // field.
-  result = provider.formatter.filter(await resolveProperties(result));
+  result = provider._getFilter(await resolveProperties(result));
 
   // After formatting the other fields, manually format the `address` field
   // before adding it to the `result` object.
@@ -156,18 +158,11 @@ async function getFilter(
  * This function returns a function that applies the formatter to an array of
  * values, and is used to format the logs returned by `getLogs()`.
  */
-function arrayOf(format: any): any {
-  return function (array: any): Array<any> {
-    if (!Array.isArray(array)) {
-      throw new Error('not an array');
-    }
-
-    const result: any = [];
-
-    array.forEach(value => {
-      result.push(format(value));
-    });
-
-    return result;
-  };
-}
+// function arrayOf(format: any): any {
+//   return function (array: any): Array<any> {
+//     if (!Array.isArray(array)) {
+//       throw new Error('not an array');
+//     }
+//     return array.map(i => format(i));
+//   };
+// }

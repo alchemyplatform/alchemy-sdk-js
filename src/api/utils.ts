@@ -1,38 +1,30 @@
 'use strict';
+
+// TODO(v6): go through exports again to see which ones to include/exclude.
 export {
   dnsEncode,
   hashMessage,
   id,
   isValidName,
-  namehash
-} from '@ethersproject/hash';
-
-export {
-  arrayify,
+  namehash,
+  getBytes,
   concat,
-  hexConcat,
-  hexDataSlice,
-  hexDataLength,
+  dataSlice,
+  dataLength,
   hexlify,
-  hexStripZeros,
-  hexValue,
-  hexZeroPad,
-  isBytes,
+  stripZerosLeft,
+  toQuantity,
+  zeroPadValue,
+  zeroPadBytes,
   isBytesLike,
   isHexString,
-  joinSignature,
-  zeroPad,
-  splitSignature,
-  stripZeros
-} from '@ethersproject/bytes';
-
-export {
   formatEther,
   parseEther,
   parseUnits,
-  formatUnits
-} from '@ethersproject/units';
-
-export { toUtf8Bytes, toUtf8String } from '@ethersproject/strings';
-
-export { Interface } from '@ethersproject/abi';
+  formatUnits,
+  toUtf8String,
+  toUtf8Bytes,
+  toBeHex,
+  Interface,
+  Signature
+} from 'ethers';

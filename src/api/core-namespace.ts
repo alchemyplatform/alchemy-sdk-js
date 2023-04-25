@@ -1,16 +1,15 @@
 import type {
+  AddressLike,
+  BigNumberish,
   Block,
   BlockTag,
-  BlockWithTransactions,
+  Network as EthersNetworkAlias,
   FeeData,
   Log,
   TransactionReceipt,
   TransactionRequest,
   TransactionResponse
-} from '@ethersproject/abstract-provider';
-import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
-import type { Network as EthersNetworkAlias } from '@ethersproject/networks/lib/types';
-import type { Deferrable } from '@ethersproject/properties';
+} from 'ethers';
 
 import {
   getAssetTransfers,
@@ -40,7 +39,7 @@ import { ETH_NULL_VALUE } from '../util/const';
 import { nullsToUndefined } from '../util/util';
 import { AlchemyConfig } from './alchemy-config';
 import { toHex } from './util';
-import { formatUnits } from './utils';
+import { formatUnits, parseUnits } from './utils';
 
 /**
  * The core namespace contains all commonly-used [Ethers.js
@@ -66,9 +65,9 @@ export class CoreNamespace {
    * @public
    */
   async getBalance(
-    addressOrName: string | Promise<string>,
-    blockTag?: BlockTag | Promise<BlockTag>
-  ): Promise<BigNumber> {
+    addressOrName: AddressLike,
+    blockTag?: BlockTag
+  ): Promise<bigint> {
     const provider = await this.config.getProvider();
     return provider.getBalance(addressOrName, blockTag);
   }
@@ -77,36 +76,33 @@ export class CoreNamespace {
    * Returns the contract code of the provided address at the block. If there is
    * no contract deployed, the result is `0x`.
    *
-   * @param addressOrName The address or name of the account to get the code for.
+   * @param address The address or name of the account to get the code for.
    * @param blockTag The optional block number or hash to get the code for.
    *   Defaults to 'latest' if unspecified.
    * @public
    */
-  async getCode(
-    addressOrName: string | Promise<string>,
-    blockTag?: BlockTag | Promise<BlockTag>
-  ): Promise<string> {
+  async getCode(address: AddressLike, blockTag?: BlockTag): Promise<string> {
     const provider = await this.config.getProvider();
-    return provider.getCode(addressOrName, blockTag);
+    return provider.getCode(address, blockTag);
   }
 
   /**
    * Return the value of the provided position at the provided address, at the
    * provided block in `Bytes32` format.
    *
-   * @param addressOrName The address or name of the account to get the code for.
+   * @param address The address or name of the account to get the code for.
    * @param position The position of the storage slot to get.
    * @param blockTag The optional block number or hash to get the code for.
    *   Defaults to 'latest' if unspecified.
    * @public
    */
-  async getStorageAt(
-    addressOrName: string | Promise<string>,
-    position: BigNumberish | Promise<BigNumberish>,
-    blockTag?: BlockTag | Promise<BlockTag>
+  async getStorage(
+    address: AddressLike,
+    position: BigNumberish,
+    blockTag?: BlockTag
   ): Promise<string> {
     const provider = await this.config.getProvider();
-    return provider.getStorageAt(addressOrName, position, blockTag);
+    return provider.getStorage(address, position, blockTag);
   }
 
   /**
@@ -114,47 +110,34 @@ export class CoreNamespace {
    * of the provided block tag. This value is used as the nonce for the next
    * transaction from the address sent to the network.
    *
-   * @param addressOrName The address or name of the account to get the nonce for.
+   * @param address The address or name of the account to get the nonce for.
    * @param blockTag The optional block number or hash to get the nonce for.
    * @public
    */
   async getTransactionCount(
-    addressOrName: string | Promise<string>,
-    blockTag?: BlockTag | Promise<BlockTag>
+    address: AddressLike,
+    blockTag?: BlockTag
   ): Promise<number> {
     const provider = await this.config.getProvider();
-    return provider.getTransactionCount(addressOrName, blockTag);
+    return provider.getTransactionCount(address, blockTag);
   }
 
   /**
    * Returns the block from the network based on the provided block number or
    * hash. Transactions on the block are represented as an array of transaction
-   * hashes. To get the full transaction details on the block, use
-   * {@link getBlockWithTransactions} instead.
+   * hashes.
    *
    * @param blockHashOrBlockTag The block number or hash to get the block for.
+   * @param includeTransactions Whether to include the full transactions in the
+   * returned block.
    * @public
    */
   async getBlock(
-    blockHashOrBlockTag: BlockTag | string | Promise<BlockTag | string>
-  ): Promise<Block> {
+    blockHashOrBlockTag: BlockTag | string,
+    includeTransactions?: boolean
+  ): Promise<Block | null> {
     const provider = await this.config.getProvider();
-    return provider.getBlock(blockHashOrBlockTag);
-  }
-
-  /**
-   * Returns the block from the network based on the provided block number or
-   * hash. Transactions on the block are represented as an array of
-   * {@link TransactionResponse} objects.
-   *
-   * @param blockHashOrBlockTag The block number or hash to get the block for.
-   * @public
-   */
-  async getBlockWithTransactions(
-    blockHashOrBlockTag: BlockTag | string | Promise<BlockTag | string>
-  ): Promise<BlockWithTransactions> {
-    const provider = await this.config.getProvider();
-    return provider.getBlockWithTransactions(blockHashOrBlockTag);
+    return provider.getBlock(blockHashOrBlockTag, includeTransactions);
   }
 
   /**
@@ -178,16 +161,6 @@ export class CoreNamespace {
   }
 
   /**
-   * Returns the best guess of the current gas price to use in a transaction.
-   *
-   * @public
-   */
-  async getGasPrice(): Promise<BigNumber> {
-    const provider = await this.config.getProvider();
-    return provider.getGasPrice();
-  }
-
-  /**
    * Returns the recommended fee data to use in a transaction.
    *
    * For an EIP-1559 transaction, the maxFeePerGas and maxPriorityFeePerGas
@@ -204,34 +177,16 @@ export class CoreNamespace {
   }
 
   /**
-   * Returns a Promise which will stall until the network has heen established,
-   * ignoring errors due to the target node not being active yet.
-   *
-   * This can be used for testing or attaching scripts to wait until the node is
-   * up and running smoothly.
-   *
-   * @public
-   */
-  async ready(): Promise<EthersNetworkAlias> {
-    const provider = await this.config.getProvider();
-    return provider.ready;
-  }
-
-  /**
    * Returns the result of executing the transaction, using call. A call does
    * not require any ether, but cannot change any state. This is useful for
    * calling getters on Contracts.
    *
    * @param transaction The transaction to execute.
-   * @param blockTag The optional block number or hash to get the call for.
    * @public
    */
-  async call(
-    transaction: Deferrable<TransactionRequest>,
-    blockTag?: BlockTag | Promise<BlockTag>
-  ): Promise<string> {
+  async call(transaction: TransactionRequest): Promise<string> {
     const provider = await this.config.getProvider();
-    return provider.call(transaction, blockTag);
+    return provider.call(transaction);
   }
 
   /**
@@ -247,9 +202,7 @@ export class CoreNamespace {
    * @param transaction The transaction to estimate gas for.
    * @public
    */
-  async estimateGas(
-    transaction: Deferrable<TransactionRequest>
-  ): Promise<BigNumber> {
+  async estimateGas(transaction: TransactionRequest): Promise<bigint> {
     const provider = await this.config.getProvider();
     return provider.estimateGas(transaction);
   }
@@ -268,7 +221,7 @@ export class CoreNamespace {
    * @public
    */
   async getTransaction(
-    transactionHash: string | Promise<string>
+    transactionHash: string
   ): Promise<TransactionResponse | null> {
     const provider = await this.config.getProvider();
     return provider.getTransaction(transactionHash);
@@ -285,7 +238,7 @@ export class CoreNamespace {
    * @public
    */
   async getTransactionReceipt(
-    transactionHash: string | Promise<string>
+    transactionHash: string
   ): Promise<TransactionReceipt | null> {
     const provider = await this.config.getProvider();
     return provider.getTransactionReceipt(transactionHash);
@@ -301,11 +254,11 @@ export class CoreNamespace {
    * @param signedTransaction The signed transaction to send.
    * @public
    */
-  async sendTransaction(
-    signedTransaction: string | Promise<string>
+  async broadcastTransaction(
+    signedTransaction: string
   ): Promise<TransactionResponse> {
     const provider = await this.config.getProvider();
-    return provider.sendTransaction(signedTransaction);
+    return provider.broadcastTransaction(signedTransaction);
   }
 
   /**
@@ -462,7 +415,7 @@ export class CoreNamespace {
       | string[]
       | TokenBalancesOptionsDefaultTokens
       | TokenBalancesOptionsErc20
-  ) {
+  ): Promise<TokenBalancesResponse> {
     const provider = await this.config.getProvider();
     const address = await provider._getAddress(addressOrName);
     if (Array.isArray(contractAddressesOrOptions)) {
@@ -476,7 +429,7 @@ export class CoreNamespace {
           'getTokenBalances() requires at least one contractAddress when using an array'
         );
       }
-      return provider._send(
+      return provider.send(
         'alchemy_getTokenBalances',
         [address, contractAddressesOrOptions],
         'getTokenBalances'
@@ -493,7 +446,7 @@ export class CoreNamespace {
       ) {
         params.push({ pageKey: contractAddressesOrOptions.pageKey });
       }
-      return provider._send(
+      return provider.send(
         'alchemy_getTokenBalances',
         params,
         'getTokenBalances'
@@ -522,7 +475,7 @@ export class CoreNamespace {
     if (options?.pageKey) {
       params.push({ pageKey: options.pageKey });
     }
-    const response = (await provider._send(
+    const response = (await provider.send(
       'alchemy_getTokenBalances',
       params,
       'getTokensForOwner'
@@ -530,16 +483,15 @@ export class CoreNamespace {
 
     const formattedBalances = response.tokenBalances.map(balance => ({
       contractAddress: balance.contractAddress,
-      rawBalance: BigNumber.from(balance.tokenBalance!).toString()
+      rawBalance: BigInt(balance.tokenBalance!).toString()
     }));
 
     const metadataPromises = await Promise.allSettled(
       response.tokenBalances.map(token =>
-        provider._send(
+        provider.send(
           'alchemy_getTokenMetadata',
           [token.contractAddress],
-          'getTokensForOwner',
-          /* forceBatch= */ true
+          'getTokensForOwner'
         )
       )
     );
@@ -558,7 +510,7 @@ export class CoreNamespace {
       ...metadata[index],
       balance:
         metadata[index].decimals !== null
-          ? formatUnits(balance.rawBalance, metadata[index].decimals!)
+          ? parseUnits(balance.rawBalance, metadata[index].decimals!).toString()
           : undefined
     }));
 
@@ -576,7 +528,7 @@ export class CoreNamespace {
    */
   async getTokenMetadata(address: string): Promise<TokenMetadataResponse> {
     const provider = await this.config.getProvider();
-    return provider._send(
+    return provider.send(
       'alchemy_getTokenMetadata',
       [address],
       'getTokenMetadata'

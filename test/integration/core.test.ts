@@ -1,6 +1,7 @@
 import {
   Alchemy,
   AssetTransfersCategory,
+  Network,
   TokenBalanceType,
   fromHex
 } from '../../src';
@@ -15,7 +16,8 @@ describe('E2E integration tests', () => {
   beforeAll(async () => {
     await loadAlchemyEnv();
     alchemy = await new Alchemy({
-      apiKey: process.env.ALCHEMY_API_KEY
+      apiKey: process.env.ALCHEMY_API_KEY,
+      network: Network.ETH_MAINNET
     });
 
     // Skip all timeouts for testing.
@@ -49,7 +51,7 @@ describe('E2E integration tests', () => {
     const allTransfers = await alchemy.core.getAssetTransfers({
       fromBlock: '0x0',
       contractAddresses: [baycContract],
-      toAddress: '0xshah.eth',
+      toAddress: 'vitalik.eth',
       excludeZeroValue: true,
       category: [AssetTransfersCategory.ERC721],
       withMetadata: true
@@ -89,7 +91,7 @@ describe('E2E integration tests', () => {
   it('getTransactionReceipts()', async () => {
     const blockNumber = (await alchemy.core.getBlockNumber()) - 20;
     const response = await alchemy.core.getTransactionReceipts({
-      blockNumber: Utils.hexlify(blockNumber)
+      blockNumber: Utils.toBeHex(blockNumber)
     });
     expect(response.receipts?.length).toBeGreaterThan(0);
     expect(fromHex(response.receipts![0].blockNumber.toString())).toEqual(
@@ -107,10 +109,10 @@ describe('E2E integration tests', () => {
 
   it('getLogs() with multiple address fields', async () => {
     const blockHash =
-      '0x8243343df08b9751f5ca0c5f8c9c0460d8a9b6351066fae0acbd4d3e776de8bb';
+      '0xe89ebb614ffdeeba945a0886e450d663c533a30ad45c28e3ebcd073c6af02a73';
     const address = [
-      '0xb59f67a8bff5d8cd03f6ac17265c550ed8f33907',
-      '0xf433089366899d83a9f26a773d59ec7ecf30355e'
+      '0x0240e59e6ae33b58db7360f7c693429eab7d4ac3',
+      '0x8001d1ecdbd659d1a70c0034f5f92b5c68fa216d'
     ];
     const logs = await alchemy.core.getLogs({
       blockHash,
@@ -124,20 +126,20 @@ describe('E2E integration tests', () => {
 
   it('getLogs() with single and undefined address field', async () => {
     const blockHash =
-      '0x8243343df08b9751f5ca0c5f8c9c0460d8a9b6351066fae0acbd4d3e776de8bb';
-    const address = '0xb59f67a8bff5d8cd03f6ac17265c550ed8f33907';
+      '0xe89ebb614ffdeeba945a0886e450d663c533a30ad45c28e3ebcd073c6af02a73';
+    const address = '0x0240e59e6ae33b58db7360f7c693429eab7d4ac3';
     let logs = await alchemy.core.getLogs({
       blockHash,
       address
     });
-    expect(logs.length).toEqual(1);
+    expect(logs.length).toEqual(2);
     expect(logs[0].blockHash).toEqual(blockHash);
     expect(address).toEqual(logs[0].address.toLowerCase());
 
     logs = await alchemy.core.getLogs({
       blockHash
     });
-    expect(logs.length).toEqual(88);
+    expect(logs.length).toEqual(406);
   });
 
   it('getTokensForOwner()', async () => {
