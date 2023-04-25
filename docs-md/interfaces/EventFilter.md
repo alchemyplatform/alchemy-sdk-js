@@ -29,7 +29,7 @@ The address to filter by. If omitted, filters for all addresses.
 
 #### Defined in
 
-[src/types/types.ts:2572](https://github.com/alchemyplatform/alchemy-sdk-js/blob/85196e8/src/types/types.ts#L2572)
+[src/types/types.ts:2572](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/types/types.ts#L2572)
 
 ___
 
@@ -41,4 +41,4 @@ The topics to filter by, or null to match any topics.
 
 #### Defined in
 
-[src/types/types.ts:2574](https://github.com/alchemyplatform/alchemy-sdk-js/blob/85196e8/src/types/types.ts#L2574)
+[src/types/types.ts:2574](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/types/types.ts#L2574)
