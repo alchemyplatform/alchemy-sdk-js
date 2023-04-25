@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 2.8.1
+
+### Major Changes
+
+### Minor Changes
+
 - Fixed a bug where the SDK was not compatible with `moduleResolution: bundler` when using `typescript` at `v5.0`(#302). Thanks @florrdv!
 - Fixed a bug with `getTransfersForOwner()` and `getTransfersForContract()` methods in the `NftNamespace`, where some NFTs would not be returned if the NFT was transferred multiple times.
 
