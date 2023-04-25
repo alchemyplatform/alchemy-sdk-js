@@ -798,10 +798,27 @@ async function getNftsForTransfers(
     config,
     metadataTransfers.map(transfer => transfer.token)
   );
-  const transferredNfts = nfts.map((nft, i) => ({
-    ...nft,
-    ...metadataTransfers[i].metadata
-  }));
+
+  // The same NFT can be transferred multiple times in the same transfers response.
+  // We want to return one NFT for each transfer, so we create a mapping for
+  // each NFT to pair with the transfer metadata.
+  const nftsByTokenId = new Map<string, Nft>();
+  nfts.forEach(nft => {
+    const key = `${nft.contract.address}-${BigNumber.from(
+      nft.tokenId
+    ).toString()}`;
+    nftsByTokenId.set(key, nft);
+  });
+
+  const transferredNfts = metadataTransfers.map(t => {
+    const key = `${t.token.contractAddress}-${BigNumber.from(
+      t.token.tokenId
+    ).toString()}`;
+    return {
+      ...nftsByTokenId.get(key)!,
+      ...t.metadata
+    };
+  });
 
   return {
     nfts: transferredNfts,
