@@ -6,6 +6,8 @@
 
 ### Minor Changes
 
+- Moved the `exports.default` field to be the last field. This fixed a bug introduced in `2.8.1` that prevented certain frameworks from building (#313).
+
 ## 2.8.1
 
 ### Major Changes
