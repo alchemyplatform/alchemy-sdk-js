@@ -35,7 +35,7 @@ changes for NATIVE and ERC20 assets, or ERC721/ERC1155 disapprove changes
 
 #### Defined in
 
-[src/types/types.ts:1922](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/types/types.ts#L1922)
+[src/types/types.ts:1922](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1922)
 
 ___
 
@@ -47,7 +47,7 @@ The type of asset from the transaction.
 
 #### Defined in
 
-[src/types/types.ts:1898](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/types/types.ts#L1898)
+[src/types/types.ts:1898](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1898)
 
 ___
 
@@ -59,7 +59,7 @@ The type of change from the transaction.
 
 #### Defined in
 
-[src/types/types.ts:1901](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/types/types.ts#L1901)
+[src/types/types.ts:1901](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1901)
 
 ___
 
@@ -72,7 +72,7 @@ ERC1155, NFT and SPECIAL_NFT transactions.
 
 #### Defined in
 
-[src/types/types.ts:1941](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/types/types.ts#L1941)
+[src/types/types.ts:1941](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1941)
 
 ___
 
@@ -86,7 +86,7 @@ available from other sources.
 
 #### Defined in
 
-[src/types/types.ts:1935](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/types/types.ts#L1935)
+[src/types/types.ts:1935](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1935)
 
 ___
 
@@ -98,7 +98,7 @@ The from address.
 
 #### Defined in
 
-[src/types/types.ts:1904](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/types/types.ts#L1904)
+[src/types/types.ts:1904](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1904)
 
 ___
 
@@ -110,7 +110,7 @@ URL for the logo of the asset, if available. Only applicable to ERC20 transactio
 
 #### Defined in
 
-[src/types/types.ts:1946](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/types/types.ts#L1946)
+[src/types/types.ts:1946](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1946)
 
 ___
 
@@ -122,7 +122,7 @@ The name of the asset transferred, if available.
 
 #### Defined in
 
-[src/types/types.ts:1925](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/types/types.ts#L1925)
+[src/types/types.ts:1925](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1925)
 
 ___
 
@@ -136,7 +136,7 @@ NATIVE and ERC20 assets, or ERC721/ERC1155 disapprove changes (field set to
 
 #### Defined in
 
-[src/types/types.ts:1914](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/types/types.ts#L1914)
+[src/types/types.ts:1914](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1914)
 
 ___
 
@@ -148,7 +148,7 @@ The symbol of the asset transferred if available.
 
 #### Defined in
 
-[src/types/types.ts:1928](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/types/types.ts#L1928)
+[src/types/types.ts:1928](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1928)
 
 ___
 
@@ -160,7 +160,7 @@ The to address.
 
 #### Defined in
 
-[src/types/types.ts:1907](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/types/types.ts#L1907)
+[src/types/types.ts:1907](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1907)
 
 ___
 
@@ -173,4 +173,4 @@ ERC1155 and SPECIAL_NFT NFTs.
 
 #### Defined in
 
-[src/types/types.ts:1952](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/types/types.ts#L1952)
+[src/types/types.ts:1952](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1952)
