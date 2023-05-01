@@ -1,6 +1,6 @@
 # Changelog for Alchemy SDK for JavaScript
 
-## Unreleased
+## 2.8.2
 
 ### Major Changes
 
