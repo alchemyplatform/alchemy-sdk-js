@@ -73,6 +73,38 @@ describe('E2E integration tests', () => {
     await createInitialWebhooks();
   });
 
+  describe('has valid network mappings', () => {
+    const SUPPORTED_NETWORKS = [
+      Network.ETH_MAINNET,
+      Network.ETH_GOERLI,
+      Network.ETH_SEPOLIA,
+      Network.MATIC_MAINNET,
+      Network.MATIC_MUMBAI,
+      Network.ARB_MAINNET,
+      Network.ARB_GOERLI,
+      Network.OPT_MAINNET,
+      Network.OPT_GOERLI
+    ];
+    const testAddress = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48';
+
+    function testNetwork(network: Network) {
+      it(`can create a webhook on ${network}`, async () => {
+        console.log('testing', network);
+        const nftTest = await alchemy.notify.createWebhook(
+          webhookUrl,
+          WebhookType.ADDRESS_ACTIVITY,
+          { addresses: [testAddress], network }
+        );
+
+        await alchemy.notify.deleteWebhook(nftTest.id);
+      });
+    }
+
+    for (const network of SUPPORTED_NETWORKS) {
+      testNetwork(network);
+    }
+  });
+
   it('getAllWebhooks()', async () => {
     const all = await alchemy.notify.getAllWebhooks();
     expect(all.totalCount).toBeGreaterThan(0);
