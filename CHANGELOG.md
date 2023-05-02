@@ -6,6 +6,8 @@
 
 ### Minor Changes
 
+- Fixed a bug with `NotifyNamespace` when creating webhooks on ETH_SEPOLIA, OPT_GOERLI, and ARB_GOERLI.
+
 ## 2.8.2
 
 ### Major Changes
