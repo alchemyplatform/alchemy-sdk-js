@@ -74,16 +74,15 @@ describe('E2E integration tests', () => {
   });
 
   describe('has valid network mappings', () => {
-    const SUPPORTED_NETWORKS = [
-      Network.ETH_MAINNET,
-      Network.ETH_GOERLI,
-      Network.ETH_SEPOLIA,
-      Network.MATIC_MAINNET,
-      Network.MATIC_MUMBAI,
-      Network.ARB_MAINNET,
-      Network.ARB_GOERLI,
-      Network.OPT_MAINNET,
-      Network.OPT_GOERLI
+    const UNSUPPORTED_NETWORKS = [
+      Network.ETH_ROPSTEN,
+      Network.ETH_KOVAN,
+      Network.ETH_RINKEBY,
+      Network.OPT_KOVAN,
+      Network.ARB_RINKEBY,
+      Network.ASTAR_MAINNET,
+      Network.POLYGONZKEVM_MAINNET,
+      Network.POLYGONZKEVM_TESTNET
     ];
     const testAddress = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48';
 
@@ -100,8 +99,10 @@ describe('E2E integration tests', () => {
       });
     }
 
-    for (const network of SUPPORTED_NETWORKS) {
-      testNetwork(network);
+    for (const network of Object.values(Network)) {
+      if (!UNSUPPORTED_NETWORKS.includes(network)) {
+        testNetwork(network);
+      }
     }
   });
 
