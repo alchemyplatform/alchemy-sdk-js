@@ -33,23 +33,6 @@ export class BundlerNamespace {
     userOperation: UserOperationRequest
   ): Promise<string> {
     const provider = await this.config.getProvider();
-    if (
-      !userOperation.callGasLimit ||
-      !userOperation.preVerificationGas ||
-      !userOperation.verificationGasLimit
-    ) {
-      const gasEstimates = await this.estimateUserOperationGas(userOperation);
-      userOperation.callGasLimit = gasEstimates.callGasLimit;
-      userOperation.preVerificationGas = gasEstimates.preVerificationGas;
-      userOperation.verificationGasLimit = gasEstimates.verificationGasLimit;
-    }
-
-    if (!userOperation.maxFeePerGas || !userOperation.maxPriorityFeePerGas) {
-      const feeData = await provider.getFeeData();
-      userOperation.maxFeePerGas = feeData.maxFeePerGas;
-      userOperation.maxPriorityFeePerGas = feeData.maxPriorityFeePerGas;
-    }
-
     return provider._send(
       'eth_sendUserOperation',
       [this.hexlifyUserOpFields(userOperation)],
