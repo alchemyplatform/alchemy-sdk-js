@@ -4,6 +4,7 @@ import {
   UserOperationReceipt,
   UserOperationRequest
 } from '../types/types';
+import { deepHexlify } from '../util/util';
 import { AlchemyConfig } from './alchemy-config';
 
 /**
@@ -22,7 +23,8 @@ export class BundlerNamespace {
    * Sends a User Operation
    *
    * Sends a user operation to the provided bundler client evm network, and
-   * returns a user operation hash on successful submission.
+   * returns a user operation hash on successful submission. The gas fields, if left empty,
+   * will be estimated prior to submitting the UserOperation
    *
    * @param userOperation - The user operation.
    * @beta
@@ -31,9 +33,26 @@ export class BundlerNamespace {
     userOperation: UserOperationRequest
   ): Promise<string> {
     const provider = await this.config.getProvider();
+    if (
+      !userOperation.callGasLimit ||
+      !userOperation.preVerificationGas ||
+      !userOperation.verificationGasLimit
+    ) {
+      const gasEstimates = await this.estimateUserOperationGas(userOperation);
+      userOperation.callGasLimit = gasEstimates.callGasLimit;
+      userOperation.preVerificationGas = gasEstimates.preVerificationGas;
+      userOperation.verificationGasLimit = gasEstimates.verificationGasLimit;
+    }
+
+    if (!userOperation.maxFeePerGas || !userOperation.maxPriorityFeePerGas) {
+      const feeData = await provider.getFeeData();
+      userOperation.maxFeePerGas = feeData.maxFeePerGas;
+      userOperation.maxPriorityFeePerGas = feeData.maxPriorityFeePerGas;
+    }
+
     return provider._send(
       'eth_sendUserOperation',
-      [userOperation],
+      [this.hexlifyUserOpFields(userOperation)],
       'sendUserOperation'
     );
   }
@@ -65,7 +84,10 @@ export class BundlerNamespace {
    * and performs necessary actions and returns the result.
    *
    * Returns an array of the entry point addresses that are
-   * supported by the Alchemy bundler client.
+   * supported by the Alchemy bundler client. The Entrypoint
+   * is a key component of the 4337 spec and is required in
+   * the processing of UserOperations. It handles verification
+   * and execution of UserOps.
    *
    * @beta
    */
@@ -112,8 +134,14 @@ export class BundlerNamespace {
     const provider = await this.config.getProvider();
     return provider._send(
       'eth_estimateUserOperationGas',
-      [userOperation],
+      [this.hexlifyUserOpFields(userOperation)],
       'estimateUserOperationGas'
     );
+  }
+
+  private hexlifyUserOpFields(
+    userOperation: UserOperationRequest
+  ): UserOperationRequest {
+    return deepHexlify(userOperation);
   }
 }

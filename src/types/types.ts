@@ -65,6 +65,9 @@ export interface AlchemySettings {
   batchRequests?: boolean;
 }
 
+export type HexData = `0x${string}`;
+export type EmptyHexData = `0x`;
+
 /**
  * The supported networks by Alchemy. Note that some functions are not available
  * on all networks. Please refer to the Alchemy documentation for which APIs are
@@ -2594,79 +2597,70 @@ export interface DebugPrestate {
 /*
  * Representation of a submitted user operation returned by the {@link BundlerNamespace.getUserOperationByHash}
  */
-export interface UserOperation {
-  /* The account making the operation */
-  sender: string;
-  /* Anti-replay parameter; also used as the salt for first-time account creation */
-  nonce: BigInt;
-  /* The initCode of the account (needed if and only if the account is not yet on-chain and needs to be created) */
-  initCode: string;
-  /* Encoded data for executing the primary function call or operation */
-  callData: string;
+export interface UserOperation extends UserOperationRequest {
   /* The amount of gas to allocate the main execution call */
-  callGasLimit: BigInt;
+  callGasLimit: BigNumberish;
   /* The amount of gas to allocate for the verification step */
-  verificationGasLimit: BigInt;
+  verificationGasLimit: BigNumberish;
   /* The amount of gas to pay for to compensate the bundler for pre-verification execution and calldata */
-  preVerificationGas: BigInt;
+  preVerificationGas: BigNumberish;
   /* The maximum fee per gas to pay for the execution of this operation (similar to EIP-1559 max_fee_per_gas) */
-  maxFeePerGas: BigInt;
+  maxFeePerGas: BigNumberish;
   /* Maximum priority fee per gas (similar to EIP-1559 max_priority_fee_per_gas) */
-  maxPriorityFeePerGas: BigInt;
-  /* Address of paymaster sponsoring the transaction, followed by extra data to send to the paymaster (empty for self sponsorship) */
-  paymasterAndData: string;
-  /* Data passed into the account along with the nonce during the verification step */
-  signature: string;
+  maxPriorityFeePerGas: BigNumberish;
   /* Entry point contract address that processes the transaction, and performs necessary actions and returns the result. */
   entryPoint: string;
   /* Block number in which UserOperation is included */
-  blockNumber: string;
+  blockNumber: BigNumberish;
   /* Block hash of the block containing UserOperation */
   blockHash: string;
   /* Transaction hash of the UserOperation */
   transactionHash: string;
 }
 
+/*
+ * UserOperation Request used in {@link BundlerNamespace.estimateUserOperationGas} and {@link BundlerNamespace.sendUserOperation}
+ */
 export interface UserOperationRequest {
   /* The account making the operation */
   sender: string;
   /* Anti-replay parameter; also used as the salt for first-time account creation */
-  nonce: BigInt;
+  nonce: BigNumberish;
   /* The initCode of the account (needed if and only if the account is not yet on-chain and needs to be created) */
-  initCode: string;
+  initCode: HexData | EmptyHexData;
   /* Encoded data for executing the primary function call or operation */
-  callData: string;
+  callData: HexData;
   /* The amount of gas to allocate the main execution call */
-  callGasLimit: BigInt;
+  callGasLimit?: BigNumberish;
   /* The amount of gas to allocate for the verification step */
-  verificationGasLimit: BigInt;
+  verificationGasLimit?: BigNumberish;
   /* The amount of gas to pay for to compensate the bundler for pre-verification execution and calldata */
-  preVerificationGas: BigInt;
+  preVerificationGas?: BigNumberish;
   /* The maximum fee per gas to pay for the execution of this operation (similar to EIP-1559 max_fee_per_gas) */
-  maxFeePerGas: BigInt;
+  maxFeePerGas?: BigNumberish | null;
   /* Maximum priority fee per gas (similar to EIP-1559 max_priority_fee_per_gas) */
-  maxPriorityFeePerGas: BigInt;
+  maxPriorityFeePerGas?: BigNumberish | null;
   /* Address of paymaster sponsoring the transaction, followed by extra data to send to the paymaster (empty for self sponsorship) */
-  paymasterAndData: string;
+  paymasterAndData: HexData | EmptyHexData;
   /* Data passed into the account along with the nonce during the verification step */
-  signature: string;
+  signature: HexData;
 }
 
 export interface UserOperationReceipt {
   /* The request hash of the UserOperation. */
-  userOpHash: string;
+  userOpHash: HexData;
   /* The entry point address used for the UserOperation. */
   entryPoint: string;
   /* The account initiating the UserOperation. */
   sender: string;
   /* The nonce used in the UserOperation. */
-  nonce: BigInt;
+  nonce: BigNumberish;
   /* The paymaster used for this UserOperation (or empty). */
   paymaster: string;
   /* The actual amount paid (by account or paymaster) for this UserOperation. */
-  actualGasCost: number;
+  actualGasCost: BigNumberish;
   /* The total gas used by this UserOperation (including preVerification, creation, validation, and execution). */
-  actualGasUsed: number;
+  actualGasUsed: BigNumberish;
   /* Indicates whether the execution completed without reverting. */
   success: boolean;
   /* In case of revert, this is the revert reason. */
@@ -2693,7 +2687,7 @@ export interface UserOperationReceiptObject {
   /* The total amount of gas used when this transaction was executed in the block. */
   cumulativeGasUsed: string;
   /* The amount of gas used by this specific transaction alone */
-  gasUsed: string;
+  gasUsed: BigNumberish;
   /* 20 Bytes - The contract address created, if the transaction was a contract creation, otherwise null */
   contractAddress: string;
   logs: UserOperationReceiptLog[];
@@ -2732,11 +2726,11 @@ export interface UserOperationReceiptLog {
 
 export interface UserOperationEstimateGasResponse {
   /* Gas overhead of this UserOperation */
-  preVerificationGas: BigInt;
+  preVerificationGas: BigNumberish;
   /* Actual gas used by the validation of this UserOperation */
-  verificationGasLimit: BigInt;
+  verificationGasLimit: BigNumberish;
   /* Value used by inner account execution */
-  callGasLimit: BigInt;
+  callGasLimit: BigNumberish;
 }
 
 /**
