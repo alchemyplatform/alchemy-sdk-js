@@ -107,8 +107,25 @@ export class Wallet extends EthersWallet {
   }
 
   /**
+   * Populates ALL keys for a transaction and checks that `from` matches this
+   * `Signer`. Resolves ENS names and populates fields like `gasPrice`, `gasLimit`,
+   * `nonce`, and `chainId` if they are not provided.
+   *
+   * @param transaction The transaction to populate.
+   * @override
+   */
+  populateTransaction(
+    transaction: Deferrable<TransactionRequest>
+  ): Promise<TransactionRequest> {
+    return this.getWallet().then(wallet =>
+      wallet.populateTransaction(transaction)
+    );
+  }
+
+  /**
    * Populates all fields in a transaction, signs it and sends it to the network
    *
+   * @param transaction The transaction to send.
    * @override
    */
   sendTransaction(

@@ -7,6 +7,7 @@
 ### Minor Changes
 
 - Fixed a bug with `NotifyNamespace` when creating webhooks on ETH_SEPOLIA, OPT_GOERLI, and ARB_GOERLI.
+- Fixed a bug with `Wallet.populateTransaction()` where the method would never resolve.
 
 ## 2.8.2
 
