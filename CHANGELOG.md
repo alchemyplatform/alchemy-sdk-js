@@ -8,6 +8,7 @@
 
 - Fixed a bug with `NotifyNamespace` when creating webhooks on ETH_SEPOLIA, OPT_GOERLI, and ARB_GOERLI.
 - Fixed a bug with `Wallet.populateTransaction()` where the method would never resolve.
+- Fixed a bug with `NftNamespace.getMintedNfts()` and `NftNamespace.getTransfersForOwner()` where the method would always throw an error for certain addresses (#318).
 
 ## 2.8.2
 
