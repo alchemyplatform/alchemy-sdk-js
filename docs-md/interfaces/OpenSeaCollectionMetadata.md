@@ -28,7 +28,7 @@ The name of the collection on OpenSea.
 
 #### Defined in
 
-[src/types/types.ts:1663](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1663)
+[src/types/types.ts:1663](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1663)
 
 ___
 
@@ -40,7 +40,7 @@ The description of the collection on OpenSea.
 
 #### Defined in
 
-[src/types/types.ts:1669](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1669)
+[src/types/types.ts:1669](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1669)
 
 ___
 
@@ -52,7 +52,7 @@ The Discord URL of the collection.
 
 #### Defined in
 
-[src/types/types.ts:1675](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1675)
+[src/types/types.ts:1675](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1675)
 
 ___
 
@@ -64,7 +64,7 @@ The homepage of the collection as determined by OpenSea.
 
 #### Defined in
 
-[src/types/types.ts:1671](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1671)
+[src/types/types.ts:1671](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1671)
 
 ___
 
@@ -76,7 +76,7 @@ The floor price of the NFT.
 
 #### Defined in
 
-[src/types/types.ts:1661](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1661)
+[src/types/types.ts:1661](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1661)
 
 ___
 
@@ -88,7 +88,7 @@ The image URL determined by OpenSea.
 
 #### Defined in
 
-[src/types/types.ts:1667](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1667)
+[src/types/types.ts:1667](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1667)
 
 ___
 
@@ -100,7 +100,7 @@ Timestamp of when the OpenSea metadata was last ingested by Alchemy.
 
 #### Defined in
 
-[src/types/types.ts:1677](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1677)
+[src/types/types.ts:1677](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1677)
 
 ___
 
@@ -112,7 +112,7 @@ The approval status of the collection on OpenSea.
 
 #### Defined in
 
-[src/types/types.ts:1665](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1665)
+[src/types/types.ts:1665](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1665)
 
 ___
 
@@ -124,4 +124,4 @@ The Twitter handle of the collection.
 
 #### Defined in
 
-[src/types/types.ts:1673](https://github.com/alchemyplatform/alchemy-sdk-js/blob/80b6e91/src/types/types.ts#L1673)
+[src/types/types.ts:1673](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1673)
