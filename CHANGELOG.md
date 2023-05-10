@@ -6,6 +6,8 @@
 
 ### Minor Changes
 
+- Added redundancy to `CoreNamespace.getTokensForOwner()` to handle failures when fetching token metadata.
+
 ## 2.8.3
 
 ### Major Changes
