@@ -608,14 +608,6 @@ export enum NftSpamClassification {
   OwnedByMostHoneyPots = 'OwnedByMostHoneyPots'
 }
 
-/** Detailed information on whether and why an NFT contract was classified as spam. */
-export interface SpamInfo {
-  isSpam: boolean;
-
-  /** A list of reasons why an NFT contract was marked as spam. */
-  classifications: NftSpamClassification[];
-}
-
 /**
  * Optional parameters object for the {@link getNftsForOwner} and
  * {@link getNftsForOwnerIterator} functions.
@@ -824,7 +816,7 @@ export interface OwnedBaseNftsResponse {
  */
 export interface OwnedNft extends Nft {
   /** The token balance of the NFT. */
-  readonly balance: number;
+  readonly balance: string;
 }
 
 /**
@@ -834,7 +826,7 @@ export interface OwnedNft extends Nft {
  */
 export interface OwnedBaseNft extends BaseNft {
   /** The token balance of the NFT. */
-  readonly balance: number;
+  readonly balance: string;
 }
 
 /**
@@ -893,8 +885,8 @@ export interface NftContractTokenBalance {
   /** The token id owned in the NFT contract. */
   tokenId: string;
 
-  /** The token Id balance for the provided owner. */
-  balance: number;
+  /** The token id balance for the provided owner. */
+  balance: string;
 }
 
 /**
@@ -1061,7 +1053,7 @@ export interface ContractForOwner extends NftContract {
   numDistinctTokensOwned: string;
 
   /** Whether the NFT is considered spam. */
-  isSpam: boolean;
+  isSpam?: boolean;
 
   /**
    * Object containing an NFT owned by the owner for this particular contract.
@@ -1330,7 +1322,7 @@ export interface NftSaleFeeData {
   symbol: string;
 
   /** The number of decimals of the token used for the payment. */
-  decimal: number;
+  decimals: number;
 }
 
 /**
@@ -1413,7 +1405,7 @@ export interface RefreshContractResult {
   contractAddress: string;
 
   /** The current state of the refresh request. */
-  refreshState: RefreshState;
+  refreshState: NftRefreshState;
 
   /**
    * Percentage of tokens currently refreshed, represented as an integer string.
@@ -1423,7 +1415,7 @@ export interface RefreshContractResult {
 }
 
 /** The current state of the NFT contract refresh process. */
-export enum RefreshState {
+export enum NftRefreshState {
   /** The provided contract is not an NFT or does not contain metadata. */
   DOES_NOT_EXIST = 'does_not_exist',
 

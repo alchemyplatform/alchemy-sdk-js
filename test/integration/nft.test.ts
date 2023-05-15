@@ -82,7 +82,7 @@ describe('E2E integration tests', () => {
         tokenType: NftTokenType.UNKNOWN
       }
     );
-    expect(response.media).toBeDefined();
+    expect(response.image).toBeDefined();
     verifyNftContractMetadata(response.contract);
   });
 
@@ -191,10 +191,10 @@ describe('E2E integration tests', () => {
   it('getNftsForOwner() spam info check', async () => {
     const response = await alchemy.nft.getNftsForOwner('vitalik.eth');
     const spamNfts = response.ownedNfts.filter(
-      nft => nft.spamInfo !== undefined
+      nft => nft.contract.isSpam !== undefined
     );
-    expect(spamNfts[0].spamInfo!.isSpam).toEqual(true);
-    expect(spamNfts[0].spamInfo!.classifications.length).toBeGreaterThan(0);
+    expect(spamNfts[0].contract.isSpam).toEqual(true);
+    expect(spamNfts[0].contract.spamClassifications.length).toBeGreaterThan(0);
   });
 
   it('getNftsForOwner() contract metadata check', async () => {

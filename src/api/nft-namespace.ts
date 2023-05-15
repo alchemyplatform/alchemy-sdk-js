@@ -1,7 +1,6 @@
 import type { BigNumberish } from '@ethersproject/bignumber';
 
 import {
-  checkNftOwnership,
   computeRarity,
   getContractMetadata,
   getContractMetadataBatch,
@@ -76,27 +75,6 @@ import { BaseNft, Nft, NftContract } from './nft';
 export class NftNamespace {
   /** @internal */
   constructor(private readonly config: AlchemyConfig) {}
-
-  /**
-   * Get the NFT metadata associated with the provided parameters.
-   *
-   * @param contractAddress - The contract address of the NFT.
-   * @param tokenId - Token id of the NFT.
-   * @param tokenType - Optionally specify the type of token to speed up the query.
-   * @param tokenUriTimeoutInMs - No set timeout by default - When metadata is
-   *   requested, this parameter is the timeout (in milliseconds) for the
-   *   website hosting the metadata to respond. If you want to only access the
-   *   cache and not live fetch any metadata for cache misses then set this value to 0.
-   * @public
-   * @deprecated Please use the method with the `options` overload. This method
-   * will be removed in a subsequent release.
-   */
-  getNftMetadata(
-    contractAddress: string,
-    tokenId: BigNumberish,
-    tokenType?: NftTokenType,
-    tokenUriTimeoutInMs?: number
-  ): Promise<Nft>;
 
   /**
    * Get the NFT metadata associated with the provided parameters.
@@ -372,6 +350,7 @@ export class NftNamespace {
    * @param options - The optional parameters to use for the request.
    * @public
    */
+  // TODO(v3): Add overload for withMetadata=false
   getContractsForOwner(
     owner: string,
     options?: GetContractsForOwnerOptions
@@ -421,22 +400,6 @@ export class NftNamespace {
     options?: GetMintedNftsOptions
   ): Promise<TransfersNftResponse> {
     return getMintedNfts(this.config, owner, options);
-  }
-
-  /**
-   * DEPRECATED - Checks that the provided owner address owns one of more of the
-   * provided NFTs.
-   *
-   * @deprecated - Use {@link verifyNftOwnership} instead. This method will be
-   *   removed in a future release.
-   * @param owner - The owner address to check.
-   * @param contractAddresses - An array of NFT contract addresses to check ownership for.
-   */
-  checkNftOwnership(
-    owner: string,
-    contractAddresses: string[]
-  ): Promise<boolean> {
-    return checkNftOwnership(this.config, owner, contractAddresses);
   }
 
   /**

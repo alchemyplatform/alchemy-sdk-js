@@ -1,25 +1,10 @@
 import {
-  Media,
-  NftMetadata,
+  NftImage,
+  NftSpamClassification,
   NftTokenType,
   OpenSeaCollectionMetadata,
-  SpamInfo,
   TokenUri
 } from '../types/types';
-
-/**
- * Alchemy representation of a base NFT contract that doesn't contain metadata.
- *
- * The BaseNftContract does not hold any metadata information and only contains
- * the address. The NftContract additionally contains the tokenType, name,
- * symbol, and more.
- *
- * @public
- */
-export interface BaseNftContract {
-  /** The address of the contract. */
-  address: string;
-}
 
 /**
  * Alchemy representation of an NFT contract.
@@ -30,7 +15,9 @@ export interface BaseNftContract {
  *
  * @public
  */
-export interface NftContract extends BaseNftContract {
+export interface NftContract {
+  /** The address of the NFT contract. */
+  address: string;
   /** The type of the token in the contract. */
   tokenType: NftTokenType;
   /** The name of the contract. */
@@ -50,6 +37,11 @@ export interface NftContract extends BaseNftContract {
   deployedBlockNumber?: number;
 }
 
+export interface NftContractMetadata extends NftContract {
+  isSpam?: boolean;
+  spamClassifications: NftSpamClassification[];
+}
+
 /**
  * Alchemy representation of an NFT that doesn't contain metadata.
  *
@@ -60,11 +52,10 @@ export interface NftContract extends BaseNftContract {
  * @public
  */
 export interface BaseNft {
-  contract: BaseNftContract;
+  /** The contract address of the NFT. */
+  contractAddress: string;
   /** The NFT token ID as an integer string. */
   tokenId: string;
-  /** The type of ERC token, if known. */
-  tokenType: NftTokenType;
 }
 
 /**
@@ -76,34 +67,38 @@ export interface BaseNft {
  *
  * @public
  */
-export interface Nft extends BaseNft {
+export interface Nft {
   /** The NFT's underlying contract and relevant contract metadata. */
-  contract: NftContract;
+  contract: NftContractMetadata;
 
-  /** The NFT title. */
-  title: string;
+  /** The NFT token ID as an integer string. */
+  tokenId: string;
+
+  /** The type of NFT.*/
+  tokenType: NftTokenType;
+
+  /** The NFT name. */
+  name?: string;
 
   /** The NFT description. */
-  description: string;
+  description?: string;
 
-  /** When the NFT was last updated in the blockchain. Represented in ISO-8601 format. */
-  timeLastUpdated: string;
+  image: NftImage;
+
+  raw: NftRawMetadata;
 
   /** Holds an error message if there was an issue fetching metadata. */
   metadataError: string | undefined;
 
-  /**
-   * The raw metadata fetched from the metadata URL specified by the NFT. The
-   * field is undefined if Alchemy was unable to fetch metadata.
-   */
-  rawMetadata: NftMetadata | undefined;
-
   /** URIs for accessing the NFT's metadata blob. */
-  tokenUri: TokenUri | undefined;
+  tokenUri?: TokenUri;
 
-  /** URIs for accessing the NFT's media assets. */
-  media: Media[];
+  /** When the NFT was last updated in the blockchain. Represented in ISO-8601 format. */
+  timeLastUpdated: string;
+}
 
-  /** Detailed information on why an NFT was classified as spam. */
-  spamInfo?: SpamInfo;
+export interface NftRawMetadata {
+  tokenUri?: string;
+  metadata: Record<string, any>;
+  error?: string;
 }
