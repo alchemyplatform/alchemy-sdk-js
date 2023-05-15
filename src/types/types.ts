@@ -993,7 +993,7 @@ export interface GetFloorPriceResponse {
 }
 
 /**
- * Optional parameters object for the the {@link getContractsForOwner} method
+ * Optional parameters object for the {@link getContractsForOwner} method
  *
  * @public
  */
@@ -1699,7 +1699,7 @@ export interface OpenSeaCollectionMetadata {
   /** The Discord URL of the collection. */
   discordUrl?: string;
   /** Timestamp of when the OpenSea metadata was last ingested by Alchemy. */
-  lastIngestedAt?: string;
+  lastIngestedAt: string;
 }
 
 /** An OpenSea collection's approval status. */

@@ -78,15 +78,15 @@ export interface RawNftContractMetadataInfo {
 
 /** OpenSea's metadata for an NFT collection. */
 export interface RawOpenSeaCollectionMetadata {
-  floorPrice?: number;
-  collectionName?: string;
-  safelistRequestStatus?: string;
-  imageUrl?: string;
-  description?: string;
-  externalUrl?: string;
-  twitterUsername?: string;
-  discordUrl?: string;
-  lastIngestedAt?: string;
+  floorPrice: number | null;
+  collectionName: string | null;
+  safelistRequestStatus: string | null;
+  imageUrl: string | null;
+  description: string | null;
+  externalUrl: string | null;
+  twitterUsername: string | null;
+  discordUrl: string | null;
+  lastIngestedAt: string;
 }
 
 /**

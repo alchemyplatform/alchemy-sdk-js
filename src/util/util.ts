@@ -194,7 +194,7 @@ export function getContractsForOwnerFromRaw(
         image: contract.image
       };
     }),
-    pageKey: rawContractsForOwner?.pageKey,
+    pageKey: rawContractsForOwner.pageKey,
     totalCount: rawContractsForOwner.totalCount
   });
 }
@@ -270,11 +270,11 @@ export function parseOpenSeaMetadata(
   if (openSea === undefined) {
     return undefined;
   }
-  return {
+  return nullsToUndefined({
     floorPrice: openSea.floorPrice,
     collectionName: openSea.collectionName,
     safelistRequestStatus:
-      openSea.safelistRequestStatus !== undefined
+      openSea.safelistRequestStatus !== null
         ? stringToEnum(
             openSea.safelistRequestStatus,
             OpenSeaSafelistRequestStatus
@@ -286,7 +286,7 @@ export function parseOpenSeaMetadata(
     twitterUsername: openSea.twitterUsername,
     discordUrl: openSea.discordUrl,
     lastIngestedAt: openSea.lastIngestedAt
-  };
+  });
 }
 
 export const IS_BROWSER = typeof window !== 'undefined' && window !== null;
