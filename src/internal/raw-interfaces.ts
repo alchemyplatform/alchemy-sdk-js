@@ -44,7 +44,7 @@ export interface RawNft extends RawBaseNft {
   metadata?: NftMetadata;
   timeLastUpdated: string;
   error?: string;
-  contractMetadata?: RawNftContractMetadata;
+  contractMetadata?: RawNftContractMetadataInfo;
   spamInfo?: RawSpamInfo;
 }
 
@@ -65,39 +65,28 @@ export interface RawBaseNftContract {
  *
  * @internal
  */
-export interface RawNftContract {
+export interface RawNftContractMetadataInfo {
   address: string;
-  contractMetadata: RawNftContractMetadata;
-}
-
-/**
- * Represents the contract address and metadata of an NFT object received from
- * Alchemy. This field is separated out since not all NFT API endpoints return a
- * contract field.
- *
- * @internal
- */
-export interface RawNftContractMetadata {
-  name?: string;
-  symbol?: string;
-  totalSupply?: string;
-  tokenType?: NftTokenType;
-  openSea?: RawOpenSeaCollectionMetadata;
-  contractDeployer?: string;
-  deployedBlockNumber?: number;
+  tokenType: NftTokenType;
+  name: string | null;
+  symbol: string | null;
+  totalSupply: string | null;
+  contractDeployer: string | null;
+  deployedBlockNumber: number | null;
+  openSeaMetadata?: RawOpenSeaCollectionMetadata;
 }
 
 /** OpenSea's metadata for an NFT collection. */
 export interface RawOpenSeaCollectionMetadata {
-  floorPrice?: number;
-  collectionName?: string;
-  safelistRequestStatus?: string;
-  imageUrl?: string;
-  description?: string;
-  externalUrl?: string;
-  twitterUsername?: string;
-  discordUrl?: string;
-  lastIngestedAt?: string;
+  floorPrice: number | null;
+  collectionName: string | null;
+  safelistRequestStatus: string | null;
+  imageUrl: string | null;
+  description: string | null;
+  externalUrl: string | null;
+  twitterUsername: string | null;
+  discordUrl: string | null;
+  lastIngestedAt: string;
 }
 
 /**
@@ -310,18 +299,33 @@ export interface RawNftSale {
 
 export interface RawGetContractsForOwnerResponse {
   contracts: RawContractForOwner[];
-  pageKey?: string;
+  pageKey: string | null;
   totalCount: number;
 }
 
 export interface RawContractForOwner
-  extends Omit<RawNftContractMetadata, 'openSea'> {
-  address: string;
-  totalBalance: number;
-  numDistinctTokensOwned: number;
-  title: string;
-  isSpam: boolean;
+  extends RawNftContractMetadataInfo,
+    RawContractOwnershipInfo {
+  displayNft: RawDisplayNftForContract;
+  image: RawNftImage;
+}
+
+export interface RawDisplayNftForContract {
   tokenId: string;
-  media: Media[];
-  opensea?: RawOpenSeaCollectionMetadata;
+  name: string | null;
+}
+
+export interface RawNftImage {
+  cachedUrl: string | null;
+  thumbnailUrl: string | null;
+  pngUrl: string | null;
+  contentType: string | null;
+  size: number | null;
+  originalUrl: string | null;
+}
+
+export interface RawContractOwnershipInfo {
+  totalBalance: string;
+  numDistinctTokensOwned: string;
+  isSpam: boolean;
 }

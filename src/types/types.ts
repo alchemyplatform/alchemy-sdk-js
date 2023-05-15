@@ -547,6 +547,22 @@ export interface TokenUri {
   gateway: string;
 }
 
+/** Media URLs and information for an NFT. */
+export interface NftImage {
+  /** URL of the image stored in Alchemy's cache. */
+  cachedUrl?: string;
+  /** URL of a thumbnail sized image. */
+  thumbnailUrl?: string;
+  /** URL of the image in png format */
+  pngUrl?: string;
+  /** The type of the media image. */
+  contentType?: string;
+  /** The size of the media asset in bytes. */
+  size?: number;
+  /** The original URL of the image as stored on the contract. */
+  originalUrl?: string;
+}
+
 /**
  * Represents the URI information for the NFT's media assets.
  *
@@ -977,7 +993,7 @@ export interface GetFloorPriceResponse {
 }
 
 /**
- * Optional parameters object for the the {@link getContractsForOwner} method
+ * Optional parameters object for the {@link getContractsForOwner} method
  *
  * @public
  */
@@ -1035,25 +1051,34 @@ export interface ContractForOwner extends NftContract {
    * non-fungible tokens this will be equal to the numDistinctTokensOwned, but
    * it may be higher if the user holds some fungible ERC1155 tokens.
    */
-  totalBalance: number;
-
-  /** The title of the token held by the owner. */
-  title: string;
+  totalBalance: string;
 
   /**
    * Number of distinct token IDs held by the owner. For non-fungible tokens
    * this will be equal to the totalBalance, but it may be lower if the user
    * holds some fungible ERC1155 tokens.
    */
-  numDistinctTokensOwned: number;
+  numDistinctTokensOwned: string;
 
+  /** Whether the NFT is considered spam. */
   isSpam: boolean;
 
-  /** One of the tokens from this contract held by the owner. */
-  tokenId: string;
+  /**
+   * Object containing an NFT owned by the owner for this particular contract.
+   * Use this to display a sample NFT for the contract.
+   */
+  displayNft: DisplayNftForContract;
 
-  /** Alternative NFT metadata for this contract to be parsed manually. */
-  media: Media[];
+  /** Object containing different URLs for the NFT media. */
+  image: NftImage;
+}
+
+/** Sample owned NFT on a {@link NftContract}, used to display placeholder info. */
+export interface DisplayNftForContract {
+  /** A token id of an NFT owned by the owner on the contract. */
+  tokenId: string;
+  /** The name of the NFT, if available. */
+  name?: string;
 }
 
 /**
@@ -1674,7 +1699,7 @@ export interface OpenSeaCollectionMetadata {
   /** The Discord URL of the collection. */
   discordUrl?: string;
   /** Timestamp of when the OpenSea metadata was last ingested by Alchemy. */
-  lastIngestedAt?: string;
+  lastIngestedAt: string;
 }
 
 /** An OpenSea collection's approval status. */
