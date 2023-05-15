@@ -9,7 +9,7 @@ import {
   RawGetNftSalesResponse,
   RawNft,
   RawNftAttributeRarity,
-  RawNftContract,
+  RawNftContractMetadataInfo,
   RawOpenSeaCollectionMetadata,
   RawSpamInfo
 } from '../internal/raw-interfaces';
@@ -43,9 +43,9 @@ function stringToEnum<T extends string>(
 }
 
 export function getNftContractFromRaw(
-  rawNftContract: RawNftContract
+  rawNftContract: RawNftContractMetadataInfo
 ): NftContract {
-  return {
+  return nullsToUndefined({
     address: rawNftContract.address,
     name: rawNftContract.name,
     symbol: rawNftContract.symbol,
@@ -54,7 +54,7 @@ export function getNftContractFromRaw(
     openSeaMetadata: parseOpenSeaMetadata(rawNftContract.openSeaMetadata),
     contractDeployer: rawNftContract.contractDeployer,
     deployedBlockNumber: rawNftContract.deployedBlockNumber
-  };
+  });
 }
 
 export function getBaseNftFromRaw(rawBaseNft: RawBaseNft): BaseNft;
@@ -80,7 +80,7 @@ export function getNftFromRaw(rawNft: RawNft): Nft {
     const tokenType = parseNftTokenType(rawNft.id.tokenMetadata?.tokenType);
     const spamInfo = parseSpamInfo(rawNft.spamInfo);
 
-    return {
+    return nullsToUndefined({
       contract: {
         address: rawNft.contract.address,
         name: rawNft.contractMetadata?.name,
@@ -103,7 +103,7 @@ export function getNftFromRaw(rawNft: RawNft): Nft {
       tokenUri: parseNftTokenUri(rawNft.tokenUri),
       media: parseNftTokenUriArray(rawNft.media),
       spamInfo
-    };
+    });
   } catch (e) {
     throw new Error('Error parsing the NFT response: ' + e);
   }
@@ -176,32 +176,27 @@ export function getNftRarityFromRaw(
 export function getContractsForOwnerFromRaw(
   rawContractsForOwner: RawGetContractsForOwnerResponse
 ): GetContractsForOwnerResponse {
-  return {
-    pageKey: rawContractsForOwner?.pageKey,
-    totalCount: rawContractsForOwner.totalCount,
+  return nullsToUndefined({
     contracts: rawContractsForOwner.contracts.map(contract => {
       return {
         address: contract.address,
-        totalSupply: contract.totalSupply,
-        isSpam: contract.isSpam,
-        media: contract.media,
-        numDistinctTokensOwned: contract.numDistinctTokensOwned,
-        tokenId: contract.tokenId,
-        totalBalance: contract.totalBalance,
         name: contract.name,
-<<<<<<< HEAD
-        title: contract.title,
-        openSea: parseOpenSeaMetadata(contract?.opensea),
-=======
-        openSeaMetadata: parseOpenSeaMetadata(contract?.openSeaMetadata),
->>>>>>> 3e0b13a (Update NftContract to use v3)
         symbol: contract?.symbol,
+        totalSupply: contract.totalSupply,
         tokenType: parseNftTokenType(contract?.tokenType),
         contractDeployer: contract.contractDeployer,
-        deployedBlockNumber: contract.deployedBlockNumber
+        deployedBlockNumber: contract.deployedBlockNumber,
+        openSeaMetadata: parseOpenSeaMetadata(contract?.openSeaMetadata),
+        totalBalance: contract.totalBalance,
+        numDistinctTokensOwned: contract.numDistinctTokensOwned,
+        isSpam: contract.isSpam,
+        displayNft: contract.displayNft,
+        image: contract.image
       };
-    })
-  };
+    }),
+    pageKey: rawContractsForOwner?.pageKey,
+    totalCount: rawContractsForOwner.totalCount
+  });
 }
 
 function parseNftTokenId(tokenId: string): string {

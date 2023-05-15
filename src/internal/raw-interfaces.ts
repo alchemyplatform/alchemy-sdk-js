@@ -44,7 +44,7 @@ export interface RawNft extends RawBaseNft {
   metadata?: NftMetadata;
   timeLastUpdated: string;
   error?: string;
-  contractMetadata?: RawNftContractMetadata;
+  contractMetadata?: RawNftContractMetadataInfo;
   spamInfo?: RawSpamInfo;
 }
 
@@ -65,32 +65,15 @@ export interface RawBaseNftContract {
  *
  * @internal
  */
-export interface RawNftContract {
+export interface RawNftContractMetadataInfo {
   address: string;
-  name?: string;
-  symbol?: string;
-  totalSupply?: string;
-  tokenType?: NftTokenType;
-  contractDeployer?: string;
-  deployedBlockNumber?: number;
+  tokenType: NftTokenType;
+  name: string | null;
+  symbol: string | null;
+  totalSupply: string | null;
+  contractDeployer: string | null;
+  deployedBlockNumber: number | null;
   openSeaMetadata?: RawOpenSeaCollectionMetadata;
-}
-
-/**
- * Represents the contract address and metadata of an NFT object received from
- * Alchemy. This field is separated out since not all NFT API endpoints return a
- * contract field.
- *
- * @internal
- */
-export interface RawNftContractMetadata {
-  name?: string;
-  symbol?: string;
-  totalSupply?: string;
-  tokenType?: NftTokenType;
-  openSeaMetadata?: RawOpenSeaCollectionMetadata;
-  contractDeployer?: string;
-  deployedBlockNumber?: number;
 }
 
 /** OpenSea's metadata for an NFT collection. */
@@ -316,21 +299,33 @@ export interface RawNftSale {
 
 export interface RawGetContractsForOwnerResponse {
   contracts: RawContractForOwner[];
-  pageKey?: string;
+  pageKey: string | null;
   totalCount: number;
 }
 
-export interface RawContractForOwner extends RawNftContractMetadata {
-  address: string;
-  totalBalance: number;
-  numDistinctTokensOwned: number;
-  title: string;
-  isSpam: boolean;
+export interface RawContractForOwner
+  extends RawNftContractMetadataInfo,
+    RawContractOwnershipInfo {
+  displayNft: RawDisplayNftForContract;
+  image: RawNftImage;
+}
+
+export interface RawDisplayNftForContract {
   tokenId: string;
-<<<<<<< HEAD
-  media: Media[];
-  opensea?: RawOpenSeaCollectionMetadata;
-=======
-  media: Media;
->>>>>>> 3e0b13a (Update NftContract to use v3)
+  name: string | null;
+}
+
+export interface RawNftImage {
+  cachedUrl: string | null;
+  thumbnailUrl: string | null;
+  pngUrl: string | null;
+  contentType: string | null;
+  size: number | null;
+  originalUrl: string | null;
+}
+
+export interface RawContractOwnershipInfo {
+  totalBalance: string;
+  numDistinctTokensOwned: string;
+  isSpam: boolean;
 }

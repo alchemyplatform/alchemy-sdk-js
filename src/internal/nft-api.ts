@@ -71,7 +71,7 @@ import {
   RawGetOwnersForContractResponse,
   RawNft,
   RawNftAttributeRarity,
-  RawNftContract,
+  RawNftContractMetadataInfo,
   RawOwnedBaseNft,
   RawOwnedNft,
   RawReingestContractResponse
@@ -141,7 +141,7 @@ export async function getContractMetadata(
 ): Promise<NftContract> {
   const response = await requestHttpWithBackoff<
     GetContractMetadataParams,
-    RawNftContract
+    RawNftContractMetadataInfo
   >(config, AlchemyApiType.NFT, 'getContractMetadata', srcMethod, {
     contractAddress
   });
@@ -153,7 +153,10 @@ export async function getContractMetadataBatch(
   config: AlchemyConfig,
   contractAddresses: string[]
 ): Promise<NftContract[]> {
-  const response = await requestHttpWithBackoff<{}, RawNftContract[]>(
+  const response = await requestHttpWithBackoff<
+    {},
+    RawNftContractMetadataInfo[]
+  >(
     config,
     AlchemyApiType.NFT,
     'getContractMetadataBatch',
@@ -643,7 +646,8 @@ export async function searchContractMetadata(
 ): Promise<NftContract[]> {
   const response = await requestHttpWithBackoff<
     SearchContractMetadataParams,
-    RawNftContract[]
+    // TODO(v3): update to response
+    RawNftContractMetadataInfo[]
   >(config, AlchemyApiType.NFT, 'searchContractMetadata', srcMethod, {
     query
   });

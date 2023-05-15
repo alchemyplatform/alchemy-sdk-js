@@ -40,7 +40,8 @@ import {
   RawGetNftsForContractResponse,
   RawGetNftsResponse,
   RawGetOwnersForContractWithTokenBalancesResponse,
-  RawNftAttributeRarity
+  RawNftAttributeRarity,
+  RawNftImage
 } from '../../src/internal/raw-interfaces';
 import {
   getNftContractFromRaw,
@@ -51,7 +52,6 @@ import {
 import {
   createBaseNft,
   createNft,
-  createNftMediaData,
   createOwnedBaseNft,
   createOwnedNft,
   createRawContractForOwner,
@@ -92,7 +92,8 @@ describe('NFT module', () => {
     const deployedBlockNumber = 424242;
     const openSeaMetadata = createRawOpenSeaCollectionMetadata();
 
-    const rawNftContractResponse = createRawNftContract(address, {
+    const rawNftContractResponse = {
+      address,
       tokenType,
       name,
       symbol,
@@ -100,7 +101,7 @@ describe('NFT module', () => {
       openSeaMetadata,
       contractDeployer,
       deployedBlockNumber
-    });
+    };
     const expectedNftContract = getNftContractFromRaw(rawNftContractResponse);
 
     beforeEach(() => {
@@ -140,6 +141,7 @@ describe('NFT module', () => {
     const tokenId = '42';
     const timeoutInMs = 50;
     const contractMetadata = {
+      address: contractAddress,
       name: 'NFT Title',
       symbol: 'NCN',
       totalSupply: '9999',
@@ -688,9 +690,6 @@ describe('NFT module', () => {
       expect(response.ownedNfts[1].contract.tokenType).toEqual(
         NftTokenType.ERC1155
       );
-      expect(response.ownedNfts[1].contract.name).toBeUndefined();
-      expect(response.ownedNfts[1].contract.symbol).toBeUndefined();
-      expect(response.ownedNfts[1].contract.totalSupply).toBeUndefined();
     });
   });
 
@@ -818,7 +817,15 @@ describe('NFT module', () => {
               totalSupply: '9999'
             }
           }),
-          createRawNft('0xCA1', 'b', '0x2', NftTokenType.ERC1155)
+          createRawNft('0xCA1', 'b', '0x2', NftTokenType.ERC1155, {
+            contractMetadata: {
+              address: '0xCA1',
+              name: null,
+              symbol: null,
+              totalSupply: null,
+              deployedBlockNumber: null
+            }
+          })
         ]
       };
       mock.reset();
@@ -1180,50 +1187,53 @@ describe('NFT module', () => {
     const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
     const tokenId = '27';
     const name = 'NFT Contract Name';
-    const title = 'NFT Title';
+    const displayName = 'NFT Display Name';
     const symbol = 'XNO';
     const totalContractCount = 3;
     const totalSupply = '1492';
-    const nftMediaData = createNftMediaData();
     const contractDeployer = '0xABC';
     const deployedBlockNumber = 424242;
-    const completeNftMediaData = createNftMediaData(
-      128,
-      'jpg',
-      'http://api.nikeape.xyz/ipfs/nickbanc/1.jpg'
-    );
     const rawOpenSeaContractMetadata = createRawOpenSeaCollectionMetadata();
     const expectedOpenseaMetadata = parseOpenSeaMetadata(
       rawOpenSeaContractMetadata
     );
+    const image: RawNftImage = {
+      cachedUrl: 'https://example.com/image.png',
+      thumbnailUrl: null,
+      pngUrl: null,
+      contentType: null,
+      size: null,
+      originalUrl: null
+    };
 
     const templateResponse: RawGetContractsForOwnerResponse = {
+      pageKey: null,
       totalCount: totalContractCount,
       contracts: [
-        createRawContractForOwner(contractAddress, tokenId, nftMediaData),
-        createRawContractForOwner(
-          contractAddress,
-          tokenId,
-          completeNftMediaData,
-          false,
-          name,
-          NftTokenType.ERC721,
-          symbol
-        ),
-        createRawContractForOwner(
-          contractAddress,
-          tokenId,
-          nftMediaData,
-          true,
-          name,
-          NftTokenType.ERC1155,
+        createRawContractForOwner(contractAddress, {
+          displayNft: { tokenId, name: displayName },
+          totalSupply: null
+        }),
+        createRawContractForOwner(contractAddress, {
+          displayNft: { tokenId, name: displayName },
+          tokenType: NftTokenType.ERC721,
           symbol,
+          image,
+          name,
+          totalSupply: null
+        }),
+        createRawContractForOwner(contractAddress, {
+          displayNft: { tokenId, name: displayName },
+          isSpam: true,
+          tokenType: NftTokenType.ERC1155,
+          symbol,
+          name,
           totalSupply,
-          rawOpenSeaContractMetadata,
+          openSeaMetadata: rawOpenSeaContractMetadata,
           contractDeployer,
           deployedBlockNumber,
-          title
-        )
+          image
+        })
       ]
     };
 
@@ -1252,21 +1262,19 @@ describe('NFT module', () => {
       expect(result.contracts.length).toEqual(totalContractCount);
 
       expect(result.contracts[0].address).toEqual(contractAddress);
-      expect(result.contracts[0].tokenId).toEqual(tokenId);
+      expect(result.contracts[0].displayNft.tokenId).toEqual(tokenId);
       expect(result.contracts[0].totalSupply).toBeUndefined();
 
       expect(result.contracts[1].address).toEqual(contractAddress);
-      expect(result.contracts[1].tokenId).toEqual(tokenId);
+      expect(result.contracts[1].displayNft.tokenId).toEqual(tokenId);
       expect(result.contracts[1].name).toEqual(name);
       expect(result.contracts[1].tokenType).toEqual(NftTokenType.ERC721);
       expect(result.contracts[1].symbol).toEqual(symbol);
       expect(result.contracts[1].totalSupply).toBeUndefined();
-      expect(result.contracts[1].media).toEqual(completeNftMediaData);
 
       expect(result.contracts[2].address).toEqual(contractAddress);
-      expect(result.contracts[2].tokenId).toEqual(tokenId);
+      expect(result.contracts[2].displayNft.tokenId).toEqual(tokenId);
       expect(result.contracts[2].name).toEqual(name);
-      expect(result.contracts[2].title).toEqual(title);
       expect(result.contracts[2].tokenType).toEqual(NftTokenType.ERC1155);
       expect(result.contracts[2].symbol).toEqual(symbol);
       expect(result.contracts[2].openSeaMetadata).toEqual(

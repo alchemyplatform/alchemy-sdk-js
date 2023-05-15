@@ -601,7 +601,7 @@ describe('E2E integration tests', () => {
   });
 
   it('getNftSales() with contractAddress', async () => {
-    const contractAddress = '0xaf1cfc6b4104c797149fb7a294f7d46f7ec27b80';
+    const contractAddress = '0xaF1cfc6b4104c797149fB7A294f7d46F7eC27B80';
 
     const response = await alchemy.nft.getNftSales({ contractAddress });
 
