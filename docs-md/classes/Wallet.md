@@ -91,7 +91,7 @@ EthersWallet.constructor
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/api/alchemy-wallet.ts#L39)
+[src/api/alchemy-wallet.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/alchemy-wallet.ts#L39)
 
 ## Properties
 
@@ -173,7 +173,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/api/alchemy-wallet.ts#L31)
+[src/api/alchemy-wallet.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/alchemy-wallet.ts#L31)
 
 ___
 
@@ -321,7 +321,7 @@ EthersWallet.call
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:102](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/api/alchemy-wallet.ts#L102)
+[src/api/alchemy-wallet.ts:102](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/alchemy-wallet.ts#L102)
 
 ___
 
@@ -424,7 +424,7 @@ EthersWallet.estimateGas
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/api/alchemy-wallet.ts#L90)
+[src/api/alchemy-wallet.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/alchemy-wallet.ts#L90)
 
 ___
 
@@ -470,7 +470,7 @@ EthersWallet.getBalance
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:66](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/api/alchemy-wallet.ts#L66)
+[src/api/alchemy-wallet.ts:66](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/alchemy-wallet.ts#L66)
 
 ___
 
@@ -492,7 +492,7 @@ EthersWallet.getChainId
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:125](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/api/alchemy-wallet.ts#L125)
+[src/api/alchemy-wallet.ts:142](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/alchemy-wallet.ts#L142)
 
 ___
 
@@ -520,7 +520,7 @@ EthersWallet.getFeeData
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:149](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/api/alchemy-wallet.ts#L149)
+[src/api/alchemy-wallet.ts:166](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/alchemy-wallet.ts#L166)
 
 ___
 
@@ -542,7 +542,7 @@ EthersWallet.getGasPrice
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:134](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/api/alchemy-wallet.ts#L134)
+[src/api/alchemy-wallet.ts:151](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/alchemy-wallet.ts#L151)
 
 ___
 
@@ -571,7 +571,7 @@ EthersWallet.getTransactionCount
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:77](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/api/alchemy-wallet.ts#L77)
+[src/api/alchemy-wallet.ts:77](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/alchemy-wallet.ts#L77)
 
 ___
 
@@ -585,7 +585,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:165](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/api/alchemy-wallet.ts#L165)
+[src/api/alchemy-wallet.ts:182](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/alchemy-wallet.ts#L182)
 
 ___
 
@@ -593,23 +593,29 @@ ___
 
 ▸ **populateTransaction**(`transaction`): `Promise`<[`TransactionRequest`](../modules.md#transactionrequest)\>
 
+Populates ALL keys for a transaction and checks that `from` matches this
+`Signer`. Resolves ENS names and populates fields like `gasPrice`, `gasLimit`,
+`nonce`, and `chainId` if they are not provided.
+
+**`override`**
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `transaction` | `Deferrable`<[`TransactionRequest`](../modules.md#transactionrequest)\> |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `transaction` | `Deferrable`<[`TransactionRequest`](../modules.md#transactionrequest)\> | The transaction to populate. |
 
 #### Returns
 
 `Promise`<[`TransactionRequest`](../modules.md#transactionrequest)\>
 
-#### Inherited from
+#### Overrides
 
 EthersWallet.populateTransaction
 
 #### Defined in
 
-node_modules/@ethersproject/abstract-signer/lib/index.d.ts:41
+[src/api/alchemy-wallet.ts:117](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/alchemy-wallet.ts#L117)
 
 ___
 
@@ -639,7 +645,7 @@ EthersWallet.resolveName
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:161](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/api/alchemy-wallet.ts#L161)
+[src/api/alchemy-wallet.ts:178](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/alchemy-wallet.ts#L178)
 
 ___
 
@@ -653,9 +659,9 @@ Populates all fields in a transaction, signs it and sends it to the network
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `transaction` | `Deferrable`<[`TransactionRequest`](../modules.md#transactionrequest)\> |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `transaction` | `Deferrable`<[`TransactionRequest`](../modules.md#transactionrequest)\> | The transaction to send. |
 
 #### Returns
 
@@ -667,7 +673,7 @@ EthersWallet.sendTransaction
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:114](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/api/alchemy-wallet.ts#L114)
+[src/api/alchemy-wallet.ts:131](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/alchemy-wallet.ts#L131)
 
 ___
 

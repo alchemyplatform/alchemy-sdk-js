@@ -21,4 +21,4 @@ Error fetching floor prices from the given marketplace
 
 #### Defined in
 
-[src/types/types.ts:962](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/types/types.ts#L962)
+[src/types/types.ts:962](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L962)

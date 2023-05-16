@@ -21,4 +21,4 @@ The new addresses to track. Existing addresses will be removed.
 
 #### Defined in
 
-[src/types/types.ts:2375](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4a7f568/src/types/types.ts#L2375)
+[src/types/types.ts:2375](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L2375)
