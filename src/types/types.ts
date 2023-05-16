@@ -96,7 +96,9 @@ export enum Network {
   ARB_GOERLI = 'arb-goerli',
   MATIC_MAINNET = 'polygon-mainnet',
   MATIC_MUMBAI = 'polygon-mumbai',
-  ASTAR_MAINNET = 'astar-mainnet'
+  ASTAR_MAINNET = 'astar-mainnet',
+  POLYGONZKEVM_MAINNET = 'polygonzkevm-mainnet',
+  POLYGONZKEVM_TESTNET = 'polygonzkevm-testnet'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */

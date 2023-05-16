@@ -23,7 +23,7 @@ the response. Defaults to false for faster response times.
 
 #### Defined in
 
-[src/types/types.ts:900](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L900)
+[src/types/types.ts:902](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L902)
 
 ___
 
@@ -35,7 +35,7 @@ Optional field to specify the type of token to speed up the query.
 
 #### Defined in
 
-[src/types/types.ts:887](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L887)
+[src/types/types.ts:889](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L889)
 
 ___
 
@@ -50,4 +50,4 @@ metadata for cache misses then set this value to 0.
 
 #### Defined in
 
-[src/types/types.ts:894](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L894)
+[src/types/types.ts:896](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L896)

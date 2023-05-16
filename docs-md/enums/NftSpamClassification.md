@@ -22,7 +22,7 @@ Potential reasons why an NFT contract was classified as spam.
 
 #### Defined in
 
-[src/types/types.ts:588](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L588)
+[src/types/types.ts:590](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L590)
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:586](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L586)
+[src/types/types.ts:588](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L588)
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:587](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L587)
+[src/types/types.ts:589](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L589)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:589](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L589)
+[src/types/types.ts:591](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L591)
 
 ___
 
@@ -62,4 +62,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:590](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L590)
+[src/types/types.ts:592](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L592)

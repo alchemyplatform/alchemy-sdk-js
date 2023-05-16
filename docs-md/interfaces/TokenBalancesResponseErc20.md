@@ -31,7 +31,7 @@ used. A page key may be returned if the provided address has many transfers.
 
 #### Defined in
 
-[src/types/types.ts:150](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L150)
+[src/types/types.ts:152](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L152)
 
 ___
 
@@ -44,7 +44,7 @@ of token balances.
 
 #### Defined in
 
-[src/types/types.ts:145](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L145)
+[src/types/types.ts:147](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L147)
 
 ___
 
@@ -58,4 +58,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:151](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e62e5c7/src/types/types.ts#L151)
+[src/types/types.ts:153](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L153)

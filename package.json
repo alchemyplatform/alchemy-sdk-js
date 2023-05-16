@@ -1,6 +1,6 @@
 {
   "name": "alchemy-sdk",
-  "version": "2.7.0",
+  "version": "2.8.3",
   "description": "Extended Ethers.js SDK for Alchemy APIs",
   "author": "Alchemy",
   "license": "MIT",
@@ -30,6 +30,7 @@
       "import": "./dist/cjs/index.js"
     },
     "package.json": "./package.json",
+    "types": "./dist/src/index.d.ts",
     "default": "./dist/esm/index.js"
   },
   "types": "./dist/src/index.d.ts",

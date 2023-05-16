@@ -6,6 +6,43 @@
 
 ### Minor Changes
 
+- Added redundancy to `CoreNamespace.getTokensForOwner()` to handle failures when fetching token metadata.
+
+## 2.8.3
+
+### Major Changes
+
+### Minor Changes
+
+- Fixed a bug with `NotifyNamespace` when creating webhooks on ETH_SEPOLIA, OPT_GOERLI, and ARB_GOERLI.
+- Fixed a bug with `Wallet.populateTransaction()` where the method would never resolve.
+- Fixed a bug with `NftNamespace.getMintedNfts()` and `NftNamespace.getTransfersForOwner()` where the method would always throw an error for certain addresses (#318).
+
+## 2.8.2
+
+### Major Changes
+
+### Minor Changes
+
+- Moved the `exports.default` field to be the last field. This fixed a bug introduced in `2.8.1` that prevented certain frameworks from building (#313).
+
+## 2.8.1
+
+### Major Changes
+
+### Minor Changes
+
+- Fixed a bug where the SDK was not compatible with `moduleResolution: bundler` when using `typescript` at `v5.0`(#302). Thanks @florrdv!
+- Fixed a bug with `getTransfersForOwner()` and `getTransfersForContract()` methods in the `NftNamespace`, where some NFTs would not be returned if the NFT was transferred multiple times.
+
+## 2.8.0
+
+### Major Changes
+
+Added PolygonZkEvm Mainnet and Testnet limited support to the sdk
+
+### Minor Changes
+
 ## 2.7.0
 
 ### Major Changes
