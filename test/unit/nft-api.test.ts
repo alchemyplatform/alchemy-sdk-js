@@ -21,6 +21,7 @@ import {
   NftRefreshState,
   NftSaleMarketplace,
   NftSaleTakerType,
+  NftSpamClassification,
   NftTokenType,
   OpenSeaSafelistRequestStatus,
   OwnedBaseNft,
@@ -44,11 +45,7 @@ import {
   RawNftAttributeRarity,
   RawNftImage
 } from '../../src/internal/raw-interfaces';
-import {
-  getNftContractFromRaw,
-  getNftFromRaw,
-  getNftRarityFromRaw
-} from '../../src/util/util';
+import { getNftContractFromRaw, getNftFromRaw } from '../../src/util/util';
 import {
   createBaseNft,
   createNft,
@@ -147,7 +144,9 @@ describe('NFT module', () => {
       tokenType: NftTokenType.ERC721,
       contractDeployer: '0xDEF',
       deployedBlockNumber: 424242,
-      openSeaMetadata: createRawOpenSeaCollectionMetadata()
+      openSeaMetadata: createRawOpenSeaCollectionMetadata(),
+      isSpam: false,
+      spamClassifications: [NftSpamClassification.Erc721DishonestTotalSupply]
     };
     // Special case token ID as an integer string, since that's what the NFT
     // API endpoint returns.
@@ -1486,7 +1485,7 @@ describe('NFT module', () => {
         prevalence: 0.0108
       }
     ];
-    const expectedResult = getNftRarityFromRaw(templateResponse);
+    const expectedResult = templateResponse;
 
     beforeEach(() => {
       mock.onGet().reply(200, templateResponse);

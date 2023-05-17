@@ -2,8 +2,7 @@ import {
   NftImage,
   NftSpamClassification,
   NftTokenType,
-  OpenSeaCollectionMetadata,
-  TokenUri
+  OpenSeaCollectionMetadata
 } from '../types/types';
 
 /**
@@ -37,8 +36,11 @@ export interface NftContract {
   deployedBlockNumber?: number;
 }
 
-export interface NftContractMetadata extends NftContract {
+/** NFT contract metadata with spam information. */
+export interface NftContractForNft extends NftContract {
+  /** Whether the NFT contract is marked as spam. */
   isSpam?: boolean;
+  /** Potential reasons why an NFT Contract was classified as spam. */
   spamClassifications: NftSpamClassification[];
 }
 
@@ -69,36 +71,33 @@ export interface BaseNft {
  */
 export interface Nft {
   /** The NFT's underlying contract and relevant contract metadata. */
-  contract: NftContractMetadata;
-
+  contract: NftContractForNft;
   /** The NFT token ID as an integer string. */
   tokenId: string;
-
   /** The type of NFT.*/
   tokenType: NftTokenType;
-
   /** The NFT name. */
   name?: string;
-
   /** The NFT description. */
   description?: string;
-
+  /** Media URLs and information for the NFT */
   image: NftImage;
-
+  /** The raw metadata for the NFT based on the metadata URI on the NFT contract. */
   raw: NftRawMetadata;
-
-  /** Holds an error message if there was an issue fetching metadata. */
-  metadataError: string | undefined;
-
   /** URIs for accessing the NFT's metadata blob. */
-  tokenUri?: TokenUri;
-
+  tokenUri?: string;
   /** When the NFT was last updated in the blockchain. Represented in ISO-8601 format. */
   timeLastUpdated: string;
 }
 
+/**
+ * The raw metadata for the NFT based on the metadata URI on the NFT contract.
+ */
 export interface NftRawMetadata {
+  /** The raw token URI on the NFT contract. */
   tokenUri?: string;
+  /** The raw metadata parsed from the raw token URI. */
   metadata: Record<string, any>;
+  /** Error message if the raw metadata could not be fetched. */
   error?: string;
 }

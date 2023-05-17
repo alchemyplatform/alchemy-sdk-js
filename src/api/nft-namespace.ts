@@ -181,6 +181,20 @@ export class NftNamespace {
   }
 
   /**
+   * Get all base NFTs for an owner.
+   *
+   * This method returns the base NFTs that omit the associated metadata. To get
+   * all NFTs with their associated metadata, use {@link GetNftsForOwnerOptions}.
+   *
+   * @param owner - The address of the owner.
+   * @param options - The optional parameters to use for the request.
+   * @public
+   */
+  getNftsForOwner(
+    owner: string,
+    options: GetBaseNftsForOwnerOptions
+  ): Promise<OwnedBaseNftsResponse>;
+  /**
    * Get all NFTs for an owner.
    *
    * This method returns the full NFTs in the contract. To get all NFTs without
@@ -194,20 +208,6 @@ export class NftNamespace {
     owner: string,
     options?: GetNftsForOwnerOptions
   ): Promise<OwnedNftsResponse>;
-  /**
-   * Get all base NFTs for an owner.
-   *
-   * This method returns the base NFTs that omit the associated metadata. To get
-   * all NFTs with their associated metadata, use {@link GetNftsForOwnerOptions}.
-   *
-   * @param owner - The address of the owner.
-   * @param options - The optional parameters to use for the request.
-   * @public
-   */
-  getNftsForOwner(
-    owner: string,
-    options?: GetBaseNftsForOwnerOptions
-  ): Promise<OwnedBaseNftsResponse>;
   getNftsForOwner(
     owner: string,
     options?: GetNftsForOwnerOptions | GetBaseNftsForOwnerOptions

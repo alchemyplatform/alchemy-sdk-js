@@ -51,10 +51,9 @@ import { AlchemyApiType, ETH_NULL_ADDRESS } from '../util/const';
 import { sanitizeTokenType } from '../util/inputSanitization';
 import {
   getBaseNftFromRaw,
-  getContractsForOwnerFromRaw,
   getNftContractFromRaw,
+  getNftContractsForOwnerFromRaw,
   getNftFromRaw,
-  getNftRarityFromRaw,
   getNftSalesFromRaw,
   nullsToUndefined
 } from '../util/util';
@@ -71,7 +70,7 @@ import {
   RawGetOwnersForContractResponse,
   RawNft,
   RawNftAttributeRarity,
-  RawNftContractMetadataInfo,
+  RawNftContractForNft,
   RawOwnedBaseNft,
   RawOwnedNft,
   RawReingestContractResponse
@@ -141,7 +140,7 @@ export async function getContractMetadata(
 ): Promise<NftContract> {
   const response = await requestHttpWithBackoff<
     GetContractMetadataParams,
-    RawNftContractMetadataInfo
+    RawNftContractForNft
   >(config, AlchemyApiType.NFT, 'getContractMetadata', srcMethod, {
     contractAddress
   });
@@ -153,10 +152,7 @@ export async function getContractMetadataBatch(
   config: AlchemyConfig,
   contractAddresses: string[]
 ): Promise<NftContract[]> {
-  const response = await requestHttpWithBackoff<
-    {},
-    RawNftContractMetadataInfo[]
-  >(
+  const response = await requestHttpWithBackoff<{}, RawNftContractForNft[]>(
     config,
     AlchemyApiType.NFT,
     'getContractMetadataBatch',
@@ -228,7 +224,27 @@ export async function getNftsForOwner(
     tokenUriTimeoutInMs: options?.tokenUriTimeoutInMs,
     orderBy: options?.orderBy
   });
-  return nullsToUndefined(response);
+  if (withMetadata) {
+    return nullsToUndefined<OwnedNftsResponse>({
+      ownedNfts: response.ownedNfts.map(res => ({
+        ...getNftFromRaw(res as RawOwnedNft),
+        balance: res.balance
+      })),
+      pageKey: response.pageKey,
+      totalCount: response.totalCount,
+      blockHash: response.blockHash
+    });
+  }
+
+  return nullsToUndefined<OwnedBaseNftsResponse>({
+    ownedNfts: response.ownedNfts.map(res => ({
+      ...getBaseNftFromRaw(res as RawOwnedBaseNft),
+      balance: res.balance
+    })),
+    pageKey: response.pageKey,
+    totalCount: response.totalCount,
+    blockHash: response.blockHash
+  });
 }
 
 export async function getNftsForContract(
@@ -241,7 +257,7 @@ export async function getNftsForContract(
   const response = await requestHttpWithBackoff<
     GetNftsForContractAlchemyParams,
     RawGetBaseNftsForContractResponse | RawGetNftsForContractResponse
-  >(config, AlchemyApiType.NFT, 'getNftsForContract', srcMethod, {
+  >(config, AlchemyApiType.NFT, 'getNFTsForContract', srcMethod, {
     contractAddress,
     pageKey: options?.pageKey,
     withMetadata,
@@ -249,9 +265,16 @@ export async function getNftsForContract(
     tokenUriTimeoutInMs: options?.tokenUriTimeoutInMs
   });
 
-  return nullsToUndefined({
+  if (withMetadata) {
+    return nullsToUndefined<NftContractNftsResponse>({
+      nfts: response.nfts.map(res => getNftFromRaw(res as RawNft)),
+      pageKey: response.pageKey
+    });
+  }
+
+  return nullsToUndefined<NftContractBaseNftsResponse>({
     nfts: response.nfts.map(res =>
-      nftFromGetNftContractResponse(res, contractAddress)
+      getBaseNftFromRaw(res as RawContractBaseNft, contractAddress)
     ),
     pageKey: response.pageKey
   });
@@ -328,7 +351,11 @@ export async function getContractsForOwner(
     orderBy: options?.orderBy
   });
 
-  return getContractsForOwnerFromRaw(response);
+  return nullsToUndefined<GetContractsForOwnerResponse>({
+    contracts: response.contracts.map(getNftContractsForOwnerFromRaw),
+    pageKey: response.pageKey,
+    totalCount: response.totalCount
+  });
 }
 
 export async function getOwnersForNft(
@@ -609,7 +636,7 @@ export async function computeRarity(
     tokenId: BigNumber.from(tokenId).toString()
   });
 
-  return getNftRarityFromRaw(response);
+  return nullsToUndefined(response);
 }
 
 export async function searchContractMetadata(
@@ -620,7 +647,7 @@ export async function searchContractMetadata(
   const response = await requestHttpWithBackoff<
     SearchContractMetadataParams,
     // TODO(v3): update to response
-    RawNftContractMetadataInfo[]
+    RawNftContractForNft[]
   >(config, AlchemyApiType.NFT, 'searchContractMetadata', srcMethod, {
     query
   });

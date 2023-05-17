@@ -11,9 +11,9 @@ import {
   toHex
 } from '../src';
 import {
-  RawContractForOwner,
   RawNft,
-  RawNftContractMetadataInfo,
+  RawNftContractForNft,
+  RawNftContractForOwner,
   RawNftImage,
   RawNftSale,
   RawNftSaleFeeData,
@@ -92,8 +92,8 @@ export function createNft(
 
 export function createRawNftContract(
   address: string,
-  overrides: Partial<RawNftContractMetadataInfo> = {}
-): RawNftContractMetadataInfo {
+  overrides: Partial<RawNftContractForNft> = {}
+): RawNftContractForNft {
   return {
     address,
     tokenType: NftTokenType.ERC721,
@@ -103,6 +103,8 @@ export function createRawNftContract(
     contractDeployer: '0x000',
     deployedBlockNumber: 1,
     openSeaMetadata: createRawOpenSeaCollectionMetadata(),
+    isSpam: false,
+    spamClassifications: [],
     ...overrides
   };
 }
@@ -141,7 +143,7 @@ export function createRawOwnedNft(
   tokenId: string,
   balance: string,
   tokenType = NftTokenType.UNKNOWN,
-  contract?: Partial<RawNftContractMetadataInfo>
+  contract?: Partial<RawNftContractForNft>
 ): RawOwnedNft {
   return {
     ...createRawNft(address, title, tokenId, tokenType, {
@@ -212,8 +214,8 @@ const emptyNftImage: RawNftImage = {
 
 export function createRawContractForOwner(
   address: string,
-  overrides?: Partial<RawContractForOwner>
-): RawContractForOwner {
+  overrides?: Partial<RawNftContractForOwner>
+): RawNftContractForOwner {
   return {
     address,
     displayNft: {

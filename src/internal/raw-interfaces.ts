@@ -10,7 +10,7 @@
  * @internal
  */
 export interface RawNft {
-  contract: RawNftContractMetadataInfo;
+  contract: RawNftContractForNft;
   tokenId: string;
   tokenType: string;
   name: string | null;
@@ -27,14 +27,7 @@ export interface RawNftData {
   error: string | null;
 }
 
-/**
- * Represents the contract address and metadata of an NFT object received from
- * Alchemy. This field is separated out since not all NFT API endpoints return a
- * contract field.
- *
- * @internal
- */
-export interface RawNftContractMetadataInfo {
+export interface RawNftContract {
   address: string;
   tokenType: string;
   name: string | null;
@@ -43,6 +36,18 @@ export interface RawNftContractMetadataInfo {
   contractDeployer: string | null;
   deployedBlockNumber: number | null;
   openSeaMetadata: RawOpenSeaCollectionMetadata;
+}
+
+/**
+ * Represents the contract address and metadata of an NFT object received from
+ * Alchemy. This field is separated out since not all NFT API endpoints return a
+ * contract field.
+ *
+ * @internal
+ */
+export interface RawNftContractForNft extends RawNftContract {
+  isSpam: boolean | null;
+  spamClassifications: string[];
 }
 
 /** OpenSea's metadata for an NFT collection. */
@@ -258,14 +263,14 @@ export interface RawNftSaleFeeData {
 }
 
 export interface RawGetContractsForOwnerResponse {
-  contracts: RawContractForOwner[];
+  contracts: RawNftContractForOwner[];
   pageKey: string | null;
   totalCount: number;
 }
 
-export interface RawContractForOwner
-  extends RawNftContractMetadataInfo,
-    RawContractOwnershipInfo {
+export interface RawNftContractForOwner
+  extends RawNftContract,
+    RawNftContractOwnershipInfo {
   displayNft: RawDisplayNftForContract;
   image: RawNftImage;
 }
@@ -284,7 +289,7 @@ export interface RawNftImage {
   originalUrl: string | null;
 }
 
-export interface RawContractOwnershipInfo {
+export interface RawNftContractOwnershipInfo {
   totalBalance: string;
   numDistinctTokensOwned: string;
   isSpam: boolean;

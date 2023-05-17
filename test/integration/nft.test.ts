@@ -147,8 +147,8 @@ describe('E2E integration tests', () => {
     ).toBeFalsy();
   });
 
-  it('getNftForOwners() with pageSize', async () => {
-    const response = await alchemy.nft.getNftsForOwner('0xshah.eth', {
+  it('getNftsForOwner() with pageSize', async () => {
+    const response = await alchemy.nft.getNftsForOwner('vitalik.eth', {
       pageSize: 51
     });
     expect(
@@ -174,7 +174,7 @@ describe('E2E integration tests', () => {
 
     expect(nfts.ownedNfts.length).not.toEqual(nfts2.totalCount);
     const response = await alchemy.nft.getOwnersForNft(
-      nfts.ownedNfts[0].contract.address,
+      nfts.ownedNfts[0].contractAddress,
       nfts.ownedNfts[0].tokenId
     );
     expect(response.owners.length).toBeGreaterThan(0);
@@ -198,7 +198,7 @@ describe('E2E integration tests', () => {
   });
 
   it('getNftsForOwner() contract metadata check', async () => {
-    const nfts = await alchemy.nft.getNftsForOwner('0xshah.eth');
+    const nfts = await alchemy.nft.getNftsForOwner('vitalik.eth');
     expect(
       nfts.ownedNfts.filter(
         nft =>
@@ -584,7 +584,6 @@ describe('E2E integration tests', () => {
 
     verifyNftSalesData(response);
     expect(response.nftSales[0].royaltyFee).toBeDefined();
-    expect(response.nftSales[0].marketplaceFee).toBeDefined();
     expect(response.nftSales[0].protocolFee).toBeDefined();
     expect(response.nftSales[0].sellerFee).toBeDefined();
   });

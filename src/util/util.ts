@@ -1,20 +1,20 @@
-import { BaseNft, Nft, NftContract } from '../api/nft';
+import { BaseNft, Nft, NftContract, NftContractForNft } from '../api/nft';
 import { toHex } from '../api/util';
 import {
   RawContractBaseNft,
-  RawGetContractsForOwnerResponse,
   RawGetNftSalesResponse,
   RawNft,
-  RawNftAttributeRarity,
-  RawNftContractMetadataInfo,
+  RawNftContract,
+  RawNftContractForNft,
+  RawNftContractForOwner,
   RawOwnedBaseNft
 } from '../internal/raw-interfaces';
 import {
-  GetContractsForOwnerResponse,
   GetNftSalesResponse,
-  NftAttributeRarity,
+  NftContractForOwner,
   NftSaleMarketplace,
   NftSaleTakerType,
+  NftSpamClassification,
   NftTokenType,
   OpenSeaSafelistRequestStatus
 } from '../types/types';
@@ -35,8 +35,33 @@ function stringToEnum<T extends string>(
   return Object.values(enumb).includes(x as T) ? (x as T) : null;
 }
 
+export function getNftContractForNftFromRaw(
+  rawNftContract: RawNftContractForNft
+): NftContractForNft {
+  // TODO(NOW): figure out how to keep type safety while using nullsToUndefined
+  return nullsToUndefined<NftContractForNft>({
+    ...getNftContractFromRaw(rawNftContract),
+    spamClassifications: rawNftContract.spamClassifications.map(
+      parseNftSpamClassification
+    )
+  });
+}
+
+export function getNftContractsForOwnerFromRaw(
+  rawNftContract: RawNftContractForOwner
+): NftContractForOwner {
+  return nullsToUndefined<NftContractForOwner>({
+    ...getNftContractFromRaw(rawNftContract),
+    displayNft: rawNftContract.displayNft,
+    image: rawNftContract.image,
+    totalBalance: rawNftContract.totalBalance,
+    numDistinctTokensOwned: rawNftContract.numDistinctTokensOwned,
+    isSpam: rawNftContract.isSpam
+  });
+}
+
 export function getNftContractFromRaw(
-  rawNftContract: RawNftContractMetadataInfo
+  rawNftContract: RawNftContract
 ): NftContract {
   return nullsToUndefined<NftContract>({
     ...rawNftContract,
@@ -74,7 +99,7 @@ export function getBaseNftFromRaw(
 export function getNftFromRaw(rawNft: RawNft): Nft {
   return nullsToUndefined<Nft>({
     ...rawNft,
-    contract: getNftContractFromRaw(rawNft.contract),
+    contract: getNftContractForNftFromRaw(rawNft.contract),
     tokenType: parseNftTokenType(rawNft.tokenType)
   });
 }
@@ -121,24 +146,13 @@ function parseNftTaker(taker: string): NftSaleTakerType {
   }
 }
 
-export function getNftRarityFromRaw(
-  rawNftRarity: RawNftAttributeRarity[]
-): NftAttributeRarity[] {
-  return rawNftRarity.map(({ prevalence, traitType, value }) => ({
-    prevalence,
-    traitType,
-    value
-  }));
-}
+function parseNftSpamClassification(s: string): NftSpamClassification {
+  const res = stringToEnum(s, NftSpamClassification);
+  if (res == null) {
+    return NftSpamClassification.Unknown;
+  }
 
-export function getContractsForOwnerFromRaw(
-  rawContractsForOwner: RawGetContractsForOwnerResponse
-): GetContractsForOwnerResponse {
-  return nullsToUndefined({
-    contracts: rawContractsForOwner.contracts.map(getNftContractFromRaw),
-    pageKey: rawContractsForOwner.pageKey,
-    totalCount: rawContractsForOwner.totalCount
-  });
+  return res;
 }
 
 function parseNftTokenType(tokenType: string | undefined): NftTokenType {
@@ -162,15 +176,27 @@ function parseNftTokenType(tokenType: string | undefined): NftTokenType {
 
 export const IS_BROWSER = typeof window !== 'undefined' && window !== null;
 
-/** Recursively converts all `null` fields to `undefined. */
-// TODO: Add typing support so it doesn't return `any`.
-export function nullsToUndefined<X>(obj: unknown): X {
-  if (obj === null) {
+// If T extends infer U | undefined, return WithNullableFields<U> | null | undefined
+// Else if T extends (infer U)[], return WithNullableFields<U>[]
+// Else if T extends object, return {
+//   [K in keyof T]: WithNullableFields<T[K]>
+// }
+type WithNullableFields<T> = T extends undefined
+  ? null | undefined
+  : T extends (infer U)[]
+  ? WithNullableFields<U>[]
+  : T extends object
+  ? {
+      [K in keyof T]: WithNullableFields<T[K]>;
+    }
+  : T;
+
+export function nullsToUndefined<U>(obj: WithNullableFields<U>): U {
+  if (obj === null || obj === undefined) {
     return undefined as any;
   }
 
-  // if `obj` is an object, recursively convert all `null` fields to `undefined`.
-  if (typeof obj === 'object') {
+  if ((obj as any).constructor.name === 'Object' || Array.isArray(obj)) {
     for (const key in obj) {
       (obj as any)[key] = nullsToUndefined((obj as any)[key]);
     }
