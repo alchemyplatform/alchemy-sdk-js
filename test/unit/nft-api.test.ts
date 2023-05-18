@@ -1538,7 +1538,7 @@ describe('NFT module', () => {
       symbol,
       totalSupply
     });
-    const templateResponse = [rawNftContractResponse];
+    const templateResponse = { contracts: [rawNftContractResponse] };
     const expectedNftContract = getNftContractFromRaw(rawNftContractResponse);
 
     beforeEach(() => {
