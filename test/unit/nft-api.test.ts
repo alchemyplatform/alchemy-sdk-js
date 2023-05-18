@@ -262,11 +262,13 @@ describe('NFT module', () => {
     const timeoutInMs = 50;
     // Special case token ID as an integer string, since that's what the NFT
     // API endpoint returns.
-    const rawNftsResponse = [
-      createRawNft(contractAddress, title, tokenId),
-      createRawNft(contractAddress2, title, tokenId2.toString())
-    ];
-    const expectedNfts = rawNftsResponse.map(getNftFromRaw);
+    const rawNftsResponse = {
+      nfts: [
+        createRawNft(contractAddress, title, tokenId),
+        createRawNft(contractAddress2, title, tokenId2.toString())
+      ]
+    };
+    const expectedNfts = rawNftsResponse.nfts.map(getNftFromRaw);
 
     beforeEach(() => {
       mock.onPost().reply(200, rawNftsResponse);
@@ -285,7 +287,7 @@ describe('NFT module', () => {
         refreshCache: true,
         tokenUriTimeoutInMs: timeoutInMs
       });
-      expect(response).toEqual(expectedNfts);
+      expect(response.nfts).toEqual(expectedNfts);
       expect(mock.history.post.length).toEqual(1);
       const parsedRequest = JSON.parse(mock.history.post[0].data);
       expect(parsedRequest).toHaveProperty('tokens', tokens);
@@ -1010,7 +1012,8 @@ describe('NFT module', () => {
 
     beforeEach(() => {
       mock.onGet().reply(200, {
-        ownerAddresses: owners
+        owners,
+        pageKey: null
       });
     });
 
@@ -1021,12 +1024,12 @@ describe('NFT module', () => {
         'contractAddress',
         contractAddress
       );
-      expect(response).toEqual({ owners });
+      expect(response).toEqual({ owners, pageKey: undefined });
     });
 
     it('handles withTokenBalances=true', async () => {
       const mockResponse: RawGetOwnersForContractWithTokenBalancesResponse = {
-        ownerAddresses: [
+        owners: [
           {
             ownerAddress: '0xABC',
             tokenBalances: [
@@ -1552,9 +1555,9 @@ describe('NFT module', () => {
     it('returns the api response in the expected format', async () => {
       const response = await alchemy.nft.searchContractMetadata(query);
 
-      expect(response.length).toEqual(1);
+      expect(response.contracts.length).toEqual(1);
       verifyNftContractMetadata(
-        response[0],
+        response.contracts[0],
         expectedNftContract,
         address,
         name,
@@ -1580,7 +1583,7 @@ describe('NFT module', () => {
     const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
     const templateResponse: NftAttributesResponse = {
       contractAddress,
-      totalSupply: 1000,
+      totalSupply: '1000',
       summary: {
         Background: {
           Aquamarine: 3,
@@ -1841,11 +1844,13 @@ describe('NFT module', () => {
     });
 
     it('flattens 1155 transfers', async () => {
-      const nftMetadataBatchResponse = [
-        createRawNft('0xabc', 'NFT1', '1', NftTokenType.ERC721),
-        createRawNft('0xdef', 'NFT2', '2', NftTokenType.ERC1155),
-        createRawNft('0xdef', 'NFT2', '3', NftTokenType.ERC1155)
-      ];
+      const nftMetadataBatchResponse = {
+        nfts: [
+          createRawNft('0xabc', 'NFT1', '1', NftTokenType.ERC721),
+          createRawNft('0xdef', 'NFT2', '2', NftTokenType.ERC1155),
+          createRawNft('0xdef', 'NFT2', '3', NftTokenType.ERC1155)
+        ]
+      };
       mock.onPost().reply(200, nftMetadataBatchResponse);
       const transfers = [
         create721Transfer('0xabc', '0x1'),
@@ -1871,12 +1876,14 @@ describe('NFT module', () => {
     });
 
     it('batches NFT metadata calls', async () => {
-      const nftMetadataBatchResponse1 = Array.from({ length: 100 }, (_, i) =>
-        createRawNft('0xdef', 'NFT', toHex(i), NftTokenType.ERC1155)
-      );
-      const nftMetadataBatchResponse2 = [
-        createRawNft('0xdef', 'NFT', toHex(100), NftTokenType.ERC1155)
-      ];
+      const nftMetadataBatchResponse1 = {
+        nfts: Array.from({ length: 100 }, (_, i) =>
+          createRawNft('0xdef', 'NFT', toHex(i), NftTokenType.ERC1155)
+        )
+      };
+      const nftMetadataBatchResponse2 = {
+        nfts: [createRawNft('0xdef', 'NFT', toHex(100), NftTokenType.ERC1155)]
+      };
       mock
         .onPost()
         .reply(200, nftMetadataBatchResponse1)
@@ -1920,10 +1927,12 @@ describe('NFT module', () => {
     });
 
     it('returns separate NFTs for duplicate transfers', async () => {
-      const nftMetadataBatchResponse = [
-        createRawNft('0xabc', 'NFT1', '0x1', NftTokenType.ERC721),
-        createRawNft('0xdef', 'NFT2', '0x1', NftTokenType.ERC1155)
-      ];
+      const nftMetadataBatchResponse = {
+        nfts: [
+          createRawNft('0xabc', 'NFT1', '0x1', NftTokenType.ERC721),
+          createRawNft('0xdef', 'NFT2', '0x1', NftTokenType.ERC1155)
+        ]
+      };
       mock.onPost().reply(200, nftMetadataBatchResponse);
       const transfers = [
         create721Transfer('0xabc', '0x1'),

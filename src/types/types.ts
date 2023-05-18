@@ -841,6 +841,8 @@ export interface GetOwnersForNftResponse {
 export interface GetOwnersForContractResponse {
   /** An array of owner addresses for the provided contract address */
   owners: string[];
+  /** Optional page key that is returned when a collection has more than 50,000 owners. */
+  pageKey?: string;
 }
 
 /**
@@ -854,6 +856,15 @@ export interface GetOwnersForContractWithTokenBalancesResponse {
 
   /** Optional page key that is returned when a collection has more than 50,000 owners. */
   pageKey?: string;
+}
+
+export interface GetNftMetadataBatchResponse {
+  /** An array of NFT metadata objects. */
+  nfts: Nft[];
+}
+
+export interface GetContractMetadataBatchResponse {
+  contracts: NftContract[];
 }
 
 /**
@@ -877,6 +888,14 @@ export interface NftContractTokenBalance {
   tokenId: string;
   /** The token id balance for the provided owner. */
   balance: string;
+}
+
+export interface IsSpamContractResponse {
+  isSpamContract: boolean;
+}
+
+export interface GetSpamContractsResponse {
+  contractAddresses: string[];
 }
 
 /**
@@ -1347,6 +1366,17 @@ export enum NftSaleTakerType {
   SELLER = 'seller'
 }
 
+export interface SearchContractMetadataResponse {
+  contracts: NftContract[];
+}
+
+/**
+ * Response object for the {@link NftNamespace.computeRarity} method.
+ */
+export interface ComputeRarityResponse {
+  rarities: NftAttributeRarity[];
+}
+
 /**
  * Information about the rarity of an NFT's attribute in the specified collection.
  *
@@ -1376,7 +1406,7 @@ export interface NftAttributesResponse {
   contractAddress: string;
 
   /** The specified NFT contract's total supply. */
-  totalSupply: number;
+  totalSupply: string;
 
   /**
    * The attribute prevalence of each trait grouped by the trait type for the

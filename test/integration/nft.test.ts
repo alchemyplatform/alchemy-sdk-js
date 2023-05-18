@@ -16,6 +16,8 @@ jest.setTimeout(50000);
 
 // These integration tests check for valid response types and protect against
 // regressions in the backend.
+// TODO(V3): now that types match, add automated tests to check every single field
+// to make sure the schema matches
 describe('E2E integration tests', () => {
   let alchemy: Alchemy;
   const ownerEns = 'vitalik.eth';
@@ -95,9 +97,9 @@ describe('E2E integration tests', () => {
       },
       { contractAddress, tokenId: 13596716 }
     ]);
-    expect(response.length).toEqual(2);
-    expect(response[0].tokenId).toEqual(fromHex('0x8b57f0').toString());
-    expect(response[1].tokenId).toEqual('13596716');
+    expect(response.nfts.length).toEqual(2);
+    expect(response.nfts[0].tokenId).toEqual(fromHex('0x8b57f0').toString());
+    expect(response.nfts[1].tokenId).toEqual('13596716');
   });
 
   it('getContractMetadata()', async () => {
@@ -222,7 +224,7 @@ describe('E2E integration tests', () => {
     expect(response.owners.length).toBeGreaterThan(0);
     expect(response.owners[0].tokenBalances.length).toBeGreaterThan(0);
     expect(typeof response.owners[0].tokenBalances[0].balance).toEqual(
-      'number'
+      'string'
     );
   });
 
@@ -310,15 +312,19 @@ describe('E2E integration tests', () => {
 
   it('getContractMetadataBatch()', async () => {
     const contractAddresses = [
-      '0xe785e82358879f061bc3dcac6f0444462d4b5330',
-      '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d'
+      '0xe785E82358879F061BC3dcAC6f0444462D4b5330',
+      '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D'
     ];
     const response = await alchemy.nft.getContractMetadataBatch(
       contractAddresses
     );
-    expect(response.length).toEqual(2);
-    expect(contractAddresses.includes(response[0].address)).toEqual(true);
-    expect(contractAddresses.includes(response[1].address)).toEqual(true);
+    expect(response.contracts.length).toEqual(2);
+    expect(contractAddresses.includes(response.contracts[0].address)).toEqual(
+      true
+    );
+    expect(contractAddresses.includes(response.contracts[1].address)).toEqual(
+      true
+    );
   });
 
   it('getNftsForOwnerIterator()', async () => {
@@ -399,8 +405,8 @@ describe('E2E integration tests', () => {
 
     // Handles contract address specifying.
     const contractAddresses = [
-      '0xa1eb40c284c5b44419425c4202fa8dabff31006b',
-      '0x8442864d6ab62a9193be2f16580c08e0d7bcda2f'
+      '0xa1eB40c284C5B44419425c4202Fa8DabFF31006b',
+      '0x8442864d6AB62a9193be2F16580c08E0D7BCda2f'
     ];
     const response5 = await alchemy.nft.getMintedNfts('vitalik.eth', {
       contractAddresses
@@ -458,8 +464,8 @@ describe('E2E integration tests', () => {
 
     // Handles contract address specifying.
     const contractAddresses = [
-      '0xa1eb40c284c5b44419425c4202fa8dabff31006b',
-      '0x8442864d6ab62a9193be2f16580c08e0d7bcda2f'
+      '0xa1eB40c284C5B44419425c4202Fa8DabFF31006b',
+      '0x8442864d6AB62a9193be2F16580c08E0D7BCda2f'
     ];
     const response5 = await alchemy.nft.getTransfersForOwner(
       'vitalik.eth',
@@ -554,13 +560,13 @@ describe('E2E integration tests', () => {
 
   it('isSpamContract()', async () => {
     const response = await alchemy.nft.isSpamContract(contractAddress);
-    expect(typeof response).toEqual('boolean');
+    expect(typeof response.isSpamContract).toEqual('boolean');
   });
 
   it('getSpamContracts()', async () => {
     const response = await alchemy.nft.getSpamContracts();
-    expect(response.length).toBeGreaterThan(0);
-    expect(typeof response[0]).toEqual('string');
+    expect(response.contractAddresses.length).toBeGreaterThan(0);
+    expect(typeof response.contractAddresses[0]).toEqual('string');
   });
 
   it('getFloorPrice()', async () => {
@@ -630,10 +636,10 @@ describe('E2E integration tests', () => {
     const response = await alchemy.nft.computeRarity(contractAddress, tokenId);
 
     expect(response).toBeDefined();
-    expect(response.length).toBeGreaterThan(0);
-    expect(response[0].prevalence).toBeDefined();
-    expect(response[0].traitType).toBeDefined();
-    expect(response[0].value).toBeDefined();
+    expect(response.rarities.length).toBeGreaterThan(0);
+    expect(response.rarities[0].prevalence).toBeDefined();
+    expect(response.rarities[0].traitType).toBeDefined();
+    expect(response.rarities[0].value).toBeDefined();
   });
 
   it('searchContractMetadata()', async () => {
@@ -642,14 +648,14 @@ describe('E2E integration tests', () => {
     const response = await alchemy.nft.searchContractMetadata(query);
 
     expect(response).toBeDefined();
-    expect(response.length).toBeGreaterThan(0);
-    expect(response[0].address).toBeDefined();
-    expect(typeof response[0].address).toEqual('string');
-    expect(response[0].tokenType).toBeDefined();
+    expect(response.contracts.length).toBeGreaterThan(0);
+    expect(response.contracts[0].address).toBeDefined();
+    expect(typeof response.contracts[0].address).toEqual('string');
+    expect(response.contracts[0].tokenType).toBeDefined();
   });
 
   it('summarizeNftAttributes()', async () => {
-    const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
+    const contractAddress = '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D';
 
     const response = await alchemy.nft.summarizeNftAttributes(contractAddress);
 
@@ -657,7 +663,7 @@ describe('E2E integration tests', () => {
     expect(response.contractAddress).toBeDefined();
     expect(response.contractAddress).toEqual(contractAddress);
     expect(response.totalSupply).toBeDefined();
-    expect(typeof response.totalSupply).toEqual('number');
+    expect(typeof response.totalSupply).toEqual('string');
     expect(response.summary).toBeDefined();
   });
 

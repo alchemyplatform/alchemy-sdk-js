@@ -27,12 +27,15 @@ import {
   verifyNftOwnership
 } from '../internal/nft-api';
 import {
+  ComputeRarityResponse,
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
+  GetContractMetadataBatchResponse,
   GetContractsForOwnerOptions,
   GetContractsForOwnerResponse,
   GetFloorPriceResponse,
   GetMintedNftsOptions,
+  GetNftMetadataBatchResponse,
   GetNftMetadataOptions,
   GetNftSalesOptions,
   GetNftSalesOptionsByContractAddress,
@@ -45,10 +48,11 @@ import {
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftOptions,
   GetOwnersForNftResponse,
+  GetSpamContractsResponse,
   GetTransfersForContractOptions,
   GetTransfersForOwnerOptions,
   GetTransfersForOwnerTransferType,
-  NftAttributeRarity,
+  IsSpamContractResponse,
   NftAttributesResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
@@ -60,6 +64,7 @@ import {
   OwnedNft,
   OwnedNftsResponse,
   RefreshContractResult,
+  SearchContractMetadataResponse,
   TransfersNftResponse
 } from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
@@ -120,7 +125,7 @@ export class NftNamespace {
   getNftMetadataBatch(
     tokens: Array<NftMetadataBatchToken>,
     options?: NftMetadataBatchOptions
-  ): Promise<Nft[]> {
+  ): Promise<GetNftMetadataBatchResponse> {
     return getNftMetadataBatch(this.config, tokens, options);
   }
 
@@ -141,7 +146,7 @@ export class NftNamespace {
    */
   getContractMetadataBatch(
     contractAddresses: string[]
-  ): Promise<NftContract[]> {
+  ): Promise<GetContractMetadataBatchResponse> {
     return getContractMetadataBatch(this.config, contractAddresses);
   }
 
@@ -437,7 +442,7 @@ export class NftNamespace {
    * @param contractAddress - The contract address to check.
    * @beta
    */
-  isSpamContract(contractAddress: string): Promise<boolean> {
+  isSpamContract(contractAddress: string): Promise<IsSpamContractResponse> {
     return isSpamContract(this.config, contractAddress);
   }
 
@@ -448,7 +453,7 @@ export class NftNamespace {
    *
    * @beta
    */
-  getSpamContracts(): Promise<string[]> {
+  getSpamContracts(): Promise<GetSpamContractsResponse> {
     return getSpamContracts(this.config);
   }
 
@@ -487,7 +492,7 @@ export class NftNamespace {
   computeRarity(
     contractAddress: string,
     tokenId: BigNumberish
-  ): Promise<NftAttributeRarity[]> {
+  ): Promise<ComputeRarityResponse> {
     return computeRarity(this.config, contractAddress, tokenId);
   }
 
@@ -496,7 +501,9 @@ export class NftNamespace {
    *
    * @param query - The search string that you want to search for in contract metadata.
    */
-  searchContractMetadata(query: string): Promise<NftContract[]> {
+  searchContractMetadata(
+    query: string
+  ): Promise<SearchContractMetadataResponse> {
     return searchContractMetadata(this.config, query);
   }
 
