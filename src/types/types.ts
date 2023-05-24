@@ -75,21 +75,11 @@ export interface AlchemySettings {
  */
 export enum Network {
   ETH_MAINNET = 'eth-mainnet',
-  /** @deprecated - Will be removed in subsequent versions */
-  ETH_ROPSTEN = 'eth-ropsten',
   ETH_GOERLI = 'eth-goerli',
-  /** @deprecated - Will be removed in subsequent versions */
-  ETH_KOVAN = 'eth-kovan',
-  /** @deprecated - Will be removed in subsequent versions */
-  ETH_RINKEBY = 'eth-rinkeby',
   ETH_SEPOLIA = 'eth-sepolia',
   OPT_MAINNET = 'opt-mainnet',
-  /** @deprecated - Will be removed in subsequent versions */
-  OPT_KOVAN = 'opt-kovan',
   OPT_GOERLI = 'opt-goerli',
   ARB_MAINNET = 'arb-mainnet',
-  /** @deprecated - Will be removed in subsequent versions */
-  ARB_RINKEBY = 'arb-rinkeby',
   ARB_GOERLI = 'arb-goerli',
   MATIC_MAINNET = 'polygon-mainnet',
   MATIC_MUMBAI = 'polygon-mumbai',
@@ -378,19 +368,6 @@ export enum AssetTransfersCategory {
 }
 
 /**
- * Enum for the order of the {@link AssetTransfersParams} request object when
- * using {@link CoreNamespace.getAssetTransfers}.
- *
- * @deprecated Use {@link SortingOrder} instead. This enum will be removed in a
- *   future version.
- * @public
- */
-export enum AssetTransfersOrder {
-  ASCENDING = 'asc',
-  DESCENDING = 'desc'
-}
-
-/**
  * An enum for specifying the token type on NFTs.
  *
  * @public
@@ -547,42 +524,6 @@ export interface NftImage {
   originalUrl?: string;
 }
 
-/**
- * Represents the URI information for the NFT's media assets.
- *
- * @public
- */
-export interface Media {
-  /**
-   * URI for the location of the NFT's original metadata blob for media (ex: the
-   * original IPFS link).
-   */
-  raw: string;
-
-  /** Public gateway URI for the raw URI. Generally offers better performance. */
-  gateway: string;
-
-  /** URL for a resized thumbnail of the NFT media asset. */
-  thumbnail?: string;
-
-  /**
-   * The media format (ex: jpg, gif, png) of the {@link gateway} and
-   * {@link thumbnail} assets.
-   */
-  format?: string;
-
-  /**
-   * DEPRECATED - The size of the media asset in bytes
-   *
-   * @deprecated - Please use {@link bytes} instead. This field will be removed
-   *   in a subsequent release.
-   */
-  size?: number;
-
-  /** The size of the media asset in bytes. */
-  bytes?: number;
-}
-
 /** Potential reasons why an NFT contract was classified as spam. */
 export enum NftSpamClassification {
   Erc721TooManyOwners = 'Erc721TooManyOwners',
@@ -707,23 +648,6 @@ export interface GetBaseNftsForOwnerOptions {
    * contract address and token ID in lexicographic order.
    */
   orderBy?: NftOrdering;
-}
-
-/**
- * Enum of NFT filters that can be applied to a {@link getNftsForOwner} request.
- * NFTs that match one or more of these filters are excluded from the response.
- *
- * @deprecated Use {@link NftFilters} instead. This enum will be removed in a
- *   future version.
- *
- * @beta
- */
-export enum NftExcludeFilters {
-  /** Exclude NFTs that have been classified as spam. */
-  SPAM = 'SPAM',
-
-  /** Exclude NFTs that have been airdropped to a user. */
-  AIRDROPS = 'AIRDROPS'
 }
 
 /**
@@ -1184,17 +1108,6 @@ export interface GetMintedNftsOptions {
    * Optional page key from an existing {@link TransfersNftResponse} to use for
    * pagination.
    */
-  pageKey?: string;
-}
-
-/**
- * @deprecated Use {@link TransfersNftResponse} instead.
- */
-export interface GetMintedNftsResponse {
-  /** An array of the minted NFTs for the provided owner address. */
-  nfts: Nft[];
-
-  /** Key for pagination to use to fetch results from the next page if available. */
   pageKey?: string;
 }
 

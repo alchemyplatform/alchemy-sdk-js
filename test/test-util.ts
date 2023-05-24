@@ -1,6 +1,5 @@
 import {
   BaseNft,
-  Media,
   Nft,
   NftContract,
   NftSaleMarketplace,
@@ -235,22 +234,6 @@ export function createRawContractForOwner(
     deployedBlockNumber: 42 ?? null,
     ...overrides
   };
-}
-
-export function createNftMediaData(
-  bytes?: number,
-  format?: string,
-  thumbnail?: string
-): Media[] {
-  return [
-    {
-      raw: 'http://api.nikeape.xyz/ipfs/nickbanc/1.jpg',
-      gateway: 'http://api.nikeape.xyz/ipfs/nickbanc/1.jpg',
-      bytes,
-      format,
-      thumbnail
-    }
-  ];
 }
 
 export function verifyNftContractMetadata(
