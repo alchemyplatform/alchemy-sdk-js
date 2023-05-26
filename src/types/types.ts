@@ -531,22 +531,6 @@ export interface NftMetadata extends Record<string, any> {
   attributes?: Array<Record<string, any>>;
 }
 
-/**
- * Represents the URI information the NFT's metadata.
- *
- * @public
- */
-export interface TokenUri {
-  /**
-   * URI for the location of the NFT's original metadata blob (ex: the original
-   * IPFS link).
-   */
-  raw: string;
-
-  /** Public gateway URI for the raw URI. Generally offers better performance. */
-  gateway: string;
-}
-
 /** Media URLs and information for an NFT. */
 export interface NftImage {
   /** URL of the image stored in Alchemy's cache. */
@@ -605,15 +589,14 @@ export enum NftSpamClassification {
   Erc721TooManyTokens = 'Erc721TooManyTokens',
   Erc721DishonestTotalSupply = 'Erc721DishonestTotalSupply',
   MostlyHoneyPotOwners = 'MostlyHoneyPotOwners',
-  OwnedByMostHoneyPots = 'OwnedByMostHoneyPots'
-}
-
-/** Detailed information on whether and why an NFT contract was classified as spam. */
-export interface SpamInfo {
-  isSpam: boolean;
-
-  /** A list of reasons why an NFT contract was marked as spam. */
-  classifications: NftSpamClassification[];
+  OwnedByMostHoneyPots = 'OwnedByMostHoneyPots',
+  LowDistinctOwnersPercent = 'LowDistinctOwnersPercent',
+  HighHoneyPotOwnerPercent = 'HighHoneyPotOwnerPercent',
+  HighHoneyPotPercent = 'HighHoneyPotPercent',
+  HoneyPotsOwnMultipleTokens = 'HoneyPotsOwnMultipleTokens',
+  NoSalesActivity = 'NoSalesActivity',
+  HighAirdropPercent = 'HighAirdropPercent',
+  Unknown = 'Unknown'
 }
 
 /**
@@ -777,16 +760,16 @@ export enum NftOrdering {
  */
 export interface OwnedNftsResponse {
   /** The NFTs owned by the provided address. */
-  readonly ownedNfts: OwnedNft[];
+  ownedNfts: OwnedNft[];
 
   /**
    * Pagination token that can be passed into another request to fetch the next
    * NFTs. If there is no page key, then there are no more NFTs to fetch.
    */
-  readonly pageKey?: string;
+  pageKey?: string;
 
   /** The total count of NFTs owned by the provided address. */
-  readonly totalCount: number;
+  totalCount: number;
 
   /** The canonical head block hash of when your request was received. */
   blockHash: string;
@@ -802,16 +785,16 @@ export interface OwnedNftsResponse {
  */
 export interface OwnedBaseNftsResponse {
   /** The NFTs owned by the provided address. */
-  readonly ownedNfts: OwnedBaseNft[];
+  ownedNfts: OwnedBaseNft[];
 
   /**
    * Pagination token that can be passed into another request to fetch the next
    * NFTs. If there is no page key, then there are no more NFTs to fetch.
    */
-  readonly pageKey?: string;
+  pageKey?: string;
 
   /** The total count of NFTs owned by the provided address. */
-  readonly totalCount: number;
+  totalCount: number;
 
   /** The canonical head block hash of when your request was received. */
   blockHash: string;
@@ -824,7 +807,7 @@ export interface OwnedBaseNftsResponse {
  */
 export interface OwnedNft extends Nft {
   /** The token balance of the NFT. */
-  readonly balance: number;
+  balance: string;
 }
 
 /**
@@ -834,7 +817,7 @@ export interface OwnedNft extends Nft {
  */
 export interface OwnedBaseNft extends BaseNft {
   /** The token balance of the NFT. */
-  readonly balance: number;
+  balance: string;
 }
 
 /**
@@ -844,10 +827,10 @@ export interface OwnedBaseNft extends BaseNft {
  */
 export interface GetOwnersForNftResponse {
   /** An array of owner addresses for the provided token. */
-  readonly owners: string[];
+  owners: string[];
 
   /** Optional The key for the next page of results, if applicable. */
-  readonly pageKey?: string;
+  pageKey?: string;
 }
 
 /**
@@ -892,9 +875,8 @@ export interface NftContractOwner {
 export interface NftContractTokenBalance {
   /** The token id owned in the NFT contract. */
   tokenId: string;
-
-  /** The token Id balance for the provided owner. */
-  balance: number;
+  /** The token id balance for the provided owner. */
+  balance: string;
 }
 
 /**
@@ -958,13 +940,13 @@ export interface NftMetadataBatchOptions {
  */
 export interface FloorPriceMarketplace {
   /** The floor price of the collection on the given marketplace */
-  readonly floorPrice: number;
+  floorPrice: number;
   /** The currency in which the floor price is denominated */
-  readonly priceCurrency: string;
+  priceCurrency: string;
   /** The link to the collection on the given marketplace */
-  readonly collectionUrl: string;
+  collectionUrl: string;
   /** UTC timestamp of when the floor price was retrieved from the marketplace */
-  readonly retrievedAt: string;
+  retrievedAt: string;
 }
 
 /**
@@ -975,7 +957,7 @@ export interface FloorPriceMarketplace {
  */
 export interface FloorPriceError {
   /** Error fetching floor prices from the given marketplace */
-  readonly error: string;
+  error: string;
 }
 
 /**
@@ -988,8 +970,8 @@ export interface GetFloorPriceResponse {
    * Name of the NFT marketplace where the collection is listed. Current
    * marketplaces supported: OpenSea, LooksRare
    */
-  readonly openSea: FloorPriceMarketplace | FloorPriceError;
-  readonly looksRare: FloorPriceMarketplace | FloorPriceError;
+  openSea: FloorPriceMarketplace | FloorPriceError;
+  looksRare: FloorPriceMarketplace | FloorPriceError;
 }
 
 /**
@@ -1035,7 +1017,7 @@ export interface GetContractsForOwnerOptions {
  */
 export interface GetContractsForOwnerResponse {
   /** The list of contracts, that match the query, held by the given address. */
-  contracts: ContractForOwner[];
+  contracts: NftContractForOwner[];
 
   /** Key for pagination to use to fetch results from the next page if available. */
   pageKey?: string;
@@ -1045,7 +1027,7 @@ export interface GetContractsForOwnerResponse {
 }
 
 /** Represents a single NFT contract data in the {@link GetContractsForOwnerResponse}. */
-export interface ContractForOwner extends NftContract {
+export interface NftContractForOwner extends NftContract {
   /**
    * Sum of NFT balances across all token IDs held by the owner. For
    * non-fungible tokens this will be equal to the numDistinctTokensOwned, but
@@ -1060,7 +1042,7 @@ export interface ContractForOwner extends NftContract {
    */
   numDistinctTokensOwned: string;
 
-  /** Whether the NFT is considered spam. */
+  /** Whether the NFT contract is considered spam. */
   isSpam: boolean;
 
   /**
@@ -1292,17 +1274,11 @@ export interface NftSale {
   /** The payment from buyer to the seller. */
   sellerFee: NftSaleFeeData;
 
-  /**
-   * The payment from buyer to the marketplace.
-   * @deprecated Please use `protocolFee` instead.
-   */
-  marketplaceFee?: NftSaleFeeData;
-
   /** The payment from buyer to the marketplace. */
-  protocolFee?: NftSaleFeeData;
+  protocolFee: NftSaleFeeData;
 
   /** The payment from buyer to the royalty address of the NFT collection. */
-  royaltyFee?: NftSaleFeeData;
+  royaltyFee: NftSaleFeeData;
 
   /** The block number the NFT sale took place in. */
   blockNumber: number;
@@ -1324,13 +1300,15 @@ export interface NftSale {
  */
 export interface NftSaleFeeData {
   /** The fee payment amount as a decimal integer string. */
-  amount: string;
+  amount?: string;
+
+  tokenAddress?: string;
 
   /** The symbol of the token used for the payment. */
-  symbol: string;
+  symbol?: string;
 
   /** The number of decimals of the token used for the payment. */
-  decimal: number;
+  decimals?: number;
 }
 
 /**
@@ -1413,7 +1391,7 @@ export interface RefreshContractResult {
   contractAddress: string;
 
   /** The current state of the refresh request. */
-  refreshState: RefreshState;
+  refreshState: NftRefreshState;
 
   /**
    * Percentage of tokens currently refreshed, represented as an integer string.
@@ -1423,7 +1401,7 @@ export interface RefreshContractResult {
 }
 
 /** The current state of the NFT contract refresh process. */
-export enum RefreshState {
+export enum NftRefreshState {
   /** The provided contract is not an NFT or does not contain metadata. */
   DOES_NOT_EXIST = 'does_not_exist',
 
@@ -1721,10 +1699,10 @@ export enum OpenSeaSafelistRequestStatus {
  */
 export interface DeployResult {
   /** The address of the contract deployer, if it is available. */
-  readonly deployerAddress?: string;
+  deployerAddress?: string;
 
   /** The block number the contract was deployed in. */
-  readonly blockNumber: number;
+  blockNumber: number;
 }
 
 /**

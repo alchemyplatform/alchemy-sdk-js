@@ -114,7 +114,7 @@ export async function* paginateEndpoint<
       requestParams
     );
     yield response;
-    if (response[resPageKey] !== undefined) {
+    if (response[resPageKey] !== null) {
       requestParams[reqPageKey] = response[resPageKey] as any;
     } else {
       hasNext = false;

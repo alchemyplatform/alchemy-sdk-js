@@ -18,14 +18,16 @@ import {
   NftFilters,
   NftMetadataBatchToken,
   NftOrdering,
+  NftRefreshState,
   NftSaleMarketplace,
   NftSaleTakerType,
+  NftSpamClassification,
   NftTokenType,
+  OpenSeaSafelistRequestStatus,
   OwnedBaseNft,
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
-  RefreshState,
   SortingOrder,
   fromHex,
   toHex
@@ -43,12 +45,7 @@ import {
   RawNftAttributeRarity,
   RawNftImage
 } from '../../src/internal/raw-interfaces';
-import {
-  getNftContractFromRaw,
-  getNftFromRaw,
-  getNftRarityFromRaw,
-  parseOpenSeaMetadata
-} from '../../src/util/util';
+import { getNftContractFromRaw, getNftFromRaw } from '../../src/util/util';
 import {
   createBaseNft,
   createNft,
@@ -57,7 +54,6 @@ import {
   createRawContractForOwner,
   createRawNft,
   createRawNftContract,
-  createRawNftContractBaseNft,
   createRawNftSale,
   createRawOpenSeaCollectionMetadata,
   createRawOwnedBaseNft,
@@ -140,14 +136,17 @@ describe('NFT module', () => {
     const title = 'NFT Title';
     const tokenId = '42';
     const timeoutInMs = 50;
-    const contractMetadata = {
+    const contract = {
       address: contractAddress,
       name: 'NFT Title',
       symbol: 'NCN',
       totalSupply: '9999',
       tokenType: NftTokenType.ERC721,
       contractDeployer: '0xDEF',
-      deployedBlockNumber: 424242
+      deployedBlockNumber: 424242,
+      openSeaMetadata: createRawOpenSeaCollectionMetadata(),
+      isSpam: false,
+      spamClassifications: [NftSpamClassification.Erc721DishonestTotalSupply]
     };
     // Special case token ID as an integer string, since that's what the NFT
     // API endpoint returns.
@@ -156,7 +155,7 @@ describe('NFT module', () => {
       title,
       tokenId.toString(),
       NftTokenType.UNKNOWN,
-      { contractMetadata }
+      { contract }
     );
     const expectedNft = getNftFromRaw(rawNftResponse);
 
@@ -213,11 +212,9 @@ describe('NFT module', () => {
 
     it('normalizes tokenId as a hex string', async () => {
       verifyNftMetadata(
-        await alchemy.nft.getNftMetadata(
-          contractAddress,
-          tokenId,
-          NftTokenType.ERC1155
-        ),
+        await alchemy.nft.getNftMetadata(contractAddress, tokenId, {
+          tokenType: NftTokenType.ERC1155
+        }),
         expectedNft,
         contractAddress,
         tokenId,
@@ -227,11 +224,9 @@ describe('NFT module', () => {
 
     it('sets tokenType to undefined if tokenType is UNKNOWN', async () => {
       verifyNftMetadata(
-        await alchemy.nft.getNftMetadata(
-          contractAddress,
-          tokenId,
-          NftTokenType.UNKNOWN
-        ),
+        await alchemy.nft.getNftMetadata(contractAddress, tokenId, {
+          tokenType: NftTokenType.UNKNOWN
+        }),
         expectedNft,
         contractAddress,
         tokenId
@@ -240,11 +235,9 @@ describe('NFT module', () => {
 
     it('sets tokenType to undefined if tokenType is NOT_A_CONTRACT', async () => {
       verifyNftMetadata(
-        await alchemy.nft.getNftMetadata(
-          contractAddress,
-          tokenId,
-          NftTokenType.NOT_A_CONTRACT
-        ),
+        await alchemy.nft.getNftMetadata(contractAddress, tokenId, {
+          tokenType: NftTokenType.NOT_A_CONTRACT
+        }),
         expectedNft,
         contractAddress,
         tokenId
@@ -326,7 +319,7 @@ describe('NFT module', () => {
     const baseNftResponse: RawGetBaseNftsResponse = {
       ownedNfts: [
         createRawOwnedBaseNft('0xCA1', '0x1', '1'),
-        createRawOwnedBaseNft('0xCA2', '0x2', '2', NftTokenType.ERC721)
+        createRawOwnedBaseNft('0xCA2', '0x2', '2')
       ],
       pageKey: 'page-key1',
       totalCount: 3,
@@ -366,7 +359,7 @@ describe('NFT module', () => {
           contractAddresses
         );
         expect(mock.history.get[0].params).toHaveProperty(
-          'filters',
+          'excludeFilters',
           expectedFilters
         );
         expect(mock.history.get[0].params).toHaveProperty('pageKey', pageKey);
@@ -388,8 +381,8 @@ describe('NFT module', () => {
 
     const baseExpected: OwnedBaseNftsResponse = {
       ownedNfts: [
-        createOwnedBaseNft('0xCA1', '0x1', 1),
-        createOwnedBaseNft('0xCA2', '0x2', 2, NftTokenType.ERC721)
+        createOwnedBaseNft('0xCA1', '0x1', '1'),
+        createOwnedBaseNft('0xCA2', '0x2', '2')
       ],
       pageKey: 'page-key1',
       totalCount: 3,
@@ -397,8 +390,8 @@ describe('NFT module', () => {
     };
     const nftExpected: OwnedNftsResponse = {
       ownedNfts: [
-        createOwnedNft('a', '0xCA1', '0x1', 1),
-        createOwnedNft('b', '0xCA2', '0x2', 2, NftTokenType.ERC1155)
+        createOwnedNft('a', '0xCA1', '0x1', '1'),
+        createOwnedNft('b', '0xCA2', '0x2', '2', NftTokenType.ERC1155)
       ],
       pageKey: 'page-key1',
       totalCount: 3,
@@ -440,7 +433,7 @@ describe('NFT module', () => {
     it('uses the correct overload with no options', async () => {
       mock.onGet().reply(200, nftResponse);
       const response = await alchemy.nft.getNftsForOwner(ownerAddress);
-      response.ownedNfts.forEach(nft => expect(nft.media).toBeDefined());
+      response.ownedNfts.forEach(nft => expect(nft.contract).toBeDefined());
     });
   });
 
@@ -453,18 +446,17 @@ describe('NFT module', () => {
       {
         ownedNfts: [
           createRawOwnedBaseNft('0xCA1', '0x1', '1'),
-          createRawOwnedBaseNft('0xCA2', '0x2', '2', NftTokenType.ERC721)
+          createRawOwnedBaseNft('0xCA2', '0x2', '2')
         ],
         pageKey: 'page-key1',
         totalCount: 3,
         blockHash: '0x123abc'
       },
       {
-        ownedNfts: [
-          createRawOwnedBaseNft('0xCA2', '0x3', '1', NftTokenType.ERC721)
-        ],
+        ownedNfts: [createRawOwnedBaseNft('0xCA2', '0x3', '1')],
         totalCount: 3,
-        blockHash: '0x123abc'
+        blockHash: '0x123abc',
+        pageKey: null
       }
     ];
     const nftResponses: RawGetNftsResponse[] = [
@@ -482,7 +474,8 @@ describe('NFT module', () => {
           createRawOwnedNft('c', '0xCA2', '0x3', '1', NftTokenType.ERC1155)
         ],
         totalCount: 3,
-        blockHash: '0x123abc'
+        blockHash: '0x123abc',
+        pageKey: null
       }
     ];
 
@@ -538,7 +531,7 @@ describe('NFT module', () => {
           expectedWithMetadata
         );
         expect(mock.history.get[0].params).toHaveProperty(
-          'filters',
+          'excludeFilters',
           expectedFilters
         );
         expect(mock.history.get[1].params).toHaveProperty(
@@ -588,14 +581,14 @@ describe('NFT module', () => {
     );
 
     const baseExpected = [
-      createOwnedBaseNft('0xCA1', '0x1', 1),
-      createOwnedBaseNft('0xCA2', '0x2', 2, NftTokenType.ERC721),
-      createOwnedBaseNft('0xCA2', '0x3', 1, NftTokenType.ERC721)
+      createOwnedBaseNft('0xCA1', '0x1', '1'),
+      createOwnedBaseNft('0xCA2', '0x2', '2'),
+      createOwnedBaseNft('0xCA2', '0x3', '1')
     ];
     const nftExpected = [
-      createOwnedNft('a', '0xCA1', '0x1', 1),
-      createOwnedNft('b', '0xCA2', '0x2', 2, NftTokenType.ERC1155),
-      createOwnedNft('c', '0xCA2', '0x3', 1, NftTokenType.ERC1155)
+      createOwnedNft('a', '0xCA1', '0x1', '1'),
+      createOwnedNft('b', '0xCA2', '0x2', '2', NftTokenType.ERC1155),
+      createOwnedNft('c', '0xCA2', '0x3', '1', NftTokenType.ERC1155)
     ];
     const responseCases: Array<
       [
@@ -658,38 +651,8 @@ describe('NFT module', () => {
       for await (const ownedNft of alchemy.nft.getNftsForOwnerIterator(
         ownerAddress
       )) {
-        expect(ownedNft.media).toBeDefined();
+        expect(ownedNft.raw).toBeDefined();
       }
-    });
-
-    it('includes contract metadata at the top level', async () => {
-      const mockResponse = [
-        {
-          ownedNfts: [
-            createRawOwnedNft('a', '0xCA1', '0x1', '1', NftTokenType.UNKNOWN, {
-              name: 'Super NFT',
-              symbol: 'WOW',
-              totalSupply: '9999'
-            }),
-            createRawOwnedNft('b', '0xCA2', '0x2', '2', NftTokenType.ERC1155)
-          ],
-          pageKey: 'page-key1',
-          totalCount: 2,
-          blockHash: '0x123abc'
-        }
-      ];
-      setupMock(mockResponse);
-      const response = await alchemy.nft.getNftsForOwner(ownerAddress);
-      expect(response.ownedNfts.length).toEqual(2);
-      expect(response.ownedNfts[0].contract.tokenType).toEqual(
-        NftTokenType.UNKNOWN
-      );
-      expect(response.ownedNfts[0].contract.name).toEqual('Super NFT');
-      expect(response.ownedNfts[0].contract.symbol).toEqual('WOW');
-      expect(response.ownedNfts[0].contract.totalSupply).toEqual('9999');
-      expect(response.ownedNfts[1].contract.tokenType).toEqual(
-        NftTokenType.ERC1155
-      );
     });
   });
 
@@ -697,19 +660,16 @@ describe('NFT module', () => {
     const contractAddress = '0xCA1';
     const pageKey = 'page-key0';
     const baseResponse: RawGetBaseNftsForContractResponse = {
-      nfts: [
-        createRawNftContractBaseNft('0x1'),
-        createRawNftContractBaseNft('0x2')
-      ],
-      nextToken: 'page-key1'
+      nfts: [{ tokenId: '1' }, { tokenId: '2' }],
+      pageKey: 'page-key1'
     };
 
     const nftResponse: RawGetNftsForContractResponse = {
       nfts: [
-        createRawNft(contractAddress, 'a', '0x1', NftTokenType.ERC1155),
-        createRawNft(contractAddress, 'b', '0x2', NftTokenType.ERC1155)
+        createRawNft(contractAddress, 'a', '1', NftTokenType.ERC1155),
+        createRawNft(contractAddress, 'b', '2', NftTokenType.ERC1155)
       ],
-      nextToken: 'page-key1'
+      pageKey: 'page-key1'
     };
 
     beforeEach(() => {
@@ -742,10 +702,7 @@ describe('NFT module', () => {
           'contractAddress',
           contractAddress
         );
-        expect(mock.history.get[0].params).toHaveProperty(
-          'startToken',
-          pageKey
-        );
+        expect(mock.history.get[0].params).toHaveProperty('pageKey', pageKey);
         expect(mock.history.get[0].params).toHaveProperty(
           'withMetadata',
           expectedWithMetadata
@@ -759,13 +716,13 @@ describe('NFT module', () => {
     );
 
     const baseExpected: NftContractBaseNftsResponse = {
-      nfts: [createBaseNft('0xCA1', '0x1'), createBaseNft('0xCA1', '0x2')],
+      nfts: [createBaseNft('0xCA1', '1'), createBaseNft('0xCA1', '2')],
       pageKey: 'page-key1'
     };
     const nftExpected: NftContractNftsResponse = {
       nfts: [
-        createNft('a', '0xCA1', '0x1', NftTokenType.ERC1155),
-        createNft('b', '0xCA1', '0x2', NftTokenType.ERC1155)
+        createNft('a', '0xCA1', '1', NftTokenType.ERC1155),
+        createNft('b', '0xCA1', '2', NftTokenType.ERC1155)
       ],
       pageKey: 'page-key1'
     };
@@ -804,72 +761,34 @@ describe('NFT module', () => {
     it('uses the correct overload with no options', async () => {
       mock.onGet().reply(200, nftResponse);
       const response = await alchemy.nft.getNftsForContract(contractAddress);
-      response.nfts.forEach(nft => expect(nft.media).toBeDefined());
-    });
-
-    it('includes contract metadata at the top level', async () => {
-      const mockResponse = {
-        nfts: [
-          createRawNft('0xCA1', 'title', '0x1', NftTokenType.UNKNOWN, {
-            contractMetadata: {
-              name: 'Super NFT',
-              symbol: 'WOW',
-              totalSupply: '9999'
-            }
-          }),
-          createRawNft('0xCA1', 'b', '0x2', NftTokenType.ERC1155, {
-            contractMetadata: {
-              address: '0xCA1',
-              name: null,
-              symbol: null,
-              totalSupply: null,
-              deployedBlockNumber: null
-            }
-          })
-        ]
-      };
-      mock.reset();
-      mock.onGet().reply(200, mockResponse);
-      const response = await alchemy.nft.getNftsForContract(contractAddress);
-      expect(response.nfts.length).toEqual(2);
-      expect(response.nfts[0].contract.address).toEqual('0xCA1');
-      expect(response.nfts[0].contract.tokenType).toEqual(NftTokenType.UNKNOWN);
-      expect(response.nfts[0].contract.name).toEqual('Super NFT');
-      expect(response.nfts[0].contract.symbol).toEqual('WOW');
-      expect(response.nfts[0].contract.totalSupply).toEqual('9999');
-      expect(response.nfts[1].contract.address).toEqual('0xCA1');
-      expect(response.nfts[1].contract.tokenType).toEqual(NftTokenType.ERC1155);
-      expect(response.nfts[1].contract.name).toBeUndefined();
-      expect(response.nfts[1].contract.symbol).toBeUndefined();
-      expect(response.nfts[1].contract.totalSupply).toBeUndefined();
+      response.nfts.forEach(nft => expect(nft.raw).toBeDefined());
     });
   });
 
-  describe('getNftsForNftContractIterator()', () => {
+  describe('getNftsForContractIterator()', () => {
     const contractAddress = '0xCA1';
     const pageKey = 'page-key0';
     const baseResponses: RawGetBaseNftsForContractResponse[] = [
       {
-        nfts: [
-          createRawNftContractBaseNft('0x1'),
-          createRawNftContractBaseNft('0x2')
-        ],
-        nextToken: 'page-key1'
+        nfts: [{ tokenId: '1' }, { tokenId: '2' }],
+        pageKey: 'page-key1'
       },
       {
-        nfts: [createRawNftContractBaseNft('0x3')]
+        nfts: [{ tokenId: '3' }],
+        pageKey: null
       }
     ];
     const nftResponses: RawGetNftsForContractResponse[] = [
       {
         nfts: [
-          createRawNft(contractAddress, 'a', '0x1', NftTokenType.ERC721),
-          createRawNft(contractAddress, 'b', '0x2', NftTokenType.ERC721)
+          createRawNft(contractAddress, 'a', '1', NftTokenType.ERC721),
+          createRawNft(contractAddress, 'b', '2', NftTokenType.ERC721)
         ],
-        nextToken: 'page-key1'
+        pageKey: 'page-key1'
       },
       {
-        nfts: [createRawNft(contractAddress, 'c', '0x3', NftTokenType.ERC721)]
+        nfts: [createRawNft(contractAddress, 'c', '3', NftTokenType.ERC721)],
+        pageKey: null
       }
     ];
 
@@ -910,7 +829,7 @@ describe('NFT module', () => {
           nfts.push(nft);
         }
         expect(mock.history.get.length).toEqual(2);
-        expect(mock.history.get[0].params.startToken).toBeUndefined();
+        expect(mock.history.get[0].params.pageKey).toBeUndefined();
         expect(mock.history.get[0].params).toHaveProperty(
           'contractAddress',
           contractAddress
@@ -920,7 +839,7 @@ describe('NFT module', () => {
           expectedWithMetadata
         );
         expect(mock.history.get[1].params).toHaveProperty(
-          'startToken',
+          'pageKey',
           'page-key1'
         );
         expect(mock.history.get[1].params).toHaveProperty(
@@ -947,25 +866,25 @@ describe('NFT module', () => {
         expect(nfts.length).toEqual(3);
         expect(mock.history.get.length).toEqual(2);
         expect(mock.history.get[0].params).toHaveProperty(
-          'startToken',
+          'pageKey',
           'page-key0'
         );
         expect(mock.history.get[1].params).toHaveProperty(
-          'startToken',
+          'pageKey',
           'page-key1'
         );
       }
     );
 
     const baseExpected = [
-      createBaseNft(contractAddress, '0x01'),
-      createBaseNft(contractAddress, '0x02'),
-      createBaseNft(contractAddress, '0x03')
+      createBaseNft(contractAddress, '1'),
+      createBaseNft(contractAddress, '2'),
+      createBaseNft(contractAddress, '3')
     ];
     const nftExpected = [
-      createNft('a', contractAddress, '0x01', NftTokenType.ERC721),
-      createNft('b', contractAddress, '0x02', NftTokenType.ERC721),
-      createNft('c', contractAddress, '0x03', NftTokenType.ERC721)
+      createNft('a', contractAddress, '1', NftTokenType.ERC721),
+      createNft('b', contractAddress, '2', NftTokenType.ERC721),
+      createNft('c', contractAddress, '3', NftTokenType.ERC721)
     ];
     const responseCases: Array<
       [
@@ -1026,7 +945,7 @@ describe('NFT module', () => {
       for await (const nft of alchemy.nft.getNftsForContractIterator(
         contractAddress
       )) {
-        expect(nft.media).toBeDefined();
+        expect(nft.raw).toBeDefined();
       }
     });
   });
@@ -1112,8 +1031,8 @@ describe('NFT module', () => {
             ownerAddress: '0xABC',
             tokenBalances: [
               {
-                tokenId: '0x1',
-                balance: 1
+                tokenId: '1',
+                balance: '1'
               }
             ]
           },
@@ -1121,8 +1040,8 @@ describe('NFT module', () => {
             ownerAddress: '0xDEF',
             tokenBalances: [
               {
-                tokenId: '0x2',
-                balance: 2
+                tokenId: '2',
+                balance: '2'
               }
             ]
           }
@@ -1135,8 +1054,8 @@ describe('NFT module', () => {
             ownerAddress: '0xABC',
             tokenBalances: [
               {
-                tokenId: '0x1',
-                balance: 1
+                tokenId: '1',
+                balance: '1'
               }
             ]
           },
@@ -1144,8 +1063,8 @@ describe('NFT module', () => {
             ownerAddress: '0xDEF',
             tokenBalances: [
               {
-                tokenId: '0x2',
-                balance: 2
+                tokenId: '2',
+                balance: '2'
               }
             ]
           }
@@ -1194,9 +1113,17 @@ describe('NFT module', () => {
     const contractDeployer = '0xABC';
     const deployedBlockNumber = 424242;
     const rawOpenSeaContractMetadata = createRawOpenSeaCollectionMetadata();
-    const expectedOpenseaMetadata = parseOpenSeaMetadata(
-      rawOpenSeaContractMetadata
-    );
+    const expectedOpenseaMetadata = {
+      floorPrice: 2.2998,
+      collectionName: 'Collection Name',
+      safelistRequestStatus: OpenSeaSafelistRequestStatus.VERIFIED,
+      imageUrl: 'http://image.url',
+      description: 'A sample description',
+      externalUrl: 'http://external.url',
+      twitterUsername: 'twitter-handle',
+      discordUrl: 'https://discord.gg/example',
+      lastIngestedAt: '2022-10-26T22:24:49.000Z'
+    };
     const image: RawNftImage = {
       cachedUrl: 'https://example.com/image.png',
       thumbnailUrl: null,
@@ -1296,25 +1223,26 @@ describe('NFT module', () => {
   describe('verifyNftOwnership()', () => {
     const owner = '0xABC';
     const addresses = ['0xCA1', '0xCA2'];
-    const emptyResponse: RawGetNftsResponse = {
+    const emptyResponse: RawGetBaseNftsResponse = {
       ownedNfts: [],
       totalCount: 0,
-      blockHash: '0x123abc'
+      blockHash: '0x123abc',
+      pageKey: null
     };
-    const partialResponse: RawGetNftsResponse = {
-      ownedNfts: [
-        createRawOwnedNft('b', '0xCA2', '0x2', '2', NftTokenType.ERC1155)
-      ],
+    const partialResponse: RawGetBaseNftsResponse = {
+      ownedNfts: [createRawOwnedBaseNft('0xCA2', '0x2', '2')],
       totalCount: 1,
-      blockHash: '0x123abc'
+      blockHash: '0x123abc',
+      pageKey: null
     };
-    const nftResponse: RawGetNftsResponse = {
+    const nftResponse: RawGetBaseNftsResponse = {
       ownedNfts: [
-        createRawOwnedNft('a', '0xCA1', '0x1', '1'),
-        createRawOwnedNft('b', '0xCA2', '0x2', '2', NftTokenType.ERC1155)
+        createRawOwnedBaseNft('0xCA1', '0x1', '1'),
+        createRawOwnedBaseNft('0xCA2', '0x2', '2')
       ],
       totalCount: 2,
-      blockHash: '0x123abc'
+      blockHash: '0x123abc',
+      pageKey: null
     };
 
     it('calls with the correct parameters', async () => {
@@ -1341,7 +1269,7 @@ describe('NFT module', () => {
       [nftResponse, { '0xCA1': true, '0xCA2': true }]
     ];
     it.each(cases)(
-      'returns the correct response for arrayinputs',
+      'returns the correct response for array inputs',
       async (response, expected) => {
         mock.onGet().reply(200, response);
         const result = await alchemy.nft.verifyNftOwnership(owner, addresses);
@@ -1472,7 +1400,8 @@ describe('NFT module', () => {
           buyerAddress,
           sellerAddress
         )
-      ]
+      ],
+      pageKey: null
     };
 
     beforeEach(() => {
@@ -1547,16 +1476,16 @@ describe('NFT module', () => {
     const templateResponse: RawNftAttributeRarity[] = [
       {
         value: 'Aquamarine',
-        trait_type: 'Background',
+        traitType: 'Background',
         prevalence: 0.1266
       },
       {
         value: 'Cyborg',
-        trait_type: 'Eyes',
+        traitType: 'Eyes',
         prevalence: 0.0108
       }
     ];
-    const expectedResult = getNftRarityFromRaw(templateResponse);
+    const expectedResult = templateResponse;
 
     beforeEach(() => {
       mock.onGet().reply(200, templateResponse);
@@ -1810,7 +1739,7 @@ describe('NFT module', () => {
       );
       expect(response).toEqual({
         contractAddress,
-        refreshState: RefreshState.QUEUED,
+        refreshState: NftRefreshState.QUEUED,
         progress: '5'
       });
     });
@@ -1913,9 +1842,9 @@ describe('NFT module', () => {
 
     it('flattens 1155 transfers', async () => {
       const nftMetadataBatchResponse = [
-        createRawNft('0xabc', 'NFT1', '0x1', NftTokenType.ERC721),
-        createRawNft('0xdef', 'NFT2', '0x2', NftTokenType.ERC1155),
-        createRawNft('0xdef', 'NFT2', '0x3', NftTokenType.ERC1155)
+        createRawNft('0xabc', 'NFT1', '1', NftTokenType.ERC721),
+        createRawNft('0xdef', 'NFT2', '2', NftTokenType.ERC1155),
+        createRawNft('0xdef', 'NFT2', '3', NftTokenType.ERC1155)
       ];
       mock.onPost().reply(200, nftMetadataBatchResponse);
       const transfers = [
