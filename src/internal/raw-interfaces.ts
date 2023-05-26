@@ -149,11 +149,12 @@ export interface RawContractBaseNft {
  * @internal
  */
 export interface RawGetOwnersForContractResponse {
-  ownerAddresses: string[];
+  owners: string[];
+  pageKey: string | null;
 }
 
 export interface RawGetOwnersForContractWithTokenBalancesResponse {
-  ownerAddresses: RawOwnerAddress[];
+  owners: RawOwnerAddress[];
   pageKey: string | null;
 }
 
@@ -227,10 +228,24 @@ export interface RawNftFilterParam {
   token_id?: string;
 }
 
+export interface RawSearchContractMetadataResponse {
+  contracts: RawNftContract[];
+}
+
+export interface RawComputeRarityResponse {
+  rarities: RawNftAttributeRarity[];
+}
+
 export interface RawNftAttributeRarity {
   value: string;
   traitType: string;
   prevalence: number;
+}
+
+export interface RawNftAttributesResponse {
+  summary: Record<string, Record<string, number>>;
+  totalSupply: string;
+  contractAddress: string;
 }
 
 export interface RawGetNftSalesResponse {
@@ -273,6 +288,22 @@ export interface RawNftContractForOwner
     RawNftContractOwnershipInfo {
   displayNft: RawDisplayNftForContract;
   image: RawNftImage;
+}
+
+export interface RawGetNftMetadataBatchResponse {
+  nfts: Array<RawNft>;
+}
+
+export interface RawGetContractMetadataBatchResponse {
+  contracts: RawNftContract[];
+}
+
+export interface RawIsSpamContractResponse {
+  isSpamContract: boolean;
+}
+
+export interface RawGetSpamContractsResponse {
+  contractAddresses: string[];
 }
 
 export interface RawDisplayNftForContract {

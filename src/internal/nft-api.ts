@@ -7,12 +7,15 @@ import {
   AssetTransfersParams,
   AssetTransfersResponse,
   AssetTransfersResult,
+  ComputeRarityResponse,
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
+  GetContractMetadataBatchResponse,
   GetContractsForOwnerOptions,
   GetContractsForOwnerResponse,
   GetFloorPriceResponse,
   GetMintedNftsOptions,
+  GetNftMetadataBatchResponse,
   GetNftMetadataOptions,
   GetNftSalesOptions,
   GetNftSalesOptionsByContractAddress,
@@ -24,10 +27,11 @@ import {
   GetOwnersForContractWithTokenBalancesOptions,
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
+  GetSpamContractsResponse,
   GetTransfersForContractOptions,
   GetTransfersForOwnerOptions,
   GetTransfersForOwnerTransferType,
-  NftAttributeRarity,
+  IsSpamContractResponse,
   NftAttributesResponse,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
@@ -44,6 +48,7 @@ import {
   OwnedNft,
   OwnedNftsResponse,
   RefreshContractResult,
+  SearchContractMetadataResponse,
   SortingOrder,
   TransfersNftResponse
 } from '../types/types';
@@ -60,20 +65,27 @@ import {
 import { getAssetTransfers } from './core-api';
 import { paginateEndpoint, requestHttpWithBackoff } from './dispatch';
 import {
+  RawComputeRarityResponse,
   RawContractBaseNft,
   RawGetBaseNftsForContractResponse,
   RawGetBaseNftsResponse,
+  RawGetContractMetadataBatchResponse,
   RawGetContractsForOwnerResponse,
+  RawGetNftMetadataBatchResponse,
   RawGetNftSalesResponse,
   RawGetNftsForContractResponse,
   RawGetNftsResponse,
   RawGetOwnersForContractResponse,
+  RawGetOwnersForContractWithTokenBalancesResponse,
+  RawGetSpamContractsResponse,
+  RawIsSpamContractResponse,
   RawNft,
-  RawNftAttributeRarity,
+  RawNftAttributesResponse,
   RawNftContractForNft,
   RawOwnedBaseNft,
   RawOwnedNft,
-  RawReingestContractResponse
+  RawReingestContractResponse,
+  RawSearchContractMetadataResponse
 } from './raw-interfaces';
 
 /**
@@ -113,13 +125,16 @@ export async function getNftMetadataBatch(
   config: AlchemyConfig,
   tokens: Array<NftMetadataBatchToken>,
   options?: NftMetadataBatchOptions
-): Promise<Nft[]> {
+): Promise<GetNftMetadataBatchResponse> {
   const data = {
     tokens,
     tokenUriTimeoutInMs: options?.tokenUriTimeoutInMs,
     refreshCache: options?.refreshCache
   };
-  const response = await requestHttpWithBackoff<{}, RawNft[]>(
+  const response = await requestHttpWithBackoff<
+    {},
+    RawGetNftMetadataBatchResponse
+  >(
     config,
     AlchemyApiType.NFT,
     'getNFTMetadataBatch',
@@ -130,7 +145,9 @@ export async function getNftMetadataBatch(
       data
     }
   );
-  return response.map(getNftFromRaw);
+  return {
+    nfts: response.nfts.map(nft => getNftFromRaw(nft))
+  };
 }
 
 export async function getContractMetadata(
@@ -151,8 +168,11 @@ export async function getContractMetadata(
 export async function getContractMetadataBatch(
   config: AlchemyConfig,
   contractAddresses: string[]
-): Promise<NftContract[]> {
-  const response = await requestHttpWithBackoff<{}, RawNftContractForNft[]>(
+): Promise<GetContractMetadataBatchResponse> {
+  const response = await requestHttpWithBackoff<
+    {},
+    RawGetContractMetadataBatchResponse
+  >(
     config,
     AlchemyApiType.NFT,
     'getContractMetadataBatch',
@@ -164,7 +184,9 @@ export async function getContractMetadataBatch(
     }
   );
 
-  return response.map(getNftContractFromRaw);
+  return {
+    contracts: response.contracts.map(getNftContractFromRaw)
+  };
 }
 
 export async function* getNftsForOwnerIterator(
@@ -317,20 +339,26 @@ export async function getOwnersForContract(
   GetOwnersForContractResponse | GetOwnersForContractWithTokenBalancesResponse
 > {
   // Cast to `any` to avoid more type wrangling.
-  const response: any = await requestHttpWithBackoff<
+  const response = await requestHttpWithBackoff<
     GetOwnersForNftContractAlchemyParams,
-    RawGetOwnersForContractResponse
+    | RawGetOwnersForContractResponse
+    | RawGetOwnersForContractWithTokenBalancesResponse
   >(config, AlchemyApiType.NFT, 'getOwnersForContract', srcMethod, {
     ...options,
     contractAddress
   });
 
-  return {
-    owners: response.ownerAddresses,
-
-    // Only include the pageKey in the final response if it's defined
-    ...(response.pageKey !== undefined && { pageKey: response.pageKey })
-  };
+  if (options?.withTokenBalances) {
+    return nullsToUndefined<GetOwnersForContractWithTokenBalancesResponse>({
+      owners: (response as RawGetOwnersForContractWithTokenBalancesResponse)
+        .owners,
+      pageKey: response.pageKey
+    });
+  }
+  return nullsToUndefined<GetOwnersForContractResponse>({
+    owners: response.owners as string[],
+    pageKey: response.pageKey
+  });
 }
 
 export async function getContractsForOwner(
@@ -549,23 +577,20 @@ export async function isSpamContract(
   config: AlchemyConfig,
   contractAddress: string,
   srcMethod = 'isSpamContract'
-): Promise<boolean> {
-  return requestHttpWithBackoff<IsSpamContractParams, boolean>(
-    config,
-    AlchemyApiType.NFT,
-    'isSpamContract',
-    srcMethod,
-    {
-      contractAddress
-    }
-  );
+): Promise<IsSpamContractResponse> {
+  return requestHttpWithBackoff<
+    IsSpamContractParams,
+    RawIsSpamContractResponse
+  >(config, AlchemyApiType.NFT, 'isSpamContract', srcMethod, {
+    contractAddress
+  });
 }
 
 export async function getSpamContracts(
   config: AlchemyConfig,
   srcMethod = 'getSpamContracts'
-): Promise<string[]> {
-  return requestHttpWithBackoff<undefined, string[]>(
+): Promise<GetSpamContractsResponse> {
+  return requestHttpWithBackoff<undefined, RawGetSpamContractsResponse>(
     config,
     AlchemyApiType.NFT,
     'getSpamContracts',
@@ -627,10 +652,10 @@ export async function computeRarity(
   contractAddress: string,
   tokenId: BigNumberish,
   srcMethod = 'computeRarity'
-): Promise<NftAttributeRarity[]> {
+): Promise<ComputeRarityResponse> {
   const response = await requestHttpWithBackoff<
     ComputeRarityParams,
-    RawNftAttributeRarity[]
+    RawComputeRarityResponse
   >(config, AlchemyApiType.NFT, 'computeRarity', srcMethod, {
     contractAddress,
     tokenId: BigNumber.from(tokenId).toString()
@@ -643,16 +668,17 @@ export async function searchContractMetadata(
   config: AlchemyConfig,
   query: string,
   srcMethod = 'searchContractMetadata'
-): Promise<NftContract[]> {
+): Promise<SearchContractMetadataResponse> {
   const response = await requestHttpWithBackoff<
     SearchContractMetadataParams,
-    // TODO(v3): update to response
-    RawNftContractForNft[]
+    RawSearchContractMetadataResponse
   >(config, AlchemyApiType.NFT, 'searchContractMetadata', srcMethod, {
     query
   });
 
-  return response.map(getNftContractFromRaw);
+  return {
+    contracts: response.contracts.map(getNftContractFromRaw)
+  };
 }
 
 export async function summarizeNftAttributes(
@@ -662,8 +688,8 @@ export async function summarizeNftAttributes(
 ): Promise<NftAttributesResponse> {
   return requestHttpWithBackoff<
     SummarizeNftAttributesParams,
-    NftAttributesResponse
-  >(config, AlchemyApiType.NFT, 'summarizeNftAttributes', srcMethod, {
+    RawNftAttributesResponse
+  >(config, AlchemyApiType.NFT, 'summarizeNFTAttributes', srcMethod, {
     contractAddress
   });
 }
@@ -815,21 +841,21 @@ export async function getNftsForTransfers(
       )
     )
   );
-  const nfts = responseBatches.flat();
+  const nfts = responseBatches.map(r => r.nfts).flat();
 
   // The same NFT can be transferred multiple times in the same transfers response.
   // We want to return one NFT for each transfer, so we create a mapping for
   // each NFT to pair with the transfer metadata.
   const nftsByTokenId = new Map<string, Nft>();
   nfts.forEach(nft => {
-    const key = `${nft.contract.address}-${BigNumber.from(
+    const key = `${nft.contract.address.toLowerCase()}-${BigNumber.from(
       nft.tokenId
     ).toString()}`;
     nftsByTokenId.set(key, nft);
   });
 
   const transferredNfts = metadataTransfers.map(t => {
-    const key = `${t.token.contractAddress}-${BigNumber.from(
+    const key = `${t.token.contractAddress.toLowerCase()}-${BigNumber.from(
       t.token.tokenId
     ).toString()}`;
     return {
