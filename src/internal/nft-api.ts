@@ -952,8 +952,6 @@ interface GetNftsAlchemyParams {
   owner: string;
   pageKey?: string;
   contractAddresses?: string[];
-  /** @deprecated - Please use `excludeFilters` instead. */
-  filters?: string[];
   excludeFilters?: NftFilters[];
   includeFilters?: NftFilters[];
   pageSize?: number;
