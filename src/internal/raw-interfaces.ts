@@ -1,5 +1,6 @@
 import { BaseNftContract } from '../api/nft';
 import {
+  AcquiredAt,
   Media,
   NftMetadata,
   NftSaleFeeData,
@@ -46,6 +47,7 @@ export interface RawNft extends RawBaseNft {
   error?: string;
   contractMetadata?: RawNftContractMetadata;
   spamInfo?: RawSpamInfo;
+  acquiredAt?: AcquiredAt;
 }
 
 /**

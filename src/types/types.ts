@@ -598,6 +598,13 @@ export interface SpamInfo {
   classifications: NftSpamClassification[];
 }
 
+/** Block time and number at which an NFT was acquired. */
+export interface AcquiredAt {
+  blockTimestamp: string;
+
+  blockNumber: number;
+}
+
 /**
  * Optional parameters object for the {@link getNftsForOwner} and
  * {@link getNftsForOwnerIterator} functions.
