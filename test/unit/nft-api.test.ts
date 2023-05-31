@@ -1462,7 +1462,12 @@ describe('NFT module', () => {
           buyerAddress,
           sellerAddress
         )
-      ]
+      ],
+      validAt: {
+        blockNumber: 1337,
+        blockHash: null,
+        blockTimestamp: null
+      }
     };
 
     beforeEach(() => {
@@ -1519,6 +1524,9 @@ describe('NFT module', () => {
 
       expect(result.nftSales[2].marketplace).toEqual(NftSaleMarketplace.X2Y2);
       expect(result.nftSales[2].taker).toEqual(NftSaleTakerType.SELLER);
+
+      expect(result.validAt.blockNumber).toEqual(1337);
+      expect(result.validAt.blockHash).toEqual(undefined);
     });
 
     it('surfaces errors', async () => {
