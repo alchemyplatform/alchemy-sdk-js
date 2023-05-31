@@ -1,4 +1,5 @@
 import {
+  AcquiredAt,
   Media,
   NftMetadata,
   NftTokenType,
@@ -106,4 +107,11 @@ export interface Nft extends BaseNft {
 
   /** Detailed information on why an NFT was classified as spam. */
   spamInfo?: SpamInfo;
+
+  /**
+   * Time at which the NFT was most recently acquired by the user. Only
+   * available when specifying `orderBy: NftOrdering.TRANSFERTIME` in the
+   * request.
+   */
+  acquiredAt?: AcquiredAt;
 }

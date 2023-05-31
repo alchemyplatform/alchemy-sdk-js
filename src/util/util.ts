@@ -100,7 +100,8 @@ export function getNftFromRaw(rawNft: RawNft): Nft {
       rawMetadata: rawNft.metadata,
       tokenUri: parseNftTokenUri(rawNft.tokenUri),
       media: parseNftTokenUriArray(rawNft.media),
-      spamInfo
+      spamInfo,
+      acquiredAt: rawNft.acquiredAt
     };
   } catch (e) {
     throw new Error('Error parsing the NFT response: ' + e);
