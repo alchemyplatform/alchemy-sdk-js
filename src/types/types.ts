@@ -1313,8 +1313,16 @@ export interface NftSaleFeeData {
   /** The symbol of the token used for the payment. */
   symbol: string;
 
-  /** The number of decimals of the token used for the payment. */
+  /**
+   * The number of decimals of the token used for the payment.
+   * @deprecated Please use `decimals` instead. This field contains a typo
+   * and will always be undefined. It's been marked as deprecated to avoid
+   * breaking changes.
+   */
   decimal: number;
+
+  /** The number of decimals of the token used for the payment. */
+  decimals: number;
 }
 
 /**
