@@ -16,3 +16,6 @@ temp
 alchemy.env
 
 .npmrc
+
+# VSCode History Extension
+.history

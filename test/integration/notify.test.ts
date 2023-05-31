@@ -1,6 +1,7 @@
 import {
   AddressActivityWebhook,
   Alchemy,
+  CustomGraphqlWebhook,
   Network,
   NftActivityWebhook,
   NftFilter,
@@ -30,10 +31,12 @@ describe('E2E integration tests', () => {
   ];
 
   const webhookUrl = 'https://temp-site.ngrok.io';
+  const graphqlQuery = '{ block { hash } }';
 
   let addressWh: AddressActivityWebhook;
   let nftWh: NftActivityWebhook;
   let nftMetadataWh: NftMetadataUpdateWebhook;
+  let customWh: CustomGraphqlWebhook;
 
   async function createInitialWebhooks(): Promise<void> {
     addressWh = await alchemy.notify.createWebhook(
@@ -51,6 +54,11 @@ describe('E2E integration tests', () => {
       WebhookType.NFT_METADATA_UPDATE,
       { filters: nftFilters, network: Network.ETH_MAINNET }
     );
+    customWh = await alchemy.notify.createWebhook(
+      webhookUrl,
+      WebhookType.GRAPHQL,
+      { graphqlQuery, network: Network.ETH_MAINNET }
+    );
   }
 
   beforeAll(async () => {
@@ -65,10 +73,50 @@ describe('E2E integration tests', () => {
     await createInitialWebhooks();
   });
 
+  describe('has valid network mappings', () => {
+    const UNSUPPORTED_NETWORKS = [
+      Network.ETH_ROPSTEN,
+      Network.ETH_KOVAN,
+      Network.ETH_RINKEBY,
+      Network.OPT_KOVAN,
+      Network.ARB_RINKEBY,
+      Network.ASTAR_MAINNET,
+      Network.POLYGONZKEVM_MAINNET,
+      Network.POLYGONZKEVM_TESTNET
+    ];
+    const testAddress = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48';
+
+    function testNetwork(network: Network) {
+      it(`can create a webhook on ${network}`, async () => {
+        console.log('testing', network);
+        const nftTest = await alchemy.notify.createWebhook(
+          webhookUrl,
+          WebhookType.ADDRESS_ACTIVITY,
+          { addresses: [testAddress], network }
+        );
+
+        await alchemy.notify.deleteWebhook(nftTest.id);
+      });
+    }
+
+    for (const network of Object.values(Network)) {
+      if (!UNSUPPORTED_NETWORKS.includes(network)) {
+        testNetwork(network);
+      }
+    }
+  });
+
   it('getAllWebhooks()', async () => {
     const all = await alchemy.notify.getAllWebhooks();
     expect(all.totalCount).toBeGreaterThan(0);
     expect(all.webhooks.length).toEqual(all.totalCount);
+  });
+
+  it('getGraphqlQuery()', async () => {
+    let response = await alchemy.notify.getGraphqlQuery(customWh);
+    expect(response.graphqlQuery).toEqual(graphqlQuery);
+    response = await alchemy.notify.getGraphqlQuery(customWh.id);
+    expect(response.graphqlQuery).toEqual(graphqlQuery);
   });
 
   it('getAddresses()', async () => {
@@ -200,6 +248,27 @@ describe('E2E integration tests', () => {
     ).toEqual(0);
   });
 
+  it('create and delete CustomWebhook', async () => {
+    const customWebhook = await alchemy.notify.createWebhook(
+      webhookUrl,
+      WebhookType.GRAPHQL,
+      { graphqlQuery, network: Network.ETH_GOERLI }
+    );
+    expect(customWebhook.url).toEqual(webhookUrl);
+    expect(customWebhook.type).toEqual(WebhookType.GRAPHQL);
+    expect(customWebhook.network).toEqual(Network.ETH_GOERLI);
+    let response = await alchemy.notify.getAllWebhooks();
+    expect(
+      response.webhooks.filter(wh => wh.id === customWebhook.id).length
+    ).toEqual(1);
+
+    await alchemy.notify.deleteWebhook(customWebhook);
+    response = await alchemy.notify.getAllWebhooks();
+    expect(
+      response.webhooks.filter(wh => wh.id === customWebhook.id).length
+    ).toEqual(0);
+  });
+
   it('create AddressActivityWebhook with ENS', async () => {
     const rawAddress = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045';
     const addressWebhook = await alchemy.notify.createWebhook(
@@ -300,6 +369,23 @@ describe('E2E integration tests', () => {
     const updated = response.webhooks.filter(wh => wh.id === nftWh.id);
     expect(updated.length).toEqual(1);
     expect(updated[0].isActive).toEqual(false);
+  });
+
+  it('update CustomWebhook status', async () => {
+    const webhooks = await alchemy.notify.getAllWebhooks();
+    const filteredWebhooks = webhooks.webhooks.filter(
+      webhook => webhook.id === customWh.id
+    );
+    expect(filteredWebhooks.length).toEqual(1);
+    const customWebhook = filteredWebhooks[0];
+    const currStatus = customWebhook.isActive;
+    await alchemy.notify.updateWebhook(customWebhook.id, {
+      isActive: !currStatus
+    });
+    const response = await alchemy.notify.getAllWebhooks();
+    const updated = response.webhooks.filter(wh => wh.id === customWebhook.id);
+    expect(updated.length).toEqual(1);
+    expect(updated[0].isActive).toEqual(!currStatus);
   });
 
   it('update NftMetadataUpdateWebhook status', async () => {

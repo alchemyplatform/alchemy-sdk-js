@@ -533,7 +533,7 @@ export class CoreNamespace {
       rawBalance: BigNumber.from(balance.tokenBalance!).toString()
     }));
 
-    const metadata: TokenMetadataResponse[] = await Promise.all(
+    const metadataPromises = await Promise.allSettled(
       response.tokenBalances.map(token =>
         provider._send(
           'alchemy_getTokenMetadata',
@@ -542,6 +542,16 @@ export class CoreNamespace {
           /* forceBatch= */ true
         )
       )
+    );
+    const metadata: TokenMetadataResponse[] = metadataPromises.map(p =>
+      p.status === 'fulfilled'
+        ? p.value
+        : {
+            name: null,
+            symbol: null,
+            decimals: null,
+            logo: null
+          }
     );
     const ownedTokens = formattedBalances.map((balance, index) => ({
       ...balance,

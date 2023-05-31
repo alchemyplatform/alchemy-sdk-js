@@ -338,6 +338,7 @@ export async function getOwnersForNft(
   config: AlchemyConfig,
   contractAddress: string,
   tokenId: BigNumberish,
+  options?: GetOwnersForContractOptions,
   srcMethod = 'getOwnersForNft'
 ): Promise<GetOwnersForNftResponse> {
   return requestHttpWithBackoff(
@@ -347,7 +348,8 @@ export async function getOwnersForNft(
     srcMethod,
     {
       contractAddress,
-      tokenId: BigNumber.from(tokenId!).toString()
+      tokenId: BigNumber.from(tokenId!).toString(),
+      ...options
     }
   );
 }
@@ -768,8 +770,10 @@ function isNftWithMetadata(
 /**
  * Given an AssetTransfersResponse, fetches the NFTs associated with the
  * transfers and collates them with transfer metadata.
+ *
+ * VISIBLE FOR TESTING
  */
-async function getNftsForTransfers(
+export async function getNftsForTransfers(
   config: AlchemyConfig,
   response: AssetTransfersResponse
 ): Promise<TransfersNftResponse> {
@@ -792,14 +796,43 @@ async function getNftsForTransfers(
     return { nfts: [] };
   }
 
-  const nfts = await getNftMetadataBatch(
-    config,
-    metadataTransfers.map(transfer => transfer.token)
+  // If we have more than 100 elements after unrolling 1155 transfers, split
+  // transfers into batches of 100 to stay under endpoint batch size limit.
+  const batchSize = 100;
+  const requestBatches = [];
+  for (let i = 0; i < metadataTransfers.length; i += batchSize) {
+    requestBatches.push(metadataTransfers.slice(i, i + batchSize));
+  }
+  const responseBatches = await Promise.all(
+    requestBatches.map(batch =>
+      getNftMetadataBatch(
+        config,
+        batch.map(transfer => transfer.token)
+      )
+    )
   );
-  const transferredNfts = nfts.map((nft, i) => ({
-    ...nft,
-    ...metadataTransfers[i].metadata
-  }));
+  const nfts = responseBatches.flat();
+
+  // The same NFT can be transferred multiple times in the same transfers response.
+  // We want to return one NFT for each transfer, so we create a mapping for
+  // each NFT to pair with the transfer metadata.
+  const nftsByTokenId = new Map<string, Nft>();
+  nfts.forEach(nft => {
+    const key = `${nft.contract.address}-${BigNumber.from(
+      nft.tokenId
+    ).toString()}`;
+    nftsByTokenId.set(key, nft);
+  });
+
+  const transferredNfts = metadataTransfers.map(t => {
+    const key = `${t.token.contractAddress}-${BigNumber.from(
+      t.token.tokenId
+    ).toString()}`;
+    return {
+      ...nftsByTokenId.get(key)!,
+      ...t.metadata
+    };
+  });
 
   return {
     nfts: transferredNfts,

@@ -3,6 +3,8 @@ import MockAdapter from 'axios-mock-adapter';
 
 import {
   Alchemy,
+  AssetTransfersCategory,
+  AssetTransfersResult,
   BaseNft,
   GetContractsForOwnerOptions,
   GetFloorPriceResponse,
@@ -25,8 +27,11 @@ import {
   OwnedNftsResponse,
   RefreshState,
   SortingOrder,
-  fromHex
+  fromHex,
+  toHex
 } from '../../src';
+import { AlchemyConfig } from '../../src/api/alchemy-config';
+import { getNftsForTransfers } from '../../src/internal/nft-api';
 import {
   RawGetBaseNftsForContractResponse,
   RawGetBaseNftsResponse,
@@ -1024,6 +1029,8 @@ describe('NFT module', () => {
     const tokenIdHex = '0x1b7';
     const tokenIdNumber = '439';
     const owners = ['0x1', '0x2', '0x3'];
+    const pageKey = 'abcdefg';
+    const pageSize = 500;
 
     beforeEach(() => {
       mock.onGet().reply(200, {
@@ -1032,7 +1039,10 @@ describe('NFT module', () => {
     });
 
     it('calls with the correct parameters', async () => {
-      await alchemy.nft.getOwnersForNft(contractAddress, tokenIdHex);
+      await alchemy.nft.getOwnersForNft(contractAddress, tokenIdHex, {
+        pageKey,
+        pageSize
+      });
       expect(mock.history.get.length).toEqual(1);
       expect(mock.history.get[0].params).toHaveProperty(
         'contractAddress',
@@ -1042,6 +1052,8 @@ describe('NFT module', () => {
         'tokenId',
         tokenIdNumber
       );
+      expect(mock.history.get[0].params).toHaveProperty('pageKey', pageKey);
+      expect(mock.history.get[0].params).toHaveProperty('pageSize', pageSize);
 
       const response = await alchemy.nft.getOwnersForNft(
         contractAddress,
@@ -1815,4 +1827,180 @@ describe('NFT module', () => {
   // TODO: Add unit tests once we've implemented MockProvider.
   describe('getMintedNfts()', () => {});
   describe('getTransfersForOwner()', () => {});
+
+  describe('getNftsForTransfers() helper method', () => {
+    let config: AlchemyConfig;
+
+    function create721Transfer(
+      contractAddress: string | null,
+      tokenId: string
+    ): AssetTransfersResult {
+      return {
+        uniqueId: 'mock-id',
+        category: AssetTransfersCategory.ERC721,
+        blockNum: '0xe4f5d',
+        from: '0xabc',
+        to: '0xdef',
+        value: null,
+        erc721TokenId: tokenId,
+        erc1155Metadata: null,
+        tokenId,
+        asset: null,
+        hash: '0xabcd',
+        rawContract: {
+          value: null,
+          address: contractAddress,
+          decimal: '0x0'
+        }
+      };
+    }
+
+    function create1155Transfer(
+      contractAddress: string,
+      tokenIds: string[]
+    ): AssetTransfersResult {
+      const metadata = tokenIds.map(id => ({
+        tokenId: id,
+        value: '0x1'
+      }));
+      return {
+        uniqueId: 'mock-id',
+        category: AssetTransfersCategory.ERC1155,
+        blockNum: '0xe4f5d',
+        from: '0xabc',
+        to: '0xdef',
+        value: null,
+        erc721TokenId: null,
+        erc1155Metadata: metadata,
+        tokenId: null,
+        asset: null,
+        hash: '0xabcd',
+        rawContract: {
+          value: null,
+          address: contractAddress,
+          decimal: '0x0'
+        }
+      };
+    }
+
+    beforeEach(() => {
+      config = new AlchemyConfig();
+    });
+
+    it('handles no transfers case', async () => {
+      const response = await getNftsForTransfers(config, {
+        transfers: []
+      });
+      expect(response.nfts).toEqual([]);
+    });
+
+    it('filters out transfers with no contract address', async () => {
+      const response = await getNftsForTransfers(config, {
+        transfers: [create721Transfer(null, '0x2')]
+      });
+      expect(response.nfts.length).toEqual(0);
+    });
+
+    it('flattens 1155 transfers', async () => {
+      const nftMetadataBatchResponse = [
+        createRawNft('0xabc', 'NFT1', '0x1', NftTokenType.ERC721),
+        createRawNft('0xdef', 'NFT2', '0x2', NftTokenType.ERC1155),
+        createRawNft('0xdef', 'NFT2', '0x3', NftTokenType.ERC1155)
+      ];
+      mock.onPost().reply(200, nftMetadataBatchResponse);
+      const transfers = [
+        create721Transfer('0xabc', '0x1'),
+        create1155Transfer('0xdef', ['0x2', '0x3'])
+      ];
+
+      const response = await getNftsForTransfers(config, {
+        transfers
+      });
+      expect(response.nfts.length).toEqual(3);
+      expect(mock.history.post.length).toEqual(1);
+
+      const expectedRequest = {
+        tokens: [
+          { contractAddress: '0xabc', tokenId: '0x1', tokenType: 'ERC721' },
+          { contractAddress: '0xdef', tokenId: '0x2', tokenType: 'ERC1155' },
+          { contractAddress: '0xdef', tokenId: '0x3', tokenType: 'ERC1155' }
+        ]
+      };
+      expect(mock.history.post[0].data).toEqual(
+        JSON.stringify(expectedRequest)
+      );
+    });
+
+    it('batches NFT metadata calls', async () => {
+      const nftMetadataBatchResponse1 = Array.from({ length: 100 }, (_, i) =>
+        createRawNft('0xdef', 'NFT', toHex(i), NftTokenType.ERC1155)
+      );
+      const nftMetadataBatchResponse2 = [
+        createRawNft('0xdef', 'NFT', toHex(100), NftTokenType.ERC1155)
+      ];
+      mock
+        .onPost()
+        .reply(200, nftMetadataBatchResponse1)
+        .onPost()
+        .reply(200, nftMetadataBatchResponse2);
+
+      const transfers = [
+        create1155Transfer(
+          '0xdef',
+          Array.from({ length: 101 }, (_, i) => toHex(i))
+        )
+      ];
+      const response = await getNftsForTransfers(config, {
+        transfers
+      });
+      expect(response.nfts.length).toEqual(101);
+      expect(mock.history.post.length).toEqual(2);
+
+      const expectedRequest1 = {
+        tokens: Array.from({ length: 100 }, (_, i) => ({
+          contractAddress: '0xdef',
+          tokenId: toHex(i),
+          tokenType: 'ERC1155'
+        }))
+      };
+      const expectedRequest2 = {
+        tokens: [
+          {
+            contractAddress: '0xdef',
+            tokenId: toHex(100),
+            tokenType: 'ERC1155'
+          }
+        ]
+      };
+      expect(mock.history.post[0].data).toEqual(
+        JSON.stringify(expectedRequest1)
+      );
+      expect(mock.history.post[1].data).toEqual(
+        JSON.stringify(expectedRequest2)
+      );
+    });
+
+    it('returns separate NFTs for duplicate transfers', async () => {
+      const nftMetadataBatchResponse = [
+        createRawNft('0xabc', 'NFT1', '0x1', NftTokenType.ERC721),
+        createRawNft('0xdef', 'NFT2', '0x1', NftTokenType.ERC1155)
+      ];
+      mock.onPost().reply(200, nftMetadataBatchResponse);
+      const transfers = [
+        create721Transfer('0xabc', '0x1'),
+        create721Transfer('0xabc', '0x1'),
+        create1155Transfer('0xdef', ['0x2']),
+        create1155Transfer('0xdef', ['0x2'])
+      ];
+
+      const response = await getNftsForTransfers(config, {
+        transfers
+      });
+
+      // Should be 4 NFTs even though endpoint returned 2.
+      expect(response.nfts.length).toEqual(4);
+      expect(mock.history.post.length).toEqual(1);
+      expect(mock.history);
+    });
+  });
 });

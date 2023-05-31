@@ -116,6 +116,38 @@ describe('E2E integration tests', () => {
     expect(response.owners.length).toBeGreaterThan(0);
   });
 
+  it('getOwnersForNft() with pageSize on erc1155 contract 0x84162fE2E695Fedbf4D3bcA1c3458FB616E44735', async () => {
+    const tokenId = '0';
+    const response = await alchemy.nft.getOwnersForNft(
+      '0x84162fE2E695Fedbf4D3bcA1c3458FB616E44735',
+      tokenId,
+      { pageSize: 51 }
+    );
+    expect(response.owners.length).toEqual(51);
+  });
+
+  it('getOwnersForNft() with pageKey on erc1155 contract 0x84162fE2E695Fedbf4D3bcA1c3458FB616E44735', async () => {
+    const tokenId = '0';
+    const firstPageResponse = await alchemy.nft.getOwnersForNft(
+      '0x84162fE2E695Fedbf4D3bcA1c3458FB616E44735',
+      tokenId,
+      { pageSize: 1 }
+    );
+    const pageKey = firstPageResponse.pageKey;
+    expect(pageKey).toBeDefined();
+
+    const nextPageResponse = await alchemy.nft.getOwnersForNft(
+      contractAddress,
+      tokenId,
+      { pageSize: 1, pageKey }
+    );
+    expect(nextPageResponse.owners.length).toEqual(1);
+    // cursory check that the pages contain different data
+    expect(
+      firstPageResponse.owners[0] === nextPageResponse.owners[0]
+    ).toBeFalsy();
+  });
+
   it('getNftForOwners() with pageSize', async () => {
     const response = await alchemy.nft.getNftsForOwner('0xshah.eth', {
       pageSize: 51
@@ -456,67 +488,25 @@ describe('E2E integration tests', () => {
     expect(nftsWithAddress.length).toEqual(response5.nfts.length);
   });
 
-  it('getTransfersForOwner()', async () => {
-    // Handles paging
-    const response = await alchemy.nft.getTransfersForOwner(
-      'vitalik.eth',
-      GetTransfersForOwnerTransferType.TO
-    );
-    expect(response.pageKey).toBeDefined();
-    expect(response.nfts.length).toBeGreaterThan(0);
-    const responseWithPageKey = await alchemy.nft.getTransfersForOwner(
-      'vitalik.eth',
-      GetTransfersForOwnerTransferType.TO,
-      {
-        pageKey: response.pageKey
-      }
-    );
-    expect(responseWithPageKey.nfts.length).toBeGreaterThan(0);
-    expect(response.nfts[0]).not.toEqual(responseWithPageKey.nfts[0]);
+  it('getTransfersForContract() with multiple transfers for same token', async () => {
+    // This is a sanity test since this block range contains two transfers for
+    // the same token that will be included in the same NFT metadata batch.
+    const CONTRACT = '0x0cdd3cb3bcd969c2b389488b51fb093cc0d703b1';
+    const START_BLOCK = 16877400;
+    const END_BLOCK = 16877500;
 
-    // Handles ERC1155 NFT transfers.
-    const response3 = await alchemy.nft.getTransfersForOwner(
-      'vitalik.eth',
-      GetTransfersForOwnerTransferType.TO,
-      {
-        tokenType: NftTokenType.ERC1155
-      }
-    );
-    const nfts1155 = response3.nfts.filter(
-      nft => nft.tokenType === NftTokenType.ERC1155
-    );
-    expect(nfts1155.length).toEqual(response3.nfts.length);
+    const transactions = new Set<string>();
+    const transfers = await alchemy.nft.getTransfersForContract(CONTRACT, {
+      fromBlock: START_BLOCK,
+      toBlock: END_BLOCK
+    });
 
-    // Handles ERC721 NFT transfers.
-    const response4 = await alchemy.nft.getTransfersForOwner(
-      'vitalik.eth',
-      GetTransfersForOwnerTransferType.FROM,
-      {
-        tokenType: NftTokenType.ERC721
-      }
-    );
-    const nfts721 = response4.nfts.filter(
-      // Some 721 transfers are ingested as NftTokenType.UNKNOWN.
-      nft => nft.tokenType !== NftTokenType.ERC1155
-    );
-    expect(nfts721.length).toEqual(response4.nfts.length);
+    transfers.nfts
+      .filter(t => t.tokenId === '238')
+      .forEach(t => transactions.add(t.transactionHash));
+    console.log(transfers.nfts.length);
 
-    // Handles contract address specifying.
-    const contractAddresses = [
-      '0xa1eb40c284c5b44419425c4202fa8dabff31006b',
-      '0x8442864d6ab62a9193be2f16580c08e0d7bcda2f'
-    ];
-    const response5 = await alchemy.nft.getTransfersForOwner(
-      'vitalik.eth',
-      GetTransfersForOwnerTransferType.TO,
-      {
-        contractAddresses
-      }
-    );
-    const nftsWithAddress = response5.nfts.filter(nft =>
-      contractAddresses.includes(nft.contract.address)
-    );
-    expect(nftsWithAddress.length).toEqual(response5.nfts.length);
+    expect(transactions.size).toEqual(2);
   });
 
   it('getTransfersForContract()', async () => {

@@ -10,6 +10,7 @@ The type of [Webhook](../interfaces/Webhook.md).
 
 - [ADDRESS\_ACTIVITY](WebhookType.md#address_activity)
 - [DROPPED\_TRANSACTION](WebhookType.md#dropped_transaction)
+- [GRAPHQL](WebhookType.md#graphql)
 - [MINED\_TRANSACTION](WebhookType.md#mined_transaction)
 - [NFT\_ACTIVITY](WebhookType.md#nft_activity)
 - [NFT\_METADATA\_UPDATE](WebhookType.md#nft_metadata_update)
@@ -22,7 +23,7 @@ The type of [Webhook](../interfaces/Webhook.md).
 
 #### Defined in
 
-[src/types/types.ts:2129](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L2129)
+[src/types/types.ts:2154](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L2154)
 
 ___
 
@@ -32,7 +33,17 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:2128](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L2128)
+[src/types/types.ts:2153](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L2153)
+
+___
+
+### GRAPHQL
+
+• **GRAPHQL** = `"GRAPHQL"`
+
+#### Defined in
+
+[src/types/types.ts:2157](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L2157)
 
 ___
 
@@ -42,7 +53,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:2127](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L2127)
+[src/types/types.ts:2152](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L2152)
 
 ___
 
@@ -52,7 +63,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:2130](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L2130)
+[src/types/types.ts:2155](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L2155)
 
 ___
 
@@ -62,4 +73,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:2131](https://github.com/alchemyplatform/alchemy-sdk-js/blob/f2b072e/src/types/types.ts#L2131)
+[src/types/types.ts:2156](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L2156)

@@ -6,6 +6,7 @@ import { requestHttpWithBackoff } from '../internal/dispatch';
 import {
   RawAddressActivityResponse,
   RawCreateWebhookResponse,
+  RawCustomGraphqlWebhookConfig,
   RawGetAllWebhooksResponse,
   RawNftFilterParam,
   RawNftFiltersResponse,
@@ -16,6 +17,10 @@ import {
   AddressActivityWebhook,
   AddressWebhookParams,
   AddressWebhookUpdate,
+  CustomGraphqlWebhook,
+  CustomGraphqlWebhookConfig,
+  CustomGraphqlWebhookParams,
+  CustomGraphqlWebhookUpdate,
   DroppedTransactionWebhook,
   GetAddressesOptions,
   GetAllWebhooksResponse,
@@ -120,6 +125,40 @@ export class NotifyNamespace {
   }
 
   /**
+   * Get the graphql query used for the provided {@link CustomGraphqlWebhook}.
+   *
+   * @param customGraphqlWebhook The webhook to get the graphql query for.
+   */
+  getGraphqlQuery(
+    customGraphqlWebhook: CustomGraphqlWebhook
+  ): Promise<CustomGraphqlWebhookConfig>;
+
+  /**
+   * Get the graphql query used for the provided {@link CustomGraphqlWebhook}.
+   *
+   * @param webhookId The id of the custom webhook. Passing in an id
+   *   of a non-custom webhook will result in a response object with
+   *   no graphql query.
+   */
+  getGraphqlQuery(webhookId: string): Promise<CustomGraphqlWebhookConfig>;
+  async getGraphqlQuery(
+    webhookOrId: CustomGraphqlWebhook | string
+  ): Promise<CustomGraphqlWebhookConfig> {
+    this.verifyConfig();
+    const webhookId =
+      typeof webhookOrId === 'string' ? webhookOrId : webhookOrId.id;
+    const response =
+      await this.sendWebhookRequest<RawCustomGraphqlWebhookConfig>(
+        'dashboard-webhook-graphql-query',
+        'getGraphqlQuery',
+        {
+          webhook_id: webhookId
+        }
+      );
+    return parseRawCustomGraphqlWebhookResponse(response);
+  }
+
+  /**
    * Get all NFTs tracked for the provided {@link NftActivityWebhook}.
    *
    * @param nftWebhook The NFT Activity webhook.
@@ -192,6 +231,18 @@ export class NotifyNamespace {
   ): Promise<void>;
 
   /**
+   * Update a {@link CustomGraphqlWebhook}'s active status.
+   * The graphql query associated with the webhook is immutable.
+   *
+   * @param customGraphqlWebhookId The id of the custom webhook.
+   * @param update Object containing the update.
+   */
+  updateWebhook(
+    customGraphqlWebhookId: string,
+    update: CustomGraphqlWebhookUpdate
+  ): Promise<void>;
+
+  /**
    * Update a {@link AddressActivityWebhook}'s active status or addresses.
    *
    * @param addressWebhook The address activity webhook to update.
@@ -214,7 +265,11 @@ export class NotifyNamespace {
   ): Promise<void>;
   async updateWebhook(
     webhookOrId: NftActivityWebhook | AddressActivityWebhook | string,
-    update: NftWebhookUpdate | AddressWebhookUpdate | NftMetadataWebhookUpdate
+    update:
+      | NftWebhookUpdate
+      | AddressWebhookUpdate
+      | NftMetadataWebhookUpdate
+      | CustomGraphqlWebhookUpdate
   ): Promise<void> {
     const webhookId =
       typeof webhookOrId === 'string' ? webhookOrId : webhookOrId.id;
@@ -346,6 +401,20 @@ export class NotifyNamespace {
   ): Promise<NftMetadataUpdateWebhook>;
 
   /**
+   * Create a new {@link CustomGraphqlWebhook} to track any event on every block.
+   *
+   * @param url The URL that the webhook should send events to.
+   * @param type The type of webhook to create.
+   * @param params Parameters object containing the graphql query to be executed
+   * on every block
+   */
+  createWebhook(
+    url: string,
+    type: WebhookType.GRAPHQL,
+    params: CustomGraphqlWebhookParams
+  ): Promise<CustomGraphqlWebhook>;
+
+  /**
    * Create a new {@link AddressActivityWebhook} to track address activity.
    *
    * @param url The URL that the webhook should send events to.
@@ -361,13 +430,18 @@ export class NotifyNamespace {
   async createWebhook(
     url: string,
     type: WebhookType,
-    params: NftWebhookParams | AddressWebhookParams | TransactionWebhookParams
+    params:
+      | NftWebhookParams
+      | AddressWebhookParams
+      | TransactionWebhookParams
+      | CustomGraphqlWebhookParams
   ): Promise<
     | MinedTransactionWebhook
     | DroppedTransactionWebhook
     | NftActivityWebhook
     | AddressActivityWebhook
     | NftMetadataUpdateWebhook
+    | CustomGraphqlWebhook
   > {
     let appId;
     if (
@@ -383,6 +457,7 @@ export class NotifyNamespace {
     let network = NETWORK_TO_WEBHOOK_NETWORK.get(this.config.network);
     let nftFilterObj;
     let addresses;
+    let graphqlQuery;
     if (
       type === WebhookType.NFT_ACTIVITY ||
       type === WebhookType.NFT_METADATA_UPDATE
@@ -423,6 +498,18 @@ export class NotifyNamespace {
         ? NETWORK_TO_WEBHOOK_NETWORK.get(params.network)
         : network;
       addresses = await this.resolveAddresses(params.addresses);
+    } else if (type == WebhookType.GRAPHQL) {
+      if (
+        params === undefined ||
+        !('graphqlQuery' in params) ||
+        params.graphqlQuery.length === 0
+      ) {
+        throw new Error('Custom Webhooks require a non-empty graphql query.');
+      }
+      network = params.network
+        ? NETWORK_TO_WEBHOOK_NETWORK.get(params.network)
+        : network;
+      graphqlQuery = params.graphqlQuery;
     }
 
     const data = {
@@ -433,7 +520,8 @@ export class NotifyNamespace {
 
       // Only include the filters/addresses in the final response if they're defined
       ...nftFilterObj,
-      ...(addresses && { addresses })
+      ...(addresses && { addresses }),
+      ...(graphqlQuery && { graphql_query: graphqlQuery })
     };
 
     const response = await this.sendWebhookRequest<RawCreateWebhookResponse>(
@@ -545,14 +633,17 @@ export class NotifyNamespace {
 const WEBHOOK_NETWORK_TO_NETWORK: { [key: string]: Network } = {
   ETH_MAINNET: Network.ETH_MAINNET,
   ETH_GOERLI: Network.ETH_GOERLI,
+  ETH_SEPOLIA: Network.ETH_SEPOLIA,
   ETH_ROPSTEN: Network.ETH_ROPSTEN,
   ETH_RINKEBY: Network.ETH_RINKEBY,
   ETH_KOVAN: Network.ETH_KOVAN,
   MATIC_MAINNET: Network.MATIC_MAINNET,
   MATIC_MUMBAI: Network.MATIC_MUMBAI,
   ARB_MAINNET: Network.ARB_MAINNET,
+  ARB_GOERLI: Network.ARB_GOERLI,
   ARB_RINKEBY: Network.ARB_RINKEBY,
   OPT_MAINNET: Network.OPT_MAINNET,
+  OPT_GOERLI: Network.OPT_GOERLI,
   OPT_KOVAN: Network.OPT_KOVAN
 };
 
@@ -594,6 +685,14 @@ function parseRawAddressActivityResponse(
     addresses: response.data,
     totalCount: response.pagination.total_count,
     pageKey: response.pagination.cursors.after
+  };
+}
+
+function parseRawCustomGraphqlWebhookResponse(
+  response: RawCustomGraphqlWebhookConfig
+): CustomGraphqlWebhookConfig {
+  return {
+    graphqlQuery: response.data.graphql_query
   };
 }
 

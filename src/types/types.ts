@@ -93,7 +93,9 @@ export enum Network {
   ARB_GOERLI = 'arb-goerli',
   MATIC_MAINNET = 'polygon-mainnet',
   MATIC_MUMBAI = 'polygon-mumbai',
-  ASTAR_MAINNET = 'astar-mainnet'
+  ASTAR_MAINNET = 'astar-mainnet',
+  POLYGONZKEVM_MAINNET = 'polygonzkevm-mainnet',
+  POLYGONZKEVM_TESTNET = 'polygonzkevm-testnet'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */
@@ -836,6 +838,9 @@ export interface OwnedBaseNft extends BaseNft {
 export interface GetOwnersForNftResponse {
   /** An array of owner addresses for the provided token. */
   readonly owners: string[];
+
+  /** Optional The key for the next page of results, if applicable. */
+  readonly pageKey?: string;
 }
 
 /**
@@ -1608,6 +1613,24 @@ export interface GetOwnersForContractWithTokenBalancesOptions {
 }
 
 /**
+ * Optional parameters object for the {@link getOwnersForNft} method.
+ *
+ * This interface configures options when fetching the owner addresses of the
+ * provided NFT contract.
+ *
+ * @public
+ */
+export interface GetOwnersForNftOptions {
+  /** Optional page key to paginate the next page for large requests. */
+  pageKey?: string;
+
+  /**
+   * Sets the total number of owners to return in the response.
+   */
+  pageSize?: number;
+}
+
+/**
  * The response object for the {@link getNftsForContract} function. The object
  * contains the NFTs without metadata inside the NFT contract.
  *
@@ -2139,7 +2162,8 @@ export enum WebhookType {
   DROPPED_TRANSACTION = 'DROPPED_TRANSACTION',
   ADDRESS_ACTIVITY = 'ADDRESS_ACTIVITY',
   NFT_ACTIVITY = 'NFT_ACTIVITY',
-  NFT_METADATA_UPDATE = 'NFT_METADATA_UPDATE'
+  NFT_METADATA_UPDATE = 'NFT_METADATA_UPDATE',
+  GRAPHQL = 'GRAPHQL'
 }
 
 /**
@@ -2187,6 +2211,16 @@ export interface NftMetadataUpdateWebhook extends Webhook {
   type: WebhookType.NFT_METADATA_UPDATE;
 }
 
+/**
+ * The Custom Webhook can track any event on every block (think transfers, staking,
+ * minting, burning, approvals, etc.)
+ * This can be used to notify your app with real time changes whenever an
+ * EOA or a smart contract performs any action on-chain.
+ */
+export interface CustomGraphqlWebhook extends Webhook {
+  type: WebhookType.GRAPHQL;
+}
+
 /** The response for a {@link NotifyNamespace.getAllWebhooks} method. */
 export interface GetAllWebhooksResponse {
   /** All webhooks attached to the provided auth token. */
@@ -2214,6 +2248,12 @@ export interface AddressActivityResponse {
   pageKey?: string;
 }
 
+/** Response object for the {@link NotifyNamespace.getGraphqlQuery} method. */
+export interface CustomGraphqlWebhookConfig {
+  /** The graphql query for the webhook. */
+  graphqlQuery: string;
+}
+
 /**
  * Params to pass in when calling {@link NotifyNamespace.createWebhook} in order
  * to create a {@link MinedTransactionWebhook} or {@link DroppedTransactionWebhook}.
@@ -2237,6 +2277,20 @@ export interface TransactionWebhookParams {
 export interface NftWebhookParams {
   /** Array of NFT filters the webhook should track. */
   filters: NftFilter[];
+  /**
+   * Optional network to create the webhook on. If omitted, the webhook will be
+   * created on network of the app provided in the api key config.
+   */
+  network?: Network;
+}
+
+/**
+ * Params to pass in when calling {@link NotifyNamespace.createWebhook} in order
+ * to create a {@link CustomGraphqlWebhook}
+ */
+export interface CustomGraphqlWebhookParams {
+  /** GraphQL query */
+  graphqlQuery: string;
   /**
    * Optional network to create the webhook on. If omitted, the webhook will be
    * created on network of the app provided in the api key config.
@@ -2345,6 +2399,12 @@ export type NftWebhookUpdate =
 export type NftMetadataWebhookUpdate =
   | WebhookStatusUpdate
   | RequireAtLeastOne<WebhookNftMetadataFilterUpdate>;
+
+/**
+ * Params object when calling {@link NotifyNamespace.updateWebhook} to update a
+ * {@link CustomGraphqlWebhook}.
+ */
+export type CustomGraphqlWebhookUpdate = WebhookStatusUpdate;
 
 /**
  * Params object when calling {@link NotifyNamespace.updateWebhook} to update a
