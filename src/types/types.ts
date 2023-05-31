@@ -602,10 +602,10 @@ export interface SpamInfo {
 
 /** Block time and number at which an NFT was acquired. */
 export interface AcquiredAt {
-  // Timestamp of the block at which an NFT was last acquired.
+  /** Timestamp of the block at which an NFT was last acquired. */
   blockTimestamp: string;
 
-  // Block number of the block at which an NFT was last acquired.
+  /** Block number of the block at which an NFT was last acquired. */
   blockNumber: number;
 }
 
