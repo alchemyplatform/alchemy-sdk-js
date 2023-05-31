@@ -71,7 +71,7 @@ export interface RawOpenSeaCollectionMetadata {
 export interface RawGetBaseNftsResponse {
   ownedNfts: RawOwnedBaseNft[];
   totalCount: number;
-  blockHash: string;
+  validAt: RawNftsForOwnerValidAt;
   pageKey: string | null;
 }
 
@@ -80,10 +80,10 @@ export interface RawGetBaseNftsResponse {
  *
  * @internal
  */
-export interface RawGetNftsResponse {
+export interface RawGetNftsForOwnerResponse {
   ownedNfts: RawOwnedNft[];
   totalCount: number;
-  blockHash: string;
+  validAt: RawNftsForOwnerValidAt;
   pageKey: string | null;
 }
 
@@ -109,6 +109,11 @@ export interface RawOwnedNft extends RawNft {
   balance: string;
 }
 
+export interface RawNftsForOwnerValidAt {
+  blockNumber: number | null;
+  blockHash: string;
+  blockTimestamp: string | null;
+}
 /**
  * Represents Alchemy's HTTP response for `getNftsForNftContract` without metadata.
  *
@@ -250,6 +255,7 @@ export interface RawNftAttributesResponse {
 
 export interface RawGetNftSalesResponse {
   nftSales: RawNftSale[];
+  validAt: RawNftSaleValidAt;
   pageKey: string | null;
 }
 
@@ -268,6 +274,12 @@ export interface RawNftSale {
   logIndex: number;
   bundleIndex: number;
   transactionHash: string;
+}
+
+export interface RawNftSaleValidAt {
+  blockNumber: number;
+  blockHash: string | null;
+  blockTimestamp: string | null;
 }
 
 export interface RawNftSaleFeeData {

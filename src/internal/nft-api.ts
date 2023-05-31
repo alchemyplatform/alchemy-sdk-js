@@ -74,7 +74,7 @@ import {
   RawGetNftMetadataBatchResponse,
   RawGetNftSalesResponse,
   RawGetNftsForContractResponse,
-  RawGetNftsResponse,
+  RawGetNftsForOwnerResponse,
   RawGetOwnersForContractResponse,
   RawGetOwnersForContractWithTokenBalancesResponse,
   RawGetSpamContractsResponse,
@@ -234,7 +234,7 @@ export async function getNftsForOwner(
   const withMetadata = omitMetadataToWithMetadata(options?.omitMetadata);
   const response = await requestHttpWithBackoff<
     GetNftsAlchemyParams,
-    RawGetBaseNftsResponse | RawGetNftsResponse
+    RawGetBaseNftsResponse | RawGetNftsForOwnerResponse
   >(config, AlchemyApiType.NFT, 'getNFTsForOwner', srcMethod, {
     contractAddresses: options?.contractAddresses,
     pageKey: options?.pageKey,
@@ -254,7 +254,7 @@ export async function getNftsForOwner(
       })),
       pageKey: response.pageKey,
       totalCount: response.totalCount,
-      blockHash: response.blockHash
+      validAt: response.validAt
     });
   }
 
@@ -265,7 +265,7 @@ export async function getNftsForOwner(
     })),
     pageKey: response.pageKey,
     totalCount: response.totalCount,
-    blockHash: response.blockHash
+    validAt: response.validAt
   });
 }
 

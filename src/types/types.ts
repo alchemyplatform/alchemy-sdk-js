@@ -695,8 +695,10 @@ export interface OwnedNftsResponse {
   /** The total count of NFTs owned by the provided address. */
   totalCount: number;
 
-  /** The canonical head block hash of when your request was received. */
-  blockHash: string;
+  /**
+   * Block Information of the block as of which the corresponding data is valid
+   */
+  validAt: OwnedNftsValidAt;
 }
 
 /**
@@ -720,8 +722,10 @@ export interface OwnedBaseNftsResponse {
   /** The total count of NFTs owned by the provided address. */
   totalCount: number;
 
-  /** The canonical head block hash of when your request was received. */
-  blockHash: string;
+  /**
+   * Block Information of the block as of which the corresponding data is valid
+   */
+  validAt: OwnedNftsValidAt;
 }
 
 /**
@@ -742,6 +746,16 @@ export interface OwnedNft extends Nft {
 export interface OwnedBaseNft extends BaseNft {
   /** The token balance of the NFT. */
   balance: string;
+}
+
+/** The block information at which the NFT sale information is valid at. */
+export interface OwnedNftsValidAt {
+  /** The block number the sale information is valid at. */
+  blockNumber?: number;
+  /** The block hash. Used to detect reorgs. */
+  blockHash: string;
+  /** The timestamp for the block. */
+  blockTimestamp?: string;
 }
 
 /**
@@ -1173,11 +1187,16 @@ export interface GetNftSalesOptionsByContractAddress
  * @public
  */
 export interface GetNftSalesResponse {
-  /** The page key to use to fetch the next page if more results are available. */
-  pageKey?: string;
-
   /** List of NFT sales that match the query */
   nftSales: NftSale[];
+  /**
+   * Block Information of the block as of which the corresponding data is valid.
+   */
+  validAt: NftSaleValidAt;
+  /**
+   * The page key to use to fetch the next page if more results are available.
+   */
+  pageKey?: string;
 }
 
 /** Represents a single NFT sale data in the {@link GetNftSalesResponse}. */
@@ -1223,6 +1242,16 @@ export interface NftSale {
 
   /** The transactionHash of the NFT sale. */
   transactionHash: string;
+}
+
+/** The block information at which the NFT sale information is valid at. */
+export interface NftSaleValidAt {
+  /** The block number the sale information is valid at. */
+  blockNumber: number;
+  /** The block hash. Used to detect reorgs. */
+  blockHash?: string;
+  /** The timestamp for the block. */
+  blockTimestamp?: string;
 }
 
 /**
