@@ -38,7 +38,6 @@ function stringToEnum<T extends string>(
 export function getNftContractForNftFromRaw(
   rawNftContract: RawNftContractForNft
 ): NftContractForNft {
-  // TODO(NOW): figure out how to keep type safety while using nullsToUndefined
   return nullsToUndefined<NftContractForNft>({
     ...getNftContractFromRaw(rawNftContract),
     spamClassifications: rawNftContract.spamClassifications.map(
@@ -177,11 +176,6 @@ function parseNftTokenType(tokenType: string | undefined): NftTokenType {
 
 export const IS_BROWSER = typeof window !== 'undefined' && window !== null;
 
-// If T extends infer U | undefined, return WithNullableFields<U> | null | undefined
-// Else if T extends (infer U)[], return WithNullableFields<U>[]
-// Else if T extends object, return {
-//   [K in keyof T]: WithNullableFields<T[K]>
-// }
 type WithNullableFields<T> = T extends undefined
   ? null | undefined
   : T extends (infer U)[]
