@@ -34,10 +34,10 @@ export interface RawSpamInfo {
 /** Information on the time at which an NFT was last acquired. */
 export interface RawAcquiredAt {
   /** Timestamp of the block at which an NFT was last acquired. */
-  blockTimestamp: string;
+  blockTimestamp?: string;
 
   /** Block number of the block at which an NFT was last acquired. */
-  blockNumber: number;
+  blockNumber?: number;
 }
 
 /**
