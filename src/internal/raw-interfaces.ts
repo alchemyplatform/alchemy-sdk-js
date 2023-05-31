@@ -31,6 +31,15 @@ export interface RawSpamInfo {
   classifications: NftSpamClassification[];
 }
 
+/** Information on the time at which an NFT was last acquired. */
+export interface RawAcquiredAt {
+  /** Timestamp of the block at which an NFT was last acquired. */
+  blockTimestamp?: string;
+
+  /** Block number of the block at which an NFT was last acquired. */
+  blockNumber?: number;
+}
+
 /**
  * Represents an NFT object along with its metadata received from Alchemy.
  *
@@ -46,6 +55,7 @@ export interface RawNft extends RawBaseNft {
   error?: string;
   contractMetadata?: RawNftContractMetadata;
   spamInfo?: RawSpamInfo;
+  acquiredAt?: RawAcquiredAt;
 }
 
 /**
