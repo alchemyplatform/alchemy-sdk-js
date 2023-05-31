@@ -7,7 +7,7 @@
 ### Minor Changes
 
 - Added redundancy to `CoreNamespace.getTokensForOwner()` to handle failures when fetching token metadata.
-- Added support for the `acquiredAt` field for ordered `getNftsForOwner` queries. Only available when specifying `orderBy=transfertime` in the request.
+- Added support for the `acquiredAt` field for ordered `getNftsForOwner` queries. Only available when specifying `orderBy: NftOrdering.TRANSFERTIME` in the request.
 
 ## 2.8.3
 

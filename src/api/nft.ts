@@ -110,7 +110,8 @@ export interface Nft extends BaseNft {
 
   /**
    * Time at which the NFT was most recently acquired by the user. Only
-   * available when specifying `orderBy=transfertime` in the request.
+   * available when specifying `orderBy: NftOrdering.TRANSFERTIME` in the
+   * request.
    */
   acquiredAt?: AcquiredAt;
 }
