@@ -40,7 +40,7 @@ import {
   RawGetContractsForOwnerResponse,
   RawGetNftSalesResponse,
   RawGetNftsForContractResponse,
-  RawGetNftsResponse,
+  RawGetNftsForOwnerResponse,
   RawGetOwnersForContractWithTokenBalancesResponse,
   RawNftAttributeRarity,
   RawNftImage
@@ -318,6 +318,11 @@ describe('NFT module', () => {
       tokenUriTimeoutInMs: 50,
       orderBy: NftOrdering.TRANSFERTIME
     };
+    const rawValidAt = {
+      blockHash: '0x123abc',
+      blockNumber: 123,
+      blockTimestamp: null
+    };
     const baseNftResponse: RawGetBaseNftsResponse = {
       ownedNfts: [
         createRawOwnedBaseNft('0xCA1', '0x1', '1'),
@@ -325,17 +330,17 @@ describe('NFT module', () => {
       ],
       pageKey: 'page-key1',
       totalCount: 3,
-      blockHash: '0x123abc'
+      validAt: rawValidAt
     };
 
-    const nftResponse: RawGetNftsResponse = {
+    const nftResponse: RawGetNftsForOwnerResponse = {
       ownedNfts: [
         createRawOwnedNft('a', '0xCA1', '0x1', '1'),
         createRawOwnedNft('b', '0xCA2', '0x2', '2', NftTokenType.ERC1155)
       ],
       pageKey: 'page-key1',
       totalCount: 3,
-      blockHash: '0x123abc'
+      validAt: rawValidAt
     };
 
     const paramCases = [
@@ -388,7 +393,11 @@ describe('NFT module', () => {
       ],
       pageKey: 'page-key1',
       totalCount: 3,
-      blockHash: '0x123abc'
+      validAt: {
+        blockHash: '0x123abc',
+        blockNumber: 123,
+        blockTimestamp: undefined
+      }
     };
     const nftExpected: OwnedNftsResponse = {
       ownedNfts: [
@@ -397,12 +406,16 @@ describe('NFT module', () => {
       ],
       pageKey: 'page-key1',
       totalCount: 3,
-      blockHash: '0x123abc'
+      validAt: {
+        blockHash: '0x123abc',
+        blockNumber: 123,
+        blockTimestamp: undefined
+      }
     };
     const responseCases: Array<
       [
         boolean,
-        RawGetBaseNftsResponse | RawGetNftsResponse,
+        RawGetBaseNftsResponse | RawGetNftsForOwnerResponse,
         OwnedBaseNftsResponse | OwnedNftsResponse
       ]
     > = [
@@ -444,6 +457,11 @@ describe('NFT module', () => {
     const contractAddresses = ['0xCA1', '0xCA2'];
     const excludeFilters = [NftFilters.SPAM];
     const expectedFilters = ['SPAM'];
+    const rawValidAt = {
+      blockHash: '0x123abc',
+      blockNumber: 123,
+      blockTimestamp: null
+    };
     const baseResponses: RawGetBaseNftsResponse[] = [
       {
         ownedNfts: [
@@ -452,16 +470,16 @@ describe('NFT module', () => {
         ],
         pageKey: 'page-key1',
         totalCount: 3,
-        blockHash: '0x123abc'
+        validAt: rawValidAt
       },
       {
         ownedNfts: [createRawOwnedBaseNft('0xCA2', '0x3', '1')],
         totalCount: 3,
-        blockHash: '0x123abc',
+        validAt: rawValidAt,
         pageKey: null
       }
     ];
-    const nftResponses: RawGetNftsResponse[] = [
+    const nftResponses: RawGetNftsForOwnerResponse[] = [
       {
         ownedNfts: [
           createRawOwnedNft('a', '0xCA1', '0x1', '1'),
@@ -469,20 +487,20 @@ describe('NFT module', () => {
         ],
         pageKey: 'page-key1',
         totalCount: 3,
-        blockHash: '0x123abc'
+        validAt: rawValidAt
       },
       {
         ownedNfts: [
           createRawOwnedNft('c', '0xCA2', '0x3', '1', NftTokenType.ERC1155)
         ],
         totalCount: 3,
-        blockHash: '0x123abc',
+        validAt: rawValidAt,
         pageKey: null
       }
     ];
 
     function setupMock(
-      mockResponses: RawGetBaseNftsResponse[] | RawGetNftsResponse[]
+      mockResponses: RawGetBaseNftsResponse[] | RawGetNftsForOwnerResponse[]
     ): void {
       mock
         .onGet()
@@ -493,7 +511,7 @@ describe('NFT module', () => {
 
     const paramCases: Array<
       [
-        RawGetBaseNftsResponse[] | RawGetNftsResponse[],
+        RawGetBaseNftsResponse[] | RawGetNftsForOwnerResponse[],
         boolean | undefined,
         boolean
       ]
@@ -595,7 +613,7 @@ describe('NFT module', () => {
     const responseCases: Array<
       [
         boolean,
-        RawGetBaseNftsResponse[] | RawGetNftsResponse[],
+        RawGetBaseNftsResponse[] | RawGetNftsForOwnerResponse[],
         OwnedBaseNft[] | OwnedNft[]
       ]
     > = [
@@ -1226,16 +1244,21 @@ describe('NFT module', () => {
   describe('verifyNftOwnership()', () => {
     const owner = '0xABC';
     const addresses = ['0xCA1', '0xCA2'];
+    const rawValidAt = {
+      blockHash: '0x123abc',
+      blockNumber: 123,
+      blockTimestamp: null
+    };
     const emptyResponse: RawGetBaseNftsResponse = {
       ownedNfts: [],
       totalCount: 0,
-      blockHash: '0x123abc',
+      validAt: rawValidAt,
       pageKey: null
     };
     const partialResponse: RawGetBaseNftsResponse = {
       ownedNfts: [createRawOwnedBaseNft('0xCA2', '0x2', '2')],
       totalCount: 1,
-      blockHash: '0x123abc',
+      validAt: rawValidAt,
       pageKey: null
     };
     const nftResponse: RawGetBaseNftsResponse = {
@@ -1244,7 +1267,7 @@ describe('NFT module', () => {
         createRawOwnedBaseNft('0xCA2', '0x2', '2')
       ],
       totalCount: 2,
-      blockHash: '0x123abc',
+      validAt: rawValidAt,
       pageKey: null
     };
 
@@ -1404,6 +1427,11 @@ describe('NFT module', () => {
           sellerAddress
         )
       ],
+      validAt: {
+        blockNumber: 1337,
+        blockTimestamp: null,
+        blockHash: null
+      },
       pageKey: null
     };
 

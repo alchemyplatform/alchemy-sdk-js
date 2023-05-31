@@ -113,6 +113,7 @@ export function getNftSalesFromRaw(
       marketplace: parseNftSaleMarketplace(rawNftSale.marketplace),
       taker: parseNftTaker(rawNftSale.taker)
     })),
+    validAt: rawNftSales.validAt,
     pageKey: rawNftSales.pageKey
   });
 }
