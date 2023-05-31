@@ -99,7 +99,8 @@ export function getNftFromRaw(rawNft: RawNft): Nft {
   return nullsToUndefined<Nft>({
     ...rawNft,
     contract: getNftContractForNftFromRaw(rawNft.contract),
-    tokenType: parseNftTokenType(rawNft.tokenType)
+    tokenType: parseNftTokenType(rawNft.tokenType),
+    acquiredAt: rawNft.acquiredAt
   });
 }
 

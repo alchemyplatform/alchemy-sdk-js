@@ -1,4 +1,5 @@
 import {
+  AcquiredAt,
   NftImage,
   NftSpamClassification,
   NftTokenType,
@@ -88,6 +89,12 @@ export interface Nft {
   tokenUri?: string;
   /** When the NFT was last updated in the blockchain. Represented in ISO-8601 format. */
   timeLastUpdated: string;
+  /**
+   * Time at which the NFT was most recently acquired by the user. Only
+   * available when specifying `orderBy: NftOrdering.TRANSFERTIME` in the
+   * request.
+   */
+  acquiredAt?: AcquiredAt;
 }
 
 /**

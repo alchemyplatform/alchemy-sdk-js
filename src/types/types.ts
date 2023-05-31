@@ -540,6 +540,15 @@ export enum NftSpamClassification {
   Unknown = 'Unknown'
 }
 
+/** Block time and number at which an NFT was acquired. */
+export interface AcquiredAt {
+  /** Timestamp of the block at which an NFT was last acquired. */
+  blockTimestamp?: string;
+
+  /** Block number of the block at which an NFT was last acquired. */
+  blockNumber?: number;
+}
+
 /**
  * Optional parameters object for the {@link getNftsForOwner} and
  * {@link getNftsForOwnerIterator} functions.

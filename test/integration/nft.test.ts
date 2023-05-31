@@ -4,6 +4,7 @@ import {
   GetTransfersForOwnerTransferType,
   NftContract,
   NftFilters,
+  NftOrdering,
   NftSaleMarketplace,
   NftTokenType,
   OpenSeaSafelistRequestStatus,
@@ -208,6 +209,20 @@ describe('E2E integration tests', () => {
           nft.contract.totalSupply !== undefined
       ).length
     ).toBeGreaterThan(0);
+  });
+  it('getNftForOwners() ordered', async () => {
+    const response = await alchemy.nft.getNftsForOwner(
+      '0x994b342dd87fc825f66e51ffa3ef71ad818b6893',
+      {
+        orderBy: NftOrdering.TRANSFERTIME
+      }
+    );
+    expect(response.ownedNfts.at(0)?.acquiredAt).toBeDefined();
+    expect(response.ownedNfts.at(0)?.acquiredAt?.blockNumber).toBeGreaterThan(
+      0
+    );
+    expect(response.ownedNfts.at(0)?.acquiredAt?.blockTimestamp).toBeTruthy();
+    expect(typeof response.blockHash).toEqual('string');
   });
 
   it('getOwnersForContract()', async () => {

@@ -19,6 +19,16 @@ export interface RawNft {
   raw: RawNftData;
   tokenUri: string | null;
   timeLastUpdated: string;
+  acquiredAt?: RawAcquiredAt;
+}
+
+/** Information on the time at which an NFT was last acquired. */
+export interface RawAcquiredAt {
+  /** Timestamp of the block at which an NFT was last acquired. */
+  blockTimestamp?: string;
+
+  /** Block number of the block at which an NFT was last acquired. */
+  blockNumber?: number;
 }
 
 export interface RawNftData {
