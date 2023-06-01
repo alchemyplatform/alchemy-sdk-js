@@ -18,46 +18,46 @@ marketplace (e.g. looksRare).
 
 ### collectionUrl
 
-• `Readonly` **collectionUrl**: `string`
+• **collectionUrl**: `string`
 
 The link to the collection on the given marketplace
 
 #### Defined in
 
-[src/types/types.ts:949](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L949)
+[src/types/types.ts:913](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L913)
 
 ___
 
 ### floorPrice
 
-• `Readonly` **floorPrice**: `number`
+• **floorPrice**: `number`
 
 The floor price of the collection on the given marketplace
 
 #### Defined in
 
-[src/types/types.ts:945](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L945)
+[src/types/types.ts:909](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L909)
 
 ___
 
 ### priceCurrency
 
-• `Readonly` **priceCurrency**: `string`
+• **priceCurrency**: `string`
 
 The currency in which the floor price is denominated
 
 #### Defined in
 
-[src/types/types.ts:947](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L947)
+[src/types/types.ts:911](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L911)
 
 ___
 
 ### retrievedAt
 
-• `Readonly` **retrievedAt**: `string`
+• **retrievedAt**: `string`
 
 UTC timestamp of when the floor price was retrieved from the marketplace
 
 #### Defined in
 
-[src/types/types.ts:951](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L951)
+[src/types/types.ts:915](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L915)

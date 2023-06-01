@@ -9,41 +9,52 @@ Fee detail for an NFT sale.
 ### Properties
 
 - [amount](NftSaleFeeData.md#amount)
-- [decimal](NftSaleFeeData.md#decimal)
+- [decimals](NftSaleFeeData.md#decimals)
 - [symbol](NftSaleFeeData.md#symbol)
+- [tokenAddress](NftSaleFeeData.md#tokenaddress)
 
 ## Properties
 
 ### amount
 
-• **amount**: `string`
+• `Optional` **amount**: `string`
 
 The fee payment amount as a decimal integer string.
 
 #### Defined in
 
-[src/types/types.ts:1302](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1302)
+[src/types/types.ts:1273](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1273)
 
 ___
 
-### decimal
+### decimals
 
-• **decimal**: `number`
+• `Optional` **decimals**: `number`
 
 The number of decimals of the token used for the payment.
 
 #### Defined in
 
-[src/types/types.ts:1308](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1308)
+[src/types/types.ts:1281](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1281)
 
 ___
 
 ### symbol
 
-• **symbol**: `string`
+• `Optional` **symbol**: `string`
 
 The symbol of the token used for the payment.
 
 #### Defined in
 
-[src/types/types.ts:1305](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1305)
+[src/types/types.ts:1278](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1278)
+
+___
+
+### tokenAddress
+
+• `Optional` **tokenAddress**: `string`
+
+#### Defined in
+
+[src/types/types.ts:1275](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1275)

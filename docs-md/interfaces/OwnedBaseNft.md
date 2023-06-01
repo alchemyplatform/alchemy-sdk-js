@@ -15,35 +15,36 @@ Represents an NFT without metadata owned by an address.
 ### Properties
 
 - [balance](OwnedBaseNft.md#balance)
-- [contract](OwnedBaseNft.md#contract)
+- [contractAddress](OwnedBaseNft.md#contractaddress)
 - [tokenId](OwnedBaseNft.md#tokenid)
-- [tokenType](OwnedBaseNft.md#tokentype)
 
 ## Properties
 
 ### balance
 
-• `Readonly` **balance**: `number`
+• **balance**: `string`
 
 The token balance of the NFT.
 
 #### Defined in
 
-[src/types/types.ts:821](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L821)
+[src/types/types.ts:757](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L757)
 
 ___
 
-### contract
+### contractAddress
 
-• **contract**: [`BaseNftContract`](BaseNftContract.md)
+• **contractAddress**: `string`
+
+The contract address of the NFT.
 
 #### Inherited from
 
-[BaseNft](BaseNft.md).[contract](BaseNft.md#contract)
+[BaseNft](BaseNft.md).[contractAddress](BaseNft.md#contractaddress)
 
 #### Defined in
 
-[src/api/nft.ts:63](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L63)
+[src/api/nft.ts:59](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/nft.ts#L59)
 
 ___
 
@@ -59,20 +60,4 @@ The NFT token ID as an integer string.
 
 #### Defined in
 
-[src/api/nft.ts:65](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L65)
-
-___
-
-### tokenType
-
-• **tokenType**: [`NftTokenType`](../enums/NftTokenType.md)
-
-The type of ERC token, if known.
-
-#### Inherited from
-
-[BaseNft](BaseNft.md).[tokenType](BaseNft.md#tokentype)
-
-#### Defined in
-
-[src/api/nft.ts:67](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L67)
+[src/api/nft.ts:61](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/nft.ts#L61)

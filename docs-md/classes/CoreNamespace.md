@@ -67,7 +67,7 @@ calling getters on Contracts.
 
 #### Defined in
 
-[src/api/core-namespace.ts:229](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L229)
+[src/api/core-namespace.ts:230](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L230)
 
 ___
 
@@ -96,7 +96,7 @@ This is an alias for [TransactNamespace.estimateGas](TransactNamespace.md#estima
 
 #### Defined in
 
-[src/api/core-namespace.ts:250](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L250)
+[src/api/core-namespace.ts:251](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L251)
 
 ___
 
@@ -126,7 +126,7 @@ with this information cached.
 
 #### Defined in
 
-[src/api/core-namespace.ts:371](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L371)
+[src/api/core-namespace.ts:372](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L372)
 
 ___
 
@@ -154,7 +154,7 @@ response object.
 
 #### Defined in
 
-[src/api/core-namespace.ts:588](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L588)
+[src/api/core-namespace.ts:599](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L599)
 
 ▸ **getAssetTransfers**(`params`): `Promise`<[`AssetTransfersResponse`](../interfaces/AssetTransfersResponse.md)\>
 
@@ -174,7 +174,7 @@ https://docs.alchemy.com/alchemy/enhanced-apis/transfers-api#alchemy_getassettra
 
 #### Defined in
 
-[src/api/core-namespace.ts:600](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L600)
+[src/api/core-namespace.ts:611](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L611)
 
 ___
 
@@ -197,7 +197,7 @@ Returns the balance of a given address as of the provided block.
 
 #### Defined in
 
-[src/api/core-namespace.ts:68](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L68)
+[src/api/core-namespace.ts:69](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L69)
 
 ___
 
@@ -222,7 +222,7 @@ hashes. To get the full transaction details on the block, use
 
 #### Defined in
 
-[src/api/core-namespace.ts:138](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L138)
+[src/api/core-namespace.ts:139](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L139)
 
 ___
 
@@ -238,7 +238,7 @@ Returns the block number of the most recently mined block.
 
 #### Defined in
 
-[src/api/core-namespace.ts:175](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L175)
+[src/api/core-namespace.ts:176](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L176)
 
 ___
 
@@ -262,7 +262,7 @@ hash. Transactions on the block are represented as an array of
 
 #### Defined in
 
-[src/api/core-namespace.ts:153](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L153)
+[src/api/core-namespace.ts:154](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L154)
 
 ___
 
@@ -286,7 +286,7 @@ no contract deployed, the result is `0x`.
 
 #### Defined in
 
-[src/api/core-namespace.ts:85](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L85)
+[src/api/core-namespace.ts:86](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L86)
 
 ___
 
@@ -308,7 +308,7 @@ gasPrice should be used.
 
 #### Defined in
 
-[src/api/core-namespace.ts:201](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L201)
+[src/api/core-namespace.ts:202](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L202)
 
 ___
 
@@ -324,7 +324,7 @@ Returns the best guess of the current gas price to use in a transaction.
 
 #### Defined in
 
-[src/api/core-namespace.ts:185](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L185)
+[src/api/core-namespace.ts:186](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L186)
 
 ___
 
@@ -346,7 +346,7 @@ Returns an array of logs that match the provided filter.
 
 #### Defined in
 
-[src/api/core-namespace.ts:341](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L341)
+[src/api/core-namespace.ts:342](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L342)
 
 ___
 
@@ -362,7 +362,7 @@ Returns the {@link EthersNetworkAlias} Alchemy is connected to.
 
 #### Defined in
 
-[src/api/core-namespace.ts:165](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L165)
+[src/api/core-namespace.ts:166](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L166)
 
 ___
 
@@ -387,7 +387,7 @@ provided block in `Bytes32` format.
 
 #### Defined in
 
-[src/api/core-namespace.ts:103](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L103)
+[src/api/core-namespace.ts:104](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L104)
 
 ___
 
@@ -409,7 +409,7 @@ Returns the ERC-20 token balances for a specific owner address.
 
 #### Defined in
 
-[src/api/core-namespace.ts:412](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L412)
+[src/api/core-namespace.ts:413](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L413)
 
 ▸ **getTokenBalances**(`addressOrName`, `contractAddresses?`): `Promise`<[`TokenBalancesResponse`](../interfaces/TokenBalancesResponse.md)\>
 
@@ -428,7 +428,7 @@ Returns the token balances for a specific owner address given a list of contract
 
 #### Defined in
 
-[src/api/core-namespace.ts:424](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L424)
+[src/api/core-namespace.ts:425](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L425)
 
 ▸ **getTokenBalances**(`addressOrName`, `options`): `Promise`<[`TokenBalancesResponseErc20`](../interfaces/TokenBalancesResponseErc20.md)\>
 
@@ -449,7 +449,7 @@ This overload covers the erc-20 token type which includes a page key in the resp
 
 #### Defined in
 
-[src/api/core-namespace.ts:438](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L438)
+[src/api/core-namespace.ts:439](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L439)
 
 ▸ **getTokenBalances**(`addressOrName`, `options`): `Promise`<[`TokenBalancesResponse`](../interfaces/TokenBalancesResponse.md)\>
 
@@ -472,7 +472,7 @@ the response.
 
 #### Defined in
 
-[src/api/core-namespace.ts:454](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L454)
+[src/api/core-namespace.ts:455](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L455)
 
 ___
 
@@ -494,7 +494,7 @@ Returns metadata for a given token contract address.
 
 #### Defined in
 
-[src/api/core-namespace.ts:567](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L567)
+[src/api/core-namespace.ts:578](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L578)
 
 ___
 
@@ -518,7 +518,7 @@ of each token and the relevant metadata.
 
 #### Defined in
 
-[src/api/core-namespace.ts:512](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L512)
+[src/api/core-namespace.ts:513](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L513)
 
 ___
 
@@ -547,7 +547,7 @@ NOTE: This is an alias for [TransactNamespace.getTransaction](TransactNamespace.
 
 #### Defined in
 
-[src/api/core-namespace.ts:270](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L270)
+[src/api/core-namespace.ts:271](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L271)
 
 ___
 
@@ -572,7 +572,7 @@ transaction from the address sent to the network.
 
 #### Defined in
 
-[src/api/core-namespace.ts:121](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L121)
+[src/api/core-namespace.ts:122](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L122)
 
 ___
 
@@ -598,7 +598,7 @@ waitForTransaction method below.
 
 #### Defined in
 
-[src/api/core-namespace.ts:287](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L287)
+[src/api/core-namespace.ts:288](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L288)
 
 ___
 
@@ -620,7 +620,7 @@ Gets all transaction receipts for a given block by number or block hash.
 
 #### Defined in
 
-[src/api/core-namespace.ts:615](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L615)
+[src/api/core-namespace.ts:626](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L626)
 
 ___
 
@@ -644,7 +644,7 @@ An ENS name requires additional configuration to setup a reverse record, so not 
 
 #### Defined in
 
-[src/api/core-namespace.ts:639](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L639)
+[src/api/core-namespace.ts:650](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L650)
 
 ___
 
@@ -664,7 +664,7 @@ up and running smoothly.
 
 #### Defined in
 
-[src/api/core-namespace.ts:215](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L215)
+[src/api/core-namespace.ts:216](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L216)
 
 ___
 
@@ -687,7 +687,7 @@ if the ENS name does not have an underlying address.
 
 #### Defined in
 
-[src/api/core-namespace.ts:627](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L627)
+[src/api/core-namespace.ts:638](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L638)
 
 ___
 
@@ -710,7 +710,7 @@ Allows sending a raw message to the Alchemy backend.
 
 #### Defined in
 
-[src/api/core-namespace.ts:354](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L354)
+[src/api/core-namespace.ts:355](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L355)
 
 ___
 
@@ -736,7 +736,7 @@ NOTE: This is an alias for [TransactNamespace.getTransaction](TransactNamespace.
 
 #### Defined in
 
-[src/api/core-namespace.ts:304](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L304)
+[src/api/core-namespace.ts:305](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L305)
 
 ___
 
@@ -767,4 +767,4 @@ NOTE: This is an alias for [TransactNamespace.getTransaction](TransactNamespace.
 
 #### Defined in
 
-[src/api/core-namespace.ts:326](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/core-namespace.ts#L326)
+[src/api/core-namespace.ts:327](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/core-namespace.ts#L327)
