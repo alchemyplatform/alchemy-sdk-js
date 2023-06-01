@@ -38,7 +38,7 @@ information was not available.
 
 #### Defined in
 
-[src/types/types.ts:474](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L474)
+[src/types/types.ts:451](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L451)
 
 ___
 
@@ -50,7 +50,7 @@ The block number where the transfer occurred.
 
 #### Defined in
 
-[src/types/types.ts:441](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L441)
+[src/types/types.ts:418](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L418)
 
 ___
 
@@ -62,7 +62,7 @@ The category of the transfer.
 
 #### Defined in
 
-[src/types/types.ts:438](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L438)
+[src/types/types.ts:415](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L415)
 
 ___
 
@@ -75,7 +75,7 @@ token. `null` if not an ERC1155 transfer.
 
 #### Defined in
 
-[src/types/types.ts:465](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L465)
+[src/types/types.ts:442](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L442)
 
 ___
 
@@ -88,7 +88,7 @@ ERC721 transfer.
 
 #### Defined in
 
-[src/types/types.ts:459](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L459)
+[src/types/types.ts:436](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L436)
 
 ___
 
@@ -100,7 +100,7 @@ The from address of the transfer.
 
 #### Defined in
 
-[src/types/types.ts:444](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L444)
+[src/types/types.ts:421](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L421)
 
 ___
 
@@ -112,7 +112,7 @@ The transaction hash of the transfer transaction.
 
 #### Defined in
 
-[src/types/types.ts:477](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L477)
+[src/types/types.ts:454](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L454)
 
 ___
 
@@ -124,7 +124,7 @@ Information about the raw contract of the asset transferred.
 
 #### Defined in
 
-[src/types/types.ts:480](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L480)
+[src/types/types.ts:457](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L457)
 
 ___
 
@@ -136,7 +136,7 @@ The to address of the transfer.
 
 #### Defined in
 
-[src/types/types.ts:447](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L447)
+[src/types/types.ts:424](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L424)
 
 ___
 
@@ -148,7 +148,7 @@ The token id of the token transferred.
 
 #### Defined in
 
-[src/types/types.ts:468](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L468)
+[src/types/types.ts:445](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L445)
 
 ___
 
@@ -160,7 +160,7 @@ The unique ID of the transfer.
 
 #### Defined in
 
-[src/types/types.ts:435](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L435)
+[src/types/types.ts:412](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L412)
 
 ___
 
@@ -173,4 +173,4 @@ decimal). `null` if ERC721 transfer or contract decimal not available.
 
 #### Defined in
 
-[src/types/types.ts:453](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L453)
+[src/types/types.ts:430](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L430)

@@ -10,6 +10,7 @@ The response for the [NftNamespace.getNftSales](../classes/NftNamespace.md#getnf
 
 - [nftSales](GetNftSalesResponse.md#nftsales)
 - [pageKey](GetNftSalesResponse.md#pagekey)
+- [validAt](GetNftSalesResponse.md#validat)
 
 ## Properties
 
@@ -21,7 +22,7 @@ List of NFT sales that match the query
 
 #### Defined in
 
-[src/types/types.ts:1241](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1241)
+[src/types/types.ts:1200](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1200)
 
 ___
 
@@ -33,4 +34,16 @@ The page key to use to fetch the next page if more results are available.
 
 #### Defined in
 
-[src/types/types.ts:1238](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1238)
+[src/types/types.ts:1208](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1208)
+
+___
+
+### validAt
+
+• **validAt**: [`NftSaleValidAt`](NftSaleValidAt.md)
+
+Block Information of the block as of which the corresponding data is valid.
+
+#### Defined in
+
+[src/types/types.ts:1204](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1204)

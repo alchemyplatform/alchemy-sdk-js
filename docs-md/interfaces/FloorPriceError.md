@@ -15,10 +15,10 @@ marketplace (e.g. looksRare).
 
 ### error
 
-• `Readonly` **error**: `string`
+• **error**: `string`
 
 Error fetching floor prices from the given marketplace
 
 #### Defined in
 
-[src/types/types.ts:962](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L962)
+[src/types/types.ts:926](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L926)

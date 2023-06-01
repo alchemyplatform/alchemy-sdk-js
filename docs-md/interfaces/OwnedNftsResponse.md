@@ -11,56 +11,56 @@ the total count.
 
 ### Properties
 
-- [blockHash](OwnedNftsResponse.md#blockhash)
 - [ownedNfts](OwnedNftsResponse.md#ownednfts)
 - [pageKey](OwnedNftsResponse.md#pagekey)
 - [totalCount](OwnedNftsResponse.md#totalcount)
+- [validAt](OwnedNftsResponse.md#validat)
 
 ## Properties
 
-### blockHash
-
-• **blockHash**: `string`
-
-The canonical head block hash of when your request was received.
-
-#### Defined in
-
-[src/types/types.ts:776](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L776)
-
-___
-
 ### ownedNfts
 
-• `Readonly` **ownedNfts**: [`OwnedNft`](OwnedNft.md)[]
+• **ownedNfts**: [`OwnedNft`](OwnedNft.md)[]
 
 The NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/types.ts:764](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L764)
+[src/types/types.ts:696](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L696)
 
 ___
 
 ### pageKey
 
-• `Optional` `Readonly` **pageKey**: `string`
+• `Optional` **pageKey**: `string`
 
 Pagination token that can be passed into another request to fetch the next
 NFTs. If there is no page key, then there are no more NFTs to fetch.
 
 #### Defined in
 
-[src/types/types.ts:770](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L770)
+[src/types/types.ts:702](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L702)
 
 ___
 
 ### totalCount
 
-• `Readonly` **totalCount**: `number`
+• **totalCount**: `number`
 
 The total count of NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/types.ts:773](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L773)
+[src/types/types.ts:705](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L705)
+
+___
+
+### validAt
+
+• **validAt**: [`OwnedNftsValidAt`](OwnedNftsValidAt.md)
+
+Block Information of the block as of which the corresponding data is valid
+
+#### Defined in
+
+[src/types/types.ts:710](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L710)

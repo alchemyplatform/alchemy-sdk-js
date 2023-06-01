@@ -10,106 +10,100 @@ metadata, token URI information, and media.
 
 ## Hierarchy
 
-- [`BaseNft`](BaseNft.md)
+- **`Nft`**
 
-  ↳ **`Nft`**
+  ↳ [`OwnedNft`](OwnedNft.md)
 
-  ↳↳ [`OwnedNft`](OwnedNft.md)
-
-  ↳↳ [`TransferredNft`](TransferredNft.md)
+  ↳ [`TransferredNft`](TransferredNft.md)
 
 ## Table of contents
 
 ### Properties
 
+- [acquiredAt](Nft.md#acquiredat)
 - [contract](Nft.md#contract)
 - [description](Nft.md#description)
-- [media](Nft.md#media)
-- [metadataError](Nft.md#metadataerror)
-- [rawMetadata](Nft.md#rawmetadata)
-- [spamInfo](Nft.md#spaminfo)
+- [image](Nft.md#image)
+- [name](Nft.md#name)
+- [raw](Nft.md#raw)
 - [timeLastUpdated](Nft.md#timelastupdated)
-- [title](Nft.md#title)
 - [tokenId](Nft.md#tokenid)
 - [tokenType](Nft.md#tokentype)
 - [tokenUri](Nft.md#tokenuri)
 
 ## Properties
 
-### contract
+### acquiredAt
 
-• **contract**: [`NftContract`](NftContract.md)
+• `Optional` **acquiredAt**: [`AcquiredAt`](AcquiredAt.md)
 
-The NFT's underlying contract and relevant contract metadata.
-
-#### Overrides
-
-[BaseNft](BaseNft.md).[contract](BaseNft.md#contract)
+Time at which the NFT was most recently acquired by the user. Only
+available when specifying `orderBy: NftOrdering.TRANSFERTIME` in the
+request.
 
 #### Defined in
 
-[src/api/nft.ts:81](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L81)
+[src/api/nft.ts:97](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/nft.ts#L97)
+
+___
+
+### contract
+
+• **contract**: `NftContractForNft`
+
+The NFT's underlying contract and relevant contract metadata.
+
+#### Defined in
+
+[src/api/nft.ts:75](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/nft.ts#L75)
 
 ___
 
 ### description
 
-• **description**: `string`
+• `Optional` **description**: `string`
 
 The NFT description.
 
 #### Defined in
 
-[src/api/nft.ts:87](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L87)
+[src/api/nft.ts:83](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/nft.ts#L83)
 
 ___
 
-### media
+### image
 
-• **media**: [`Media`](Media.md)[]
+• **image**: [`NftImage`](NftImage.md)
 
-URIs for accessing the NFT's media assets.
+Media URLs and information for the NFT
 
 #### Defined in
 
-[src/api/nft.ts:105](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L105)
+[src/api/nft.ts:85](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/nft.ts#L85)
 
 ___
 
-### metadataError
+### name
 
-• **metadataError**: `undefined` \| `string`
+• `Optional` **name**: `string`
 
-Holds an error message if there was an issue fetching metadata.
+The NFT name.
 
 #### Defined in
 
-[src/api/nft.ts:93](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L93)
+[src/api/nft.ts:81](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/nft.ts#L81)
 
 ___
 
-### rawMetadata
+### raw
 
-• **rawMetadata**: `undefined` \| [`NftMetadata`](NftMetadata.md)
+• **raw**: `NftRawMetadata`
 
-The raw metadata fetched from the metadata URL specified by the NFT. The
-field is undefined if Alchemy was unable to fetch metadata.
-
-#### Defined in
-
-[src/api/nft.ts:99](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L99)
-
-___
-
-### spamInfo
-
-• `Optional` **spamInfo**: [`SpamInfo`](SpamInfo.md)
-
-Detailed information on why an NFT was classified as spam.
+The raw metadata for the NFT based on the metadata URI on the NFT contract.
 
 #### Defined in
 
-[src/api/nft.ts:108](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L108)
+[src/api/nft.ts:87](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/nft.ts#L87)
 
 ___
 
@@ -121,19 +115,7 @@ When the NFT was last updated in the blockchain. Represented in ISO-8601 format.
 
 #### Defined in
 
-[src/api/nft.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L90)
-
-___
-
-### title
-
-• **title**: `string`
-
-The NFT title.
-
-#### Defined in
-
-[src/api/nft.ts:84](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L84)
+[src/api/nft.ts:91](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/nft.ts#L91)
 
 ___
 
@@ -143,13 +125,9 @@ ___
 
 The NFT token ID as an integer string.
 
-#### Inherited from
-
-[BaseNft](BaseNft.md).[tokenId](BaseNft.md#tokenid)
-
 #### Defined in
 
-[src/api/nft.ts:65](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L65)
+[src/api/nft.ts:77](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/nft.ts#L77)
 
 ___
 
@@ -157,24 +135,20 @@ ___
 
 • **tokenType**: [`NftTokenType`](../enums/NftTokenType.md)
 
-The type of ERC token, if known.
-
-#### Inherited from
-
-[BaseNft](BaseNft.md).[tokenType](BaseNft.md#tokentype)
+The type of NFT.
 
 #### Defined in
 
-[src/api/nft.ts:67](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L67)
+[src/api/nft.ts:79](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/nft.ts#L79)
 
 ___
 
 ### tokenUri
 
-• **tokenUri**: `undefined` \| [`TokenUri`](TokenUri.md)
+• `Optional` **tokenUri**: `string`
 
 URIs for accessing the NFT's metadata blob.
 
 #### Defined in
 
-[src/api/nft.ts:102](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L102)
+[src/api/nft.ts:89](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/nft.ts#L89)

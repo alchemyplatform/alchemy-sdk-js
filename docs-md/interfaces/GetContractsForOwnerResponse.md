@@ -16,13 +16,13 @@ The response for the [NftNamespace.getContractsForOwner](../classes/NftNamespace
 
 ### contracts
 
-• **contracts**: [`ContractForOwner`](ContractForOwner.md)[]
+• **contracts**: [`NftContractForOwner`](NftContractForOwner.md)[]
 
 The list of contracts, that match the query, held by the given address.
 
 #### Defined in
 
-[src/types/types.ts:1022](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1022)
+[src/types/types.ts:986](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L986)
 
 ___
 
@@ -34,7 +34,7 @@ Key for pagination to use to fetch results from the next page if available.
 
 #### Defined in
 
-[src/types/types.ts:1025](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1025)
+[src/types/types.ts:989](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L989)
 
 ___
 
@@ -46,4 +46,4 @@ Total number of NFT contracts held by the given address.
 
 #### Defined in
 
-[src/types/types.ts:1028](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1028)
+[src/types/types.ts:992](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L992)

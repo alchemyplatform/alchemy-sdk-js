@@ -222,7 +222,7 @@ describe('E2E integration tests', () => {
       0
     );
     expect(response.ownedNfts.at(0)?.acquiredAt?.blockTimestamp).toBeTruthy();
-    expect(typeof response.blockHash).toEqual('string');
+    expect(response.validAt).toBeDefined();
   });
 
   it('getOwnersForContract()', async () => {
