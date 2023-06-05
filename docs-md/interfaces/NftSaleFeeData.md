@@ -10,6 +10,7 @@ Fee detail for an NFT sale.
 
 - [amount](NftSaleFeeData.md#amount)
 - [decimal](NftSaleFeeData.md#decimal)
+- [decimals](NftSaleFeeData.md#decimals)
 - [symbol](NftSaleFeeData.md#symbol)
 
 ## Properties
@@ -22,7 +23,7 @@ The fee payment amount as a decimal integer string.
 
 #### Defined in
 
-[src/types/types.ts:1302](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1302)
+[src/types/types.ts:1324](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1324)
 
 ___
 
@@ -32,9 +33,25 @@ ___
 
 The number of decimals of the token used for the payment.
 
+**`deprecated`** Please use `decimals` instead. This field contains a typo
+and will always be undefined. It's been marked as deprecated to avoid
+breaking changes.
+
 #### Defined in
 
-[src/types/types.ts:1308](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1308)
+[src/types/types.ts:1335](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1335)
+
+___
+
+### decimals
+
+• **decimals**: `number`
+
+The number of decimals of the token used for the payment.
+
+#### Defined in
+
+[src/types/types.ts:1338](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1338)
 
 ___
 
@@ -46,4 +63,4 @@ The symbol of the token used for the payment.
 
 #### Defined in
 
-[src/types/types.ts:1305](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1305)
+[src/types/types.ts:1327](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1327)

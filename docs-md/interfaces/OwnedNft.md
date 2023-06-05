@@ -14,6 +14,7 @@ Represents an NFT with metadata owned by an address.
 
 ### Properties
 
+- [acquiredAt](OwnedNft.md#acquiredat)
 - [balance](OwnedNft.md#balance)
 - [contract](OwnedNft.md#contract)
 - [description](OwnedNft.md#description)
@@ -29,6 +30,24 @@ Represents an NFT with metadata owned by an address.
 
 ## Properties
 
+### acquiredAt
+
+• `Optional` **acquiredAt**: [`AcquiredAt`](AcquiredAt.md)
+
+Time at which the NFT was most recently acquired by the user. Only
+available when specifying `orderBy: NftOrdering.TRANSFERTIME` in the
+request.
+
+#### Inherited from
+
+[Nft](Nft.md).[acquiredAt](Nft.md#acquiredat)
+
+#### Defined in
+
+[src/api/nft.ts:116](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L116)
+
+___
+
 ### balance
 
 • `Readonly` **balance**: `number`
@@ -37,7 +56,7 @@ The token balance of the NFT.
 
 #### Defined in
 
-[src/types/types.ts:811](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L811)
+[src/types/types.ts:820](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L820)
 
 ___
 
@@ -53,7 +72,7 @@ The NFT's underlying contract and relevant contract metadata.
 
 #### Defined in
 
-[src/api/nft.ts:81](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L81)
+[src/api/nft.ts:82](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L82)
 
 ___
 
@@ -69,7 +88,7 @@ The NFT description.
 
 #### Defined in
 
-[src/api/nft.ts:87](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L87)
+[src/api/nft.ts:88](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L88)
 
 ___
 
@@ -85,7 +104,7 @@ URIs for accessing the NFT's media assets.
 
 #### Defined in
 
-[src/api/nft.ts:105](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L105)
+[src/api/nft.ts:106](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L106)
 
 ___
 
@@ -101,7 +120,7 @@ Holds an error message if there was an issue fetching metadata.
 
 #### Defined in
 
-[src/api/nft.ts:93](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L93)
+[src/api/nft.ts:94](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L94)
 
 ___
 
@@ -118,7 +137,7 @@ field is undefined if Alchemy was unable to fetch metadata.
 
 #### Defined in
 
-[src/api/nft.ts:99](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L99)
+[src/api/nft.ts:100](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L100)
 
 ___
 
@@ -134,7 +153,7 @@ Detailed information on why an NFT was classified as spam.
 
 #### Defined in
 
-[src/api/nft.ts:108](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L108)
+[src/api/nft.ts:109](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L109)
 
 ___
 
@@ -150,7 +169,7 @@ When the NFT was last updated in the blockchain. Represented in ISO-8601 format.
 
 #### Defined in
 
-[src/api/nft.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L90)
+[src/api/nft.ts:91](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L91)
 
 ___
 
@@ -166,7 +185,7 @@ The NFT title.
 
 #### Defined in
 
-[src/api/nft.ts:84](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L84)
+[src/api/nft.ts:85](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L85)
 
 ___
 
@@ -182,7 +201,7 @@ The NFT token ID as an integer string.
 
 #### Defined in
 
-[src/api/nft.ts:65](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L65)
+[src/api/nft.ts:66](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L66)
 
 ___
 
@@ -198,7 +217,7 @@ The type of ERC token, if known.
 
 #### Defined in
 
-[src/api/nft.ts:67](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L67)
+[src/api/nft.ts:68](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L68)
 
 ___
 
@@ -214,4 +233,4 @@ URIs for accessing the NFT's metadata blob.
 
 #### Defined in
 
-[src/api/nft.ts:102](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L102)
+[src/api/nft.ts:103](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L103)
