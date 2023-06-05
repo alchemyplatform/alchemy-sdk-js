@@ -36,7 +36,7 @@ The address of the NFT buyer to filter sales by.
 
 #### Defined in
 
-[src/types/types.ts:1196](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1196)
+[src/types/types.ts:1205](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1205)
 
 ___
 
@@ -48,7 +48,7 @@ The block number to start fetching NFT sales data from.
 
 #### Defined in
 
-[src/types/types.ts:1184](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1184)
+[src/types/types.ts:1193](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1193)
 
 ___
 
@@ -60,7 +60,7 @@ The maximum number of NFT sales to return.
 
 #### Defined in
 
-[src/types/types.ts:1208](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1208)
+[src/types/types.ts:1217](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1217)
 
 ___
 
@@ -72,7 +72,7 @@ The NFT marketplace to filter sales by.
 
 #### Defined in
 
-[src/types/types.ts:1193](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1193)
+[src/types/types.ts:1202](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1202)
 
 ___
 
@@ -84,7 +84,7 @@ Whether to return the results in ascending or descending order by block number.
 
 #### Defined in
 
-[src/types/types.ts:1190](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1190)
+[src/types/types.ts:1199](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1199)
 
 ___
 
@@ -96,7 +96,7 @@ Key for pagination to use to fetch results from the next page if available.
 
 #### Defined in
 
-[src/types/types.ts:1211](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1211)
+[src/types/types.ts:1220](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1220)
 
 ___
 
@@ -108,7 +108,7 @@ The address of the NFT seller to filter sales by.
 
 #### Defined in
 
-[src/types/types.ts:1199](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1199)
+[src/types/types.ts:1208](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1208)
 
 ___
 
@@ -121,7 +121,7 @@ Defaults to returning both buyer and seller taker trades.
 
 #### Defined in
 
-[src/types/types.ts:1205](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1205)
+[src/types/types.ts:1214](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1214)
 
 ___
 
@@ -133,4 +133,4 @@ The block number limit to fetch NFT sales data from.
 
 #### Defined in
 
-[src/types/types.ts:1187](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1187)
+[src/types/types.ts:1196](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1196)

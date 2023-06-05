@@ -20,4 +20,4 @@ The block number to get transaction receipts for.
 
 #### Defined in
 
-[src/types/types.ts:1428](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1428)
+[src/types/types.ts:1459](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1459)

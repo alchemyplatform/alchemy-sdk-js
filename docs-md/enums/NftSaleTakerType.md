@@ -20,7 +20,7 @@ method.
 
 #### Defined in
 
-[src/types/types.ts:1343](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1343)
+[src/types/types.ts:1374](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1374)
 
 ___
 
@@ -30,4 +30,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1344](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1344)
+[src/types/types.ts:1375](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1375)

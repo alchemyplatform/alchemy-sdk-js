@@ -43,7 +43,7 @@ The address of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L21)
+[src/api/nft.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L22)
 
 ___
 
@@ -55,7 +55,7 @@ The address that deployed the NFT contract.
 
 #### Defined in
 
-[src/api/nft.ts:48](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L48)
+[src/api/nft.ts:49](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L49)
 
 ___
 
@@ -67,7 +67,7 @@ The block number the NFT contract deployed in.
 
 #### Defined in
 
-[src/api/nft.ts:50](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L50)
+[src/api/nft.ts:51](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L51)
 
 ___
 
@@ -79,7 +79,7 @@ The name of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:37](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L37)
+[src/api/nft.ts:38](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L38)
 
 ___
 
@@ -91,7 +91,7 @@ OpenSea's metadata for the contract.
 
 #### Defined in
 
-[src/api/nft.ts:46](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L46)
+[src/api/nft.ts:47](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L47)
 
 ___
 
@@ -103,7 +103,7 @@ The symbol of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L39)
+[src/api/nft.ts:40](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L40)
 
 ___
 
@@ -115,7 +115,7 @@ The type of the token in the contract.
 
 #### Defined in
 
-[src/api/nft.ts:35](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L35)
+[src/api/nft.ts:36](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L36)
 
 ___
 
@@ -128,4 +128,4 @@ available on ERC-721 contracts.
 
 #### Defined in
 
-[src/api/nft.ts:44](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L44)
+[src/api/nft.ts:45](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L45)

@@ -9,6 +9,7 @@ Enum representing the supported NFT marketplaces by the
 
 ### Enumeration members
 
+- [BLUR](NftSaleMarketplace.md#blur)
 - [CRYPTOPUNKS](NftSaleMarketplace.md#cryptopunks)
 - [LOOKSRARE](NftSaleMarketplace.md#looksrare)
 - [SEAPORT](NftSaleMarketplace.md#seaport)
@@ -18,13 +19,23 @@ Enum representing the supported NFT marketplaces by the
 
 ## Enumeration members
 
+### BLUR
+
+• **BLUR** = `"blur"`
+
+#### Defined in
+
+[src/types/types.ts:1363](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1363)
+
+___
+
 ### CRYPTOPUNKS
 
 • **CRYPTOPUNKS** = `"cryptopunks"`
 
 #### Defined in
 
-[src/types/types.ts:1332](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1332)
+[src/types/types.ts:1362](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1362)
 
 ___
 
@@ -34,7 +45,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1329](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1329)
+[src/types/types.ts:1359](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1359)
 
 ___
 
@@ -44,7 +55,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1328](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1328)
+[src/types/types.ts:1358](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1358)
 
 ___
 
@@ -54,7 +65,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1333](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1333)
+[src/types/types.ts:1364](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1364)
 
 ___
 
@@ -64,7 +75,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1331](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1331)
+[src/types/types.ts:1361](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1361)
 
 ___
 
@@ -74,4 +85,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1330](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1330)
+[src/types/types.ts:1360](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1360)

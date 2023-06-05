@@ -43,7 +43,7 @@ The address of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:21](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L21)
+[src/api/nft.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L22)
 
 ___
 
@@ -59,7 +59,7 @@ The address that deployed the NFT contract.
 
 #### Defined in
 
-[src/api/nft.ts:48](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L48)
+[src/api/nft.ts:49](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L49)
 
 ___
 
@@ -75,7 +75,7 @@ The block number the NFT contract deployed in.
 
 #### Defined in
 
-[src/api/nft.ts:50](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L50)
+[src/api/nft.ts:51](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L51)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1050](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1050)
+[src/types/types.ts:1059](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1059)
 
 ___
 
@@ -97,7 +97,7 @@ Alternative NFT metadata for this contract to be parsed manually.
 
 #### Defined in
 
-[src/types/types.ts:1056](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1056)
+[src/types/types.ts:1065](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1065)
 
 ___
 
@@ -113,7 +113,7 @@ The name of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:37](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L37)
+[src/api/nft.ts:38](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L38)
 
 ___
 
@@ -127,7 +127,7 @@ holds some fungible ERC1155 tokens.
 
 #### Defined in
 
-[src/types/types.ts:1048](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1048)
+[src/types/types.ts:1057](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1057)
 
 ___
 
@@ -143,7 +143,7 @@ OpenSea's metadata for the contract.
 
 #### Defined in
 
-[src/api/nft.ts:46](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L46)
+[src/api/nft.ts:47](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L47)
 
 ___
 
@@ -159,7 +159,7 @@ The symbol of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L39)
+[src/api/nft.ts:40](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L40)
 
 ___
 
@@ -171,7 +171,7 @@ The title of the token held by the owner.
 
 #### Defined in
 
-[src/types/types.ts:1041](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1041)
+[src/types/types.ts:1050](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1050)
 
 ___
 
@@ -183,7 +183,7 @@ One of the tokens from this contract held by the owner.
 
 #### Defined in
 
-[src/types/types.ts:1053](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1053)
+[src/types/types.ts:1062](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1062)
 
 ___
 
@@ -199,7 +199,7 @@ The type of the token in the contract.
 
 #### Defined in
 
-[src/api/nft.ts:35](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L35)
+[src/api/nft.ts:36](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L36)
 
 ___
 
@@ -213,7 +213,7 @@ it may be higher if the user holds some fungible ERC1155 tokens.
 
 #### Defined in
 
-[src/types/types.ts:1038](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/types/types.ts#L1038)
+[src/types/types.ts:1047](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1047)
 
 ___
 
@@ -230,4 +230,4 @@ available on ERC-721 contracts.
 
 #### Defined in
 
-[src/api/nft.ts:44](https://github.com/alchemyplatform/alchemy-sdk-js/blob/905f87c/src/api/nft.ts#L44)
+[src/api/nft.ts:45](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/api/nft.ts#L45)
