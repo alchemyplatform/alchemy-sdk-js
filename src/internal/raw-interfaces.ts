@@ -297,8 +297,15 @@ export interface RawNftAttributeRarity {
 }
 
 export interface RawGetNftSalesResponse {
-  pageKey?: string;
   nftSales: RawNftSale[];
+  validAt: RawNftSaleValidAt;
+  pageKey?: string;
+}
+
+export interface RawNftSaleValidAt {
+  blockNumber: number;
+  blockHash: string | null;
+  blockTimestamp: string | null;
 }
 
 export interface RawNftSale {

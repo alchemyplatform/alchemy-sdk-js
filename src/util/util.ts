@@ -112,7 +112,6 @@ export function getNftSalesFromRaw(
   rawNftSales: RawGetNftSalesResponse
 ): GetNftSalesResponse {
   return {
-    pageKey: rawNftSales?.pageKey,
     nftSales: rawNftSales.nftSales.map(rawNftSale => ({
       marketplace: parseNftSaleMarketplace(rawNftSale.marketplace),
       contractAddress: rawNftSale.contractAddress,
@@ -129,7 +128,13 @@ export function getNftSalesFromRaw(
       logIndex: rawNftSale.logIndex,
       bundleIndex: rawNftSale.bundleIndex,
       transactionHash: rawNftSale.transactionHash
-    }))
+    })),
+    validAt: {
+      blockNumber: rawNftSales.validAt.blockNumber,
+      blockHash: rawNftSales.validAt.blockHash ?? undefined,
+      blockTimestamp: rawNftSales.validAt.blockTimestamp ?? undefined
+    },
+    pageKey: rawNftSales?.pageKey
   };
 }
 
