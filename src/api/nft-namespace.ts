@@ -523,9 +523,10 @@ export class NftNamespace {
    */
   computeRarity(
     contractAddress: string,
-    tokenId: BigNumberish
+    tokenId: BigNumberish,
+    refreshCache?: boolean
   ): Promise<NftAttributeRarity[]> {
-    return computeRarity(this.config, contractAddress, tokenId);
+    return computeRarity(this.config, contractAddress, tokenId, refreshCache);
   }
 
   /**
@@ -543,9 +544,10 @@ export class NftNamespace {
    * @param contractAddress - Contract address for the NFT collection.
    */
   summarizeNftAttributes(
-    contractAddress: string
+    contractAddress: string,
+    refreshCache?: boolean
   ): Promise<NftAttributesResponse> {
-    return summarizeNftAttributes(this.config, contractAddress);
+    return summarizeNftAttributes(this.config, contractAddress, refreshCache);
   }
 
   /**
