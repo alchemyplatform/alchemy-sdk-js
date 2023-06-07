@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Add the `refreshCache` param to NFT rarity endpoints to allow users to update stale rarity values.
+- Add the `refreshCache` parameter to NFT rarity endpoints to allow users to update stale rarity values.
 
 ### Major Changes
 

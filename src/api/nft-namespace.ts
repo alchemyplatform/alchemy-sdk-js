@@ -520,6 +520,7 @@ export class NftNamespace {
    *
    * @param contractAddress - Contract address for the NFT collection.
    * @param tokenId - Token id of the NFT.
+   * @param refreshCache - If true, bypass cache and recompute rarity snapshot.
    */
   computeRarity(
     contractAddress: string,
@@ -542,6 +543,7 @@ export class NftNamespace {
    * Get a summary of attribute prevalence for an NFT collection.
    *
    * @param contractAddress - Contract address for the NFT collection.
+   * @param refreshCache - If true, bypass cache and recompute rarity snapshot.
    */
   summarizeNftAttributes(
     contractAddress: string,
