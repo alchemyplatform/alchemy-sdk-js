@@ -852,8 +852,10 @@ export interface GetOwnersForContractResponse {
   /** An array of owner addresses for the provided contract address */
   owners: string[];
 
-  /** Total count of unique owners */
-  totalCount: number;
+  /**
+   * Total count of unique owners. Only present if
+   * {@link GetOwnersForContractOptions.includeCount} is true. */
+  totalCount?: number;
 }
 
 /**
