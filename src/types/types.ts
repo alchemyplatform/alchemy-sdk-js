@@ -1610,6 +1610,9 @@ export interface GetOwnersForContractOptions {
 
   /** Optional page key to paginate the next page for large requests. */
   pageKey?: string;
+
+  /** If true, include total count of owners in the response. */
+  includeCount?: boolean;
 }
 
 /**
