@@ -6,6 +6,9 @@
 
 ### Minor Changes
 
+- Add the `refreshCache` parameter to NFT rarity endpoints to allow users to update stale rarity values.
+- Add the `includeCount` parameter to getOwnersForContract.
+
 ## 2.9.0
 
 ### Major Changes

@@ -851,6 +851,11 @@ export interface GetOwnersForNftResponse {
 export interface GetOwnersForContractResponse {
   /** An array of owner addresses for the provided contract address */
   owners: string[];
+
+  /**
+   * Total count of unique owners. Only present if
+   * {@link GetOwnersForContractOptions.includeCount} is true. */
+  totalCount?: number;
 }
 
 /**
@@ -1610,6 +1615,9 @@ export interface GetOwnersForContractOptions {
 
   /** Optional page key to paginate the next page for large requests. */
   pageKey?: string;
+
+  /** If true, include total count of owners in the response. */
+  includeCount?: boolean;
 }
 
 /**

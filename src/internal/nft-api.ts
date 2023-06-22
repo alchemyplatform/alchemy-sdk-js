@@ -307,6 +307,7 @@ export async function getOwnersForContract(
 
   return {
     owners: response.ownerAddresses,
+    totalCount: response.totalCount,
 
     // Only include the pageKey in the final response if it's defined
     ...(response.pageKey !== undefined && { pageKey: response.pageKey })
@@ -623,6 +624,7 @@ export async function computeRarity(
   config: AlchemyConfig,
   contractAddress: string,
   tokenId: BigNumberish,
+  refreshCache?: boolean,
   srcMethod = 'computeRarity'
 ): Promise<NftAttributeRarity[]> {
   const response = await requestHttpWithBackoff<
@@ -630,7 +632,8 @@ export async function computeRarity(
     RawNftAttributeRarity[]
   >(config, AlchemyApiType.NFT, 'computeRarity', srcMethod, {
     contractAddress,
-    tokenId: BigNumber.from(tokenId).toString()
+    tokenId: BigNumber.from(tokenId).toString(),
+    refreshCache
   });
 
   return getNftRarityFromRaw(response);
@@ -654,13 +657,15 @@ export async function searchContractMetadata(
 export async function summarizeNftAttributes(
   config: AlchemyConfig,
   contractAddress: string,
+  refreshCache?: boolean,
   srcMethod = 'summarizeNftAttributes'
 ): Promise<NftAttributesResponse> {
   return requestHttpWithBackoff<
     SummarizeNftAttributesParams,
     NftAttributesResponse
   >(config, AlchemyApiType.NFT, 'summarizeNftAttributes', srcMethod, {
-    contractAddress
+    contractAddress,
+    refreshCache
   });
 }
 
@@ -1034,6 +1039,7 @@ interface GetNftSalesParams {
 interface ComputeRarityParams {
   contractAddress: string;
   tokenId: string;
+  refreshCache?: boolean;
 }
 
 /**
@@ -1052,6 +1058,7 @@ interface SearchContractMetadataParams {
  */
 interface SummarizeNftAttributesParams {
   contractAddress: string;
+  refreshCache?: boolean;
 }
 
 interface ReingestContractParams {
