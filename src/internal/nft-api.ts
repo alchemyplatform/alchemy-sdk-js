@@ -307,6 +307,7 @@ export async function getOwnersForContract(
 
   return {
     owners: response.ownerAddresses,
+    totalCount: response.totalCount,
 
     // Only include the pageKey in the final response if it's defined
     ...(response.pageKey !== undefined && { pageKey: response.pageKey })

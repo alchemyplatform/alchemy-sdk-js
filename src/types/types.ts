@@ -851,6 +851,9 @@ export interface GetOwnersForNftResponse {
 export interface GetOwnersForContractResponse {
   /** An array of owner addresses for the provided contract address */
   owners: string[];
+
+  /** Total count of unique owners */
+  totalCount: number;
 }
 
 /**
