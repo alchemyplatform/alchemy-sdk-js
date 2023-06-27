@@ -19,4 +19,4 @@ Authority used to decode calls and logs when using the
 
 #### Defined in
 
-[src/types/types.ts:2006](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L2006)
+[src/types/types.ts:2014](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L2014)

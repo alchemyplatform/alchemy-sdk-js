@@ -20,7 +20,7 @@ The type of tracer to use when running debug methods in the
 
 #### Defined in
 
-[src/types/types.ts:2503](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L2503)
+[src/types/types.ts:2511](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L2511)
 
 ___
 
@@ -30,4 +30,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:2504](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L2504)
+[src/types/types.ts:2512](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L2512)

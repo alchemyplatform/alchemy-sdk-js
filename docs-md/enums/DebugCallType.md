@@ -21,7 +21,7 @@ The type of call in a debug call trace.
 
 #### Defined in
 
-[src/types/types.ts:2043](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L2043)
+[src/types/types.ts:2051](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L2051)
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:2042](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L2042)
+[src/types/types.ts:2050](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L2050)
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:2045](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L2045)
+[src/types/types.ts:2053](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L2053)
 
 ___
 
@@ -51,4 +51,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:2044](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L2044)
+[src/types/types.ts:2052](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L2052)

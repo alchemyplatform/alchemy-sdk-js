@@ -20,7 +20,7 @@ NFTs that were minted by the owner.
 
 #### Defined in
 
-[src/types/types.ts:1074](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1074)
+[src/types/types.ts:1079](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1079)
 
 ___
 
@@ -30,4 +30,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1073](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1073)
+[src/types/types.ts:1078](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1078)

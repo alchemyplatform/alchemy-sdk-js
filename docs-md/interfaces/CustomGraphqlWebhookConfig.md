@@ -20,4 +20,4 @@ The graphql query for the webhook.
 
 #### Defined in
 
-[src/types/types.ts:2276](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L2276)
+[src/types/types.ts:2284](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L2284)

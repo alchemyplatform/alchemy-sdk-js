@@ -28,7 +28,7 @@ The name of the parameter.
 
 #### Defined in
 
-[src/types/types.ts:2014](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L2014)
+[src/types/types.ts:2022](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L2022)
 
 ___
 
@@ -40,7 +40,7 @@ The type of the parameter.
 
 #### Defined in
 
-[src/types/types.ts:2016](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L2016)
+[src/types/types.ts:2024](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L2024)
 
 ___
 
@@ -52,4 +52,4 @@ Value of the parameter.
 
 #### Defined in
 
-[src/types/types.ts:2012](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L2012)
+[src/types/types.ts:2020](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L2020)
