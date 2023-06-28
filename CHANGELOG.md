@@ -11,6 +11,7 @@
 ### Major Changes
 
 - Fixed a bug with in `NftNamespace.getNftSales()` in which there was a typo in `decimal` field of the `NftSaleFeeData` object. The field is now correctly named `decimals`, and `decimal` is marked deprecated to avoid a breaking change.
+- Added a new method `CoreNamespace.isContractAddress()` to easily check if an address is a contract or EOA. The method accepts a string address and returns a boolean value indicating if the given address is a contract address or not.
 
 ### Minor Changes
 

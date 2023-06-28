@@ -79,7 +79,7 @@ export class CoreNamespace {
    * @param address The address to check type for.
    * @public
    */
-  async isContractAddress(address: string | Promise<string>): Promise<boolean> {
+  async isContractAddress(address: string): Promise<boolean> {
     const provider = await this.config.getProvider();
     const code = await provider.getCode(address);
     return code !== '0x';
