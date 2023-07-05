@@ -6,16 +6,24 @@
 
 ### Minor Changes
 
+## 2.9.2
+
+### Major Changes
+
+- Added a new method `CoreNamespace.isContractAddress()` to easily check if an address is a contract or EOA. The method accepts a string address and returns a boolean value indicating if the given address is a contract address or not.
+
+### Minor Changes
+
+- Fixed a bug where `GetOwnersForContractResponse` was missing the `pageKey` field.
+
 ## 2.9.1
 
 ### Major Changes
-- Added a new method `CoreNamespace.isContractAddress()` to easily check if an address is a contract or EOA. The method accepts a string address and returns a boolean value indicating if the given address is a contract address or not.
 
 ### Minor Changes
 
 - Add the `refreshCache` parameter to NFT rarity endpoints to allow users to update stale rarity values.
 - Add the `includeCount` parameter to getOwnersForContract.
-- Fixed a bug where `GetOwnersForContractResponse` was missing the `pageKey` field.
 
 ## 2.9.0
 
