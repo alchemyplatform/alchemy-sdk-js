@@ -856,6 +856,9 @@ export interface GetOwnersForContractResponse {
    * Total count of unique owners. Only present if
    * {@link GetOwnersForContractOptions.includeCount} is true. */
   totalCount?: number;
+
+  /** Optional page key that is returned when a collection has more than 50,000 owners. */
+  pageKey?: string;
 }
 
 /**
@@ -868,7 +871,7 @@ export interface GetOwnersForContractWithTokenBalancesResponse {
   owners: NftContractOwner[];
 
   /** Optional page key that is returned when a collection has more than 50,000 owners. */
-  pageKey?: string;
+  pageKey: string;
 }
 
 /**
@@ -1616,7 +1619,10 @@ export interface GetOwnersForContractOptions {
   /** Optional page key to paginate the next page for large requests. */
   pageKey?: string;
 
-  /** If true, include total count of owners in the response. */
+  /**
+   * If true, include total count of owners in the response. Only applicable
+   * when `withTokenBalances` is not set to `true`.
+   */
   includeCount?: boolean;
 }
 

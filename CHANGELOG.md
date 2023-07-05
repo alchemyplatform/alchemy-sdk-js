@@ -6,6 +6,7 @@
 - Added a new method `CoreNamespace.isContractAddress()` to easily check if an address is a contract or EOA. The method accepts a string address and returns a boolean value indicating if the given address is a contract address or not.
 
 ### Minor Changes
+- Fixed a bug where `GetOwnersForContractResponse` was missing the `pageKey` field.
 
 ## 2.9.1
 
