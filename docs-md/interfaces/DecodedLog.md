@@ -23,7 +23,7 @@ The source used to provide the decoded log.
 
 #### Defined in
 
-[src/types/types.ts:2078](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L2078)
+[src/types/types.ts:2084](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L2084)
 
 ___
 
@@ -35,7 +35,7 @@ The decoded name of the log event.
 
 #### Defined in
 
-[src/types/types.ts:2074](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L2074)
+[src/types/types.ts:2080](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L2080)
 
 ___
 
@@ -47,4 +47,4 @@ The decoded inputs to the log.
 
 #### Defined in
 
-[src/types/types.ts:2076](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L2076)
+[src/types/types.ts:2082](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L2082)

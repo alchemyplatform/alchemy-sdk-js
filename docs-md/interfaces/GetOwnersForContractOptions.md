@@ -26,7 +26,7 @@ The block number in hex or decimal to fetch owners for.
 
 #### Defined in
 
-[src/types/types.ts:1614](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1614)
+[src/types/types.ts:1617](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1617)
 
 ___
 
@@ -34,11 +34,12 @@ ___
 
 • `Optional` **includeCount**: `boolean`
 
-If true, include total count of owners in the response.
+If true, include total count of owners in the response. Only applicable
+when `withTokenBalances` is not set to `true`.
 
 #### Defined in
 
-[src/types/types.ts:1620](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1620)
+[src/types/types.ts:1626](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1626)
 
 ___
 
@@ -50,7 +51,7 @@ Optional page key to paginate the next page for large requests.
 
 #### Defined in
 
-[src/types/types.ts:1617](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1617)
+[src/types/types.ts:1620](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1620)
 
 ___
 
@@ -63,4 +64,4 @@ to false when omitted.
 
 #### Defined in
 
-[src/types/types.ts:1611](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1611)
+[src/types/types.ts:1614](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1614)

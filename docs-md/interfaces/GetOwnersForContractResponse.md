@@ -9,6 +9,7 @@ The response object for the [getOwnersForContract](../classes/NftNamespace.md#ge
 ### Properties
 
 - [owners](GetOwnersForContractResponse.md#owners)
+- [pageKey](GetOwnersForContractResponse.md#pagekey)
 - [totalCount](GetOwnersForContractResponse.md#totalcount)
 
 ## Properties
@@ -21,7 +22,19 @@ An array of owner addresses for the provided contract address
 
 #### Defined in
 
-[src/types/types.ts:853](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L853)
+[src/types/types.ts:853](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L853)
+
+___
+
+### pageKey
+
+• `Optional` **pageKey**: `string`
+
+Optional page key that is returned when a collection has more than 50,000 owners.
+
+#### Defined in
+
+[src/types/types.ts:861](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L861)
 
 ___
 
@@ -34,4 +47,4 @@ Total count of unique owners. Only present if
 
 #### Defined in
 
-[src/types/types.ts:858](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L858)
+[src/types/types.ts:858](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L858)
