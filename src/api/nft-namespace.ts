@@ -520,12 +520,14 @@ export class NftNamespace {
    *
    * @param contractAddress - Contract address for the NFT collection.
    * @param tokenId - Token id of the NFT.
+   * @param refreshCache - If true, bypass cache and recompute rarity snapshot.
    */
   computeRarity(
     contractAddress: string,
-    tokenId: BigNumberish
+    tokenId: BigNumberish,
+    refreshCache?: boolean
   ): Promise<NftAttributeRarity[]> {
-    return computeRarity(this.config, contractAddress, tokenId);
+    return computeRarity(this.config, contractAddress, tokenId, refreshCache);
   }
 
   /**
@@ -541,11 +543,13 @@ export class NftNamespace {
    * Get a summary of attribute prevalence for an NFT collection.
    *
    * @param contractAddress - Contract address for the NFT collection.
+   * @param refreshCache - If true, bypass cache and recompute rarity snapshot.
    */
   summarizeNftAttributes(
-    contractAddress: string
+    contractAddress: string,
+    refreshCache?: boolean
   ): Promise<NftAttributesResponse> {
-    return summarizeNftAttributes(this.config, contractAddress);
+    return summarizeNftAttributes(this.config, contractAddress, refreshCache);
   }
 
   /**

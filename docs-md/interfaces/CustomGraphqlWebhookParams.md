@@ -22,7 +22,7 @@ GraphQL query
 
 #### Defined in
 
-[src/types/types.ts:2315](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L2315)
+[src/types/types.ts:2323](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L2323)
 
 ___
 
@@ -35,4 +35,4 @@ created on network of the app provided in the api key config.
 
 #### Defined in
 
-[src/types/types.ts:2320](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L2320)
+[src/types/types.ts:2328](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L2328)

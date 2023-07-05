@@ -12,6 +12,7 @@ provided contract.
 ### Properties
 
 - [block](GetOwnersForContractOptions.md#block)
+- [includeCount](GetOwnersForContractOptions.md#includecount)
 - [pageKey](GetOwnersForContractOptions.md#pagekey)
 - [withTokenBalances](GetOwnersForContractOptions.md#withtokenbalances)
 
@@ -25,7 +26,19 @@ The block number in hex or decimal to fetch owners for.
 
 #### Defined in
 
-[src/types/types.ts:1609](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1609)
+[src/types/types.ts:1614](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1614)
+
+___
+
+### includeCount
+
+• `Optional` **includeCount**: `boolean`
+
+If true, include total count of owners in the response.
+
+#### Defined in
+
+[src/types/types.ts:1620](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1620)
 
 ___
 
@@ -37,7 +50,7 @@ Optional page key to paginate the next page for large requests.
 
 #### Defined in
 
-[src/types/types.ts:1612](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1612)
+[src/types/types.ts:1617](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1617)
 
 ___
 
@@ -50,4 +63,4 @@ to false when omitted.
 
 #### Defined in
 
-[src/types/types.ts:1606](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1606)
+[src/types/types.ts:1611](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1611)

@@ -26,7 +26,7 @@ ERC1155 approval or transfers.
 
 #### Defined in
 
-[src/types/types.ts:1886](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1886)
+[src/types/types.ts:1894](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1894)
 
 ___
 
@@ -38,7 +38,7 @@ ERC20 approval or transfers.
 
 #### Defined in
 
-[src/types/types.ts:1882](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1882)
+[src/types/types.ts:1890](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1890)
 
 ___
 
@@ -50,7 +50,7 @@ ERC721 approval or transfers.
 
 #### Defined in
 
-[src/types/types.ts:1884](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1884)
+[src/types/types.ts:1892](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1892)
 
 ___
 
@@ -63,7 +63,7 @@ run on (ex: ETH for Ethereum, MATIC for Polygon, ETH for Arbitrum).
 
 #### Defined in
 
-[src/types/types.ts:1880](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1880)
+[src/types/types.ts:1888](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1888)
 
 ___
 
@@ -76,4 +76,4 @@ CryptoKitties and CryptoPunks.
 
 #### Defined in
 
-[src/types/types.ts:1891](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1891)
+[src/types/types.ts:1899](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1899)

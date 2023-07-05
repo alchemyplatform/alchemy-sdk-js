@@ -227,6 +227,13 @@ describe('E2E integration tests', () => {
     expect(response.owners.length).toBeGreaterThan(0);
   });
 
+  it('getOwnersForContract() with includeCount', async () => {
+    const response = await alchemy.nft.getOwnersForContract(contractAddress, {
+      includeCount: true
+    });
+    expect(response.totalCount).not.toBeUndefined();
+  });
+
   it('getOwnersForContract()', async () => {
     const address = '0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85';
     const response = await alchemy.nft.getOwnersForContract(address, {

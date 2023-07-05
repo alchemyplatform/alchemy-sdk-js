@@ -25,7 +25,7 @@ Enum representing the supported NFT marketplaces by the
 
 #### Defined in
 
-[src/types/types.ts:1363](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1363)
+[src/types/types.ts:1368](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1368)
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1362](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1362)
+[src/types/types.ts:1367](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1367)
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1359](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1359)
+[src/types/types.ts:1364](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1364)
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1358](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1358)
+[src/types/types.ts:1363](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1363)
 
 ___
 
@@ -65,7 +65,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1364](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1364)
+[src/types/types.ts:1369](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1369)
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1361](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1361)
+[src/types/types.ts:1366](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1366)
 
 ___
 
@@ -85,4 +85,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:1360](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4483414/src/types/types.ts#L1360)
+[src/types/types.ts:1365](https://github.com/alchemyplatform/alchemy-sdk-js/blob/46e9716/src/types/types.ts#L1365)

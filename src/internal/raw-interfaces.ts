@@ -213,6 +213,7 @@ export interface RawContractBaseNft {
  */
 export interface RawGetOwnersForContractResponse {
   ownerAddresses: string[];
+  totalCount?: number;
 }
 
 export interface RawGetOwnersForContractWithTokenBalancesResponse {
