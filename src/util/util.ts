@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber';
 
-import { BaseNft, Nft, NftContract } from '../api/nft';
+import { BaseNft, Nft, NftCollection, NftContract } from '../api/nft';
 import { toHex } from '../api/util';
 import {
   RawBaseNft,
@@ -9,6 +9,7 @@ import {
   RawGetNftSalesResponse,
   RawNft,
   RawNftAttributeRarity,
+  RawNftCollection,
   RawNftContract,
   RawOpenSeaCollectionMetadata,
   RawSpamInfo
@@ -55,6 +56,13 @@ export function getNftContractFromRaw(
     contractDeployer: rawNftContract.contractMetadata.contractDeployer,
     deployedBlockNumber: rawNftContract.contractMetadata.deployedBlockNumber
   };
+}
+
+export function getNftCollectionFromRaw(
+  rawNftCollection: RawNftCollection
+): NftCollection {
+  // No transformation needed.
+  return rawNftCollection;
 }
 
 export function getBaseNftFromRaw(rawBaseNft: RawBaseNft): BaseNft;

@@ -52,6 +52,28 @@ export interface NftContract extends BaseNftContract {
 }
 
 /**
+ * Alchemy representation of an NFT collection
+ *
+ * @public
+ */
+export interface NftCollection {
+  /** The name of the collection. */
+  name?: string;
+  /** The OpenSea human-readable slug of the collection. */
+  openSeaSlug?: string;
+  /** OpenSea-specific collection metadata such as floor price. */
+  openSea?: OpenSeaCollectionMetadata;
+  /** The description of the collection. */
+  description?: string;
+  /** The homepage of the collection as determined by OpenSea. */
+  externalUrl?: string;
+  /** The Twitter handle of the collection. */
+  twitterUsername?: string;
+  /** The Discord URL of the collection. */
+  discordUrl?: string;
+}
+
+/**
  * Alchemy representation of an NFT that doesn't contain metadata.
  *
  * The BaseNft object does not hold any metadata information and only contains

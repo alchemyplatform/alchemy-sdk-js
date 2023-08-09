@@ -97,9 +97,29 @@ export interface RawNftContractMetadata {
   deployedBlockNumber?: number;
 }
 
-/** OpenSea's metadata for an NFT collection. */
-export interface RawOpenSeaCollectionMetadata {
+/**
+ * Represents the metadata of an NFT collection received from Alchemy.
+ *
+ * @internal
+ */
+export interface RawNftCollection {
+  name: string;
+  openSeaSlug: string;
+  openSea: RawOpenSeaBaseCollectionMetadata;
+  description?: string;
+  externalUrl?: string;
+  twitterUsername?: string;
+  discordUrl?: string;
+}
+
+/** OpenSea's base metadata for an NFT collection */
+export interface RawOpenSeaBaseCollectionMetadata {
   floorPrice?: number;
+}
+
+/** OpenSea's full metadata for an NFT collection. */
+export interface RawOpenSeaCollectionMetadata
+  extends RawOpenSeaBaseCollectionMetadata {
   collectionName?: string;
   safelistRequestStatus?: string;
   imageUrl?: string;
