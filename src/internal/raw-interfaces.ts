@@ -148,10 +148,6 @@ export interface RawGetNftsForContractResponse {
  * Represents the `nfts` field from the Alchemy HTTP response when calling the
  * `getNftsForNftContract` endpoint without metadata.
  *
- * The main difference between {@link RawContractBaseNft} and {@link RawBaseNft}
- * is that `RawContractBaseNft` omits the `contract` field in the payload since
- * the method takes in a contract address param.
- *
  * @internal
  */
 export interface RawContractBaseNft {

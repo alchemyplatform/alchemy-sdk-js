@@ -130,6 +130,8 @@ function parseNftSaleMarketplace(marketplace: string): NftSaleMarketplace {
       return NftSaleMarketplace.WYVERN;
     case 'cryptopunks':
       return NftSaleMarketplace.CRYPTOPUNKS;
+    case 'blur':
+      return NftSaleMarketplace.BLUR;
     default:
       return NftSaleMarketplace.UNKNOWN;
   }

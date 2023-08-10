@@ -75,6 +75,18 @@ export class CoreNamespace {
   }
 
   /**
+   * Checks if the provided address is a smart contract.
+   *
+   * @param address The address to check type for.
+   * @public
+   */
+  async isContractAddress(address: string): Promise<boolean> {
+    const provider = await this.config.getProvider();
+    const code = await provider.getCode(address);
+    return code !== '0x';
+  }
+
+  /**
    * Returns the contract code of the provided address at the block. If there is
    * no contract deployed, the result is `0x`.
    *

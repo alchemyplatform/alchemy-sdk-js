@@ -788,6 +788,12 @@ export interface GetOwnersForNftResponse {
 export interface GetOwnersForContractResponse {
   /** An array of owner addresses for the provided contract address */
   owners: string[];
+  /**
+   * Total count of unique owners. Only present if
+   * {@link GetOwnersForContractOptions.includeCount} is true.
+   */
+  totalCount?: number;
+
   /** Optional page key that is returned when a collection has more than 50,000 owners. */
   pageKey?: string;
 }
@@ -1301,8 +1307,9 @@ export enum NftSaleMarketplace {
   SEAPORT = 'seaport',
   LOOKSRARE = 'looksrare',
   X2Y2 = 'x2y2',
-  'WYVERN' = 'wyvern',
-  'CRYPTOPUNKS' = 'cryptopunks',
+  WYVERN = 'wyvern',
+  CRYPTOPUNKS = 'cryptopunks',
+  BLUR = 'blur',
   UNKNOWN = 'unknown'
 }
 
@@ -1563,6 +1570,12 @@ export interface GetOwnersForContractOptions {
 
   /** Optional page key to paginate the next page for large requests. */
   pageKey?: string;
+
+  /**
+   * If true, include total count of owners in the response. Only applicable
+   * when `withTokenBalances` is not set to `true`.
+   */
+  includeCount?: boolean;
 }
 
 /**

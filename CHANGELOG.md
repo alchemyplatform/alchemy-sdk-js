@@ -6,8 +6,37 @@
 
 ### Minor Changes
 
+## 2.9.2
+
+### Major Changes
+
+- Added a new method `CoreNamespace.isContractAddress()` to easily check if an address is a contract or EOA. The method accepts a string address and returns a boolean value indicating if the given address is a contract address or not.
+
+### Minor Changes
+
+- Fixed a bug where `GetOwnersForContractResponse` was missing the `pageKey` field.
+
+## 2.9.1
+
+### Major Changes
+
+### Minor Changes
+
+- Add the `refreshCache` parameter to NFT rarity endpoints to allow users to update stale rarity values.
+- Add the `includeCount` parameter to getOwnersForContract.
+
+## 2.9.0
+
+### Major Changes
+
+- Fixed a bug with in `NftNamespace.getNftSales()` in which there was a typo in `decimal` field of the `NftSaleFeeData` object. The field is now correctly named `decimals`, and `decimal` is marked deprecated to avoid a breaking change.
+
+### Minor Changes
+
 - Added redundancy to `CoreNamespace.getTokensForOwner()` to handle failures when fetching token metadata.
 - Added support for the `acquiredAt` field for ordered `getNftsForOwner` queries. Only available when specifying `orderBy: NftOrdering.TRANSFERTIME` in the request.
+- Added the `NftSaleMarketplace.BLUR` marketplace enum to the `NftNamespace.getNftSales()` method return.
+- Added support for the `validAt` response field to `NftNamespace.getNftSales()`.
 
 ## 2.8.3
 
