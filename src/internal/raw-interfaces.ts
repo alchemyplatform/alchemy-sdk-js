@@ -74,6 +74,7 @@ export interface RawNftCollection {
   twitterUsername?: string;
   discordUrl?: string;
 }
+
 /** OpenSea's base metadata for an NFT collection */
 export interface RawOpenSeaBaseCollectionMetadata {
   floorPrice?: number;
