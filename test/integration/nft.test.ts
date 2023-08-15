@@ -11,6 +11,7 @@ import {
   SortingOrder,
   fromHex
 } from '../../src';
+import { NftCollection } from '../../src/api/nft';
 import { loadAlchemyEnv } from '../test-util';
 
 jest.setTimeout(50000);
@@ -24,6 +25,7 @@ describe('E2E integration tests', () => {
   const ownerEns = 'vitalik.eth';
   const ownerAddress = '0x65d25E3F2696B73b850daA07Dd1E267dCfa67F2D';
   const contractAddress = '0x01234567bac6ff94d7e4f0ee23119cf848f93245';
+  const collectionSlug = 'boredapeyachtclub';
 
   beforeAll(async () => {
     await loadAlchemyEnv();
@@ -49,6 +51,16 @@ describe('E2E integration tests', () => {
     ).toEqual(true);
     expect(typeof metadata.contractDeployer).toEqual('string');
     expect(typeof metadata.deployedBlockNumber).toEqual('number');
+  }
+
+  function verifyNftCollectionMetadata(metadata: NftCollection): void {
+    expect(typeof metadata.name).toEqual('string');
+    expect(typeof metadata.openSeaSlug).toEqual('string');
+    expect(metadata.openSea).toBeDefined();
+    expect(typeof metadata.description).toEqual('string');
+    expect(typeof metadata.externalUrl).toEqual('string');
+    expect(typeof metadata.twitterUsername).toEqual('string');
+    expect(typeof metadata.discordUrl).toEqual('string');
   }
 
   function verifyNftSalesData(response: GetNftSalesResponse): void {
@@ -106,6 +118,11 @@ describe('E2E integration tests', () => {
   it('getContractMetadata()', async () => {
     const response = await alchemy.nft.getContractMetadata(contractAddress);
     verifyNftContractMetadata(response);
+  });
+
+  it('getCollectionMetadata()', async () => {
+    const response = await alchemy.nft.getCollectionMetadata(collectionSlug);
+    verifyNftCollectionMetadata(response);
   });
 
   it('getOwnersForNft()', async () => {

@@ -1652,10 +1652,15 @@ export interface NftContractNftsResponse {
   pageKey?: string;
 }
 
-/** OpenSea's metadata for an NFT collection. */
-export interface OpenSeaCollectionMetadata {
+/** OpenSea's base metadata for an NFT collection. */
+export interface OpenSeaBaseCollectionMetadata {
   /** The floor price of the NFT. */
   floorPrice?: number;
+}
+
+/** OpenSea's metadata for an NFT collection. */
+export interface OpenSeaCollectionMetadata
+  extends OpenSeaBaseCollectionMetadata {
   /** The name of the collection on OpenSea. */
   collectionName?: string;
   /** The approval status of the collection on OpenSea. */

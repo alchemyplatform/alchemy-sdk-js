@@ -2,6 +2,7 @@ import type { BigNumberish } from '@ethersproject/bignumber';
 
 import {
   computeRarity,
+  getCollectionMetadata,
   getContractMetadata,
   getContractMetadataBatch,
   getContractsForOwner,
@@ -68,7 +69,7 @@ import {
   TransfersNftResponse
 } from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
-import { BaseNft, Nft, NftContract } from './nft';
+import { BaseNft, Nft, NftCollection, NftContract } from './nft';
 
 /**
  * The NFT namespace contains all the functionality related to NFTs.
@@ -148,6 +149,16 @@ export class NftNamespace {
     contractAddresses: string[]
   ): Promise<GetContractMetadataBatchResponse> {
     return getContractMetadataBatch(this.config, contractAddresses);
+  }
+
+  /**
+   * Get the NFT collection metadata associated with the provided parameters.
+   *
+   * @param contractAddress - The contract address of the NFT.
+   * @public
+   */
+  getCollectionMetadata(collectionSlug: string): Promise<NftCollection> {
+    return getCollectionMetadata(this.config, collectionSlug);
   }
 
   /**

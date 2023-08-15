@@ -1,7 +1,7 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 
 import { AlchemyConfig } from '../api/alchemy-config';
-import { BaseNft, Nft, NftContract } from '../api/nft';
+import { BaseNft, Nft, NftCollection, NftContract } from '../api/nft';
 import {
   AssetTransfersCategory,
   AssetTransfersParams,
@@ -56,6 +56,7 @@ import { AlchemyApiType, ETH_NULL_ADDRESS } from '../util/const';
 import { sanitizeTokenType } from '../util/inputSanitization';
 import {
   getBaseNftFromRaw,
+  getNftCollectionFromRaw,
   getNftContractFromRaw,
   getNftContractsForOwnerFromRaw,
   getNftFromRaw,
@@ -81,6 +82,7 @@ import {
   RawIsSpamContractResponse,
   RawNft,
   RawNftAttributesResponse,
+  RawNftCollection,
   RawNftContractForNft,
   RawOwnedBaseNft,
   RawOwnedNft,
@@ -187,6 +189,21 @@ export async function getContractMetadataBatch(
   return {
     contracts: response.contracts.map(getNftContractFromRaw)
   };
+}
+
+export async function getCollectionMetadata(
+  config: AlchemyConfig,
+  collectionSlug: string,
+  srcMethod = 'getCollectionMetadata'
+): Promise<NftCollection> {
+  const response = await requestHttpWithBackoff<
+    GetCollectionMetadataParams,
+    RawNftCollection
+  >(config, AlchemyApiType.NFT, 'getCollectionMetadata', srcMethod, {
+    collectionSlug
+  });
+
+  return getNftCollectionFromRaw(response);
 }
 
 export async function* getNftsForOwnerIterator(
@@ -993,12 +1010,20 @@ interface IsSpamContractParams {
 }
 
 /**
- * Interface for the `getNftContractMetadata` endpoint.
+ * Interface for the `getContractMetadata` endpoint.
  *
  * @internal
  */
 interface GetContractMetadataParams {
   contractAddress: string;
+}
+/**
+ * Interface for the `getCollectionMetadata` endpoint.
+ *
+ * @internal
+ */
+interface GetCollectionMetadataParams {
+  collectionSlug: string;
 }
 
 /**
