@@ -154,8 +154,8 @@ export class NftNamespace {
   /**
    * Get the NFT collection metadata associated with the provided parameters.
    *
-   * @param contractAddress - The contract address of the NFT.
-   * @public
+   * @param collectionSlug - The OpenSea collection slug of the NFT.
+   * @beta
    */
   getCollectionMetadata(collectionSlug: string): Promise<NftCollection> {
     return getCollectionMetadata(this.config, collectionSlug);

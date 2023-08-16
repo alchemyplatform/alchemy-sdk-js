@@ -88,8 +88,7 @@ export function getNftContractFromRaw(
 export function getNftCollectionFromRaw(
   rawNftCollection: RawNftCollection
 ): NftCollection {
-  // No transformation needed.
-  return rawNftCollection;
+  return nullsToUndefined(rawNftCollection) as NftCollection;
 }
 
 export function getBaseNftFromRaw(rawBaseNft: RawOwnedBaseNft): BaseNft;

@@ -53,7 +53,7 @@ export interface NftContractForNft extends NftContract {
  */
 export interface NftCollection {
   /** The name of the collection. */
-  name?: string;
+  name: string;
   /** The OpenSea human-readable slug of the collection. */
   openSeaSlug?: string;
   /** OpenSea-specific collection metadata such as floor price. */

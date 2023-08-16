@@ -67,12 +67,12 @@ export interface RawNftContractForNft extends RawNftContract {
  */
 export interface RawNftCollection {
   name: string;
-  openSeaSlug: string;
-  openSea: RawOpenSeaBaseCollectionMetadata;
-  description?: string;
-  externalUrl?: string;
-  twitterUsername?: string;
-  discordUrl?: string;
+  openSeaSlug: string | null;
+  openSea: RawOpenSeaBaseCollectionMetadata | null;
+  description: string | null;
+  externalUrl: string | null;
+  twitterUsername: string | null;
+  discordUrl: string | null;
 }
 
 /** OpenSea's base metadata for an NFT collection */
