@@ -3,6 +3,7 @@ import {
   NftImage,
   NftSpamClassification,
   NftTokenType,
+  OpenSeaBaseCollectionMetadata,
   OpenSeaCollectionMetadata
 } from '../types/types';
 
@@ -43,6 +44,28 @@ export interface NftContractForNft extends NftContract {
   isSpam?: boolean;
   /** Potential reasons why an NFT Contract was classified as spam. */
   spamClassifications: NftSpamClassification[];
+}
+
+/**
+ * Alchemy representation of an NFT collection
+ *
+ * @public
+ */
+export interface NftCollection {
+  /** The name of the collection. */
+  name: string;
+  /** The OpenSea human-readable slug of the collection. */
+  openSeaSlug?: string;
+  /** OpenSea-specific collection metadata such as floor price. */
+  openSea?: OpenSeaBaseCollectionMetadata;
+  /** The description of the collection. */
+  description?: string;
+  /** The homepage of the collection as determined by OpenSea. */
+  externalUrl?: string;
+  /** The Twitter handle of the collection. */
+  twitterUsername?: string;
+  /** The Discord URL of the collection. */
+  discordUrl?: string;
 }
 
 /**

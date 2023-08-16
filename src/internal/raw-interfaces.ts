@@ -60,9 +60,29 @@ export interface RawNftContractForNft extends RawNftContract {
   spamClassifications: string[];
 }
 
-/** OpenSea's metadata for an NFT collection. */
-export interface RawOpenSeaCollectionMetadata {
-  floorPrice: number | null;
+/**
+ * Represents the metadata of an NFT collection received from Alchemy.
+ *
+ * @internal
+ */
+export interface RawNftCollection {
+  name: string;
+  openSeaSlug: string | null;
+  openSea: RawOpenSeaBaseCollectionMetadata | null;
+  description: string | null;
+  externalUrl: string | null;
+  twitterUsername: string | null;
+  discordUrl: string | null;
+}
+
+/** OpenSea's base metadata for an NFT collection */
+export interface RawOpenSeaBaseCollectionMetadata {
+  floorPrice?: number;
+}
+
+/** OpenSea's full metadata for an NFT collection. */
+export interface RawOpenSeaCollectionMetadata
+  extends RawOpenSeaBaseCollectionMetadata {
   collectionName: string | null;
   safelistRequestStatus: string | null;
   imageUrl: string | null;

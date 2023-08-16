@@ -1,9 +1,16 @@
-import { BaseNft, Nft, NftContract, NftContractForNft } from '../api/nft';
+import {
+  BaseNft,
+  Nft,
+  NftCollection,
+  NftContract,
+  NftContractForNft
+} from '../api/nft';
 import { toHex } from '../api/util';
 import {
   RawContractBaseNft,
   RawGetNftSalesResponse,
   RawNft,
+  RawNftCollection,
   RawNftContract,
   RawNftContractForNft,
   RawNftContractForOwner,
@@ -76,6 +83,12 @@ export function getNftContractFromRaw(
           : null
     }
   });
+}
+
+export function getNftCollectionFromRaw(
+  rawNftCollection: RawNftCollection
+): NftCollection {
+  return nullsToUndefined<NftCollection>(rawNftCollection);
 }
 
 export function getBaseNftFromRaw(rawBaseNft: RawOwnedBaseNft): BaseNft;
