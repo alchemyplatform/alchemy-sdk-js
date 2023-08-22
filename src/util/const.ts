@@ -56,7 +56,11 @@ export const EthersNetwork = {
   [Network.MATIC_MUMBAI]: 'maticmum',
   [Network.ASTAR_MAINNET]: 'astar-mainnet',
   [Network.POLYGONZKEVM_MAINNET]: 'polygonzkevm-mainnet',
-  [Network.POLYGONZKEVM_TESTNET]: 'polygonzkevm-testnet'
+  [Network.POLYGONZKEVM_TESTNET]: 'polygonzkevm-testnet',
+  [Network.POLYGONZKEVM_MAINNET]: 'polygonzkevm-mainnet',
+  [Network.POLYGONZKEVM_TESTNET]: 'polygonzkevm-testnet',
+  [Network.BASE_MAINNET]: 'base-mainnet',
+  [Network.BASE_GOERLI]: 'base-goerli'
 };
 
 /**
