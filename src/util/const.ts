@@ -57,8 +57,6 @@ export const EthersNetwork = {
   [Network.ASTAR_MAINNET]: 'astar-mainnet',
   [Network.POLYGONZKEVM_MAINNET]: 'polygonzkevm-mainnet',
   [Network.POLYGONZKEVM_TESTNET]: 'polygonzkevm-testnet',
-  [Network.POLYGONZKEVM_MAINNET]: 'polygonzkevm-mainnet',
-  [Network.POLYGONZKEVM_TESTNET]: 'polygonzkevm-testnet',
   [Network.BASE_MAINNET]: 'base-mainnet',
   [Network.BASE_GOERLI]: 'base-goerli'
 };
@@ -91,11 +89,11 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   },
   'base-mainnet': {
     chainId: 8453,
-    name: 'polygonzkevm-mainnet'
+    name: 'base-mainnet'
   },
   'base-goerli': {
     chainId: 84531,
-    name: 'polygonzkevm-testnet'
+    name: 'base-goerli'
   }
 };
 
