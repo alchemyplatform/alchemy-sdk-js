@@ -32,7 +32,7 @@ metadata, token URI information, and media.
 
 #### Defined in
 
-[src/api/nft.ts:64](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/api/nft.ts#L64)
+[src/api/nft.ts:64](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/api/nft.ts#L64)
 
 ___
 
@@ -44,7 +44,7 @@ The NFT token ID as an integer string.
 
 #### Defined in
 
-[src/api/nft.ts:66](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/api/nft.ts#L66)
+[src/api/nft.ts:66](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/api/nft.ts#L66)
 
 ___
 
@@ -56,4 +56,4 @@ The type of ERC token, if known.
 
 #### Defined in
 
-[src/api/nft.ts:68](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/api/nft.ts#L68)
+[src/api/nft.ts:68](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/api/nft.ts#L68)

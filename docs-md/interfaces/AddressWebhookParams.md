@@ -22,7 +22,7 @@ Array of addresses the webhook should activity for.
 
 #### Defined in
 
-[src/types/types.ts:2343](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L2343)
+[src/types/types.ts:2345](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L2345)
 
 ___
 
@@ -35,4 +35,4 @@ created on network of the app provided in the api key config.
 
 #### Defined in
 
-[src/types/types.ts:2348](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L2348)
+[src/types/types.ts:2350](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L2350)
