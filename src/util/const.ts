@@ -88,6 +88,14 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'polygonzkevm-testnet': {
     chainId: 1442,
     name: 'polygonzkevm-testnet'
+  },
+  'base-mainnet': {
+    chainId: 8453,
+    name: 'polygonzkevm-mainnet'
+  },
+  'base-goerli': {
+    chainId: 84531,
+    name: 'polygonzkevm-testnet'
   }
 };
 
