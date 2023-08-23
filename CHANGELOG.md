@@ -4,6 +4,8 @@
 
 ### Major Changes
 
+- Add support for Base 
+
 ### Minor Changes
 
 ## 2.9.2
