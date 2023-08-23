@@ -20,6 +20,7 @@ The SDK currently supports the following chains:
 - **Arbitrum**: Mainnet, Goerli, Rinkeby
 - **Astar**: Mainnet
 - **PolygonZKEVM**: Mainnet, Testnet
+- **Base**: Mainnet, Goerli
 
 You can find per-method documentation of the Alchemy SDK endpoints at the [Alchemy Docs linked in the sidebar](https://docs.alchemy.com/reference/alchemy-sdk-quickstart).
 

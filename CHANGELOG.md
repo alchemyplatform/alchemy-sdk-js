@@ -4,7 +4,15 @@
 
 ### Major Changes
 
-- Add support for Base 
+### Major Changes
+
+### Major Changes
+
+## 2.9.2
+
+### Major Changes
+
+- Add support for Base Mainnet and Goerli
 
 ### Minor Changes
 

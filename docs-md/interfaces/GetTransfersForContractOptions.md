@@ -24,7 +24,7 @@ Starting block (inclusive) to get transfers from.
 
 #### Defined in
 
-[src/types/types.ts:1114](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1114)
+[src/types/types.ts:1116](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c7197b9/src/types/types.ts#L1116)
 
 ___
 
@@ -37,7 +37,7 @@ Defaults to ascending if omitted.
 
 #### Defined in
 
-[src/types/types.ts:1121](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1121)
+[src/types/types.ts:1123](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c7197b9/src/types/types.ts#L1123)
 
 ___
 
@@ -50,7 +50,7 @@ pagination.
 
 #### Defined in
 
-[src/types/types.ts:1126](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1126)
+[src/types/types.ts:1128](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c7197b9/src/types/types.ts#L1128)
 
 ___
 
@@ -62,4 +62,4 @@ Ending block (inclusive) to get transfers from.
 
 #### Defined in
 
-[src/types/types.ts:1116](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1116)
+[src/types/types.ts:1118](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c7197b9/src/types/types.ts#L1118)

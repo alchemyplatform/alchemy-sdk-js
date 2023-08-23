@@ -26,7 +26,7 @@ The block number in hex or decimal to fetch owners for.
 
 #### Defined in
 
-[src/types/types.ts:1617](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1617)
+[src/types/types.ts:1619](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c7197b9/src/types/types.ts#L1619)
 
 ___
 
@@ -39,7 +39,7 @@ when `withTokenBalances` is not set to `true`.
 
 #### Defined in
 
-[src/types/types.ts:1626](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1626)
+[src/types/types.ts:1628](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c7197b9/src/types/types.ts#L1628)
 
 ___
 
@@ -51,7 +51,7 @@ Optional page key to paginate the next page for large requests.
 
 #### Defined in
 
-[src/types/types.ts:1620](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1620)
+[src/types/types.ts:1622](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c7197b9/src/types/types.ts#L1622)
 
 ___
 
@@ -64,4 +64,4 @@ to false when omitted.
 
 #### Defined in
 
-[src/types/types.ts:1614](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1614)
+[src/types/types.ts:1616](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c7197b9/src/types/types.ts#L1616)

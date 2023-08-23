@@ -23,7 +23,7 @@ The type of [Webhook](../interfaces/Webhook.md).
 
 #### Defined in
 
-[src/types/types.ts:2199](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L2199)
+[src/types/types.ts:2201](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c7197b9/src/types/types.ts#L2201)
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:2198](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L2198)
+[src/types/types.ts:2200](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c7197b9/src/types/types.ts#L2200)
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:2202](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L2202)
+[src/types/types.ts:2204](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c7197b9/src/types/types.ts#L2204)
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:2197](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L2197)
+[src/types/types.ts:2199](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c7197b9/src/types/types.ts#L2199)
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:2200](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L2200)
+[src/types/types.ts:2202](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c7197b9/src/types/types.ts#L2202)
 
 ___
 
@@ -73,4 +73,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:2201](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L2201)
+[src/types/types.ts:2203](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c7197b9/src/types/types.ts#L2203)
