@@ -11,56 +11,56 @@ information and the total count.
 
 ### Properties
 
+- [blockHash](OwnedBaseNftsResponse.md#blockhash)
 - [ownedNfts](OwnedBaseNftsResponse.md#ownednfts)
 - [pageKey](OwnedBaseNftsResponse.md#pagekey)
 - [totalCount](OwnedBaseNftsResponse.md#totalcount)
-- [validAt](OwnedBaseNftsResponse.md#validat)
 
 ## Properties
 
+### blockHash
+
+• **blockHash**: `string`
+
+The canonical head block hash of when your request was received.
+
+#### Defined in
+
+[src/types/types.ts:812](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L812)
+
+___
+
 ### ownedNfts
 
-• **ownedNfts**: [`OwnedBaseNft`](OwnedBaseNft.md)[]
+• `Readonly` **ownedNfts**: [`OwnedBaseNft`](OwnedBaseNft.md)[]
 
 The NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/types.ts:723](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L723)
+[src/types/types.ts:800](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L800)
 
 ___
 
 ### pageKey
 
-• `Optional` **pageKey**: `string`
+• `Optional` `Readonly` **pageKey**: `string`
 
 Pagination token that can be passed into another request to fetch the next
 NFTs. If there is no page key, then there are no more NFTs to fetch.
 
 #### Defined in
 
-[src/types/types.ts:729](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L729)
+[src/types/types.ts:806](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L806)
 
 ___
 
 ### totalCount
 
-• **totalCount**: `number`
+• `Readonly` **totalCount**: `number`
 
 The total count of NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/types.ts:732](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L732)
-
-___
-
-### validAt
-
-• **validAt**: [`OwnedNftsValidAt`](OwnedNftsValidAt.md)
-
-Block Information of the block as of which the corresponding data is valid
-
-#### Defined in
-
-[src/types/types.ts:737](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L737)
+[src/types/types.ts:809](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L809)

@@ -52,7 +52,7 @@ Returns a boolean indicating whether the cancellation was successful.
 
 #### Defined in
 
-[src/api/transact-namespace.ts:86](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/transact-namespace.ts#L86)
+[src/api/transact-namespace.ts:86](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/api/transact-namespace.ts#L86)
 
 ___
 
@@ -81,7 +81,7 @@ This is an alias for [CoreNamespace.estimateGas](CoreNamespace.md#estimategas).
 
 #### Defined in
 
-[src/api/transact-namespace.ts:258](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/transact-namespace.ts#L258)
+[src/api/transact-namespace.ts:258](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/api/transact-namespace.ts#L258)
 
 ___
 
@@ -101,7 +101,7 @@ transaction request.
 
 #### Defined in
 
-[src/api/transact-namespace.ts:274](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/transact-namespace.ts#L274)
+[src/api/transact-namespace.ts:274](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/api/transact-namespace.ts#L274)
 
 ___
 
@@ -130,7 +130,7 @@ NOTE: This is an alias for [CoreNamespace.getTransaction](CoreNamespace.md#gettr
 
 #### Defined in
 
-[src/api/transact-namespace.ts:221](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/transact-namespace.ts#L221)
+[src/api/transact-namespace.ts:221](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/api/transact-namespace.ts#L221)
 
 ___
 
@@ -157,7 +157,7 @@ Returns the transaction hash of the submitted transaction.
 
 #### Defined in
 
-[src/api/transact-namespace.ts:54](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/transact-namespace.ts#L54)
+[src/api/transact-namespace.ts:54](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/api/transact-namespace.ts#L54)
 
 ___
 
@@ -183,7 +183,7 @@ NOTE: This is an alias for [CoreNamespace.sendTransaction](CoreNamespace.md#send
 
 #### Defined in
 
-[src/api/transact-namespace.ts:238](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/transact-namespace.ts#L238)
+[src/api/transact-namespace.ts:238](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/api/transact-namespace.ts#L238)
 
 ___
 
@@ -210,7 +210,7 @@ blockchain.
 
 #### Defined in
 
-[src/api/transact-namespace.ts:137](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/transact-namespace.ts#L137)
+[src/api/transact-namespace.ts:137](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/api/transact-namespace.ts#L137)
 
 ___
 
@@ -236,7 +236,7 @@ Returns a list of asset changes for each transaction during simulation.
 
 #### Defined in
 
-[src/api/transact-namespace.ts:109](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/transact-namespace.ts#L109)
+[src/api/transact-namespace.ts:109](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/api/transact-namespace.ts#L109)
 
 ___
 
@@ -262,7 +262,7 @@ Note that this method does not run the transaction on the blockchain.
 
 #### Defined in
 
-[src/api/transact-namespace.ts:191](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/transact-namespace.ts#L191)
+[src/api/transact-namespace.ts:191](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/api/transact-namespace.ts#L191)
 
 ___
 
@@ -288,7 +288,7 @@ Note that this method does not run any transactions on the blockchain.
 
 #### Defined in
 
-[src/api/transact-namespace.ts:164](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/transact-namespace.ts#L164)
+[src/api/transact-namespace.ts:164](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/api/transact-namespace.ts#L164)
 
 ___
 
@@ -319,4 +319,4 @@ NOTE: This is an alias for [CoreNamespace.waitForTransaction](CoreNamespace.md#w
 
 #### Defined in
 
-[src/api/transact-namespace.ts:299](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/api/transact-namespace.ts#L299)
+[src/api/transact-namespace.ts:299](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/api/transact-namespace.ts#L299)

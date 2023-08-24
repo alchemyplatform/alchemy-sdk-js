@@ -28,7 +28,7 @@ The name of the collection on OpenSea.
 
 #### Defined in
 
-[src/types/types.ts:1647](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1647)
+[src/types/types.ts:1710](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L1710)
 
 ___
 
@@ -40,7 +40,7 @@ The description of the collection on OpenSea.
 
 #### Defined in
 
-[src/types/types.ts:1653](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1653)
+[src/types/types.ts:1716](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L1716)
 
 ___
 
@@ -52,7 +52,7 @@ The Discord URL of the collection.
 
 #### Defined in
 
-[src/types/types.ts:1659](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1659)
+[src/types/types.ts:1722](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L1722)
 
 ___
 
@@ -64,7 +64,7 @@ The homepage of the collection as determined by OpenSea.
 
 #### Defined in
 
-[src/types/types.ts:1655](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1655)
+[src/types/types.ts:1718](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L1718)
 
 ___
 
@@ -76,7 +76,7 @@ The floor price of the NFT.
 
 #### Defined in
 
-[src/types/types.ts:1645](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1645)
+[src/types/types.ts:1708](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L1708)
 
 ___
 
@@ -88,19 +88,19 @@ The image URL determined by OpenSea.
 
 #### Defined in
 
-[src/types/types.ts:1651](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1651)
+[src/types/types.ts:1714](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L1714)
 
 ___
 
 ### lastIngestedAt
 
-• **lastIngestedAt**: `string`
+• `Optional` **lastIngestedAt**: `string`
 
 Timestamp of when the OpenSea metadata was last ingested by Alchemy.
 
 #### Defined in
 
-[src/types/types.ts:1661](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1661)
+[src/types/types.ts:1724](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L1724)
 
 ___
 
@@ -112,7 +112,7 @@ The approval status of the collection on OpenSea.
 
 #### Defined in
 
-[src/types/types.ts:1649](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1649)
+[src/types/types.ts:1712](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L1712)
 
 ___
 
@@ -124,4 +124,4 @@ The Twitter handle of the collection.
 
 #### Defined in
 
-[src/types/types.ts:1657](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1657)
+[src/types/types.ts:1720](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L1720)

@@ -23,7 +23,7 @@ An array of NFTs.
 
 #### Defined in
 
-[src/types/types.ts:1092](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1092)
+[src/types/types.ts:1138](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L1138)
 
 ___
 
@@ -35,4 +35,4 @@ Optional page key to use to fetch the next group of NFTs.
 
 #### Defined in
 
-[src/types/types.ts:1094](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1094)
+[src/types/types.ts:1140](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L1140)

@@ -21,16 +21,16 @@ An array of owner addresses for the provided contract address
 
 #### Defined in
 
-[src/types/types.ts:802](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L802)
+[src/types/types.ts:873](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L873)
 
 ___
 
 ### pageKey
 
-• `Optional` **pageKey**: `string`
+• **pageKey**: `string`
 
 Optional page key that is returned when a collection has more than 50,000 owners.
 
 #### Defined in
 
-[src/types/types.ts:805](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L805)
+[src/types/types.ts:876](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L876)

@@ -15,22 +15,22 @@ The response object for the [getOwnersForNft](../classes/NftNamespace.md#getowne
 
 ### owners
 
-• **owners**: `string`[]
+• `Readonly` **owners**: `string`[]
 
 An array of owner addresses for the provided token.
 
 #### Defined in
 
-[src/types/types.ts:777](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L777)
+[src/types/types.ts:842](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L842)
 
 ___
 
 ### pageKey
 
-• `Optional` **pageKey**: `string`
+• `Optional` `Readonly` **pageKey**: `string`
 
 Optional The key for the next page of results, if applicable.
 
 #### Defined in
 
-[src/types/types.ts:780](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L780)
+[src/types/types.ts:845](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L845)

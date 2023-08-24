@@ -6,6 +6,14 @@
 
 ### Minor Changes
 
+## 2.10.0
+
+### Major Changes
+
+- Add support for Base 
+
+### Minor Changes
+
 ## 2.9.2
 
 ### Major Changes

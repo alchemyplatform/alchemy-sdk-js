@@ -22,7 +22,7 @@ The block hash. Used to detect reorgs.
 
 #### Defined in
 
-[src/types/types.ts:1261](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1261)
+[src/types/types.ts:1322](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L1322)
 
 ___
 
@@ -34,7 +34,7 @@ The block number the sale information is valid at.
 
 #### Defined in
 
-[src/types/types.ts:1259](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1259)
+[src/types/types.ts:1320](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L1320)
 
 ___
 
@@ -46,4 +46,4 @@ The timestamp for the block.
 
 #### Defined in
 
-[src/types/types.ts:1263](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1263)
+[src/types/types.ts:1324](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L1324)

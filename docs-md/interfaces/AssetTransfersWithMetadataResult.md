@@ -44,7 +44,7 @@ information was not available.
 
 #### Defined in
 
-[src/types/types.ts:451](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L451)
+[src/types/types.ts:476](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L476)
 
 ___
 
@@ -60,7 +60,7 @@ The block number where the transfer occurred.
 
 #### Defined in
 
-[src/types/types.ts:418](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L418)
+[src/types/types.ts:443](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L443)
 
 ___
 
@@ -76,7 +76,7 @@ The category of the transfer.
 
 #### Defined in
 
-[src/types/types.ts:415](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L415)
+[src/types/types.ts:440](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L440)
 
 ___
 
@@ -93,7 +93,7 @@ token. `null` if not an ERC1155 transfer.
 
 #### Defined in
 
-[src/types/types.ts:442](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L442)
+[src/types/types.ts:467](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L467)
 
 ___
 
@@ -110,7 +110,7 @@ ERC721 transfer.
 
 #### Defined in
 
-[src/types/types.ts:436](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L436)
+[src/types/types.ts:461](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L461)
 
 ___
 
@@ -126,7 +126,7 @@ The from address of the transfer.
 
 #### Defined in
 
-[src/types/types.ts:421](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L421)
+[src/types/types.ts:446](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L446)
 
 ___
 
@@ -142,7 +142,7 @@ The transaction hash of the transfer transaction.
 
 #### Defined in
 
-[src/types/types.ts:454](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L454)
+[src/types/types.ts:479](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L479)
 
 ___
 
@@ -154,7 +154,7 @@ Additional metadata about the transfer event.
 
 #### Defined in
 
-[src/types/types.ts:468](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L468)
+[src/types/types.ts:493](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L493)
 
 ___
 
@@ -170,7 +170,7 @@ Information about the raw contract of the asset transferred.
 
 #### Defined in
 
-[src/types/types.ts:457](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L457)
+[src/types/types.ts:482](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L482)
 
 ___
 
@@ -186,7 +186,7 @@ The to address of the transfer.
 
 #### Defined in
 
-[src/types/types.ts:424](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L424)
+[src/types/types.ts:449](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L449)
 
 ___
 
@@ -202,7 +202,7 @@ The token id of the token transferred.
 
 #### Defined in
 
-[src/types/types.ts:445](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L445)
+[src/types/types.ts:470](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L470)
 
 ___
 
@@ -218,7 +218,7 @@ The unique ID of the transfer.
 
 #### Defined in
 
-[src/types/types.ts:412](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L412)
+[src/types/types.ts:437](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L437)
 
 ___
 
@@ -235,4 +235,4 @@ decimal). `null` if ERC721 transfer or contract decimal not available.
 
 #### Defined in
 
-[src/types/types.ts:430](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L430)
+[src/types/types.ts:455](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L455)

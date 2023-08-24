@@ -15,22 +15,22 @@ The response object for the [findContractDeployer](../classes/CoreNamespace.md#f
 
 ### blockNumber
 
-• **blockNumber**: `number`
+• `Readonly` **blockNumber**: `number`
 
 The block number the contract was deployed in.
 
 #### Defined in
 
-[src/types/types.ts:1686](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1686)
+[src/types/types.ts:1749](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L1749)
 
 ___
 
 ### deployerAddress
 
-• `Optional` **deployerAddress**: `string`
+• `Optional` `Readonly` **deployerAddress**: `string`
 
 The address of the contract deployer, if it is available.
 
 #### Defined in
 
-[src/types/types.ts:1683](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L1683)
+[src/types/types.ts:1746](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L1746)

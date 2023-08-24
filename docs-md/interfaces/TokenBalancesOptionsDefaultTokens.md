@@ -21,4 +21,4 @@ The top 100 token type.
 
 #### Defined in
 
-[src/types/types.ts:125](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L125)
+[src/types/types.ts:137](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L137)

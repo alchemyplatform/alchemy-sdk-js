@@ -22,7 +22,7 @@ the response. Defaults to false for faster response times.
 
 #### Defined in
 
-[src/types/types.ts:898](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L898)
+[src/types/types.ts:953](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L953)
 
 ___
 
@@ -37,4 +37,4 @@ metadata for cache misses then set this value to 0.
 
 #### Defined in
 
-[src/types/types.ts:892](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c9dbbf0/src/types/types.ts#L892)
+[src/types/types.ts:947](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L947)
