@@ -93,6 +93,8 @@ export class AlchemyProvider
       return fetchJson(batcherConnection, JSON.stringify(requests));
     };
     this.batcher = new RequestBatcher(sendBatchFn);
+
+    this.modifyFormatter();
   }
 
   /**
@@ -315,6 +317,15 @@ export class AlchemyProvider
     }
 
     return result;
+  }
+
+  private modifyFormatter(): void {
+    this.formatter.formats['receiptLog']['removed'] = val => {
+      if (typeof val === 'boolean') {
+        return val;
+      }
+      return undefined;
+    };
   }
 }
 
