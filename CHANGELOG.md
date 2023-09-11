@@ -6,11 +6,13 @@
 
 ### Minor Changes
 
+- Fixed a bug in the `Log` object where the `removed` field was not included in the response.
+
 ## 2.10.0
 
 ### Major Changes
 
-- Add support for Base 
+- Add support for Base
 
 ### Minor Changes
 
