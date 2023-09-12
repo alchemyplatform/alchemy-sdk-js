@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 2.10.1
+
+### Major Changes
+
+### Minor Changes
+
 - Fixed a bug in the `Log` object where the `removed` field was not included in the response.
 
 ## 2.10.0
