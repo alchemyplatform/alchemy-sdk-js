@@ -118,6 +118,22 @@ export interface Nft {
    * request.
    */
   acquiredAt?: AcquiredAt;
+  /** Collection metadata for the NFT, if available. */
+  collection?: BaseNftCollection;
+}
+
+/**
+ * A base collection object as part of an {@link Nft}.
+ */
+export interface BaseNftCollection {
+  /** The name of the collection. */
+  name: string;
+  /** The OpenSea human-readable slug of the collection. */
+  slug?: string;
+  /** The external URL for the collection. */
+  externalUrl?: string;
+  /** The banner image URL for the collection. */
+  bannerImageUrl?: string;
 }
 
 /**

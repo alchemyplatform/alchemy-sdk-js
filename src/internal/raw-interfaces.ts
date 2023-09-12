@@ -20,6 +20,7 @@ export interface RawNft {
   tokenUri: string | null;
   timeLastUpdated: string;
   acquiredAt?: RawAcquiredAt;
+  collection: RawBaseNftCollection;
 }
 
 /** Information on the time at which an NFT was last acquired. */
@@ -73,6 +74,13 @@ export interface RawNftCollection {
   externalUrl: string | null;
   twitterUsername: string | null;
   discordUrl: string | null;
+}
+
+export interface RawBaseNftCollection {
+  name: string;
+  slug: string | null;
+  externalUrl: string | null;
+  bannerImageUrl: string | null;
 }
 
 /** OpenSea's base metadata for an NFT collection */
