@@ -227,6 +227,20 @@ describe('E2E integration tests', () => {
       ).length
     ).toBeGreaterThan(0);
   });
+
+  it('getNftsForOwner() mint metadata check', async () => {
+    const nfts = await alchemy.nft.getNftsForOwner('vitalik.eth', {
+      excludeFilters: [NftFilters.SPAM]
+    });
+    expect(
+      nfts.ownedNfts.filter(
+        nft =>
+          nft.mint?.mintAddress !== undefined &&
+          nft.mint.timestamp !== undefined
+      ).length
+    ).toBeGreaterThan(0);
+  });
+
   it('getNftForOwners() ordered', async () => {
     const response = await alchemy.nft.getNftsForOwner(
       '0x994b342dd87fc825f66e51ffa3ef71ad818b6893',
