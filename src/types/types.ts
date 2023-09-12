@@ -1316,6 +1316,20 @@ export enum NftSaleMarketplace {
 }
 
 /**
+ * Mint information for the NFT.
+ */
+export interface NftMint {
+  /** The address that the NFT was minted to. */
+  mintAddress?: string;
+  /** The block number that the NFT was minted on. */
+  blockNumber?: number;
+  /** The timestamp the NFT was minted on. */
+  timestamp?: string;
+  /** The transaction hash of the transaction that minted the NFT. */
+  transactionHash?: string;
+}
+
+/**
  * Enum for specifying the taker type for the {@link NftNamespace.getNftSales}
  * method.
  *
