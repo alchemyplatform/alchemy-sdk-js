@@ -21,7 +21,7 @@ An array of owner addresses for the provided token.
 
 #### Defined in
 
-[src/types/types.ts:842](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L842)
+[src/types/types.ts:842](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L842)
 
 ___
 
@@ -33,4 +33,4 @@ Optional The key for the next page of results, if applicable.
 
 #### Defined in
 
-[src/types/types.ts:845](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8dc500a/src/types/types.ts#L845)
+[src/types/types.ts:845](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L845)

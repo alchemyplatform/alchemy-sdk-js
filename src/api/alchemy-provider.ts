@@ -93,6 +93,8 @@ export class AlchemyProvider
       return fetchJson(batcherConnection, JSON.stringify(requests));
     };
     this.batcher = new RequestBatcher(sendBatchFn);
+
+    this.modifyFormatter();
   }
 
   /**
@@ -315,6 +317,25 @@ export class AlchemyProvider
     }
 
     return result;
+  }
+
+  /**
+   * Overrides the base `Formatter` class inherited from ethers to support
+   * returning custom fields in Ethers response types.
+   *
+   * For context, ethers has a `Formatter` class that is used to format the
+   * response from a JSON-RPC request. Any fields that are not defined in the
+   * `Formatter` class are removed from the returned response. By modifying the
+   * `Formatter` class in this method, we can add support for fields that are
+   * not defined in ethers.
+   */
+  private modifyFormatter(): void {
+    this.formatter.formats['receiptLog']['removed'] = val => {
+      if (typeof val === 'boolean') {
+        return val;
+      }
+      return undefined;
+    };
   }
 }
 
