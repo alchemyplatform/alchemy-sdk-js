@@ -20,6 +20,7 @@ export interface RawNft {
   tokenUri: string | null;
   timeLastUpdated: string;
   acquiredAt?: RawAcquiredAt;
+  mint?: RawNftMint;
   collection: RawBaseNftCollection;
 }
 
@@ -36,6 +37,13 @@ export interface RawNftData {
   tokenUri: string | null;
   metadata: Record<string, any>;
   error: string | null;
+}
+
+export interface RawNftMint {
+  mintAddress?: string;
+  blockNumber?: number;
+  timestamp?: string;
+  transactionHash?: string;
 }
 
 export interface RawNftContract {
