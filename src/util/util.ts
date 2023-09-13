@@ -2,6 +2,7 @@ import {
   BaseNft,
   Nft,
   NftCollection,
+  NftCollectionMarketplace,
   NftContract,
   NftContractForNft
 } from '../api/nft';
@@ -88,7 +89,15 @@ export function getNftContractFromRaw(
 export function getNftCollectionFromRaw(
   rawNftCollection: RawNftCollection
 ): NftCollection {
-  return nullsToUndefined<NftCollection>(rawNftCollection);
+  return nullsToUndefined<NftCollection>({
+    ...rawNftCollection,
+    floorPrice: {
+      ...rawNftCollection.floorPrice,
+      marketplace: parseNftCollectionMarketplace(
+        rawNftCollection.floorPrice.marketplace
+      )
+    }
+  });
 }
 
 export function getBaseNftFromRaw(rawBaseNft: RawOwnedBaseNft): BaseNft;
@@ -149,6 +158,17 @@ function parseNftSaleMarketplace(marketplace: string): NftSaleMarketplace {
       return NftSaleMarketplace.BLUR;
     default:
       return NftSaleMarketplace.UNKNOWN;
+  }
+}
+
+function parseNftCollectionMarketplace(
+  marketplace: string | null
+): NftCollectionMarketplace | undefined {
+  switch (marketplace) {
+    case 'OpenSea':
+      return NftCollectionMarketplace.OPENSEA;
+    default:
+      return undefined;
   }
 }
 
