@@ -1,6 +1,7 @@
 import {
   AcquiredAt,
   NftImage,
+  NftMint,
   NftSpamClassification,
   NftTokenType,
   OpenSeaBaseCollectionMetadata,
@@ -118,6 +119,8 @@ export interface Nft {
    * request.
    */
   acquiredAt?: AcquiredAt;
+  /** Mint information for the NFT. */
+  mint?: NftMint;
 }
 
 /**
