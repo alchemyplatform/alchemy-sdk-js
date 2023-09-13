@@ -132,6 +132,12 @@ export function createRawNft(
       metadata: {},
       error: null
     },
+    collection: {
+      name: 'Collection Name',
+      slug: 'collection-name-slug',
+      externalUrl: 'https://external.url',
+      bannerImageUrl: 'https://banner.image.url'
+    },
     ...overrides
   };
 }

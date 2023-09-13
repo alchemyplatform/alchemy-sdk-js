@@ -21,6 +21,7 @@ export interface RawNft {
   timeLastUpdated: string;
   acquiredAt?: RawAcquiredAt;
   mint?: RawNftMint;
+  collection: RawBaseNftCollection;
 }
 
 /** Information on the time at which an NFT was last acquired. */
@@ -87,6 +88,13 @@ export interface RawNftCollectionFloorPrice {
   marketplace: string | null;
   floorPrice: number | null;
   priceCurrency: string | null;
+}
+
+export interface RawBaseNftCollection {
+  name: string;
+  slug: string | null;
+  externalUrl: string | null;
+  bannerImageUrl: string | null;
 }
 
 /** OpenSea's full metadata for an NFT collection. */

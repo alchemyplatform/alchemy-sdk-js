@@ -123,6 +123,7 @@ export function getNftFromRaw(rawNft: RawNft): Nft {
     contract: getNftContractForNftFromRaw(rawNft.contract),
     tokenType: parseNftTokenType(rawNft.tokenType),
     acquiredAt: rawNft.acquiredAt,
+    collection: rawNft.collection,
     mint: rawNft.mint
   });
 }
