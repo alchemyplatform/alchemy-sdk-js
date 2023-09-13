@@ -55,8 +55,8 @@ describe('E2E integration tests', () => {
 
   function verifyNftCollectionMetadata(metadata: NftCollection): void {
     expect(typeof metadata.name).toEqual('string');
-    expect(typeof metadata.openSeaSlug).toEqual('string');
-    expect(metadata.openSea).toBeDefined();
+    expect(typeof metadata.slug).toEqual('string');
+    expect(metadata.floorPrice).toBeDefined();
     expect(typeof metadata.description).toEqual('string');
     expect(typeof metadata.externalUrl).toEqual('string');
     expect(typeof metadata.twitterUsername).toEqual('string');

@@ -4,7 +4,6 @@ import {
   NftMint,
   NftSpamClassification,
   NftTokenType,
-  OpenSeaBaseCollectionMetadata,
   OpenSeaCollectionMetadata
 } from '../types/types';
 
@@ -56,9 +55,9 @@ export interface NftCollection {
   /** The name of the collection. */
   name: string;
   /** The OpenSea human-readable slug of the collection. */
-  openSeaSlug?: string;
-  /** OpenSea-specific collection metadata such as floor price. */
-  openSea?: OpenSeaBaseCollectionMetadata;
+  slug?: string;
+  /** The floor price of the collection*/
+  floorPrice?: NftCollectionFloorPrice;
   /** The description of the collection. */
   description?: string;
   /** The homepage of the collection as determined by OpenSea. */
@@ -67,6 +66,26 @@ export interface NftCollection {
   twitterUsername?: string;
   /** The Discord URL of the collection. */
   discordUrl?: string;
+}
+
+/**
+ * Floor price object for an NFT collection.
+ */
+export interface NftCollectionFloorPrice {
+  /** The marketplace where the floor price was determined. */
+  marketplace?: NftCollectionMarketplace;
+  /** The floor price of the collection. */
+  floorPrice?: number;
+  /** The currency of the floor price. */
+  priceCurrency?: string;
+}
+
+/**
+ * Enum representing the supported NFT marketplaces on a
+ * {@link NftCollectionFloorPrice} object.
+ */
+export enum NftCollectionMarketplace {
+  OPENSEA = 'OpenSea'
 }
 
 /**
