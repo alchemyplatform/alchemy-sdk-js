@@ -67,22 +67,23 @@ export interface RawNftContractForNft extends RawNftContract {
  */
 export interface RawNftCollection {
   name: string;
-  openSeaSlug: string | null;
-  openSea: RawOpenSeaBaseCollectionMetadata | null;
+  slug: string | null;
+  floorPrice: RawNftCollectionFloorPrice;
   description: string | null;
   externalUrl: string | null;
   twitterUsername: string | null;
   discordUrl: string | null;
 }
 
-/** OpenSea's base metadata for an NFT collection */
-export interface RawOpenSeaBaseCollectionMetadata {
-  floorPrice?: number;
+export interface RawNftCollectionFloorPrice {
+  marketplace: string | null;
+  floorPrice: number | null;
+  priceCurrency: string | null;
 }
 
 /** OpenSea's full metadata for an NFT collection. */
-export interface RawOpenSeaCollectionMetadata
-  extends RawOpenSeaBaseCollectionMetadata {
+export interface RawOpenSeaCollectionMetadata {
+  floorPrice: number | null;
   collectionName: string | null;
   safelistRequestStatus: string | null;
   imageUrl: string | null;
