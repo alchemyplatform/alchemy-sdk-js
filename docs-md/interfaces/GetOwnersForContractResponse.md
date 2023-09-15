@@ -22,7 +22,7 @@ An array of owner addresses for the provided contract address
 
 #### Defined in
 
-[src/types/types.ts:855](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L855)
+[src/types/nft-types.ts:327](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L327)
 
 ___
 
@@ -34,7 +34,7 @@ Optional page key that is returned when a collection has more than 50,000 owners
 
 #### Defined in
 
-[src/types/types.ts:863](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L863)
+[src/types/nft-types.ts:335](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L335)
 
 ___
 
@@ -47,4 +47,4 @@ Total count of unique owners. Only present if
 
 #### Defined in
 
-[src/types/types.ts:860](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L860)
+[src/types/nft-types.ts:332](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L332)

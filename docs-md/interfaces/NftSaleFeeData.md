@@ -9,58 +9,52 @@ Fee detail for an NFT sale.
 ### Properties
 
 - [amount](NftSaleFeeData.md#amount)
-- [decimal](NftSaleFeeData.md#decimal)
 - [decimals](NftSaleFeeData.md#decimals)
 - [symbol](NftSaleFeeData.md#symbol)
+- [tokenAddress](NftSaleFeeData.md#tokenaddress)
 
 ## Properties
 
 ### amount
 
-• **amount**: `string`
+• `Optional` **amount**: `string`
 
 The fee payment amount as a decimal integer string.
 
 #### Defined in
 
-[src/types/types.ts:1334](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L1334)
-
-___
-
-### decimal
-
-• **decimal**: `number`
-
-The number of decimals of the token used for the payment.
-
-**`deprecated`** Please use `decimals` instead. This field contains a typo
-and will always be undefined. It's been marked as deprecated to avoid
-breaking changes.
-
-#### Defined in
-
-[src/types/types.ts:1345](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L1345)
+[src/types/nft-types.ts:784](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L784)
 
 ___
 
 ### decimals
 
-• **decimals**: `number`
+• `Optional` **decimals**: `number`
 
 The number of decimals of the token used for the payment.
 
 #### Defined in
 
-[src/types/types.ts:1348](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L1348)
+[src/types/nft-types.ts:792](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L792)
 
 ___
 
 ### symbol
 
-• **symbol**: `string`
+• `Optional` **symbol**: `string`
 
 The symbol of the token used for the payment.
 
 #### Defined in
 
-[src/types/types.ts:1337](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L1337)
+[src/types/nft-types.ts:789](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L789)
+
+___
+
+### tokenAddress
+
+• `Optional` **tokenAddress**: `string`
+
+#### Defined in
+
+[src/types/nft-types.ts:786](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L786)
