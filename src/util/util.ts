@@ -1,11 +1,3 @@
-import {
-  BaseNft,
-  Nft,
-  NftCollection,
-  NftCollectionMarketplace,
-  NftContract,
-  NftContractForNft
-} from '../api/nft';
 import { toHex } from '../api/util';
 import {
   RawContractBaseNft,
@@ -18,14 +10,20 @@ import {
   RawOwnedBaseNft
 } from '../internal/raw-interfaces';
 import {
+  BaseNft,
   GetNftSalesResponse,
+  Nft,
+  NftCollection,
+  NftCollectionMarketplace,
+  NftContract,
+  NftContractForNft,
   NftContractForOwner,
   NftSaleMarketplace,
   NftSaleTakerType,
   NftSpamClassification,
-  NftTokenType,
-  OpenSeaSafelistRequestStatus
-} from '../types/types';
+  NftTokenType
+} from '../types/nft-types';
+import { OpenSeaSafelistRequestStatus } from '../types/types';
 
 export function formatBlock(block: string | number): string {
   if (typeof block === 'string') {
