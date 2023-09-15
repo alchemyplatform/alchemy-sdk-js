@@ -28,6 +28,7 @@ import {
   verifyNftOwnership
 } from '../internal/nft-api';
 import {
+  BaseNft,
   ComputeRarityResponse,
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
@@ -51,10 +52,11 @@ import {
   GetOwnersForNftResponse,
   GetSpamContractsResponse,
   GetTransfersForContractOptions,
-  GetTransfersForOwnerOptions,
-  GetTransfersForOwnerTransferType,
   IsSpamContractResponse,
+  Nft,
   NftAttributesResponse,
+  NftCollection,
+  NftContract,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
   NftMetadataBatchOptions,
@@ -64,12 +66,15 @@ import {
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
-  RefreshContractResult,
   SearchContractMetadataResponse,
   TransfersNftResponse
+} from '../types/nft-types';
+import {
+  GetTransfersForOwnerOptions,
+  GetTransfersForOwnerTransferType,
+  RefreshContractResult
 } from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
-import { BaseNft, Nft, NftCollection, NftContract } from './nft';
 
 /**
  * The NFT namespace contains all the functionality related to NFTs.

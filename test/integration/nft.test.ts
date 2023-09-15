@@ -2,6 +2,7 @@ import {
   Alchemy,
   GetNftSalesResponse,
   GetTransfersForOwnerTransferType,
+  NftCollection,
   NftContract,
   NftFilters,
   NftOrdering,
@@ -11,7 +12,6 @@ import {
   SortingOrder,
   fromHex
 } from '../../src';
-import { NftCollection } from '../../src/api/nft';
 import { loadAlchemyEnv } from '../test-util';
 
 jest.setTimeout(50000);

@@ -1,12 +1,8 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 
 import { AlchemyConfig } from '../api/alchemy-config';
-import { BaseNft, Nft, NftCollection, NftContract } from '../api/nft';
 import {
-  AssetTransfersCategory,
-  AssetTransfersParams,
-  AssetTransfersResponse,
-  AssetTransfersResult,
+  BaseNft,
   ComputeRarityResponse,
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
@@ -29,10 +25,11 @@ import {
   GetOwnersForNftResponse,
   GetSpamContractsResponse,
   GetTransfersForContractOptions,
-  GetTransfersForOwnerOptions,
-  GetTransfersForOwnerTransferType,
   IsSpamContractResponse,
+  Nft,
   NftAttributesResponse,
+  NftCollection,
+  NftContract,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
   NftFilters,
@@ -47,10 +44,18 @@ import {
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
-  RefreshContractResult,
   SearchContractMetadataResponse,
-  SortingOrder,
   TransfersNftResponse
+} from '../types/nft-types';
+import {
+  AssetTransfersCategory,
+  AssetTransfersParams,
+  AssetTransfersResponse,
+  AssetTransfersResult,
+  GetTransfersForOwnerOptions,
+  GetTransfersForOwnerTransferType,
+  RefreshContractResult,
+  SortingOrder
 } from '../types/types';
 import { AlchemyApiType, ETH_NULL_ADDRESS } from '../util/const';
 import { sanitizeTokenType } from '../util/inputSanitization';
