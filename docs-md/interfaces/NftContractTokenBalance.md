@@ -16,13 +16,13 @@ An object representing the owned token and balance values in a
 
 ### balance
 
-• **balance**: `number`
+• **balance**: `string`
 
-The token Id balance for the provided owner.
+The token id balance for the provided owner.
 
 #### Defined in
 
-[src/types/types.ts:900](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L900)
+[src/types/nft-types.ts:380](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L380)
 
 ___
 
@@ -34,4 +34,4 @@ The token id owned in the NFT contract.
 
 #### Defined in
 
-[src/types/types.ts:897](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L897)
+[src/types/nft-types.ts:378](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L378)
