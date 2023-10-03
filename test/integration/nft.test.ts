@@ -626,6 +626,7 @@ describe('E2E integration tests', () => {
     const response = await alchemy.nft.getFloorPrice(contractAddress);
     expect(response.openSea).toBeDefined();
     expect(response.looksRare).toBeDefined();
+    expect((response.looksRare as any).error).not.toBeDefined();
   });
 
   it('getNftSales()', async () => {
