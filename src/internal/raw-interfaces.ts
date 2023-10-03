@@ -69,6 +69,27 @@ export interface RawNftContractForNft extends RawNftContract {
   spamClassifications: string[];
 }
 
+export interface RawGetFloorPriceResponse {
+  openSea: RawFloorPriceSuccess | RawFloorPriceFailure;
+  looksRare: RawFloorPriceSuccess | RawFloorPriceFailure;
+}
+
+export interface RawFloorPriceSuccess {
+  floorPrice: number;
+  priceCurrency: string;
+  collectionUrl: string;
+  retrievedAt: string;
+  error: null;
+}
+
+export interface RawFloorPriceFailure {
+  floorPrice: null;
+  priceCurrency: null;
+  collectionUrl: null;
+  retrievedAt: null;
+  error: string;
+}
+
 /**
  * Represents the metadata of an NFT collection received from Alchemy.
  *

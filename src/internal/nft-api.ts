@@ -77,6 +77,7 @@ import {
   RawGetBaseNftsResponse,
   RawGetContractMetadataBatchResponse,
   RawGetContractsForOwnerResponse,
+  RawGetFloorPriceResponse,
   RawGetNftMetadataBatchResponse,
   RawGetNftSalesResponse,
   RawGetNftsForContractResponse,
@@ -626,15 +627,13 @@ export async function getFloorPrice(
   contractAddress: string,
   srcMethod = 'getFloorPrice'
 ): Promise<GetFloorPriceResponse> {
-  return requestHttpWithBackoff<GetFloorPriceParams, GetFloorPriceResponse>(
-    config,
-    AlchemyApiType.NFT,
-    'getFloorPrice',
-    srcMethod,
-    {
-      contractAddress
-    }
-  );
+  const response = await requestHttpWithBackoff<
+    GetFloorPriceParams,
+    RawGetFloorPriceResponse
+  >(config, AlchemyApiType.NFT, 'getFloorPrice', srcMethod, {
+    contractAddress
+  });
+  return nullsToUndefined<GetFloorPriceResponse>(response);
 }
 
 export async function getNftSales(
