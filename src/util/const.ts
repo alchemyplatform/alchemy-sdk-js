@@ -63,7 +63,7 @@ export const EthersNetwork = {
 
 /**
  * Mapping of network names to their corresponding Ethers Network objects. These
- * networks are not yet supported by Ethers and are listed here to be overriden
+ * networks are not yet supported by Ethers and are listed here to be overridden
  * in the provider.
  */
 export const CustomNetworks: { [key: string]: NetworkFromEthers } = {

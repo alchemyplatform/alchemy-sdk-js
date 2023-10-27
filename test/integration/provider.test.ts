@@ -11,7 +11,7 @@ import { loadAlchemyEnv } from '../test-util';
 
 jest.setTimeout(50000);
 /**
- * These integrations are sanity checks to ensure that the SDK's overriden
+ * These integrations are sanity checks to ensure that the SDK's overridden
  * implementation of {@link AlchemyProvider} is working as expected.
  */
 // TODO(ethers): Figure out appropriate unit tests for the SDK's custom AlchemyProvider.

@@ -2,7 +2,7 @@
 
 # Interface: GetContractsForOwnerOptions
 
-Optional parameters object for the the [getContractsForOwner](../classes/NftNamespace.md#getcontractsforowner) method
+Optional parameters object for the [getContractsForOwner](../classes/NftNamespace.md#getcontractsforowner) method
 
 ## Table of contents
 
