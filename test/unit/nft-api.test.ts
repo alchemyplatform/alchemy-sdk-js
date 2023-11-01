@@ -1137,8 +1137,10 @@ describe('NFT module', () => {
     const expectedOpenseaMetadata = {
       floorPrice: 2.2998,
       collectionName: 'Collection Name',
+      collectionSlug: 'collectionname',
       safelistRequestStatus: OpenSeaSafelistRequestStatus.VERIFIED,
       imageUrl: 'http://image.url',
+      bannerImageUrl: 'http://banner.url',
       description: 'A sample description',
       externalUrl: 'http://external.url',
       twitterUsername: 'twitter-handle',
