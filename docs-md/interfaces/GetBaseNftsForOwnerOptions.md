@@ -31,7 +31,7 @@ Optional list of contract addresses to filter the results by. Limit is 20.
 
 #### Defined in
 
-[src/types/types.ts:686](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L686)
+[src/types/types.ts:687](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L687)
 
 ___
 
@@ -44,7 +44,7 @@ of these filters are excluded from the response.
 
 #### Defined in
 
-[src/types/types.ts:692](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L692)
+[src/types/types.ts:693](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L693)
 
 ___
 
@@ -57,7 +57,7 @@ of these filters are included in the response.
 
 #### Defined in
 
-[src/types/types.ts:698](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L698)
+[src/types/types.ts:699](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L699)
 
 ___
 
@@ -69,7 +69,7 @@ Optional boolean flag to include NFT metadata. Defaults to `false`.
 
 #### Defined in
 
-[src/types/types.ts:707](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L707)
+[src/types/types.ts:708](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L708)
 
 ___
 
@@ -82,7 +82,7 @@ contract address and token ID in lexicographic order.
 
 #### Defined in
 
-[src/types/types.ts:721](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L721)
+[src/types/types.ts:722](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L722)
 
 ___
 
@@ -95,7 +95,7 @@ Optional page key from an existing [OwnedBaseNftsResponse](OwnedBaseNftsResponse
 
 #### Defined in
 
-[src/types/types.ts:683](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L683)
+[src/types/types.ts:684](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L684)
 
 ___
 
@@ -108,7 +108,7 @@ Maximum page size is 100.
 
 #### Defined in
 
-[src/types/types.ts:704](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L704)
+[src/types/types.ts:705](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L705)
 
 ___
 
@@ -123,4 +123,4 @@ metadata for cache misses then set this value to 0.
 
 #### Defined in
 
-[src/types/types.ts:715](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L715)
+[src/types/types.ts:716](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L716)

@@ -42,7 +42,7 @@ The app id of the app used for the webhook. This field is only present on
 
 #### Defined in
 
-[src/types/types.ts:2188](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2188)
+[src/types/types.ts:2189](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2189)
 
 ___
 
@@ -58,7 +58,7 @@ The webhook's unique id.
 
 #### Defined in
 
-[src/types/types.ts:2169](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2169)
+[src/types/types.ts:2170](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2170)
 
 ___
 
@@ -74,7 +74,7 @@ Whether the webhook is currently active
 
 #### Defined in
 
-[src/types/types.ts:2177](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2177)
+[src/types/types.ts:2178](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2178)
 
 ___
 
@@ -90,7 +90,7 @@ The network the webhook is on.
 
 #### Defined in
 
-[src/types/types.ts:2171](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2171)
+[src/types/types.ts:2172](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2172)
 
 ___
 
@@ -106,7 +106,7 @@ The signing key used to verify payloads for the webhook.
 
 #### Defined in
 
-[src/types/types.ts:2181](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2181)
+[src/types/types.ts:2182](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2182)
 
 ___
 
@@ -122,7 +122,7 @@ The creation time of the webhook as an ISO string.
 
 #### Defined in
 
-[src/types/types.ts:2179](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2179)
+[src/types/types.ts:2180](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2180)
 
 ___
 
@@ -138,7 +138,7 @@ The type of webhook.
 
 #### Defined in
 
-[src/types/types.ts:2259](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2259)
+[src/types/types.ts:2260](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2260)
 
 ___
 
@@ -154,7 +154,7 @@ The url that the webhook sends its payload to.
 
 #### Defined in
 
-[src/types/types.ts:2175](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2175)
+[src/types/types.ts:2176](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2176)
 
 ___
 
@@ -170,4 +170,4 @@ The webhook version. All newly created webhooks default to V2.
 
 #### Defined in
 
-[src/types/types.ts:2183](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2183)
+[src/types/types.ts:2184](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2184)
