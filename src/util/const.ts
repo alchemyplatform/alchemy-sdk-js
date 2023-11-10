@@ -52,6 +52,7 @@ export const EthersNetwork = {
   [Network.ARB_MAINNET]: 'arbitrum',
   [Network.ARB_RINKEBY]: 'arbitrum-rinkeby',
   [Network.ARB_GOERLI]: 'arbitrum-goerli',
+  [Network.ARB_SEPOLIA]: 'arbitrum-sepolia',
   [Network.MATIC_MAINNET]: 'matic',
   [Network.MATIC_MUMBAI]: 'maticmum',
   [Network.ASTAR_MAINNET]: 'astar-mainnet',
@@ -70,6 +71,10 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'arbitrum-goerli': {
     chainId: 421613,
     name: 'arbitrum-goerli'
+  },
+  'arbitrum-sepolia': {
+    chainId: 421614,
+    name: 'arbitrum-sepolia'
   },
   'astar-mainnet': {
     chainId: 592,
