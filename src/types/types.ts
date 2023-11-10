@@ -91,6 +91,7 @@ export enum Network {
   /** @deprecated - Will be removed in subsequent versions */
   ARB_RINKEBY = 'arb-rinkeby',
   ARB_GOERLI = 'arb-goerli',
+  ARB_SEPOLIA = 'arb-sepolia',
   MATIC_MAINNET = 'polygon-mainnet',
   MATIC_MUMBAI = 'polygon-mumbai',
   ASTAR_MAINNET = 'astar-mainnet',
