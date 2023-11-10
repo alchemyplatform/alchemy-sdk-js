@@ -27,7 +27,7 @@ Exclude NFTs that have been airdropped to a user.
 
 #### Defined in
 
-[src/types/types.ts:738](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L738)
+[src/types/types.ts:739](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L739)
 
 ___
 
@@ -39,4 +39,4 @@ Exclude NFTs that have been classified as spam.
 
 #### Defined in
 
-[src/types/types.ts:735](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L735)
+[src/types/types.ts:736](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L736)
