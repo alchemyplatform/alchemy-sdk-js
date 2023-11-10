@@ -6,6 +6,14 @@
 
 ### Minor Changes
 
+## 2.11.0
+
+### Major Changes
+
+- Add support for Arbitrum Sepolia
+
+### Minor Changes
+
 ## 2.10.1
 
 ### Major Changes
