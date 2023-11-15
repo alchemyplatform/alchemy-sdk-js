@@ -22,7 +22,7 @@ The specified NFT contract's address.
 
 #### Defined in
 
-[src/types/types.ts:1415](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L1415)
+[src/types/nft-types.ts:873](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L873)
 
 ___
 
@@ -35,16 +35,16 @@ provided NFT.
 
 #### Defined in
 
-[src/types/types.ts:1424](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L1424)
+[src/types/nft-types.ts:882](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L882)
 
 ___
 
 ### totalSupply
 
-• **totalSupply**: `number`
+• **totalSupply**: `string`
 
 The specified NFT contract's total supply.
 
 #### Defined in
 
-[src/types/types.ts:1418](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L1418)
+[src/types/nft-types.ts:876](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L876)

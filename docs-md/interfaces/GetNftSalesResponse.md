@@ -22,7 +22,7 @@ List of NFT sales that match the query
 
 #### Defined in
 
-[src/types/types.ts:1258](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L1258)
+[src/types/nft-types.ts:711](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L711)
 
 ___
 
@@ -34,7 +34,7 @@ The page key to use to fetch the next page if more results are available.
 
 #### Defined in
 
-[src/types/types.ts:1264](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L1264)
+[src/types/nft-types.ts:719](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L719)
 
 ___
 
@@ -46,4 +46,4 @@ Block Information of the block as of which the corresponding data is valid.
 
 #### Defined in
 
-[src/types/types.ts:1261](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L1261)
+[src/types/nft-types.ts:715](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L715)

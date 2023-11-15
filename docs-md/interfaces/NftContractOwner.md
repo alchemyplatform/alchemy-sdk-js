@@ -22,7 +22,7 @@ The NFT's owner address.
 
 #### Defined in
 
-[src/types/types.ts:886](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L886)
+[src/types/nft-types.ts:366](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L366)
 
 ___
 
@@ -34,4 +34,4 @@ A list of objects containing token balances for the provided NFT contract.
 
 #### Defined in
 
-[src/types/types.ts:889](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L889)
+[src/types/nft-types.ts:369](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L369)

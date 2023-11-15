@@ -24,7 +24,7 @@ The source used to provide the decoded call trace.
 
 #### Defined in
 
-[src/types/types.ts:2054](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2054)
+[src/types/types.ts:899](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L899)
 
 ___
 
@@ -36,7 +36,7 @@ Method inputs.
 
 #### Defined in
 
-[src/types/types.ts:2050](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2050)
+[src/types/types.ts:895](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L895)
 
 ___
 
@@ -48,7 +48,7 @@ The smart contract method called.
 
 #### Defined in
 
-[src/types/types.ts:2048](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2048)
+[src/types/types.ts:893](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L893)
 
 ___
 
@@ -60,4 +60,4 @@ Method outputs.
 
 #### Defined in
 
-[src/types/types.ts:2052](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2052)
+[src/types/types.ts:897](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L897)

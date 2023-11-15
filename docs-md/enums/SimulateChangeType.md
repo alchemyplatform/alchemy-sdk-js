@@ -26,7 +26,7 @@ APPROVE with zero amount → approval being cleared
 
 #### Defined in
 
-[src/types/types.ts:1923](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L1923)
+[src/types/types.ts:768](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L768)
 
 ___
 
@@ -38,4 +38,4 @@ Represents a transaction that transferred tokens from one address to another.
 
 #### Defined in
 
-[src/types/types.ts:1928](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L1928)
+[src/types/types.ts:773](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L773)

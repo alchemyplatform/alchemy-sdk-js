@@ -22,7 +22,7 @@ Error message if the raw metadata could not be fetched.
 
 #### Defined in
 
-[src/types/nft-types.ts:1292](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L1292)
+[src/types/nft-types.ts:1296](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L1296)
 
 ___
 
@@ -34,7 +34,7 @@ The raw metadata parsed from the raw token URI.
 
 #### Defined in
 
-[src/types/nft-types.ts:1290](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L1290)
+[src/types/nft-types.ts:1294](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L1294)
 
 ___
 
@@ -46,4 +46,4 @@ The raw token URI on the NFT contract.
 
 #### Defined in
 
-[src/types/nft-types.ts:1288](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L1288)
+[src/types/nft-types.ts:1292](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L1292)
