@@ -12,21 +12,22 @@
 
 - [AlchemySubscription](enums/AlchemySubscription.md)
 - [AssetTransfersCategory](enums/AssetTransfersCategory.md)
+- [AssetTransfersOrder](enums/AssetTransfersOrder.md)
 - [CommitmentLevel](enums/CommitmentLevel.md)
 - [DebugCallType](enums/DebugCallType.md)
 - [DebugTracerType](enums/DebugTracerType.md)
 - [DecodingAuthority](enums/DecodingAuthority.md)
 - [GetTransfersForOwnerTransferType](enums/GetTransfersForOwnerTransferType.md)
 - [Network](enums/Network.md)
-- [NftCollectionMarketplace](enums/NftCollectionMarketplace.md)
+- [NftExcludeFilters](enums/NftExcludeFilters.md)
 - [NftFilters](enums/NftFilters.md)
 - [NftOrdering](enums/NftOrdering.md)
-- [NftRefreshState](enums/NftRefreshState.md)
 - [NftSaleMarketplace](enums/NftSaleMarketplace.md)
 - [NftSaleTakerType](enums/NftSaleTakerType.md)
 - [NftSpamClassification](enums/NftSpamClassification.md)
 - [NftTokenType](enums/NftTokenType.md)
 - [OpenSeaSafelistRequestStatus](enums/OpenSeaSafelistRequestStatus.md)
+- [RefreshState](enums/RefreshState.md)
 - [SimulateAssetType](enums/SimulateAssetType.md)
 - [SimulateChangeType](enums/SimulateChangeType.md)
 - [SortingOrder](enums/SortingOrder.md)
@@ -68,10 +69,10 @@
 - [AssetTransfersWithMetadataResponse](interfaces/AssetTransfersWithMetadataResponse.md)
 - [AssetTransfersWithMetadataResult](interfaces/AssetTransfersWithMetadataResult.md)
 - [BaseNft](interfaces/BaseNft.md)
-- [BaseNftCollection](interfaces/BaseNftCollection.md)
+- [BaseNftContract](interfaces/BaseNftContract.md)
 - [Block](interfaces/Block.md)
 - [BlockWithTransactions](interfaces/BlockWithTransactions.md)
-- [ComputeRarityResponse](interfaces/ComputeRarityResponse.md)
+- [ContractForOwner](interfaces/ContractForOwner.md)
 - [CustomGraphqlWebhook](interfaces/CustomGraphqlWebhook.md)
 - [CustomGraphqlWebhookConfig](interfaces/CustomGraphqlWebhookConfig.md)
 - [CustomGraphqlWebhookParams](interfaces/CustomGraphqlWebhookParams.md)
@@ -85,7 +86,6 @@
 - [DecodedLog](interfaces/DecodedLog.md)
 - [DecodedLogInput](interfaces/DecodedLogInput.md)
 - [DeployResult](interfaces/DeployResult.md)
-- [DisplayNftForContract](interfaces/DisplayNftForContract.md)
 - [DroppedTransactionWebhook](interfaces/DroppedTransactionWebhook.md)
 - [ERC1155Metadata](interfaces/ERC1155Metadata.md)
 - [EventFilter](interfaces/EventFilter.md)
@@ -98,12 +98,11 @@
 - [GetAllWebhooksResponse](interfaces/GetAllWebhooksResponse.md)
 - [GetBaseNftsForContractOptions](interfaces/GetBaseNftsForContractOptions.md)
 - [GetBaseNftsForOwnerOptions](interfaces/GetBaseNftsForOwnerOptions.md)
-- [GetContractMetadataBatchResponse](interfaces/GetContractMetadataBatchResponse.md)
 - [GetContractsForOwnerOptions](interfaces/GetContractsForOwnerOptions.md)
 - [GetContractsForOwnerResponse](interfaces/GetContractsForOwnerResponse.md)
 - [GetFloorPriceResponse](interfaces/GetFloorPriceResponse.md)
 - [GetMintedNftsOptions](interfaces/GetMintedNftsOptions.md)
-- [GetNftMetadataBatchResponse](interfaces/GetNftMetadataBatchResponse.md)
+- [GetMintedNftsResponse](interfaces/GetMintedNftsResponse.md)
 - [GetNftMetadataOptions](interfaces/GetNftMetadataOptions.md)
 - [GetNftSalesOptions](interfaces/GetNftSalesOptions.md)
 - [GetNftSalesOptionsByContractAddress](interfaces/GetNftSalesOptionsByContractAddress.md)
@@ -116,36 +115,28 @@
 - [GetOwnersForContractWithTokenBalancesResponse](interfaces/GetOwnersForContractWithTokenBalancesResponse.md)
 - [GetOwnersForNftOptions](interfaces/GetOwnersForNftOptions.md)
 - [GetOwnersForNftResponse](interfaces/GetOwnersForNftResponse.md)
-- [GetSpamContractsResponse](interfaces/GetSpamContractsResponse.md)
 - [GetTokensForOwnerOptions](interfaces/GetTokensForOwnerOptions.md)
 - [GetTokensForOwnerResponse](interfaces/GetTokensForOwnerResponse.md)
 - [GetTransfersForContractOptions](interfaces/GetTransfersForContractOptions.md)
 - [GetTransfersForOwnerOptions](interfaces/GetTransfersForOwnerOptions.md)
-- [IsSpamContractResponse](interfaces/IsSpamContractResponse.md)
 - [Log](interfaces/Log.md)
+- [Media](interfaces/Media.md)
 - [MinedTransactionWebhook](interfaces/MinedTransactionWebhook.md)
 - [Nft](interfaces/Nft.md)
 - [NftActivityWebhook](interfaces/NftActivityWebhook.md)
 - [NftAttributeRarity](interfaces/NftAttributeRarity.md)
 - [NftAttributesResponse](interfaces/NftAttributesResponse.md)
-- [NftCollection](interfaces/NftCollection.md)
-- [NftCollectionFloorPrice](interfaces/NftCollectionFloorPrice.md)
 - [NftContract](interfaces/NftContract.md)
 - [NftContractBaseNftsResponse](interfaces/NftContractBaseNftsResponse.md)
-- [NftContractForNft](interfaces/NftContractForNft.md)
-- [NftContractForOwner](interfaces/NftContractForOwner.md)
 - [NftContractNftsResponse](interfaces/NftContractNftsResponse.md)
 - [NftContractOwner](interfaces/NftContractOwner.md)
 - [NftContractTokenBalance](interfaces/NftContractTokenBalance.md)
 - [NftFilter](interfaces/NftFilter.md)
 - [NftFiltersResponse](interfaces/NftFiltersResponse.md)
-- [NftImage](interfaces/NftImage.md)
 - [NftMetadata](interfaces/NftMetadata.md)
 - [NftMetadataBatchOptions](interfaces/NftMetadataBatchOptions.md)
 - [NftMetadataBatchToken](interfaces/NftMetadataBatchToken.md)
 - [NftMetadataUpdateWebhook](interfaces/NftMetadataUpdateWebhook.md)
-- [NftMint](interfaces/NftMint.md)
-- [NftRawMetadata](interfaces/NftRawMetadata.md)
 - [NftSale](interfaces/NftSale.md)
 - [NftSaleFeeData](interfaces/NftSaleFeeData.md)
 - [NftSaleValidAt](interfaces/NftSaleValidAt.md)
@@ -155,11 +146,9 @@
 - [OwnedBaseNftsResponse](interfaces/OwnedBaseNftsResponse.md)
 - [OwnedNft](interfaces/OwnedNft.md)
 - [OwnedNftsResponse](interfaces/OwnedNftsResponse.md)
-- [OwnedNftsValidAt](interfaces/OwnedNftsValidAt.md)
 - [OwnedToken](interfaces/OwnedToken.md)
 - [RawContract](interfaces/RawContract.md)
 - [RefreshContractResult](interfaces/RefreshContractResult.md)
-- [SearchContractMetadataResponse](interfaces/SearchContractMetadataResponse.md)
 - [SendPrivateTransactionOptions](interfaces/SendPrivateTransactionOptions.md)
 - [SimulateAssetChangesChange](interfaces/SimulateAssetChangesChange.md)
 - [SimulateAssetChangesError](interfaces/SimulateAssetChangesError.md)
@@ -167,6 +156,7 @@
 - [SimulateExecutionResponse](interfaces/SimulateExecutionResponse.md)
 - [SimulationCallTrace](interfaces/SimulationCallTrace.md)
 - [SimulationDebugLog](interfaces/SimulationDebugLog.md)
+- [SpamInfo](interfaces/SpamInfo.md)
 - [TokenBalanceFailure](interfaces/TokenBalanceFailure.md)
 - [TokenBalanceSuccess](interfaces/TokenBalanceSuccess.md)
 - [TokenBalancesOptionsDefaultTokens](interfaces/TokenBalancesOptionsDefaultTokens.md)
@@ -174,6 +164,7 @@
 - [TokenBalancesResponse](interfaces/TokenBalancesResponse.md)
 - [TokenBalancesResponseErc20](interfaces/TokenBalancesResponseErc20.md)
 - [TokenMetadataResponse](interfaces/TokenMetadataResponse.md)
+- [TokenUri](interfaces/TokenUri.md)
 - [TransactionReceipt](interfaces/TransactionReceipt.md)
 - [TransactionReceiptsBlockHash](interfaces/TransactionReceiptsBlockHash.md)
 - [TransactionReceiptsBlockNumber](interfaces/TransactionReceiptsBlockNumber.md)
@@ -228,7 +219,7 @@ Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespa
 
 #### Defined in
 
-[src/types/types.ts:1296](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/types.ts#L1296)
+[src/types/types.ts:2452](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2452)
 
 ___
 
@@ -241,7 +232,7 @@ filters compatible with other ethers events.
 
 #### Defined in
 
-[src/types/types.ts:714](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/types.ts#L714)
+[src/types/types.ts:1870](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L1870)
 
 ___
 
@@ -254,7 +245,7 @@ also include Alchemy's Subscription API.
 
 #### Defined in
 
-[src/types/types.ts:708](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/types.ts#L708)
+[src/types/types.ts:1864](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L1864)
 
 ___
 
@@ -267,7 +258,7 @@ least one of the fields to be set.
 
 #### Defined in
 
-[src/types/types.ts:697](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/types.ts#L697)
+[src/types/types.ts:1853](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L1853)
 
 ___
 
@@ -290,7 +281,7 @@ methods in the [DebugNamespace](classes/DebugNamespace.md).
 
 #### Defined in
 
-[src/types/types.ts:1357](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/types.ts#L1357)
+[src/types/types.ts:2513](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2513)
 
 ___
 
@@ -313,7 +304,7 @@ Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespa
 
 #### Defined in
 
-[src/types/types.ts:1290](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/types.ts#L1290)
+[src/types/types.ts:2446](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2446)
 
 ___
 
@@ -327,7 +318,7 @@ The keys are the addresses of the accounts, mapped to its corresponding state.
 
 #### Defined in
 
-[src/types/types.ts:1474](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/types.ts#L1474)
+[src/types/types.ts:2630](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2630)
 
 ___
 
@@ -349,7 +340,7 @@ The level of verbosity for the logger.
 
 #### Defined in
 
-[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/util/logger.ts#L22)
+[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/util/logger.ts#L22)
 
 ___
 
@@ -362,7 +353,7 @@ Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespa
 
 #### Defined in
 
-[src/types/types.ts:1282](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/types.ts#L1282)
+[src/types/types.ts:2438](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2438)
 
 ___
 
@@ -375,7 +366,7 @@ Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespa
 
 #### Defined in
 
-[src/types/types.ts:1274](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/types.ts#L1274)
+[src/types/types.ts:2430](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2430)
 
 ___
 
@@ -393,7 +384,7 @@ Requires an array with at least one value.
 
 #### Defined in
 
-[src/types/types.ts:1500](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/types.ts#L1500)
+[src/types/types.ts:2656](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2656)
 
 ___
 
@@ -414,7 +405,7 @@ Implementation copied over from
 
 #### Defined in
 
-[src/types/types.ts:1494](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/types.ts#L1494)
+[src/types/types.ts:2650](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2650)
 
 ___
 
@@ -424,7 +415,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:154](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/types.ts#L154)
+[src/types/types.ts:160](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L160)
 
 ___
 
@@ -436,7 +427,7 @@ The parameters to use with the [CoreNamespace.getTransactionReceipts](classes/Co
 
 #### Defined in
 
-[src/types/types.ts:558](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/types.ts#L558)
+[src/types/types.ts:1488](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L1488)
 
 ___
 
@@ -487,7 +478,7 @@ Converts a hex string to a decimal number.
 
 #### Defined in
 
-[src/api/util.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/api/util.ts#L9)
+[src/api/util.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/api/util.ts#L9)
 
 ___
 
@@ -509,7 +500,7 @@ Checks if a value is a hex string.
 
 #### Defined in
 
-[src/api/util.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/api/util.ts#L29)
+[src/api/util.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/api/util.ts#L29)
 
 ___
 
@@ -531,7 +522,7 @@ Configures the verbosity of logging. The default log level is `info`.
 
 #### Defined in
 
-[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/util/logger.ts#L56)
+[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/util/logger.ts#L56)
 
 ___
 
@@ -553,4 +544,4 @@ Converts a number to a hex string.
 
 #### Defined in
 
-[src/api/util.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/api/util.ts#L19)
+[src/api/util.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/api/util.ts#L19)

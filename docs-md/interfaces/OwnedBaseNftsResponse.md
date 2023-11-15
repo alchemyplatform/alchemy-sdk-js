@@ -11,56 +11,56 @@ information and the total count.
 
 ### Properties
 
+- [blockHash](OwnedBaseNftsResponse.md#blockhash)
 - [ownedNfts](OwnedBaseNftsResponse.md#ownednfts)
 - [pageKey](OwnedBaseNftsResponse.md#pagekey)
 - [totalCount](OwnedBaseNftsResponse.md#totalcount)
-- [validAt](OwnedBaseNftsResponse.md#validat)
 
 ## Properties
 
+### blockHash
+
+• **blockHash**: `string`
+
+The canonical head block hash of when your request was received.
+
+#### Defined in
+
+[src/types/types.ts:813](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L813)
+
+___
+
 ### ownedNfts
 
-• **ownedNfts**: [`OwnedBaseNft`](OwnedBaseNft.md)[]
+• `Readonly` **ownedNfts**: [`OwnedBaseNft`](OwnedBaseNft.md)[]
 
 The NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/nft-types.ts:260](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L260)
+[src/types/types.ts:801](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L801)
 
 ___
 
 ### pageKey
 
-• `Optional` **pageKey**: `string`
+• `Optional` `Readonly` **pageKey**: `string`
 
 Pagination token that can be passed into another request to fetch the next
 NFTs. If there is no page key, then there are no more NFTs to fetch.
 
 #### Defined in
 
-[src/types/nft-types.ts:266](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L266)
+[src/types/types.ts:807](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L807)
 
 ___
 
 ### totalCount
 
-• **totalCount**: `number`
+• `Readonly` **totalCount**: `number`
 
 The total count of NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/nft-types.ts:269](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L269)
-
-___
-
-### validAt
-
-• **validAt**: [`OwnedNftsValidAt`](OwnedNftsValidAt.md)
-
-Block Information of the block as of which the corresponding data is valid
-
-#### Defined in
-
-[src/types/nft-types.ts:274](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L274)
+[src/types/types.ts:810](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L810)

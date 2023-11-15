@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 2.11.0
+
+### Minor Changes
+
+- Added support for Arbitrum Sepolia network via the `Network.ARB_SEPOLIA` enum.
+
 ## 2.10.1
 
 ### Major Changes

@@ -11,15 +11,8 @@ Potential reasons why an NFT contract was classified as spam.
 - [Erc721DishonestTotalSupply](NftSpamClassification.md#erc721dishonesttotalsupply)
 - [Erc721TooManyOwners](NftSpamClassification.md#erc721toomanyowners)
 - [Erc721TooManyTokens](NftSpamClassification.md#erc721toomanytokens)
-- [HighAirdropPercent](NftSpamClassification.md#highairdroppercent)
-- [HighHoneyPotOwnerPercent](NftSpamClassification.md#highhoneypotownerpercent)
-- [HighHoneyPotPercent](NftSpamClassification.md#highhoneypotpercent)
-- [HoneyPotsOwnMultipleTokens](NftSpamClassification.md#honeypotsownmultipletokens)
-- [LowDistinctOwnersPercent](NftSpamClassification.md#lowdistinctownerspercent)
 - [MostlyHoneyPotOwners](NftSpamClassification.md#mostlyhoneypotowners)
-- [NoSalesActivity](NftSpamClassification.md#nosalesactivity)
 - [OwnedByMostHoneyPots](NftSpamClassification.md#ownedbymosthoneypots)
-- [Unknown](NftSpamClassification.md#unknown)
 
 ## Enumeration members
 
@@ -29,7 +22,7 @@ Potential reasons why an NFT contract was classified as spam.
 
 #### Defined in
 
-[src/types/nft-types.ts:68](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L68)
+[src/types/types.ts:593](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L593)
 
 ___
 
@@ -39,7 +32,7 @@ ___
 
 #### Defined in
 
-[src/types/nft-types.ts:66](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L66)
+[src/types/types.ts:591](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L591)
 
 ___
 
@@ -49,57 +42,7 @@ ___
 
 #### Defined in
 
-[src/types/nft-types.ts:67](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L67)
-
-___
-
-### HighAirdropPercent
-
-• **HighAirdropPercent** = `"HighAirdropPercent"`
-
-#### Defined in
-
-[src/types/nft-types.ts:76](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L76)
-
-___
-
-### HighHoneyPotOwnerPercent
-
-• **HighHoneyPotOwnerPercent** = `"HighHoneyPotOwnerPercent"`
-
-#### Defined in
-
-[src/types/nft-types.ts:72](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L72)
-
-___
-
-### HighHoneyPotPercent
-
-• **HighHoneyPotPercent** = `"HighHoneyPotPercent"`
-
-#### Defined in
-
-[src/types/nft-types.ts:73](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L73)
-
-___
-
-### HoneyPotsOwnMultipleTokens
-
-• **HoneyPotsOwnMultipleTokens** = `"HoneyPotsOwnMultipleTokens"`
-
-#### Defined in
-
-[src/types/nft-types.ts:74](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L74)
-
-___
-
-### LowDistinctOwnersPercent
-
-• **LowDistinctOwnersPercent** = `"LowDistinctOwnersPercent"`
-
-#### Defined in
-
-[src/types/nft-types.ts:71](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L71)
+[src/types/types.ts:592](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L592)
 
 ___
 
@@ -109,17 +52,7 @@ ___
 
 #### Defined in
 
-[src/types/nft-types.ts:69](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L69)
-
-___
-
-### NoSalesActivity
-
-• **NoSalesActivity** = `"NoSalesActivity"`
-
-#### Defined in
-
-[src/types/nft-types.ts:75](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L75)
+[src/types/types.ts:594](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L594)
 
 ___
 
@@ -129,14 +62,4 @@ ___
 
 #### Defined in
 
-[src/types/nft-types.ts:70](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L70)
-
-___
-
-### Unknown
-
-• **Unknown** = `"Unknown"`
-
-#### Defined in
-
-[src/types/nft-types.ts:77](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L77)
+[src/types/types.ts:595](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L595)
