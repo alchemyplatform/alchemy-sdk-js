@@ -22,7 +22,7 @@ An enum for specifying the token type on NFTs.
 
 #### Defined in
 
-[src/types/nft-types.ts:13](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L13)
+[src/types/types.ts:403](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L403)
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 #### Defined in
 
-[src/types/nft-types.ts:12](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L12)
+[src/types/types.ts:402](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L402)
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 #### Defined in
 
-[src/types/nft-types.ts:15](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L15)
+[src/types/types.ts:405](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L405)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 #### Defined in
 
-[src/types/nft-types.ts:14](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L14)
+[src/types/types.ts:404](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L404)
 
 ___
 
@@ -62,4 +62,4 @@ ___
 
 #### Defined in
 
-[src/types/nft-types.ts:16](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L16)
+[src/types/types.ts:406](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L406)

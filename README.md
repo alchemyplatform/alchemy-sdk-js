@@ -15,7 +15,7 @@ The SDK currently supports the following chains:
 - **Ethereum**: Mainnet, Goerli, Sepolia
 - **Polygon**: Mainnet, Mumbai
 - **Optimism**: Mainnet, Goerli, Kovan
-- **Arbitrum**: Mainnet, Goerli, Rinkeby
+- **Arbitrum**: Mainnet, Goerli, Rinkeby, Sepolia
 - **Astar**: Mainnet
 - **PolygonZKEVM**: Mainnet, Testnet
 - **Base**: Mainnet, Goerli
