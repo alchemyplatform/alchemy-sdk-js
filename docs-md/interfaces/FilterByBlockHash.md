@@ -33,7 +33,7 @@ The address to filter by. If omitted, filters for all addresses.
 
 #### Defined in
 
-[src/types/types.ts:2620](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2620)
+[src/types/types.ts:1465](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1465)
 
 ___
 
@@ -45,7 +45,7 @@ The specific block hash to search for logs matching the filter.
 
 #### Defined in
 
-[src/types/types.ts:2601](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2601)
+[src/types/types.ts:1446](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1446)
 
 ___
 
@@ -61,4 +61,4 @@ The topics to filter by, or null to match any topics.
 
 #### Defined in
 
-[src/types/types.ts:2622](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2622)
+[src/types/types.ts:1467](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1467)

@@ -10,11 +10,11 @@ symbol, and more.
 
 ## Hierarchy
 
-- [`BaseNftContract`](BaseNftContract.md)
+- **`NftContract`**
 
-  ↳ **`NftContract`**
+  ↳ [`NftContractForOwner`](NftContractForOwner.md)
 
-  ↳↳ [`ContractForOwner`](ContractForOwner.md)
+  ↳ [`NftContractForNft`](NftContractForNft.md)
 
 ## Table of contents
 
@@ -24,7 +24,7 @@ symbol, and more.
 - [contractDeployer](NftContract.md#contractdeployer)
 - [deployedBlockNumber](NftContract.md#deployedblocknumber)
 - [name](NftContract.md#name)
-- [openSea](NftContract.md#opensea)
+- [openSeaMetadata](NftContract.md#openseametadata)
 - [symbol](NftContract.md#symbol)
 - [tokenType](NftContract.md#tokentype)
 - [totalSupply](NftContract.md#totalsupply)
@@ -35,15 +35,11 @@ symbol, and more.
 
 • **address**: `string`
 
-The address of the contract.
-
-#### Inherited from
-
-[BaseNftContract](BaseNftContract.md).[address](BaseNftContract.md#address)
+The address of the NFT contract.
 
 #### Defined in
 
-[src/api/nft.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/api/nft.ts#L22)
+[src/types/nft-types.ts:1147](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L1147)
 
 ___
 
@@ -55,7 +51,7 @@ The address that deployed the NFT contract.
 
 #### Defined in
 
-[src/api/nft.ts:49](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/api/nft.ts#L49)
+[src/types/nft-types.ts:1162](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L1162)
 
 ___
 
@@ -67,7 +63,7 @@ The block number the NFT contract deployed in.
 
 #### Defined in
 
-[src/api/nft.ts:51](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/api/nft.ts#L51)
+[src/types/nft-types.ts:1164](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L1164)
 
 ___
 
@@ -79,19 +75,19 @@ The name of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:38](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/api/nft.ts#L38)
+[src/types/nft-types.ts:1151](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L1151)
 
 ___
 
-### openSea
+### openSeaMetadata
 
-• `Optional` **openSea**: [`OpenSeaCollectionMetadata`](OpenSeaCollectionMetadata.md)
+• **openSeaMetadata**: [`OpenSeaCollectionMetadata`](OpenSeaCollectionMetadata.md)
 
 OpenSea's metadata for the contract.
 
 #### Defined in
 
-[src/api/nft.ts:47](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/api/nft.ts#L47)
+[src/types/nft-types.ts:1160](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L1160)
 
 ___
 
@@ -103,7 +99,7 @@ The symbol of the contract.
 
 #### Defined in
 
-[src/api/nft.ts:40](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/api/nft.ts#L40)
+[src/types/nft-types.ts:1153](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L1153)
 
 ___
 
@@ -115,7 +111,7 @@ The type of the token in the contract.
 
 #### Defined in
 
-[src/api/nft.ts:36](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/api/nft.ts#L36)
+[src/types/nft-types.ts:1149](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L1149)
 
 ___
 
@@ -128,4 +124,4 @@ available on ERC-721 contracts.
 
 #### Defined in
 
-[src/api/nft.ts:45](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/api/nft.ts#L45)
+[src/types/nft-types.ts:1158](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L1158)

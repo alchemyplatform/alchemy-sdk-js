@@ -26,7 +26,7 @@ The description of the collection.
 
 #### Defined in
 
-[src/types/nft-types.ts:1184](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L1184)
+[src/types/nft-types.ts:1188](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L1188)
 
 ___
 
@@ -38,7 +38,7 @@ The Discord URL of the collection.
 
 #### Defined in
 
-[src/types/nft-types.ts:1190](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L1190)
+[src/types/nft-types.ts:1194](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L1194)
 
 ___
 
@@ -50,7 +50,7 @@ The homepage of the collection as determined by OpenSea.
 
 #### Defined in
 
-[src/types/nft-types.ts:1186](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L1186)
+[src/types/nft-types.ts:1190](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L1190)
 
 ___
 
@@ -62,7 +62,7 @@ The floor price of the collection
 
 #### Defined in
 
-[src/types/nft-types.ts:1182](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L1182)
+[src/types/nft-types.ts:1186](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L1186)
 
 ___
 
@@ -74,7 +74,7 @@ The name of the collection.
 
 #### Defined in
 
-[src/types/nft-types.ts:1178](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L1178)
+[src/types/nft-types.ts:1182](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L1182)
 
 ___
 
@@ -86,7 +86,7 @@ The OpenSea human-readable slug of the collection.
 
 #### Defined in
 
-[src/types/nft-types.ts:1180](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L1180)
+[src/types/nft-types.ts:1184](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L1184)
 
 ___
 
@@ -98,4 +98,4 @@ The Twitter handle of the collection.
 
 #### Defined in
 
-[src/types/nft-types.ts:1188](https://github.com/alchemyplatform/alchemy-sdk-js/blob/7ae04a5/src/types/nft-types.ts#L1188)
+[src/types/nft-types.ts:1192](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L1192)

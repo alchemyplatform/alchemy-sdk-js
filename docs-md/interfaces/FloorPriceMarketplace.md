@@ -18,46 +18,46 @@ marketplace (e.g. looksRare).
 
 ### collectionUrl
 
-• `Readonly` **collectionUrl**: `string`
+• **collectionUrl**: `string`
 
 The link to the collection on the given marketplace
 
 #### Defined in
 
-[src/types/types.ts:969](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L969)
+[src/types/nft-types.ts:456](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L456)
 
 ___
 
 ### floorPrice
 
-• `Readonly` **floorPrice**: `number`
+• **floorPrice**: `number`
 
 The floor price of the collection on the given marketplace
 
 #### Defined in
 
-[src/types/types.ts:965](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L965)
+[src/types/nft-types.ts:452](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L452)
 
 ___
 
 ### priceCurrency
 
-• `Readonly` **priceCurrency**: `string`
+• **priceCurrency**: `string`
 
 The currency in which the floor price is denominated
 
 #### Defined in
 
-[src/types/types.ts:967](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L967)
+[src/types/nft-types.ts:454](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L454)
 
 ___
 
 ### retrievedAt
 
-• `Readonly` **retrievedAt**: `string`
+• **retrievedAt**: `string`
 
 UTC timestamp of when the floor price was retrieved from the marketplace
 
 #### Defined in
 
-[src/types/types.ts:971](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L971)
+[src/types/nft-types.ts:458](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L458)
