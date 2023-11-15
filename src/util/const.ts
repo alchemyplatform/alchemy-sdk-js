@@ -18,7 +18,7 @@ export function getAlchemyHttpUrl(network: Network, apiKey: string): string {
 }
 
 export function getAlchemyNftHttpUrl(network: Network, apiKey: string): string {
-  return `https://${network}.g.alchemy.com/nft/v2/${apiKey}`;
+  return `https://${network}.g.alchemy.com/nft/v3/${apiKey}`;
 }
 
 export function getAlchemyWsUrl(network: Network, apiKey: string): string {
@@ -41,16 +41,11 @@ export enum AlchemyApiType {
  */
 export const EthersNetwork = {
   [Network.ETH_MAINNET]: 'mainnet',
-  [Network.ETH_ROPSTEN]: 'ropsten',
   [Network.ETH_GOERLI]: 'goerli',
-  [Network.ETH_KOVAN]: 'kovan',
-  [Network.ETH_RINKEBY]: 'rinkeby',
   [Network.ETH_SEPOLIA]: 'sepolia',
   [Network.OPT_MAINNET]: 'optimism',
-  [Network.OPT_KOVAN]: 'optimism-kovan',
   [Network.OPT_GOERLI]: 'optimism-goerli',
   [Network.ARB_MAINNET]: 'arbitrum',
-  [Network.ARB_RINKEBY]: 'arbitrum-rinkeby',
   [Network.ARB_GOERLI]: 'arbitrum-goerli',
   [Network.ARB_SEPOLIA]: 'arbitrum-sepolia',
   [Network.MATIC_MAINNET]: 'matic',

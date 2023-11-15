@@ -11,6 +11,8 @@ export { Utils };
 
 export * from './types/types';
 
+export * from './types/nft-types';
+
 export { Alchemy } from './api/alchemy';
 
 export { Wallet } from './api/alchemy-wallet';
@@ -36,8 +38,6 @@ export type { TransactNamespace } from './api/transact-namespace';
 export type { NotifyNamespace } from './api/notify-namespace';
 
 export type { DebugNamespace } from './api/debug-namespace';
-
-export type { BaseNftContract, NftContract, Nft, BaseNft } from './api/nft';
 
 export { fromHex, toHex, isHex } from './api/util';
 

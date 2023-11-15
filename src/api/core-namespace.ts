@@ -27,6 +27,7 @@ import {
   FilterByBlockHash,
   GetTokensForOwnerOptions,
   GetTokensForOwnerResponse,
+  OwnedToken,
   TokenBalanceType,
   TokenBalancesOptionsDefaultTokens,
   TokenBalancesOptionsErc20,
@@ -575,7 +576,7 @@ export class CoreNamespace {
     }));
 
     return {
-      tokens: ownedTokens.map(nullsToUndefined),
+      tokens: ownedTokens.map(t => nullsToUndefined<OwnedToken>(t)),
       pageKey: response.pageKey
     };
   }
