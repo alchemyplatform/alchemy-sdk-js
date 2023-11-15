@@ -6,7 +6,7 @@
 
 ### Minor Changes
 
-# 3.0.0
+## 3.0.0
 
 ### Major Changes
 
