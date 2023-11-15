@@ -1113,10 +1113,14 @@ export interface OpenSeaCollectionMetadata {
   floorPrice?: number;
   /** The name of the collection on OpenSea. */
   collectionName?: string;
+  /** The slug of the collection on OpenSea. */
+  collectionSlug?: string;
   /** The approval status of the collection on OpenSea. */
   safelistRequestStatus?: OpenSeaSafelistRequestStatus;
   /** The image URL determined by OpenSea. */
   imageUrl?: string;
+  /** The banner image URL determined by OpenSea. */
+  imageBannerUrl?: string;
   /** The description of the collection on OpenSea. */
   description?: string;
   /** The homepage of the collection as determined by OpenSea. */

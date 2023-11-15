@@ -122,8 +122,10 @@ export interface RawBaseNftCollection {
 export interface RawOpenSeaCollectionMetadata {
   floorPrice: number | null;
   collectionName: string | null;
+  collectionSlug: string | null;
   safelistRequestStatus: string | null;
   imageUrl: string | null;
+  bannerImageUrl: string | null;
   description: string | null;
   externalUrl: string | null;
   twitterUsername: string | null;
