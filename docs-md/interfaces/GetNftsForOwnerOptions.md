@@ -31,7 +31,7 @@ Optional list of contract addresses to filter the results by. Limit is 20.
 
 #### Defined in
 
-[src/types/types.ts:631](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L631)
+[src/types/nft-types.ts:106](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L106)
 
 ___
 
@@ -44,7 +44,7 @@ of these filters are excluded from the response.
 
 #### Defined in
 
-[src/types/types.ts:637](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L637)
+[src/types/nft-types.ts:112](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L112)
 
 ___
 
@@ -57,7 +57,7 @@ of these filters are included in the response.
 
 #### Defined in
 
-[src/types/types.ts:643](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L643)
+[src/types/nft-types.ts:118](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L118)
 
 ___
 
@@ -69,7 +69,7 @@ Optional boolean flag to omit NFT metadata. Defaults to `false`.
 
 #### Defined in
 
-[src/types/types.ts:652](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L652)
+[src/types/nft-types.ts:127](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L127)
 
 ___
 
@@ -82,7 +82,7 @@ contract address and token ID in lexicographic order.
 
 #### Defined in
 
-[src/types/types.ts:666](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L666)
+[src/types/nft-types.ts:141](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L141)
 
 ___
 
@@ -95,7 +95,7 @@ Optional page key from an existing [OwnedBaseNftsResponse](OwnedBaseNftsResponse
 
 #### Defined in
 
-[src/types/types.ts:628](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L628)
+[src/types/nft-types.ts:103](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L103)
 
 ___
 
@@ -108,7 +108,7 @@ Maximum page size is 100.
 
 #### Defined in
 
-[src/types/types.ts:649](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L649)
+[src/types/nft-types.ts:124](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L124)
 
 ___
 
@@ -123,4 +123,4 @@ metadata for cache misses then set this value to 0.
 
 #### Defined in
 
-[src/types/types.ts:660](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L660)
+[src/types/nft-types.ts:135](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L135)

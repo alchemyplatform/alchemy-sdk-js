@@ -44,7 +44,7 @@ information was not available.
 
 #### Defined in
 
-[src/types/types.ts:476](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L476)
+[src/types/types.ts:446](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L446)
 
 ___
 
@@ -60,7 +60,7 @@ The block number where the transfer occurred.
 
 #### Defined in
 
-[src/types/types.ts:443](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L443)
+[src/types/types.ts:413](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L413)
 
 ___
 
@@ -76,7 +76,7 @@ The category of the transfer.
 
 #### Defined in
 
-[src/types/types.ts:440](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L440)
+[src/types/types.ts:410](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L410)
 
 ___
 
@@ -93,7 +93,7 @@ token. `null` if not an ERC1155 transfer.
 
 #### Defined in
 
-[src/types/types.ts:467](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L467)
+[src/types/types.ts:437](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L437)
 
 ___
 
@@ -110,7 +110,7 @@ ERC721 transfer.
 
 #### Defined in
 
-[src/types/types.ts:461](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L461)
+[src/types/types.ts:431](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L431)
 
 ___
 
@@ -126,7 +126,7 @@ The from address of the transfer.
 
 #### Defined in
 
-[src/types/types.ts:446](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L446)
+[src/types/types.ts:416](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L416)
 
 ___
 
@@ -142,7 +142,7 @@ The transaction hash of the transfer transaction.
 
 #### Defined in
 
-[src/types/types.ts:479](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L479)
+[src/types/types.ts:449](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L449)
 
 ___
 
@@ -154,7 +154,7 @@ Additional metadata about the transfer event.
 
 #### Defined in
 
-[src/types/types.ts:493](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L493)
+[src/types/types.ts:463](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L463)
 
 ___
 
@@ -170,7 +170,7 @@ Information about the raw contract of the asset transferred.
 
 #### Defined in
 
-[src/types/types.ts:482](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L482)
+[src/types/types.ts:452](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L452)
 
 ___
 
@@ -186,7 +186,7 @@ The to address of the transfer.
 
 #### Defined in
 
-[src/types/types.ts:449](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L449)
+[src/types/types.ts:419](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L419)
 
 ___
 
@@ -202,7 +202,7 @@ The token id of the token transferred.
 
 #### Defined in
 
-[src/types/types.ts:470](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L470)
+[src/types/types.ts:440](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L440)
 
 ___
 
@@ -218,7 +218,7 @@ The unique ID of the transfer.
 
 #### Defined in
 
-[src/types/types.ts:437](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L437)
+[src/types/types.ts:407](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L407)
 
 ___
 
@@ -235,4 +235,4 @@ decimal). `null` if ERC721 transfer or contract decimal not available.
 
 #### Defined in
 
-[src/types/types.ts:455](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L455)
+[src/types/types.ts:425](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L425)

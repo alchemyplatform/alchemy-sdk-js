@@ -22,7 +22,7 @@ The addresses to additionally track.
 
 #### Defined in
 
-[src/types/types.ts:2411](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2411)
+[src/types/types.ts:1257](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1257)
 
 ___
 
@@ -34,4 +34,4 @@ Existing addresses to remove.
 
 #### Defined in
 
-[src/types/types.ts:2413](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2413)
+[src/types/types.ts:1259](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1259)

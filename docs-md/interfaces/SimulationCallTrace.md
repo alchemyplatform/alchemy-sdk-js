@@ -35,7 +35,7 @@ A decoded version of the call. Provided on a best-effort basis.
 
 #### Defined in
 
-[src/types/types.ts:2072](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2072)
+[src/types/types.ts:918](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L918)
 
 ___
 
@@ -51,7 +51,7 @@ Omit.error
 
 #### Defined in
 
-[src/types/types.ts:2587](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2587)
+[src/types/types.ts:1433](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1433)
 
 ___
 
@@ -67,7 +67,7 @@ Omit.from
 
 #### Defined in
 
-[src/types/types.ts:2573](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2573)
+[src/types/types.ts:1419](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1419)
 
 ___
 
@@ -83,7 +83,7 @@ Omit.gas
 
 #### Defined in
 
-[src/types/types.ts:2579](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2579)
+[src/types/types.ts:1425](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1425)
 
 ___
 
@@ -99,7 +99,7 @@ Omit.gasUsed
 
 #### Defined in
 
-[src/types/types.ts:2581](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2581)
+[src/types/types.ts:1427](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1427)
 
 ___
 
@@ -115,7 +115,7 @@ Omit.input
 
 #### Defined in
 
-[src/types/types.ts:2583](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2583)
+[src/types/types.ts:1429](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1429)
 
 ___
 
@@ -131,7 +131,7 @@ Omit.output
 
 #### Defined in
 
-[src/types/types.ts:2585](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2585)
+[src/types/types.ts:1431](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1431)
 
 ___
 
@@ -147,7 +147,7 @@ Omit.to
 
 #### Defined in
 
-[src/types/types.ts:2575](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2575)
+[src/types/types.ts:1421](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1421)
 
 ___
 
@@ -163,7 +163,7 @@ Omit.type
 
 #### Defined in
 
-[src/types/types.ts:2070](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2070)
+[src/types/types.ts:916](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L916)
 
 ___
 
@@ -179,4 +179,4 @@ Omit.value
 
 #### Defined in
 
-[src/types/types.ts:2577](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2577)
+[src/types/types.ts:1423](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1423)

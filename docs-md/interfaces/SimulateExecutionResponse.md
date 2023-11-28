@@ -22,7 +22,7 @@ of the transaction along with the decoded calls if available.
 
 #### Defined in
 
-[src/types/types.ts:2109](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2109)
+[src/types/types.ts:955](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L955)
 
 ___
 
@@ -35,4 +35,4 @@ available.
 
 #### Defined in
 
-[src/types/types.ts:2115](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2115)
+[src/types/types.ts:961](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L961)

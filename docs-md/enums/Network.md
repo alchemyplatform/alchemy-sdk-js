@@ -13,20 +13,16 @@ available on which networks
 
 - [ARB\_GOERLI](Network.md#arb_goerli)
 - [ARB\_MAINNET](Network.md#arb_mainnet)
-- [ARB\_RINKEBY](Network.md#arb_rinkeby)
+- [ARB\_SEPOLIA](Network.md#arb_sepolia)
 - [ASTAR\_MAINNET](Network.md#astar_mainnet)
 - [BASE\_GOERLI](Network.md#base_goerli)
 - [BASE\_MAINNET](Network.md#base_mainnet)
 - [ETH\_GOERLI](Network.md#eth_goerli)
-- [ETH\_KOVAN](Network.md#eth_kovan)
 - [ETH\_MAINNET](Network.md#eth_mainnet)
-- [ETH\_RINKEBY](Network.md#eth_rinkeby)
-- [ETH\_ROPSTEN](Network.md#eth_ropsten)
 - [ETH\_SEPOLIA](Network.md#eth_sepolia)
 - [MATIC\_MAINNET](Network.md#matic_mainnet)
 - [MATIC\_MUMBAI](Network.md#matic_mumbai)
 - [OPT\_GOERLI](Network.md#opt_goerli)
-- [OPT\_KOVAN](Network.md#opt_kovan)
 - [OPT\_MAINNET](Network.md#opt_mainnet)
 - [POLYGONZKEVM\_MAINNET](Network.md#polygonzkevm_mainnet)
 - [POLYGONZKEVM\_TESTNET](Network.md#polygonzkevm_testnet)
@@ -39,7 +35,7 @@ available on which networks
 
 #### Defined in
 
-[src/types/types.ts:93](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L93)
+[src/types/types.ts:88](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L88)
 
 ___
 
@@ -49,19 +45,17 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L90)
+[src/types/types.ts:87](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L87)
 
 ___
 
-### ARB\_RINKEBY
+### ARB\_SEPOLIA
 
-• **ARB\_RINKEBY** = `"arb-rinkeby"`
-
-**`deprecated`** - Will be removed in subsequent versions
+• **ARB\_SEPOLIA** = `"arb-sepolia"`
 
 #### Defined in
 
-[src/types/types.ts:92](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L92)
+[src/types/types.ts:89](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L89)
 
 ___
 
@@ -71,7 +65,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:96](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L96)
+[src/types/types.ts:92](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L92)
 
 ___
 
@@ -81,7 +75,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:100](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L100)
+[src/types/types.ts:96](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L96)
 
 ___
 
@@ -91,7 +85,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:99](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L99)
+[src/types/types.ts:95](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L95)
 
 ___
 
@@ -101,19 +95,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:80](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L80)
-
-___
-
-### ETH\_KOVAN
-
-• **ETH\_KOVAN** = `"eth-kovan"`
-
-**`deprecated`** - Will be removed in subsequent versions
-
-#### Defined in
-
-[src/types/types.ts:82](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L82)
+[src/types/types.ts:83](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L83)
 
 ___
 
@@ -123,31 +105,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:77](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L77)
-
-___
-
-### ETH\_RINKEBY
-
-• **ETH\_RINKEBY** = `"eth-rinkeby"`
-
-**`deprecated`** - Will be removed in subsequent versions
-
-#### Defined in
-
-[src/types/types.ts:84](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L84)
-
-___
-
-### ETH\_ROPSTEN
-
-• **ETH\_ROPSTEN** = `"eth-ropsten"`
-
-**`deprecated`** - Will be removed in subsequent versions
-
-#### Defined in
-
-[src/types/types.ts:79](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L79)
+[src/types/types.ts:82](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L82)
 
 ___
 
@@ -157,7 +115,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:85](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L85)
+[src/types/types.ts:84](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L84)
 
 ___
 
@@ -167,7 +125,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:94](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L94)
+[src/types/types.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L90)
 
 ___
 
@@ -177,7 +135,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:95](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L95)
+[src/types/types.ts:91](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L91)
 
 ___
 
@@ -187,19 +145,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:89](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L89)
-
-___
-
-### OPT\_KOVAN
-
-• **OPT\_KOVAN** = `"opt-kovan"`
-
-**`deprecated`** - Will be removed in subsequent versions
-
-#### Defined in
-
-[src/types/types.ts:88](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L88)
+[src/types/types.ts:86](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L86)
 
 ___
 
@@ -209,7 +155,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:86](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L86)
+[src/types/types.ts:85](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L85)
 
 ___
 
@@ -219,7 +165,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:97](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L97)
+[src/types/types.ts:93](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L93)
 
 ___
 
@@ -229,4 +175,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:98](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L98)
+[src/types/types.ts:94](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L94)

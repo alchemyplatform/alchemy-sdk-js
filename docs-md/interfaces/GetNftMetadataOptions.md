@@ -23,7 +23,7 @@ the response. Defaults to false for faster response times.
 
 #### Defined in
 
-[src/types/types.ts:921](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L921)
+[src/types/nft-types.ts:409](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L409)
 
 ___
 
@@ -35,7 +35,7 @@ Optional field to specify the type of token to speed up the query.
 
 #### Defined in
 
-[src/types/types.ts:908](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L908)
+[src/types/nft-types.ts:396](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L396)
 
 ___
 
@@ -50,4 +50,4 @@ metadata for cache misses then set this value to 0.
 
 #### Defined in
 
-[src/types/types.ts:915](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L915)
+[src/types/nft-types.ts:403](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L403)

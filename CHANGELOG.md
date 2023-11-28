@@ -6,6 +6,18 @@
 
 ### Minor Changes
 
+## 3.0.0
+
+### Major Changes
+
+- For a full list of changes to V3 from V2, please visit: https://docs.alchemy.com/reference/alchemy-sdk-v2-to-v3-migration-guide. There, you can also find the API reference for v2 endpoints as well. V3 primarily involves changes to use the V3 NFT API.
+
+## 2.11.0
+
+### Minor Changes
+
+- Added support for Arbitrum Sepolia network via the `Network.ARB_SEPOLIA` enum.
+
 ## 2.10.1
 
 ### Major Changes

@@ -21,7 +21,7 @@ The total number of webhooks.
 
 #### Defined in
 
-[src/types/types.ts:2267](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2267)
+[src/types/types.ts:1113](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1113)
 
 ___
 
@@ -33,4 +33,4 @@ All webhooks attached to the provided auth token.
 
 #### Defined in
 
-[src/types/types.ts:2265](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2265)
+[src/types/types.ts:1111](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1111)

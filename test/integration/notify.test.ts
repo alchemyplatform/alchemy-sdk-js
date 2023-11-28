@@ -75,11 +75,6 @@ describe('E2E integration tests', () => {
 
   describe('has valid network mappings', () => {
     const UNSUPPORTED_NETWORKS = [
-      Network.ETH_ROPSTEN,
-      Network.ETH_KOVAN,
-      Network.ETH_RINKEBY,
-      Network.OPT_KOVAN,
-      Network.ARB_RINKEBY,
       Network.ASTAR_MAINNET,
       Network.POLYGONZKEVM_MAINNET,
       Network.POLYGONZKEVM_TESTNET

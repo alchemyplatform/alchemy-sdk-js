@@ -22,7 +22,7 @@ The filters to additionally track.
 
 #### Defined in
 
-[src/types/types.ts:2389](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2389)
+[src/types/types.ts:1235](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1235)
 
 ___
 
@@ -34,4 +34,4 @@ Existing filters to remove.
 
 #### Defined in
 
-[src/types/types.ts:2391](https://github.com/alchemyplatform/alchemy-sdk-js/blob/e05babb/src/types/types.ts#L2391)
+[src/types/types.ts:1237](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1237)
