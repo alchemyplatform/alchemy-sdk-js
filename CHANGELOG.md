@@ -4,7 +4,7 @@
 
 ### Major Changes
 
-## 3.1.0
+## 2.12.0
 
 ### Major Changes
 
