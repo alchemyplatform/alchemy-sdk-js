@@ -23,7 +23,7 @@ The block number that the NFT was minted on.
 
 #### Defined in
 
-[src/types/nft-types.ts:818](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L818)
+[src/types/nft-types.ts:818](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/nft-types.ts#L818)
 
 ___
 
@@ -35,7 +35,7 @@ The address that the NFT was minted to.
 
 #### Defined in
 
-[src/types/nft-types.ts:816](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L816)
+[src/types/nft-types.ts:816](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/nft-types.ts#L816)
 
 ___
 
@@ -47,7 +47,7 @@ The timestamp the NFT was minted on.
 
 #### Defined in
 
-[src/types/nft-types.ts:820](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L820)
+[src/types/nft-types.ts:820](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/nft-types.ts#L820)
 
 ___
 
@@ -59,4 +59,4 @@ The transaction hash of the transaction that minted the NFT.
 
 #### Defined in
 
-[src/types/nft-types.ts:822](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L822)
+[src/types/nft-types.ts:822](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/nft-types.ts#L822)

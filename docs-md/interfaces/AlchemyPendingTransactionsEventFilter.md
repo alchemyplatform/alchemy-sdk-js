@@ -37,7 +37,7 @@ present, then this filter will return transactions sent from the
 
 #### Defined in
 
-[src/types/types.ts:634](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L634)
+[src/types/types.ts:636](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L636)
 
 ___
 
@@ -54,7 +54,7 @@ response as subscribing to `newPendingTransactions`.
 
 #### Defined in
 
-[src/types/types.ts:654](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L654)
+[src/types/types.ts:656](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L656)
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:624](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L624)
+[src/types/types.ts:626](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L626)
 
 ___
 
@@ -81,4 +81,4 @@ present, then this filter will return transactions sent from the
 
 #### Defined in
 
-[src/types/types.ts:644](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L644)
+[src/types/types.ts:646](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L646)

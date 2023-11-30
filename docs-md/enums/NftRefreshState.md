@@ -25,7 +25,7 @@ The contract has already been queued for refresh.
 
 #### Defined in
 
-[src/types/nft-types.ts:891](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L891)
+[src/types/nft-types.ts:891](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/nft-types.ts#L891)
 
 ___
 
@@ -37,7 +37,7 @@ The provided contract is not an NFT or does not contain metadata.
 
 #### Defined in
 
-[src/types/nft-types.ts:888](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L888)
+[src/types/nft-types.ts:888](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/nft-types.ts#L888)
 
 ___
 
@@ -49,7 +49,7 @@ The contract refresh is complete.
 
 #### Defined in
 
-[src/types/nft-types.ts:897](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L897)
+[src/types/nft-types.ts:897](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/nft-types.ts#L897)
 
 ___
 
@@ -61,7 +61,7 @@ The contract is currently being refreshed.
 
 #### Defined in
 
-[src/types/nft-types.ts:894](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L894)
+[src/types/nft-types.ts:894](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/nft-types.ts#L894)
 
 ___
 
@@ -73,7 +73,7 @@ The contract refresh has been queued and await execution.
 
 #### Defined in
 
-[src/types/nft-types.ts:900](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L900)
+[src/types/nft-types.ts:900](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/nft-types.ts#L900)
 
 ___
 
@@ -85,4 +85,4 @@ The contract was unable to be queued due to an internal error.
 
 #### Defined in
 
-[src/types/nft-types.ts:903](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L903)
+[src/types/nft-types.ts:903](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/nft-types.ts#L903)
