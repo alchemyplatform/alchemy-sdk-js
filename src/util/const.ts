@@ -49,6 +49,7 @@ export const EthersNetwork = {
   [Network.OPT_MAINNET]: 'optimism',
   [Network.OPT_KOVAN]: 'optimism-kovan',
   [Network.OPT_GOERLI]: 'optimism-goerli',
+  [Network.OPT_SEPOLIA]: 'optimism-sepolia',
   [Network.ARB_MAINNET]: 'arbitrum',
   [Network.ARB_RINKEBY]: 'arbitrum-rinkeby',
   [Network.ARB_GOERLI]: 'arbitrum-goerli',
@@ -59,7 +60,8 @@ export const EthersNetwork = {
   [Network.POLYGONZKEVM_MAINNET]: 'polygonzkevm-mainnet',
   [Network.POLYGONZKEVM_TESTNET]: 'polygonzkevm-testnet',
   [Network.BASE_MAINNET]: 'base-mainnet',
-  [Network.BASE_GOERLI]: 'base-goerli'
+  [Network.BASE_GOERLI]: 'base-goerli',
+  [Network.BASE_SEPOLIA]: 'base-sepolia'
 };
 
 /**
@@ -84,6 +86,10 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
     chainId: 11155111,
     name: 'sepolia'
   },
+  'optimism-sepolia': {
+    chainId: 11155420,
+    name: 'optimism-sepolia'
+  },
   'polygonzkevm-mainnet': {
     chainId: 1101,
     name: 'polygonzkevm-mainnet'
@@ -99,6 +105,10 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'base-goerli': {
     chainId: 84531,
     name: 'base-goerli'
+  },
+  'base-sepolia': {
+    chainId: 84532,
+    name: 'base-sepolia'
   }
 };
 

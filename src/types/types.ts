@@ -87,6 +87,7 @@ export enum Network {
   /** @deprecated - Will be removed in subsequent versions */
   OPT_KOVAN = 'opt-kovan',
   OPT_GOERLI = 'opt-goerli',
+  OPT_SEPOLIA = 'opt-sepolia',
   ARB_MAINNET = 'arb-mainnet',
   /** @deprecated - Will be removed in subsequent versions */
   ARB_RINKEBY = 'arb-rinkeby',
@@ -98,7 +99,8 @@ export enum Network {
   POLYGONZKEVM_MAINNET = 'polygonzkevm-mainnet',
   POLYGONZKEVM_TESTNET = 'polygonzkevm-testnet',
   BASE_MAINNET = 'base-mainnet',
-  BASE_GOERLI = 'base-goerli'
+  BASE_GOERLI = 'base-goerli',
+  BASE_SEPOLIA = 'base-sepolia'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */
