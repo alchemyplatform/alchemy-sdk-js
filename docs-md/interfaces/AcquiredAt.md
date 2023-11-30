@@ -21,7 +21,7 @@ Block number of the block at which an NFT was last acquired.
 
 #### Defined in
 
-[src/types/types.ts:612](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L612)
+[src/types/types.ts:614](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L614)
 
 ___
 
@@ -33,4 +33,4 @@ Timestamp of the block at which an NFT was last acquired.
 
 #### Defined in
 
-[src/types/types.ts:609](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L609)
+[src/types/types.ts:611](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L611)

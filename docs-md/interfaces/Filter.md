@@ -34,7 +34,7 @@ The address to filter by. If omitted, filters for all addresses.
 
 #### Defined in
 
-[src/types/types.ts:2620](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2620)
+[src/types/types.ts:2622](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2622)
 
 ___
 
@@ -46,7 +46,7 @@ The starting block (inclusive) to search for logs matching the filter.
 
 #### Defined in
 
-[src/types/types.ts:2610](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2610)
+[src/types/types.ts:2612](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2612)
 
 ___
 
@@ -58,7 +58,7 @@ The end block (inclusive) to search for logs matching the filter.
 
 #### Defined in
 
-[src/types/types.ts:2612](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2612)
+[src/types/types.ts:2614](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2614)
 
 ___
 
@@ -74,4 +74,4 @@ The topics to filter by, or null to match any topics.
 
 #### Defined in
 
-[src/types/types.ts:2622](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2622)
+[src/types/types.ts:2624](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2624)

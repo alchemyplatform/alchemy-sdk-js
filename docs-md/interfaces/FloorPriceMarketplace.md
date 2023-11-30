@@ -24,7 +24,7 @@ The link to the collection on the given marketplace
 
 #### Defined in
 
-[src/types/types.ts:969](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L969)
+[src/types/types.ts:971](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L971)
 
 ___
 
@@ -36,7 +36,7 @@ The floor price of the collection on the given marketplace
 
 #### Defined in
 
-[src/types/types.ts:965](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L965)
+[src/types/types.ts:967](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L967)
 
 ___
 
@@ -48,7 +48,7 @@ The currency in which the floor price is denominated
 
 #### Defined in
 
-[src/types/types.ts:967](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L967)
+[src/types/types.ts:969](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L969)
 
 ___
 
@@ -60,4 +60,4 @@ UTC timestamp of when the floor price was retrieved from the marketplace
 
 #### Defined in
 
-[src/types/types.ts:971](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L971)
+[src/types/types.ts:973](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L973)

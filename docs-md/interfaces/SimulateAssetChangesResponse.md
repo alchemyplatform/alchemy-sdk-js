@@ -22,7 +22,7 @@ An array of asset changes that resulted from the transaction.
 
 #### Defined in
 
-[src/types/types.ts:2008](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2008)
+[src/types/types.ts:2010](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2010)
 
 ___
 
@@ -34,7 +34,7 @@ Optional error field that is present if an error occurred.
 
 #### Defined in
 
-[src/types/types.ts:2015](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2015)
+[src/types/types.ts:2017](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2017)
 
 ___
 
@@ -47,4 +47,4 @@ field is undefined if an error occurred.
 
 #### Defined in
 
-[src/types/types.ts:2013](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2013)
+[src/types/types.ts:2015](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2015)

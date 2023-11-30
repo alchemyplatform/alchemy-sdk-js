@@ -21,4 +21,4 @@ Timestamp of the block from which the transaction event originated.
 
 #### Defined in
 
-[src/types/types.ts:505](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L505)
+[src/types/types.ts:507](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L507)

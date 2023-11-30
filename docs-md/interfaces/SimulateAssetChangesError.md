@@ -27,4 +27,4 @@ The error message.
 
 #### Defined in
 
-[src/types/types.ts:1937](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L1937)
+[src/types/types.ts:1939](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L1939)

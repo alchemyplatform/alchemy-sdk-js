@@ -219,7 +219,7 @@ Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespa
 
 #### Defined in
 
-[src/types/types.ts:2452](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2452)
+[src/types/types.ts:2454](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2454)
 
 ___
 
@@ -232,7 +232,7 @@ filters compatible with other ethers events.
 
 #### Defined in
 
-[src/types/types.ts:1870](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L1870)
+[src/types/types.ts:1872](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L1872)
 
 ___
 
@@ -245,7 +245,7 @@ also include Alchemy's Subscription API.
 
 #### Defined in
 
-[src/types/types.ts:1864](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L1864)
+[src/types/types.ts:1866](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L1866)
 
 ___
 
@@ -258,7 +258,7 @@ least one of the fields to be set.
 
 #### Defined in
 
-[src/types/types.ts:1853](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L1853)
+[src/types/types.ts:1855](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L1855)
 
 ___
 
@@ -281,7 +281,7 @@ methods in the [DebugNamespace](classes/DebugNamespace.md).
 
 #### Defined in
 
-[src/types/types.ts:2513](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2513)
+[src/types/types.ts:2515](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2515)
 
 ___
 
@@ -304,7 +304,7 @@ Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespa
 
 #### Defined in
 
-[src/types/types.ts:2446](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2446)
+[src/types/types.ts:2448](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2448)
 
 ___
 
@@ -318,7 +318,7 @@ The keys are the addresses of the accounts, mapped to its corresponding state.
 
 #### Defined in
 
-[src/types/types.ts:2630](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2630)
+[src/types/types.ts:2632](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2632)
 
 ___
 
@@ -340,7 +340,7 @@ The level of verbosity for the logger.
 
 #### Defined in
 
-[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/util/logger.ts#L22)
+[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/util/logger.ts#L22)
 
 ___
 
@@ -353,7 +353,7 @@ Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespa
 
 #### Defined in
 
-[src/types/types.ts:2438](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2438)
+[src/types/types.ts:2440](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2440)
 
 ___
 
@@ -366,7 +366,7 @@ Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespa
 
 #### Defined in
 
-[src/types/types.ts:2430](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2430)
+[src/types/types.ts:2432](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2432)
 
 ___
 
@@ -384,7 +384,7 @@ Requires an array with at least one value.
 
 #### Defined in
 
-[src/types/types.ts:2656](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2656)
+[src/types/types.ts:2658](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2658)
 
 ___
 
@@ -405,7 +405,7 @@ Implementation copied over from
 
 #### Defined in
 
-[src/types/types.ts:2650](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2650)
+[src/types/types.ts:2652](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2652)
 
 ___
 
@@ -415,7 +415,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:160](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L160)
+[src/types/types.ts:162](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L162)
 
 ___
 
@@ -427,7 +427,7 @@ The parameters to use with the [CoreNamespace.getTransactionReceipts](classes/Co
 
 #### Defined in
 
-[src/types/types.ts:1488](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L1488)
+[src/types/types.ts:1490](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L1490)
 
 ___
 
@@ -478,7 +478,7 @@ Converts a hex string to a decimal number.
 
 #### Defined in
 
-[src/api/util.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/api/util.ts#L9)
+[src/api/util.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/api/util.ts#L9)
 
 ___
 
@@ -500,7 +500,7 @@ Checks if a value is a hex string.
 
 #### Defined in
 
-[src/api/util.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/api/util.ts#L29)
+[src/api/util.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/api/util.ts#L29)
 
 ___
 
@@ -522,7 +522,7 @@ Configures the verbosity of logging. The default log level is `info`.
 
 #### Defined in
 
-[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/util/logger.ts#L56)
+[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/util/logger.ts#L56)
 
 ___
 
@@ -544,4 +544,4 @@ Converts a number to a hex string.
 
 #### Defined in
 
-[src/api/util.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/api/util.ts#L19)
+[src/api/util.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/api/util.ts#L19)

@@ -21,7 +21,7 @@ The contract address of the NFT.
 
 #### Defined in
 
-[src/types/types.ts:2357](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2357)
+[src/types/types.ts:2359](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2359)
 
 ___
 
@@ -34,4 +34,4 @@ tracking all NFTs for the provided contract address.
 
 #### Defined in
 
-[src/types/types.ts:2362](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2362)
+[src/types/types.ts:2364](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2364)

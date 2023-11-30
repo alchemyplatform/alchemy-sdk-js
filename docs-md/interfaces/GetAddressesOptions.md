@@ -21,7 +21,7 @@ Number of addresses to fetch.
 
 #### Defined in
 
-[src/types/types.ts:2274](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2274)
+[src/types/types.ts:2276](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2276)
 
 ___
 
@@ -33,4 +33,4 @@ Page
 
 #### Defined in
 
-[src/types/types.ts:2277](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5992f68/src/types/types.ts#L2277)
+[src/types/types.ts:2279](https://github.com/alchemyplatform/alchemy-sdk-js/blob/432c999/src/types/types.ts#L2279)
