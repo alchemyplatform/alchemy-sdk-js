@@ -29,7 +29,7 @@ Defaults to `false`.
 
 #### Defined in
 
-[src/types/types.ts:1409](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1409)
+[src/types/types.ts:1411](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L1411)
 
 ___
 
@@ -41,4 +41,4 @@ Specified type is `PRESTATE_TRACER`.
 
 #### Defined in
 
-[src/types/types.ts:1404](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1404)
+[src/types/types.ts:1406](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L1406)
