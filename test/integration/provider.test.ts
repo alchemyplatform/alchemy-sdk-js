@@ -162,4 +162,15 @@ describe('AlchemyProvider', () => {
   // // TODO(ethers): Write tests to make sure that the SDK's provider instance
   // // has the correct network mappings compared to Ethers.
   // it('network mappings should be correct', () => {});
+
+  it('custom', done => {
+    let eventCount = 0;
+    alchemy.ws.on('block', blockNumber => {
+      eventCount++;
+      console.log(blockNumber);
+      if (eventCount === 10) {
+        done();
+      }
+    });
+  });
 });

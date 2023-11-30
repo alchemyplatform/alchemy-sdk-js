@@ -303,6 +303,13 @@ export class AlchemyWebSocketProvider
     processFunc: (result: any) => void,
     event?: EthersEvent
   ): Promise<void> {
+    if (event === undefined) {
+      console.error(
+        `NEWLOG: alchemy._subscribe() called with undefined event for tag: ${tag}, params: ${param}`
+      );
+      console.trace();
+      return super._subscribe(tag, param, processFunc);
+    }
     let subIdPromise = this._subIds[tag];
 
     // BEGIN MODIFIED CODE
@@ -319,6 +326,9 @@ export class AlchemyWebSocketProvider
 
     // BEGIN MODIFIED CODE
     const resolvedParams = await Promise.all(param);
+    console.log(
+      `NEWLOG: Setting virtual subscription ID ${subId} with event: ${event}. event type: ${event?.type}`
+    );
     this.virtualSubscriptionsById.set(subId, {
       event: event!,
       method: 'eth_subscribe',
@@ -704,6 +714,15 @@ export class AlchemyWebSocketProvider
     const subscription = this.virtualSubscriptionsById.get(virtualId);
     if (!subscription) {
       return;
+    }
+    if (
+      subscription.event === undefined ||
+      subscription.event.type === undefined
+    ) {
+      console.error(
+        `NEWLOG: NO event found for virtualId: '${virtualId}' for subscription: ${subscription}`
+      );
+      console.error(`Underlying event: ${subscription.event}`);
     }
     this.emitGenericEvent(subscription, result);
   }
