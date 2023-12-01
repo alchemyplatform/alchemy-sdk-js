@@ -4,6 +4,12 @@
 
 ### Major Changes
 
+## 3.1.0
+
+### Major Changes
+
+- Added support for Optimism Sepolia and Base Sepolia via the `Network.OPT_SEPOLIA` and `Network.BASE_SEPOLIA` enums.
+
 ### Minor Changes
 
 ## 3.0.0

@@ -17,6 +17,7 @@ available on which networks
 - [ASTAR\_MAINNET](Network.md#astar_mainnet)
 - [BASE\_GOERLI](Network.md#base_goerli)
 - [BASE\_MAINNET](Network.md#base_mainnet)
+- [BASE\_SEPOLIA](Network.md#base_sepolia)
 - [ETH\_GOERLI](Network.md#eth_goerli)
 - [ETH\_MAINNET](Network.md#eth_mainnet)
 - [ETH\_SEPOLIA](Network.md#eth_sepolia)
@@ -24,6 +25,7 @@ available on which networks
 - [MATIC\_MUMBAI](Network.md#matic_mumbai)
 - [OPT\_GOERLI](Network.md#opt_goerli)
 - [OPT\_MAINNET](Network.md#opt_mainnet)
+- [OPT\_SEPOLIA](Network.md#opt_sepolia)
 - [POLYGONZKEVM\_MAINNET](Network.md#polygonzkevm_mainnet)
 - [POLYGONZKEVM\_TESTNET](Network.md#polygonzkevm_testnet)
 
@@ -35,7 +37,7 @@ available on which networks
 
 #### Defined in
 
-[src/types/types.ts:88](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L88)
+[src/types/types.ts:89](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L89)
 
 ___
 
@@ -45,7 +47,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:87](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L87)
+[src/types/types.ts:88](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L88)
 
 ___
 
@@ -55,7 +57,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:89](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L89)
+[src/types/types.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L90)
 
 ___
 
@@ -65,7 +67,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:92](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L92)
+[src/types/types.ts:93](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L93)
 
 ___
 
@@ -75,7 +77,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:96](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L96)
+[src/types/types.ts:97](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L97)
 
 ___
 
@@ -85,7 +87,17 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:95](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L95)
+[src/types/types.ts:96](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L96)
+
+___
+
+### BASE\_SEPOLIA
+
+• **BASE\_SEPOLIA** = `"base-sepolia"`
+
+#### Defined in
+
+[src/types/types.ts:98](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L98)
 
 ___
 
@@ -95,7 +107,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:83](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L83)
+[src/types/types.ts:83](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L83)
 
 ___
 
@@ -105,7 +117,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:82](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L82)
+[src/types/types.ts:82](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L82)
 
 ___
 
@@ -115,7 +127,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:84](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L84)
+[src/types/types.ts:84](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L84)
 
 ___
 
@@ -125,7 +137,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L90)
+[src/types/types.ts:91](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L91)
 
 ___
 
@@ -135,7 +147,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:91](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L91)
+[src/types/types.ts:92](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L92)
 
 ___
 
@@ -145,7 +157,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:86](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L86)
+[src/types/types.ts:86](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L86)
 
 ___
 
@@ -155,7 +167,17 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:85](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L85)
+[src/types/types.ts:85](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L85)
+
+___
+
+### OPT\_SEPOLIA
+
+• **OPT\_SEPOLIA** = `"opt-sepolia"`
+
+#### Defined in
+
+[src/types/types.ts:87](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L87)
 
 ___
 
@@ -165,7 +187,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:93](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L93)
+[src/types/types.ts:94](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L94)
 
 ___
 
@@ -175,4 +197,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:94](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L94)
+[src/types/types.ts:95](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L95)

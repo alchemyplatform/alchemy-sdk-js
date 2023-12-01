@@ -22,7 +22,7 @@ Array of NFT filters the webhook should track.
 
 #### Defined in
 
-[src/types/types.ts:1163](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1163)
+[src/types/types.ts:1165](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L1165)
 
 ___
 
@@ -35,4 +35,4 @@ created on network of the app provided in the api key config.
 
 #### Defined in
 
-[src/types/types.ts:1168](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/types.ts#L1168)
+[src/types/types.ts:1170](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/types.ts#L1170)

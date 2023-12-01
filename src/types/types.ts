@@ -84,6 +84,7 @@ export enum Network {
   ETH_SEPOLIA = 'eth-sepolia',
   OPT_MAINNET = 'opt-mainnet',
   OPT_GOERLI = 'opt-goerli',
+  OPT_SEPOLIA = 'opt-sepolia',
   ARB_MAINNET = 'arb-mainnet',
   ARB_GOERLI = 'arb-goerli',
   ARB_SEPOLIA = 'arb-sepolia',
@@ -93,7 +94,8 @@ export enum Network {
   POLYGONZKEVM_MAINNET = 'polygonzkevm-mainnet',
   POLYGONZKEVM_TESTNET = 'polygonzkevm-testnet',
   BASE_MAINNET = 'base-mainnet',
-  BASE_GOERLI = 'base-goerli'
+  BASE_GOERLI = 'base-goerli',
+  BASE_SEPOLIA = 'base-sepolia'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */

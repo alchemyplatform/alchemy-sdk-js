@@ -23,7 +23,7 @@ The fee payment amount as a decimal integer string.
 
 #### Defined in
 
-[src/types/nft-types.ts:784](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L784)
+[src/types/nft-types.ts:784](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/nft-types.ts#L784)
 
 ___
 
@@ -35,7 +35,7 @@ The number of decimals of the token used for the payment.
 
 #### Defined in
 
-[src/types/nft-types.ts:792](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L792)
+[src/types/nft-types.ts:792](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/nft-types.ts#L792)
 
 ___
 
@@ -47,7 +47,7 @@ The symbol of the token used for the payment.
 
 #### Defined in
 
-[src/types/nft-types.ts:789](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L789)
+[src/types/nft-types.ts:789](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/nft-types.ts#L789)
 
 ___
 
@@ -57,4 +57,4 @@ ___
 
 #### Defined in
 
-[src/types/nft-types.ts:786](https://github.com/alchemyplatform/alchemy-sdk-js/blob/277f926/src/types/nft-types.ts#L786)
+[src/types/nft-types.ts:786](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/nft-types.ts#L786)
