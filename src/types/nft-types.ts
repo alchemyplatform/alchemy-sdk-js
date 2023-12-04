@@ -724,6 +724,9 @@ export interface NftSale {
   /** The marketplace the sale took place on. */
   marketplace: NftSaleMarketplace;
 
+  /** The marketplace address the sale was on. */
+  marketplaceAddress: string;
+
   /** The NFT contract address. */
   contractAddress: string;
 
@@ -1119,8 +1122,13 @@ export interface OpenSeaCollectionMetadata {
   safelistRequestStatus?: OpenSeaSafelistRequestStatus;
   /** The image URL determined by OpenSea. */
   imageUrl?: string;
-  /** The banner image URL determined by OpenSea. */
+  /**
+   * The banner image URL determined by OpenSea.
+   * @deprecated Use {@link bannerImageUrl} instead.
+   */
   imageBannerUrl?: string;
+  /** The banner image URL determined by OpenSea. */
+  bannerImageUrl?: string;
   /** The description of the collection on OpenSea. */
   description?: string;
   /** The homepage of the collection as determined by OpenSea. */

@@ -4,6 +4,11 @@
 
 ### Major Changes
 
+### Minor Changes
+
+- Added a missing `marketplaceAddress` field to the `NftSale` in `NftNamespace.getNftSales()`.
+- Fixed an incorrect field name for `bannerImageUrl` in `OpenSeaCollectionMetadata`. Deprecated the old field name `imageBannerUrl`.
+
 ## 3.1.0
 
 ### Major Changes

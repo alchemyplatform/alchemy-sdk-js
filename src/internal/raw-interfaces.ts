@@ -327,6 +327,7 @@ export interface RawGetNftSalesResponse {
 
 export interface RawNftSale {
   marketplace: string;
+  marketplaceAddress: string;
   contractAddress: string;
   tokenId: string;
   quantity: string;
