@@ -1399,12 +1399,14 @@ describe('NFT module', () => {
 
   describe('getNftSales', () => {
     const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
+    const marketplaceAddress = '0x000440f08436a7b866d1ae42db5e0be801da722a';
     const tokenId = '42';
     const buyerAddress = '0xa56c6b57127e8881fbe51046058d0ddc1bb9e24f';
     const sellerAddress = '0xb60653cc0acff21cdf59e57bcd5de99e305a4c1c';
     const templateResponse: RawGetNftSalesResponse = {
       nftSales: [
         createRawNftSale(
+          marketplaceAddress,
           contractAddress,
           tokenId,
           NftSaleMarketplace.LOOKSRARE,
@@ -1413,6 +1415,7 @@ describe('NFT module', () => {
           sellerAddress
         ),
         createRawNftSale(
+          marketplaceAddress,
           contractAddress,
           tokenId,
           NftSaleMarketplace.SEAPORT,
@@ -1421,6 +1424,7 @@ describe('NFT module', () => {
           sellerAddress
         ),
         createRawNftSale(
+          marketplaceAddress,
           contractAddress,
           tokenId,
           NftSaleMarketplace.X2Y2,

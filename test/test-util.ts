@@ -177,6 +177,7 @@ export function createOwnedNft(
 }
 
 export function createRawNftSale(
+  marketplaceAddress: string,
   contractAddress: string,
   tokenId: string,
   marketplace: NftSaleMarketplace,
@@ -195,6 +196,7 @@ export function createRawNftSale(
     blockNumber: 15948091,
     bundleIndex: 0,
     buyerAddress,
+    marketplaceAddress,
     contractAddress,
     logIndex: 392,
     marketplace,
