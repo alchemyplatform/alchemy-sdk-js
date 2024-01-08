@@ -644,7 +644,7 @@ export async function isAirdropNft(
   config: AlchemyConfig,
   contractAddress: string,
   tokenId: string,
-  srcMethod = 'isAirdropNFT'
+  srcMethod = 'isAirdropNft'
 ): Promise<IsAirdropNftResponse> {
   return requestHttpWithBackoff<isAirdropNftParams, RawIsAirdropNftResponse>(
     config,
