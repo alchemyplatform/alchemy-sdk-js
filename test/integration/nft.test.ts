@@ -622,6 +622,16 @@ describe('E2E integration tests', () => {
     expect(typeof response.contractAddresses[0]).toEqual('string');
   });
 
+  it('reportSpam()', async () => {
+    const response = await alchemy.nft.reportSpam(contractAddress);
+    expect(typeof response).toEqual('string');
+  });
+
+  it('isAirdropNFT()', async () => {
+    const response = await alchemy.nft.isAirdropNFT(contractAddress, '0');
+    expect(typeof response.isAirdrop).toEqual('boolean');
+  });
+
   it('getFloorPrice()', async () => {
     const response = await alchemy.nft.getFloorPrice(contractAddress);
     expect(response.openSea).toBeDefined();

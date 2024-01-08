@@ -25,6 +25,7 @@ import {
   GetOwnersForNftResponse,
   GetSpamContractsResponse,
   GetTransfersForContractOptions,
+  IsAirdropNFTResponse,
   IsSpamContractResponse,
   Nft,
   NftAttributesResponse,
@@ -44,6 +45,7 @@ import {
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
+  ReportSpamResponse,
   SearchContractMetadataResponse,
   TransfersNftResponse
 } from '../types/nft-types';
@@ -85,6 +87,7 @@ import {
   RawGetOwnersForContractResponse,
   RawGetOwnersForContractWithTokenBalancesResponse,
   RawGetSpamContractsResponse,
+  RawIsAirdropNFTResponse,
   RawIsSpamContractResponse,
   RawNft,
   RawNftAttributesResponse,
@@ -93,6 +96,7 @@ import {
   RawOwnedBaseNft,
   RawOwnedNft,
   RawReingestContractResponse,
+  RawReportSpamResponse,
   RawSearchContractMetadataResponse
 } from './raw-interfaces';
 
@@ -622,6 +626,40 @@ export async function getSpamContracts(
   );
 }
 
+export async function reportSpam(
+  config: AlchemyConfig,
+  contractAddress: string,
+  srcMethod = 'reportSpam'
+): Promise<ReportSpamResponse> {
+  return requestHttpWithBackoff<ReportSpamParams, RawReportSpamResponse>(
+    config,
+    AlchemyApiType.NFT,
+    'reportSpam',
+    srcMethod,
+    {
+      contractAddress
+    }
+  );
+}
+
+export async function isAirdropNFT(
+  config: AlchemyConfig,
+  contractAddress: string,
+  tokenId: string,
+  srcMethod = 'isAirdropNFT'
+): Promise<IsAirdropNFTResponse> {
+  return requestHttpWithBackoff<IsAirdropNFTParams, RawIsAirdropNFTResponse>(
+    config,
+    AlchemyApiType.NFT,
+    'isAirdropNFT',
+    srcMethod,
+    {
+      contractAddress,
+      tokenId
+    }
+  );
+}
+
 export async function getFloorPrice(
   config: AlchemyConfig,
   contractAddress: string,
@@ -1011,6 +1049,25 @@ interface GetNftMetadataParams {
  */
 interface IsSpamContractParams {
   contractAddress: string;
+}
+
+/**
+ * Interface for the `reportSpam` endpoint.
+ *
+ * @internal
+ */
+interface ReportSpamParams {
+  contractAddress: string;
+}
+
+/**
+ * Interface for the `isAirdropNFT` endpoint.
+ *
+ * @internal
+ */
+interface IsAirdropNFTParams {
+  contractAddress: string;
+  tokenId: string;
 }
 
 /**

@@ -1348,6 +1348,34 @@ describe('NFT module', () => {
     });
   });
 
+  describe('reportSpam', () => {
+    const spamContract = '0x000440f08436a7b866d1ae42db5e0be801da722a';
+    it('calls with the correct parameters', async () => {
+      mock.onGet().reply(200, true);
+      await alchemy.nft.reportSpam(spamContract);
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        spamContract
+      );
+    });
+  });
+
+  describe('isAirdropNFT', () => {
+    const contract = '0x000440f08436a7b866d1ae42db5e0be801da722a';
+    const tokenId = '1';
+    it('calls with the correct parameters', async () => {
+      mock.onGet().reply(200, true);
+      await alchemy.nft.isAirdropNFT(contract, tokenId);
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        contract
+      );
+      expect(mock.history.get[0].params).toHaveProperty('tokenId', tokenId);
+    });
+  });
+
   describe('getNftFloorPrice', () => {
     const contractAddress = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d';
     const templateResponse: GetFloorPriceResponse = {
