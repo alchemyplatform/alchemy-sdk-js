@@ -384,7 +384,7 @@ export interface IsSpamContractResponse {
   isSpamContract: boolean;
 }
 
-export interface isAirdropNftResponse {
+export interface IsAirdropNftResponse {
   isAirdrop: boolean;
 }
 

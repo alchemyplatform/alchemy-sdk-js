@@ -54,6 +54,7 @@ import {
   GetOwnersForNftResponse,
   GetSpamContractsResponse,
   GetTransfersForContractOptions,
+  IsAirdropNftResponse,
   IsSpamContractResponse,
   Nft,
   NftAttributesResponse,
@@ -69,8 +70,7 @@ import {
   OwnedNft,
   OwnedNftsResponse,
   SearchContractMetadataResponse,
-  TransfersNftResponse,
-  isAirdropNftResponse
+  TransfersNftResponse
 } from '../types/nft-types';
 import {
   GetTransfersForOwnerOptions,
@@ -495,7 +495,7 @@ export class NftNamespace {
   isAirdropNft(
     contractAddress: string,
     tokenId: string
-  ): Promise<isAirdropNftResponse> {
+  ): Promise<IsAirdropNftResponse> {
     return isAirdropNft(this.config, contractAddress, tokenId);
   }
 

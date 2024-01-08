@@ -25,6 +25,7 @@ import {
   GetOwnersForNftResponse,
   GetSpamContractsResponse,
   GetTransfersForContractOptions,
+  IsAirdropNftResponse,
   IsSpamContractResponse,
   Nft,
   NftAttributesResponse,
@@ -45,8 +46,7 @@ import {
   OwnedNft,
   OwnedNftsResponse,
   SearchContractMetadataResponse,
-  TransfersNftResponse,
-  isAirdropNftResponse
+  TransfersNftResponse
 } from '../types/nft-types';
 import {
   AssetTransfersCategory,
@@ -86,6 +86,7 @@ import {
   RawGetOwnersForContractResponse,
   RawGetOwnersForContractWithTokenBalancesResponse,
   RawGetSpamContractsResponse,
+  RawIsAirdropNftResponse,
   RawIsSpamContractResponse,
   RawNft,
   RawNftAttributesResponse,
@@ -94,8 +95,7 @@ import {
   RawOwnedBaseNft,
   RawOwnedNft,
   RawReingestContractResponse,
-  RawSearchContractMetadataResponse,
-  RawisAirdropNftResponse
+  RawSearchContractMetadataResponse
 } from './raw-interfaces';
 
 /**
@@ -645,8 +645,8 @@ export async function isAirdropNft(
   contractAddress: string,
   tokenId: string,
   srcMethod = 'isAirdropNFT'
-): Promise<isAirdropNftResponse> {
-  return requestHttpWithBackoff<isAirdropNftParams, RawisAirdropNftResponse>(
+): Promise<IsAirdropNftResponse> {
+  return requestHttpWithBackoff<isAirdropNftParams, RawIsAirdropNftResponse>(
     config,
     AlchemyApiType.NFT,
     'isAirdropNFT',
