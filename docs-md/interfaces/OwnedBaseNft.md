@@ -28,7 +28,7 @@ The token balance of the NFT.
 
 #### Defined in
 
-[src/types/nft-types.ts:294](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/nft-types.ts#L294)
+[src/types/nft-types.ts:294](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/types/nft-types.ts#L294)
 
 ___
 
@@ -44,7 +44,7 @@ The contract address of the NFT.
 
 #### Defined in
 
-[src/types/nft-types.ts:1228](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/nft-types.ts#L1228)
+[src/types/nft-types.ts:1240](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/types/nft-types.ts#L1240)
 
 ___
 
@@ -60,4 +60,4 @@ The NFT token ID as an integer string.
 
 #### Defined in
 
-[src/types/nft-types.ts:1230](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/nft-types.ts#L1230)
+[src/types/nft-types.ts:1242](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/types/nft-types.ts#L1242)

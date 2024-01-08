@@ -227,6 +227,8 @@ under the `alchemy.nft` namespace:
 - `verifyNftOwnership()`: Check whether the provided owner address owns the provided NFT contract addresses.
 - `isSpamContract()`: Check whether the given NFT contract address is a spam contract as defined by Alchemy (see the [NFT API FAQ](https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification))
 - `getSpamContracts()`: Returns a list of all spam contracts marked by Alchemy.
+- `reportSpam()`: Report feedback that a given NFT contract address is a spam contract as defined by Alchemy.
+- `isAirdropNft()`: Check whether the given NFT token is marked as an airdrop or not. Airdrops are defined as NFTs that were minted to a user address in a transaction sent by a different address.
 - `refreshNftMetadata()`: Refresh the cached NFT metadata for a contract address and a single tokenId.
 - `refreshContract()`: Enqueues the specified contract address to have all token ids' metadata refreshed.
 - `getFloorPrice()`: Return the floor prices of a NFT contract by marketplace.

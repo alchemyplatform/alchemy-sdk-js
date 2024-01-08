@@ -91,7 +91,7 @@ EthersWallet.constructor
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/api/alchemy-wallet.ts#L39)
+[src/api/alchemy-wallet.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/api/alchemy-wallet.ts#L39)
 
 ## Properties
 
@@ -173,7 +173,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/api/alchemy-wallet.ts#L31)
+[src/api/alchemy-wallet.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/api/alchemy-wallet.ts#L31)
 
 ___
 
@@ -321,7 +321,7 @@ EthersWallet.call
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:102](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/api/alchemy-wallet.ts#L102)
+[src/api/alchemy-wallet.ts:102](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/api/alchemy-wallet.ts#L102)
 
 ___
 
@@ -424,7 +424,7 @@ EthersWallet.estimateGas
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/api/alchemy-wallet.ts#L90)
+[src/api/alchemy-wallet.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/api/alchemy-wallet.ts#L90)
 
 ___
 
@@ -470,7 +470,7 @@ EthersWallet.getBalance
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:66](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/api/alchemy-wallet.ts#L66)
+[src/api/alchemy-wallet.ts:66](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/api/alchemy-wallet.ts#L66)
 
 ___
 
@@ -492,7 +492,7 @@ EthersWallet.getChainId
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:142](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/api/alchemy-wallet.ts#L142)
+[src/api/alchemy-wallet.ts:142](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/api/alchemy-wallet.ts#L142)
 
 ___
 
@@ -520,7 +520,7 @@ EthersWallet.getFeeData
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:166](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/api/alchemy-wallet.ts#L166)
+[src/api/alchemy-wallet.ts:166](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/api/alchemy-wallet.ts#L166)
 
 ___
 
@@ -542,7 +542,7 @@ EthersWallet.getGasPrice
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:151](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/api/alchemy-wallet.ts#L151)
+[src/api/alchemy-wallet.ts:151](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/api/alchemy-wallet.ts#L151)
 
 ___
 
@@ -571,7 +571,7 @@ EthersWallet.getTransactionCount
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:77](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/api/alchemy-wallet.ts#L77)
+[src/api/alchemy-wallet.ts:77](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/api/alchemy-wallet.ts#L77)
 
 ___
 
@@ -585,7 +585,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:182](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/api/alchemy-wallet.ts#L182)
+[src/api/alchemy-wallet.ts:182](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/api/alchemy-wallet.ts#L182)
 
 ___
 
@@ -615,7 +615,7 @@ EthersWallet.populateTransaction
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:117](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/api/alchemy-wallet.ts#L117)
+[src/api/alchemy-wallet.ts:117](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/api/alchemy-wallet.ts#L117)
 
 ___
 
@@ -645,7 +645,7 @@ EthersWallet.resolveName
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:178](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/api/alchemy-wallet.ts#L178)
+[src/api/alchemy-wallet.ts:178](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/api/alchemy-wallet.ts#L178)
 
 ___
 
@@ -673,7 +673,7 @@ EthersWallet.sendTransaction
 
 #### Defined in
 
-[src/api/alchemy-wallet.ts:131](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/api/alchemy-wallet.ts#L131)
+[src/api/alchemy-wallet.ts:131](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/api/alchemy-wallet.ts#L131)
 
 ___
 
