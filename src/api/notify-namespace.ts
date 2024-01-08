@@ -639,7 +639,10 @@ const WEBHOOK_NETWORK_TO_NETWORK: { [key: string]: Network } = {
   ARB_MAINNET: Network.ARB_MAINNET,
   ARB_GOERLI: Network.ARB_GOERLI,
   OPT_MAINNET: Network.OPT_MAINNET,
-  OPT_GOERLI: Network.OPT_GOERLI
+  OPT_GOERLI: Network.OPT_GOERLI,
+  BASE_MAINNET: Network.BASE_MAINNET,
+  BASE_GOERLI: Network.BASE_GOERLI,
+  BASE_SEPOLIA: Network.BASE_SEPOLIA
 };
 
 /** Mapping of the SDK's network representation the webhook API's network representation. */
