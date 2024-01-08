@@ -385,6 +385,10 @@ export interface RawGetSpamContractsResponse {
   contractAddresses: string[];
 }
 
+export interface RawIsAirdropNftResponse {
+  isAirdrop: boolean;
+}
+
 export interface RawDisplayNftForContract {
   tokenId: string;
   name: string | null;

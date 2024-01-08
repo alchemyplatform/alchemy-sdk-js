@@ -6,6 +6,7 @@
 
 ### Minor Changes
 
+- Added endpoints for `isAirdropNft()` and `reportSpam()` on the nft namespace.
 - Added a missing `marketplaceAddress` field to the `NftSale` in `NftNamespace.getNftSales()`.
 - Fixed an incorrect field name for `bannerImageUrl` in `OpenSeaCollectionMetadata`. Deprecated the old field name `imageBannerUrl`.
 

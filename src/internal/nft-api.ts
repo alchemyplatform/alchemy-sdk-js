@@ -25,6 +25,7 @@ import {
   GetOwnersForNftResponse,
   GetSpamContractsResponse,
   GetTransfersForContractOptions,
+  IsAirdropNftResponse,
   IsSpamContractResponse,
   Nft,
   NftAttributesResponse,
@@ -85,6 +86,7 @@ import {
   RawGetOwnersForContractResponse,
   RawGetOwnersForContractWithTokenBalancesResponse,
   RawGetSpamContractsResponse,
+  RawIsAirdropNftResponse,
   RawIsSpamContractResponse,
   RawNft,
   RawNftAttributesResponse,
@@ -622,6 +624,40 @@ export async function getSpamContracts(
   );
 }
 
+export async function reportSpam(
+  config: AlchemyConfig,
+  contractAddress: string,
+  srcMethod = 'reportSpam'
+): Promise<void> {
+  void requestHttpWithBackoff<ReportSpamParams, void>(
+    config,
+    AlchemyApiType.NFT,
+    'reportSpam',
+    srcMethod,
+    {
+      contractAddress
+    }
+  );
+}
+
+export async function isAirdropNft(
+  config: AlchemyConfig,
+  contractAddress: string,
+  tokenId: string,
+  srcMethod = 'isAirdropNft'
+): Promise<IsAirdropNftResponse> {
+  return requestHttpWithBackoff<isAirdropNftParams, RawIsAirdropNftResponse>(
+    config,
+    AlchemyApiType.NFT,
+    'isAirdropNFT',
+    srcMethod,
+    {
+      contractAddress,
+      tokenId
+    }
+  );
+}
+
 export async function getFloorPrice(
   config: AlchemyConfig,
   contractAddress: string,
@@ -1011,6 +1047,25 @@ interface GetNftMetadataParams {
  */
 interface IsSpamContractParams {
   contractAddress: string;
+}
+
+/**
+ * Interface for the `reportSpam` endpoint.
+ *
+ * @internal
+ */
+interface ReportSpamParams {
+  contractAddress: string;
+}
+
+/**
+ * Interface for the `isAirdropNft` endpoint.
+ *
+ * @internal
+ */
+interface isAirdropNftParams {
+  contractAddress: string;
+  tokenId: string;
 }
 
 /**
