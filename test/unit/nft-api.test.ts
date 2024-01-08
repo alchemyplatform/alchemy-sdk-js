@@ -11,7 +11,6 @@ import {
   GetNftSalesOptions,
   GetNftsForOwnerOptions,
   GetOwnersForContractWithTokenBalancesResponse,
-  Network,
   Nft,
   NftAttributesResponse,
   NftContractBaseNftsResponse,
@@ -1362,26 +1361,18 @@ describe('NFT module', () => {
     });
   });
 
-  describe.only('isAirdropNft', () => {
+  describe('isAirdropNft', () => {
     const contract = '0x000440f08436a7b866d1ae42db5e0be801da722a';
     const tokenId = '1';
     it('calls with the correct parameters', async () => {
-      // mock.onGet().reply(200, true);
-      const alc = new Alchemy({
-        apiKey: 'xiPYaCBJ9iK46zxBAW2OCAxCoNC-UXdT',
-        network: Network.ETH_MAINNET
-      });
-      try {
-        await alc.nft.isAirdropNft(contract, tokenId);
-      } catch (e) {
-        console.log(e);
-      }
-      // expect(mock.history.get.length).toEqual(1);
-      // expect(mock.history.get[0].params).toHaveProperty(
-      //   'contractAddress',
-      //   contract
-      // );
-      // expect(mock.history.get[0].params).toHaveProperty('tokenId', tokenId);
+      mock.onGet().reply(200, true);
+      await alchemy.nft.isAirdropNft(contract, tokenId);
+      expect(mock.history.get.length).toEqual(1);
+      expect(mock.history.get[0].params).toHaveProperty(
+        'contractAddress',
+        contract
+      );
+      expect(mock.history.get[0].params).toHaveProperty('tokenId', tokenId);
     });
   });
 
