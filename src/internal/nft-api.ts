@@ -25,7 +25,6 @@ import {
   GetOwnersForNftResponse,
   GetSpamContractsResponse,
   GetTransfersForContractOptions,
-  IsAirdropNFTResponse,
   IsSpamContractResponse,
   Nft,
   NftAttributesResponse,
@@ -45,9 +44,9 @@ import {
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
-  ReportSpamResponse,
   SearchContractMetadataResponse,
-  TransfersNftResponse
+  TransfersNftResponse,
+  isAirdropNftResponse
 } from '../types/nft-types';
 import {
   AssetTransfersCategory,
@@ -87,7 +86,6 @@ import {
   RawGetOwnersForContractResponse,
   RawGetOwnersForContractWithTokenBalancesResponse,
   RawGetSpamContractsResponse,
-  RawIsAirdropNFTResponse,
   RawIsSpamContractResponse,
   RawNft,
   RawNftAttributesResponse,
@@ -96,8 +94,8 @@ import {
   RawOwnedBaseNft,
   RawOwnedNft,
   RawReingestContractResponse,
-  RawReportSpamResponse,
-  RawSearchContractMetadataResponse
+  RawSearchContractMetadataResponse,
+  RawisAirdropNftResponse
 } from './raw-interfaces';
 
 /**
@@ -630,8 +628,8 @@ export async function reportSpam(
   config: AlchemyConfig,
   contractAddress: string,
   srcMethod = 'reportSpam'
-): Promise<ReportSpamResponse> {
-  return requestHttpWithBackoff<ReportSpamParams, RawReportSpamResponse>(
+): Promise<void> {
+  void requestHttpWithBackoff<ReportSpamParams, void>(
     config,
     AlchemyApiType.NFT,
     'reportSpam',
@@ -642,13 +640,13 @@ export async function reportSpam(
   );
 }
 
-export async function isAirdropNFT(
+export async function isAirdropNft(
   config: AlchemyConfig,
   contractAddress: string,
   tokenId: string,
   srcMethod = 'isAirdropNFT'
-): Promise<IsAirdropNFTResponse> {
-  return requestHttpWithBackoff<IsAirdropNFTParams, RawIsAirdropNFTResponse>(
+): Promise<isAirdropNftResponse> {
+  return requestHttpWithBackoff<isAirdropNftParams, RawisAirdropNftResponse>(
     config,
     AlchemyApiType.NFT,
     'isAirdropNFT',
@@ -1061,11 +1059,11 @@ interface ReportSpamParams {
 }
 
 /**
- * Interface for the `isAirdropNFT` endpoint.
+ * Interface for the `isAirdropNft` endpoint.
  *
  * @internal
  */
-interface IsAirdropNFTParams {
+interface isAirdropNftParams {
   contractAddress: string;
   tokenId: string;
 }

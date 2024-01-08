@@ -384,9 +384,7 @@ export interface IsSpamContractResponse {
   isSpamContract: boolean;
 }
 
-export type ReportSpamResponse = string;
-
-export interface IsAirdropNFTResponse {
+export interface isAirdropNftResponse {
   isAirdrop: boolean;
 }
 

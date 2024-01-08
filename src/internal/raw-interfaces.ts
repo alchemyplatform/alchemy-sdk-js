@@ -385,9 +385,7 @@ export interface RawGetSpamContractsResponse {
   contractAddresses: string[];
 }
 
-export type RawReportSpamResponse = string;
-
-export interface RawIsAirdropNFTResponse {
+export interface RawisAirdropNftResponse {
   isAirdrop: boolean;
 }
 

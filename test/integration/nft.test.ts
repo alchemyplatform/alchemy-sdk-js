@@ -624,11 +624,11 @@ describe('E2E integration tests', () => {
 
   it('reportSpam()', async () => {
     const response = await alchemy.nft.reportSpam(contractAddress);
-    expect(typeof response).toEqual('string');
+    expect(typeof response).toEqual('undefined');
   });
 
-  it('isAirdropNFT()', async () => {
-    const response = await alchemy.nft.isAirdropNFT(contractAddress, '0');
+  it('isAirdropNft()', async () => {
+    const response = await alchemy.nft.isAirdropNft(contractAddress, '0');
     expect(typeof response.isAirdrop).toEqual('boolean');
   });
 

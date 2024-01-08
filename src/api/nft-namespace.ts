@@ -20,7 +20,7 @@ import {
   getSpamContracts,
   getTransfersForContract,
   getTransfersForOwner,
-  isAirdropNFT,
+  isAirdropNft,
   isSpamContract,
   refreshContract,
   refreshNftMetadata,
@@ -54,7 +54,6 @@ import {
   GetOwnersForNftResponse,
   GetSpamContractsResponse,
   GetTransfersForContractOptions,
-  IsAirdropNFTResponse,
   IsSpamContractResponse,
   Nft,
   NftAttributesResponse,
@@ -69,9 +68,9 @@ import {
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
-  ReportSpamResponse,
   SearchContractMetadataResponse,
-  TransfersNftResponse
+  TransfersNftResponse,
+  isAirdropNftResponse
 } from '../types/nft-types';
 import {
   GetTransfersForOwnerOptions,
@@ -460,7 +459,6 @@ export class NftNamespace {
    * https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification.
    *
    * @param contractAddress - The contract address to check.
-   * @beta
    */
   isSpamContract(contractAddress: string): Promise<IsSpamContractResponse> {
     return isSpamContract(this.config, contractAddress);
@@ -470,8 +468,6 @@ export class NftNamespace {
    * Returns a list of all spam contracts marked by Alchemy. For details on how
    * Alchemy marks spam contracts, go to
    * https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification.
-   *
-   * @beta
    */
   getSpamContracts(): Promise<GetSpamContractsResponse> {
     return getSpamContracts(this.config);
@@ -483,9 +479,8 @@ export class NftNamespace {
    * https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification.
    *
    * @param contractAddress - The contract address to check.
-   * @beta
    */
-  reportSpam(contractAddress: string): Promise<ReportSpamResponse> {
+  reportSpam(contractAddress: string): Promise<void> {
     return reportSpam(this.config, contractAddress);
   }
 
@@ -495,13 +490,13 @@ export class NftNamespace {
    * sent by a different address.
    *
    * @param contractAddress - The contract address to check.
-   * @beta
+   * @param tokenId - Token id of the NFT.
    */
-  isAirdropNFT(
+  isAirdropNft(
     contractAddress: string,
     tokenId: string
-  ): Promise<IsAirdropNFTResponse> {
-    return isAirdropNFT(this.config, contractAddress, tokenId);
+  ): Promise<isAirdropNftResponse> {
+    return isAirdropNft(this.config, contractAddress, tokenId);
   }
 
   /**
