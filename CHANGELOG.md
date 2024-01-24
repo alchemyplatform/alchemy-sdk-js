@@ -6,6 +6,14 @@
 
 ### Minor Changes
 
+## 3.1.2
+
+### Major Changes
+
+### Minor Changes
+
+- Upgraded the `axios` dependency to `v1.6.5`, fixing a vulnerable version #397. Thanks @mpsq for the contribution!
+
 ## 3.1.1
 
 ### Major Changes
