@@ -24,7 +24,7 @@ The link to the collection on the given marketplace
 
 #### Defined in
 
-[src/types/nft-types.ts:460](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/types/nft-types.ts#L460)
+[src/types/nft-types.ts:460](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/nft-types.ts#L460)
 
 ___
 
@@ -36,7 +36,7 @@ The floor price of the collection on the given marketplace
 
 #### Defined in
 
-[src/types/nft-types.ts:456](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/types/nft-types.ts#L456)
+[src/types/nft-types.ts:456](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/nft-types.ts#L456)
 
 ___
 
@@ -48,7 +48,7 @@ The currency in which the floor price is denominated
 
 #### Defined in
 
-[src/types/nft-types.ts:458](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/types/nft-types.ts#L458)
+[src/types/nft-types.ts:458](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/nft-types.ts#L458)
 
 ___
 
@@ -60,4 +60,4 @@ UTC timestamp of when the floor price was retrieved from the marketplace
 
 #### Defined in
 
-[src/types/nft-types.ts:462](https://github.com/alchemyplatform/alchemy-sdk-js/blob/6dc36f9/src/types/nft-types.ts#L462)
+[src/types/nft-types.ts:462](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/nft-types.ts#L462)
