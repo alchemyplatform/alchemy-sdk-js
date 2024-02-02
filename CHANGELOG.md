@@ -6,8 +6,24 @@
 
 ### Minor Changes
 
+## 3.1.2
+
+### Major Changes
+
+### Minor Changes
+
+- Upgraded the `axios` dependency to `v1.6.5`, fixing a vulnerable version #397. Thanks @mpsq for the contribution!
+
+## 3.1.1
+
+### Major Changes
+
+### Minor Changes
+
+- Added endpoints for `isAirdropNft()` and `reportSpam()` in `NftNamespace`.
 - Added a missing `marketplaceAddress` field to the `NftSale` in `NftNamespace.getNftSales()`.
 - Fixed an incorrect field name for `bannerImageUrl` in `OpenSeaCollectionMetadata`. Deprecated the old field name `imageBannerUrl`.
+- Added support for Base networks in `NotifyNamespace`.
 
 ## 3.1.0
 

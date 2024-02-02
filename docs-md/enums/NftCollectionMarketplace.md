@@ -19,4 +19,4 @@ Enum representing the supported NFT marketplaces on a
 
 #### Defined in
 
-[src/types/nft-types.ts:1214](https://github.com/alchemyplatform/alchemy-sdk-js/blob/5cfa150/src/types/nft-types.ts#L1214)
+[src/types/nft-types.ts:1226](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/nft-types.ts#L1226)
