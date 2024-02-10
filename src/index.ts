@@ -25,7 +25,7 @@ export type { AlchemyConfig } from './api/alchemy-config';
 
 export type { AlchemyProvider } from './api/alchemy-provider';
 
-export type { AlchemyWebSocketProvider } from './api/alchemy-websocket-provider';
+export { AlchemyWebSocketProvider } from './api/alchemy-websocket-provider';
 
 export type { NftNamespace } from './api/nft-namespace';
 
