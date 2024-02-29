@@ -23,6 +23,7 @@ available on which networks
 - [ETH\_SEPOLIA](Network.md#eth_sepolia)
 - [MATIC\_MAINNET](Network.md#matic_mainnet)
 - [MATIC\_MUMBAI](Network.md#matic_mumbai)
+- [MATIC\_AMOY](Network.md#matic_amoy)
 - [OPT\_GOERLI](Network.md#opt_goerli)
 - [OPT\_MAINNET](Network.md#opt_mainnet)
 - [OPT\_SEPOLIA](Network.md#opt_sepolia)
