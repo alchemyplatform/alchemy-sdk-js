@@ -1473,26 +1473,6 @@ ajv@^6.10.0, ajv@^6.12.4, ajv@^6.12.5:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-alchemy-sdk@^3.1.2:
-  version "3.1.2"
-  resolved "https://registry.npmjs.org/alchemy-sdk/-/alchemy-sdk-3.1.2.tgz"
-  integrity sha512-xpCgQRLektp6imKdGdHyuVHvbMGpaSe22+qvg9jjGx0Wwkh0XgPzSfKwAzFDlkCGMMdazhKCsHu22XP0xh1noQ==
-  dependencies:
-    "@ethersproject/abi" "^5.7.0"
-    "@ethersproject/abstract-provider" "^5.7.0"
-    "@ethersproject/bignumber" "^5.7.0"
-    "@ethersproject/bytes" "^5.7.0"
-    "@ethersproject/contracts" "^5.7.0"
-    "@ethersproject/hash" "^5.7.0"
-    "@ethersproject/networks" "^5.7.0"
-    "@ethersproject/providers" "^5.7.0"
-    "@ethersproject/units" "^5.7.0"
-    "@ethersproject/wallet" "^5.7.0"
-    "@ethersproject/web" "^5.7.0"
-    axios "^1.6.5"
-    sturdy-websocket "^0.2.1"
-    websocket "^1.0.34"
-
 ansi-escapes@^4.2.1, ansi-escapes@^4.3.0:
   version "4.3.2"
   resolved "https://registry.npmjs.org/ansi-escapes/-/ansi-escapes-4.3.2.tgz"

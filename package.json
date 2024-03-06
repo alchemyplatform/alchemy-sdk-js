@@ -67,7 +67,6 @@
     "@ethersproject/units": "^5.7.0",
     "@ethersproject/wallet": "^5.7.0",
     "@ethersproject/web": "^5.7.0",
-    "alchemy-sdk": "^3.1.2",
     "axios": "^1.6.5",
     "sturdy-websocket": "^0.2.1",
     "websocket": "^1.0.34"
