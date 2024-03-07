@@ -4,12 +4,6 @@
 
 ### Major Changes
 
-### Minor Changes
-
-## 3.1.3
-
-### Major Changes
-
 - Added support for Polygon Amoy network via the `Network.MATIC_AMOY` enum.
 
 ### Minor Changes
