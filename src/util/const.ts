@@ -51,6 +51,7 @@ export const EthersNetwork = {
   [Network.ARB_SEPOLIA]: 'arbitrum-sepolia',
   [Network.MATIC_MAINNET]: 'matic',
   [Network.MATIC_MUMBAI]: 'maticmum',
+  [Network.MATIC_AMOY]: 'maticamoy',
   [Network.ASTAR_MAINNET]: 'astar-mainnet',
   [Network.POLYGONZKEVM_MAINNET]: 'polygonzkevm-mainnet',
   [Network.POLYGONZKEVM_TESTNET]: 'polygonzkevm-testnet',
@@ -104,6 +105,10 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'base-sepolia': {
     chainId: 84532,
     name: 'base-sepolia'
+  },
+  maticamoy: {
+    chainId: 80002,
+    name: 'maticamoy'
   }
 };
 
