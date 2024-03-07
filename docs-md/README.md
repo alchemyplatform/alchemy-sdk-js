@@ -15,7 +15,7 @@ The SDK leverages Alchemy's hardened node infrastructure, guaranteeing best-in-c
 The SDK currently supports the following chains:
 
 - **Ethereum**: Mainnet, Goerli, Sepolia
-- **Polygon**: Mainnet, Mumbai
+- **Polygon**: Mainnet, Mumbai, Amoy
 - **Optimism**: Mainnet, Goerli, Kovan, Sepolia
 - **Arbitrum**: Mainnet, Goerli, Rinkeby, Sepolia
 - **Astar**: Mainnet
