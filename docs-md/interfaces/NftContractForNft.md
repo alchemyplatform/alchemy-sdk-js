@@ -39,7 +39,7 @@ The address of the NFT contract.
 
 #### Defined in
 
-[src/types/nft-types.ts:1159](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/nft-types.ts#L1159)
+[src/types/nft-types.ts:1159](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L1159)
 
 ___
 
@@ -55,7 +55,7 @@ The address that deployed the NFT contract.
 
 #### Defined in
 
-[src/types/nft-types.ts:1174](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/nft-types.ts#L1174)
+[src/types/nft-types.ts:1174](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L1174)
 
 ___
 
@@ -71,7 +71,7 @@ The block number the NFT contract deployed in.
 
 #### Defined in
 
-[src/types/nft-types.ts:1176](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/nft-types.ts#L1176)
+[src/types/nft-types.ts:1176](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L1176)
 
 ___
 
@@ -83,7 +83,7 @@ Whether the NFT contract is marked as spam.
 
 #### Defined in
 
-[src/types/nft-types.ts:1182](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/nft-types.ts#L1182)
+[src/types/nft-types.ts:1182](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L1182)
 
 ___
 
@@ -99,7 +99,7 @@ The name of the contract.
 
 #### Defined in
 
-[src/types/nft-types.ts:1163](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/nft-types.ts#L1163)
+[src/types/nft-types.ts:1163](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L1163)
 
 ___
 
@@ -115,7 +115,7 @@ OpenSea's metadata for the contract.
 
 #### Defined in
 
-[src/types/nft-types.ts:1172](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/nft-types.ts#L1172)
+[src/types/nft-types.ts:1172](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L1172)
 
 ___
 
@@ -127,7 +127,7 @@ Potential reasons why an NFT Contract was classified as spam.
 
 #### Defined in
 
-[src/types/nft-types.ts:1184](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/nft-types.ts#L1184)
+[src/types/nft-types.ts:1184](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L1184)
 
 ___
 
@@ -143,7 +143,7 @@ The symbol of the contract.
 
 #### Defined in
 
-[src/types/nft-types.ts:1165](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/nft-types.ts#L1165)
+[src/types/nft-types.ts:1165](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L1165)
 
 ___
 
@@ -159,7 +159,7 @@ The type of the token in the contract.
 
 #### Defined in
 
-[src/types/nft-types.ts:1161](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/nft-types.ts#L1161)
+[src/types/nft-types.ts:1161](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L1161)
 
 ___
 
@@ -176,4 +176,4 @@ available on ERC-721 contracts.
 
 #### Defined in
 
-[src/types/nft-types.ts:1170](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/nft-types.ts#L1170)
+[src/types/nft-types.ts:1170](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L1170)
