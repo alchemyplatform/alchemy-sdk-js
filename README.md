@@ -19,6 +19,7 @@ The SDK currently supports the following chains:
 - **Astar**: Mainnet
 - **PolygonZKEVM**: Mainnet, Testnet
 - **Base**: Mainnet, Goerli, Sepolia
+- **Zksync**: Mainnet, Sepolia
 
 You can find per-method documentation of the Alchemy SDK endpoints at the [Alchemy Docs linked in the sidebar](https://docs.alchemy.com/reference/alchemy-sdk-quickstart).
 

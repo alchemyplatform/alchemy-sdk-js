@@ -643,7 +643,9 @@ const WEBHOOK_NETWORK_TO_NETWORK: { [key: string]: Network } = {
   OPT_GOERLI: Network.OPT_GOERLI,
   BASE_MAINNET: Network.BASE_MAINNET,
   BASE_GOERLI: Network.BASE_GOERLI,
-  BASE_SEPOLIA: Network.BASE_SEPOLIA
+  BASE_SEPOLIA: Network.BASE_SEPOLIA,
+  ZKSYNC_MAINNET: Network.ZKSYNC_MAINNET,
+  ZKSYNC_SEPOLIA: Network.ZKSYNC_SEPOLIA
 };
 
 /** Mapping of the SDK's network representation the webhook API's network representation. */
