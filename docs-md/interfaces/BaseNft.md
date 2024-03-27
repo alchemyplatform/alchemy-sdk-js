@@ -31,7 +31,7 @@ The contract address of the NFT.
 
 #### Defined in
 
-[src/types/nft-types.ts:1240](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/nft-types.ts#L1240)
+[src/types/nft-types.ts:1240](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L1240)
 
 ___
 
@@ -43,4 +43,4 @@ The NFT token ID as an integer string.
 
 #### Defined in
 
-[src/types/nft-types.ts:1242](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/nft-types.ts#L1242)
+[src/types/nft-types.ts:1242](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L1242)

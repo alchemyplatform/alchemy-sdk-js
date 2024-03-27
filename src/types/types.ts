@@ -90,6 +90,7 @@ export enum Network {
   ARB_SEPOLIA = 'arb-sepolia',
   MATIC_MAINNET = 'polygon-mainnet',
   MATIC_MUMBAI = 'polygon-mumbai',
+  MATIC_AMOY = 'polygon-amoy',
   ASTAR_MAINNET = 'astar-mainnet',
   POLYGONZKEVM_MAINNET = 'polygonzkevm-mainnet',
   POLYGONZKEVM_TESTNET = 'polygonzkevm-testnet',

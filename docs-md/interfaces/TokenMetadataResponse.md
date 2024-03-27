@@ -24,7 +24,7 @@ contract and not available from other sources.
 
 #### Defined in
 
-[src/types/types.ts:263](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/types.ts#L263)
+[src/types/types.ts:264](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/types.ts#L264)
 
 ___
 
@@ -36,7 +36,7 @@ URL link to the token's logo. Is `null` if the logo is not available.
 
 #### Defined in
 
-[src/types/types.ts:266](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/types.ts#L266)
+[src/types/types.ts:267](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/types.ts#L267)
 
 ___
 
@@ -49,7 +49,7 @@ not available from other sources.
 
 #### Defined in
 
-[src/types/types.ts:251](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/types.ts#L251)
+[src/types/types.ts:252](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/types.ts#L252)
 
 ___
 
@@ -62,4 +62,4 @@ and not available from other sources.
 
 #### Defined in
 
-[src/types/types.ts:257](https://github.com/alchemyplatform/alchemy-sdk-js/blob/70f9997/src/types/types.ts#L257)
+[src/types/types.ts:258](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/types.ts#L258)
