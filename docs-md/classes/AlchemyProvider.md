@@ -105,6 +105,7 @@ Do not call this constructor directly. Instead, instantiate an instance of
 - [listenerCount](AlchemyProvider.md#listenercount)
 - [listeners](AlchemyProvider.md#listeners)
 - [lookupAddress](AlchemyProvider.md#lookupaddress)
+- [modifyFormatter](AlchemyProvider.md#modifyformatter)
 - [off](AlchemyProvider.md#off)
 - [on](AlchemyProvider.md#on)
 - [once](AlchemyProvider.md#once)
@@ -401,7 +402,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:41](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/api/alchemy-provider.ts#L41)
+[src/api/alchemy-provider.ts:41](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/api/alchemy-provider.ts#L41)
 
 ___
 
@@ -411,7 +412,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/api/alchemy-provider.ts#L43)
+[src/api/alchemy-provider.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/api/alchemy-provider.ts#L43)
 
 ___
 
@@ -463,7 +464,7 @@ ___
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:42](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/api/alchemy-provider.ts#L42)
+[src/api/alchemy-provider.ts:42](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/api/alchemy-provider.ts#L42)
 
 ## Accessors
 
@@ -935,7 +936,7 @@ JsonRpcProvider.\_startPending
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:209](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/api/alchemy-provider.ts#L209)
+[src/api/alchemy-provider.ts:211](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/api/alchemy-provider.ts#L211)
 
 ___
 
@@ -1135,7 +1136,7 @@ JsonRpcProvider.detectNetwork
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:197](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/api/alchemy-provider.ts#L197)
+[src/api/alchemy-provider.ts:199](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/api/alchemy-provider.ts#L199)
 
 ___
 
@@ -1614,7 +1615,7 @@ CommunityResourcable.isCommunityResource
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:219](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/api/alchemy-provider.ts#L219)
+[src/api/alchemy-provider.ts:221](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/api/alchemy-provider.ts#L221)
 
 ___
 
@@ -1705,6 +1706,29 @@ JsonRpcProvider.lookupAddress
 #### Defined in
 
 node_modules/@ethersproject/providers/lib/base-provider.d.ts:142
+
+___
+
+### modifyFormatter
+
+▸ `Private` **modifyFormatter**(): `void`
+
+Overrides the base `Formatter` class inherited from ethers to support
+returning custom fields in Ethers response types.
+
+For context, ethers has a `Formatter` class that is used to format the
+response from a JSON-RPC request. Any fields that are not defined in the
+`Formatter` class are removed from the returned response. By modifying the
+`Formatter` class in this method, we can add support for fields that are
+not defined in ethers.
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/api/alchemy-provider.ts:332](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/api/alchemy-provider.ts#L332)
 
 ___
 
@@ -1974,7 +1998,7 @@ JsonRpcProvider.send
 
 #### Defined in
 
-[src/api/alchemy-provider.ts:233](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/api/alchemy-provider.ts#L233)
+[src/api/alchemy-provider.ts:235](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/api/alchemy-provider.ts#L235)
 
 ___
 

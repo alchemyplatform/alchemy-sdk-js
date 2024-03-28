@@ -11,56 +11,56 @@ the total count.
 
 ### Properties
 
-- [blockHash](OwnedNftsResponse.md#blockhash)
 - [ownedNfts](OwnedNftsResponse.md#ownednfts)
 - [pageKey](OwnedNftsResponse.md#pagekey)
 - [totalCount](OwnedNftsResponse.md#totalcount)
+- [validAt](OwnedNftsResponse.md#validat)
 
 ## Properties
 
-### blockHash
-
-• **blockHash**: `string`
-
-The canonical head block hash of when your request was received.
-
-#### Defined in
-
-[src/types/types.ts:785](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L785)
-
-___
-
 ### ownedNfts
 
-• `Readonly` **ownedNfts**: [`OwnedNft`](OwnedNft.md)[]
+• **ownedNfts**: [`OwnedNft`](OwnedNft.md)[]
 
 The NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/types.ts:773](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L773)
+[src/types/nft-types.ts:233](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L233)
 
 ___
 
 ### pageKey
 
-• `Optional` `Readonly` **pageKey**: `string`
+• `Optional` **pageKey**: `string`
 
 Pagination token that can be passed into another request to fetch the next
 NFTs. If there is no page key, then there are no more NFTs to fetch.
 
 #### Defined in
 
-[src/types/types.ts:779](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L779)
+[src/types/nft-types.ts:239](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L239)
 
 ___
 
 ### totalCount
 
-• `Readonly` **totalCount**: `number`
+• **totalCount**: `number`
 
 The total count of NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/types.ts:782](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L782)
+[src/types/nft-types.ts:242](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L242)
+
+___
+
+### validAt
+
+• **validAt**: [`OwnedNftsValidAt`](OwnedNftsValidAt.md)
+
+Block Information of the block as of which the corresponding data is valid
+
+#### Defined in
+
+[src/types/nft-types.ts:247](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L247)

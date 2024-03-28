@@ -21,16 +21,16 @@ An array of owner addresses for the provided contract address
 
 #### Defined in
 
-[src/types/types.ts:871](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L871)
+[src/types/nft-types.ts:345](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L345)
 
 ___
 
 ### pageKey
 
-• **pageKey**: `string`
+• `Optional` **pageKey**: `string`
 
 Optional page key that is returned when a collection has more than 50,000 owners.
 
 #### Defined in
 
-[src/types/types.ts:874](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L874)
+[src/types/nft-types.ts:348](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L348)

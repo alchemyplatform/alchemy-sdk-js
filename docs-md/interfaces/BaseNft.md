@@ -12,27 +12,26 @@ metadata, token URI information, and media.
 
 - **`BaseNft`**
 
-  ↳ [`Nft`](Nft.md)
-
   ↳ [`OwnedBaseNft`](OwnedBaseNft.md)
 
 ## Table of contents
 
 ### Properties
 
-- [contract](BaseNft.md#contract)
+- [contractAddress](BaseNft.md#contractaddress)
 - [tokenId](BaseNft.md#tokenid)
-- [tokenType](BaseNft.md#tokentype)
 
 ## Properties
 
-### contract
+### contractAddress
 
-• **contract**: [`BaseNftContract`](BaseNftContract.md)
+• **contractAddress**: `string`
+
+The contract address of the NFT.
 
 #### Defined in
 
-[src/api/nft.ts:64](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/api/nft.ts#L64)
+[src/types/nft-types.ts:1240](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L1240)
 
 ___
 
@@ -44,16 +43,4 @@ The NFT token ID as an integer string.
 
 #### Defined in
 
-[src/api/nft.ts:66](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/api/nft.ts#L66)
-
-___
-
-### tokenType
-
-• **tokenType**: [`NftTokenType`](../enums/NftTokenType.md)
-
-The type of ERC token, if known.
-
-#### Defined in
-
-[src/api/nft.ts:68](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/api/nft.ts#L68)
+[src/types/nft-types.ts:1242](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L1242)

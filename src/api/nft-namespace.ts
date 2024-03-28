@@ -1,8 +1,8 @@
 import type { BigNumberish } from '@ethersproject/bignumber';
 
 import {
-  checkNftOwnership,
   computeRarity,
+  getCollectionMetadata,
   getContractMetadata,
   getContractMetadataBatch,
   getContractsForOwner,
@@ -20,20 +20,26 @@ import {
   getSpamContracts,
   getTransfersForContract,
   getTransfersForOwner,
+  isAirdropNft,
   isSpamContract,
   refreshContract,
   refreshNftMetadata,
+  reportSpam,
   searchContractMetadata,
   summarizeNftAttributes,
   verifyNftOwnership
 } from '../internal/nft-api';
 import {
+  BaseNft,
+  ComputeRarityResponse,
   GetBaseNftsForContractOptions,
   GetBaseNftsForOwnerOptions,
+  GetContractMetadataBatchResponse,
   GetContractsForOwnerOptions,
   GetContractsForOwnerResponse,
   GetFloorPriceResponse,
   GetMintedNftsOptions,
+  GetNftMetadataBatchResponse,
   GetNftMetadataOptions,
   GetNftSalesOptions,
   GetNftSalesOptionsByContractAddress,
@@ -46,11 +52,14 @@ import {
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftOptions,
   GetOwnersForNftResponse,
+  GetSpamContractsResponse,
   GetTransfersForContractOptions,
-  GetTransfersForOwnerOptions,
-  GetTransfersForOwnerTransferType,
-  NftAttributeRarity,
+  IsAirdropNftResponse,
+  IsSpamContractResponse,
+  Nft,
   NftAttributesResponse,
+  NftCollection,
+  NftContract,
   NftContractBaseNftsResponse,
   NftContractNftsResponse,
   NftMetadataBatchOptions,
@@ -60,11 +69,15 @@ import {
   OwnedBaseNftsResponse,
   OwnedNft,
   OwnedNftsResponse,
-  RefreshContractResult,
+  SearchContractMetadataResponse,
   TransfersNftResponse
+} from '../types/nft-types';
+import {
+  GetTransfersForOwnerOptions,
+  GetTransfersForOwnerTransferType,
+  RefreshContractResult
 } from '../types/types';
 import { AlchemyConfig } from './alchemy-config';
-import { BaseNft, Nft, NftContract } from './nft';
 
 /**
  * The NFT namespace contains all the functionality related to NFTs.
@@ -76,27 +89,6 @@ import { BaseNft, Nft, NftContract } from './nft';
 export class NftNamespace {
   /** @internal */
   constructor(private readonly config: AlchemyConfig) {}
-
-  /**
-   * Get the NFT metadata associated with the provided parameters.
-   *
-   * @param contractAddress - The contract address of the NFT.
-   * @param tokenId - Token id of the NFT.
-   * @param tokenType - Optionally specify the type of token to speed up the query.
-   * @param tokenUriTimeoutInMs - No set timeout by default - When metadata is
-   *   requested, this parameter is the timeout (in milliseconds) for the
-   *   website hosting the metadata to respond. If you want to only access the
-   *   cache and not live fetch any metadata for cache misses then set this value to 0.
-   * @public
-   * @deprecated Please use the method with the `options` overload. This method
-   * will be removed in a subsequent release.
-   */
-  getNftMetadata(
-    contractAddress: string,
-    tokenId: BigNumberish,
-    tokenType?: NftTokenType,
-    tokenUriTimeoutInMs?: number
-  ): Promise<Nft>;
 
   /**
    * Get the NFT metadata associated with the provided parameters.
@@ -142,7 +134,7 @@ export class NftNamespace {
   getNftMetadataBatch(
     tokens: Array<NftMetadataBatchToken>,
     options?: NftMetadataBatchOptions
-  ): Promise<Nft[]> {
+  ): Promise<GetNftMetadataBatchResponse> {
     return getNftMetadataBatch(this.config, tokens, options);
   }
 
@@ -163,8 +155,18 @@ export class NftNamespace {
    */
   getContractMetadataBatch(
     contractAddresses: string[]
-  ): Promise<NftContract[]> {
+  ): Promise<GetContractMetadataBatchResponse> {
     return getContractMetadataBatch(this.config, contractAddresses);
+  }
+
+  /**
+   * Get the NFT collection metadata associated with the provided parameters.
+   *
+   * @param collectionSlug - The OpenSea collection slug of the NFT.
+   * @beta
+   */
+  getCollectionMetadata(collectionSlug: string): Promise<NftCollection> {
+    return getCollectionMetadata(this.config, collectionSlug);
   }
 
   /**
@@ -203,6 +205,20 @@ export class NftNamespace {
   }
 
   /**
+   * Get all base NFTs for an owner.
+   *
+   * This method returns the base NFTs that omit the associated metadata. To get
+   * all NFTs with their associated metadata, use {@link GetNftsForOwnerOptions}.
+   *
+   * @param owner - The address of the owner.
+   * @param options - The optional parameters to use for the request.
+   * @public
+   */
+  getNftsForOwner(
+    owner: string,
+    options: GetBaseNftsForOwnerOptions
+  ): Promise<OwnedBaseNftsResponse>;
+  /**
    * Get all NFTs for an owner.
    *
    * This method returns the full NFTs in the contract. To get all NFTs without
@@ -216,20 +232,6 @@ export class NftNamespace {
     owner: string,
     options?: GetNftsForOwnerOptions
   ): Promise<OwnedNftsResponse>;
-  /**
-   * Get all base NFTs for an owner.
-   *
-   * This method returns the base NFTs that omit the associated metadata. To get
-   * all NFTs with their associated metadata, use {@link GetNftsForOwnerOptions}.
-   *
-   * @param owner - The address of the owner.
-   * @param options - The optional parameters to use for the request.
-   * @public
-   */
-  getNftsForOwner(
-    owner: string,
-    options?: GetBaseNftsForOwnerOptions
-  ): Promise<OwnedBaseNftsResponse>;
   getNftsForOwner(
     owner: string,
     options?: GetNftsForOwnerOptions | GetBaseNftsForOwnerOptions
@@ -372,6 +374,7 @@ export class NftNamespace {
    * @param options - The optional parameters to use for the request.
    * @public
    */
+  // TODO(v3): Add overload for withMetadata=false
   getContractsForOwner(
     owner: string,
     options?: GetContractsForOwnerOptions
@@ -424,22 +427,6 @@ export class NftNamespace {
   }
 
   /**
-   * DEPRECATED - Checks that the provided owner address owns one of more of the
-   * provided NFTs.
-   *
-   * @deprecated - Use {@link verifyNftOwnership} instead. This method will be
-   *   removed in a future release.
-   * @param owner - The owner address to check.
-   * @param contractAddresses - An array of NFT contract addresses to check ownership for.
-   */
-  checkNftOwnership(
-    owner: string,
-    contractAddresses: string[]
-  ): Promise<boolean> {
-    return checkNftOwnership(this.config, owner, contractAddresses);
-  }
-
-  /**
    * Checks that the provided owner address owns one of more of the provided
    * NFT. Returns a boolean indicating whether the owner address owns the provided NFT.
    *
@@ -472,9 +459,8 @@ export class NftNamespace {
    * https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification.
    *
    * @param contractAddress - The contract address to check.
-   * @beta
    */
-  isSpamContract(contractAddress: string): Promise<boolean> {
+  isSpamContract(contractAddress: string): Promise<IsSpamContractResponse> {
     return isSpamContract(this.config, contractAddress);
   }
 
@@ -482,11 +468,35 @@ export class NftNamespace {
    * Returns a list of all spam contracts marked by Alchemy. For details on how
    * Alchemy marks spam contracts, go to
    * https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification.
-   *
-   * @beta
    */
-  getSpamContracts(): Promise<string[]> {
+  getSpamContracts(): Promise<GetSpamContractsResponse> {
     return getSpamContracts(this.config);
+  }
+
+  /**
+   * Returns whether a contract is marked as spam or not by Alchemy. For more
+   * information on how we classify spam, go to our NFT API FAQ at
+   * https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification.
+   *
+   * @param contractAddress - The contract address to check.
+   */
+  reportSpam(contractAddress: string): Promise<void> {
+    return reportSpam(this.config, contractAddress);
+  }
+
+  /**
+   * Returns whether a token is marked as an airdrop or not.
+   * Airdrops are defined as NFTs that were minted to a user address in a transaction
+   * sent by a different address.
+   *
+   * @param contractAddress - The contract address to check.
+   * @param tokenId - Token id of the NFT.
+   */
+  isAirdropNft(
+    contractAddress: string,
+    tokenId: string
+  ): Promise<IsAirdropNftResponse> {
+    return isAirdropNft(this.config, contractAddress, tokenId);
   }
 
   /**
@@ -520,14 +530,12 @@ export class NftNamespace {
    *
    * @param contractAddress - Contract address for the NFT collection.
    * @param tokenId - Token id of the NFT.
-   * @param refreshCache - If true, bypass cache and recompute rarity snapshot.
    */
   computeRarity(
     contractAddress: string,
-    tokenId: BigNumberish,
-    refreshCache?: boolean
-  ): Promise<NftAttributeRarity[]> {
-    return computeRarity(this.config, contractAddress, tokenId, refreshCache);
+    tokenId: BigNumberish
+  ): Promise<ComputeRarityResponse> {
+    return computeRarity(this.config, contractAddress, tokenId);
   }
 
   /**
@@ -535,7 +543,9 @@ export class NftNamespace {
    *
    * @param query - The search string that you want to search for in contract metadata.
    */
-  searchContractMetadata(query: string): Promise<NftContract[]> {
+  searchContractMetadata(
+    query: string
+  ): Promise<SearchContractMetadataResponse> {
     return searchContractMetadata(this.config, query);
   }
 
@@ -543,13 +553,11 @@ export class NftNamespace {
    * Get a summary of attribute prevalence for an NFT collection.
    *
    * @param contractAddress - Contract address for the NFT collection.
-   * @param refreshCache - If true, bypass cache and recompute rarity snapshot.
    */
   summarizeNftAttributes(
-    contractAddress: string,
-    refreshCache?: boolean
+    contractAddress: string
   ): Promise<NftAttributesResponse> {
-    return summarizeNftAttributes(this.config, contractAddress, refreshCache);
+    return summarizeNftAttributes(this.config, contractAddress);
   }
 
   /**

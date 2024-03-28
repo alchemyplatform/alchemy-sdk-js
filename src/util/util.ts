@@ -1,30 +1,29 @@
-import { BigNumber } from '@ethersproject/bignumber';
-
-import { BaseNft, Nft, NftContract } from '../api/nft';
 import { toHex } from '../api/util';
 import {
-  RawBaseNft,
   RawContractBaseNft,
-  RawGetContractsForOwnerResponse,
   RawGetNftSalesResponse,
   RawNft,
-  RawNftAttributeRarity,
+  RawNftCollection,
   RawNftContract,
-  RawOpenSeaCollectionMetadata,
-  RawSpamInfo
+  RawNftContractForNft,
+  RawNftContractForOwner,
+  RawOwnedBaseNft
 } from '../internal/raw-interfaces';
 import {
-  GetContractsForOwnerResponse,
+  BaseNft,
   GetNftSalesResponse,
-  NftAttributeRarity,
+  Nft,
+  NftCollection,
+  NftCollectionMarketplace,
+  NftContract,
+  NftContractForNft,
+  NftContractForOwner,
   NftSaleMarketplace,
   NftSaleTakerType,
-  NftTokenType,
-  OpenSeaCollectionMetadata,
-  OpenSeaSafelistRequestStatus,
-  SpamInfo,
-  TokenUri
-} from '../types/types';
+  NftSpamClassification,
+  NftTokenType
+} from '../types/nft-types';
+import { OpenSeaSafelistRequestStatus } from '../types/types';
 
 export function formatBlock(block: string | number): string {
   if (typeof block === 'string') {
@@ -38,104 +37,107 @@ export function formatBlock(block: string | number): string {
 function stringToEnum<T extends string>(
   x: string,
   enumb: Record<string, T>
-): T | undefined {
-  return Object.values(enumb).includes(x as T) ? (x as T) : undefined;
+): T | null {
+  return Object.values(enumb).includes(x as T) ? (x as T) : null;
+}
+
+export function getNftContractForNftFromRaw(
+  rawNftContract: RawNftContractForNft
+): NftContractForNft {
+  return nullsToUndefined<NftContractForNft>({
+    ...getNftContractFromRaw(rawNftContract),
+    spamClassifications: rawNftContract.spamClassifications.map(
+      parseNftSpamClassification
+    )
+  });
+}
+
+export function getNftContractsForOwnerFromRaw(
+  rawNftContract: RawNftContractForOwner
+): NftContractForOwner {
+  return nullsToUndefined<NftContractForOwner>({
+    ...getNftContractFromRaw(rawNftContract),
+    displayNft: rawNftContract.displayNft,
+    image: rawNftContract.image,
+    totalBalance: rawNftContract.totalBalance,
+    numDistinctTokensOwned: rawNftContract.numDistinctTokensOwned,
+    isSpam: rawNftContract.isSpam
+  });
 }
 
 export function getNftContractFromRaw(
   rawNftContract: RawNftContract
 ): NftContract {
-  return {
-    address: rawNftContract.address,
-    name: rawNftContract.contractMetadata.name,
-    symbol: rawNftContract.contractMetadata.symbol,
-    totalSupply: rawNftContract.contractMetadata.totalSupply,
-    tokenType: parseNftTokenType(rawNftContract.contractMetadata.tokenType),
-    openSea: parseOpenSeaMetadata(rawNftContract.contractMetadata.openSea),
-    contractDeployer: rawNftContract.contractMetadata.contractDeployer,
-    deployedBlockNumber: rawNftContract.contractMetadata.deployedBlockNumber
-  };
+  return nullsToUndefined<NftContract>({
+    ...rawNftContract,
+    tokenType: parseNftTokenType(rawNftContract.tokenType),
+    openSeaMetadata: {
+      ...rawNftContract.openSeaMetadata,
+      safelistRequestStatus:
+        rawNftContract.openSeaMetadata.safelistRequestStatus !== null
+          ? stringToEnum(
+              rawNftContract.openSeaMetadata.safelistRequestStatus,
+              OpenSeaSafelistRequestStatus
+            )
+          : null
+    }
+  });
 }
 
-export function getBaseNftFromRaw(rawBaseNft: RawBaseNft): BaseNft;
+export function getNftCollectionFromRaw(
+  rawNftCollection: RawNftCollection
+): NftCollection {
+  return nullsToUndefined<NftCollection>({
+    ...rawNftCollection,
+    floorPrice: {
+      ...rawNftCollection.floorPrice,
+      marketplace: parseNftCollectionMarketplace(
+        rawNftCollection.floorPrice.marketplace
+      )
+    }
+  });
+}
+
+export function getBaseNftFromRaw(rawBaseNft: RawOwnedBaseNft): BaseNft;
 export function getBaseNftFromRaw(
   rawContractBaseNft: RawContractBaseNft,
   contractAddress: string
 ): BaseNft;
 export function getBaseNftFromRaw(
-  rawBaseNft: RawBaseNft | RawContractBaseNft,
+  rawBaseNft: RawOwnedBaseNft | RawContractBaseNft,
   contractAddress?: string
 ): BaseNft {
   return {
-    contract: contractAddress
-      ? { address: contractAddress }
-      : (rawBaseNft as RawBaseNft).contract,
-    tokenId: BigNumber.from(rawBaseNft.id.tokenId).toString(),
-    tokenType: parseNftTokenType(rawBaseNft.id.tokenMetadata?.tokenType)
+    contractAddress: contractAddress
+      ? contractAddress
+      : (rawBaseNft as RawOwnedBaseNft).contractAddress,
+    tokenId: rawBaseNft.tokenId
   };
 }
 
 export function getNftFromRaw(rawNft: RawNft): Nft {
-  try {
-    const tokenType = parseNftTokenType(rawNft.id.tokenMetadata?.tokenType);
-    const spamInfo = parseSpamInfo(rawNft.spamInfo);
-
-    return {
-      contract: {
-        address: rawNft.contract.address,
-        name: rawNft.contractMetadata?.name,
-        symbol: rawNft.contractMetadata?.symbol,
-        totalSupply: rawNft.contractMetadata?.totalSupply,
-        tokenType,
-        openSea: parseOpenSeaMetadata(rawNft.contractMetadata?.openSea),
-        contractDeployer: rawNft.contractMetadata?.contractDeployer,
-        deployedBlockNumber: rawNft.contractMetadata?.deployedBlockNumber
-      },
-      tokenId: parseNftTokenId(rawNft.id.tokenId),
-      tokenType,
-      title: rawNft.title,
-      description: parseNftDescription(rawNft.description),
-      timeLastUpdated: rawNft.timeLastUpdated,
-      metadataError: rawNft.error,
-      rawMetadata: rawNft.metadata,
-      tokenUri: parseNftTokenUri(rawNft.tokenUri),
-      media: parseNftTokenUriArray(rawNft.media),
-      spamInfo,
-      acquiredAt: rawNft.acquiredAt
-    };
-  } catch (e) {
-    throw new Error('Error parsing the NFT response: ' + e);
-  }
+  return nullsToUndefined<Nft>({
+    ...rawNft,
+    contract: getNftContractForNftFromRaw(rawNft.contract),
+    tokenType: parseNftTokenType(rawNft.tokenType),
+    acquiredAt: rawNft.acquiredAt,
+    collection: rawNft.collection,
+    mint: rawNft.mint
+  });
 }
 
 export function getNftSalesFromRaw(
   rawNftSales: RawGetNftSalesResponse
 ): GetNftSalesResponse {
-  return {
+  return nullsToUndefined<GetNftSalesResponse>({
     nftSales: rawNftSales.nftSales.map(rawNftSale => ({
+      ...rawNftSale,
       marketplace: parseNftSaleMarketplace(rawNftSale.marketplace),
-      contractAddress: rawNftSale.contractAddress,
-      tokenId: rawNftSale.tokenId,
-      quantity: rawNftSale.quantity,
-      buyerAddress: rawNftSale.buyerAddress,
-      sellerAddress: rawNftSale.sellerAddress,
-      taker: parseNftTaker(rawNftSale.taker),
-      sellerFee: rawNftSale?.sellerFee,
-      marketplaceFee: rawNftSale?.protocolFee,
-      protocolFee: rawNftSale?.protocolFee,
-      royaltyFee: rawNftSale?.royaltyFee,
-      blockNumber: rawNftSale?.blockNumber,
-      logIndex: rawNftSale.logIndex,
-      bundleIndex: rawNftSale.bundleIndex,
-      transactionHash: rawNftSale.transactionHash
+      taker: parseNftTaker(rawNftSale.taker)
     })),
-    validAt: {
-      blockNumber: rawNftSales.validAt.blockNumber,
-      blockHash: rawNftSales.validAt.blockHash ?? undefined,
-      blockTimestamp: rawNftSales.validAt.blockTimestamp ?? undefined
-    },
-    pageKey: rawNftSales?.pageKey
-  };
+    validAt: rawNftSales.validAt,
+    pageKey: rawNftSales.pageKey
+  });
 }
 
 function parseNftSaleMarketplace(marketplace: string): NftSaleMarketplace {
@@ -157,6 +159,17 @@ function parseNftSaleMarketplace(marketplace: string): NftSaleMarketplace {
   }
 }
 
+function parseNftCollectionMarketplace(
+  marketplace: string | null
+): NftCollectionMarketplace | undefined {
+  switch (marketplace) {
+    case 'OpenSea':
+      return NftCollectionMarketplace.OPENSEA;
+    default:
+      return undefined;
+  }
+}
+
 function parseNftTaker(taker: string): NftSaleTakerType {
   // The `.toLowerCase()` call is needed because the API returns the capitalized values
   switch (taker.toLowerCase()) {
@@ -169,47 +182,13 @@ function parseNftTaker(taker: string): NftSaleTakerType {
   }
 }
 
-export function getNftRarityFromRaw(
-  rawNftRarity: RawNftAttributeRarity[]
-): NftAttributeRarity[] {
-  return rawNftRarity.map(({ prevalence, trait_type, value }) => ({
-    prevalence,
-    traitType: trait_type,
-    value
-  }));
-}
+function parseNftSpamClassification(s: string): NftSpamClassification {
+  const res = stringToEnum(s, NftSpamClassification);
+  if (res == null) {
+    return NftSpamClassification.Unknown;
+  }
 
-export function getContractsForOwnerFromRaw(
-  rawContractsForOwner: RawGetContractsForOwnerResponse
-): GetContractsForOwnerResponse {
-  return {
-    pageKey: rawContractsForOwner?.pageKey,
-    totalCount: rawContractsForOwner.totalCount,
-    contracts: rawContractsForOwner.contracts.map(contract => {
-      return {
-        address: contract.address,
-        totalSupply: contract.totalSupply,
-        isSpam: contract.isSpam,
-        media: contract.media,
-        numDistinctTokensOwned: contract.numDistinctTokensOwned,
-        tokenId: contract.tokenId,
-        totalBalance: contract.totalBalance,
-        name: contract.name,
-        title: contract.title,
-        openSea: parseOpenSeaMetadata(contract?.opensea),
-        symbol: contract?.symbol,
-        tokenType: parseNftTokenType(contract?.tokenType),
-        contractDeployer: contract.contractDeployer,
-        deployedBlockNumber: contract.deployedBlockNumber
-      };
-    })
-  };
-}
-
-function parseNftTokenId(tokenId: string): string {
-  // We have to normalize the token id here since the backend sometimes
-  // returns the token ID as a hex string and sometimes as an integer.
-  return BigNumber.from(tokenId).toString();
+  return res;
 }
 
 function parseNftTokenType(tokenType: string | undefined): NftTokenType {
@@ -231,84 +210,26 @@ function parseNftTokenType(tokenType: string | undefined): NftTokenType {
   }
 }
 
-function parseSpamInfo(
-  spamInfo: RawSpamInfo | undefined
-): SpamInfo | undefined {
-  if (!spamInfo) {
-    return undefined;
-  }
-  const { isSpam, classifications } = spamInfo;
-  return {
-    isSpam: isSpam === 'true',
-    classifications
-  };
-}
-
-function parseNftDescription(description?: string | string[]): string {
-  if (description === undefined) {
-    return '';
-  }
-
-  // TODO: Remove after backend adds JSON stringification.
-  if (!Array.isArray(description) && typeof description === 'object') {
-    return JSON.stringify(description);
-  }
-
-  return typeof description === 'string' ? description : description.join(' ');
-}
-
-function parseNftTokenUri(uri: TokenUri | undefined): TokenUri | undefined {
-  if (uri && uri.raw.length === 0 && uri.gateway.length == 0) {
-    return undefined;
-  }
-  return uri;
-}
-
-function parseNftTokenUriArray(arr: TokenUri[] | undefined): TokenUri[] {
-  if (arr === undefined) {
-    return [];
-  }
-  return arr.filter(uri => parseNftTokenUri(uri) !== undefined);
-}
-
-export function parseOpenSeaMetadata(
-  openSea: RawOpenSeaCollectionMetadata | undefined
-): OpenSeaCollectionMetadata | undefined {
-  if (openSea === undefined) {
-    return undefined;
-  }
-  return {
-    floorPrice: openSea.floorPrice,
-    collectionName: openSea.collectionName,
-    safelistRequestStatus:
-      openSea.safelistRequestStatus !== undefined
-        ? stringToEnum(
-            openSea.safelistRequestStatus,
-            OpenSeaSafelistRequestStatus
-          )
-        : undefined,
-    imageUrl: openSea.imageUrl,
-    description: openSea.description,
-    externalUrl: openSea.externalUrl,
-    twitterUsername: openSea.twitterUsername,
-    discordUrl: openSea.discordUrl,
-    lastIngestedAt: openSea.lastIngestedAt
-  };
-}
-
 export const IS_BROWSER = typeof window !== 'undefined' && window !== null;
 
-/** Recursively converts all `null` fields to `undefined. */
-// TODO: Add typing support so it doesn't return `any`.
-export function nullsToUndefined<T>(obj: T): any {
-  if (obj === null) {
+type WithNullableFields<T> = T extends undefined
+  ? null | undefined
+  : T extends (infer U)[]
+  ? WithNullableFields<U>[]
+  : T extends object
+  ? {
+      [K in keyof T]: WithNullableFields<T[K]>;
+    }
+  : T;
+
+export function nullsToUndefined<U>(obj: WithNullableFields<U>): U {
+  if (obj === null || obj === undefined) {
     return undefined as any;
   }
 
-  // if `obj` is an object, recursively convert all `null` fields to `undefined`.
-  if (typeof obj === 'object') {
+  if ((obj as any).constructor.name === 'Object' || Array.isArray(obj)) {
     for (const key in obj) {
-      obj[key] = nullsToUndefined(obj[key]) as any;
+      (obj as any)[key] = nullsToUndefined((obj as any)[key]);
     }
   }
   return obj as any;

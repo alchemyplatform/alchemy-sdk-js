@@ -2,7 +2,7 @@
 
 # Interface: GetContractsForOwnerOptions
 
-Optional parameters object for the the [getContractsForOwner](../classes/NftNamespace.md#getcontractsforowner) method
+Optional parameters object for the [getContractsForOwner](../classes/NftNamespace.md#getcontractsforowner) method
 
 ## Table of contents
 
@@ -26,7 +26,7 @@ conjunction with [includeFilters](GetContractsForOwnerOptions.md#includefilters)
 
 #### Defined in
 
-[src/types/types.ts:1023](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1023)
+[src/types/nft-types.ts:517](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L517)
 
 ___
 
@@ -40,7 +40,7 @@ conjunction with [excludeFilters](GetContractsForOwnerOptions.md#excludefilters)
 
 #### Defined in
 
-[src/types/types.ts:1016](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1016)
+[src/types/nft-types.ts:510](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L510)
 
 ___
 
@@ -53,7 +53,7 @@ contract address and token ID in lexicographic order.
 
 #### Defined in
 
-[src/types/types.ts:1029](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1029)
+[src/types/nft-types.ts:523](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L523)
 
 ___
 
@@ -65,7 +65,7 @@ Key for pagination to use to fetch results from the next page if available.
 
 #### Defined in
 
-[src/types/types.ts:1003](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1003)
+[src/types/nft-types.ts:497](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L497)
 
 ___
 
@@ -78,4 +78,4 @@ is 100. Defaults to 100.
 
 #### Defined in
 
-[src/types/types.ts:1009](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1009)
+[src/types/nft-types.ts:503](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L503)

@@ -1,13 +1,3 @@
-import { BaseNftContract } from '../api/nft';
-import {
-  Media,
-  NftMetadata,
-  NftSaleFeeData,
-  NftSpamClassification,
-  NftTokenType,
-  TokenUri
-} from '../types/types';
-
 /**
  * This file contains the raw HTTP responses returned by the Alchemy endpoints.
  * These types are not exposed to the end user and are instead used internally
@@ -15,20 +5,23 @@ import {
  */
 
 /**
- * Represents an NFT object without metadata received from Alchemy.
+ * Represents an NFT object along with its metadata received from Alchemy.
  *
  * @internal
  */
-export interface RawBaseNft {
-  contract: BaseNftContract;
-  id: RawNftId;
-}
-
-export interface RawSpamInfo {
-  isSpam: string;
-
-  /** A list of reasons why an NFT contract was marked as spam. */
-  classifications: NftSpamClassification[];
+export interface RawNft {
+  contract: RawNftContractForNft;
+  tokenId: string;
+  tokenType: string;
+  name: string | null;
+  description: string | null;
+  image: RawNftImage;
+  raw: RawNftData;
+  tokenUri: string | null;
+  timeLastUpdated: string;
+  acquiredAt?: RawAcquiredAt;
+  mint?: RawNftMint;
+  collection: RawBaseNftCollection;
 }
 
 /** Information on the time at which an NFT was last acquired. */
@@ -40,44 +33,28 @@ export interface RawAcquiredAt {
   blockNumber?: number;
 }
 
-/**
- * Represents an NFT object along with its metadata received from Alchemy.
- *
- * @internal
- */
-export interface RawNft extends RawBaseNft {
-  title: string;
-  description?: string | Array<string>;
-  tokenUri?: TokenUri;
-  media?: Media[];
-  metadata?: NftMetadata;
-  timeLastUpdated: string;
-  error?: string;
-  contractMetadata?: RawNftContractMetadata;
-  spamInfo?: RawSpamInfo;
-  acquiredAt?: RawAcquiredAt;
+export interface RawNftData {
+  tokenUri: string | null;
+  metadata: Record<string, any>;
+  error: string | null;
 }
 
-/**
- * Represents the contract address of an NFT object received from Alchemy. This
- * field is separated out since not all NFT API endpoints return a contract field.
- *
- * @internal
- */
-export interface RawBaseNftContract {
-  address: string;
+export interface RawNftMint {
+  mintAddress?: string;
+  blockNumber?: number;
+  timestamp?: string;
+  transactionHash?: string;
 }
 
-/**
- * Represents the contract address and metadata of an NFT object received from
- * Alchemy. This field is separated out since not all NFT API endpoints return a
- * contract field.
- *
- * @internal
- */
 export interface RawNftContract {
   address: string;
-  contractMetadata: RawNftContractMetadata;
+  tokenType: string;
+  name: string | null;
+  symbol: string | null;
+  totalSupply: string | null;
+  contractDeployer: string | null;
+  deployedBlockNumber: number | null;
+  openSeaMetadata: RawOpenSeaCollectionMetadata;
 }
 
 /**
@@ -87,46 +64,73 @@ export interface RawNftContract {
  *
  * @internal
  */
-export interface RawNftContractMetadata {
-  name?: string;
-  symbol?: string;
-  totalSupply?: string;
-  tokenType?: NftTokenType;
-  openSea?: RawOpenSeaCollectionMetadata;
-  contractDeployer?: string;
-  deployedBlockNumber?: number;
+export interface RawNftContractForNft extends RawNftContract {
+  isSpam: boolean | null;
+  spamClassifications: string[];
 }
 
-/** OpenSea's metadata for an NFT collection. */
+export interface RawGetFloorPriceResponse {
+  openSea: RawFloorPriceSuccess | RawFloorPriceFailure;
+  looksRare: RawFloorPriceSuccess | RawFloorPriceFailure;
+}
+
+export interface RawFloorPriceSuccess {
+  floorPrice: number;
+  priceCurrency: string;
+  collectionUrl: string;
+  retrievedAt: string;
+  error: null;
+}
+
+export interface RawFloorPriceFailure {
+  floorPrice: null;
+  priceCurrency: null;
+  collectionUrl: null;
+  retrievedAt: null;
+  error: string;
+}
+
+/**
+ * Represents the metadata of an NFT collection received from Alchemy.
+ *
+ * @internal
+ */
+export interface RawNftCollection {
+  name: string;
+  slug: string | null;
+  floorPrice: RawNftCollectionFloorPrice;
+  description: string | null;
+  externalUrl: string | null;
+  twitterUsername: string | null;
+  discordUrl: string | null;
+}
+
+export interface RawNftCollectionFloorPrice {
+  marketplace: string | null;
+  floorPrice: number | null;
+  priceCurrency: string | null;
+}
+
+export interface RawBaseNftCollection {
+  name: string;
+  slug: string | null;
+  externalUrl: string | null;
+  bannerImageUrl: string | null;
+}
+
+/** OpenSea's full metadata for an NFT collection. */
 export interface RawOpenSeaCollectionMetadata {
-  floorPrice?: number;
-  collectionName?: string;
-  safelistRequestStatus?: string;
-  imageUrl?: string;
-  description?: string;
-  externalUrl?: string;
-  twitterUsername?: string;
-  discordUrl?: string;
-  lastIngestedAt?: string;
-}
-
-/**
- * Represents the ID information of an NFT object received from Alchemy.
- *
- * @internal
- */
-interface RawNftId {
-  tokenId: string;
-  tokenMetadata?: RawNftTokenMetadata;
-}
-
-/**
- * Represents the token metadata information of an NFT object received from Alchemy.
- *
- * @internal
- */
-interface RawNftTokenMetadata {
-  tokenType: NftTokenType;
+  floorPrice: number | null;
+  collectionName: string | null;
+  collectionSlug: string | null;
+  safelistRequestStatus: string | null;
+  imageUrl: string | null;
+  bannerImageUrl: string | null;
+  description: string | null;
+  externalUrl: string | null;
+  twitterUsername: string | null;
+  discordUrl: string | null;
+  lastIngestedAt: string;
 }
 
 /**
@@ -136,9 +140,9 @@ interface RawNftTokenMetadata {
  */
 export interface RawGetBaseNftsResponse {
   ownedNfts: RawOwnedBaseNft[];
-  pageKey?: string;
   totalCount: number;
-  blockHash: string;
+  validAt: RawNftsForOwnerValidAt;
+  pageKey: string | null;
 }
 
 /**
@@ -146,11 +150,11 @@ export interface RawGetBaseNftsResponse {
  *
  * @internal
  */
-export interface RawGetNftsResponse {
+export interface RawGetNftsForOwnerResponse {
   ownedNfts: RawOwnedNft[];
-  pageKey?: string;
   totalCount: number;
-  blockHash: string;
+  validAt: RawNftsForOwnerValidAt;
+  pageKey: string | null;
 }
 
 /**
@@ -159,8 +163,9 @@ export interface RawGetNftsResponse {
  *
  * @internal
  */
-export interface RawOwnedBaseNft extends RawBaseNft {
-  contract: RawBaseNftContract;
+export interface RawOwnedBaseNft {
+  contractAddress: string;
+  tokenId: string;
   balance: string;
 }
 
@@ -170,8 +175,15 @@ export interface RawOwnedBaseNft extends RawBaseNft {
  *
  * @internal
  */
-export interface RawOwnedNft extends RawNft, RawOwnedBaseNft {}
+export interface RawOwnedNft extends RawNft {
+  balance: string;
+}
 
+export interface RawNftsForOwnerValidAt {
+  blockNumber: number | null;
+  blockHash: string;
+  blockTimestamp: string | null;
+}
 /**
  * Represents Alchemy's HTTP response for `getNftsForNftContract` without metadata.
  *
@@ -179,7 +191,7 @@ export interface RawOwnedNft extends RawNft, RawOwnedBaseNft {}
  */
 export interface RawGetBaseNftsForContractResponse {
   nfts: RawContractBaseNft[];
-  nextToken?: string;
+  pageKey: string | null;
 }
 
 /**
@@ -189,21 +201,17 @@ export interface RawGetBaseNftsForContractResponse {
  */
 export interface RawGetNftsForContractResponse {
   nfts: RawNft[];
-  nextToken?: string;
+  pageKey: string | null;
 }
 
 /**
  * Represents the `nfts` field from the Alchemy HTTP response when calling the
  * `getNftsForNftContract` endpoint without metadata.
  *
- * The main difference between {@link RawContractBaseNft} and {@link RawBaseNft}
- * is that `RawContractBaseNft` omits the `contract` field in the payload since
- * the method takes in a contract address param.
- *
  * @internal
  */
 export interface RawContractBaseNft {
-  id: RawNftId;
+  tokenId: string;
 }
 
 /**
@@ -212,13 +220,13 @@ export interface RawContractBaseNft {
  * @internal
  */
 export interface RawGetOwnersForContractResponse {
-  ownerAddresses: string[];
-  totalCount?: number;
+  owners: string[];
+  pageKey: string | null;
 }
 
 export interface RawGetOwnersForContractWithTokenBalancesResponse {
-  ownerAddresses: RawOwnerAddress[];
-  pageKey?: string;
+  owners: RawOwnerAddress[];
+  pageKey: string | null;
 }
 
 export interface RawOwnerAddress {
@@ -228,7 +236,7 @@ export interface RawOwnerAddress {
 
 export interface RawTokenBalances {
   tokenId: string;
-  balance: number;
+  balance: string;
 }
 
 export interface RawReingestContractResponse {
@@ -291,16 +299,48 @@ export interface RawNftFilterParam {
   token_id?: string;
 }
 
+export interface RawSearchContractMetadataResponse {
+  contracts: RawNftContract[];
+}
+
+export interface RawComputeRarityResponse {
+  rarities: RawNftAttributeRarity[];
+}
+
 export interface RawNftAttributeRarity {
   value: string;
-  trait_type: string;
+  traitType: string;
   prevalence: number;
+}
+
+export interface RawNftAttributesResponse {
+  summary: Record<string, Record<string, number>>;
+  totalSupply: string;
+  contractAddress: string;
 }
 
 export interface RawGetNftSalesResponse {
   nftSales: RawNftSale[];
   validAt: RawNftSaleValidAt;
-  pageKey?: string;
+  pageKey: string | null;
+}
+
+export interface RawNftSale {
+  marketplace: string;
+  marketplaceAddress: string;
+  contractAddress: string;
+  tokenId: string;
+  quantity: string;
+  buyerAddress: string;
+  sellerAddress: string;
+  taker: string;
+  sellerFee: RawNftSaleFeeData;
+  protocolFee: RawNftSaleFeeData;
+  royaltyFee: RawNftSaleFeeData;
+  blockNumber: number;
+  logIndex: number;
+  bundleIndex: number;
+  transactionHash: string;
 }
 
 export interface RawNftSaleValidAt {
@@ -309,37 +349,62 @@ export interface RawNftSaleValidAt {
   blockTimestamp: string | null;
 }
 
-export interface RawNftSale {
-  marketplace: string;
-  contractAddress: string;
-  tokenId: string;
-  quantity: string;
-  buyerAddress: string;
-  sellerAddress: string;
-  taker: string;
-  sellerFee: NftSaleFeeData;
-  protocolFee?: NftSaleFeeData;
-  royaltyFee?: NftSaleFeeData;
-  blockNumber: number;
-  logIndex: number;
-  bundleIndex: number;
-  transactionHash: string;
+export interface RawNftSaleFeeData {
+  amount: string | null;
+  tokenAddress: string | null;
+  symbol: string | null;
+  decimals: number | null;
 }
 
 export interface RawGetContractsForOwnerResponse {
-  contracts: RawContractForOwner[];
-  pageKey?: string;
+  contracts: RawNftContractForOwner[];
+  pageKey: string | null;
   totalCount: number;
 }
 
-export interface RawContractForOwner
-  extends Omit<RawNftContractMetadata, 'openSea'> {
-  address: string;
-  totalBalance: number;
-  numDistinctTokensOwned: number;
-  title: string;
-  isSpam: boolean;
+export interface RawNftContractForOwner
+  extends RawNftContract,
+    RawNftContractOwnershipInfo {
+  displayNft: RawDisplayNftForContract;
+  image: RawNftImage;
+}
+
+export interface RawGetNftMetadataBatchResponse {
+  nfts: Array<RawNft>;
+}
+
+export interface RawGetContractMetadataBatchResponse {
+  contracts: RawNftContract[];
+}
+
+export interface RawIsSpamContractResponse {
+  isSpamContract: boolean;
+}
+
+export interface RawGetSpamContractsResponse {
+  contractAddresses: string[];
+}
+
+export interface RawIsAirdropNftResponse {
+  isAirdrop: boolean;
+}
+
+export interface RawDisplayNftForContract {
   tokenId: string;
-  media: Media[];
-  opensea?: RawOpenSeaCollectionMetadata;
+  name: string | null;
+}
+
+export interface RawNftImage {
+  cachedUrl: string | null;
+  thumbnailUrl: string | null;
+  pngUrl: string | null;
+  contentType: string | null;
+  size: number | null;
+  originalUrl: string | null;
+}
+
+export interface RawNftContractOwnershipInfo {
+  totalBalance: string;
+  numDistinctTokensOwned: string;
+  isSpam: boolean;
 }

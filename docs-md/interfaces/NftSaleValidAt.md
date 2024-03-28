@@ -22,7 +22,7 @@ The block hash. Used to detect reorgs.
 
 #### Defined in
 
-[src/types/types.ts:1320](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1320)
+[src/types/nft-types.ts:779](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L779)
 
 ___
 
@@ -34,7 +34,7 @@ The block number the sale information is valid at.
 
 #### Defined in
 
-[src/types/types.ts:1318](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1318)
+[src/types/nft-types.ts:777](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L777)
 
 ___
 
@@ -46,4 +46,4 @@ The timestamp for the block.
 
 #### Defined in
 
-[src/types/types.ts:1322](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L1322)
+[src/types/nft-types.ts:781](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L781)

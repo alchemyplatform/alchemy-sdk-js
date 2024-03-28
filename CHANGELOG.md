@@ -6,6 +6,69 @@
 
 ### Minor Changes
 
+## 3.2.0
+
+### Major Changes
+
+- Added support for Polygon Amoy network via the `Network.MATIC_AMOY` enum.
+
+### Minor Changes
+
+## 3.1.2
+
+### Major Changes
+
+### Minor Changes
+
+- Upgraded the `axios` dependency to `v1.6.5`, fixing a vulnerable version #397. Thanks @mpsq for the contribution!
+
+## 3.1.1
+
+### Major Changes
+
+### Minor Changes
+
+- Added endpoints for `isAirdropNft()` and `reportSpam()` in `NftNamespace`.
+- Added a missing `marketplaceAddress` field to the `NftSale` in `NftNamespace.getNftSales()`.
+- Fixed an incorrect field name for `bannerImageUrl` in `OpenSeaCollectionMetadata`. Deprecated the old field name `imageBannerUrl`.
+- Added support for Base networks in `NotifyNamespace`.
+
+## 3.1.0
+
+### Major Changes
+
+- Added support for Optimism Sepolia and Base Sepolia via the `Network.OPT_SEPOLIA` and `Network.BASE_SEPOLIA` enums.
+
+### Minor Changes
+
+## 3.0.0
+
+### Major Changes
+
+- For a full list of changes to V3 from V2, please visit: https://docs.alchemy.com/reference/alchemy-sdk-v2-to-v3-migration-guide. There, you can also find the API reference for v2 endpoints as well. V3 primarily involves changes to use the V3 NFT API.
+
+## 2.11.0
+
+### Minor Changes
+
+- Added support for Arbitrum Sepolia network via the `Network.ARB_SEPOLIA` enum.
+
+## 2.10.1
+
+### Major Changes
+
+### Minor Changes
+
+- Fixed a bug in the `Log` object where the `removed` field was not included in the response.
+
+## 2.10.0
+
+### Major Changes
+
+- Add support for Base
+
+### Minor Changes
+
 ## 2.9.2
 
 ### Major Changes

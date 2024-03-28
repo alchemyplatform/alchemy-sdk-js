@@ -15,21 +15,21 @@ The response object for the [getFloorPrice](../classes/NftNamespace.md#getfloorp
 
 ### looksRare
 
-• `Readonly` **looksRare**: [`FloorPriceMarketplace`](FloorPriceMarketplace.md) \| [`FloorPriceError`](FloorPriceError.md)
+• **looksRare**: [`FloorPriceMarketplace`](FloorPriceMarketplace.md) \| [`FloorPriceError`](FloorPriceError.md)
 
 #### Defined in
 
-[src/types/types.ts:993](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L993)
+[src/types/nft-types.ts:487](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L487)
 
 ___
 
 ### openSea
 
-• `Readonly` **openSea**: [`FloorPriceMarketplace`](FloorPriceMarketplace.md) \| [`FloorPriceError`](FloorPriceError.md)
+• **openSea**: [`FloorPriceMarketplace`](FloorPriceMarketplace.md) \| [`FloorPriceError`](FloorPriceError.md)
 
 Name of the NFT marketplace where the collection is listed. Current
 marketplaces supported: OpenSea, LooksRare
 
 #### Defined in
 
-[src/types/types.ts:992](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ee5b9ee/src/types/types.ts#L992)
+[src/types/nft-types.ts:486](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L486)
