@@ -6,6 +6,16 @@
 
 ### Minor Changes
 
+## 3.2.1
+
+### Major Changes
+
+- Added support for Arbitrum and Optimism Sepolia webhook creation.
+
+### Minor Changes
+
+- API error messages return the actual error instead of [Object object]
+
 ## 3.2.0
 
 ### Major Changes

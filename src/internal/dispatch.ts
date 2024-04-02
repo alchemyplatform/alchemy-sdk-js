@@ -62,7 +62,9 @@ export async function requestHttpWithBackoff<Req, Res>(
         throw err;
       }
       // TODO: Standardize all errors into AlchemyError
-      lastError = new Error(err.response.status + ': ' + err.response.data);
+      lastError = new Error(
+        err.response.status + ': ' + JSON.stringify(err.response.data)
+      );
       if (!isRetryableHttpError(err, apiType)) {
         break;
       }
