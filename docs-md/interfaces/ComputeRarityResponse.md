@@ -18,4 +18,4 @@ Response object for the [NftNamespace.computeRarity](../classes/NftNamespace.md#
 
 #### Defined in
 
-[src/types/nft-types.ts:851](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L851)
+[src/types/nft-types.ts:851](https://github.com/alchemyplatform/alchemy-sdk-js/blob/89d639ce/src/types/nft-types.ts#L851)

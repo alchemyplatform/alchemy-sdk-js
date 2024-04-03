@@ -23,7 +23,7 @@ The contract address. `null` if it was an internal or external transfer.
 
 #### Defined in
 
-[src/types/nft-types.ts:938](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L938)
+[src/types/nft-types.ts:938](https://github.com/alchemyplatform/alchemy-sdk-js/blob/89d639ce/src/types/nft-types.ts#L938)
 
 ___
 
@@ -36,7 +36,7 @@ is not in the contract and not available from other sources.
 
 #### Defined in
 
-[src/types/nft-types.ts:944](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L944)
+[src/types/nft-types.ts:944](https://github.com/alchemyplatform/alchemy-sdk-js/blob/89d639ce/src/types/nft-types.ts#L944)
 
 ___
 
@@ -49,4 +49,4 @@ ERC721 or ERC1155 token.
 
 #### Defined in
 
-[src/types/nft-types.ts:935](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L935)
+[src/types/nft-types.ts:935](https://github.com/alchemyplatform/alchemy-sdk-js/blob/89d639ce/src/types/nft-types.ts#L935)
