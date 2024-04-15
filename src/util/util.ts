@@ -74,7 +74,7 @@ export function getNftContractFromRaw(
     openSeaMetadata: {
       ...rawNftContract.openSeaMetadata,
       safelistRequestStatus:
-        rawNftContract.openSeaMetadata.safelistRequestStatus !== null
+        rawNftContract.openSeaMetadata?.safelistRequestStatus !== null
           ? stringToEnum(
               rawNftContract.openSeaMetadata.safelistRequestStatus,
               OpenSeaSafelistRequestStatus
