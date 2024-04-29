@@ -30,7 +30,7 @@ describe('E2E integration tests', () => {
     }
   ];
 
-  const webhookUrl = 'https://temp-site.ngrok.io';
+  const webhookUrl = 'https://www.example.com';
   const graphqlQuery = '{ block { hash } }';
 
   let addressWh: AddressActivityWebhook;
@@ -277,14 +277,15 @@ describe('E2E integration tests', () => {
   });
 
   it('create and delete NftActivityWebhook', async () => {
+    const network = Network.ETH_SEPOLIA;
     const nftActivityWebhook = await alchemy.notify.createWebhook(
       webhookUrl,
       WebhookType.NFT_ACTIVITY,
-      { filters: nftFilters, network: Network.ETH_GOERLI }
+      { filters: nftFilters, network }
     );
     expect(nftActivityWebhook.url).toEqual(webhookUrl);
     expect(nftActivityWebhook.type).toEqual(WebhookType.NFT_ACTIVITY);
-    expect(nftActivityWebhook.network).toEqual(Network.ETH_GOERLI);
+    expect(nftActivityWebhook.network).toEqual(network);
     let response = await alchemy.notify.getAllWebhooks();
     expect(
       response.webhooks.filter(wh => wh.id === nftActivityWebhook.id).length
@@ -297,15 +298,16 @@ describe('E2E integration tests', () => {
     ).toEqual(0);
   });
 
-  it('create and delete NftActivityWebhook', async () => {
+  it('create and delete NftMetadataUpdateWebhook', async () => {
+    const network = Network.ETH_MAINNET;
     const nftActivityWebhook = await alchemy.notify.createWebhook(
       webhookUrl,
       WebhookType.NFT_METADATA_UPDATE,
-      { filters: nftFilters, network: Network.ETH_GOERLI }
+      { filters: nftFilters, network }
     );
     expect(nftActivityWebhook.url).toEqual(webhookUrl);
     expect(nftActivityWebhook.type).toEqual(WebhookType.NFT_METADATA_UPDATE);
-    expect(nftActivityWebhook.network).toEqual(Network.ETH_GOERLI);
+    expect(nftActivityWebhook.network).toEqual(network);
     let response = await alchemy.notify.getAllWebhooks();
     expect(
       response.webhooks.filter(wh => wh.id === nftActivityWebhook.id).length

@@ -21,7 +21,7 @@ An array of owner addresses for the provided token.
 
 #### Defined in
 
-[src/types/nft-types.ts:314](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L314)
+[src/types/nft-types.ts:314](https://github.com/alchemyplatform/alchemy-sdk-js/blob/89d639ce/src/types/nft-types.ts#L314)
 
 ___
 
@@ -33,4 +33,4 @@ Optional The key for the next page of results, if applicable.
 
 #### Defined in
 
-[src/types/nft-types.ts:317](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8c9409f/src/types/nft-types.ts#L317)
+[src/types/nft-types.ts:317](https://github.com/alchemyplatform/alchemy-sdk-js/blob/89d639ce/src/types/nft-types.ts#L317)
