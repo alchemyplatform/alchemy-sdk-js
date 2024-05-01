@@ -97,7 +97,7 @@ export enum Network {
   BASE_MAINNET = 'base-mainnet',
   BASE_GOERLI = 'base-goerli',
   BASE_SEPOLIA = 'base-sepolia',
-  ZKSYNC_MAINNET = 'zksync-mainet',
+  ZKSYNC_MAINNET = 'zksync-mainnet',
   ZKSYNC_SEPOLIA = 'zksync-sepolia'
 }
 
