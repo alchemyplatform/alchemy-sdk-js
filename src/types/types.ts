@@ -96,7 +96,9 @@ export enum Network {
   POLYGONZKEVM_TESTNET = 'polygonzkevm-testnet',
   BASE_MAINNET = 'base-mainnet',
   BASE_GOERLI = 'base-goerli',
-  BASE_SEPOLIA = 'base-sepolia'
+  BASE_SEPOLIA = 'base-sepolia',
+  ZKSYNC_MAINNET = 'zksync-mainnet',
+  ZKSYNC_SEPOLIA = 'zksync-sepolia'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */

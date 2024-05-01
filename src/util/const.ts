@@ -57,7 +57,9 @@ export const EthersNetwork = {
   [Network.POLYGONZKEVM_TESTNET]: 'polygonzkevm-testnet',
   [Network.BASE_MAINNET]: 'base-mainnet',
   [Network.BASE_GOERLI]: 'base-goerli',
-  [Network.BASE_SEPOLIA]: 'base-sepolia'
+  [Network.BASE_SEPOLIA]: 'base-sepolia',
+  [Network.ZKSYNC_MAINNET]: 'zksync-mainnet',
+  [Network.ZKSYNC_SEPOLIA]: 'zksync-sepolia'
 };
 
 /**
@@ -109,6 +111,14 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   maticamoy: {
     chainId: 80002,
     name: 'maticamoy'
+  },
+  'zksync-mainnet': {
+    chainId: 324,
+    name: 'zksync-mainnet'
+  },
+  'zksync-sepolia': {
+    chainId: 300,
+    name: 'zksync-sepolia'
   }
 };
 
