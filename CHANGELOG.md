@@ -4,6 +4,12 @@
 
 ### Major Changes
 
+### Minor Changes
+
+## 3.3.0
+
+### Major Changes
+
 - Added support for Zksync Mainnet and Sepolia via the `Network.ZKSYNC_MAINNET` and `Network.ZKSYNC_SEPOLIA` enums.
 
 ### Minor Changes

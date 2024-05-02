@@ -23,7 +23,7 @@ The banner image URL for the collection.
 
 #### Defined in
 
-[src/types/nft-types.ts:1296](https://github.com/alchemyplatform/alchemy-sdk-js/blob/89d639ce/src/types/nft-types.ts#L1296)
+[src/types/nft-types.ts:1296](https://github.com/alchemyplatform/alchemy-sdk-js/blob/311be54/src/types/nft-types.ts#L1296)
 
 ___
 
@@ -35,7 +35,7 @@ The external URL for the collection.
 
 #### Defined in
 
-[src/types/nft-types.ts:1294](https://github.com/alchemyplatform/alchemy-sdk-js/blob/89d639ce/src/types/nft-types.ts#L1294)
+[src/types/nft-types.ts:1294](https://github.com/alchemyplatform/alchemy-sdk-js/blob/311be54/src/types/nft-types.ts#L1294)
 
 ___
 
@@ -47,7 +47,7 @@ The name of the collection.
 
 #### Defined in
 
-[src/types/nft-types.ts:1290](https://github.com/alchemyplatform/alchemy-sdk-js/blob/89d639ce/src/types/nft-types.ts#L1290)
+[src/types/nft-types.ts:1290](https://github.com/alchemyplatform/alchemy-sdk-js/blob/311be54/src/types/nft-types.ts#L1290)
 
 ___
 
@@ -59,4 +59,4 @@ The OpenSea human-readable slug of the collection.
 
 #### Defined in
 
-[src/types/nft-types.ts:1292](https://github.com/alchemyplatform/alchemy-sdk-js/blob/89d639ce/src/types/nft-types.ts#L1292)
+[src/types/nft-types.ts:1292](https://github.com/alchemyplatform/alchemy-sdk-js/blob/311be54/src/types/nft-types.ts#L1292)
