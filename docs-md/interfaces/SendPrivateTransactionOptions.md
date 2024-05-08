@@ -25,4 +25,4 @@ more details.
 
 #### Defined in
 
-[src/types/types.ts:734](https://github.com/alchemyplatform/alchemy-sdk-js/blob/311be54/src/types/types.ts#L734)
+[src/types/types.ts:751](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/types/types.ts#L751)
