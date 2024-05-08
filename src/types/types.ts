@@ -4,6 +4,7 @@ import {
   TransactionReceipt
 } from '@ethersproject/abstract-provider';
 import { BigNumberish } from '@ethersproject/bignumber';
+import { ConnectionInfo } from '@ethersproject/web';
 
 import {
   ERC1155Metadata,
@@ -68,6 +69,22 @@ export interface AlchemySettings {
    * This implementation is based on the `JsonRpcBatchProvider` in ethers.
    */
   batchRequests?: boolean;
+
+  /**
+   * Optional overrides on the Ethers `ConnectionInfo` object used to configure
+   * the underlying JsonRpcProvider. This field is for advanced users who want
+   * to customize the provider's behavior.
+   *
+   * This override is applied last, so it will override any other
+   * AlchemySettings properties that affect the connection.
+   *
+   * Note that modifying the ConnectionInfo may break Alchemy SDK's default
+   * connection/url logic. It also does not affect `nft` and `notify`
+   * namespaces.
+   *
+   * {@link https://docs.ethers.org/v5/api/utils/web/#ConnectionInfo}
+   */
+  connectionInfoOverrides?: Partial<ConnectionInfo>;
 }
 
 /**

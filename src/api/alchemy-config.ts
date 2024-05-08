@@ -1,3 +1,5 @@
+import { ConnectionInfo } from '@ethersproject/web';
+
 import { AlchemySettings, Network } from '../types/types';
 import {
   AlchemyApiType,
@@ -30,6 +32,8 @@ export class AlchemyConfig {
 
   /** Setting to enable automatic batching on json-rpc requests. Defaults to false.*/
   readonly batchRequests: boolean;
+
+  readonly connectionInfoOverrides?: Partial<ConnectionInfo>;
 
   /**
    * The optional hardcoded URL to send requests to instead of using the network
@@ -69,6 +73,7 @@ export class AlchemyConfig {
     this.authToken = config?.authToken;
     this.batchRequests = config?.batchRequests || false;
     this.requestTimeout = config?.requestTimeout || DEFAULT_REQUEST_TIMEOUT;
+    this.connectionInfoOverrides = config?.connectionInfoOverrides;
   }
 
   /**
