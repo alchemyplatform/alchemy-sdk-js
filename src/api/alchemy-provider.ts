@@ -55,7 +55,7 @@ export class AlchemyProvider
 
     // Generate our own connection info with the correct endpoint URLs.
     const alchemyNetwork = AlchemyProvider.getAlchemyNetwork(config.network);
-    const connection = AlchemyProvider.getAlchemyConnectionInfo(
+    let connection = AlchemyProvider.getAlchemyConnectionInfo(
       alchemyNetwork,
       apiKey,
       'http'
@@ -68,6 +68,14 @@ export class AlchemyProvider
     }
 
     connection.throttleLimit = config.maxRetries;
+
+    // Add user provided overrides if they exist.
+    if (config.connectionInfoOverrides) {
+      connection = {
+        ...connection,
+        ...config.connectionInfoOverrides
+      };
+    }
 
     // Normalize the Alchemy named network input to the network names used by
     // ethers. This allows the parent super constructor in JsonRpcProvider to

@@ -6,6 +6,21 @@
 
 ### Minor Changes
 
+## 3.3.1
+
+### Minor Changes
+
+- Fixed a bug where the `openSeaMetadata?.safelistRequestStatus` was undefined in the `Nft` object that resulted in a `Cannot read properties of undefined` error (#416)
+- Added support `connectionInfoOverrides` field in the `Alchemy` constructor. This allows you to override the ethers.js `ConnectionInfo` object and specify custom connection information for the underlying `JsonRpcProvider`.
+
+## 3.3.0
+
+### Major Changes
+
+- Added support for Zksync Mainnet and Sepolia via the `Network.ZKSYNC_MAINNET` and `Network.ZKSYNC_SEPOLIA` enums.
+
+### Minor Changes
+
 ## 3.2.1
 
 ### Major Changes

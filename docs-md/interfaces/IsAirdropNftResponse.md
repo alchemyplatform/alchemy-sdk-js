@@ -16,4 +16,4 @@
 
 #### Defined in
 
-[src/types/nft-types.ts:388](https://github.com/alchemyplatform/alchemy-sdk-js/blob/89d639ce/src/types/nft-types.ts#L388)
+[src/types/nft-types.ts:388](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/types/nft-types.ts#L388)

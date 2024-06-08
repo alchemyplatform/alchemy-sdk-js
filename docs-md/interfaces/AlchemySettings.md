@@ -11,6 +11,7 @@ Options object used to configure the Alchemy SDK.
 - [apiKey](AlchemySettings.md#apikey)
 - [authToken](AlchemySettings.md#authtoken)
 - [batchRequests](AlchemySettings.md#batchrequests)
+- [connectionInfoOverrides](AlchemySettings.md#connectioninfooverrides)
 - [maxRetries](AlchemySettings.md#maxretries)
 - [network](AlchemySettings.md#network)
 - [requestTimeout](AlchemySettings.md#requesttimeout)
@@ -28,7 +29,7 @@ Defaults to: "demo" (a rate-limited public API key)
 
 #### Defined in
 
-[src/types/types.ts:30](https://github.com/alchemyplatform/alchemy-sdk-js/blob/89d639ce/src/types/types.ts#L30)
+[src/types/types.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/types/types.ts#L31)
 
 ___
 
@@ -41,7 +42,7 @@ in the Alchemy Dashboard on the Notify tab.
 
 #### Defined in
 
-[src/types/types.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/89d639ce/src/types/types.ts#L56)
+[src/types/types.ts:57](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/types/types.ts#L57)
 
 ___
 
@@ -56,7 +57,30 @@ This implementation is based on the `JsonRpcBatchProvider` in ethers.
 
 #### Defined in
 
-[src/types/types.ts:70](https://github.com/alchemyplatform/alchemy-sdk-js/blob/89d639ce/src/types/types.ts#L70)
+[src/types/types.ts:71](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/types/types.ts#L71)
+
+___
+
+### connectionInfoOverrides
+
+• `Optional` **connectionInfoOverrides**: `Partial`<`ConnectionInfo`\>
+
+Optional overrides on the Ethers `ConnectionInfo` object used to configure
+the underlying JsonRpcProvider. This field is for advanced users who want
+to customize the provider's behavior.
+
+This override is applied last, so it will override any other
+AlchemySettings properties that affect the connection.
+
+Note that modifying the ConnectionInfo may break Alchemy SDK's default
+connection/url logic. It also does not affect `nft` and `notify`
+namespaces.
+
+[https://docs.ethers.org/v5/api/utils/web/#ConnectionInfo](https://docs.ethers.org/v5/api/utils/web/#ConnectionInfo)
+
+#### Defined in
+
+[src/types/types.ts:87](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/types/types.ts#L87)
 
 ___
 
@@ -68,7 +92,7 @@ The maximum number of retries to attempt if a request fails. Defaults to 5.
 
 #### Defined in
 
-[src/types/types.ts:41](https://github.com/alchemyplatform/alchemy-sdk-js/blob/89d639ce/src/types/types.ts#L41)
+[src/types/types.ts:42](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/types/types.ts#L42)
 
 ___
 
@@ -83,7 +107,7 @@ Defaults to: Network.ETH_MAINNET
 
 #### Defined in
 
-[src/types/types.ts:38](https://github.com/alchemyplatform/alchemy-sdk-js/blob/89d639ce/src/types/types.ts#L38)
+[src/types/types.ts:39](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/types/types.ts#L39)
 
 ___
 
@@ -96,7 +120,7 @@ Default to 0 (No timeout).
 
 #### Defined in
 
-[src/types/types.ts:62](https://github.com/alchemyplatform/alchemy-sdk-js/blob/89d639ce/src/types/types.ts#L62)
+[src/types/types.ts:63](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/types/types.ts#L63)
 
 ___
 
@@ -112,4 +136,4 @@ that not all methods will work with custom URLs.
 
 #### Defined in
 
-[src/types/types.ts:50](https://github.com/alchemyplatform/alchemy-sdk-js/blob/89d639ce/src/types/types.ts#L50)
+[src/types/types.ts:51](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/types/types.ts#L51)
