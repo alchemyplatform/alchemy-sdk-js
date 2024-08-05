@@ -345,6 +345,19 @@ export class NotifyNamespace {
       }
     );
   }
+  /**
+   * Create a new {@link CustomGraphqlWebhook} to track any event on every block.
+   *
+   * @param url The URL that the webhook should send events to.
+   * @param type The type of webhook to create.
+   * @param params Parameters object containing the graphql query to be executed
+   * on every block
+   */
+  createWebhook(
+    url: string,
+    type: WebhookType.GRAPHQL,
+    params: CustomGraphqlWebhookParams
+  ): Promise<CustomGraphqlWebhook>;
 
   /**
    * Create a new {@link MinedTransactionWebhook} to track mined transactions
@@ -401,20 +414,6 @@ export class NotifyNamespace {
   ): Promise<NftMetadataUpdateWebhook>;
 
   /**
-   * Create a new {@link CustomGraphqlWebhook} to track any event on every block.
-   *
-   * @param url The URL that the webhook should send events to.
-   * @param type The type of webhook to create.
-   * @param params Parameters object containing the graphql query to be executed
-   * on every block
-   */
-  createWebhook(
-    url: string,
-    type: WebhookType.GRAPHQL,
-    params: CustomGraphqlWebhookParams
-  ): Promise<CustomGraphqlWebhook>;
-
-  /**
    * Create a new {@link AddressActivityWebhook} to track address activity.
    *
    * @param url The URL that the webhook should send events to.
@@ -446,10 +445,11 @@ export class NotifyNamespace {
     let appId;
     if (
       type === WebhookType.MINED_TRANSACTION ||
-      type === WebhookType.DROPPED_TRANSACTION
+      type === WebhookType.DROPPED_TRANSACTION ||
+      type === WebhookType.GRAPHQL
     ) {
       if (!('appId' in params)) {
-        throw new Error('Transaction Webhooks require an app id.');
+        throw new Error('Transaction and GraphQL Webhooks require an app id.');
       }
       appId = params.appId;
     }
@@ -458,6 +458,7 @@ export class NotifyNamespace {
     let nftFilterObj;
     let addresses;
     let graphqlQuery;
+    let skipEmptyMessages;
     if (
       type === WebhookType.NFT_ACTIVITY ||
       type === WebhookType.NFT_METADATA_UPDATE
@@ -510,6 +511,7 @@ export class NotifyNamespace {
         ? NETWORK_TO_WEBHOOK_NETWORK.get(params.network)
         : network;
       graphqlQuery = params.graphqlQuery;
+      skipEmptyMessages = params.skipEmptyMessages;
     }
 
     const data = {
@@ -521,7 +523,10 @@ export class NotifyNamespace {
       // Only include the filters/addresses in the final response if they're defined
       ...nftFilterObj,
       ...(addresses && { addresses }),
-      ...(graphqlQuery && { graphql_query: graphqlQuery })
+      ...(graphqlQuery && {
+        graphql_query: graphqlQuery
+      }),
+      ...(skipEmptyMessages && { skip_empty_messages: skipEmptyMessages })
     };
 
     const response = await this.sendWebhookRequest<RawCreateWebhookResponse>(
