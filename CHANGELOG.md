@@ -6,6 +6,8 @@
 
 ### Minor Changes
 
+- Fixed a bug with `NotifyNamespace.createWebhook()` when using `WebhookType.GRAPHQL`. Also added the option use `skipEmptyMessages` when creating graphQL webhooks to skip empty blocks.
+
 ## 3.3.1
 
 ### Minor Changes

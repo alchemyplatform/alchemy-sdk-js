@@ -57,7 +57,12 @@ describe('E2E integration tests', () => {
     customWh = await alchemy.notify.createWebhook(
       webhookUrl,
       WebhookType.GRAPHQL,
-      { graphqlQuery, network: Network.ETH_MAINNET }
+      {
+        graphqlQuery,
+        network: Network.ETH_MAINNET,
+        appId,
+        skipEmptyMessages: true
+      }
     );
   }
 
@@ -247,11 +252,16 @@ describe('E2E integration tests', () => {
     const customWebhook = await alchemy.notify.createWebhook(
       webhookUrl,
       WebhookType.GRAPHQL,
-      { graphqlQuery, network: Network.ETH_GOERLI }
+      {
+        graphqlQuery,
+        network: Network.ETH_MAINNET,
+        appId,
+        skipEmptyMessages: true
+      }
     );
     expect(customWebhook.url).toEqual(webhookUrl);
     expect(customWebhook.type).toEqual(WebhookType.GRAPHQL);
-    expect(customWebhook.network).toEqual(Network.ETH_GOERLI);
+    expect(customWebhook.network).toEqual(Network.ETH_MAINNET);
     let response = await alchemy.notify.getAllWebhooks();
     expect(
       response.webhooks.filter(wh => wh.id === customWebhook.id).length
