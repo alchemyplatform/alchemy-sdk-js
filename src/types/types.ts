@@ -1202,6 +1202,25 @@ export interface CustomGraphqlWebhookParams {
    * created on network of the app provided in the api key config.
    */
   network?: Network;
+  /**
+   * Whether to only receive webhooks if the query on the block is not empty.
+   * Defaults to false.
+   */
+  skipEmptyMessages?: boolean;
+  /**
+   * App IDs are now required for graphQL webhooks. You can find the app ID
+   * following the steps here:
+   * {@link https://docs.alchemy.com/reference/notify-api-faq#where-can-i-find-the-app-id}.
+   *
+   * The webhook will be created on the app and network associated with the appId.
+   * To find the app id of a project, go to the Alchemy Dashboard in the Apps tab.
+   * After clicking on an app, the app id is the string in the URL following 'apps/'.
+   *
+   * Note that although this property is marked as optional, it is *actually required*
+   * for creating a custom GraphQL webhook. This is a workaround to avoid a breaking
+   * change in the API.
+   */
+  appId?: string;
 }
 
 /**
