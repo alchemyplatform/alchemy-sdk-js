@@ -10,16 +10,30 @@ The SDK leverages Alchemy's hardened node infrastructure, guaranteeing best-in-c
 >
 > We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want on our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback), and we'd love to build it for you.
 
-The SDK currently supports the following chains:
+The SDK currently supports the following chains (chains with '(d)' after are deprecated):
 
-- **Ethereum**: Mainnet, Goerli, Sepolia
-- **Polygon**: Mainnet, Mumbai, Amoy
-- **Optimism**: Mainnet, Goerli, Kovan, Sepolia
-- **Arbitrum**: Mainnet, Goerli, Rinkeby, Sepolia
+- **Ethereum**: Mainnet, Goerli (d), Sepolia
+- **Polygon**: Mainnet, Mumbai (d), Amoy
+- **Optimism**: Mainnet, Goerli (d), Sepolia
+- **Arbitrum**: Mainnet, Goerli (d), Sepolia
 - **Astar**: Mainnet
-- **PolygonZKEVM**: Mainnet, Testnet
-- **Base**: Mainnet, Goerli, Sepolia
+- **PolygonZKEVM**: Mainnet, Testnet(d), Cardona
+- **Base**: Mainnet, Goerli (d), Sepolia
 - **Zksync**: Mainnet, Sepolia
+- **Shape**: Mainnet, Sepolia
+- **Linea**: Mainnet, Sepolia
+- **Fantom**: Mainnet, Testnet
+- **Zetachain**: Mainnet, Testnet
+- **Arbnova**: Mainnet
+- **Blast**: Mainnet, Sepolia
+- **Mantle**: Mainnet, Sepolia
+- **Scroll**: Mainnet, Sepolia
+- **Gnosis**: Mainnet, Chiado
+- **BNB**: Mainnet, Testnet
+- **Avalanche**: Mainnet, Fuji
+- **Celo**: Mainnet, Alfajores
+- **Metis**: Mainnet
+- **OpBNB**: Mainnet, Testnet
 
 You can find per-method documentation of the Alchemy SDK endpoints at the [Alchemy Docs linked in the sidebar](https://docs.alchemy.com/reference/alchemy-sdk-quickstart).
 
