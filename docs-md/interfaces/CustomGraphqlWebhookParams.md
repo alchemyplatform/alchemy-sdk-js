@@ -9,10 +9,34 @@ to create a [CustomGraphqlWebhook](CustomGraphqlWebhook.md)
 
 ### Properties
 
+- [appId](CustomGraphqlWebhookParams.md#appid)
 - [graphqlQuery](CustomGraphqlWebhookParams.md#graphqlquery)
 - [network](CustomGraphqlWebhookParams.md#network)
+- [skipEmptyMessages](CustomGraphqlWebhookParams.md#skipemptymessages)
 
 ## Properties
+
+### appId
+
+• `Optional` **appId**: `string`
+
+App IDs are now required for graphQL webhooks. You can find the app ID
+following the steps here:
+[https://docs.alchemy.com/reference/notify-api-faq#where-can-i-find-the-app-id](https://docs.alchemy.com/reference/notify-api-faq#where-can-i-find-the-app-id).
+
+The webhook will be created on the app and network associated with the appId.
+To find the app id of a project, go to the Alchemy Dashboard in the Apps tab.
+After clicking on an app, the app id is the string in the URL following 'apps/'.
+
+Note that although this property is marked as optional, it is *actually required*
+for creating a custom GraphQL webhook. This is a workaround to avoid a breaking
+change in the API.
+
+#### Defined in
+
+[src/types/types.ts:1255](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L1255)
+
+___
 
 ### graphqlQuery
 
@@ -22,7 +46,7 @@ GraphQL query
 
 #### Defined in
 
-[src/types/types.ts:1199](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/types/types.ts#L1199)
+[src/types/types.ts:1231](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L1231)
 
 ___
 
@@ -35,4 +59,17 @@ created on network of the app provided in the api key config.
 
 #### Defined in
 
-[src/types/types.ts:1204](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/types/types.ts#L1204)
+[src/types/types.ts:1236](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L1236)
+
+___
+
+### skipEmptyMessages
+
+• `Optional` **skipEmptyMessages**: `boolean`
+
+Whether to only receive webhooks if the query on the block is not empty.
+Defaults to false.
+
+#### Defined in
+
+[src/types/types.ts:1241](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L1241)
