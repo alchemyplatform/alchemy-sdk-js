@@ -39,6 +39,7 @@ describe('E2E integration tests', () => {
       }
     });
 
+    // Most of the new networks don't support WS, so no point running this test.
     describe.skip('AlchemyWebSocketProvider', () => {
       function testNetwork(network: Network) {
         it(`block subscription for ${network}`, () => {
