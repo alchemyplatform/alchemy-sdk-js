@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 3.4.1
+
+### Minor Changes
+
+- Fixed a bug where the `openSeaMetadata?.safelistRequestStatus` was undefined in the `Nft` object that resulted in a `Cannot read properties of undefined` error (#416)
+
 ## 3.4.0
 
 ### Major Changes
