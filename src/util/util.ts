@@ -73,13 +73,13 @@ export function getNftContractFromRaw(
     tokenType: parseNftTokenType(rawNftContract.tokenType),
     openSeaMetadata: {
       ...rawNftContract.openSeaMetadata,
-      safelistRequestStatus:
-        rawNftContract.openSeaMetadata?.safelistRequestStatus !== null
-          ? stringToEnum(
-              rawNftContract.openSeaMetadata.safelistRequestStatus,
-              OpenSeaSafelistRequestStatus
-            )
-          : null
+      safelistRequestStatus: rawNftContract.openSeaMetadata
+        ?.safelistRequestStatus
+        ? stringToEnum(
+            rawNftContract.openSeaMetadata.safelistRequestStatus,
+            OpenSeaSafelistRequestStatus
+          )
+        : null
     }
   });
 }
