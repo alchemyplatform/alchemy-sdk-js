@@ -21,7 +21,7 @@ The name of the NFT, if available.
 
 #### Defined in
 
-[src/types/nft-types.ts:576](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/types/nft-types.ts#L576)
+[src/types/nft-types.ts:576](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/nft-types.ts#L576)
 
 ___
 
@@ -33,4 +33,4 @@ A token id of an NFT owned by the owner on the contract.
 
 #### Defined in
 
-[src/types/nft-types.ts:574](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/types/nft-types.ts#L574)
+[src/types/nft-types.ts:574](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/nft-types.ts#L574)

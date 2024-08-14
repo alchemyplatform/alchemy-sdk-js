@@ -41,7 +41,7 @@ Replays a block that has already been mined.
 
 #### Defined in
 
-[src/api/debug-namespace.ts:120](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/api/debug-namespace.ts#L120)
+[src/api/debug-namespace.ts:120](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/api/debug-namespace.ts#L120)
 
 ▸ **traceBlock**(`blockIdentifier`, `tracer`): `Promise`<[`DebugPrestateTrace`](../modules.md#debugprestatetrace)\>
 
@@ -60,7 +60,7 @@ Replays a block that has already been mined.
 
 #### Defined in
 
-[src/api/debug-namespace.ts:131](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/api/debug-namespace.ts#L131)
+[src/api/debug-namespace.ts:131](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/api/debug-namespace.ts#L131)
 
 ___
 
@@ -85,7 +85,7 @@ final state of the parent block as the base.
 
 #### Defined in
 
-[src/api/debug-namespace.ts:36](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/api/debug-namespace.ts#L36)
+[src/api/debug-namespace.ts:36](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/api/debug-namespace.ts#L36)
 
 ▸ **traceCall**(`transaction`, `blockIdentifier`, `tracer`): `Promise`<[`DebugPrestateTrace`](../modules.md#debugprestatetrace)\>
 
@@ -106,7 +106,7 @@ final state of the parent block as the base.
 
 #### Defined in
 
-[src/api/debug-namespace.ts:51](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/api/debug-namespace.ts#L51)
+[src/api/debug-namespace.ts:51](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/api/debug-namespace.ts#L51)
 
 ___
 
@@ -133,7 +133,7 @@ that corresponds to the given hash.
 
 #### Defined in
 
-[src/api/debug-namespace.ts:79](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/api/debug-namespace.ts#L79)
+[src/api/debug-namespace.ts:79](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/api/debug-namespace.ts#L79)
 
 ▸ **traceTransaction**(`transactionHash`, `tracer`, `timeout?`): `Promise`<[`DebugPrestateTrace`](../modules.md#debugprestatetrace)\>
 
@@ -156,4 +156,4 @@ that corresponds to the given hash.
 
 #### Defined in
 
-[src/api/debug-namespace.ts:98](https://github.com/alchemyplatform/alchemy-sdk-js/blob/c4bab3e/src/api/debug-namespace.ts#L98)
+[src/api/debug-namespace.ts:98](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/api/debug-namespace.ts#L98)
