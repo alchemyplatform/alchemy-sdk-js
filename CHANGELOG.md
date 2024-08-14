@@ -2,11 +2,14 @@
 
 ## Unreleased
 
-### Major Changes
+### Major Change
+
+- App IDs are now a required property when calling `NotifyNamespace.createWebhook()` with `WebhookType.GRAPHQL`. This is not a Typescript breaking change, but rather a run-time breaking change. Calling the endpoint without an App ID will now throw an error instead of returning a 503.
 
 ### Minor Changes
 
 - Fixed a bug with `NotifyNamespace.createWebhook()` when using `WebhookType.GRAPHQL`. Also added the option use `skipEmptyMessages` when creating graphQL webhooks to skip empty blocks.
+- Updated axios version to remove security warning (#443).
 
 ## 3.3.1
 
