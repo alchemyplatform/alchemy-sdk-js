@@ -97,19 +97,24 @@ export interface AlchemySettings {
  */
 export enum Network {
   ETH_MAINNET = 'eth-mainnet',
+  /** @deprecated */
   ETH_GOERLI = 'eth-goerli',
   ETH_SEPOLIA = 'eth-sepolia',
   OPT_MAINNET = 'opt-mainnet',
+  /** @deprecated */
   OPT_GOERLI = 'opt-goerli',
   OPT_SEPOLIA = 'opt-sepolia',
   ARB_MAINNET = 'arb-mainnet',
+  /** @deprecated */
   ARB_GOERLI = 'arb-goerli',
   ARB_SEPOLIA = 'arb-sepolia',
   MATIC_MAINNET = 'polygon-mainnet',
+  /** @deprecated */
   MATIC_MUMBAI = 'polygon-mumbai',
   MATIC_AMOY = 'polygon-amoy',
   ASTAR_MAINNET = 'astar-mainnet',
   POLYGONZKEVM_MAINNET = 'polygonzkevm-mainnet',
+  /** @deprecated */
   POLYGONZKEVM_TESTNET = 'polygonzkevm-testnet',
   POLYGONZKEVM_CARDONA = 'polygonzkevm-cardona',
   BASE_MAINNET = 'base-mainnet',
