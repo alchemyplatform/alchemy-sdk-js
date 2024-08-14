@@ -8,7 +8,14 @@ describe('E2E integration tests', () => {
   });
   describe('handles networks', () => {
     // TODO(deprecation): Remove after removing deprecated networks.
-    const deprecated = ['ropsten', 'kovan', 'rinkeby'];
+    const deprecated = [
+      'ropsten',
+      'goerli',
+      'kovan',
+      'rinkeby',
+      'mumbai',
+      'polygonzkevm-testnet'
+    ];
     // Filter out deprecated networks.
     const supportedNetworks = Object.values(Network).filter(
       network => !deprecated.some(key => network.includes(key))
@@ -17,6 +24,7 @@ describe('E2E integration tests', () => {
     describe('AlchemyProvider', () => {
       function testNetwork(network: Network) {
         it(`get blockNumber on ${network}`, async () => {
+          console.log('testing network', network);
           const alchemy = new Alchemy({
             apiKey: process.env.ALCHEMY_API_KEY,
             network
@@ -31,7 +39,8 @@ describe('E2E integration tests', () => {
       }
     });
 
-    describe('AlchemyWebSocketProvider', () => {
+    // Most of the new networks don't support WS, so no point running this test.
+    describe.skip('AlchemyWebSocketProvider', () => {
       function testNetwork(network: Network) {
         it(`block subscription for ${network}`, () => {
           const alchemy = new Alchemy({

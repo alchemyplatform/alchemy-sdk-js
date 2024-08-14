@@ -97,25 +97,57 @@ export interface AlchemySettings {
  */
 export enum Network {
   ETH_MAINNET = 'eth-mainnet',
+  /** @deprecated */
   ETH_GOERLI = 'eth-goerli',
   ETH_SEPOLIA = 'eth-sepolia',
   OPT_MAINNET = 'opt-mainnet',
+  /** @deprecated */
   OPT_GOERLI = 'opt-goerli',
   OPT_SEPOLIA = 'opt-sepolia',
   ARB_MAINNET = 'arb-mainnet',
+  /** @deprecated */
   ARB_GOERLI = 'arb-goerli',
   ARB_SEPOLIA = 'arb-sepolia',
   MATIC_MAINNET = 'polygon-mainnet',
+  /** @deprecated */
   MATIC_MUMBAI = 'polygon-mumbai',
   MATIC_AMOY = 'polygon-amoy',
   ASTAR_MAINNET = 'astar-mainnet',
   POLYGONZKEVM_MAINNET = 'polygonzkevm-mainnet',
+  /** @deprecated */
   POLYGONZKEVM_TESTNET = 'polygonzkevm-testnet',
+  POLYGONZKEVM_CARDONA = 'polygonzkevm-cardona',
   BASE_MAINNET = 'base-mainnet',
   BASE_GOERLI = 'base-goerli',
   BASE_SEPOLIA = 'base-sepolia',
   ZKSYNC_MAINNET = 'zksync-mainnet',
-  ZKSYNC_SEPOLIA = 'zksync-sepolia'
+  ZKSYNC_SEPOLIA = 'zksync-sepolia',
+  SHAPE_MAINNET = 'shape-mainnet',
+  SHAPE_SEPOLIA = 'shape-sepolia',
+  LINEA_MAINNET = 'linea-mainnet',
+  LINEA_SEPOLIA = 'linea-sepolia',
+  FANTOM_MAINNET = 'fantom-mainnet',
+  FANTOM_TESTNET = 'fantom-testnet',
+  ZETACHAIN_MAINNET = 'zetachain-mainnet',
+  ZETACHAIN_TESTNET = 'zetachain-testnet',
+  ARBNOVA_MAINNET = 'arbnova-mainnet',
+  BLAST_MAINNET = 'blast-mainnet',
+  BLAST_SEPOLIA = 'blast-sepolia',
+  MANTLE_MAINNET = 'mantle-mainnet',
+  MANTLE_SEPOLIA = 'mantle-sepolia',
+  SCROLL_MAINNET = 'scroll-mainnet',
+  SCROLL_SEPOLIA = 'scroll-sepolia',
+  GNOSIS_MAINNET = 'gnosis-mainnet',
+  GNOSIS_CHIADO = 'gnosis-chiado',
+  BNB_MAINNET = 'bnb-mainnet',
+  BNB_TESTNET = 'bnb-testnet',
+  AVAX_MAINNET = 'avax-mainnet',
+  AVAX_FUJI = 'avax-fuji',
+  CELO_MAINNET = 'celo-mainnet',
+  CELO_ALFAJORES = 'celo-alfajores',
+  METIS_MAINNET = 'metis-mainnet',
+  OPBNB_MAINNET = 'opbnb-mainnet',
+  OPBNB_TESTNET = 'opbnb-testnet'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */

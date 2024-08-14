@@ -4,6 +4,7 @@
 
 ### Major Change
 
+- Added networks for `SHAPE`, `LINEA`, `FANTOM`, `ZETACHAIN`, `ARBNOVA`, `BLAST`, `MANTLE`, `SCROLL`, `GNOSIS`, `BNB`, `AVAX`, `CELO`, `METIS`, `OPBNB`. Note that these are primarily for `CoreNamespace` methods. Not all namespaces will work these networks.
 - App IDs are now a required property when calling `NotifyNamespace.createWebhook()` with `WebhookType.GRAPHQL`. This is not a Typescript breaking change, but rather a run-time breaking change. Calling the endpoint without an App ID will now throw an error instead of returning a 503.
 
 ### Minor Changes
