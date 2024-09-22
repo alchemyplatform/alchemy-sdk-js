@@ -148,7 +148,7 @@ export enum Network {
   METIS_MAINNET = 'metis-mainnet',
   OPBNB_MAINNET = 'opbnb-mainnet',
   OPBNB_TESTNET = 'opbnb-testnet',
-  CROSSIFY_TESTNET = 'crossify-testnet',
+  CROSSFI_TESTNET = 'crossfi-testnet',
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */

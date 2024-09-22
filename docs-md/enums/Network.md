@@ -27,7 +27,7 @@ available on which networks
 - [BNB\_TESTNET](Network.md#bnb_testnet)
 - [CELO\_ALFAJORES](Network.md#celo_alfajores)
 - [CELO\_MAINNET](Network.md#celo_mainnet)
-- [CROSSIFY\_TESTNET](Network.md#crossify_testnet)
+- [CROSSFI\_TESTNET](Network.md#crossfi_testnet)
 - [ETH\_GOERLI](Network.md#eth_goerli)
 - [ETH\_MAINNET](Network.md#eth_mainnet)
 - [ETH\_SEPOLIA](Network.md#eth_sepolia)
@@ -226,9 +226,9 @@ ___
 
 ___
 
-### CROSSIFY\_TESTNET
+### CROSSFI\_TESTNET
 
-• **CROSSIFY\_TESTNET** = `"crossify-TESTNET"`
+• **CROSSFI\_TESTNET** = `"crossfi-TESTNET"`
 
 #### Defined in
 
