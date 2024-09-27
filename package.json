@@ -99,7 +99,7 @@
     "typedoc-plugin-markdown": "^3.12.1",
     "typescript": "^4.5.5"
   },
-  "overrides": {
+  "resolutions": {
     "elliptic": "6.5.7",
     "ws": "7.5.10"
   },
