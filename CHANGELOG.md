@@ -6,6 +6,14 @@
 
 ### Minor Changes
 
+## 3.4.2
+
+### Minor Changes
+
+- Addressed security vulnerabilities by adding overrides for `elliptic` and `ws` dependencies. Specifically:
+  - Updated `elliptic` to version `6.5.7` (latest) to fix vulnerabilities related to EDDSA signature length checks and ECDSA BER-encoded signatures.
+  - Updated `ws` to version `7.5.10` to mitigate a potential DoS vulnerability. The latest major version of `ws` is `8.x`, however, `7.5.10` is the most up-to-date version compatible with `ethers v5`, which depends on `7.x` versions of `ws`.
+
 ## 3.4.1
 
 ### Minor Changes
