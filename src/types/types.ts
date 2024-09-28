@@ -147,7 +147,8 @@ export enum Network {
   CELO_ALFAJORES = 'celo-alfajores',
   METIS_MAINNET = 'metis-mainnet',
   OPBNB_MAINNET = 'opbnb-mainnet',
-  OPBNB_TESTNET = 'opbnb-testnet'
+  OPBNB_TESTNET = 'opbnb-testnet',
+  CROSSFI_TESTNET = 'crossfi-testnet',
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */
