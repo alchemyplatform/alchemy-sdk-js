@@ -86,7 +86,9 @@ export const EthersNetwork = {
   [Network.CELO_ALFAJORES]: 'celo-alfajores',
   [Network.METIS_MAINNET]: 'metis-mainnet',
   [Network.OPBNB_MAINNET]: 'opbnb-mainnet',
-  [Network.OPBNB_TESTNET]: 'opbnb-testnet'
+  [Network.OPBNB_TESTNET]: 'opbnb-testnet',
+  [Network.BERACHAIN_BARTIO]: 'berachain-bartio',
+  [Network.SONEIUM_MINATO]: 'soneium-minato'
 };
 
 /**
@@ -254,6 +256,14 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'opbnb-testnet': {
     chainId: 5611,
     name: 'opbnb-testnet'
+  },
+  'berachain-bartio': {
+    chainId: 80084,
+    name: 'berachain-bartio'
+  },
+  'soneium-minato': {
+    chainId: 0x79a,
+    name: 'soneium-minato'
   }
 };
 
