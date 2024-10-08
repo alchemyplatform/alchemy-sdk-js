@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 3.4.3
+
+### Minor Changes
+
+- Added networks for `SONEIUM` and `BERACHAIN`. Note that these are primarily for `CoreNamespace` methods. Not all namespaces will work with these networks.
+
 ## 3.4.2
 
 ### Minor Changes
