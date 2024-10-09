@@ -1,0 +1,3 @@
+curl --request GET \
+     --url 'https://eth-mainnet.g.alchemy.com/nft/v3/EXgZBFake5hBBJOcQ1Hojt7gGFVZU-1j/getNFTsForOwner?owner=0x1910C801Ea87E41Faf2aeBfB430EEEa2Fb6efFE5&withMetadata=true&pageSize=100' \
+     --header 'accept: application/json'
