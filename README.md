@@ -401,4 +401,4 @@ alchemy.core.getTokenBalances('vitalik.eth').then(console.log);
 
 If you have any questions, issues, or feedback, please file an issue
 on [GitHub](https://github.com/alchemyplatform/alchemy-sdk-js/issues), or drop us a message on
-our [Discord](https://discord.com/channels/735965332958871634/983472322998575174) channel for the SDK.
+our [Discord](https://discord.com/invite/alchemyplatform) channel for the SDK.
