@@ -88,7 +88,9 @@ export const EthersNetwork = {
   [Network.OPBNB_MAINNET]: 'opbnb-mainnet',
   [Network.OPBNB_TESTNET]: 'opbnb-testnet',
   [Network.BERACHAIN_BARTIO]: 'berachain-bartio',
-  [Network.SONEIUM_MINATO]: 'soneium-minato'
+  [Network.SONEIUM_MINATO]: 'soneium-minato',
+  [Network.WORLDCHAIN_MAINNET]: 'worldchain-mainnet',
+  [Network.WORLDCHAIN_SEPOLIA]: 'worldchain-sepolia'
 };
 
 /**
@@ -264,6 +266,14 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'soneium-minato': {
     chainId: 0x79a,
     name: 'soneium-minato'
+  },
+  'worldchain-mainnet': {
+    chainId: 0x1e0,
+    name: 'worldchain-mainnet'
+  },
+  'worldchain-sepolia': {
+    chainId: 0x12c1,
+    name: 'worldchain-sepolia'
   }
 };
 

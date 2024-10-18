@@ -149,7 +149,9 @@ export enum Network {
   OPBNB_MAINNET = 'opbnb-mainnet',
   OPBNB_TESTNET = 'opbnb-testnet',
   BERACHAIN_BARTIO = 'berachain-bartio',
-  SONEIUM_MINATO = 'soneium-minato'
+  SONEIUM_MINATO = 'soneium-minato',
+  WORLDCHAIN_MAINNET = 'worldchain-mainnet',
+  WORLDCHAIN_SEPOLIA = 'worldchain-sepolia'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */

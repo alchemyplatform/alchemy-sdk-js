@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 3.4.4
+
+### Minor Changes
+
+- Added networks for `WORLDCHAIN`.
+
 ## 3.4.3
 
 ### Minor Changes
