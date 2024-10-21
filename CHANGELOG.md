@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 3.4.5
+
+### Minor Changes
+
+- Fixed webhook network parsing in `getAllWebhooks` method for all supported networks.
+
 ## 3.4.4
 
 ### Minor Changes
