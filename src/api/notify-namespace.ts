@@ -524,9 +524,11 @@ export class NotifyNamespace {
       ...nftFilterObj,
       ...(addresses && { addresses }),
       ...(graphqlQuery && {
-        graphql_query: graphqlQuery
-      }),
-      ...(skipEmptyMessages && { skip_empty_messages: skipEmptyMessages })
+        graphql_query: {
+          query: graphqlQuery,
+          skip_empty_messages: !!skipEmptyMessages
+        }
+      })
     };
 
     const response = await this.sendWebhookRequest<RawCreateWebhookResponse>(
