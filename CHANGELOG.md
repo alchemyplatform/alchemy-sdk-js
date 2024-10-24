@@ -6,11 +6,17 @@
 
 ### Minor Changes
 
-## 3.4.5
+## 3.4.6
 
 ### Minor Changes
 
 - Fixed webhook network parsing in `getAllWebhooks` method for all supported networks.
+
+## 3.4.5
+
+### Minor Changes
+
+- Fixed createWebhook's `skip_empty_messages` param.
 
 ## 3.4.4
 
