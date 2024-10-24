@@ -1,6 +1,6 @@
 {
   "name": "alchemy-sdk",
-  "version": "3.4.5",
+  "version": "3.4.6",
   "description": "Extended Ethers.js SDK for Alchemy APIs",
   "author": "Alchemy",
   "license": "MIT",
