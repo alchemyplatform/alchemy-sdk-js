@@ -90,7 +90,9 @@ export const EthersNetwork = {
   [Network.BERACHAIN_BARTIO]: 'berachain-bartio',
   [Network.SONEIUM_MINATO]: 'soneium-minato',
   [Network.WORLDCHAIN_MAINNET]: 'worldchain-mainnet',
-  [Network.WORLDCHAIN_SEPOLIA]: 'worldchain-sepolia'
+  [Network.WORLDCHAIN_SEPOLIA]: 'worldchain-sepolia',
+  [Network.ROOTSTOCK_MAINNET]: 'rootstock-mainnet',
+  [Network.ROOTSTOCK_TESTNET]: 'rootstock-testnet'
 };
 
 /**
@@ -274,6 +276,14 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'worldchain-sepolia': {
     chainId: 0x12c1,
     name: 'worldchain-sepolia'
+  },
+  'rootstock-mainnet': {
+    chainId: 0x1e,
+    name: 'rootstock-mainnet'
+  },
+  'rootstock-testnet': {
+    chainId: 0x1f,
+    name: 'rootstock-testnet'
   }
 };
 
