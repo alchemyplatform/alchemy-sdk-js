@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 3.4.7
+
+### Minor Changes
+
+- Added networks for `ROOTSTOCK`.
+
 ## 3.4.6
 
 ### Minor Changes

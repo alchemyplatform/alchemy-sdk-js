@@ -34,9 +34,10 @@ The SDK currently supports the following chains (chains with '(d)' after are dep
 - **Celo**: Mainnet, Alfajores
 - **Metis**: Mainnet
 - **OpBNB**: Mainnet, Testnet
-  **Berachain**: Bartio
-  **Soneium**: Minato
-  **Worldchain**: Mainnet, Sepolia
+- **Berachain**: Bartio
+- **Soneium**: Minato
+- **Worldchain**: Mainnet, Sepolia
+- **Rootstock**: Mainnet, Testnet
 
 You can find per-method documentation of the Alchemy SDK endpoints at the [Alchemy Docs linked in the sidebar](https://docs.alchemy.com/reference/alchemy-sdk-quickstart).
 

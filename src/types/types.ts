@@ -151,7 +151,9 @@ export enum Network {
   BERACHAIN_BARTIO = 'berachain-bartio',
   SONEIUM_MINATO = 'soneium-minato',
   WORLDCHAIN_MAINNET = 'worldchain-mainnet',
-  WORLDCHAIN_SEPOLIA = 'worldchain-sepolia'
+  WORLDCHAIN_SEPOLIA = 'worldchain-sepolia',
+  ROOTSTOCK_MAINNET = 'rootstock-mainnet',
+  ROOTSTOCK_TESTNET = 'rootstock-testnet'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */
