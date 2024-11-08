@@ -92,7 +92,9 @@ export const EthersNetwork = {
   [Network.WORLDCHAIN_MAINNET]: 'worldchain-mainnet',
   [Network.WORLDCHAIN_SEPOLIA]: 'worldchain-sepolia',
   [Network.ROOTSTOCK_MAINNET]: 'rootstock-mainnet',
-  [Network.ROOTSTOCK_TESTNET]: 'rootstock-testnet'
+  [Network.ROOTSTOCK_TESTNET]: 'rootstock-testnet',
+  [Network.FLOW_MAINNET]: 'flow-mainnet',
+  [Network.FLOW_TESTNET]: 'flow-testnet'
 };
 
 /**
@@ -284,6 +286,14 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'rootstock-testnet': {
     chainId: 0x1f,
     name: 'rootstock-testnet'
+  },
+  'flow-mainnet': {
+    chainId: 747,
+    name: 'flow-mainnet'
+  },
+  'flow-testnet': {
+    chainId: 545,
+    name: 'flow-testnet'
   }
 };
 

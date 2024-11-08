@@ -153,7 +153,9 @@ export enum Network {
   WORLDCHAIN_MAINNET = 'worldchain-mainnet',
   WORLDCHAIN_SEPOLIA = 'worldchain-sepolia',
   ROOTSTOCK_MAINNET = 'rootstock-mainnet',
-  ROOTSTOCK_TESTNET = 'rootstock-testnet'
+  ROOTSTOCK_TESTNET = 'rootstock-testnet',
+  FLOW_MAINNET = 'flow-mainnet',
+  FLOW_TESTNET = 'flow-testnet'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */
