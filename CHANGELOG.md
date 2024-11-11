@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 3.4.8
+
+### Minor Changes
+
+- Added networks for `FLOW`.
+
 ## 3.4.7
 
 ### Minor Changes
