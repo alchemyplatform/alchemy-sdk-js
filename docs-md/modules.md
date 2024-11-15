@@ -17,6 +17,7 @@
 - [DebugTracerType](enums/DebugTracerType.md)
 - [DecodingAuthority](enums/DecodingAuthority.md)
 - [GetTransfersForOwnerTransferType](enums/GetTransfersForOwnerTransferType.md)
+- [HistoricalPriceInterval](enums/HistoricalPriceInterval.md)
 - [Network](enums/Network.md)
 - [NftCollectionMarketplace](enums/NftCollectionMarketplace.md)
 - [NftFilters](enums/NftFilters.md)
@@ -47,6 +48,7 @@
 - [DebugNamespace](classes/DebugNamespace.md)
 - [NftNamespace](classes/NftNamespace.md)
 - [NotifyNamespace](classes/NotifyNamespace.md)
+- [PricesNamespace](classes/PricesNamespace.md)
 - [TransactNamespace](classes/TransactNamespace.md)
 - [Wallet](classes/Wallet.md)
 - [WebSocketNamespace](classes/WebSocketNamespace.md)
@@ -117,10 +119,16 @@
 - [GetOwnersForNftOptions](interfaces/GetOwnersForNftOptions.md)
 - [GetOwnersForNftResponse](interfaces/GetOwnersForNftResponse.md)
 - [GetSpamContractsResponse](interfaces/GetSpamContractsResponse.md)
+- [GetTokenPriceByAddressResponse](interfaces/GetTokenPriceByAddressResponse.md)
+- [GetTokenPriceBySymbolRequest](interfaces/GetTokenPriceBySymbolRequest.md)
+- [GetTokenPriceBySymbolResponse](interfaces/GetTokenPriceBySymbolResponse.md)
 - [GetTokensForOwnerOptions](interfaces/GetTokensForOwnerOptions.md)
 - [GetTokensForOwnerResponse](interfaces/GetTokensForOwnerResponse.md)
 - [GetTransfersForContractOptions](interfaces/GetTransfersForContractOptions.md)
 - [GetTransfersForOwnerOptions](interfaces/GetTransfersForOwnerOptions.md)
+- [HistoricalPriceByAddressResponse](interfaces/HistoricalPriceByAddressResponse.md)
+- [HistoricalPriceBySymbolResponse](interfaces/HistoricalPriceBySymbolResponse.md)
+- [HistoricalPriceDataPoint](interfaces/HistoricalPriceDataPoint.md)
 - [IsAirdropNftResponse](interfaces/IsAirdropNftResponse.md)
 - [IsSpamContractResponse](interfaces/IsSpamContractResponse.md)
 - [Log](interfaces/Log.md)
@@ -168,6 +176,7 @@
 - [SimulateExecutionResponse](interfaces/SimulateExecutionResponse.md)
 - [SimulationCallTrace](interfaces/SimulationCallTrace.md)
 - [SimulationDebugLog](interfaces/SimulationDebugLog.md)
+- [TokenAddressRequest](interfaces/TokenAddressRequest.md)
 - [TokenBalanceFailure](interfaces/TokenBalanceFailure.md)
 - [TokenBalanceSuccess](interfaces/TokenBalanceSuccess.md)
 - [TokenBalancesOptionsDefaultTokens](interfaces/TokenBalancesOptionsDefaultTokens.md)
@@ -175,6 +184,10 @@
 - [TokenBalancesResponse](interfaces/TokenBalancesResponse.md)
 - [TokenBalancesResponseErc20](interfaces/TokenBalancesResponseErc20.md)
 - [TokenMetadataResponse](interfaces/TokenMetadataResponse.md)
+- [TokenPrice](interfaces/TokenPrice.md)
+- [TokenPriceByAddressResult](interfaces/TokenPriceByAddressResult.md)
+- [TokenPriceBySymbolResult](interfaces/TokenPriceBySymbolResult.md)
+- [TokenPriceError](interfaces/TokenPriceError.md)
 - [TransactionReceipt](interfaces/TransactionReceipt.md)
 - [TransactionReceiptsBlockHash](interfaces/TransactionReceiptsBlockHash.md)
 - [TransactionReceiptsBlockNumber](interfaces/TransactionReceiptsBlockNumber.md)
@@ -202,6 +215,7 @@
 - [CustomGraphqlWebhookUpdate](modules.md#customgraphqlwebhookupdate)
 - [DebugPrestateTrace](modules.md#debugprestatetrace)
 - [EventType](modules.md#eventtype)
+- [HistoricalPriceResponse](modules.md#historicalpriceresponse)
 - [LogLevel](modules.md#loglevel)
 - [NftMetadataWebhookUpdate](modules.md#nftmetadatawebhookupdate)
 - [NftWebhookUpdate](modules.md#nftwebhookupdate)
@@ -229,7 +243,7 @@ Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespa
 
 #### Defined in
 
-[src/types/types.ts:1370](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L1370)
+[src/types/types.ts:1378](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/types.ts#L1378)
 
 ___
 
@@ -242,7 +256,7 @@ filters compatible with other ethers events.
 
 #### Defined in
 
-[src/types/types.ts:769](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L769)
+[src/types/types.ts:777](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/types.ts#L777)
 
 ___
 
@@ -255,7 +269,7 @@ also include Alchemy's Subscription API.
 
 #### Defined in
 
-[src/types/types.ts:763](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L763)
+[src/types/types.ts:771](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/types.ts#L771)
 
 ___
 
@@ -268,7 +282,7 @@ least one of the fields to be set.
 
 #### Defined in
 
-[src/types/types.ts:752](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L752)
+[src/types/types.ts:760](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/types.ts#L760)
 
 ___
 
@@ -291,7 +305,7 @@ methods in the [DebugNamespace](classes/DebugNamespace.md).
 
 #### Defined in
 
-[src/types/types.ts:1431](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L1431)
+[src/types/types.ts:1439](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/types.ts#L1439)
 
 ___
 
@@ -314,7 +328,7 @@ Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespa
 
 #### Defined in
 
-[src/types/types.ts:1364](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L1364)
+[src/types/types.ts:1372](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/types.ts#L1372)
 
 ___
 
@@ -328,7 +342,7 @@ The keys are the addresses of the accounts, mapped to its corresponding state.
 
 #### Defined in
 
-[src/types/types.ts:1548](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L1548)
+[src/types/types.ts:1556](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/types.ts#L1556)
 
 ___
 
@@ -342,6 +356,18 @@ node_modules/@ethersproject/abstract-provider/lib/index.d.ts:121
 
 ___
 
+### HistoricalPriceResponse
+
+Ƭ **HistoricalPriceResponse**: [`HistoricalPriceBySymbolResponse`](interfaces/HistoricalPriceBySymbolResponse.md) \| [`HistoricalPriceByAddressResponse`](interfaces/HistoricalPriceByAddressResponse.md)
+
+Type helper to infer the correct response type based on the request type.
+
+#### Defined in
+
+[src/types/prices-types.ts:172](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/prices-types.ts#L172)
+
+___
+
 ### LogLevel
 
 Ƭ **LogLevel**: ``"debug"`` \| ``"info"`` \| ``"warn"`` \| ``"error"`` \| ``"silent"``
@@ -350,7 +376,7 @@ The level of verbosity for the logger.
 
 #### Defined in
 
-[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/util/logger.ts#L22)
+[src/util/logger.ts:22](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/util/logger.ts#L22)
 
 ___
 
@@ -363,7 +389,7 @@ Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespa
 
 #### Defined in
 
-[src/types/types.ts:1356](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L1356)
+[src/types/types.ts:1364](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/types.ts#L1364)
 
 ___
 
@@ -376,7 +402,7 @@ Params object when calling [NotifyNamespace.updateWebhook](classes/NotifyNamespa
 
 #### Defined in
 
-[src/types/types.ts:1348](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L1348)
+[src/types/types.ts:1356](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/types.ts#L1356)
 
 ___
 
@@ -394,7 +420,7 @@ Requires an array with at least one value.
 
 #### Defined in
 
-[src/types/types.ts:1574](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L1574)
+[src/types/types.ts:1582](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/types.ts#L1582)
 
 ___
 
@@ -415,7 +441,7 @@ Implementation copied over from
 
 #### Defined in
 
-[src/types/types.ts:1568](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L1568)
+[src/types/types.ts:1576](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/types.ts#L1576)
 
 ___
 
@@ -425,7 +451,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:209](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L209)
+[src/types/types.ts:217](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/types.ts#L217)
 
 ___
 
@@ -437,7 +463,7 @@ The parameters to use with the [CoreNamespace.getTransactionReceipts](classes/Co
 
 #### Defined in
 
-[src/types/types.ts:613](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L613)
+[src/types/types.ts:621](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/types.ts#L621)
 
 ___
 
@@ -488,7 +514,7 @@ Converts a hex string to a decimal number.
 
 #### Defined in
 
-[src/api/util.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/api/util.ts#L9)
+[src/api/util.ts:9](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/api/util.ts#L9)
 
 ___
 
@@ -510,7 +536,7 @@ Checks if a value is a hex string.
 
 #### Defined in
 
-[src/api/util.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/api/util.ts#L29)
+[src/api/util.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/api/util.ts#L29)
 
 ___
 
@@ -532,7 +558,7 @@ Configures the verbosity of logging. The default log level is `info`.
 
 #### Defined in
 
-[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/util/logger.ts#L56)
+[src/util/logger.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/util/logger.ts#L56)
 
 ___
 
@@ -554,4 +580,4 @@ Converts a number to a hex string.
 
 #### Defined in
 
-[src/api/util.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/api/util.ts#L19)
+[src/api/util.ts:19](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/api/util.ts#L19)
