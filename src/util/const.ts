@@ -29,10 +29,15 @@ export function getAlchemyWebhookHttpUrl(): string {
   return 'https://dashboard.alchemy.com/api';
 }
 
+export function getPricesBaseUrl(apiKey: string): string {
+  return `https://api.g.alchemy.com/prices/v1/${apiKey}`;
+}
+
 export enum AlchemyApiType {
   BASE,
   NFT,
-  WEBHOOK
+  WEBHOOK,
+  PRICES
 }
 
 /**
