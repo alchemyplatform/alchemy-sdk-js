@@ -34,7 +34,7 @@ change in the API.
 
 #### Defined in
 
-[src/types/types.ts:1255](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L1255)
+[src/types/types.ts:1263](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/types.ts#L1263)
 
 ___
 
@@ -46,7 +46,7 @@ GraphQL query
 
 #### Defined in
 
-[src/types/types.ts:1231](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L1231)
+[src/types/types.ts:1239](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/types.ts#L1239)
 
 ___
 
@@ -59,7 +59,7 @@ created on network of the app provided in the api key config.
 
 #### Defined in
 
-[src/types/types.ts:1236](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L1236)
+[src/types/types.ts:1244](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/types.ts#L1244)
 
 ___
 
@@ -72,4 +72,4 @@ Defaults to false.
 
 #### Defined in
 
-[src/types/types.ts:1241](https://github.com/alchemyplatform/alchemy-sdk-js/blob/4e3af22/src/types/types.ts#L1241)
+[src/types/types.ts:1249](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/types.ts#L1249)
