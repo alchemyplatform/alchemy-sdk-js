@@ -4,6 +4,8 @@
 
 ### Major Changes
 
+- Added a new `PricesNamespace` with three new methods: `getTokenPriceByAddress()`, `getTokenPriceBySymbol()`, `getHistoricalPriceByAddress`, and `getHistoricalPriceBySymbol()`. Access these methods via `alchemy.prices`.
+
 ### Minor Changes
 
 ## 3.4.8

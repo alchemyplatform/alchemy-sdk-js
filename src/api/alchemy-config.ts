@@ -9,7 +9,8 @@ import {
   DEFAULT_REQUEST_TIMEOUT,
   getAlchemyHttpUrl,
   getAlchemyNftHttpUrl,
-  getAlchemyWebhookHttpUrl
+  getAlchemyWebhookHttpUrl,
+  getPricesBaseUrl
 } from '../util/const';
 import type { AlchemyProvider } from './alchemy-provider';
 import type { AlchemyWebSocketProvider } from './alchemy-websocket-provider';
@@ -91,6 +92,8 @@ export class AlchemyConfig {
       return getAlchemyNftHttpUrl(this.network, this.apiKey);
     } else if (apiType === AlchemyApiType.WEBHOOK) {
       return getAlchemyWebhookHttpUrl();
+    } else if (apiType === AlchemyApiType.PRICES) {
+      return getPricesBaseUrl(this.apiKey);
     } else {
       return getAlchemyHttpUrl(this.network, this.apiKey);
     }
