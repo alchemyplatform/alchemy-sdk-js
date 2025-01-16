@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 3.5.1
+
+### Minor Changes
+
+- Added many new networks
+
 ## 3.5.0
 
 ### Major Changes
