@@ -39,6 +39,8 @@ The SDK currently supports the following chains (chains with '(d)' after are dep
 - **Worldchain**: Mainnet, Sepolia
 - **Rootstock**: Mainnet, Testnet
 - **Flow**: Mainnet, Testnet
+- **Zora**: Mainnet, Sepolia
+- **Frax**: Mainnet, Sepolia
 - **Polynomial**: Mainnet, Sepolia
 - **Crossfi**: Mainnet, Testnet
 - **Apechain**: Mainnet, Curtis

@@ -102,6 +102,10 @@ export const EthersNetwork = {
   [Network.ROOTSTOCK_TESTNET]: 'rootstock-testnet',
   [Network.FLOW_MAINNET]: 'flow-mainnet',
   [Network.FLOW_TESTNET]: 'flow-testnet',
+  [Network.ZORA_MAINNET]: 'zora-mainnet',
+  [Network.ZORA_SEPOLIA]: 'zora-sepolia',
+  [Network.FRAX_MAINNET]: 'frax-mainnet',
+  [Network.FRAX_SEPOLIA]: 'frax-sepolia',
   [Network.POLYNOMIAL_MAINNET]: 'polynomial-mainnet',
   [Network.POLYNOMIAL_SEPOLIA]: 'polynomial-sepolia',
   [Network.CROSSFI_MAINNET]: 'crossfi-mainnet',
@@ -328,6 +332,22 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'flow-testnet': {
     chainId: 545,
     name: 'flow-testnet'
+  },
+  'zora-mainnet': {
+    chainId: 7777777,
+    name: 'zora-mainnet'
+  },
+  'zora-sepolia': {
+    chainId: 999999999,
+    name: 'zora-sepolia'
+  },
+  'frax-mainnet': {
+    chainId: 252,
+    name: 'frax-mainnet'
+  },
+  'frax-sepolia': {
+    chainId: 2522,
+    name: 'frax-sepolia'
   },
   'polynomial-mainnet': {
     chainId: 8008,
