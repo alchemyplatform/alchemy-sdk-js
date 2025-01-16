@@ -48,6 +48,7 @@ export const EthersNetwork = {
   [Network.ETH_MAINNET]: 'mainnet',
   [Network.ETH_GOERLI]: 'goerli',
   [Network.ETH_SEPOLIA]: 'sepolia',
+  [Network.ETH_HOLESKY]: 'holesky',
   [Network.OPT_MAINNET]: 'optimism',
   [Network.OPT_GOERLI]: 'optimism-goerli',
   [Network.OPT_SEPOLIA]: 'optimism-sepolia',
@@ -93,13 +94,37 @@ export const EthersNetwork = {
   [Network.OPBNB_MAINNET]: 'opbnb-mainnet',
   [Network.OPBNB_TESTNET]: 'opbnb-testnet',
   [Network.BERACHAIN_BARTIO]: 'berachain-bartio',
+  [Network.SONEIUM_MAINNET]: 'soneium-mainnet',
   [Network.SONEIUM_MINATO]: 'soneium-minato',
   [Network.WORLDCHAIN_MAINNET]: 'worldchain-mainnet',
   [Network.WORLDCHAIN_SEPOLIA]: 'worldchain-sepolia',
   [Network.ROOTSTOCK_MAINNET]: 'rootstock-mainnet',
   [Network.ROOTSTOCK_TESTNET]: 'rootstock-testnet',
   [Network.FLOW_MAINNET]: 'flow-mainnet',
-  [Network.FLOW_TESTNET]: 'flow-testnet'
+  [Network.FLOW_TESTNET]: 'flow-testnet',
+  [Network.ZORA_MAINNET]: 'zora-mainnet',
+  [Network.ZORA_SEPOLIA]: 'zora-sepolia',
+  [Network.FRAX_MAINNET]: 'frax-mainnet',
+  [Network.FRAX_SEPOLIA]: 'frax-sepolia',
+  [Network.POLYNOMIAL_MAINNET]: 'polynomial-mainnet',
+  [Network.POLYNOMIAL_SEPOLIA]: 'polynomial-sepolia',
+  [Network.CROSSFI_MAINNET]: 'crossfi-mainnet',
+  [Network.CROSSFI_TESTNET]: 'crossfi-testnet',
+  [Network.APECHAIN_MAINNET]: 'apechain-mainnet',
+  [Network.APECHAIN_CURTIS]: 'apechain-curtis',
+  [Network.LENS_SEPOLIA]: 'lens-sepolia',
+  [Network.GEIST_MAINNET]: 'geist-mainnet',
+  [Network.GEIST_POLTER]: 'geist-polter',
+  [Network.LUMIA_PRISM]: 'lumia-prism',
+  [Network.LUMIA_TESTNET]: 'lumia-testnet',
+  [Network.UNICHAIN_SEPOLIA]: 'unichain-sepolia',
+  [Network.SONIC_MAINNET]: 'sonic-mainnet',
+  [Network.SONIC_BLAZE]: 'sonic-blaze',
+  [Network.XMTP_TESTNET]: 'xmtp-testnet',
+  [Network.ABSTRACT_TESTNET]: 'abstract-testnet',
+  [Network.DEGEN_MAINNET]: 'degen-mainnet',
+  [Network.INK_MAINNET]: 'ink-mainnet',
+  [Network.INK_SEPOLIA]: 'ink-sepolia'
 };
 
 /**
@@ -123,6 +148,10 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   sepolia: {
     chainId: 11155111,
     name: 'sepolia'
+  },
+  holesky: {
+    chainId: 17000,
+    name: 'holesky'
   },
   'optimism-sepolia': {
     chainId: 11155420,
@@ -272,6 +301,10 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
     chainId: 80084,
     name: 'berachain-bartio'
   },
+  'soneium-mainnet': {
+    chainId: 1868,
+    name: 'soneium-mainnet'
+  },
   'soneium-minato': {
     chainId: 0x79a,
     name: 'soneium-minato'
@@ -299,6 +332,98 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'flow-testnet': {
     chainId: 545,
     name: 'flow-testnet'
+  },
+  'zora-mainnet': {
+    chainId: 7777777,
+    name: 'zora-mainnet'
+  },
+  'zora-sepolia': {
+    chainId: 999999999,
+    name: 'zora-sepolia'
+  },
+  'frax-mainnet': {
+    chainId: 252,
+    name: 'frax-mainnet'
+  },
+  'frax-sepolia': {
+    chainId: 2522,
+    name: 'frax-sepolia'
+  },
+  'polynomial-mainnet': {
+    chainId: 8008,
+    name: 'polynomial-mainnet'
+  },
+  'polynomial-sepolia': {
+    chainId: 8009,
+    name: 'polynomial-sepolia'
+  },
+  'crossfi-mainnet': {
+    chainId: 4158,
+    name: 'crossfi-mainnet'
+  },
+  'crossfi-testnet': {
+    chainId: 4157,
+    name: 'crossfi-testnet'
+  },
+  'apechain-mainnet': {
+    chainId: 33139,
+    name: 'apechain-mainnet'
+  },
+  'apechain-curtis': {
+    chainId: 33111,
+    name: 'apechain-curtis'
+  },
+  'lens-sepolia': {
+    chainId: 0x90f7,
+    name: 'lens-sepolia'
+  },
+  'geist-mainnet': {
+    chainId: 63157,
+    name: 'geist-mainnet'
+  },
+  'geist-polter': {
+    chainId: 631571,
+    name: 'geist-polter'
+  },
+  'lumia-prism': {
+    chainId: 0x3b4c8eb9,
+    name: 'lumia-prism'
+  },
+  'lumia-testnet': {
+    chainId: 0x7467cbf8,
+    name: 'lumia-testnet'
+  },
+  'unichain-sepolia': {
+    chainId: 0x515,
+    name: 'unichain-sepolia'
+  },
+  'sonic-mainnet': {
+    chainId: 0x92,
+    name: 'sonic-mainnet'
+  },
+  'sonic-blaze': {
+    chainId: 0xdede,
+    name: 'sonic-blaze'
+  },
+  'xmtp-testnet': {
+    chainId: 241320161,
+    name: 'xmtp-testnet'
+  },
+  'abstract-testnet': {
+    chainId: 11124,
+    name: 'abstract-testnet'
+  },
+  'degen-mainnet': {
+    chainId: 0x27bc86aa,
+    name: 'degen-mainnet'
+  },
+  'ink-mainnet': {
+    chainId: 0xdef1,
+    name: 'ink-mainnet'
+  },
+  'ink-sepolia': {
+    chainId: 0xba5ed,
+    name: 'ink-sepolia'
   }
 };
 
