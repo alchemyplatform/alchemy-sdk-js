@@ -6,6 +6,48 @@
 
 ### Minor Changes
 
+## 3.5.1
+
+### Minor Changes
+
+- Added many new networks
+
+## 3.5.0
+
+### Major Changes
+
+- Added a new `PricesNamespace` with three new methods: `getTokenPriceByAddress()`, `getTokenPriceBySymbol()`, `getHistoricalPriceByAddress`, and `getHistoricalPriceBySymbol()`. Access these methods via `alchemy.prices`.
+
+## 3.4.8
+
+### Minor Changes
+
+- Added networks for `FLOW`.
+
+## 3.4.7
+
+### Minor Changes
+
+- Added networks for `ROOTSTOCK`.
+
+## 3.4.6
+
+### Minor Changes
+
+- Fixed webhook network parsing in `getAllWebhooks` method for all supported networks.
+
+## 3.4.5
+
+### Minor Changes
+
+- Fixed createWebhook's `skip_empty_messages` param.
+
+## 3.4.4
+
+### Minor Changes
+
+- Added networks for `WORLDCHAIN`.
+
 ## 3.4.3
 
 ### Minor Changes

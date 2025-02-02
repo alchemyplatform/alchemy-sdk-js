@@ -100,6 +100,7 @@ export enum Network {
   /** @deprecated */
   ETH_GOERLI = 'eth-goerli',
   ETH_SEPOLIA = 'eth-sepolia',
+  ETH_HOLESKY = 'eth-holesky',
   OPT_MAINNET = 'opt-mainnet',
   /** @deprecated */
   OPT_GOERLI = 'opt-goerli',
@@ -118,6 +119,7 @@ export enum Network {
   POLYGONZKEVM_TESTNET = 'polygonzkevm-testnet',
   POLYGONZKEVM_CARDONA = 'polygonzkevm-cardona',
   BASE_MAINNET = 'base-mainnet',
+  /** @deprecated */
   BASE_GOERLI = 'base-goerli',
   BASE_SEPOLIA = 'base-sepolia',
   ZKSYNC_MAINNET = 'zksync-mainnet',
@@ -149,7 +151,37 @@ export enum Network {
   OPBNB_MAINNET = 'opbnb-mainnet',
   OPBNB_TESTNET = 'opbnb-testnet',
   BERACHAIN_BARTIO = 'berachain-bartio',
-  SONEIUM_MINATO = 'soneium-minato'
+  SONEIUM_MAINNET = 'soneium-mainnet',
+  SONEIUM_MINATO = 'soneium-minato',
+  WORLDCHAIN_MAINNET = 'worldchain-mainnet',
+  WORLDCHAIN_SEPOLIA = 'worldchain-sepolia',
+  ROOTSTOCK_MAINNET = 'rootstock-mainnet',
+  ROOTSTOCK_TESTNET = 'rootstock-testnet',
+  FLOW_MAINNET = 'flow-mainnet',
+  FLOW_TESTNET = 'flow-testnet',
+  ZORA_MAINNET = 'zora-mainnet',
+  ZORA_SEPOLIA = 'zora-sepolia',
+  FRAX_MAINNET = 'frax-mainnet',
+  FRAX_SEPOLIA = 'frax-sepolia',
+  POLYNOMIAL_MAINNET = 'polynomial-mainnet',
+  POLYNOMIAL_SEPOLIA = 'polynomial-sepolia',
+  CROSSFI_MAINNET = 'crossfi-mainnet',
+  CROSSFI_TESTNET = 'crossfi-testnet',
+  APECHAIN_MAINNET = 'apechain-mainnet',
+  APECHAIN_CURTIS = 'apechain-curtis',
+  LENS_SEPOLIA = 'lens-sepolia',
+  GEIST_MAINNET = 'geist-mainnet',
+  GEIST_POLTER = 'geist-polter',
+  LUMIA_PRISM = 'lumia-prism',
+  LUMIA_TESTNET = 'lumia-testnet',
+  UNICHAIN_SEPOLIA = 'unichain-sepolia',
+  SONIC_MAINNET = 'sonic-mainnet',
+  SONIC_BLAZE = 'sonic-blaze',
+  XMTP_TESTNET = 'xmtp-testnet',
+  ABSTRACT_TESTNET = 'abstract-testnet',
+  DEGEN_MAINNET = 'degen-mainnet',
+  INK_MAINNET = 'ink-mainnet',
+  INK_SEPOLIA = 'ink-sepolia'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */

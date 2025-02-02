@@ -4,6 +4,7 @@ import { CoreNamespace } from './core-namespace';
 import { DebugNamespace } from './debug-namespace';
 import { NftNamespace } from './nft-namespace';
 import { NotifyNamespace } from './notify-namespace';
+import { PricesNamespace } from './prices-namespace';
 import { TransactNamespace } from './transact-namespace';
 import { WebSocketNamespace } from './websocket-namespace';
 
@@ -53,6 +54,9 @@ export class Alchemy {
    */
   readonly debug: DebugNamespace;
 
+  /** The `prices` namespace contains methods for getting token price data. */
+  readonly prices: PricesNamespace;
+
   /**
    * @param {string} [settings.apiKey] - The API key to use for Alchemy
    * @param {Network} [settings.network] - The network to use for Alchemy
@@ -69,5 +73,6 @@ export class Alchemy {
     this.transact = new TransactNamespace(this.config);
     this.notify = new NotifyNamespace(this.config);
     this.debug = new DebugNamespace(this.config);
+    this.prices = new PricesNamespace(this.config);
   }
 }

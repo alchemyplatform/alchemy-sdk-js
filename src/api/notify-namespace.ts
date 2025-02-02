@@ -524,9 +524,11 @@ export class NotifyNamespace {
       ...nftFilterObj,
       ...(addresses && { addresses }),
       ...(graphqlQuery && {
-        graphql_query: graphqlQuery
-      }),
-      ...(skipEmptyMessages && { skip_empty_messages: skipEmptyMessages })
+        graphql_query: {
+          query: graphqlQuery,
+          skip_empty_messages: !!skipEmptyMessages
+        }
+      })
     };
 
     const response = await this.sendWebhookRequest<RawCreateWebhookResponse>(
@@ -635,25 +637,8 @@ export class NotifyNamespace {
  *
  * @internal
  */
-const WEBHOOK_NETWORK_TO_NETWORK: { [key: string]: Network } = {
-  ETH_MAINNET: Network.ETH_MAINNET,
-  ETH_GOERLI: Network.ETH_GOERLI,
-  ETH_SEPOLIA: Network.ETH_SEPOLIA,
-  MATIC_MAINNET: Network.MATIC_MAINNET,
-  MATIC_MUMBAI: Network.MATIC_MUMBAI,
-  MATIC_AMOY: Network.MATIC_AMOY,
-  ARB_MAINNET: Network.ARB_MAINNET,
-  ARB_GOERLI: Network.ARB_GOERLI,
-  ARB_SEPOLIA: Network.ARB_SEPOLIA,
-  OPT_MAINNET: Network.OPT_MAINNET,
-  OPT_GOERLI: Network.OPT_GOERLI,
-  OPT_SEPOLIA: Network.OPT_SEPOLIA,
-  BASE_MAINNET: Network.BASE_MAINNET,
-  BASE_GOERLI: Network.BASE_GOERLI,
-  BASE_SEPOLIA: Network.BASE_SEPOLIA,
-  ZKSYNC_MAINNET: Network.ZKSYNC_MAINNET,
-  ZKSYNC_SEPOLIA: Network.ZKSYNC_SEPOLIA
-};
+const WEBHOOK_NETWORK_TO_NETWORK: { [key: string]: Network } =
+  Object.fromEntries(Object.entries(Network));
 
 /** Mapping of the SDK's network representation the webhook API's network representation. */
 const NETWORK_TO_WEBHOOK_NETWORK: Map<Network, string> = Object.keys(

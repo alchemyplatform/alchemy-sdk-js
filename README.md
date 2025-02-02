@@ -12,7 +12,7 @@ The SDK leverages Alchemy's hardened node infrastructure, guaranteeing best-in-c
 
 The SDK currently supports the following chains (chains with '(d)' after are deprecated):
 
-- **Ethereum**: Mainnet, Goerli (d), Sepolia
+- **Ethereum**: Mainnet, Goerli (d), Sepolia, Holesky
 - **Polygon**: Mainnet, Mumbai (d), Amoy
 - **Optimism**: Mainnet, Goerli (d), Sepolia
 - **Arbitrum**: Mainnet, Goerli (d), Sepolia
@@ -34,8 +34,25 @@ The SDK currently supports the following chains (chains with '(d)' after are dep
 - **Celo**: Mainnet, Alfajores
 - **Metis**: Mainnet
 - **OpBNB**: Mainnet, Testnet
-  **Berachain**: Bartio
-  **Soneium**: Minato
+- **Berachain**: Bartio
+- **Soneium**: Mainnet, Minato
+- **Worldchain**: Mainnet, Sepolia
+- **Rootstock**: Mainnet, Testnet
+- **Flow**: Mainnet, Testnet
+- **Zora**: Mainnet, Sepolia
+- **Frax**: Mainnet, Sepolia
+- **Polynomial**: Mainnet, Sepolia
+- **Crossfi**: Mainnet, Testnet
+- **Apechain**: Mainnet, Curtis
+- **Lens**: Sepolia
+- **Geist**: Mainnet, Polter
+- **Lumia**: Prism, Testnet
+- **Unichain**: Sepolia
+- **Sonic**: Mainnet, Blaze
+- **XMTP**: Testnet
+- **Abstract**: Testnet
+- **Degen**: Mainnet
+- **Ink**: Mainnet, Sepolia
 
 You can find per-method documentation of the Alchemy SDK endpoints at the [Alchemy Docs linked in the sidebar](https://docs.alchemy.com/reference/alchemy-sdk-quickstart).
 
@@ -401,4 +418,4 @@ alchemy.core.getTokenBalances('vitalik.eth').then(console.log);
 
 If you have any questions, issues, or feedback, please file an issue
 on [GitHub](https://github.com/alchemyplatform/alchemy-sdk-js/issues), or drop us a message on
-our [Discord](https://discord.com/channels/735965332958871634/983472322998575174) channel for the SDK.
+our [Discord](https://discord.com/invite/alchemyplatform) channel for the SDK.
