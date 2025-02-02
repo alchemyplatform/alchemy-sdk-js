@@ -1,0 +1,3 @@
+wscat -c wss://eth-mainnet.g.alchemy.com/v2/EXgZBFake5hBBJOcQ1Hojt7gGFVZU-1j \
+      -w 60 \
+      -x '{"jsonrpc": "2.0", "method": "eth_subscribe","params": ["alchemy_minedTransactions", {"addresses": [{"to": "0x9f3ce0ad29b767d809642a53c2bccc9a130659d7", "from": "0x228f108fd09450d083bb33fe0cc50ae449bc7e11"}, {"to": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"}],"includeRemoved": false,  "hashesOnly": true}],"id": 1}'
