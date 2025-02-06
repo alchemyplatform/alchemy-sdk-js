@@ -34,7 +34,7 @@ The SDK currently supports the following chains (chains with '(d)' after are dep
 - **Celo**: Mainnet, Alfajores
 - **Metis**: Mainnet
 - **OpBNB**: Mainnet, Testnet
-- **Berachain**: Bartio
+- **Berachain**: Mainnet, Bartio
 - **Soneium**: Mainnet, Minato
 - **Worldchain**: Mainnet, Sepolia
 - **Rootstock**: Mainnet, Testnet

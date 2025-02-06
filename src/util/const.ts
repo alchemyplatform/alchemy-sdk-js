@@ -94,6 +94,7 @@ export const EthersNetwork = {
   [Network.OPBNB_MAINNET]: 'opbnb-mainnet',
   [Network.OPBNB_TESTNET]: 'opbnb-testnet',
   [Network.BERACHAIN_BARTIO]: 'berachain-bartio',
+  [Network.BERACHAIN_MAINNET]: 'berachain-mainnet',
   [Network.SONEIUM_MAINNET]: 'soneium-mainnet',
   [Network.SONEIUM_MINATO]: 'soneium-minato',
   [Network.WORLDCHAIN_MAINNET]: 'worldchain-mainnet',
@@ -300,6 +301,10 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'berachain-bartio': {
     chainId: 80084,
     name: 'berachain-bartio'
+  },
+  'berachain-mainnet': {
+    chainId: 80094,
+    name: 'berachain-mainnet'
   },
   'soneium-mainnet': {
     chainId: 1868,

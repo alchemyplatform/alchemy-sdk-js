@@ -24,7 +24,7 @@ The token's contract address.
 
 #### Defined in
 
-[src/types/prices-types.ts:83](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/prices-types.ts#L83)
+[src/types/prices-types.ts:83](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L83)
 
 ___
 
@@ -36,7 +36,7 @@ Error information if the request failed, null otherwise.
 
 #### Defined in
 
-[src/types/prices-types.ts:87](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/prices-types.ts#L87)
+[src/types/prices-types.ts:87](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L87)
 
 ___
 
@@ -48,7 +48,7 @@ The network the token is on.
 
 #### Defined in
 
-[src/types/prices-types.ts:81](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/prices-types.ts#L81)
+[src/types/prices-types.ts:81](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L81)
 
 ___
 
@@ -60,4 +60,4 @@ Array of price data for the token. Empty if there was an error.
 
 #### Defined in
 
-[src/types/prices-types.ts:85](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/prices-types.ts#L85)
+[src/types/prices-types.ts:85](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L85)
