@@ -1,0 +1,11 @@
+const solanaWeb3 = require("@solana/web3.js");
+
+const main = async () => {
+  rpc = "https://solana-mainnet.g.alchemy.com/v2/<oeXdAjjjadofVahtN0hn05EdeiHaAzqO>"; // RPC URL for connecting with a Solana node
+  connection = new solanaWeb3.Connection(rpc, "confirmed"); // confirming the connection
+
+  let slot = await connection.getSlot(); // getting the most recent slot number
+  console.log("The latest slot number is", slot); // logging the most recent slot number
+};
+
+main();
