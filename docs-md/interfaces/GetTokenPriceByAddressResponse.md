@@ -21,4 +21,4 @@ The token price data for each requested address.
 
 #### Defined in
 
-[src/types/prices-types.ts:35](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/prices-types.ts#L35)
+[src/types/prices-types.ts:35](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L35)

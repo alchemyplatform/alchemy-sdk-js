@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 3.5.2
+
+### Minor Changes
+
+- Added `BERACHAIN` mainnet.
+
 ## 3.5.1
 
 ### Minor Changes
