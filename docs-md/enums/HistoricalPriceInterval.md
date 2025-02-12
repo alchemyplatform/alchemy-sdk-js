@@ -22,7 +22,7 @@ Valid time intervals for historical price data.
 
 #### Defined in
 
-[src/types/prices-types.ts:112](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L112)
+[src/types/prices-types.ts:112](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/prices-types.ts#L112)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-[src/types/prices-types.ts:116](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L116)
+[src/types/prices-types.ts:116](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/prices-types.ts#L116)
 
 ___
 
@@ -46,4 +46,4 @@ ___
 
 #### Defined in
 
-[src/types/prices-types.ts:114](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L114)
+[src/types/prices-types.ts:114](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/prices-types.ts#L114)

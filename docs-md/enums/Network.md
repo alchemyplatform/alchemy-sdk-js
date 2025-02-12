@@ -11,6 +11,7 @@ available on which networks
 
 ### Enumeration members
 
+- [ABSTRACT\_MAINNET](Network.md#abstract_mainnet)
 - [ABSTRACT\_TESTNET](Network.md#abstract_testnet)
 - [APECHAIN\_CURTIS](Network.md#apechain_curtis)
 - [APECHAIN\_MAINNET](Network.md#apechain_mainnet)
@@ -76,12 +77,14 @@ available on which networks
 - [ROOTSTOCK\_TESTNET](Network.md#rootstock_testnet)
 - [SCROLL\_MAINNET](Network.md#scroll_mainnet)
 - [SCROLL\_SEPOLIA](Network.md#scroll_sepolia)
+- [SEI\_TESTNET](Network.md#sei_testnet)
 - [SHAPE\_MAINNET](Network.md#shape_mainnet)
 - [SHAPE\_SEPOLIA](Network.md#shape_sepolia)
 - [SONEIUM\_MAINNET](Network.md#soneium_mainnet)
 - [SONEIUM\_MINATO](Network.md#soneium_minato)
 - [SONIC\_BLAZE](Network.md#sonic_blaze)
 - [SONIC\_MAINNET](Network.md#sonic_mainnet)
+- [UNICHAIN\_MAINNET](Network.md#unichain_mainnet)
 - [UNICHAIN\_SEPOLIA](Network.md#unichain_sepolia)
 - [WORLDCHAIN\_MAINNET](Network.md#worldchain_mainnet)
 - [WORLDCHAIN\_SEPOLIA](Network.md#worldchain_sepolia)
@@ -95,13 +98,23 @@ available on which networks
 
 ## Enumeration members
 
+### ABSTRACT\_MAINNET
+
+• **ABSTRACT\_MAINNET** = `"abstract-mainnet"`
+
+#### Defined in
+
+[src/types/types.ts:183](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L183)
+
+___
+
 ### ABSTRACT\_TESTNET
 
 • **ABSTRACT\_TESTNET** = `"abstract-testnet"`
 
 #### Defined in
 
-[src/types/types.ts:182](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L182)
+[src/types/types.ts:184](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L184)
 
 ___
 
@@ -111,7 +124,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:172](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L172)
+[src/types/types.ts:172](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L172)
 
 ___
 
@@ -121,7 +134,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:171](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L171)
+[src/types/types.ts:171](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L171)
 
 ___
 
@@ -131,7 +144,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:135](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L135)
+[src/types/types.ts:135](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L135)
 
 ___
 
@@ -143,7 +156,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:110](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L110)
+[src/types/types.ts:110](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L110)
 
 ___
 
@@ -153,7 +166,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:108](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L108)
+[src/types/types.ts:108](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L108)
 
 ___
 
@@ -163,7 +176,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:111](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L111)
+[src/types/types.ts:111](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L111)
 
 ___
 
@@ -173,7 +186,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:116](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L116)
+[src/types/types.ts:116](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L116)
 
 ___
 
@@ -183,7 +196,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:147](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L147)
+[src/types/types.ts:147](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L147)
 
 ___
 
@@ -193,7 +206,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:146](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L146)
+[src/types/types.ts:146](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L146)
 
 ___
 
@@ -205,7 +218,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:123](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L123)
+[src/types/types.ts:123](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L123)
 
 ___
 
@@ -215,7 +228,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:121](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L121)
+[src/types/types.ts:121](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L121)
 
 ___
 
@@ -225,7 +238,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:124](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L124)
+[src/types/types.ts:124](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L124)
 
 ___
 
@@ -235,7 +248,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:153](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L153)
+[src/types/types.ts:153](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L153)
 
 ___
 
@@ -245,7 +258,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:154](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L154)
+[src/types/types.ts:154](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L154)
 
 ___
 
@@ -255,7 +268,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:136](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L136)
+[src/types/types.ts:136](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L136)
 
 ___
 
@@ -265,7 +278,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:137](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L137)
+[src/types/types.ts:137](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L137)
 
 ___
 
@@ -275,7 +288,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:144](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L144)
+[src/types/types.ts:144](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L144)
 
 ___
 
@@ -285,7 +298,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:145](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L145)
+[src/types/types.ts:145](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L145)
 
 ___
 
@@ -295,7 +308,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:149](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L149)
+[src/types/types.ts:149](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L149)
 
 ___
 
@@ -305,7 +318,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:148](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L148)
+[src/types/types.ts:148](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L148)
 
 ___
 
@@ -315,7 +328,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:169](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L169)
+[src/types/types.ts:169](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L169)
 
 ___
 
@@ -325,7 +338,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:170](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L170)
+[src/types/types.ts:170](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L170)
 
 ___
 
@@ -335,7 +348,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:183](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L183)
+[src/types/types.ts:185](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L185)
 
 ___
 
@@ -347,7 +360,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:101](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L101)
+[src/types/types.ts:101](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L101)
 
 ___
 
@@ -357,7 +370,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:103](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L103)
+[src/types/types.ts:103](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L103)
 
 ___
 
@@ -367,7 +380,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:99](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L99)
+[src/types/types.ts:99](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L99)
 
 ___
 
@@ -377,7 +390,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:102](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L102)
+[src/types/types.ts:102](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L102)
 
 ___
 
@@ -387,7 +400,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:131](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L131)
+[src/types/types.ts:131](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L131)
 
 ___
 
@@ -397,7 +410,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:132](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L132)
+[src/types/types.ts:132](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L132)
 
 ___
 
@@ -407,7 +420,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:161](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L161)
+[src/types/types.ts:161](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L161)
 
 ___
 
@@ -417,7 +430,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:162](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L162)
+[src/types/types.ts:162](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L162)
 
 ___
 
@@ -427,7 +440,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:165](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L165)
+[src/types/types.ts:165](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L165)
 
 ___
 
@@ -437,7 +450,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:166](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L166)
+[src/types/types.ts:166](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L166)
 
 ___
 
@@ -447,7 +460,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:174](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L174)
+[src/types/types.ts:174](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L174)
 
 ___
 
@@ -457,7 +470,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:175](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L175)
+[src/types/types.ts:175](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L175)
 
 ___
 
@@ -467,7 +480,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:143](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L143)
+[src/types/types.ts:143](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L143)
 
 ___
 
@@ -477,7 +490,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:142](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L142)
+[src/types/types.ts:142](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L142)
 
 ___
 
@@ -487,7 +500,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:184](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L184)
+[src/types/types.ts:186](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L186)
 
 ___
 
@@ -497,7 +510,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:185](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L185)
+[src/types/types.ts:187](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L187)
 
 ___
 
@@ -507,7 +520,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:173](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L173)
+[src/types/types.ts:173](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L173)
 
 ___
 
@@ -517,7 +530,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:129](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L129)
+[src/types/types.ts:129](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L129)
 
 ___
 
@@ -527,7 +540,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:130](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L130)
+[src/types/types.ts:130](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L130)
 
 ___
 
@@ -537,7 +550,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:176](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L176)
+[src/types/types.ts:176](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L176)
 
 ___
 
@@ -547,7 +560,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:177](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L177)
+[src/types/types.ts:177](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L177)
 
 ___
 
@@ -557,7 +570,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:138](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L138)
+[src/types/types.ts:138](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L138)
 
 ___
 
@@ -567,7 +580,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:139](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L139)
+[src/types/types.ts:139](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L139)
 
 ___
 
@@ -577,7 +590,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:115](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L115)
+[src/types/types.ts:115](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L115)
 
 ___
 
@@ -587,7 +600,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:112](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L112)
+[src/types/types.ts:112](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L112)
 
 ___
 
@@ -599,7 +612,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:114](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L114)
+[src/types/types.ts:114](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L114)
 
 ___
 
@@ -609,7 +622,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:150](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L150)
+[src/types/types.ts:150](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L150)
 
 ___
 
@@ -619,7 +632,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:151](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L151)
+[src/types/types.ts:151](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L151)
 
 ___
 
@@ -629,7 +642,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:152](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L152)
+[src/types/types.ts:152](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L152)
 
 ___
 
@@ -641,7 +654,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:106](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L106)
+[src/types/types.ts:106](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L106)
 
 ___
 
@@ -651,7 +664,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:104](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L104)
+[src/types/types.ts:104](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L104)
 
 ___
 
@@ -661,7 +674,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:107](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L107)
+[src/types/types.ts:107](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L107)
 
 ___
 
@@ -671,7 +684,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:120](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L120)
+[src/types/types.ts:120](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L120)
 
 ___
 
@@ -681,7 +694,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:117](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L117)
+[src/types/types.ts:117](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L117)
 
 ___
 
@@ -693,7 +706,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:119](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L119)
+[src/types/types.ts:119](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L119)
 
 ___
 
@@ -703,7 +716,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:167](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L167)
+[src/types/types.ts:167](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L167)
 
 ___
 
@@ -713,7 +726,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:168](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L168)
+[src/types/types.ts:168](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L168)
 
 ___
 
@@ -723,7 +736,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:159](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L159)
+[src/types/types.ts:159](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L159)
 
 ___
 
@@ -733,7 +746,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:160](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L160)
+[src/types/types.ts:160](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L160)
 
 ___
 
@@ -743,7 +756,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:140](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L140)
+[src/types/types.ts:140](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L140)
 
 ___
 
@@ -753,7 +766,17 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:141](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L141)
+[src/types/types.ts:141](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L141)
+
+___
+
+### SEI\_TESTNET
+
+• **SEI\_TESTNET** = `"sei-testnet"`
+
+#### Defined in
+
+[src/types/types.ts:188](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L188)
 
 ___
 
@@ -763,7 +786,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:127](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L127)
+[src/types/types.ts:127](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L127)
 
 ___
 
@@ -773,7 +796,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:128](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L128)
+[src/types/types.ts:128](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L128)
 
 ___
 
@@ -783,7 +806,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:155](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L155)
+[src/types/types.ts:155](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L155)
 
 ___
 
@@ -793,7 +816,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:156](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L156)
+[src/types/types.ts:156](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L156)
 
 ___
 
@@ -803,7 +826,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:180](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L180)
+[src/types/types.ts:181](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L181)
 
 ___
 
@@ -813,7 +836,17 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:179](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L179)
+[src/types/types.ts:180](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L180)
+
+___
+
+### UNICHAIN\_MAINNET
+
+• **UNICHAIN\_MAINNET** = `"unichain-mainnet"`
+
+#### Defined in
+
+[src/types/types.ts:178](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L178)
 
 ___
 
@@ -823,7 +856,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:178](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L178)
+[src/types/types.ts:179](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L179)
 
 ___
 
@@ -833,7 +866,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:157](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L157)
+[src/types/types.ts:157](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L157)
 
 ___
 
@@ -843,7 +876,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:158](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L158)
+[src/types/types.ts:158](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L158)
 
 ___
 
@@ -853,7 +886,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:181](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L181)
+[src/types/types.ts:182](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L182)
 
 ___
 
@@ -863,7 +896,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:133](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L133)
+[src/types/types.ts:133](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L133)
 
 ___
 
@@ -873,7 +906,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:134](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L134)
+[src/types/types.ts:134](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L134)
 
 ___
 
@@ -883,7 +916,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:125](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L125)
+[src/types/types.ts:125](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L125)
 
 ___
 
@@ -893,7 +926,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:126](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L126)
+[src/types/types.ts:126](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L126)
 
 ___
 
@@ -903,7 +936,7 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:163](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L163)
+[src/types/types.ts:163](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L163)
 
 ___
 
@@ -913,4 +946,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:164](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L164)
+[src/types/types.ts:164](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/types.ts#L164)
