@@ -122,6 +122,7 @@ export const EthersNetwork = {
   [Network.SONIC_MAINNET]: 'sonic-mainnet',
   [Network.SONIC_BLAZE]: 'sonic-blaze',
   [Network.XMTP_TESTNET]: 'xmtp-testnet',
+  [Network.ABSTRACT_MAINNET]: 'abstract-mainnet',
   [Network.ABSTRACT_TESTNET]: 'abstract-testnet',
   [Network.DEGEN_MAINNET]: 'degen-mainnet',
   [Network.INK_MAINNET]: 'ink-mainnet',
@@ -413,6 +414,10 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'xmtp-testnet': {
     chainId: 241320161,
     name: 'xmtp-testnet'
+  },
+  'abstract-mainnet': {
+    chainId: 2741,
+    name: 'abstract-mainnet'
   },
   'abstract-testnet': {
     chainId: 11124,

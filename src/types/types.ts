@@ -179,6 +179,7 @@ export enum Network {
   SONIC_MAINNET = 'sonic-mainnet',
   SONIC_BLAZE = 'sonic-blaze',
   XMTP_TESTNET = 'xmtp-testnet',
+  ABSTRACT_MAINNET = 'abstract-mainnet',
   ABSTRACT_TESTNET = 'abstract-testnet',
   DEGEN_MAINNET = 'degen-mainnet',
   INK_MAINNET = 'ink-mainnet',

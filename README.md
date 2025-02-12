@@ -50,7 +50,7 @@ The SDK currently supports the following chains (chains with '(d)' after are dep
 - **Unichain**: Sepolia
 - **Sonic**: Mainnet, Blaze
 - **XMTP**: Testnet
-- **Abstract**: Testnet
+- **Abstract**: Mainnet, Testnet
 - **Degen**: Mainnet
 - **Ink**: Mainnet, Sepolia
 

@@ -6,6 +6,14 @@
 
 ### Minor Changes
 
+## 3.5.3
+
+### Major Changes
+
+### Minor Changes
+
+- Added `ABSTRACT` mainnet.
+
 ## 3.5.2
 
 ### Minor Changes
