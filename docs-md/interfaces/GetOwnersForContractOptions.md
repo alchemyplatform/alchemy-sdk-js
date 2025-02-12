@@ -26,7 +26,7 @@ The block number in hex or decimal to fetch owners for.
 
 #### Defined in
 
-[src/types/nft-types.ts:1031](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/nft-types.ts#L1031)
+[src/types/nft-types.ts:1031](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L1031)
 
 ___
 
@@ -39,7 +39,7 @@ when `withTokenBalances` is not set to `true`.
 
 #### Defined in
 
-[src/types/nft-types.ts:1040](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/nft-types.ts#L1040)
+[src/types/nft-types.ts:1040](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L1040)
 
 ___
 
@@ -51,7 +51,7 @@ Optional page key to paginate the next page for large requests.
 
 #### Defined in
 
-[src/types/nft-types.ts:1034](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/nft-types.ts#L1034)
+[src/types/nft-types.ts:1034](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L1034)
 
 ___
 
@@ -64,4 +64,4 @@ to false when omitted.
 
 #### Defined in
 
-[src/types/nft-types.ts:1028](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/types/nft-types.ts#L1028)
+[src/types/nft-types.ts:1028](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L1028)

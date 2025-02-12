@@ -39,7 +39,7 @@ different network or API key, create a new instance of [Alchemy](Alchemy.md).
 
 #### Defined in
 
-[src/api/alchemy.ts:67](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/api/alchemy.ts#L67)
+[src/api/alchemy.ts:67](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/alchemy.ts#L67)
 
 ## Properties
 
@@ -52,7 +52,7 @@ and allows access to the underlying providers.
 
 #### Defined in
 
-[src/api/alchemy.ts:43](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/api/alchemy.ts#L43)
+[src/api/alchemy.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/alchemy.ts#L43)
 
 ___
 
@@ -65,7 +65,7 @@ Enhanced APIs.
 
 #### Defined in
 
-[src/api/alchemy.ts:25](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/api/alchemy.ts#L25)
+[src/api/alchemy.ts:25](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/alchemy.ts#L25)
 
 ___
 
@@ -78,7 +78,7 @@ transactions.
 
 #### Defined in
 
-[src/api/alchemy.ts:55](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/api/alchemy.ts#L55)
+[src/api/alchemy.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/alchemy.ts#L55)
 
 ___
 
@@ -90,7 +90,7 @@ The `nft` namespace contains methods for Alchemy's NFT API.
 
 #### Defined in
 
-[src/api/alchemy.ts:28](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/api/alchemy.ts#L28)
+[src/api/alchemy.ts:28](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/alchemy.ts#L28)
 
 ___
 
@@ -103,7 +103,7 @@ as part of the Notify API.
 
 #### Defined in
 
-[src/api/alchemy.ts:49](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/api/alchemy.ts#L49)
+[src/api/alchemy.ts:49](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/alchemy.ts#L49)
 
 ___
 
@@ -115,7 +115,7 @@ The `prices` namespace contains methods for getting token price data.
 
 #### Defined in
 
-[src/api/alchemy.ts:58](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/api/alchemy.ts#L58)
+[src/api/alchemy.ts:58](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/alchemy.ts#L58)
 
 ___
 
@@ -128,7 +128,7 @@ checking on the state of submitted transasctions.
 
 #### Defined in
 
-[src/api/alchemy.ts:37](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/api/alchemy.ts#L37)
+[src/api/alchemy.ts:37](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/alchemy.ts#L37)
 
 ___
 
@@ -140,4 +140,4 @@ The `ws` namespace contains methods for using WebSockets and creating subscripti
 
 #### Defined in
 
-[src/api/alchemy.ts:31](https://github.com/stanleyjones/alchemy-sdk-js/blob/1bebd8bb/src/api/alchemy.ts#L31)
+[src/api/alchemy.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/alchemy.ts#L31)
