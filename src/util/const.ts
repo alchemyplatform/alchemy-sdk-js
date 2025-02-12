@@ -118,6 +118,7 @@ export const EthersNetwork = {
   [Network.GEIST_POLTER]: 'geist-polter',
   [Network.LUMIA_PRISM]: 'lumia-prism',
   [Network.LUMIA_TESTNET]: 'lumia-testnet',
+  [Network.UNICHAIN_MAINNET]: 'unichain-mainnet',
   [Network.UNICHAIN_SEPOLIA]: 'unichain-sepolia',
   [Network.SONIC_MAINNET]: 'sonic-mainnet',
   [Network.SONIC_BLAZE]: 'sonic-blaze',
@@ -126,7 +127,8 @@ export const EthersNetwork = {
   [Network.ABSTRACT_TESTNET]: 'abstract-testnet',
   [Network.DEGEN_MAINNET]: 'degen-mainnet',
   [Network.INK_MAINNET]: 'ink-mainnet',
-  [Network.INK_SEPOLIA]: 'ink-sepolia'
+  [Network.INK_SEPOLIA]: 'ink-sepolia',
+  [Network.SEI_TESTNET]: 'sei-testnet'
 };
 
 /**
@@ -399,6 +401,10 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
     chainId: 0x7467cbf8,
     name: 'lumia-testnet'
   },
+  'unichain-mainnet': {
+    chainId: 130,
+    name: 'unichain-mainnet'
+  },
   'unichain-sepolia': {
     chainId: 0x515,
     name: 'unichain-sepolia'
@@ -434,6 +440,10 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'ink-sepolia': {
     chainId: 0xba5ed,
     name: 'ink-sepolia'
+  },
+  'sei-testnet': {
+    chainId: 1328,
+    name: 'sei-testnet'
   }
 };
 

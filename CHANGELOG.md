@@ -13,6 +13,8 @@
 ### Minor Changes
 
 - Added `ABSTRACT` mainnet.
+- Added `UNICHAIN` mainnet.
+- Added `SEI` testnet.
 
 ## 3.5.2
 

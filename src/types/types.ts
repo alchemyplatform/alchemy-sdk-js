@@ -175,6 +175,7 @@ export enum Network {
   GEIST_POLTER = 'geist-polter',
   LUMIA_PRISM = 'lumia-prism',
   LUMIA_TESTNET = 'lumia-testnet',
+  UNICHAIN_MAINNET = 'unichain-mainnet',
   UNICHAIN_SEPOLIA = 'unichain-sepolia',
   SONIC_MAINNET = 'sonic-mainnet',
   SONIC_BLAZE = 'sonic-blaze',
@@ -183,7 +184,8 @@ export enum Network {
   ABSTRACT_TESTNET = 'abstract-testnet',
   DEGEN_MAINNET = 'degen-mainnet',
   INK_MAINNET = 'ink-mainnet',
-  INK_SEPOLIA = 'ink-sepolia'
+  INK_SEPOLIA = 'ink-sepolia',
+  SEI_TESTNET = 'sei-testnet'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */
