@@ -185,7 +185,9 @@ export enum Network {
   DEGEN_MAINNET = 'degen-mainnet',
   INK_MAINNET = 'ink-mainnet',
   INK_SEPOLIA = 'ink-sepolia',
-  SEI_TESTNET = 'sei-testnet'
+  SEI_TESTNET = 'sei-testnet',
+  RONIN_MAINNET = 'ronin-mainnet',
+  RONIN_SAIGON = 'ronin-saigon'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */
