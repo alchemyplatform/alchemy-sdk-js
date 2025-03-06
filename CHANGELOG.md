@@ -6,6 +6,14 @@
 
 ### Minor Changes
 
+## 3.5.4
+
+### Major Changes
+
+### Minor Changes
+
+- Added `RONIN` mainnet, testnet (Saigon).
+
 ## 3.5.3
 
 ### Major Changes
