@@ -1,0 +1,3 @@
+mkdir alchemy-base-api
+cd alchemy-base-api
+npm init --yes
