@@ -29,7 +29,7 @@ Contract address that was queried
 
 #### Defined in
 
-[src/types/prices-types.ts:164](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/prices-types.ts#L164)
+[src/types/prices-types.ts:164](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L164)
 
 ___
 
@@ -45,7 +45,7 @@ BaseHistoricalPriceResponse.currency
 
 #### Defined in
 
-[src/types/prices-types.ts:138](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/prices-types.ts#L138)
+[src/types/prices-types.ts:138](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L138)
 
 ___
 
@@ -61,7 +61,7 @@ BaseHistoricalPriceResponse.data
 
 #### Defined in
 
-[src/types/prices-types.ts:140](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/prices-types.ts#L140)
+[src/types/prices-types.ts:140](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L140)
 
 ___
 
@@ -73,4 +73,4 @@ Network that was queried
 
 #### Defined in
 
-[src/types/prices-types.ts:162](https://github.com/alchemyplatform/alchemy-sdk-js/blob/44aa50c/src/types/prices-types.ts#L162)
+[src/types/prices-types.ts:162](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L162)
