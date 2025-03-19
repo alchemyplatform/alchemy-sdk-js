@@ -128,6 +128,7 @@ export const EthersNetwork = {
   [Network.DEGEN_MAINNET]: 'degen-mainnet',
   [Network.INK_MAINNET]: 'ink-mainnet',
   [Network.INK_SEPOLIA]: 'ink-sepolia',
+  [Network.SEI_MAINNET]: 'sei-mainnet',
   [Network.SEI_TESTNET]: 'sei-testnet',
   [Network.RONIN_MAINNET]: 'ronin-mainnet',
   [Network.RONIN_SAIGON]: 'ronin-saigon'
@@ -442,6 +443,10 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'ink-sepolia': {
     chainId: 0xba5ed,
     name: 'ink-sepolia'
+  },
+  'sei-mainnet': {
+    chainId: 1329,
+    name: 'sei-mainnet'
   },
   'sei-testnet': {
     chainId: 1328,
