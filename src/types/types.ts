@@ -145,14 +145,11 @@ export enum Network {
   BNB_TESTNET = 'bnb-testnet',
   AVAX_MAINNET = 'avax-mainnet',
   AVAX_FUJI = 'avax-fuji',
-  /** @deprecated */
   CELO_MAINNET = 'celo-mainnet',
-  /** @deprecated */
   CELO_ALFAJORES = 'celo-alfajores',
   METIS_MAINNET = 'metis-mainnet',
   OPBNB_MAINNET = 'opbnb-mainnet',
   OPBNB_TESTNET = 'opbnb-testnet',
-  /** @deprecated */
   BERACHAIN_BARTIO = 'berachain-bartio',
   BERACHAIN_MAINNET = 'berachain-mainnet',
   SONEIUM_MAINNET = 'soneium-mainnet',

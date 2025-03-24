@@ -12,8 +12,6 @@
 
 - Added `MONAD` testnet.
 - Added `SETTLUS` testnet (Sepolia).
-- Deprecated `BERACHAIN` testnet (Bartio).
-- Deprecated `CELO` mainnet, testnet (Alfajores).
 
 ## 3.5.5
 
