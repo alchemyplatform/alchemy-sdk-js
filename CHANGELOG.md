@@ -6,6 +6,15 @@
 
 ### Minor Changes
 
+## 3.5.6
+
+### Minor Changes
+
+- Added `MONAD` testnet.
+- Added `SETTLUS` testnet (Sepolia).
+- Deprecated `BERACHAIN` testnet (Bartio).
+- Deprecated `CELO` mainnet, testnet (Alfajores).
+
 ## 3.5.5
 
 ### Minor Changes

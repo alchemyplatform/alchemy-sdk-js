@@ -145,11 +145,14 @@ export enum Network {
   BNB_TESTNET = 'bnb-testnet',
   AVAX_MAINNET = 'avax-mainnet',
   AVAX_FUJI = 'avax-fuji',
+  /** @deprecated */
   CELO_MAINNET = 'celo-mainnet',
+  /** @deprecated */
   CELO_ALFAJORES = 'celo-alfajores',
   METIS_MAINNET = 'metis-mainnet',
   OPBNB_MAINNET = 'opbnb-mainnet',
   OPBNB_TESTNET = 'opbnb-testnet',
+  /** @deprecated */
   BERACHAIN_BARTIO = 'berachain-bartio',
   BERACHAIN_MAINNET = 'berachain-mainnet',
   SONEIUM_MAINNET = 'soneium-mainnet',
@@ -188,7 +191,9 @@ export enum Network {
   SEI_MAINNET = 'sei-mainnet',
   SEI_TESTNET = 'sei-testnet',
   RONIN_MAINNET = 'ronin-mainnet',
-  RONIN_SAIGON = 'ronin-saigon'
+  RONIN_SAIGON = 'ronin-saigon',
+  MONAD_TESTNET = 'monad-testnet',
+  SETTLUS_SEPTESTNET = 'settlus-septestnet'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */
