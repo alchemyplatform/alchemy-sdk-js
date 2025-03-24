@@ -6,6 +6,13 @@
 
 ### Minor Changes
 
+## 3.5.6
+
+### Minor Changes
+
+- Added `MONAD` testnet.
+- Added `SETTLUS` testnet (Sepolia).
+
 ## 3.5.5
 
 ### Minor Changes

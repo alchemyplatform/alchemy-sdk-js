@@ -188,7 +188,9 @@ export enum Network {
   SEI_MAINNET = 'sei-mainnet',
   SEI_TESTNET = 'sei-testnet',
   RONIN_MAINNET = 'ronin-mainnet',
-  RONIN_SAIGON = 'ronin-saigon'
+  RONIN_SAIGON = 'ronin-saigon',
+  MONAD_TESTNET = 'monad-testnet',
+  SETTLUS_SEPTESTNET = 'settlus-septestnet'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */
