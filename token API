@@ -1,0 +1,15 @@
+curl --request POST \
+     --url https://eth-mainnet.g.alchemy.com/v2/EXgZBFake5hBBJOcQ1Hojt7gGFVZU-1j \
+     --header 'accept: application/json' \
+     --header 'content-type: application/json' \
+     --data '
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "alchemy_getTokenBalances",
+  "params": [
+    "0xF50E9a0afC00e883b5cb20e91f6ec0bAd98ebc30",
+    "erc20"
+  ]
+}
+'
