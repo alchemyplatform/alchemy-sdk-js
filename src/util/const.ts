@@ -128,9 +128,12 @@ export const EthersNetwork = {
   [Network.DEGEN_MAINNET]: 'degen-mainnet',
   [Network.INK_MAINNET]: 'ink-mainnet',
   [Network.INK_SEPOLIA]: 'ink-sepolia',
+  [Network.SEI_MAINNET]: 'sei-mainnet',
   [Network.SEI_TESTNET]: 'sei-testnet',
   [Network.RONIN_MAINNET]: 'ronin-mainnet',
-  [Network.RONIN_SAIGON]: 'ronin-saigon'
+  [Network.RONIN_SAIGON]: 'ronin-saigon',
+  [Network.MONAD_TESTNET]: 'monad-testnet',
+  [Network.SETTLUS_SEPTESTNET]: 'settlus-septestnet'
 };
 
 /**
@@ -443,6 +446,10 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
     chainId: 0xba5ed,
     name: 'ink-sepolia'
   },
+  'sei-mainnet': {
+    chainId: 1329,
+    name: 'sei-mainnet'
+  },
   'sei-testnet': {
     chainId: 1328,
     name: 'sei-testnet'
@@ -454,6 +461,14 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'ronin-saigon': {
     chainId: 2021,
     name: 'ronin-saigon'
+  },
+  'monad-testnet': {
+    chainId: 0x279f,
+    name: 'monad-testnet'
+  },
+  'settlus-septestnet': {
+    chainId: 0x14fd,
+    name: 'settlus-septestnet'
   }
 };
 
