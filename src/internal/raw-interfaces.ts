@@ -255,6 +255,7 @@ export interface RawWebhook {
   signing_key: string;
   version: string;
   app_id?: string;
+  name?: string;
 }
 
 export interface RawWebhookPagination {

@@ -1129,6 +1129,8 @@ export interface Webhook {
    * {@link MinedTransactionWebhook} and {@link DroppedTransactionWebhook}
    */
   appId?: string;
+  /** The name of the webhook. */
+  name?: string;
 }
 
 /** The version of the webhook. All newly created webhooks default to V2. */
@@ -1249,6 +1251,8 @@ export interface CustomGraphqlWebhookConfig {
 export interface TransactionWebhookParams {
   /** The app id of the project to create the webhook on. */
   appId: string;
+  /** Optional name for the webhook. */
+  name?: string;
 }
 
 /**
@@ -1263,6 +1267,8 @@ export interface NftWebhookParams {
    * created on network of the app provided in the api key config.
    */
   network?: Network;
+  /** Optional name for the webhook. */
+  name?: string;
 }
 
 /**
@@ -1296,6 +1302,8 @@ export interface CustomGraphqlWebhookParams {
    * change in the API.
    */
   appId?: string;
+  /** Optional name for the webhook. */
+  name?: string;
 }
 
 /**
@@ -1310,6 +1318,8 @@ export interface AddressWebhookParams {
    * created on network of the app provided in the api key config.
    */
   network?: Network;
+  /** Optional name for the webhook. */
+  name?: string;
 }
 
 /** NFT to track on a {@link NftActivityWebhook} or {@link NftMetadataUpdateWebhook}. */
