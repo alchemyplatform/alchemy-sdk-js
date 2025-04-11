@@ -519,6 +519,7 @@ export class NotifyNamespace {
       webhook_type: type,
       webhook_url: url,
       ...(appId && { app_id: appId }),
+      ...(params.name && { name: params.name }),
 
       // Only include the filters/addresses in the final response if they're defined
       ...nftFilterObj,
@@ -667,7 +668,9 @@ function parseRawWebhook(rawWebhook: RawWebhook): Webhook {
     signingKey: rawWebhook.signing_key,
     version: rawWebhook.version as WebhookVersion,
     // Only include the appId in the final response if it's defined
-    ...(rawWebhook.app_id !== undefined && { appId: rawWebhook.app_id })
+    ...(rawWebhook.app_id !== undefined && { appId: rawWebhook.app_id }),
+    // Only include the name in the final response if it's defined
+    ...(rawWebhook.name !== undefined && { name: rawWebhook.name })
   };
 }
 
