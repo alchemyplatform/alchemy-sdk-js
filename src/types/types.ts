@@ -6,6 +6,7 @@ import {
 import { BigNumberish } from '@ethersproject/bignumber';
 import { ConnectionInfo } from '@ethersproject/web';
 
+import { NotifyNamespace } from '../api/notify-namespace';
 import {
   ERC1155Metadata,
   NftRefreshState,
@@ -1238,6 +1239,14 @@ export interface CustomGraphqlWebhookConfig {
 }
 
 /**
+ * Base interface for all webhook parameters that includes common fields.
+ */
+export interface BaseWebhookParams {
+  /** Optional name for the webhook. */
+  name?: string;
+}
+
+/**
  * Params to pass in when calling {@link NotifyNamespace.createWebhook} in order
  * to create a {@link MinedTransactionWebhook} or {@link DroppedTransactionWebhook}.
  *
@@ -1248,18 +1257,16 @@ export interface CustomGraphqlWebhookConfig {
  * This is a temporary workaround for now. We're planning on detecting the app
  * id from the provided api key directly. Stay tuned!
  */
-export interface TransactionWebhookParams {
+export interface TransactionWebhookParams extends BaseWebhookParams {
   /** The app id of the project to create the webhook on. */
   appId: string;
-  /** Optional name for the webhook. */
-  name?: string;
 }
 
 /**
  * Params to pass in when calling {@link NotifyNamespace.createWebhook} in order
  * to create a {@link NftActivityWebhook} or {@link NftMetadataUpdateWebhook}.
  */
-export interface NftWebhookParams {
+export interface NftWebhookParams extends BaseWebhookParams {
   /** Array of NFT filters the webhook should track. */
   filters: NftFilter[];
   /**
@@ -1267,15 +1274,13 @@ export interface NftWebhookParams {
    * created on network of the app provided in the api key config.
    */
   network?: Network;
-  /** Optional name for the webhook. */
-  name?: string;
 }
 
 /**
  * Params to pass in when calling {@link NotifyNamespace.createWebhook} in order
  * to create a {@link CustomGraphqlWebhook}
  */
-export interface CustomGraphqlWebhookParams {
+export interface CustomGraphqlWebhookParams extends BaseWebhookParams {
   /** GraphQL query */
   graphqlQuery: string;
   /**
@@ -1302,15 +1307,13 @@ export interface CustomGraphqlWebhookParams {
    * change in the API.
    */
   appId?: string;
-  /** Optional name for the webhook. */
-  name?: string;
 }
 
 /**
  * Params to pass in when calling {@link NotifyNamespace.createWebhook} in order
  * to create a {@link AddressActivityWebhook}.
  */
-export interface AddressWebhookParams {
+export interface AddressWebhookParams extends BaseWebhookParams {
   /** Array of addresses the webhook should activity for. */
   addresses: string[];
   /**
@@ -1318,8 +1321,6 @@ export interface AddressWebhookParams {
    * created on network of the app provided in the api key config.
    */
   network?: Network;
-  /** Optional name for the webhook. */
-  name?: string;
 }
 
 /** NFT to track on a {@link NftActivityWebhook} or {@link NftMetadataUpdateWebhook}. */

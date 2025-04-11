@@ -55,7 +55,7 @@ import { AlchemyConfig } from './alchemy-config';
  *
  * Do not call this constructor directly. Instead, instantiate an Alchemy object
  * with `const alchemy = new Alchemy(config)` and then access the notify
- * namespace via `alchemy. `.
+ * namespace via `alchemy.notify`.
  */
 export class NotifyNamespace {
   /** @internal */
