@@ -191,7 +191,9 @@ export enum Network {
   RONIN_MAINNET = 'ronin-mainnet',
   RONIN_SAIGON = 'ronin-saigon',
   MONAD_TESTNET = 'monad-testnet',
-  SETTLUS_SEPTESTNET = 'settlus-septestnet'
+  SETTLUS_SEPTESTNET = 'settlus-septestnet',
+  SOLANA_MAINNET = 'solana-mainnet',
+  SOLANA_DEVNET = 'solana-devnet'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */
