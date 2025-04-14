@@ -2,6 +2,7 @@ import { AxiosRequestConfig, Method } from 'axios';
 
 import { BigNumber } from '@ethersproject/bignumber';
 
+import { isAddress } from '@solana/web3.js';
 import { requestHttpWithBackoff } from '../internal/dispatch';
 import {
   RawAddressActivityResponse,
@@ -12,6 +13,7 @@ import {
   RawNftFiltersResponse,
   RawWebhook
 } from '../internal/raw-interfaces';
+
 import {
   AddressActivityResponse,
   AddressActivityWebhook,
@@ -498,6 +500,15 @@ export class NotifyNamespace {
       network = params.network
         ? NETWORK_TO_WEBHOOK_NETWORK.get(params.network)
         : network;
+
+      // Validate Solana addresses if network is Solana
+      if (params.network === Network.SOLANA_MAINNET || params.network === Network.SOLANA_DEVNET) {
+        const invalidAddresses = params.addresses.filter(addr => !isAddress(addr));
+        if (invalidAddresses.length > 0) {
+          throw new Error(`Invalid Solana addresses: ${invalidAddresses.join(', ')}`);
+        }
+      }
+
       addresses = await this.resolveAddresses(params.addresses);
     } else if (type == WebhookType.GRAPHQL) {
       if (
