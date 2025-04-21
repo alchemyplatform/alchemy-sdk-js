@@ -16,6 +16,9 @@ import {
 
 export * from './ethers-types';
 
+/** @internal Workaround to prevent TS unused import error */
+void (0 as unknown as NotifyNamespace);
+
 // TODO: separate this file into other files.
 
 /**
