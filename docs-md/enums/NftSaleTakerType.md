@@ -20,7 +20,7 @@ method.
 
 #### Defined in
 
-[src/types/nft-types.ts:839](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L839)
+[src/types/nft-types.ts:838](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fb68bb4a/src/types/nft-types.ts#L838)
 
 ___
 
@@ -30,4 +30,4 @@ ___
 
 #### Defined in
 
-[src/types/nft-types.ts:840](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L840)
+[src/types/nft-types.ts:839](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fb68bb4a/src/types/nft-types.ts#L839)

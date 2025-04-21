@@ -21,7 +21,7 @@ Page key for the next page of results, if one exists.
 
 #### Defined in
 
-[src/types/types.ts:283](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L283)
+[src/types/types.ts:299](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fb68bb4a/src/types/types.ts#L299)
 
 ___
 
@@ -33,4 +33,4 @@ Owned tokens for the provided addresses along with relevant metadata.
 
 #### Defined in
 
-[src/types/types.ts:281](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L281)
+[src/types/types.ts:297](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fb68bb4a/src/types/types.ts#L297)

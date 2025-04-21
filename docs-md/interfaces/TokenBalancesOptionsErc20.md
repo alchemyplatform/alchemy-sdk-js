@@ -22,7 +22,7 @@ Optional page key for pagination (only applicable to TokenBalanceType.ERC20)
 
 #### Defined in
 
-[src/types/types.ts:213](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L213)
+[src/types/types.ts:229](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fb68bb4a/src/types/types.ts#L229)
 
 ___
 
@@ -34,4 +34,4 @@ The ERC-20 token type.
 
 #### Defined in
 
-[src/types/types.ts:210](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L210)
+[src/types/types.ts:226](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fb68bb4a/src/types/types.ts#L226)

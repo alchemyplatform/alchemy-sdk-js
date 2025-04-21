@@ -29,7 +29,7 @@ is undefined.
 
 #### Defined in
 
-[src/types/types.ts:302](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L302)
+[src/types/types.ts:318](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fb68bb4a/src/types/types.ts#L318)
 
 ___
 
@@ -41,7 +41,7 @@ The contract address of the token.
 
 #### Defined in
 
-[src/types/types.ts:291](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L291)
+[src/types/types.ts:307](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fb68bb4a/src/types/types.ts#L307)
 
 ___
 
@@ -54,7 +54,7 @@ contract and not available from other sources.
 
 #### Defined in
 
-[src/types/types.ts:318](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L318)
+[src/types/types.ts:334](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fb68bb4a/src/types/types.ts#L334)
 
 ___
 
@@ -67,7 +67,7 @@ the other fields will be defined.
 
 #### Defined in
 
-[src/types/types.ts:325](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L325)
+[src/types/types.ts:341](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fb68bb4a/src/types/types.ts#L341)
 
 ___
 
@@ -79,7 +79,7 @@ URL link to the token's logo. Is undefined if the logo is not available.
 
 #### Defined in
 
-[src/types/types.ts:320](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L320)
+[src/types/types.ts:336](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fb68bb4a/src/types/types.ts#L336)
 
 ___
 
@@ -92,7 +92,7 @@ not available from other sources.
 
 #### Defined in
 
-[src/types/types.ts:308](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L308)
+[src/types/types.ts:324](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fb68bb4a/src/types/types.ts#L324)
 
 ___
 
@@ -105,7 +105,7 @@ if the [error](OwnedToken.md#error) field is present.
 
 #### Defined in
 
-[src/types/types.ts:296](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L296)
+[src/types/types.ts:312](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fb68bb4a/src/types/types.ts#L312)
 
 ___
 
@@ -118,4 +118,4 @@ and not available from other sources.
 
 #### Defined in
 
-[src/types/types.ts:313](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L313)
+[src/types/types.ts:329](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fb68bb4a/src/types/types.ts#L329)

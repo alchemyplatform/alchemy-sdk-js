@@ -20,4 +20,4 @@ The error message describing why the request failed.
 
 #### Defined in
 
-[src/types/prices-types.ts:70](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L70)
+[src/types/prices-types.ts:70](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fb68bb4a/src/types/prices-types.ts#L70)

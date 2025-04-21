@@ -21,4 +21,4 @@ Error fetching floor prices from the given marketplace
 
 #### Defined in
 
-[src/types/nft-types.ts:473](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L473)
+[src/types/nft-types.ts:472](https://github.com/alchemyplatform/alchemy-sdk-js/blob/fb68bb4a/src/types/nft-types.ts#L472)

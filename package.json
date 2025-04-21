@@ -1,6 +1,6 @@
 {
   "name": "alchemy-sdk",
-  "version": "3.5.6",
+  "version": "3.5.7",
   "description": "Extended Ethers.js SDK for Alchemy APIs",
   "author": "Alchemy",
   "license": "MIT",
@@ -67,7 +67,6 @@
     "@ethersproject/units": "^5.7.0",
     "@ethersproject/wallet": "^5.7.0",
     "@ethersproject/web": "^5.7.0",
-    "@solana/web3.js": "^1.87.6",
     "axios": "^1.7.4",
     "sturdy-websocket": "^0.2.1",
     "websocket": "^1.0.34"
@@ -98,7 +97,7 @@
     "tslib": "^2.3.1",
     "typedoc": "^0.22.15",
     "typedoc-plugin-markdown": "^3.12.1",
-    "typescript": "^4.5.5"
+    "typescript": "4.6"
   },
   "resolutions": {
     "elliptic": "6.5.7",
