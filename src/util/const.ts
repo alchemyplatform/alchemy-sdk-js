@@ -58,6 +58,8 @@ export const EthersNetwork = {
   [Network.MATIC_MAINNET]: 'matic',
   [Network.MATIC_MUMBAI]: 'maticmum',
   [Network.MATIC_AMOY]: 'maticamoy',
+  [Network.SOLANA_MAINNET]: 'solana-mainnet',
+  [Network.SOLANA_DEVNET]: 'solana-devnet',
   [Network.ASTAR_MAINNET]: 'astar-mainnet',
   [Network.POLYGONZKEVM_MAINNET]: 'polygonzkevm-mainnet',
   [Network.POLYGONZKEVM_TESTNET]: 'polygonzkevm-testnet',
