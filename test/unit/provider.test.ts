@@ -12,7 +12,13 @@ describe('AlchemyProvider', () => {
         await alchemy.config.getWebSocketProvider();
       });
     }
-    for (const network of Object.values(Network)) {
+
+    // Filter out Solana networks as they don't exist in ethers
+    const nonSolanaNetworks = Object.values(Network).filter(
+      network => !network.startsWith('solana-')
+    );
+
+    for (const network of nonSolanaNetworks) {
       testNetwork(network);
     }
   });

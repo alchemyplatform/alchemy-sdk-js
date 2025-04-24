@@ -81,6 +81,9 @@ export class AlchemyProvider
     // ethers. This allows the parent super constructor in JsonRpcProvider to
     // correctly set the network.
     const ethersNetwork = EthersNetwork[alchemyNetwork];
+    if (!ethersNetwork) {
+      throw new Error(`Unsupported network: ${alchemyNetwork}`);
+    }
     super(connection, ethersNetwork);
 
     this.apiKey = config.apiKey;

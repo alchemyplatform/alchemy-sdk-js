@@ -8,6 +8,14 @@
 
 - Updated axios version to remove security warning (#486).
 
+## 3.5.7
+
+### Minor Changes
+
+- Added Solana address activity webhook
+- Added animation to NFT type
+- Added name to create-webhook
+
 ## 3.5.6
 
 ### Minor Changes

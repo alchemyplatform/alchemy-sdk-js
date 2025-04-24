@@ -4,7 +4,8 @@ import {
   Alchemy,
   AlchemyProvider,
   AlchemySubscription,
-  AlchemyWebSocketProvider
+  AlchemyWebSocketProvider,
+  Network
 } from '../../src';
 import { EthersNetwork } from '../../src/util/const';
 import { loadAlchemyEnv } from '../test-util';
@@ -26,6 +27,12 @@ describe('AlchemyProvider', () => {
     alchemy = new Alchemy({
       apiKey: process.env.ALCHEMY_API_KEY
     });
+    if (
+      alchemy.config.network === Network.SOLANA_MAINNET ||
+      alchemy.config.network === Network.SOLANA_DEVNET
+    ) {
+      return;
+    }
     ethersProvider = new EthersAlchemyProvider(
       EthersNetwork[alchemy.config.network],
       alchemy.config.apiKey
