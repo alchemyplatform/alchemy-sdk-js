@@ -50,7 +50,7 @@ export const EthersNetwork = {
   [Network.ETH_SEPOLIA]: 'sepolia',
   [Network.ETH_HOLESKY]: 'holesky',
   [Network.ETH_HOODI]: 'hoodi',
-  [Network.OPT_MAINNET]: 'optimism',
+  [Network.OPT_MAINNET]: 'opt-mainnet',
   [Network.OPT_GOERLI]: 'optimism-goerli',
   [Network.OPT_SEPOLIA]: 'optimism-sepolia',
   [Network.ARB_MAINNET]: 'arbitrum',
