@@ -6,6 +6,15 @@
 
 ### Minor Changes
 
+## 3.5.8
+
+### Minor Changes
+
+- Added Berachain Bepolia, Celo Baklava, Ethereum Hoodi, Gensyn Testnet, 
+Lens Mainnet, Settlus Mainnet, Superseed Mainnet and Sepolia, Tea Sepolia
+- Deprecated Berachain Bartio
+- Replace `optimism` with `opt-mainnet`
+
 ## 3.5.7
 
 ### Minor Changes

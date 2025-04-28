@@ -105,6 +105,7 @@ export enum Network {
   ETH_GOERLI = 'eth-goerli',
   ETH_SEPOLIA = 'eth-sepolia',
   ETH_HOLESKY = 'eth-holesky',
+  ETH_HOODI = 'eth-hoodi',
   OPT_MAINNET = 'opt-mainnet',
   /** @deprecated */
   OPT_GOERLI = 'opt-goerli',
@@ -151,11 +152,14 @@ export enum Network {
   AVAX_FUJI = 'avax-fuji',
   CELO_MAINNET = 'celo-mainnet',
   CELO_ALFAJORES = 'celo-alfajores',
+  CELO_BAKLAVA = 'celo-baklava',
   METIS_MAINNET = 'metis-mainnet',
   OPBNB_MAINNET = 'opbnb-mainnet',
   OPBNB_TESTNET = 'opbnb-testnet',
+  /** @deprecated */
   BERACHAIN_BARTIO = 'berachain-bartio',
   BERACHAIN_MAINNET = 'berachain-mainnet',
+  BERACHAIN_BEPOLIA = 'berachain-bepolia',
   SONEIUM_MAINNET = 'soneium-mainnet',
   SONEIUM_MINATO = 'soneium-minato',
   WORLDCHAIN_MAINNET = 'worldchain-mainnet',
@@ -174,6 +178,7 @@ export enum Network {
   CROSSFI_TESTNET = 'crossfi-testnet',
   APECHAIN_MAINNET = 'apechain-mainnet',
   APECHAIN_CURTIS = 'apechain-curtis',
+  LENS_MAINNET = 'lens-mainnet',
   LENS_SEPOLIA = 'lens-sepolia',
   GEIST_MAINNET = 'geist-mainnet',
   GEIST_POLTER = 'geist-polter',
@@ -195,8 +200,13 @@ export enum Network {
   RONIN_SAIGON = 'ronin-saigon',
   MONAD_TESTNET = 'monad-testnet',
   SETTLUS_SEPTESTNET = 'settlus-septestnet',
+  SETTLUS_MAINNET = 'settlus-mainnet',
   SOLANA_MAINNET = 'solana-mainnet',
-  SOLANA_DEVNET = 'solana-devnet'
+  SOLANA_DEVNET = 'solana-devnet',
+  GENSYN_TESTNET = 'gensyn-testnet',
+  SUPERSEED_MAINNET = 'superseed-mainnet',
+  SUPERSEED_SEPOLIA = 'superseed-sepolia',
+  TEA_SEPOLIA = 'tea-sepolia'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */
