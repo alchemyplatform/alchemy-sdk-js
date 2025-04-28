@@ -104,9 +104,6 @@
     "elliptic": "6.5.7",
     "ws": "7.5.10"
   },
-  "engines": {
-    "node": ">=20.18.0"
-  },
   "sideEffects": false,
   "size-limit": [
     {
