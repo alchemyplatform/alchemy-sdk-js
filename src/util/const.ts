@@ -142,6 +142,8 @@ export const EthersNetwork = {
   [Network.SETTLUS_MAINNET]: 'settlus-mainnet',
   [Network.SETTLUS_SEPTESTNET]: 'settlus-septestnet',
   [Network.GENSYN_TESTNET]: 'gensyn-testnet',
+  [Network.SUPERSEED_MAINNET]: 'superseed-mainnet',
+  [Network.SUPERSEED_SEPOLIA]: 'superseed-sepolia',
   [Network.TEA_SEPOLIA]: 'tea-sepolia'
 };
 
@@ -170,6 +172,14 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   holesky: {
     chainId: 17000,
     name: 'holesky'
+  },
+  hoodi: {
+    chainId: 560048,
+    name: 'hoodi'
+  },
+  'opt-mainnet': {
+    chainId: 10,
+    name: 'opt-mainnet'
   },
   'optimism-sepolia': {
     chainId: 11155420,

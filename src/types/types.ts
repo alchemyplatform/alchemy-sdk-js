@@ -205,7 +205,7 @@ export enum Network {
   SOLANA_DEVNET = 'solana-devnet',
   GENSYN_TESTNET = 'gensyn-testnet',
   SUPERSEED_MAINNET = 'superseed-mainnet',
-  SUPERSEED_TESTNET = 'superseed-testnet',
+  SUPERSEED_SEPOLIA = 'superseed-sepolia',
   TEA_SEPOLIA = 'tea-sepolia'
 }
 
