@@ -1,0 +1,14 @@
+curl --location --request POST 'https://eth-mainnet.g.alchemy.com/v2/EXgZBFake5hBBJOcQ1Hojt7gGFVZU-1j' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "jsonrpc": "2.0",
+  "method": "alchemy_simulateAssetChanges",
+  "id": 1,
+  "params": [
+    {
+      "from": "0xBE0eB53F46cd790Cd13851d5EFf43D12404d33E8",
+      "to": "0x1910C801Ea87E41Faf2aeBfB430EEEa2Fb6efFE5",
+      "value": "0xDE0B6B3A7640000"
+    }
+  ]
+}'

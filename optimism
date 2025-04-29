@@ -1,0 +1,3 @@
+mkdir alchemy-optimism-api
+cd alchemy-optimism-api
+npm init --yes
