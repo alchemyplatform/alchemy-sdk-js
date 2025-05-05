@@ -6,6 +6,8 @@
 
 ### Minor Changes
 
+- Updated axios version to remove security warning (#486).
+
 ## 3.5.8
 
 ### Minor Changes
