@@ -49,7 +49,8 @@ export const EthersNetwork = {
   [Network.ETH_GOERLI]: 'goerli',
   [Network.ETH_SEPOLIA]: 'sepolia',
   [Network.ETH_HOLESKY]: 'holesky',
-  [Network.OPT_MAINNET]: 'optimism',
+  [Network.ETH_HOODI]: 'hoodi',
+  [Network.OPT_MAINNET]: 'opt-mainnet',
   [Network.OPT_GOERLI]: 'optimism-goerli',
   [Network.OPT_SEPOLIA]: 'optimism-sepolia',
   [Network.ARB_MAINNET]: 'arbitrum',
@@ -92,11 +93,13 @@ export const EthersNetwork = {
   [Network.AVAX_FUJI]: 'avax-fuji',
   [Network.CELO_MAINNET]: 'celo-mainnet',
   [Network.CELO_ALFAJORES]: 'celo-alfajores',
+  [Network.CELO_BAKLAVA]: 'celo-baklava',
   [Network.METIS_MAINNET]: 'metis-mainnet',
   [Network.OPBNB_MAINNET]: 'opbnb-mainnet',
   [Network.OPBNB_TESTNET]: 'opbnb-testnet',
   [Network.BERACHAIN_BARTIO]: 'berachain-bartio',
   [Network.BERACHAIN_MAINNET]: 'berachain-mainnet',
+  [Network.BERACHAIN_BEPOLIA]: 'berachain-bepolia',
   [Network.SONEIUM_MAINNET]: 'soneium-mainnet',
   [Network.SONEIUM_MINATO]: 'soneium-minato',
   [Network.WORLDCHAIN_MAINNET]: 'worldchain-mainnet',
@@ -115,6 +118,7 @@ export const EthersNetwork = {
   [Network.CROSSFI_TESTNET]: 'crossfi-testnet',
   [Network.APECHAIN_MAINNET]: 'apechain-mainnet',
   [Network.APECHAIN_CURTIS]: 'apechain-curtis',
+  [Network.LENS_MAINNET]: 'lens-mainnet',
   [Network.LENS_SEPOLIA]: 'lens-sepolia',
   [Network.GEIST_MAINNET]: 'geist-mainnet',
   [Network.GEIST_POLTER]: 'geist-polter',
@@ -135,7 +139,12 @@ export const EthersNetwork = {
   [Network.RONIN_MAINNET]: 'ronin-mainnet',
   [Network.RONIN_SAIGON]: 'ronin-saigon',
   [Network.MONAD_TESTNET]: 'monad-testnet',
-  [Network.SETTLUS_SEPTESTNET]: 'settlus-septestnet'
+  [Network.SETTLUS_MAINNET]: 'settlus-mainnet',
+  [Network.SETTLUS_SEPTESTNET]: 'settlus-septestnet',
+  [Network.GENSYN_TESTNET]: 'gensyn-testnet',
+  [Network.SUPERSEED_MAINNET]: 'superseed-mainnet',
+  [Network.SUPERSEED_SEPOLIA]: 'superseed-sepolia',
+  [Network.TEA_SEPOLIA]: 'tea-sepolia'
 };
 
 /**
@@ -163,6 +172,14 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   holesky: {
     chainId: 17000,
     name: 'holesky'
+  },
+  hoodi: {
+    chainId: 560048,
+    name: 'hoodi'
+  },
+  'opt-mainnet': {
+    chainId: 10,
+    name: 'opt-mainnet'
   },
   'optimism-sepolia': {
     chainId: 11155420,
@@ -296,6 +313,10 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
     chainId: 44787,
     name: 'celo-alfajores'
   },
+  'celo-baklava': {
+    chainId: 62320,
+    name: 'celo-baklava'
+  },
   'metis-mainnet': {
     chainId: 1088,
     name: 'metis-mainnet'
@@ -315,6 +336,10 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'berachain-mainnet': {
     chainId: 80094,
     name: 'berachain-mainnet'
+  },
+  'berachain-bepolia': {
+    chainId: 80069,
+    name: 'berachain-bepolia'
   },
   'soneium-mainnet': {
     chainId: 1868,
@@ -387,6 +412,10 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'apechain-curtis': {
     chainId: 33111,
     name: 'apechain-curtis'
+  },
+  'lens-mainnet': {
+    chainId: 232,
+    name: 'lens-mainnet'
   },
   'lens-sepolia': {
     chainId: 0x90f7,
@@ -468,9 +497,29 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
     chainId: 0x279f,
     name: 'monad-testnet'
   },
+  'settlus-mainnet': {
+    chainId: 5371,
+    name: 'settlus-mainnet'
+  },
   'settlus-septestnet': {
     chainId: 0x14fd,
     name: 'settlus-septestnet'
+  },
+  'gensyn-testnet': {
+    chainId: 685685,
+    name: 'gensyn-testnet'
+  },
+  'superseed-mainnet': {
+    chainId: 5330,
+    name: 'superseed-mainnet'
+  },
+  'superseed-sepolia': {
+    chainId: 53302,
+    name: 'superseed-sepolia'
+  },
+  'tea-sepolia': {
+    chainId: 10218,
+    name: 'tea-sepolia'
   }
 };
 
