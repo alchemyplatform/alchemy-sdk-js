@@ -5,11 +5,18 @@
 Params to pass in when calling [NotifyNamespace.createWebhook](../classes/NotifyNamespace.md#createwebhook) in order
 to create a [AddressActivityWebhook](AddressActivityWebhook.md).
 
+## Hierarchy
+
+- [`BaseWebhookParams`](BaseWebhookParams.md)
+
+  ↳ **`AddressWebhookParams`**
+
 ## Table of contents
 
 ### Properties
 
 - [addresses](AddressWebhookParams.md#addresses)
+- [name](AddressWebhookParams.md#name)
 - [network](AddressWebhookParams.md#network)
 
 ## Properties
@@ -22,7 +29,23 @@ Array of addresses the webhook should activity for.
 
 #### Defined in
 
-[src/types/types.ts:1299](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L1299)
+[src/types/types.ts:1333](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae0aa3f0/src/types/types.ts#L1333)
+
+___
+
+### name
+
+• `Optional` **name**: `string`
+
+Optional name for the webhook.
+
+#### Inherited from
+
+[BaseWebhookParams](BaseWebhookParams.md).[name](BaseWebhookParams.md#name)
+
+#### Defined in
+
+[src/types/types.ts:1261](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae0aa3f0/src/types/types.ts#L1261)
 
 ___
 
@@ -35,4 +58,4 @@ created on network of the app provided in the api key config.
 
 #### Defined in
 
-[src/types/types.ts:1304](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L1304)
+[src/types/types.ts:1338](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae0aa3f0/src/types/types.ts#L1338)

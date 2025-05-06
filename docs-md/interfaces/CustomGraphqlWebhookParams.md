@@ -5,12 +5,19 @@
 Params to pass in when calling [NotifyNamespace.createWebhook](../classes/NotifyNamespace.md#createwebhook) in order
 to create a [CustomGraphqlWebhook](CustomGraphqlWebhook.md)
 
+## Hierarchy
+
+- [`BaseWebhookParams`](BaseWebhookParams.md)
+
+  ↳ **`CustomGraphqlWebhookParams`**
+
 ## Table of contents
 
 ### Properties
 
 - [appId](CustomGraphqlWebhookParams.md#appid)
 - [graphqlQuery](CustomGraphqlWebhookParams.md#graphqlquery)
+- [name](CustomGraphqlWebhookParams.md#name)
 - [network](CustomGraphqlWebhookParams.md#network)
 - [skipEmptyMessages](CustomGraphqlWebhookParams.md#skipemptymessages)
 
@@ -34,7 +41,7 @@ change in the API.
 
 #### Defined in
 
-[src/types/types.ts:1290](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L1290)
+[src/types/types.ts:1324](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae0aa3f0/src/types/types.ts#L1324)
 
 ___
 
@@ -46,7 +53,23 @@ GraphQL query
 
 #### Defined in
 
-[src/types/types.ts:1266](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L1266)
+[src/types/types.ts:1300](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae0aa3f0/src/types/types.ts#L1300)
+
+___
+
+### name
+
+• `Optional` **name**: `string`
+
+Optional name for the webhook.
+
+#### Inherited from
+
+[BaseWebhookParams](BaseWebhookParams.md).[name](BaseWebhookParams.md#name)
+
+#### Defined in
+
+[src/types/types.ts:1261](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae0aa3f0/src/types/types.ts#L1261)
 
 ___
 
@@ -59,7 +82,7 @@ created on network of the app provided in the api key config.
 
 #### Defined in
 
-[src/types/types.ts:1271](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L1271)
+[src/types/types.ts:1305](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae0aa3f0/src/types/types.ts#L1305)
 
 ___
 
@@ -72,4 +95,4 @@ Defaults to false.
 
 #### Defined in
 
-[src/types/types.ts:1276](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L1276)
+[src/types/types.ts:1310](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae0aa3f0/src/types/types.ts#L1310)

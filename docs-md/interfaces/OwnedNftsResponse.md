@@ -26,7 +26,7 @@ The NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/nft-types.ts:233](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L233)
+[src/types/nft-types.ts:232](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae0aa3f0/src/types/nft-types.ts#L232)
 
 ___
 
@@ -39,7 +39,7 @@ NFTs. If there is no page key, then there are no more NFTs to fetch.
 
 #### Defined in
 
-[src/types/nft-types.ts:239](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L239)
+[src/types/nft-types.ts:238](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae0aa3f0/src/types/nft-types.ts#L238)
 
 ___
 
@@ -51,7 +51,7 @@ The total count of NFTs owned by the provided address.
 
 #### Defined in
 
-[src/types/nft-types.ts:242](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L242)
+[src/types/nft-types.ts:241](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae0aa3f0/src/types/nft-types.ts#L241)
 
 ___
 
@@ -63,4 +63,4 @@ Block Information of the block as of which the corresponding data is valid
 
 #### Defined in
 
-[src/types/nft-types.ts:247](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L247)
+[src/types/nft-types.ts:246](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae0aa3f0/src/types/nft-types.ts#L246)
