@@ -22,7 +22,7 @@ List of contract addresses to filter by. If omitted, defaults to
 
 #### Defined in
 
-[src/types/types.ts:268](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L268)
+[src/types/types.ts:292](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae0aa3f0/src/types/types.ts#L292)
 
 ___
 
@@ -35,4 +35,4 @@ pagination.
 
 #### Defined in
 
-[src/types/types.ts:273](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L273)
+[src/types/types.ts:297](https://github.com/alchemyplatform/alchemy-sdk-js/blob/ae0aa3f0/src/types/types.ts#L297)
