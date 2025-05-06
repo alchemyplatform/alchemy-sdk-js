@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 3.5.9
+
+### Minor Changes
+
+- Updated all `@ethersproject/*` dependencies to version `5.8.0`
+
 ## 3.5.8
 
 ### Minor Changes
