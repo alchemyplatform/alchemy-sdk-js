@@ -1267,6 +1267,8 @@ export interface Nft {
   animation?: {
     /** URL of the animation stored in Alchemy's cache. */
     cachedUrl?: string;
+    /** The original URL of the animation as stored on the contract. */
+    originalUrl?: string;
     /** The type of the animation media. */
     contentType?: string;
     /** The size of the animation in bytes. */
