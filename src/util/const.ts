@@ -33,11 +33,16 @@ export function getPricesBaseUrl(apiKey: string): string {
   return `https://api.g.alchemy.com/prices/v1/${apiKey}`;
 }
 
+export function getPortfolioBaseUrl(apiKey: string): string {
+  return `https://api.g.alchemy.com/data/v1/${apiKey}`;
+}
+
 export enum AlchemyApiType {
   BASE,
   NFT,
   WEBHOOK,
-  PRICES
+  PRICES,
+  PORTFOLIO
 }
 
 /**
