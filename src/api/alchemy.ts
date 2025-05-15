@@ -4,6 +4,7 @@ import { CoreNamespace } from './core-namespace';
 import { DebugNamespace } from './debug-namespace';
 import { NftNamespace } from './nft-namespace';
 import { NotifyNamespace } from './notify-namespace';
+import { PortfolioNamespace } from './portfolio-namespace';
 import { PricesNamespace } from './prices-namespace';
 import { TransactNamespace } from './transact-namespace';
 import { WebSocketNamespace } from './websocket-namespace';
@@ -58,6 +59,13 @@ export class Alchemy {
   readonly prices: PricesNamespace;
 
   /**
+   * The `portfolio` namespace contains methods for getting data needed to view onchain assets.
+   * Portfolio APIs include everything you need to build a view of a user’s assets: fungibles,
+   * NFTs, and their transactions.
+   */
+  readonly portfolio: PortfolioNamespace;
+
+  /**
    * @param {string} [settings.apiKey] - The API key to use for Alchemy
    * @param {Network} [settings.network] - The network to use for Alchemy
    * @param {number} [settings.maxRetries] - The maximum number of retries to attempt
@@ -74,5 +82,6 @@ export class Alchemy {
     this.notify = new NotifyNamespace(this.config);
     this.debug = new DebugNamespace(this.config);
     this.prices = new PricesNamespace(this.config);
+    this.portfolio = new PortfolioNamespace(this.config);
   }
 }
