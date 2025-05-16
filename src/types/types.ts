@@ -206,7 +206,12 @@ export enum Network {
   GENSYN_TESTNET = 'gensyn-testnet',
   SUPERSEED_MAINNET = 'superseed-mainnet',
   SUPERSEED_SEPOLIA = 'superseed-sepolia',
-  TEA_SEPOLIA = 'tea-sepolia'
+  TEA_SEPOLIA = 'tea-sepolia',
+  ANIME_MAINNET = 'anime-mainnet',
+  ANIME_SEPOLIA = 'anime-sepolia',
+  STORY_MAINNET = 'story-mainnet',
+  STORY_AENEID = 'story-aeneid',
+  MEGAETH_TESTNET = 'megaeth-testnet'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */

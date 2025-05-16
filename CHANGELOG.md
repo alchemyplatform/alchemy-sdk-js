@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 3.5.9
+
+### Minor Changes
+
+- Added Anime Mainnet and Sepolia, Story Mainnet and Aeneid, Megaeth Testnet
+
 ## 3.5.8
 
 ### Minor Changes
