@@ -23,7 +23,7 @@ export class PortfolioNamespace {
    * Fetches fungible tokens (native and ERC-20) for multiple wallet addresses
    * and networks.
    *
-   * @param addresses - Array of network/address pairs to get prices for (limit 2 pairs, max 5 networks each).
+   * @param addresses - Array of network/address pairs (limit 2 pairs, max 5 networks each).
    * @param withMetadata - Boolean. If set to true, returns metadata. Setting this to false will reduce payload size and may result in a faster API call. (default: true)
    * @param withPrices - Boolean. If set to true, returns token prices. Setting this to false will reduce payload size and may result in a faster API call. (default: true)
    * @param includeNativeTokens - Boolean. Whether to include each chain’s native token in the response (e.g. ETH on Ethereum). The native token will have a null contract address. (default: true)
@@ -48,7 +48,7 @@ export class PortfolioNamespace {
   /**
    * Fetches fungible tokens (native and ERC-20) for multiple wallet addresses and networks.
    *
-   * @param addresses - Array of network/address pairs to get prices for (limit 2 pairs, max 5 networks each).
+   * @param addresses - Array of network/address pairs (limit 2 pairs, max 5 networks each).
    * @param includeNativeTokens - Boolean. Whether to include each chain’s native token in the response (e.g. ETH on Ethereum). The native token will have a null contract address. (default: true)   * @returns Promise containing a list of tokens with balances for each wallet/network combination
    * @public
    */
