@@ -144,7 +144,12 @@ export const EthersNetwork = {
   [Network.GENSYN_TESTNET]: 'gensyn-testnet',
   [Network.SUPERSEED_MAINNET]: 'superseed-mainnet',
   [Network.SUPERSEED_SEPOLIA]: 'superseed-sepolia',
-  [Network.TEA_SEPOLIA]: 'tea-sepolia'
+  [Network.TEA_SEPOLIA]: 'tea-sepolia',
+  [Network.ANIME_MAINNET]: 'anime-mainnet',
+  [Network.ANIME_SEPOLIA]: 'anime-sepolia',
+  [Network.STORY_MAINNET]: 'story-mainnet',
+  [Network.STORY_AENEID]: 'story-aeneid',
+  [Network.MEGAETH_TESTNET]: 'megaeth-testnet'
 };
 
 /**
@@ -520,6 +525,26 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'tea-sepolia': {
     chainId: 10218,
     name: 'tea-sepolia'
+  },
+  'anime-mainnet': {
+    chainId: 69000,
+    name: 'anime-mainnet'
+  },
+  'anime-sepolia': {
+    chainId: 0x1af4,
+    name: 'anime-sepolia'
+  },
+  'story-mainnet': {
+    chainId: 0x5ea,
+    name: 'story-mainnet'
+  },
+  'story-aeneid': {
+    chainId: 0x523,
+    name: 'story-aeneid'
+  },
+  'megaeth-testnet': {
+    chainId: 0x18c6,
+    name: 'megaeth-testnet'
   }
 };
 
