@@ -5,8 +5,11 @@ import { TokenPriceByAddressResult } from './prices-types';
 import { Network, TransactionReceipt } from './types';
 
 /**
- * The parameter field of {@link PortfolioNamespace.getTokenPriceByAddress}.
- * Represents a network and address pair for getting porfolio data.
+ * Used by {@link PortfolioNamespace} to represent an address and a list of
+ * networks to fetch portfolio data about
+ *
+ * @param networks - Array of network identifiers (e.g., eth-mainnet).
+ * @param address - Wallet address.
  *
  * @public
  */
@@ -18,7 +21,7 @@ export interface PortfolioAddress {
 }
 
 /**
- * The request fields of {@link PortfolioNamespace.getTokenPriceByAddress}.
+ * The request fields of {@link PortfolioNamespace.getTokensByWallet}.
  *
  * @public
  */
@@ -30,7 +33,7 @@ export interface GetTokensByWalletRequest {
 }
 
 /**
- * The response type of {@link PortfolioNamespace.getTokenPriceByAddress}.
+ * The response type of {@link PortfolioNamespace.getTokensByWallet}.
  *
  * @public
  */
@@ -75,7 +78,7 @@ export interface GetTokenBalancesByWalletResponse {
 }
 
 /**
- * The request fields of {@link PortfolioNamespace.nftsByWallet}.
+ * The request fields of {@link PortfolioNamespace.getNftsByWallet}.
  *
  * @public
  */
@@ -87,7 +90,7 @@ export interface GetNftsByWalletRequest {
 }
 
 /**
- * The response type of {@link PortfolioNamespace.nftsByWallet}.
+ * The response type of {@link PortfolioNamespace.getNftsByWallet}.
  *
  * @public
  */
@@ -100,7 +103,7 @@ export interface GetNftsByWalletResponse {
 }
 
 /**
- * The request fields of {@link PortfolioNamespace.nftCollectionsByWallet}.
+ * The request fields of {@link PortfolioNamespace.getNftCollectionsByWallet}.
  *
  * @public
  */
@@ -112,7 +115,7 @@ export interface GetNftCollectionsByWalletRequest {
 }
 
 /**
- * The response type of {@link PortfolioNamespace.nftCollectionsByWallet}.
+ * The response type of {@link PortfolioNamespace.getNftCollectionsByWallet}.
  *
  * @public
  */
@@ -127,7 +130,7 @@ export interface GetNftCollectionsByWalletResponse {
 }
 
 /**
- * The request fields of {@link PortfolioNamespace.transactionsByWallet}.
+ * The request fields of {@link PortfolioNamespace.getTransactionsByWallet}.
  *
  * @public
  */
@@ -139,7 +142,7 @@ export interface GetTransactionsByWalletRequest {
 }
 
 /**
- * The response type of {@link PortfolioNamespace.transactionsByWallet}.
+ * The response type of {@link PortfolioNamespace.getTransactionsByWallet}.
  *
  * @public
  */

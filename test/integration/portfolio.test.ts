@@ -139,7 +139,7 @@ describe('Portfolio API Integration Tests', () => {
         }
       ];
 
-      const response = await alchemy.portfolio.getNFTsByWallet(addresses);
+      const response = await alchemy.portfolio.getNftsByWallet(addresses);
 
       expect(response.data).toBeDefined();
       expect(response.data.ownedNfts.length).toBeGreaterThan(1);
@@ -173,7 +173,7 @@ describe('Portfolio API Integration Tests', () => {
       ];
 
       await expect(
-        alchemy.portfolio.getNFTsByWallet(addresses)
+        alchemy.portfolio.getNftsByWallet(addresses)
       ).rejects.toThrow();
     });
 
@@ -186,7 +186,7 @@ describe('Portfolio API Integration Tests', () => {
       ];
 
       await expect(
-        alchemy.portfolio.getNFTsByWallet(addresses)
+        alchemy.portfolio.getNftsByWallet(addresses)
       ).rejects.toThrow();
     });
   });
@@ -204,7 +204,7 @@ describe('Portfolio API Integration Tests', () => {
         }
       ];
 
-      const response = await alchemy.portfolio.getNFTCollectionsByWallet(
+      const response = await alchemy.portfolio.getNftCollectionsByWallet(
         addresses
       );
 
@@ -235,7 +235,7 @@ describe('Portfolio API Integration Tests', () => {
       ];
 
       await expect(
-        alchemy.portfolio.getNFTCollectionsByWallet(addresses)
+        alchemy.portfolio.getNftCollectionsByWallet(addresses)
       ).rejects.toThrow();
     });
 
@@ -248,7 +248,7 @@ describe('Portfolio API Integration Tests', () => {
       ];
 
       await expect(
-        alchemy.portfolio.getNFTCollectionsByWallet(addresses)
+        alchemy.portfolio.getNftCollectionsByWallet(addresses)
       ).rejects.toThrow();
     });
   });

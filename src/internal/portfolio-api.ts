@@ -73,7 +73,7 @@ export async function getTokenBalancesByWallet(
   return nullsToUndefined<GetTokenBalancesByWalletResponse>(response);
 }
 
-export async function getNFTsByWallet(
+export async function getNftsByWallet(
   config: AlchemyConfig,
   addresses: PortfolioAddress[],
   withMetadata = true,
@@ -102,7 +102,7 @@ export async function getNFTsByWallet(
   return nullsToUndefined<GetNftsByWalletResponse>(response);
 }
 
-export async function getNFTCollectionsByWallet(
+export async function getNftCollectionsByWallet(
   config: AlchemyConfig,
   addresses: PortfolioAddress[],
   withMetadata = true,
