@@ -33,7 +33,7 @@ export function getPricesBaseUrl(apiKey: string): string {
   return `https://api.g.alchemy.com/prices/v1/${apiKey}`;
 }
 
-export function getPortfolioBaseUrl(apiKey: string): string {
+export function getDataBaseUrl(apiKey: string): string {
   return `https://api.g.alchemy.com/data/v1/${apiKey}`;
 }
 
