@@ -12,7 +12,7 @@ The SDK leverages Alchemy's hardened node infrastructure, guaranteeing best-in-c
 
 The SDK currently supports the following chains (chains with '(d)' after are deprecated):
 
-- **Ethereum**: Mainnet, Goerli (d), Sepolia, Holesky
+- **Ethereum**: Mainnet, Goerli (d), Sepolia, Holesky, Hoodi
 - **Polygon**: Mainnet, Mumbai (d), Amoy
 - **Optimism**: Mainnet, Goerli (d), Sepolia
 - **Arbitrum**: Mainnet, Goerli (d), Sepolia
@@ -31,10 +31,10 @@ The SDK currently supports the following chains (chains with '(d)' after are dep
 - **Gnosis**: Mainnet, Chiado
 - **BNB**: Mainnet, Testnet
 - **Avalanche**: Mainnet, Fuji
-- **Celo**: Mainnet, Alfajores
+- **Celo**: Mainnet, Alfajores, Baklava
 - **Metis**: Mainnet
 - **OpBNB**: Mainnet, Testnet
-- **Berachain**: Mainnet, Bartio
+- **Berachain**: Mainnet, Bartio, Bepolia
 - **Soneium**: Mainnet, Minato
 - **Worldchain**: Mainnet, Sepolia
 - **Rootstock**: Mainnet, Testnet
@@ -44,7 +44,7 @@ The SDK currently supports the following chains (chains with '(d)' after are dep
 - **Polynomial**: Mainnet, Sepolia
 - **Crossfi**: Mainnet, Testnet
 - **Apechain**: Mainnet, Curtis
-- **Lens**: Sepolia
+- **Lens**: Mainnet, Sepolia
 - **Geist**: Mainnet, Polter
 - **Lumia**: Prism, Testnet
 - **Unichain**: Mainnet, Sepolia
@@ -56,8 +56,13 @@ The SDK currently supports the following chains (chains with '(d)' after are dep
 - **Sei**: Mainnet, Testnet
 - **Ronin**: Mainnet, Saigon
 - **Monad**: Testnet
-- **Settlus**: Testnet (Sepolia)
-
+- **Settlus**: Mainnet, Testnet (Sepolia)
+- **Gensyn**: Testnet
+- **Superseed**: Mainnet, Sepolia
+- **Tea**: Sepolia
+- **Anime**: Mainnet, Sepolia
+- **Story**: Mainnet, Aeneid
+- **Megaeth**: Testnet
 
 You can find per-method documentation of the Alchemy SDK endpoints at the [Alchemy Docs linked in the sidebar](https://docs.alchemy.com/reference/alchemy-sdk-quickstart).
 

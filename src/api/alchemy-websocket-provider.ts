@@ -123,7 +123,7 @@ export class AlchemyWebSocketProvider
     // ethers. This allows the parent super constructor in JsonRpcProvider to
     // correctly set the network.
     const ethersNetwork = EthersNetwork[alchemyNetwork];
-    super(ws as any, ethersNetwork);
+    super(ws as any, ethersNetwork ?? undefined);
     this.apiKey = apiKey;
 
     // Start heartbeat and backfiller for the websocket connection.

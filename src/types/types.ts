@@ -6,6 +6,7 @@ import {
 import { BigNumberish } from '@ethersproject/bignumber';
 import { ConnectionInfo } from '@ethersproject/web';
 
+import { NotifyNamespace } from '../api/notify-namespace';
 import {
   ERC1155Metadata,
   NftRefreshState,
@@ -14,6 +15,9 @@ import {
 } from './nft-types';
 
 export * from './ethers-types';
+
+/** @internal Workaround to prevent TS unused import error */
+void (0 as unknown as NotifyNamespace);
 
 // TODO: separate this file into other files.
 
@@ -101,6 +105,7 @@ export enum Network {
   ETH_GOERLI = 'eth-goerli',
   ETH_SEPOLIA = 'eth-sepolia',
   ETH_HOLESKY = 'eth-holesky',
+  ETH_HOODI = 'eth-hoodi',
   OPT_MAINNET = 'opt-mainnet',
   /** @deprecated */
   OPT_GOERLI = 'opt-goerli',
@@ -147,11 +152,14 @@ export enum Network {
   AVAX_FUJI = 'avax-fuji',
   CELO_MAINNET = 'celo-mainnet',
   CELO_ALFAJORES = 'celo-alfajores',
+  CELO_BAKLAVA = 'celo-baklava',
   METIS_MAINNET = 'metis-mainnet',
   OPBNB_MAINNET = 'opbnb-mainnet',
   OPBNB_TESTNET = 'opbnb-testnet',
+  /** @deprecated */
   BERACHAIN_BARTIO = 'berachain-bartio',
   BERACHAIN_MAINNET = 'berachain-mainnet',
+  BERACHAIN_BEPOLIA = 'berachain-bepolia',
   SONEIUM_MAINNET = 'soneium-mainnet',
   SONEIUM_MINATO = 'soneium-minato',
   WORLDCHAIN_MAINNET = 'worldchain-mainnet',
@@ -170,6 +178,7 @@ export enum Network {
   CROSSFI_TESTNET = 'crossfi-testnet',
   APECHAIN_MAINNET = 'apechain-mainnet',
   APECHAIN_CURTIS = 'apechain-curtis',
+  LENS_MAINNET = 'lens-mainnet',
   LENS_SEPOLIA = 'lens-sepolia',
   GEIST_MAINNET = 'geist-mainnet',
   GEIST_POLTER = 'geist-polter',
@@ -190,7 +199,19 @@ export enum Network {
   RONIN_MAINNET = 'ronin-mainnet',
   RONIN_SAIGON = 'ronin-saigon',
   MONAD_TESTNET = 'monad-testnet',
-  SETTLUS_SEPTESTNET = 'settlus-septestnet'
+  SETTLUS_SEPTESTNET = 'settlus-septestnet',
+  SETTLUS_MAINNET = 'settlus-mainnet',
+  SOLANA_MAINNET = 'solana-mainnet',
+  SOLANA_DEVNET = 'solana-devnet',
+  GENSYN_TESTNET = 'gensyn-testnet',
+  SUPERSEED_MAINNET = 'superseed-mainnet',
+  SUPERSEED_SEPOLIA = 'superseed-sepolia',
+  TEA_SEPOLIA = 'tea-sepolia',
+  ANIME_MAINNET = 'anime-mainnet',
+  ANIME_SEPOLIA = 'anime-sepolia',
+  STORY_MAINNET = 'story-mainnet',
+  STORY_AENEID = 'story-aeneid',
+  MEGAETH_TESTNET = 'megaeth-testnet'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */
@@ -1129,6 +1150,8 @@ export interface Webhook {
    * {@link MinedTransactionWebhook} and {@link DroppedTransactionWebhook}
    */
   appId?: string;
+  /** The name of the webhook. */
+  name?: string;
 }
 
 /** The version of the webhook. All newly created webhooks default to V2. */
@@ -1236,6 +1259,14 @@ export interface CustomGraphqlWebhookConfig {
 }
 
 /**
+ * Base interface for all webhook parameters that includes common fields.
+ */
+export interface BaseWebhookParams {
+  /** Optional name for the webhook. */
+  name?: string;
+}
+
+/**
  * Params to pass in when calling {@link NotifyNamespace.createWebhook} in order
  * to create a {@link MinedTransactionWebhook} or {@link DroppedTransactionWebhook}.
  *
@@ -1246,7 +1277,7 @@ export interface CustomGraphqlWebhookConfig {
  * This is a temporary workaround for now. We're planning on detecting the app
  * id from the provided api key directly. Stay tuned!
  */
-export interface TransactionWebhookParams {
+export interface TransactionWebhookParams extends BaseWebhookParams {
   /** The app id of the project to create the webhook on. */
   appId: string;
 }
@@ -1255,7 +1286,7 @@ export interface TransactionWebhookParams {
  * Params to pass in when calling {@link NotifyNamespace.createWebhook} in order
  * to create a {@link NftActivityWebhook} or {@link NftMetadataUpdateWebhook}.
  */
-export interface NftWebhookParams {
+export interface NftWebhookParams extends BaseWebhookParams {
   /** Array of NFT filters the webhook should track. */
   filters: NftFilter[];
   /**
@@ -1269,7 +1300,7 @@ export interface NftWebhookParams {
  * Params to pass in when calling {@link NotifyNamespace.createWebhook} in order
  * to create a {@link CustomGraphqlWebhook}
  */
-export interface CustomGraphqlWebhookParams {
+export interface CustomGraphqlWebhookParams extends BaseWebhookParams {
   /** GraphQL query */
   graphqlQuery: string;
   /**
@@ -1302,7 +1333,7 @@ export interface CustomGraphqlWebhookParams {
  * Params to pass in when calling {@link NotifyNamespace.createWebhook} in order
  * to create a {@link AddressActivityWebhook}.
  */
-export interface AddressWebhookParams {
+export interface AddressWebhookParams extends BaseWebhookParams {
   /** Array of addresses the webhook should activity for. */
   addresses: string[];
   /**

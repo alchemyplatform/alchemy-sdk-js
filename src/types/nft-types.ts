@@ -31,7 +31,6 @@ export interface NftMetadata extends Record<string, any> {
 
   /** URL to the NFT asset image. */
   image?: string;
-
   /**
    * The image URL that appears along the top of the NFT asset page. This tends
    * to be the highest resolution image.
@@ -1264,6 +1263,17 @@ export interface Nft {
   description?: string;
   /** Media URLs and information for the NFT */
   image: NftImage;
+  /** Animation information for the NFT. */
+  animation?: {
+    /** URL of the animation stored in Alchemy's cache. */
+    cachedUrl?: string;
+    /** The original URL of the animation as stored on the contract. */
+    originalUrl?: string;
+    /** The type of the animation media. */
+    contentType?: string;
+    /** The size of the animation in bytes. */
+    size?: number;
+  };
   /** The raw metadata for the NFT based on the metadata URI on the NFT contract. */
   raw: NftRawMetadata;
   /** URIs for accessing the NFT's metadata blob. */
