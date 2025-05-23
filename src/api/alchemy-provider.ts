@@ -256,12 +256,7 @@ export class AlchemyProvider
    *
    * @internal
    */
-  _send(
-    method: string,
-    params: Array<any>,
-    methodName: string,
-    forceBatch = false
-  ): Promise<any> {
+  _send(method: string, params: Array<any>, methodName: string): Promise<any> {
     const request = {
       method,
       params,
@@ -273,7 +268,7 @@ export class AlchemyProvider
     const connection = { ...this.connection };
     connection.headers!['Alchemy-Ethers-Sdk-Method'] = methodName;
 
-    if (this.batchRequests || forceBatch) {
+    if (this.batchRequests) {
       return this.batcher.enqueueRequest(request as JsonRpcRequest);
     }
     // END MODIFIED CODE

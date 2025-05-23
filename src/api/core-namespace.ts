@@ -551,8 +551,7 @@ export class CoreNamespace {
         provider._send(
           'alchemy_getTokenMetadata',
           [token.contractAddress],
-          'getTokensForOwner',
-          /* forceBatch= */ true
+          'getTokensForOwner'
         )
       )
     );

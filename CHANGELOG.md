@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 3.5.10
+
+### Minor Changes
+
+- Removed batch operations for `getTokensForOwner` to fix support for newer networks
+
 ## 3.5.9
 
 ### Minor Changes
