@@ -23,6 +23,11 @@ export interface PortfolioAddress {
 /**
  * The request fields of {@link PortfolioNamespace.getTokensByWallet}.
  *
+ * @param addresses - A list of {@link PortfolioAddress}
+ * @param withMetadata - Boolean. If set to true, returns metadata.
+ * @param withPrices - Boolean. If set to true, returns token prices.
+ * @param includeNativeTokens - Boolean. Whether to include each chain’s native
+ *                                       token in the response (e.g. ETH on Ethereum)
  * @public
  */
 export interface GetTokensByWalletRequest {
@@ -53,6 +58,10 @@ export interface GetTokensByWalletResponse {
 /**
  * The request fields of {@link PortfolioNamespace.getTokenBalancesByWallet}.
  *
+ * @param addresses - A list of {@link PortfolioAddress}
+ * @param includeNativeTokens - Boolean. Whether to include each chain’s native
+ *                                       token in the response (e.g. ETH on Ethereum)
+ *
  * @public
  */
 export interface GetTokenBalancesByWalletRequest {
@@ -80,6 +89,11 @@ export interface GetTokenBalancesByWalletResponse {
 /**
  * The request fields of {@link PortfolioNamespace.getNftsByWallet}.
  *
+ * @param addresses - A list of {@link PortfolioAddress}
+ * @param withMetadata - Boolean. If set to true, returns metadata.
+ * @param pageKey - Optional. The cursor that points to the current set of results.
+ * @param pageSize - Optional. Sets the number of items per page.
+ *
  * @public
  */
 export interface GetNftsByWalletRequest {
@@ -104,6 +118,11 @@ export interface GetNftsByWalletResponse {
 
 /**
  * The request fields of {@link PortfolioNamespace.getNftCollectionsByWallet}.
+ *
+ * @param addresses - A list of {@link PortfolioAddress}
+ * @param withMetadata - Boolean. If set to true, returns metadata.
+ * @param pageKey - Optional. The cursor that points to the current set of results.
+ * @param pageSize - Optional. Sets the number of items per page.
  *
  * @public
  */
@@ -131,6 +150,11 @@ export interface GetNftCollectionsByWalletResponse {
 
 /**
  * The request fields of {@link PortfolioNamespace.getTransactionsByWallet}.
+ *
+ * @param addresses - A list of {@link PortfolioAddress}
+ * @param before - Optional. The cursor that points to the previous set of results.
+ * @param after - Optional. The cursor that points to the end of the current set of results.
+ * @param limit - Optional. Sets the maximum number of items per page (Max: 100)
  *
  * @public
  */

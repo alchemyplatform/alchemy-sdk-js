@@ -22,7 +22,7 @@ export async function getTokensByWallet(
   withMetadata = true,
   withPrices = true,
   includeNativeTokens = true,
-  srcMethod = 'getTokensByAddress'
+  srcMethod = 'getTokensByWallet'
 ): Promise<GetTokensByWalletResponse> {
   const data: GetTokensByWalletRequest = {
     addresses,
@@ -49,7 +49,7 @@ export async function getTokenBalancesByWallet(
   config: AlchemyConfig,
   addresses: PortfolioAddress[],
   includeNativeTokens = true,
-  srcMethod = 'getTokenBalancesByAddress'
+  srcMethod = 'getTokenBalancesByWallet'
 ): Promise<GetTokenBalancesByWalletResponse> {
   const data: GetTokenBalancesByWalletRequest = {
     addresses,
@@ -79,7 +79,7 @@ export async function getNftsByWallet(
   withMetadata = true,
   pageKey: string | undefined = undefined,
   pageSize: number | undefined = undefined,
-  srcMethod = 'getNFTsByAddress'
+  srcMethod = 'getNftsByWallet'
 ): Promise<GetNftsByWalletResponse> {
   const data: GetNftsByWalletRequest = {
     addresses,
@@ -108,7 +108,7 @@ export async function getNftCollectionsByWallet(
   withMetadata = true,
   pageKey: string | undefined = undefined,
   pageSize: number | undefined = undefined,
-  srcMethod = 'getNFTCollectionsByAddress'
+  srcMethod = 'getNftCollectionsByWallet'
 ): Promise<GetNftCollectionsByWalletResponse> {
   const data: GetNftCollectionsByWalletRequest = {
     addresses,
@@ -140,7 +140,7 @@ export async function getTransactionsByWallet(
   before: string | undefined = undefined,
   after: string | undefined = undefined,
   limit: number | undefined = undefined,
-  srcMethod = 'getTransactionsByAddress'
+  srcMethod = 'getTransactionsByWallet'
 ): Promise<GetTransactionsByWalletResponse> {
   const data: GetTransactionsByWalletRequest = {
     addresses,
