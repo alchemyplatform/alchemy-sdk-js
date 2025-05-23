@@ -6,34 +6,34 @@ import { Network, TransactionReceipt } from './types';
 
 /**
  * Used by {@link PortfolioNamespace} to represent an address and a list of
- * networks to fetch portfolio data about
- *
- * @param networks - Array of network identifiers (e.g., eth-mainnet).
- * @param address - Wallet address.
+ * networks to fetch portfolio data about.
  *
  * @public
  */
 export interface PortfolioAddress {
-  /** Network identifiers (e.g., eth-mainnet). */
+  /** Array of network identifiers (e.g., eth-mainnet). */
   networks: Network[];
-  /** Wallet address */
+
+  /** Wallet address. */
   address: string;
 }
 
 /**
  * The request fields of {@link PortfolioNamespace.getTokensByWallet}.
  *
- * @param addresses - A list of {@link PortfolioAddress}
- * @param withMetadata - Boolean. If set to true, returns metadata.
- * @param withPrices - Boolean. If set to true, returns token prices.
- * @param includeNativeTokens - Boolean. Whether to include each chain’s native
- *                                       token in the response (e.g. ETH on Ethereum)
  * @public
  */
 export interface GetTokensByWalletRequest {
+  /** A list of wallet addresses to query. */
   addresses: PortfolioAddress[];
+
+  /** If set to true, returns metadata. */
   withMetadata: boolean;
+
+  /** If set to true, returns token prices. */
   withPrices: boolean;
+
+  /** Whether to include each chain’s native token in the response (e.g. ETH on Ethereum). */
   includeNativeTokens: boolean;
 }
 
@@ -45,12 +45,18 @@ export interface GetTokensByWalletRequest {
 export interface GetTokensByWalletResponse {
   data: {
     tokens: Array<{
+      /** The blockchain network (e.g., Ethereum, Polygon) where the token is located. */
       network: Network;
+      /** The wallet address for which the token data applies. */
       address: string;
+      /** The quantity of the token held, represented as a raw string (e.g., in wei). */
       tokenBalance: string;
+      /** Optional metadata about the token, potentially including name, symbol, decimals, etc. */
       tokenMetadata?: JsonRpcRequest;
+      /** Optional pricing data for the token, such as current value or historical prices. */
       tokenPrices?: TokenPriceByAddressResult;
     }>;
+    /** A string used for pagination to retrieve additional results if available. */
     pageKey: string;
   };
 }
@@ -58,14 +64,15 @@ export interface GetTokensByWalletResponse {
 /**
  * The request fields of {@link PortfolioNamespace.getTokenBalancesByWallet}.
  *
- * @param addresses - A list of {@link PortfolioAddress}
- * @param includeNativeTokens - Boolean. Whether to include each chain’s native
- *                                       token in the response (e.g. ETH on Ethereum)
- *
  * @public
  */
 export interface GetTokenBalancesByWalletRequest {
+  /** A list of wallet addresses to retrieve token balances for. */
   addresses: PortfolioAddress[];
+  /**
+   * Whether to include each chain’s native token in the response
+   * (e.g., ETH on Ethereum, MATIC on Polygon).
+   */
   includeNativeTokens: boolean;
 }
 
@@ -77,11 +84,16 @@ export interface GetTokenBalancesByWalletRequest {
 export interface GetTokenBalancesByWalletResponse {
   data: {
     tokens: Array<{
+      /** The network where the token resides (e.g., Ethereum, Polygon). */
       network: Network;
+      /** The wallet address associated with the token balance. */
       address: string;
+      /** The contract address of the token. */
       tokenAddress: string;
+      /** The balance of the token, typically represented as a raw string value (e.g., in wei). */
       tokenBalance: string;
     }>;
+    /** A string used for pagination, indicating more results are available. */
     pageKey: string;
   };
 }
@@ -89,17 +101,19 @@ export interface GetTokenBalancesByWalletResponse {
 /**
  * The request fields of {@link PortfolioNamespace.getNftsByWallet}.
  *
- * @param addresses - A list of {@link PortfolioAddress}
- * @param withMetadata - Boolean. If set to true, returns metadata.
- * @param pageKey - Optional. The cursor that points to the current set of results.
- * @param pageSize - Optional. Sets the number of items per page.
- *
  * @public
  */
 export interface GetNftsByWalletRequest {
+  /** A list of wallet addresses to query. */
   addresses: PortfolioAddress[];
+
+  /** If set to true, returns metadata. */
   withMetadata: boolean;
+
+  /** Optional. The cursor that points to the current set of results. */
   pageKey?: string;
+
+  /** Optional. Sets the number of items per page. */
   pageSize?: number;
 }
 
@@ -110,8 +124,13 @@ export interface GetNftsByWalletRequest {
  */
 export interface GetNftsByWalletResponse {
   data: {
+    /** An array of NFTs owned by the wallet address, each including metadata and the network it resides on. */
     ownedNfts: Array<Nft & { network: Network }>;
+
+    /** Total number of NFTs (distinct tokenIds) owned by the given address. */
     totalCount: number;
+
+    /** A string key used for paginating through the NFT list, if more results are available. */
     pageKey: string;
   };
 }
@@ -119,17 +138,19 @@ export interface GetNftsByWalletResponse {
 /**
  * The request fields of {@link PortfolioNamespace.getNftCollectionsByWallet}.
  *
- * @param addresses - A list of {@link PortfolioAddress}
- * @param withMetadata - Boolean. If set to true, returns metadata.
- * @param pageKey - Optional. The cursor that points to the current set of results.
- * @param pageSize - Optional. Sets the number of items per page.
- *
  * @public
  */
 export interface GetNftCollectionsByWalletRequest {
+  /** A list of wallet addresses to query. */
   addresses: PortfolioAddress[];
+
+  /** If set to true, returns metadata. */
   withMetadata: boolean;
+
+  /** Optional. The cursor that points to the current set of results. */
   pageKey?: string;
+
+  /** Optional. Sets the number of items per page. */
   pageSize?: number;
 }
 
@@ -140,9 +161,15 @@ export interface GetNftCollectionsByWalletRequest {
  */
 export interface GetNftCollectionsByWalletResponse {
   data: {
+    /** Array of objects representing the NFT contracts held by the address. */
     contracts: Array<{
+      /** An array of contract metadata for NFTs. {@link Contract} */
       contract: Contract[];
+
+      /** The network on which the NFT contract resides. {@link Network} */
       network: Network;
+
+      /** The wallet address holding the NFTs. */
       address: string;
     }>;
   };
@@ -151,17 +178,19 @@ export interface GetNftCollectionsByWalletResponse {
 /**
  * The request fields of {@link PortfolioNamespace.getTransactionsByWallet}.
  *
- * @param addresses - A list of {@link PortfolioAddress}
- * @param before - Optional. The cursor that points to the previous set of results.
- * @param after - Optional. The cursor that points to the end of the current set of results.
- * @param limit - Optional. Sets the maximum number of items per page (Max: 100)
- *
  * @public
  */
 export interface GetTransactionsByWalletRequest {
+  /** A list of wallet addresses to query. */
   addresses: PortfolioAddress[];
+
+  /** Optional. The cursor that points to the previous set of results. */
   before?: string;
+
+  /** Optional. The cursor that points to the end of the current set of results. */
   after?: string;
+
+  /** Optional. Sets the maximum number of items per page (Max: 100). */
   limit?: number;
 }
 
@@ -171,8 +200,15 @@ export interface GetTransactionsByWalletRequest {
  * @public
  */
 export interface GetTransactionsByWalletResponse {
+  /** The cursor that points to the previous set of results. */
   before?: string;
+
+  /** The cursor that points to the end of the current set of results. */
   after?: string;
+
+  /** Total count of the response items. */
   totalCount?: number;
+
+  /** List of transactions by address. {@link TransactionReceipt} */
   transactions: TransactionReceipt[];
 }
