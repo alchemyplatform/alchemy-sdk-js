@@ -43,7 +43,7 @@ Promise containing historical token price data
 
 #### Defined in
 
-[src/api/prices-namespace.ts:91](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/prices-namespace.ts#L91)
+[src/api/prices-namespace.ts:91](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/prices-namespace.ts#L91)
 
 ___
 
@@ -70,7 +70,7 @@ Promise containing historical token price data
 
 #### Defined in
 
-[src/api/prices-namespace.ts:65](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/prices-namespace.ts#L65)
+[src/api/prices-namespace.ts:65](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/prices-namespace.ts#L65)
 
 ___
 
@@ -94,7 +94,7 @@ Promise containing token price data
 
 #### Defined in
 
-[src/api/prices-namespace.ts:36](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/prices-namespace.ts#L36)
+[src/api/prices-namespace.ts:36](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/prices-namespace.ts#L36)
 
 ___
 
@@ -118,4 +118,4 @@ Promise containing token price data
 
 #### Defined in
 
-[src/api/prices-namespace.ts:49](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/prices-namespace.ts#L49)
+[src/api/prices-namespace.ts:49](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/prices-namespace.ts#L49)

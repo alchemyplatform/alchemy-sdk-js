@@ -22,7 +22,7 @@ The contract address to get prices for.
 
 #### Defined in
 
-[src/types/prices-types.ts:13](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L13)
+[src/types/prices-types.ts:13](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/prices-types.ts#L13)
 
 ___
 
@@ -34,4 +34,4 @@ The network to get prices for.
 
 #### Defined in
 
-[src/types/prices-types.ts:11](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L11)
+[src/types/prices-types.ts:11](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/prices-types.ts#L11)

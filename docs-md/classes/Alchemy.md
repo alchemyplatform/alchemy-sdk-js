@@ -21,6 +21,7 @@ different network or API key, create a new instance of [Alchemy](Alchemy.md).
 - [debug](Alchemy.md#debug)
 - [nft](Alchemy.md#nft)
 - [notify](Alchemy.md#notify)
+- [portfolio](Alchemy.md#portfolio)
 - [prices](Alchemy.md#prices)
 - [transact](Alchemy.md#transact)
 - [ws](Alchemy.md#ws)
@@ -39,7 +40,7 @@ different network or API key, create a new instance of [Alchemy](Alchemy.md).
 
 #### Defined in
 
-[src/api/alchemy.ts:67](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/alchemy.ts#L67)
+[src/api/alchemy.ts:75](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/alchemy.ts#L75)
 
 ## Properties
 
@@ -52,7 +53,7 @@ and allows access to the underlying providers.
 
 #### Defined in
 
-[src/api/alchemy.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/alchemy.ts#L43)
+[src/api/alchemy.ts:44](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/alchemy.ts#L44)
 
 ___
 
@@ -65,7 +66,7 @@ Enhanced APIs.
 
 #### Defined in
 
-[src/api/alchemy.ts:25](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/alchemy.ts#L25)
+[src/api/alchemy.ts:26](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/alchemy.ts#L26)
 
 ___
 
@@ -78,7 +79,7 @@ transactions.
 
 #### Defined in
 
-[src/api/alchemy.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/alchemy.ts#L55)
+[src/api/alchemy.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/alchemy.ts#L56)
 
 ___
 
@@ -90,7 +91,7 @@ The `nft` namespace contains methods for Alchemy's NFT API.
 
 #### Defined in
 
-[src/api/alchemy.ts:28](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/alchemy.ts#L28)
+[src/api/alchemy.ts:29](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/alchemy.ts#L29)
 
 ___
 
@@ -103,7 +104,21 @@ as part of the Notify API.
 
 #### Defined in
 
-[src/api/alchemy.ts:49](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/alchemy.ts#L49)
+[src/api/alchemy.ts:50](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/alchemy.ts#L50)
+
+___
+
+### portfolio
+
+• `Readonly` **portfolio**: [`PortfolioNamespace`](PortfolioNamespace.md)
+
+The `portfolio` namespace contains methods for getting data needed to view onchain assets.
+Portfolio APIs include everything you need to build a view of a user’s assets: fungibles,
+NFTs, and their transactions.
+
+#### Defined in
+
+[src/api/alchemy.ts:66](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/alchemy.ts#L66)
 
 ___
 
@@ -115,7 +130,7 @@ The `prices` namespace contains methods for getting token price data.
 
 #### Defined in
 
-[src/api/alchemy.ts:58](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/alchemy.ts#L58)
+[src/api/alchemy.ts:59](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/alchemy.ts#L59)
 
 ___
 
@@ -128,7 +143,7 @@ checking on the state of submitted transasctions.
 
 #### Defined in
 
-[src/api/alchemy.ts:37](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/alchemy.ts#L37)
+[src/api/alchemy.ts:38](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/alchemy.ts#L38)
 
 ___
 
@@ -140,4 +155,4 @@ The `ws` namespace contains methods for using WebSockets and creating subscripti
 
 #### Defined in
 
-[src/api/alchemy.ts:31](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/api/alchemy.ts#L31)
+[src/api/alchemy.ts:32](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/alchemy.ts#L32)

@@ -10,6 +10,7 @@ import {
   getAlchemyHttpUrl,
   getAlchemyNftHttpUrl,
   getAlchemyWebhookHttpUrl,
+  getDataBaseUrl,
   getPricesBaseUrl
 } from '../util/const';
 import type { AlchemyProvider } from './alchemy-provider';
@@ -94,6 +95,8 @@ export class AlchemyConfig {
       return getAlchemyWebhookHttpUrl();
     } else if (apiType === AlchemyApiType.PRICES) {
       return getPricesBaseUrl(this.apiKey);
+    } else if (apiType === AlchemyApiType.PORTFOLIO) {
+      return getDataBaseUrl(this.apiKey);
     } else {
       return getAlchemyHttpUrl(this.network, this.apiKey);
     }

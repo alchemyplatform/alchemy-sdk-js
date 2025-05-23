@@ -12,11 +12,18 @@ After clicking on an app, the app id is the string in the URL following 'apps/'.
 This is a temporary workaround for now. We're planning on detecting the app
 id from the provided api key directly. Stay tuned!
 
+## Hierarchy
+
+- [`BaseWebhookParams`](BaseWebhookParams.md)
+
+  ↳ **`TransactionWebhookParams`**
+
 ## Table of contents
 
 ### Properties
 
 - [appId](TransactionWebhookParams.md#appid)
+- [name](TransactionWebhookParams.md#name)
 
 ## Properties
 
@@ -28,4 +35,20 @@ The app id of the project to create the webhook on.
 
 #### Defined in
 
-[src/types/types.ts:1243](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/types.ts#L1243)
+[src/types/types.ts:1277](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L1277)
+
+___
+
+### name
+
+• `Optional` **name**: `string`
+
+Optional name for the webhook.
+
+#### Inherited from
+
+[BaseWebhookParams](BaseWebhookParams.md).[name](BaseWebhookParams.md#name)
+
+#### Defined in
+
+[src/types/types.ts:1261](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L1261)
