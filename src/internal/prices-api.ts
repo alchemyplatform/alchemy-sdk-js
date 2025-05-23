@@ -13,8 +13,6 @@ import { AlchemyApiType } from '../util/const';
 import { nullsToUndefined } from '../util/util';
 import { requestHttpWithBackoff } from './dispatch';
 
-const PRICES_BASE_URL = 'https://api.g.alchemy.com/prices/v1/alch-demo';
-
 export async function getTokenPriceByAddress(
   config: AlchemyConfig,
   addresses: TokenAddressRequest[],
@@ -31,8 +29,7 @@ export async function getTokenPriceByAddress(
     {},
     {
       method: 'POST',
-      data: { addresses },
-      baseURL: PRICES_BASE_URL
+      data: { addresses }
     }
   );
   return nullsToUndefined<GetTokenPriceByAddressResponse>(response);
@@ -97,8 +94,7 @@ export async function getHistoricalPriceBySymbol(
         startTime,
         endTime,
         interval
-      },
-      baseURL: PRICES_BASE_URL
+      }
     }
   );
   return nullsToUndefined<HistoricalPriceBySymbolResponse>(response);
@@ -130,8 +126,7 @@ export async function getHistoricalPriceByAddress(
         startTime,
         endTime,
         interval
-      },
-      baseURL: PRICES_BASE_URL
+      }
     }
   );
   return nullsToUndefined<HistoricalPriceByAddressResponse>(response);
