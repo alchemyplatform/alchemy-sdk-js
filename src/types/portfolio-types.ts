@@ -1,8 +1,7 @@
 import { Contract } from '../api/alchemy-contract';
-import { JsonRpcRequest } from '../internal/internal-types';
 import { Nft } from './nft-types';
 import { TokenPriceByAddressResult } from './prices-types';
-import { Network, TransactionReceipt } from './types';
+import { Network, TokenMetadataResponse, TransactionReceipt } from './types';
 
 /**
  * Used by {@link PortfolioNamespace} to represent an address and a list of
@@ -52,7 +51,7 @@ export interface GetTokensByWalletResponse {
       /** The quantity of the token held, represented as a raw string (e.g., in wei). */
       tokenBalance: string;
       /** Optional metadata about the token, potentially including name, symbol, decimals, etc. */
-      tokenMetadata?: JsonRpcRequest;
+      tokenMetadata?: TokenMetadataResponse;
       /** Optional pricing data for the token, such as current value or historical prices. */
       tokenPrices?: TokenPriceByAddressResult;
     }>;
