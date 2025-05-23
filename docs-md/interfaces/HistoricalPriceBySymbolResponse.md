@@ -32,7 +32,7 @@ BaseHistoricalPriceResponse.currency
 
 #### Defined in
 
-[src/types/prices-types.ts:138](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L138)
+[src/types/prices-types.ts:138](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/prices-types.ts#L138)
 
 ___
 
@@ -48,7 +48,7 @@ BaseHistoricalPriceResponse.data
 
 #### Defined in
 
-[src/types/prices-types.ts:140](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L140)
+[src/types/prices-types.ts:140](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/prices-types.ts#L140)
 
 ___
 
@@ -60,4 +60,4 @@ Token symbol that was queried
 
 #### Defined in
 
-[src/types/prices-types.ts:151](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L151)
+[src/types/prices-types.ts:151](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/prices-types.ts#L151)

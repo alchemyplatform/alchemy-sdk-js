@@ -23,7 +23,7 @@ Error information if the request failed, null otherwise.
 
 #### Defined in
 
-[src/types/prices-types.ts:102](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L102)
+[src/types/prices-types.ts:102](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/prices-types.ts#L102)
 
 ___
 
@@ -35,7 +35,7 @@ Array of price data for the token. Empty if there was an error.
 
 #### Defined in
 
-[src/types/prices-types.ts:100](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L100)
+[src/types/prices-types.ts:100](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/prices-types.ts#L100)
 
 ___
 
@@ -47,4 +47,4 @@ The token symbol that was queried.
 
 #### Defined in
 
-[src/types/prices-types.ts:98](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/prices-types.ts#L98)
+[src/types/prices-types.ts:98](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/prices-types.ts#L98)
