@@ -19,3 +19,6 @@ alchemy.env
 
 # VSCode History Extension
 .history
+
+# IDEs
+.idea

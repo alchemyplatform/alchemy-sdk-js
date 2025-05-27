@@ -15,6 +15,7 @@ Represents an NFT with metadata owned by an address.
 ### Properties
 
 - [acquiredAt](OwnedNft.md#acquiredat)
+- [animation](OwnedNft.md#animation)
 - [balance](OwnedNft.md#balance)
 - [collection](OwnedNft.md#collection)
 - [contract](OwnedNft.md#contract)
@@ -44,7 +45,31 @@ request.
 
 #### Defined in
 
-[src/types/nft-types.ts:1278](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L1278)
+[src/types/nft-types.ts:1286](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1286)
+
+___
+
+### animation
+
+• `Optional` **animation**: `Object`
+
+Animation information for the NFT.
+
+#### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `cachedUrl?` | `string` | URL of the animation stored in Alchemy's cache. |
+| `contentType?` | `string` | The type of the animation media. |
+| `size?` | `number` | The size of the animation in bytes. |
+
+#### Inherited from
+
+[Nft](Nft.md).[animation](Nft.md#animation)
+
+#### Defined in
+
+[src/types/nft-types.ts:1267](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1267)
 
 ___
 
@@ -56,7 +81,7 @@ The token balance of the NFT.
 
 #### Defined in
 
-[src/types/nft-types.ts:284](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L284)
+[src/types/nft-types.ts:283](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L283)
 
 ___
 
@@ -72,7 +97,7 @@ Collection metadata for the NFT, if available.
 
 #### Defined in
 
-[src/types/nft-types.ts:1280](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L1280)
+[src/types/nft-types.ts:1288](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1288)
 
 ___
 
@@ -88,7 +113,7 @@ The NFT's underlying contract and relevant contract metadata.
 
 #### Defined in
 
-[src/types/nft-types.ts:1256](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L1256)
+[src/types/nft-types.ts:1255](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1255)
 
 ___
 
@@ -104,7 +129,7 @@ The NFT description.
 
 #### Defined in
 
-[src/types/nft-types.ts:1264](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L1264)
+[src/types/nft-types.ts:1263](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1263)
 
 ___
 
@@ -120,7 +145,7 @@ Media URLs and information for the NFT
 
 #### Defined in
 
-[src/types/nft-types.ts:1266](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L1266)
+[src/types/nft-types.ts:1265](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1265)
 
 ___
 
@@ -136,7 +161,7 @@ Mint information for the NFT.
 
 #### Defined in
 
-[src/types/nft-types.ts:1282](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L1282)
+[src/types/nft-types.ts:1290](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1290)
 
 ___
 
@@ -152,7 +177,7 @@ The NFT name.
 
 #### Defined in
 
-[src/types/nft-types.ts:1262](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L1262)
+[src/types/nft-types.ts:1261](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1261)
 
 ___
 
@@ -168,7 +193,7 @@ The raw metadata for the NFT based on the metadata URI on the NFT contract.
 
 #### Defined in
 
-[src/types/nft-types.ts:1268](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L1268)
+[src/types/nft-types.ts:1276](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1276)
 
 ___
 
@@ -184,7 +209,7 @@ When the NFT was last updated in the blockchain. Represented in ISO-8601 format.
 
 #### Defined in
 
-[src/types/nft-types.ts:1272](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L1272)
+[src/types/nft-types.ts:1280](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1280)
 
 ___
 
@@ -200,7 +225,7 @@ The NFT token ID as an integer string.
 
 #### Defined in
 
-[src/types/nft-types.ts:1258](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L1258)
+[src/types/nft-types.ts:1257](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1257)
 
 ___
 
@@ -216,7 +241,7 @@ The type of NFT.
 
 #### Defined in
 
-[src/types/nft-types.ts:1260](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L1260)
+[src/types/nft-types.ts:1259](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1259)
 
 ___
 
@@ -232,4 +257,4 @@ URIs for accessing the NFT's metadata blob.
 
 #### Defined in
 
-[src/types/nft-types.ts:1270](https://github.com/alchemyplatform/alchemy-sdk-js/blob/8f119ad1/src/types/nft-types.ts#L1270)
+[src/types/nft-types.ts:1278](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1278)
