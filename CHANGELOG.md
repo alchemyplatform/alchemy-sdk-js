@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 3.6.0
+
+### Major Changes
+
+- Added a new `PortfolioNamespace` with five new methods: `getTokensByWallet()`, `getTokenBalancesByWallet()`, `getNftsByWallet()`, `getNftCollectionsByWallet()`, and `getTransactionsByWallet()`. Access these methods via `alchemy.portfolio`.
+
 ## 3.5.10
 
 ### Minor Changes
