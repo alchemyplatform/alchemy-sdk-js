@@ -154,7 +154,8 @@ export const EthersNetwork = {
   [Network.ANIME_SEPOLIA]: 'anime-sepolia',
   [Network.STORY_MAINNET]: 'story-mainnet',
   [Network.STORY_AENEID]: 'story-aeneid',
-  [Network.MEGAETH_TESTNET]: 'megaeth-testnet'
+  [Network.MEGAETH_TESTNET]: 'megaeth-testnet',
+  [Network.RISE_TESTNET]: 'rise-testnet'
 };
 
 /**
@@ -550,6 +551,10 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'megaeth-testnet': {
     chainId: 0x18c6,
     name: 'megaeth-testnet'
+  },
+  'rise-testnet': {
+    chainId: 11155931,
+    name: 'rise-testnet'
   }
 };
 

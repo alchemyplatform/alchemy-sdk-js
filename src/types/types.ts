@@ -211,7 +211,8 @@ export enum Network {
   ANIME_SEPOLIA = 'anime-sepolia',
   STORY_MAINNET = 'story-mainnet',
   STORY_AENEID = 'story-aeneid',
-  MEGAETH_TESTNET = 'megaeth-testnet'
+  MEGAETH_TESTNET = 'megaeth-testnet',
+  RISE_TESTNET = 'rise-testnet'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */

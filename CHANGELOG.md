@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 3.6.1
+
+### Minor Changes
+
+- Added Rise Testnet
+
 ## 3.6.0
 
 ### Major Changes
