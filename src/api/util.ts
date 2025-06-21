@@ -1,4 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber';
+import { hexValue } from '@ethersproject/bytes';
 
 /**
  * Converts a hex string to a decimal number.
@@ -17,7 +18,7 @@ export function fromHex(hexString: string): number {
  * @public
  */
 export function toHex(num: number): string {
-  return BigNumber.from(num).toHexString();
+  return hexValue(num);
 }
 
 /**
