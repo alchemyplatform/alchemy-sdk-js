@@ -24,4 +24,4 @@ The response type of [PortfolioNamespace.getNftCollectionsByWallet](../classes/P
 
 #### Defined in
 
-[src/types/portfolio-types.ts:162](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/portfolio-types.ts#L162)
+[src/types/portfolio-types.ts:162](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/portfolio-types.ts#L162)

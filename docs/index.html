@@ -56,6 +56,9 @@
 <li><strong>Gensyn</strong>: Testnet</li>
 <li><strong>Superseed</strong>: Mainnet, Sepolia</li>
 <li><strong>Tea</strong>: Sepolia</li>
+<li><strong>Anime</strong>: Mainnet, Sepolia</li>
+<li><strong>Story</strong>: Mainnet, Aeneid</li>
+<li><strong>Megaeth</strong>: Testnet</li>
 </ul>
 <p>You can find per-method documentation of the Alchemy SDK endpoints at the <a href="https://docs.alchemy.com/reference/alchemy-sdk-quickstart">Alchemy Docs linked in the sidebar</a>.</p>
 
@@ -245,6 +248,20 @@ e.g. <code>getNftsForOwner()</code> is <code>alchemy_getNfts</code>, <code>getOw
 <li>Token ID is always normalized to an integer string on <code>BaseNft</code> and <code>Nft</code>.</li>
 <li>Some fields omitted in the REST response are included in the SDK response in order to return an <code>Nft</code> object.</li>
 <li>Some fields in the SDK&#39;s <code>Nft</code> object are named differently than the REST response.</li>
+</ul>
+
+<a href="#alchemy-portfolio-api" id="alchemy-portfolio-api" style="color: inherit; text-decoration: none;">
+  <h2>Alchemy Portfolio API</h2>
+</a>
+<p>The <a href="https://www.alchemy.com/docs/reference/portfolio-apis">Alchemy Portfolio APIs</a> include everything you need to build a view of a user’s assets: fungibles, NFTs, and their transactions.</p>
+<p>Methods on the <code>PortfolioNamespace</code> can be accessed via <code>alchemy.portfolio</code>. To use the methods, you must include your team&#39;s auth token in the <code>authToken</code> field of <code>AlchemySettings</code> when instantiating the SDK. The auth token can be found on the Alchemy Dashboard.</p>
+<p>Methods include:</p>
+<ul>
+<li><code>getTokensByWallet()</code>: Fetches fungible tokens (native and ERC-20) for multiple wallet addresses and networks.</li>
+<li><code>getTokenBalancesByWallet()</code>: Fetches fungible tokens (native and ERC-20) for multiple wallet addresses and networks.</li>
+<li><code>getNftsByWallet()</code>: Fetches NFTs for multiple wallet addresses and networks.</li>
+<li><code>getNftCollectionsByWallet()</code>: Fetches NFT collections (contracts) for multiple wallet addresses and networks.</li>
+<li><code>getTransactionsByWallet()</code>: Fetches all historical transactions (internal &amp; external) for multiple wallet addresses and networks.</li>
 </ul>
 
 <a href="#alchemy-notify" id="alchemy-notify" style="color: inherit; text-decoration: none;">

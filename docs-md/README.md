@@ -62,6 +62,9 @@ The SDK currently supports the following chains (chains with '(d)' after are dep
 - **Gensyn**: Testnet
 - **Superseed**: Mainnet, Sepolia
 - **Tea**: Sepolia
+- **Anime**: Mainnet, Sepolia
+- **Story**: Mainnet, Aeneid
+- **Megaeth**: Testnet
 
 You can find per-method documentation of the Alchemy SDK endpoints at the [Alchemy Docs linked in the sidebar](https://docs.alchemy.com/reference/alchemy-sdk-quickstart).
 
@@ -317,6 +320,20 @@ differences compared to the Alchemy REST endpoints:
 - Token ID is always normalized to an integer string on `BaseNft` and `Nft`.
 - Some fields omitted in the REST response are included in the SDK response in order to return an `Nft` object.
 - Some fields in the SDK's `Nft` object are named differently than the REST response.
+
+## Alchemy Portfolio API
+
+The [Alchemy Portfolio APIs](https://www.alchemy.com/docs/reference/portfolio-apis) include everything you need to build a view of a user’s assets: fungibles, NFTs, and their transactions.
+
+Methods on the `PortfolioNamespace` can be accessed via `alchemy.portfolio`. To use the methods, you must include your team's auth token in the `authToken` field of `AlchemySettings` when instantiating the SDK. The auth token can be found on the Alchemy Dashboard.
+
+Methods include:
+
+- `getTokensByWallet()`: Fetches fungible tokens (native and ERC-20) for multiple wallet addresses and networks.
+- `getTokenBalancesByWallet()`: Fetches fungible tokens (native and ERC-20) for multiple wallet addresses and networks.
+- `getNftsByWallet()`: Fetches NFTs for multiple wallet addresses and networks.
+- `getNftCollectionsByWallet()`: Fetches NFT collections (contracts) for multiple wallet addresses and networks.
+- `getTransactionsByWallet()`: Fetches all historical transactions (internal & external) for multiple wallet addresses and networks.
 
 ## Alchemy Notify
 

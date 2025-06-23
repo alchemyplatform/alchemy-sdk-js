@@ -22,7 +22,7 @@ Wallet address.
 
 #### Defined in
 
-[src/types/portfolio-types.ts:17](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/portfolio-types.ts#L17)
+[src/types/portfolio-types.ts:17](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/portfolio-types.ts#L17)
 
 ___
 
@@ -34,4 +34,4 @@ Array of network identifiers (e.g., eth-mainnet).
 
 #### Defined in
 
-[src/types/portfolio-types.ts:14](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/portfolio-types.ts#L14)
+[src/types/portfolio-types.ts:14](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/portfolio-types.ts#L14)

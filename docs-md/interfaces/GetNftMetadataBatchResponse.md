@@ -18,4 +18,4 @@ An array of NFT metadata objects.
 
 #### Defined in
 
-[src/types/nft-types.ts:352](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L352)
+[src/types/nft-types.ts:352](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L352)

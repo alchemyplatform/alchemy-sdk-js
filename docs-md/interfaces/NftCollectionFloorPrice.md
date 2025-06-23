@@ -22,7 +22,7 @@ The floor price of the collection.
 
 #### Defined in
 
-[src/types/nft-types.ts:1215](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1215)
+[src/types/nft-types.ts:1215](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1215)
 
 ___
 
@@ -34,7 +34,7 @@ The marketplace where the floor price was determined.
 
 #### Defined in
 
-[src/types/nft-types.ts:1213](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1213)
+[src/types/nft-types.ts:1213](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1213)
 
 ___
 
@@ -46,4 +46,4 @@ The currency of the floor price.
 
 #### Defined in
 
-[src/types/nft-types.ts:1217](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1217)
+[src/types/nft-types.ts:1217](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1217)

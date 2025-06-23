@@ -21,4 +21,4 @@ The token symbols to get prices for.
 
 #### Defined in
 
-[src/types/prices-types.ts:24](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/prices-types.ts#L24)
+[src/types/prices-types.ts:24](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/prices-types.ts#L24)

@@ -26,7 +26,7 @@ The description of the collection.
 
 #### Defined in
 
-[src/types/nft-types.ts:1199](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1199)
+[src/types/nft-types.ts:1199](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1199)
 
 ___
 
@@ -38,7 +38,7 @@ The Discord URL of the collection.
 
 #### Defined in
 
-[src/types/nft-types.ts:1205](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1205)
+[src/types/nft-types.ts:1205](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1205)
 
 ___
 
@@ -50,7 +50,7 @@ The homepage of the collection as determined by OpenSea.
 
 #### Defined in
 
-[src/types/nft-types.ts:1201](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1201)
+[src/types/nft-types.ts:1201](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1201)
 
 ___
 
@@ -62,7 +62,7 @@ The floor price of the collection
 
 #### Defined in
 
-[src/types/nft-types.ts:1197](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1197)
+[src/types/nft-types.ts:1197](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1197)
 
 ___
 
@@ -74,7 +74,7 @@ The name of the collection.
 
 #### Defined in
 
-[src/types/nft-types.ts:1193](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1193)
+[src/types/nft-types.ts:1193](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1193)
 
 ___
 
@@ -86,7 +86,7 @@ The OpenSea human-readable slug of the collection.
 
 #### Defined in
 
-[src/types/nft-types.ts:1195](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1195)
+[src/types/nft-types.ts:1195](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1195)
 
 ___
 
@@ -98,4 +98,4 @@ The Twitter handle of the collection.
 
 #### Defined in
 
-[src/types/nft-types.ts:1203](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1203)
+[src/types/nft-types.ts:1203](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1203)

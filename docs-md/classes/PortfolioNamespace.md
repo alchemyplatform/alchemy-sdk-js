@@ -44,7 +44,7 @@ Promise containing a list of NFT collections for each wallet/network combination
 
 #### Defined in
 
-[src/api/portfolio-namespace.ts:116](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/portfolio-namespace.ts#L116)
+[src/api/portfolio-namespace.ts:116](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/api/portfolio-namespace.ts#L116)
 
 ___
 
@@ -71,7 +71,7 @@ Promise containing a list of NFTs and metadata for each wallet/network combinati
 
 #### Defined in
 
-[src/api/portfolio-namespace.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/portfolio-namespace.ts#L90)
+[src/api/portfolio-namespace.ts:90](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/api/portfolio-namespace.ts#L90)
 
 ___
 
@@ -94,7 +94,7 @@ Fetches fungible tokens (native and ERC-20) for multiple wallet addresses and ne
 
 #### Defined in
 
-[src/api/portfolio-namespace.ts:68](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/portfolio-namespace.ts#L68)
+[src/api/portfolio-namespace.ts:68](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/api/portfolio-namespace.ts#L68)
 
 ___
 
@@ -123,7 +123,7 @@ Promise containing a list of tokens with balances, prices, and
 
 #### Defined in
 
-[src/api/portfolio-namespace.ts:46](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/portfolio-namespace.ts#L46)
+[src/api/portfolio-namespace.ts:46](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/api/portfolio-namespace.ts#L46)
 
 ___
 
@@ -150,4 +150,4 @@ Promise containing a list of transaction objects with metadata and log informati
 
 #### Defined in
 
-[src/api/portfolio-namespace.ts:142](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/api/portfolio-namespace.ts#L142)
+[src/api/portfolio-namespace.ts:142](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/api/portfolio-namespace.ts#L142)

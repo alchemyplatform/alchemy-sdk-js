@@ -21,7 +21,7 @@ A list of wallet addresses to retrieve token balances for.
 
 #### Defined in
 
-[src/types/portfolio-types.ts:70](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/portfolio-types.ts#L70)
+[src/types/portfolio-types.ts:70](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/portfolio-types.ts#L70)
 
 ___
 
@@ -34,4 +34,4 @@ Whether to include each chain’s native token in the response
 
 #### Defined in
 
-[src/types/portfolio-types.ts:75](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/portfolio-types.ts#L75)
+[src/types/portfolio-types.ts:75](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/portfolio-types.ts#L75)

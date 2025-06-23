@@ -25,7 +25,7 @@ URL of the image stored in Alchemy's cache.
 
 #### Defined in
 
-[src/types/nft-types.ts:50](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L50)
+[src/types/nft-types.ts:50](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L50)
 
 ___
 
@@ -37,7 +37,7 @@ The type of the media image.
 
 #### Defined in
 
-[src/types/nft-types.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L56)
+[src/types/nft-types.ts:56](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L56)
 
 ___
 
@@ -49,7 +49,7 @@ The original URL of the image as stored on the contract.
 
 #### Defined in
 
-[src/types/nft-types.ts:60](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L60)
+[src/types/nft-types.ts:60](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L60)
 
 ___
 
@@ -61,7 +61,7 @@ URL of the image in png format
 
 #### Defined in
 
-[src/types/nft-types.ts:54](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L54)
+[src/types/nft-types.ts:54](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L54)
 
 ___
 
@@ -73,7 +73,7 @@ The size of the media asset in bytes.
 
 #### Defined in
 
-[src/types/nft-types.ts:58](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L58)
+[src/types/nft-types.ts:58](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L58)
 
 ___
 
@@ -85,4 +85,4 @@ URL of a thumbnail sized image.
 
 #### Defined in
 
-[src/types/nft-types.ts:52](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L52)
+[src/types/nft-types.ts:52](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L52)
