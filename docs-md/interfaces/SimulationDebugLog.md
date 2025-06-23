@@ -23,7 +23,7 @@ The address of the contract that generated the log.
 
 #### Defined in
 
-[src/types/types.ts:1055](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L1055)
+[src/types/types.ts:1060](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L1060)
 
 ___
 
@@ -35,7 +35,7 @@ The data included the log.
 
 #### Defined in
 
-[src/types/types.ts:1057](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L1057)
+[src/types/types.ts:1062](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L1062)
 
 ___
 
@@ -47,7 +47,7 @@ A decoded version of the log. Provided on a best-effort basis.
 
 #### Defined in
 
-[src/types/types.ts:1059](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L1059)
+[src/types/types.ts:1064](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L1064)
 
 ___
 
@@ -59,4 +59,4 @@ An array of topics in the log.
 
 #### Defined in
 
-[src/types/types.ts:1053](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L1053)
+[src/types/types.ts:1058](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L1058)

@@ -23,7 +23,7 @@ A list of wallet addresses to query.
 
 #### Defined in
 
-[src/types/portfolio-types.ts:27](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/portfolio-types.ts#L27)
+[src/types/portfolio-types.ts:27](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/portfolio-types.ts#L27)
 
 ___
 
@@ -35,7 +35,7 @@ Whether to include each chain’s native token in the response (e.g. ETH on Ethe
 
 #### Defined in
 
-[src/types/portfolio-types.ts:36](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/portfolio-types.ts#L36)
+[src/types/portfolio-types.ts:36](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/portfolio-types.ts#L36)
 
 ___
 
@@ -47,7 +47,7 @@ If set to true, returns metadata.
 
 #### Defined in
 
-[src/types/portfolio-types.ts:30](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/portfolio-types.ts#L30)
+[src/types/portfolio-types.ts:30](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/portfolio-types.ts#L30)
 
 ___
 
@@ -59,4 +59,4 @@ If set to true, returns token prices.
 
 #### Defined in
 
-[src/types/portfolio-types.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/portfolio-types.ts#L33)
+[src/types/portfolio-types.ts:33](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/portfolio-types.ts#L33)

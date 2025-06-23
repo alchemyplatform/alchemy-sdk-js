@@ -25,4 +25,4 @@ The response type of [PortfolioNamespace.getTokensByWallet](../classes/Portfolio
 
 #### Defined in
 
-[src/types/portfolio-types.ts:45](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/portfolio-types.ts#L45)
+[src/types/portfolio-types.ts:45](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/portfolio-types.ts#L45)

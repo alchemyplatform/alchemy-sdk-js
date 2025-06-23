@@ -25,7 +25,7 @@ The block number in hex or decimal to fetch owners for.
 
 #### Defined in
 
-[src/types/nft-types.ts:1058](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1058)
+[src/types/nft-types.ts:1058](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1058)
 
 ___
 
@@ -37,7 +37,7 @@ Optional page key to paginate the next page for large requests.
 
 #### Defined in
 
-[src/types/nft-types.ts:1061](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1061)
+[src/types/nft-types.ts:1061](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1061)
 
 ___
 
@@ -50,4 +50,4 @@ to false when omitted.
 
 #### Defined in
 
-[src/types/nft-types.ts:1055](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1055)
+[src/types/nft-types.ts:1055](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1055)

@@ -23,7 +23,7 @@ A list of wallet addresses to query.
 
 #### Defined in
 
-[src/types/portfolio-types.ts:184](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/portfolio-types.ts#L184)
+[src/types/portfolio-types.ts:184](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/portfolio-types.ts#L184)
 
 ___
 
@@ -35,7 +35,7 @@ Optional. The cursor that points to the end of the current set of results.
 
 #### Defined in
 
-[src/types/portfolio-types.ts:190](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/portfolio-types.ts#L190)
+[src/types/portfolio-types.ts:190](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/portfolio-types.ts#L190)
 
 ___
 
@@ -47,7 +47,7 @@ Optional. The cursor that points to the previous set of results.
 
 #### Defined in
 
-[src/types/portfolio-types.ts:187](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/portfolio-types.ts#L187)
+[src/types/portfolio-types.ts:187](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/portfolio-types.ts#L187)
 
 ___
 
@@ -59,4 +59,4 @@ Optional. Sets the maximum number of items per page (Max: 100).
 
 #### Defined in
 
-[src/types/portfolio-types.ts:193](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/portfolio-types.ts#L193)
+[src/types/portfolio-types.ts:193](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/portfolio-types.ts#L193)

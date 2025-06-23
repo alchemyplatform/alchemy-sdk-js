@@ -31,7 +31,7 @@ The banner image URL determined by OpenSea.
 
 #### Defined in
 
-[src/types/nft-types.ts:1134](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1134)
+[src/types/nft-types.ts:1134](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1134)
 
 ___
 
@@ -43,7 +43,7 @@ The name of the collection on OpenSea.
 
 #### Defined in
 
-[src/types/nft-types.ts:1121](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1121)
+[src/types/nft-types.ts:1121](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1121)
 
 ___
 
@@ -55,7 +55,7 @@ The slug of the collection on OpenSea.
 
 #### Defined in
 
-[src/types/nft-types.ts:1123](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1123)
+[src/types/nft-types.ts:1123](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1123)
 
 ___
 
@@ -67,7 +67,7 @@ The description of the collection on OpenSea.
 
 #### Defined in
 
-[src/types/nft-types.ts:1136](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1136)
+[src/types/nft-types.ts:1136](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1136)
 
 ___
 
@@ -79,7 +79,7 @@ The Discord URL of the collection.
 
 #### Defined in
 
-[src/types/nft-types.ts:1142](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1142)
+[src/types/nft-types.ts:1142](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1142)
 
 ___
 
@@ -91,7 +91,7 @@ The homepage of the collection as determined by OpenSea.
 
 #### Defined in
 
-[src/types/nft-types.ts:1138](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1138)
+[src/types/nft-types.ts:1138](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1138)
 
 ___
 
@@ -103,7 +103,7 @@ The floor price of the collection.
 
 #### Defined in
 
-[src/types/nft-types.ts:1119](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1119)
+[src/types/nft-types.ts:1119](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1119)
 
 ___
 
@@ -117,7 +117,7 @@ The banner image URL determined by OpenSea.
 
 #### Defined in
 
-[src/types/nft-types.ts:1132](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1132)
+[src/types/nft-types.ts:1132](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1132)
 
 ___
 
@@ -129,7 +129,7 @@ The image URL determined by OpenSea.
 
 #### Defined in
 
-[src/types/nft-types.ts:1127](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1127)
+[src/types/nft-types.ts:1127](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1127)
 
 ___
 
@@ -141,7 +141,7 @@ Timestamp of when the OpenSea metadata was last ingested by Alchemy.
 
 #### Defined in
 
-[src/types/nft-types.ts:1144](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1144)
+[src/types/nft-types.ts:1144](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1144)
 
 ___
 
@@ -153,7 +153,7 @@ The approval status of the collection on OpenSea.
 
 #### Defined in
 
-[src/types/nft-types.ts:1125](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1125)
+[src/types/nft-types.ts:1125](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1125)
 
 ___
 
@@ -165,4 +165,4 @@ The Twitter handle of the collection.
 
 #### Defined in
 
-[src/types/nft-types.ts:1140](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1140)
+[src/types/nft-types.ts:1140](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1140)

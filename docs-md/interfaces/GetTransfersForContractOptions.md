@@ -24,7 +24,7 @@ Starting block (inclusive) to get transfers from.
 
 #### Defined in
 
-[src/types/nft-types.ts:584](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L584)
+[src/types/nft-types.ts:584](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L584)
 
 ___
 
@@ -37,7 +37,7 @@ Defaults to ascending if omitted.
 
 #### Defined in
 
-[src/types/nft-types.ts:591](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L591)
+[src/types/nft-types.ts:591](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L591)
 
 ___
 
@@ -50,7 +50,7 @@ pagination.
 
 #### Defined in
 
-[src/types/nft-types.ts:596](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L596)
+[src/types/nft-types.ts:596](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L596)
 
 ___
 
@@ -62,4 +62,4 @@ Ending block (inclusive) to get transfers from.
 
 #### Defined in
 
-[src/types/nft-types.ts:586](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L586)
+[src/types/nft-types.ts:586](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L586)

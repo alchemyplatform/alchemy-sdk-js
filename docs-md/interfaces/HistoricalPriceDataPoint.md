@@ -21,7 +21,7 @@ ISO timestamp for the price data point
 
 #### Defined in
 
-[src/types/prices-types.ts:128](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/prices-types.ts#L128)
+[src/types/prices-types.ts:128](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/prices-types.ts#L128)
 
 ___
 
@@ -33,4 +33,4 @@ Price value as a string to preserve precision
 
 #### Defined in
 
-[src/types/prices-types.ts:126](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/prices-types.ts#L126)
+[src/types/prices-types.ts:126](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/prices-types.ts#L126)

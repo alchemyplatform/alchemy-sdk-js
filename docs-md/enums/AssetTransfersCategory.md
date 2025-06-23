@@ -26,7 +26,7 @@ ERC1155 transfers.
 
 #### Defined in
 
-[src/types/types.ts:485](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L485)
+[src/types/types.ts:490](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L490)
 
 ___
 
@@ -38,7 +38,7 @@ ERC20 transfers.
 
 #### Defined in
 
-[src/types/types.ts:479](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L479)
+[src/types/types.ts:484](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L484)
 
 ___
 
@@ -50,7 +50,7 @@ ERC721 transfers.
 
 #### Defined in
 
-[src/types/types.ts:482](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L482)
+[src/types/types.ts:487](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L487)
 
 ___
 
@@ -64,7 +64,7 @@ accessed by users.
 
 #### Defined in
 
-[src/types/types.ts:469](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L469)
+[src/types/types.ts:474](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L474)
 
 ___
 
@@ -78,7 +78,7 @@ another smart contract or sending
 
 #### Defined in
 
-[src/types/types.ts:476](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L476)
+[src/types/types.ts:481](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L481)
 
 ___
 
@@ -90,4 +90,4 @@ Special contracts that don't follow ERC 721/1155, (ex: CryptoKitties).
 
 #### Defined in
 
-[src/types/types.ts:488](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L488)
+[src/types/types.ts:493](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L493)

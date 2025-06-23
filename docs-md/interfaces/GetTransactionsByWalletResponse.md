@@ -23,7 +23,7 @@ The cursor that points to the end of the current set of results.
 
 #### Defined in
 
-[src/types/portfolio-types.ts:206](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/portfolio-types.ts#L206)
+[src/types/portfolio-types.ts:206](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/portfolio-types.ts#L206)
 
 ___
 
@@ -35,7 +35,7 @@ The cursor that points to the previous set of results.
 
 #### Defined in
 
-[src/types/portfolio-types.ts:203](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/portfolio-types.ts#L203)
+[src/types/portfolio-types.ts:203](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/portfolio-types.ts#L203)
 
 ___
 
@@ -47,7 +47,7 @@ Total count of the response items.
 
 #### Defined in
 
-[src/types/portfolio-types.ts:209](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/portfolio-types.ts#L209)
+[src/types/portfolio-types.ts:209](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/portfolio-types.ts#L209)
 
 ___
 
@@ -59,4 +59,4 @@ List of transactions by address. [TransactionReceipt](TransactionReceipt.md)
 
 #### Defined in
 
-[src/types/portfolio-types.ts:212](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/portfolio-types.ts#L212)
+[src/types/portfolio-types.ts:212](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/portfolio-types.ts#L212)

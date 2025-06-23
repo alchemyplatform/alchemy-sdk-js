@@ -29,7 +29,7 @@ Defaults to: "demo" (a rate-limited public API key)
 
 #### Defined in
 
-[src/types/types.ts:35](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L35)
+[src/types/types.ts:35](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L35)
 
 ___
 
@@ -42,7 +42,7 @@ in the Alchemy Dashboard on the Notify tab.
 
 #### Defined in
 
-[src/types/types.ts:61](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L61)
+[src/types/types.ts:61](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L61)
 
 ___
 
@@ -57,7 +57,7 @@ This implementation is based on the `JsonRpcBatchProvider` in ethers.
 
 #### Defined in
 
-[src/types/types.ts:75](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L75)
+[src/types/types.ts:75](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L75)
 
 ___
 
@@ -80,7 +80,7 @@ namespaces.
 
 #### Defined in
 
-[src/types/types.ts:91](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L91)
+[src/types/types.ts:91](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L91)
 
 ___
 
@@ -92,7 +92,7 @@ The maximum number of retries to attempt if a request fails. Defaults to 5.
 
 #### Defined in
 
-[src/types/types.ts:46](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L46)
+[src/types/types.ts:46](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L46)
 
 ___
 
@@ -107,7 +107,7 @@ Defaults to: Network.ETH_MAINNET
 
 #### Defined in
 
-[src/types/types.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L43)
+[src/types/types.ts:43](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L43)
 
 ___
 
@@ -120,7 +120,7 @@ Default to 0 (No timeout).
 
 #### Defined in
 
-[src/types/types.ts:67](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L67)
+[src/types/types.ts:67](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L67)
 
 ___
 
@@ -136,4 +136,4 @@ that not all methods will work with custom URLs.
 
 #### Defined in
 
-[src/types/types.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L55)
+[src/types/types.ts:55](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L55)

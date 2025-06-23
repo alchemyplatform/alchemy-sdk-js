@@ -24,7 +24,7 @@ Optional page key to paginate the next page for large requests.
 
 #### Defined in
 
-[src/types/nft-types.ts:1074](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1074)
+[src/types/nft-types.ts:1074](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1074)
 
 ___
 
@@ -36,4 +36,4 @@ Sets the total number of owners to return in the response.
 
 #### Defined in
 
-[src/types/nft-types.ts:1079](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/nft-types.ts#L1079)
+[src/types/nft-types.ts:1079](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/nft-types.ts#L1079)

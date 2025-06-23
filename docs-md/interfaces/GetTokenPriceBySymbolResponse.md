@@ -21,4 +21,4 @@ The token price data for each requested symbol.
 
 #### Defined in
 
-[src/types/prices-types.ts:46](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/prices-types.ts#L46)
+[src/types/prices-types.ts:46](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/prices-types.ts#L46)

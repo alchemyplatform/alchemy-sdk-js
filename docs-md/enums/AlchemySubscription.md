@@ -22,7 +22,7 @@ the Websocket Namespace.
 
 #### Defined in
 
-[src/types/types.ts:719](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L719)
+[src/types/types.ts:724](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L724)
 
 ___
 
@@ -32,4 +32,4 @@ ___
 
 #### Defined in
 
-[src/types/types.ts:718](https://github.com/alchemyplatform/alchemy-sdk-js/blob/873c9882/src/types/types.ts#L718)
+[src/types/types.ts:723](https://github.com/alchemyplatform/alchemy-sdk-js/blob/1ee40cb2/src/types/types.ts#L723)
