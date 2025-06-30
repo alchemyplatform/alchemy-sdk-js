@@ -1131,8 +1131,13 @@ export enum GasOptimizedTransactionStatus {
 export interface Webhook {
   /** The webhook's unique id. */
   id: string;
-  /** The network the webhook is on. */
+  /**
+   * The network the webhook is on.
+   * @deprecated Webhooks are now multi-chain. Use `networks` instead.
+   */
   network: Network;
+  /** The networks the webhook is on. */
+  networks: Network[];
   /** The type of webhook. */
   type: WebhookType;
   /** The url that the webhook sends its payload to. */
@@ -1292,8 +1297,15 @@ export interface NftWebhookParams extends BaseWebhookParams {
   /**
    * Optional network to create the webhook on. If omitted, the webhook will be
    * created on network of the app provided in the api key config.
+   * @deprecated Use `networks` instead. This field is mutually exclusive with `networks`.
    */
   network?: Network;
+  /**
+   * Optional networks to create the webhook on. If omitted, the webhook will be
+   * created on network of the app provided in the api key config.
+   * This field is mutually exclusive with `network`.
+   */
+  networks?: Network[];
 }
 
 /**
@@ -1306,8 +1318,15 @@ export interface CustomGraphqlWebhookParams extends BaseWebhookParams {
   /**
    * Optional network to create the webhook on. If omitted, the webhook will be
    * created on network of the app provided in the api key config.
+   * @deprecated Use `networks` instead. This field is mutually exclusive with `networks`.
    */
   network?: Network;
+  /**
+   * Optional networks to create the webhook on. If omitted, the webhook will be
+   * created on network of the app provided in the api key config.
+   * This field is mutually exclusive with `network`.
+   */
+  networks?: Network[];
   /**
    * Whether to only receive webhooks if the query on the block is not empty.
    * Defaults to false.
@@ -1339,8 +1358,15 @@ export interface AddressWebhookParams extends BaseWebhookParams {
   /**
    * Optional network to create the webhook on. If omitted, the webhook will be
    * created on network of the app provided in the api key config.
+   * @deprecated Use `networks` instead. This field is mutually exclusive with `networks`.
    */
   network?: Network;
+  /**
+   * Optional networks to create the webhook on. If omitted, the webhook will be
+   * created on network of the app provided in the api key config.
+   * This field is mutually exclusive with `network`.
+   */
+  networks?: Network[];
 }
 
 /** NFT to track on a {@link NftActivityWebhook} or {@link NftMetadataUpdateWebhook}. */

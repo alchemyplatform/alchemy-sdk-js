@@ -442,6 +442,24 @@ export class NotifyNamespace {
     | NftMetadataUpdateWebhook
     | CustomGraphqlWebhook
   > {
+    // Validate network/networks mutual exclusivity
+    if (
+      type === WebhookType.NFT_ACTIVITY ||
+      type === WebhookType.NFT_METADATA_UPDATE ||
+      type === WebhookType.ADDRESS_ACTIVITY ||
+      type === WebhookType.GRAPHQL
+    ) {
+      const webhookParams = params as
+        | NftWebhookParams
+        | AddressWebhookParams
+        | CustomGraphqlWebhookParams;
+      if (webhookParams.network && webhookParams.networks) {
+        throw new Error(
+          'Cannot specify both `network` and `networks`. Use `networks` for multi-chain support.'
+        );
+      }
+    }
+
     let appId;
     if (
       type === WebhookType.MINED_TRANSACTION ||
@@ -454,11 +472,39 @@ export class NotifyNamespace {
       appId = params.appId;
     }
 
-    let network = NETWORK_TO_WEBHOOK_NETWORK.get(this.config.network);
+    const network = NETWORK_TO_WEBHOOK_NETWORK.get(this.config.network);
+    let networks: string[] | undefined;
     let nftFilterObj;
     let addresses;
     let graphqlQuery;
     let skipEmptyMessages;
+
+    // Handle network/networks for webhook types that support them
+    if (
+      type === WebhookType.NFT_ACTIVITY ||
+      type === WebhookType.NFT_METADATA_UPDATE ||
+      type === WebhookType.ADDRESS_ACTIVITY ||
+      type === WebhookType.GRAPHQL
+    ) {
+      const webhookParams = params as
+        | NftWebhookParams
+        | AddressWebhookParams
+        | CustomGraphqlWebhookParams;
+
+      if (webhookParams.networks) {
+        // Use networks if provided
+        networks = webhookParams.networks.map(
+          n => NETWORK_TO_WEBHOOK_NETWORK.get(n)!
+        );
+      } else if (webhookParams.network) {
+        // Convert single network to networks array for backwards compatibility
+        networks = [NETWORK_TO_WEBHOOK_NETWORK.get(webhookParams.network)!];
+      } else {
+        // Use the default network from config as a single-element array
+        networks = [network!];
+      }
+    }
+
     if (
       type === WebhookType.NFT_ACTIVITY ||
       type === WebhookType.NFT_METADATA_UPDATE
@@ -468,9 +514,6 @@ export class NotifyNamespace {
           'Nft Activity Webhooks require a non-empty array input.'
         );
       }
-      network = params.network
-        ? NETWORK_TO_WEBHOOK_NETWORK.get(params.network)
-        : network;
       const filters = (params.filters as NftFilter[]).map(filter =>
         filter.tokenId
           ? {
@@ -495,9 +538,6 @@ export class NotifyNamespace {
           'Address Activity Webhooks require a non-empty array input.'
         );
       }
-      network = params.network
-        ? NETWORK_TO_WEBHOOK_NETWORK.get(params.network)
-        : network;
 
       addresses = await this.resolveAddresses(params.addresses);
     } else if (type == WebhookType.GRAPHQL) {
@@ -508,15 +548,15 @@ export class NotifyNamespace {
       ) {
         throw new Error('Custom Webhooks require a non-empty graphql query.');
       }
-      network = params.network
-        ? NETWORK_TO_WEBHOOK_NETWORK.get(params.network)
-        : network;
       graphqlQuery = params.graphqlQuery;
       skipEmptyMessages = params.skipEmptyMessages;
     }
 
     const data = {
-      network,
+      // Always send networks for webhook types that support it
+      ...(networks && { networks }),
+      // For transaction webhooks that don't support networks, send network
+      ...(!networks && network && { network }),
       webhook_type: type,
       webhook_url: url,
       ...(appId && { app_id: appId }),
@@ -659,9 +699,19 @@ function parseRawWebhookResponse(
 }
 
 function parseRawWebhook(rawWebhook: RawWebhook): Webhook {
+  // Handle both legacy single network and new multi-network webhooks
+  const network = rawWebhook.network
+    ? WEBHOOK_NETWORK_TO_NETWORK[rawWebhook.network]
+    : WEBHOOK_NETWORK_TO_NETWORK[rawWebhook.networks![0]]; // Fallback to first network
+
+  const networks = rawWebhook.networks
+    ? rawWebhook.networks.map(n => WEBHOOK_NETWORK_TO_NETWORK[n])
+    : [network]; // Convert single network to array for backwards compatibility
+
   return {
     id: rawWebhook.id,
-    network: WEBHOOK_NETWORK_TO_NETWORK[rawWebhook.network],
+    network,
+    networks,
     type: rawWebhook.webhook_type as WebhookType,
     url: rawWebhook.webhook_url,
     isActive: rawWebhook.is_active,
