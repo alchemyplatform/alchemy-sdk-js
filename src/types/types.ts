@@ -134,6 +134,7 @@ export enum Network {
   LINEA_MAINNET = 'linea-mainnet',
   LINEA_SEPOLIA = 'linea-sepolia',
   FANTOM_MAINNET = 'fantom-mainnet',
+  /** @deprecated */
   FANTOM_TESTNET = 'fantom-testnet',
   ZETACHAIN_MAINNET = 'zetachain-mainnet',
   ZETACHAIN_TESTNET = 'zetachain-testnet',
@@ -152,6 +153,7 @@ export enum Network {
   AVAX_FUJI = 'avax-fuji',
   CELO_MAINNET = 'celo-mainnet',
   CELO_ALFAJORES = 'celo-alfajores',
+  /** @deprecated */
   CELO_BAKLAVA = 'celo-baklava',
   METIS_MAINNET = 'metis-mainnet',
   OPBNB_MAINNET = 'opbnb-mainnet',
@@ -180,7 +182,9 @@ export enum Network {
   APECHAIN_CURTIS = 'apechain-curtis',
   LENS_MAINNET = 'lens-mainnet',
   LENS_SEPOLIA = 'lens-sepolia',
+  /** @deprecated */
   GEIST_MAINNET = 'geist-mainnet',
+  /** @deprecated */
   GEIST_POLTER = 'geist-polter',
   LUMIA_PRISM = 'lumia-prism',
   LUMIA_TESTNET = 'lumia-testnet',
@@ -211,7 +215,11 @@ export enum Network {
   ANIME_SEPOLIA = 'anime-sepolia',
   STORY_MAINNET = 'story-mainnet',
   STORY_AENEID = 'story-aeneid',
-  MEGAETH_TESTNET = 'megaeth-testnet'
+  MEGAETH_TESTNET = 'megaeth-testnet',
+  BOTANIX_MAINNET = 'botanix-mainnet',
+  BOTANIX_TESTNET = 'botanix-testnet',
+  HUMANITY_MAINNET = 'humanity-mainnet',
+  RISE_TESTNET = 'rise-testnet'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */

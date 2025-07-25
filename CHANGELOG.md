@@ -6,6 +6,13 @@
 
 ### Minor Changes
 
+## 3.6.2
+
+### Minor Changes
+
+- Added Botanix Mainnet, Testnet; Humanity Mainnet; Rise Testnet
+- Deprecated Celo Baklava; Fantom Testnet; Geist Mainnet, Polter 
+
 ## 3.6.1
 
 ### Minor Changes

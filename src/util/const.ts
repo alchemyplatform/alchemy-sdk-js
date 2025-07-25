@@ -154,7 +154,11 @@ export const EthersNetwork = {
   [Network.ANIME_SEPOLIA]: 'anime-sepolia',
   [Network.STORY_MAINNET]: 'story-mainnet',
   [Network.STORY_AENEID]: 'story-aeneid',
-  [Network.MEGAETH_TESTNET]: 'megaeth-testnet'
+  [Network.MEGAETH_TESTNET]: 'megaeth-testnet',
+  [Network.BOTANIX_MAINNET]: 'botanix-mainnet',
+  [Network.BOTANIX_TESTNET]: 'botanix-testnet',
+  [Network.HUMANITY_MAINNET]: 'humanity-mainnet',
+  [Network.RISE_TESTNET]: 'rise-testnet'
 };
 
 /**
@@ -550,6 +554,22 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'megaeth-testnet': {
     chainId: 0x18c6,
     name: 'megaeth-testnet'
+  },
+  'botanix-mainnet': {
+    chainId: 0xe34,
+    name: 'botanix-mainnet'
+  },
+  'botanix-testnet': {
+    chainId: 0xe35,
+    name: 'botanix-testnet'
+  },
+  'humanity-mainnet': {
+    chainId: 0x6a96a9,
+    name: 'humanity-mainnet'
+  },
+  'rise-testnet': {
+    chainId: 0xaa39db,
+    name: 'rise-testnet'
   }
 };
 
