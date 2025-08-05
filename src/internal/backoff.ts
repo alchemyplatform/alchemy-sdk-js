@@ -23,7 +23,7 @@ export class ExponentialBackoff {
   constructor(private readonly maxAttempts = DEFAULT_BACKOFF_MAX_ATTEMPTS) {}
 
   /**
-   * Returns a promise that resolves after the the backoff delay. The delay is
+   * Returns a promise that resolves after the backoff delay. The delay is
    * increased for each attempt. The promise is rejected if the maximum number
    * of attempts is exceeded.
    */
