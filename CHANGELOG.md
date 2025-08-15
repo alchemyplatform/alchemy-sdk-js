@@ -6,6 +6,12 @@
 
 ### Minor Changes
 
+## 3.6.3
+
+### Minor Changes
+
+- Added Hyperliquid Mainnet
+
 ## 3.6.2
 
 ### Minor Changes
