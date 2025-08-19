@@ -1,6 +1,6 @@
 import { Contract } from '../api/alchemy-contract';
 import { Nft } from './nft-types';
-import { TokenPriceByAddressResult } from './prices-types';
+import { TokenPrice } from './prices-types';
 import { Network, TokenMetadataResponse, TransactionReceipt } from './types';
 
 /**
@@ -53,7 +53,7 @@ export interface GetTokensByWalletResponse {
       /** Optional metadata about the token, potentially including name, symbol, decimals, etc. */
       tokenMetadata?: TokenMetadataResponse;
       /** Optional pricing data for the token, such as current value or historical prices. */
-      tokenPrices?: TokenPriceByAddressResult;
+      tokenPrices: TokenPrice[];
     }>;
     /** A string used for pagination to retrieve additional results if available. */
     pageKey: string;
