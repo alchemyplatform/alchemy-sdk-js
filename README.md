@@ -1,3 +1,8 @@
+> **\u26A0\uFE0F WARNING:** Alchemy SDK JS will be deprecated in **January 2026**. The software will remain available but will only receive minimal support. New developers should instead use:
+> - [Alchemy Smart Wallets SDK](https://github.com/alchemyplatform/aa-sdk) for transacting applications (includes support for the [Portfolio Data APIs](https://www.alchemy.com/docs/reference/portfolio-apis)).
+> - [Viem](https://github.com/wevm/viem/) for JS based Ethereum development.
+> - [Solana Web3JS](https://www.npmjs.com/package/@solana/web3.js) for JS based Solana development.
+
 Alchemy SDK for Javascript
 
 The Alchemy SDK is the most comprehensive, stable, and powerful Javascript SDK available today to interact with the blockchain.
