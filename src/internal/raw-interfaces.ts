@@ -247,7 +247,8 @@ export interface RawReingestContractResponse {
 
 export interface RawWebhook {
   id: string;
-  network: string;
+  network?: string;
+  networks?: string[];
   webhook_type: string;
   webhook_url: string;
   is_active: boolean;
