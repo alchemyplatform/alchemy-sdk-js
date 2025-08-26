@@ -5,7 +5,7 @@
 
 Alchemy SDK for Javascript
 
-The Alchemy SDK is the most comprehensive, stable, and powerful Javascript SDK available today to interact with the blockchain.
+The [Alchemy SDK](https://www.alchemy.com/sdk) is the most comprehensive, stable, and powerful Javascript SDK available today to interact with the blockchain.
 
 It supports the exact same syntax and functionality of the Ethers.js `AlchemyProvider` and `WebSocketProvider`, making it a 1:1 mapping for anyone using the Ethers.js `Provider`. However, it adds a significant amount of improved functionality on top of Ethers, such as easy access to Alchemy’s Enhanced and NFT APIs, robust WebSockets, and quality-of-life improvements such as automated retries.
 
