@@ -1,19 +1,13 @@
-> **\u26A0\uFE0F WARNING:** Alchemy SDK JS will be deprecated in **January 2026**. The software will remain available but will only receive minimal support. New developers should instead use:
+> **WARNING:** The Alchemy SDK JS has been deprecated and will be archived **January 2026**. The software will only receive minimal support until then. New and existing users are encourage to use the following tools instead:
 > - [Alchemy Smart Wallets SDK](https://github.com/alchemyplatform/aa-sdk) for transacting applications (includes support for the [Portfolio Data APIs](https://www.alchemy.com/docs/reference/portfolio-apis)).
 > - [Viem](https://github.com/wevm/viem/) for JS based Ethereum development.
 > - [Solana Web3JS](https://www.npmjs.com/package/@solana/web3.js) for JS based Solana development.
 
-Alchemy SDK for Javascript
+# Alchemy SDK for Javascript
 
 The Alchemy SDK is the most comprehensive, stable, and powerful Javascript SDK available today to interact with the blockchain.
 
 It supports the exact same syntax and functionality of the Ethers.js `AlchemyProvider` and `WebSocketProvider`, making it a 1:1 mapping for anyone using the Ethers.js `Provider`. However, it adds a significant amount of improved functionality on top of Ethers, such as easy access to Alchemy’s Enhanced and NFT APIs, robust WebSockets, and quality-of-life improvements such as automated retries.
-
-The SDK leverages Alchemy's hardened node infrastructure, guaranteeing best-in-class node reliability, scalability, and data correctness, and is undergoing active development by Alchemy's engineers.
-
-> 🙋‍♀️ **FEATURE REQUESTS:**
->
-> We'd love your thoughts on what would improve your web3 dev process the most! If you have 5 minutes, tell us what you want on our [Feature Request feedback form](https://alchemyapi.typeform.com/sdk-feedback), and we'd love to build it for you.
 
 The SDK currently supports the following chains (chains with '(d)' after are deprecated):
 
