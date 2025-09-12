@@ -1,4 +1,5 @@
-> **WARNING:** The Alchemy SDK JS has been deprecated and will be archived **January 2026**. The software will only receive minimal support until then. New and existing users are encourage to use the following tools instead:
+> [!WARNING]
+> The Alchemy SDK JS has been deprecated and will be archived **January 2026**. The software will only receive minimal support until then. New and existing users are encourage to use the following tools instead:
 > - [Alchemy Smart Wallets SDK](https://github.com/alchemyplatform/aa-sdk) for transacting applications (includes support for the [Portfolio Data APIs](https://www.alchemy.com/docs/reference/portfolio-apis)).
 > - [Viem](https://github.com/wevm/viem/) for JS based Ethereum development.
 > - [Solana Web3JS](https://www.npmjs.com/package/@solana/web3.js) for JS based Solana development.
