@@ -101,8 +101,8 @@
     "typescript": "^4.5.5"
   },
   "resolutions": {
-    "elliptic": "6.5.7",
-    "ws": "7.5.10"
+    "elliptic": "6.6.1",
+    "ws": "8.18.0"
   },
   "sideEffects": false,
   "size-limit": [
