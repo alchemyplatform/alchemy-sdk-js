@@ -68,7 +68,7 @@
     "@ethersproject/wallet": "^5.7.0",
     "@ethersproject/web": "^5.7.0",
     "@solana/web3.js": "^1.87.6",
-    "axios": "^1.7.4",
+    "axios": "^1.12.0",
     "sturdy-websocket": "^0.2.1",
     "websocket": "^1.0.34"
   },
@@ -91,7 +91,7 @@
     "mock-socket": "^9.1.4",
     "prettier": "2.6.0",
     "prettier-plugin-jsdoc": "^0.3.38",
-    "rollup": "^2.70.1",
+    "rollup": "^2.79.2",
     "rollup-plugin-typescript2": "^0.31.2",
     "size-limit": "^7.0.8",
     "ts-jest": "^27.1.4",
@@ -110,5 +110,6 @@
       "path": "dist/index.cjs.js",
       "limit": "100 kB"
     }
-  ]
+  ],
+  "packageManager": "yarn@4.5.0+sha512.837566d24eec14ec0f5f1411adb544e892b3454255e61fdef8fd05f3429480102806bac7446bc9daff3896b01ae4b62d00096c7e989f1596f2af10b927532f39"
 }
