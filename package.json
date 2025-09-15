@@ -110,6 +110,5 @@
       "path": "dist/index.cjs.js",
       "limit": "100 kB"
     }
-  ],
-  "packageManager": "yarn@1.22.22"
+  ]
 }
