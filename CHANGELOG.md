@@ -6,6 +6,16 @@
 
 ### Minor Changes
 
+## 3.6.4
+
+### Minor Changes
+
+Updates dependencies to resolve critical and high-severity security vulnerabilities:
+
+- **axios**: `^1.7.4` → `^1.12.0` (fixes SSRF and DoS vulnerabilities)
+- **rollup**: `^2.70.1` → `^2.79.2` (fixes XSS vulnerability)
+- **elliptic**: `6.5.7` → `6.6.1` (fixes 9 critical ECDSA vulnerabilities)
+
 ## 3.6.3
 
 ### Minor Changes
