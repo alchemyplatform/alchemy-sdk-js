@@ -16,7 +16,7 @@ const DEFAULT_REQUEST_BATCH_DELAY_MS = 10;
  */
 export class RequestBatcher {
   /** Timeout timer that periodically sends the pending batch. */
-  private pendingBatchTimer: NodeJS.Timer | undefined;
+  private pendingBatchTimer: NodeJS.Timeout | undefined;
 
   /**
    * Array of enqueued requests along with the constructed promise handlers for
