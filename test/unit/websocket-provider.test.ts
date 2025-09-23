@@ -138,7 +138,7 @@ describe('AlchemyWebSocketProvider', () => {
     deferred: Deferred<void>
   ): void {
     for (const message of messages) {
-      // Use setImmediate to allow provder to pick up message.
+      // Use setImmediate to allow provider to pick up message.
       setImmediate(() => {
         mockServer.clients()[0].send(
           JSON.stringify({

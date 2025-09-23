@@ -79,7 +79,7 @@ function isRetryableHttpError(
 ): boolean {
   // TODO: remove 500s after webhooks are more stable.
   const retryableCodes =
-    apiType === AlchemyApiType.WEBHOOK ? [429, 500] : [429];
+    apiType === AlchemyApiType.WEBHOOK ? [429, 500, 503] : [429, 503];
   return (
     err.response !== undefined && retryableCodes.includes(err.response.status)
   );
