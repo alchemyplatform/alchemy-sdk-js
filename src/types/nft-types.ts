@@ -391,6 +391,10 @@ export interface GetSpamContractsResponse {
   contractAddresses: string[];
 }
 
+export interface GetReportSpamResponse {
+  success: boolean;
+}
+
 /**
  * Additional options for the {@link NftNamespace.getNftMetadata} method.
  */

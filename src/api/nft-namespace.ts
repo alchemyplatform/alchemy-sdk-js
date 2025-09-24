@@ -52,6 +52,7 @@ import {
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftOptions,
   GetOwnersForNftResponse,
+  GetReportSpamResponse,
   GetSpamContractsResponse,
   GetTransfersForContractOptions,
   IsAirdropNftResponse,
@@ -479,9 +480,13 @@ export class NftNamespace {
    * https://docs.alchemy.com/alchemy/enhanced-apis/nft-api/nft-api-faq#nft-spam-classification.
    *
    * @param contractAddress - The contract address to check.
+   * @param isSpam - Whether the contract is spam or not.
    */
-  reportSpam(contractAddress: string): Promise<void> {
-    return reportSpam(this.config, contractAddress);
+  reportSpam(
+    contractAddress: string,
+    isSpam = true
+  ): Promise<GetReportSpamResponse> {
+    return reportSpam(this.config, contractAddress, isSpam);
   }
 
   /**

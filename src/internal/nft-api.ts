@@ -23,6 +23,7 @@ import {
   GetOwnersForContractWithTokenBalancesOptions,
   GetOwnersForContractWithTokenBalancesResponse,
   GetOwnersForNftResponse,
+  GetReportSpamResponse,
   GetSpamContractsResponse,
   GetTransfersForContractOptions,
   IsAirdropNftResponse,
@@ -627,15 +628,17 @@ export async function getSpamContracts(
 export async function reportSpam(
   config: AlchemyConfig,
   contractAddress: string,
+  isSpam = true,
   srcMethod = 'reportSpam'
-): Promise<void> {
-  void requestHttpWithBackoff<ReportSpamParams, void>(
+): Promise<GetReportSpamResponse> {
+  return requestHttpWithBackoff<ReportSpamParams, GetReportSpamResponse>(
     config,
     AlchemyApiType.NFT,
     'reportSpam',
     srcMethod,
     {
-      contractAddress
+      contractAddress,
+      isSpam
     }
   );
 }
@@ -1056,6 +1059,7 @@ interface IsSpamContractParams {
  */
 interface ReportSpamParams {
   contractAddress: string;
+  isSpam: boolean;
 }
 
 /**
