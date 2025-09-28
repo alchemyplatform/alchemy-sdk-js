@@ -159,7 +159,10 @@ export const EthersNetwork = {
   [Network.BOTANIX_TESTNET]: 'botanix-testnet',
   [Network.HUMANITY_MAINNET]: 'humanity-mainnet',
   [Network.RISE_TESTNET]: 'rise-testnet',
-  [Network.HYPERLIQUID_MAINNET]: 'hyperliquid-mainnet'
+  [Network.HYPERLIQUID_MAINNET]: 'hyperliquid-mainnet',
+  [Network.HYPERLIQUID_TESTNET]: 'hyperliquid-testnet',
+  [Network.PLASMA_MAINNET]: 'plasma-mainnet',
+  [Network.PLASMA_TESTNET]: 'plasma-testnet'
 };
 
 /**
@@ -573,8 +576,20 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
     name: 'rise-testnet'
   },
   'hyperliquid-mainnet': {
-    chainId: 999,
+    chainId: 0x3e7,
     name: 'hyperliquid-mainnet'
+  },
+  'hyperliquid-testnet': {
+    chainId: 0x3e6,
+    name: 'hyperliquid-testnet'
+  },
+  'plasma-mainnet': {
+    chainId: 0x2611,
+    name: 'plasma-mainnet'
+  },
+  'plasma-testnet': {
+    chainId: 0x2612,
+    name: 'plasma-testnet'
   }
 };
 

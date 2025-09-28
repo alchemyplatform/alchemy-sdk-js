@@ -220,7 +220,10 @@ export enum Network {
   BOTANIX_TESTNET = 'botanix-testnet',
   HUMANITY_MAINNET = 'humanity-mainnet',
   RISE_TESTNET = 'rise-testnet',
-  HYPERLIQUID_MAINNET = 'hyperliquid-mainnet'
+  HYPERLIQUID_MAINNET = 'hyperliquid-mainnet',
+  HYPERLIQUID_TESTNET = 'hyperliquid-testnet',
+  PLASMA_MAINNET = 'plasma-mainnet',
+  PLASMA_TESTNET = 'plasma-testnet'
 }
 
 /** Token Types for the `getTokenBalances()` endpoint. */

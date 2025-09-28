@@ -6,6 +6,14 @@
 
 ### Minor Changes
 
+## 3.6.5
+
+### Minor Changes
+
+- Added `HYPERLIQUID` testnet.
+- Added `PLASMA` mainnet.
+- Added `PLASMA` testnet.
+
 ## 3.6.4
 
 ### Minor Changes
