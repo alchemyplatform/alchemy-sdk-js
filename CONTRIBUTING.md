@@ -19,7 +19,7 @@ brief overview of the codebase:
 - `src/index.ts`: The entry point for the SDK. All developer facing classes and methods are exported here.
 - `src/types`: Contains the TypeScript type definitions that are used and exported by the SDK.
 - `src/api`: Contains the source code for exported Alchemy API namespaces and relevant classes/methods.
-- `src/interal`: Contains the source code for internal helpers and implementations not intended for public use.
+- `src/internal`: Contains the source code for internal helpers and implementations not intended for public use.
 
 ## Running Tests
 
