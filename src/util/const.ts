@@ -143,6 +143,7 @@ export const EthersNetwork = {
   [Network.SEI_TESTNET]: 'sei-testnet',
   [Network.RONIN_MAINNET]: 'ronin-mainnet',
   [Network.RONIN_SAIGON]: 'ronin-saigon',
+  [Network.MONAD_MAINNET]: 'monad-mainnet',
   [Network.MONAD_TESTNET]: 'monad-testnet',
   [Network.SETTLUS_MAINNET]: 'settlus-mainnet',
   [Network.SETTLUS_SEPTESTNET]: 'settlus-septestnet',
@@ -510,6 +511,10 @@ export const CustomNetworks: { [key: string]: NetworkFromEthers } = {
   'ronin-saigon': {
     chainId: 2021,
     name: 'ronin-saigon'
+  },
+  'monad-mainnet': {
+    chainId: 143,
+    name: 'monad-mainnet'
   },
   'monad-testnet': {
     chainId: 0x279f,

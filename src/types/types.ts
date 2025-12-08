@@ -202,6 +202,7 @@ export enum Network {
   SEI_TESTNET = 'sei-testnet',
   RONIN_MAINNET = 'ronin-mainnet',
   RONIN_SAIGON = 'ronin-saigon',
+  MONAD_MAINNET = 'monad-mainnet',
   MONAD_TESTNET = 'monad-testnet',
   SETTLUS_SEPTESTNET = 'settlus-septestnet',
   SETTLUS_MAINNET = 'settlus-mainnet',

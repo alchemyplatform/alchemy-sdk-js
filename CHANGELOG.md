@@ -6,6 +6,8 @@
 
 ### Minor Changes
 
+- Added `MONAD` mainnet.
+
 ## 3.6.5
 
 ### Minor Changes

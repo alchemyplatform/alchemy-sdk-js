@@ -55,7 +55,7 @@ The SDK currently supports the following chains (chains with '(d)' after are dep
 - **Ink**: Mainnet, Sepolia
 - **Sei**: Mainnet, Testnet
 - **Ronin**: Mainnet, Saigon
-- **Monad**: Testnet
+- **Monad**: Mainnet, Testnet
 - **Settlus**: Mainnet, Testnet (Sepolia)
 - **Gensyn**: Testnet
 - **Superseed**: Mainnet, Sepolia
