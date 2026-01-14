@@ -497,13 +497,15 @@ export class AlchemyWebSocketProvider
     if (!isSubscriptionEvent(message)) {
       return;
     }
+    if (!message.params || !message.params.subscription) {
+      return;
+    }
     const physicalId = message.params.subscription;
     const virtualId = this.virtualIdsByPhysicalId.get(physicalId);
     if (!virtualId) {
       return;
     }
     const subscription = this.virtualSubscriptionsById.get(virtualId);
-    // Handle orphan messages that arrive after subscription was removed during reconnection
     if (!subscription) {
       return;
     }
