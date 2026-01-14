@@ -502,7 +502,11 @@ export class AlchemyWebSocketProvider
     if (!virtualId) {
       return;
     }
-    const subscription = this.virtualSubscriptionsById.get(virtualId)!;
+    const subscription = this.virtualSubscriptionsById.get(virtualId);
+    // Handle orphan messages that arrive after subscription was removed during reconnection
+    if (!subscription) {
+      return;
+    }
     if (subscription.method !== 'eth_subscribe') {
       return;
     }
