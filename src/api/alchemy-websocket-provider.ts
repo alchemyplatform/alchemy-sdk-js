@@ -497,12 +497,18 @@ export class AlchemyWebSocketProvider
     if (!isSubscriptionEvent(message)) {
       return;
     }
+    if (!message.params || !message.params.subscription) {
+      return;
+    }
     const physicalId = message.params.subscription;
     const virtualId = this.virtualIdsByPhysicalId.get(physicalId);
     if (!virtualId) {
       return;
     }
-    const subscription = this.virtualSubscriptionsById.get(virtualId)!;
+    const subscription = this.virtualSubscriptionsById.get(virtualId);
+    if (!subscription) {
+      return;
+    }
     if (subscription.method !== 'eth_subscribe') {
       return;
     }
