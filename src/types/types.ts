@@ -235,7 +235,7 @@ export enum TokenBalanceType {
   DEFAULT_TOKENS = 'DEFAULT_TOKENS',
 
   /**
-   * Option to fetch the set of ERC-20 tokens that the address as ever held. his
+   * Option to fetch the set of ERC-20 tokens that the address has ever held. This
    * list is produced by an address's historical transfer activity and includes
    * all tokens that the address has ever received.
    */
