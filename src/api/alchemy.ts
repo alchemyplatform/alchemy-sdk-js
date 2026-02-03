@@ -33,7 +33,7 @@ export class Alchemy {
 
   /**
    * The `transact` namespace contains methods for sending transactions and
-   * checking on the state of submitted transasctions.
+   * checking on the state of submitted transactions.
    */
   readonly transact: TransactNamespace;
 
