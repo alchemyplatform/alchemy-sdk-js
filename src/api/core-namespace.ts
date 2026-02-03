@@ -217,7 +217,7 @@ export class CoreNamespace {
   }
 
   /**
-   * Returns a Promise which will stall until the network has heen established,
+   * Returns a Promise which will stall until the network has been established,
    * ignoring errors due to the target node not being active yet.
    *
    * This can be used for testing or attaching scripts to wait until the node is
