@@ -497,6 +497,11 @@ export class AlchemyWebSocketProvider
     if (!isSubscriptionEvent(message)) {
       return;
     }
+    // Guard against malformed subscription events that pass the type guard
+    // but have missing params during WebSocket reconnection (Issue #547)
+    if (!message.params || !message.params.subscription) {
+      return;
+    }
     const physicalId = message.params.subscription;
     const virtualId = this.virtualIdsByPhysicalId.get(physicalId);
     if (!virtualId) {
