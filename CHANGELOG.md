@@ -6,6 +6,8 @@
 
 ### Minor Changes
 
+- Bumped `@ethersproject/*` dependencies from `^5.7.0` to `^5.8.0` to fix ws vulnerability (#496)
+
 ## 3.6.5
 
 ### Minor Changes
@@ -35,7 +37,7 @@ Updates dependencies to resolve critical and high-severity security vulnerabilit
 ### Minor Changes
 
 - Added Botanix Mainnet, Testnet; Humanity Mainnet; Rise Testnet
-- Deprecated Celo Baklava; Fantom Testnet; Geist Mainnet, Polter 
+- Deprecated Celo Baklava; Fantom Testnet; Geist Mainnet, Polter
 
 ## 3.6.1
 
