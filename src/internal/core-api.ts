@@ -37,20 +37,52 @@ export async function getAssetTransfers(
   if (params.toAddress) {
     params.toAddress = await provider._getAddress(params.toAddress);
   }
-  return provider._send(
-    'alchemy_getAssetTransfers',
-    [
-      {
-        ...params,
-        fromBlock:
-          params.fromBlock != null ? formatBlock(params.fromBlock) : undefined,
-        toBlock:
-          params.toBlock != null ? formatBlock(params.toBlock) : undefined,
-        maxCount: params.maxCount != null ? toHex(params.maxCount) : undefined
+
+  const { excludeFailedTransfers, ...apiParams } = params;
+
+  const response: AssetTransfersResponse | AssetTransfersWithMetadataResponse =
+    await provider._send(
+      'alchemy_getAssetTransfers',
+      [
+        {
+          ...apiParams,
+          fromBlock:
+            params.fromBlock != null
+              ? formatBlock(params.fromBlock)
+              : undefined,
+          toBlock:
+            params.toBlock != null ? formatBlock(params.toBlock) : undefined,
+          maxCount: params.maxCount != null ? toHex(params.maxCount) : undefined
+        }
+      ],
+      srcMethod
+    );
+
+  if (excludeFailedTransfers && response.transfers.length > 0) {
+    const uniqueHashes = [...new Set(response.transfers.map(t => t.hash))];
+
+    const receiptResults = await Promise.all(
+      uniqueHashes.map(hash =>
+        provider.getTransactionReceipt(hash).catch(() => null)
+      )
+    );
+
+    const failedHashes = new Set<string>();
+    for (let i = 0; i < uniqueHashes.length; i++) {
+      const receipt = receiptResults[i];
+      if (receipt && receipt.status === 0) {
+        failedHashes.add(uniqueHashes[i]);
       }
-    ],
-    srcMethod
-  );
+    }
+
+    if (failedHashes.size > 0) {
+      response.transfers = response.transfers.filter(
+        t => !failedHashes.has(t.hash)
+      );
+    }
+  }
+
+  return response;
 }
 
 export async function getTransactionReceipts(
