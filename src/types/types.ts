@@ -459,6 +459,16 @@ export interface AssetTransfersParams {
    * to `false` if omitted.
    */
   withMetadata?: boolean;
+
+  /**
+   * Whether to exclude transfers from failed (reverted) transactions. When set
+   * to `true`, the SDK fetches transaction receipts and removes transfers
+   * whose receipt status is `0` (failure). Defaults to `false` if omitted.
+   *
+   * Note: enabling this option causes additional network requests to verify
+   * receipt statuses, which may increase latency.
+   */
+  excludeFailedTransfers?: boolean;
 }
 
 /**
